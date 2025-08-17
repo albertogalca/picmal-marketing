@@ -74,7 +74,7 @@ function FAQAccordion({ isDark }) {
         >
           <button
             id={`faq-button-${index}`}
-            className="w-full p-6 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-[#1B5BFF] focus:ring-offset-2 focus:ring-offset-transparent rounded-2xl"
+            className="w-full p-6 flex items-center justify-between text-left focus:outline-none rounded-2xl"
             onClick={() => toggleFAQ(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             aria-expanded={openIndex === index}
@@ -447,18 +447,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* App Screenshot Section */}
+      {/* Demo Video Section */}
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-16">
+          <h2 className="text-4xl font-bold mb-4">
             <span
               className={`bg-gradient-to-r bg-clip-text text-transparent ${
                 isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
               }`}
             >
-              Convert images without breaking your flow
+              See Picmal in action
             </span>
           </h2>
+          <p
+            className={`text-xl mb-16 max-w-2xl mx-auto ${
+              isDark ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Watch how easy it is to convert images with just a few clicks
+          </p>
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/10 to-[#2483FF]/15 rounded-3xl blur-3xl"></div>
@@ -469,56 +476,15 @@ export default function Home() {
                   : "bg-gradient-to-br from-white/90 to-[#F2F6FF]/90 border-[#CBDEFF]/30"
               }`}
             >
-              <div
-                className={`rounded-2xl p-6 ${
-                  isDark
-                    ? "bg-gradient-to-br from-gray-800 to-gray-900"
-                    : "bg-gradient-to-br from-[#F2F6FF] to-white"
-                }`}
-              >
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-[#1B5BFF]/10 border border-[#1B5BFF]/20 rounded-lg p-4">
-                    <div className="text-[#1B5BFF] text-sm font-medium">
-                      image-001.jpg
-                    </div>
-                    <div
-                      className={`text-xs ${
-                        isDark ? "text-gray-400" : "text-gray-600"
-                      }`}
-                    >
-                      2.4 MB • Ready
-                    </div>
-                  </div>
-                  <div className="bg-[#2483FF]/10 border border-[#2483FF]/20 rounded-lg p-4">
-                    <div className="text-[#2483FF] text-sm font-medium">
-                      photo-batch.png
-                    </div>
-                    <div
-                      className={`text-xs ${
-                        isDark ? "text-gray-400" : "text-gray-600"
-                      }`}
-                    >
-                      1.8 MB • Converting...
-                    </div>
-                  </div>
-                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
-                    <div className="text-emerald-400 text-sm font-medium">
-                      converted.webp
-                    </div>
-                    <div
-                      className={`text-xs ${
-                        isDark ? "text-gray-400" : "text-gray-600"
-                      }`}
-                    >
-                      0.8 MB • Complete
-                    </div>
-                  </div>
-                </div>
+              <div className="relative rounded-2xl overflow-hidden">
+                <video
+                  controls
+                  className="w-full h-auto"
+                  poster="/picmal-main.webp"
+                >
+                  <source src="/picmal-demo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>
@@ -672,7 +638,7 @@ export default function Home() {
                 href="https://albertogalca.gumroad.com/l/picmal"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="w-full bg-gradient-to-r block rounded-full from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg"
+                className="w-full bg-gradient-to-r block from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg"
               >
                 Download Picmal
               </a>

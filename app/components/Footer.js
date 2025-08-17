@@ -23,14 +23,22 @@ export default function Footer({ isDark }) {
                 className="rounded-lg w-8 h-8 object-cover"
               />
             </div>
-            <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-              © 2025 Picmal, LLC. All rights reserved.
+            <p
+              className={`text-sm ${
+                isDark ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
+              © 2025 Cantimplora Studio, LLC. All rights reserved.
             </p>
           </div>
 
           {/* Company */}
           <div>
-            <h3 className={`font-semibold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+            <h3
+              className={`font-semibold mb-4 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
               Company
             </h3>
             <ul className="space-y-3">
@@ -87,7 +95,11 @@ export default function Footer({ isDark }) {
 
           {/* Product */}
           <div>
-            <h3 className={`font-semibold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+            <h3
+              className={`font-semibold mb-4 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
               Product
             </h3>
             <ul className="space-y-3">
@@ -144,7 +156,11 @@ export default function Footer({ isDark }) {
 
           {/* Compare with */}
           <div>
-            <h3 className={`font-semibold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+            <h3
+              className={`font-semibold mb-4 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
               Compare with
             </h3>
             <ul className="space-y-3">
@@ -189,7 +205,11 @@ export default function Footer({ isDark }) {
 
           {/* Resources */}
           <div>
-            <h3 className={`font-semibold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+            <h3
+              className={`font-semibold mb-4 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
               Resources
             </h3>
             <ul className="space-y-3">

@@ -3,12 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Footer({ isDark }) {
+export default function Footer() {
   return (
     <footer
-      className={`relative z-10 px-6 py-16 border-t ${
-        isDark ? "border-white/10" : "border-[#CBDEFF]/30 bg-white"
-      }`}
+      className="relative z-10 px-6 py-16 border-t border-[#CBDEFF]/30 bg-white dark:border-white/10 dark:bg-transparent"
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
@@ -23,33 +21,21 @@ export default function Footer({ isDark }) {
                 className="rounded-lg w-8 h-8 object-cover"
               />
             </div>
-            <p
-              className={`text-sm ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            >
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               © 2025 Cantimplora Studio, LLC. All rights reserved.
             </p>
           </div>
 
           {/* Company */}
           <div>
-            <h3
-              className={`font-semibold mb-4 ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Company
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:support@picmal.app"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Get in touch
                 </a>
@@ -57,11 +43,7 @@ export default function Footer({ isDark }) {
               <li>
                 <a
                   href="https://x.com/picmalapp"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Follow on X
                 </a>
@@ -69,11 +51,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/terms"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Terms of Use
                 </Link>
@@ -81,11 +59,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/privacy"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Privacy Policy
                 </Link>
@@ -95,22 +69,14 @@ export default function Footer({ isDark }) {
 
           {/* Product */}
           <div>
-            <h3
-              className={`font-semibold mb-4 ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Product
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#download"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Download for Mac
                 </a>
@@ -118,11 +84,7 @@ export default function Footer({ isDark }) {
               <li>
                 <a
                   href="#pricing"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Pricing
                 </a>
@@ -130,11 +92,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/blog"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Changelog
                 </Link>
@@ -142,11 +100,7 @@ export default function Footer({ isDark }) {
               <li>
                 <a
                   href="https://apps.apple.com/app/picmal/id6739063162"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Picmal on App Store
                 </a>
@@ -156,22 +110,14 @@ export default function Footer({ isDark }) {
 
           {/* Compare with */}
           <div>
-            <h3
-              className={`font-semibold mb-4 ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Compare with
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/compare/imageoptim"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   ImageOptim
                 </Link>
@@ -179,11 +125,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/compare/squash"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Squash
                 </Link>
@@ -191,11 +133,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/compare/preview"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Preview
                 </Link>
@@ -205,22 +143,14 @@ export default function Footer({ isDark }) {
 
           {/* Resources */}
           <div>
-            <h3
-              className={`font-semibold mb-4 ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Resources
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/blog"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Blog
                 </Link>
@@ -228,11 +158,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/guides"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Feedback & Roadmap
                 </Link>
@@ -240,11 +166,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/docs"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Documentation
                 </Link>
@@ -252,11 +174,7 @@ export default function Footer({ isDark }) {
               <li>
                 <Link
                   href="/support"
-                  className={`text-sm transition-colors ${
-                    isDark
-                      ? "text-gray-400 hover:text-white"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Manage your license
                 </Link>

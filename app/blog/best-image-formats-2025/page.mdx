@@ -1,0 +1,100 @@
+import { BlogLayout } from '../../components/mdx-components';
+
+export const meta = {
+  title: 'Best Image Formats for Web and Print in 2025',
+  description: 'Complete guide to choosing the right image format for your projects, from WEBP to AVIF and beyond.',
+  date: 'July 15, 2025',
+  category: 'Guide',
+  readTime: '8 min read'
+};
+
+export default function Layout({ children }) {
+  return <BlogLayout meta={meta}>{children}</BlogLayout>;
+}
+
+Choosing the right image format can significantly impact your website's performance, your print quality, and your workflow efficiency. With new formats like AVIF and WEBP gaining widespread support, it's important to understand when to use each format.
+
+## Web Image Formats
+
+### WEBP - Best for Most Web Images
+
+**✅ Pros:**
+- 25-35% smaller than JPEG
+- Supports transparency
+- Excellent browser support (95%+)
+- Good compression quality
+
+**❌ Cons:**
+- Not supported in IE
+- Larger than AVIF
+- Limited editing tool support
+
+**Best for:** Website images, e-commerce product photos, social media graphics
+
+### AVIF - Next-Generation Format
+
+**✅ Pros:**
+- 50% smaller than JPEG
+- Superior compression
+- Supports HDR and wide color gamut
+- Growing browser support (85%+)
+
+**❌ Cons:**
+- Slower encoding/decoding
+- Limited tool support
+- Not supported in older browsers
+
+**Best for:** High-quality web images, progressive web apps, future-proofing
+
+### JPEG - Universal Standard
+
+**✅ Pros:**
+- Universal support
+- Small file sizes for photos
+- Excellent tool support
+- Progressive loading
+
+**❌ Cons:**
+- No transparency support
+- Lossy compression only
+- Larger than modern formats
+
+**Best for:** Photographs, legacy system compatibility, email attachments
+
+## Print and Professional Formats
+
+### TIFF - Professional Standard
+
+TIFF remains the gold standard for professional photography and print work. It offers lossless compression, supports multiple layers, and maintains the highest image quality.
+
+**Best for:** Professional photography, print production, archival storage
+
+### RAW - Maximum Quality
+
+RAW formats (CR2, NEF, ARW, DNG) contain unprocessed sensor data, offering maximum editing flexibility and the highest possible image quality.
+
+**Best for:** Professional photography, extensive post-processing, maximum quality retention
+
+## Format Selection Guide
+
+### Quick Decision Tree
+
+**📱 For Websites & Apps**
+Use WEBP for broad compatibility, AVIF for cutting-edge performance, JPEG as fallback
+
+**🖨️ For Print**  
+Use TIFF or high-quality JPEG (95%+), PNG for graphics with transparency
+
+**📸 For Photography**
+Shoot in RAW, edit in TIFF, deliver in WEBP/JPEG depending on use case
+
+## Converting Between Formats
+
+When working with multiple image formats, having a reliable conversion tool is essential. Picmal offers native macOS integration with support for 20+ formats, including all the modern web formats mentioned in this guide.
+
+<ProTip>
+- Always keep original files when converting to lossy formats
+- Use batch conversion for efficiency when processing multiple files  
+- Consider creating multiple formats for web delivery (AVIF + WEBP + JPEG fallback)
+- Test file sizes and quality before committing to a format
+</ProTip>

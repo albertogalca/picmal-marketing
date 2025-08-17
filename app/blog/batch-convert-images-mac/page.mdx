@@ -1,0 +1,113 @@
+import { BlogLayout } from '../../components/mdx-components';
+
+export const meta = {
+  title: 'How to Batch Convert Images on Mac: Complete Guide',
+  description: 'Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions.',
+  date: 'July 10, 2025',
+  category: 'Tutorial',
+  readTime: '6 min read'
+};
+
+export default function Layout({ children }) {
+  return <BlogLayout meta={meta}>{children}</BlogLayout>;
+}
+
+Whether you're a photographer processing hundreds of RAW files, a web developer optimizing images for a website, or someone who just needs to convert a folder of images to a different format, batch conversion can save you hours of manual work.
+
+## Method 1: Using macOS Preview (Built-in)
+
+### Step-by-Step Instructions
+
+1. **Select your images:** In Finder, select all the images you want to convert by clicking the first image, then holding Shift and clicking the last image.
+2. **Open in Preview:** Right-click and choose "Open With" → "Preview"
+3. **Select all in Preview:** Press Cmd+A to select all images in the sidebar
+4. **Export:** Go to File → Export Selected Images...
+5. **Choose format:** In the dialog, select your desired format (JPEG, PNG, TIFF, etc.)
+6. **Set quality:** Adjust quality settings if available
+7. **Export:** Choose destination folder and click "Choose"
+
+> **✅ Pros:** Free, built-in, no installation required  
+> **❌ Cons:** Limited format support, basic options only
+
+## Method 2: Using Automator (Advanced Built-in)
+
+### Creating a Reusable Workflow
+
+1. **Open Automator:** Find it in Applications or use Spotlight search
+2. **Create new workflow:** Choose "Workflow" when prompted
+3. **Add "Get Selected Finder Items":** Drag this action from the library
+4. **Add "Change Type of Images":** Search for this action and drag it below the first one
+5. **Configure format:** Choose your target format (JPEG, PNG, TIFF, etc.)
+6. **Save workflow:** File → Save and give it a descriptive name
+7. **Use it:** Select images in Finder, right-click → Services → Your Workflow Name
+
+<ProTip>
+You can add more actions like "Scale Images" to resize and convert simultaneously.
+</ProTip>
+
+## Method 3: Using Command Line (Terminal)
+
+### Using ImageMagick
+
+```bash
+# Install ImageMagick via Homebrew
+brew install imagemagick
+
+# Convert all JPEG files to PNG
+magick *.jpg -format png -path ./converted %t.png
+
+# Resize and convert
+magick *.jpg -resize 800x600 -format webp ./converted/%t.webp
+```
+
+> **⚡ Pros:** Very powerful, scriptable, supports all formats  
+> **⚠️ Cons:** Command line only, steep learning curve
+
+## Method 4: Using Dedicated Apps
+
+### Why Choose a Dedicated App?
+
+**✅ Advantages**
+- User-friendly interface
+- More format options
+- Advanced compression settings
+- Batch processing features
+- Preview capabilities
+- Metadata management
+
+**Popular Options**
+- **Picmal** - Privacy-focused, native macOS
+- ImageOptim - Web optimization focus
+- Squash - Simple compression tool
+- BRAW Toolbox - Professional video/RAW
+
+## Choosing the Right Method
+
+### Decision Matrix
+
+**🆓 Occasional Use (< 50 images/month)**
+Use macOS Preview - it's free and handles basic conversions well
+
+**🔄 Regular Use (50-500 images/month)**
+Consider Automator workflows or a dedicated app like Picmal for better efficiency
+
+**🏢 Professional Use (500+ images/month)**
+Invest in professional tools or learn command line for maximum control and speed
+
+## Best Practices
+
+- **Always backup originals:** Keep a copy of your source files before batch converting
+- **Test with a small batch first:** Verify settings work correctly before processing hundreds of files
+- **Use descriptive naming:** Add prefixes or suffixes to distinguish converted files
+- **Consider organization:** Create separate folders for different formats or purposes
+- **Monitor quality:** Check a few converted images to ensure quality meets your needs
+
+<ProTip>
+**⚡ Quick Start Checklist**
+1. Backup your original images
+2. Choose your conversion method based on volume and complexity
+3. Test with 2-3 images first
+4. Check quality and file sizes
+5. Process your full batch
+6. Organize converted files appropriately
+</ProTip>

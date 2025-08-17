@@ -1,102 +1,784 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+function FAQAccordion({ isDark }) {
+  const [openIndex, setOpenIndex] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const faqs = [
+    {
+      question: "Is Picmal available for Windows or Linux?",
+      answer:
+        "Picmal is a native Mac app, so it's only available for Mac. For now and forever.",
+    },
+    {
+      question: "Is my privacy protected?",
+      answer:
+        "Absolutely. All image processing happens locally on your Mac, and no photos are ever uploaded to any servers.",
+    },
+    {
+      question: "What image formats does Picmal support?",
+      answer:
+        "Picmal supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW (CR2, NEF, ARW), TIFF, PSD, GIF, BMP, SVG, EPS, AI, ICO, and more.",
+    },
+    {
+      question: "Can I convert multiple images at once?",
+      answer:
+        "Yes! Picmal excels at batch processing. Simply drag and drop multiple images, or even entire folders, and convert them all at once.",
+    },
+    {
+      question: "What macOS versions are supported?",
+      answer:
+        "Picmal requires macOS Sonoma (14.0) or later. It's optimized for Apple Silicon Macs but also works great on Intel Macs.",
+    },
+    {
+      question: "Do I need an internet connection to use Picmal?",
+      answer:
+        "No internet connection is required after installation. Picmal works completely offline, ensuring your images never leave your device.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleKeyDown = (event, index) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleFAQ(index);
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      const nextIndex = (index + 1) % faqs.length;
+      document.getElementById(`faq-button-${nextIndex}`)?.focus();
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      const prevIndex = index === 0 ? faqs.length - 1 : index - 1;
+      document.getElementById(`faq-button-${prevIndex}`)?.focus();
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      {faqs.map((faq, index) => (
+        <div
+          key={index}
+          className={`backdrop-blur border rounded-2xl transition-all duration-300 ${
+            isDark
+              ? "bg-white/5 border-white/10 hover:bg-white/10"
+              : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+          }`}
+        >
+          <button
+            id={`faq-button-${index}`}
+            className="w-full p-6 flex items-center justify-between text-left focus:outline-none focus:ring-2 focus:ring-[#1B5BFF] focus:ring-offset-2 focus:ring-offset-transparent rounded-2xl"
+            onClick={() => toggleFAQ(index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            aria-expanded={openIndex === index}
+            aria-controls={`faq-content-${index}`}
           >
+            <h3
+              className={`text-lg font-semibold pr-4 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
+              {faq.question}
+            </h3>
+            <div
+              className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
+                isDark ? "bg-white/10" : "bg-[#1B5BFF]/10"
+              } ${openIndex === index ? "rotate-180" : ""}`}
+              aria-hidden="true"
+            >
+              <svg
+                className={`w-4 h-4 ${
+                  isDark ? "text-white" : "text-[#1B5BFF]"
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </button>
+
+          <div
+            id={`faq-content-${index}`}
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            }`}
+            aria-hidden={openIndex !== index}
+          >
+            <div className="px-6 pb-6">
+              <p
+                className={`${
+                  isDark ? "text-gray-300" : "text-gray-700"
+                } leading-relaxed`}
+              >
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function Home() {
+  const [isDark, setIsDark] = useState(true);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
+  return (
+    <div
+      className={`min-h-screen overflow-hidden transition-colors duration-300 ${
+        isDark ? "bg-black text-white" : "bg-[#F2F6FF] text-gray-900"
+      }`}
+    >
+      {/* Skip to main content link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#1B5BFF] text-white px-4 py-2 rounded-md z-[100] focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
+
+      {/* Background gradient */}
+      <div
+        className={`fixed inset-0 transition-all duration-300 ${
+          isDark
+            ? "bg-gradient-to-br from-[#1B5BFF]/10 via-black to-[#2483FF]/15"
+            : "bg-gradient-to-br from-[#F2F6FF] via-white to-[#CBDEFF]/30"
+        }`}
+      ></div>
+
+      {/* Navigation */}
+      <nav
+        className={`relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 ${
+          isDark
+            ? "bg-black/50 border-b border-white/10"
+            : "bg-white/80 border-b border-[#CBDEFF]/30"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-2">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/logo.webp"
+              alt="Picmal Logo"
+              width={64}
+              height={64}
+              className="rounded-lg w-10 h-10 object-cover"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div
+              className={`text-xl font-semibold ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Picmal
+            </div>
+          </div>
+          <div className="hidden md:flex items-center space-x-8">
+            <a
+              href="#features"
+              className={`transition-colors ${
+                isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-[#1B5BFF]"
+              }`}
+            >
+              Features
+            </a>
+            <a
+              href="#pricing"
+              className={`transition-colors ${
+                isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-[#1B5BFF]"
+              }`}
+            >
+              Pricing
+            </a>
+            <a
+              href="/blog"
+              className={`transition-colors ${
+                isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-[#1B5BFF]"
+              }`}
+            >
+              Blog
+            </a>
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full transition-colors mr-4 ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20 text-white"
+                  : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+              }`}
+            >
+              {isDark ? "☀️" : "🌙"}
+            </button>
+            <button className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-6 py-2.5 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium">
+              Download for Mac
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <main id="main-content" className="relative z-10 px-6 py-20">
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Badge */}
+          <div
+            className={`inline-flex items-center space-x-2 backdrop-blur border rounded-full px-4 py-2 mb-8 ${
+              isDark
+                ? "bg-white/5 border-white/10"
+                : "bg-white/80 border-[#CBDEFF]/50"
+            }`}
           >
-            Read our docs
-          </a>
+            <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full"></div>
+            <span
+              className={`text-sm ${
+                isDark ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
+              Privacy-first image converter
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings">
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark
+                  ? "from-white via-gray-200 to-gray-400"
+                  : "from-gray-900 via-gray-700 to-gray-600"
+              }`}
+            >
+              Fast image conversion
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-[#1B5BFF] via-[#2483FF] to-[#CBDEFF] bg-clip-text text-transparent">
+              built for Mac
+            </span>
+          </h1>
+
+          <p
+            className={`text-xl mb-12 max-w-3xl mx-auto leading-relaxed ${
+              isDark ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Picmal is a lightweight, privacy-first image converter built
+            exclusively for macOS. Designed to feel right at home on your Mac,
+            Picmal makes converting images fast, simple, and secure.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <button className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg shadow-2xl">
+              <span className="flex items-center space-x-2">
+                <span>Download Picmal</span>
+                <svg
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </button>
+            <div className="text-sm text-gray-500">
+              $8 • macOS Sonoma or later
+            </div>
+          </div>
+
+          {/* App Preview - Similar to LookAway */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/15 to-[#2483FF]/20 rounded-3xl blur-3xl"></div>
+            <div
+              className={`relative backdrop-blur-xl border rounded-3xl p-8 shadow-2xl ${
+                isDark
+                  ? "bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-white/10"
+                  : "bg-gradient-to-br from-white/95 to-[#F2F6FF]/95 border-[#CBDEFF]/30"
+              }`}
+            >
+              <div className="bg-gradient-to-br from-[#1B5BFF]/10 to-[#2483FF]/5 rounded-2xl p-8 border border-[#1B5BFF]/20">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div
+                    className={`text-sm ${
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    Picmal
+                  </div>
+                </div>
+                <div className="border-2 border-dashed border-[#1B5BFF]/30 rounded-xl p-12 text-center">
+                  <div className="text-[#1B5BFF] text-lg font-medium mb-2">
+                    Drop images to convert
+                  </div>
+                  <div
+                    className={`text-sm ${
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    Supports 20+ formats • Drag. Drop. Done.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Features Section */}
+      <section
+        id="features"
+        className={`relative z-10 px-6 py-20 ${isDark ? "" : "bg-white"}`}
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span
+                className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                  isDark
+                    ? "from-white to-gray-300"
+                    : "from-gray-900 to-gray-600"
+                }`}
+              >
+                Why choose Picmal?
+              </span>
+            </h2>
+            <p
+              className={`text-xl max-w-2xl mx-auto ${
+                isDark ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
+              Designed specifically for macOS with the features you need
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:bg-white/10"
+                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+              }`}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#1B5BFF] to-[#2483FF] rounded-xl flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+              </div>
+              <h3
+                className={`text-lg font-semibold mb-2 ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Native macOS Experience
+              </h3>
+              <p
+                className={`text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                Crafted specifically for macOS with a clean, responsive UI that
+                feels seamless and intuitive.
+              </p>
+            </div>
+
+            <div
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:bg-white/10"
+                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+              }`}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#2483FF] to-[#CBDEFF] rounded-xl flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M13 3v6h8l-1 13H4L3 9h8V3h2z" />
+                </svg>
+              </div>
+              <h3
+                className={`text-lg font-semibold mb-2 ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Batch Processing
+              </h3>
+              <p
+                className={`text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                Convert dozens—or hundreds—of images at once. Drag. Drop. Done.
+              </p>
+            </div>
+
+            <div
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:bg-white/10"
+                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+              }`}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M13 1v6h5l-2 14H8L6 7h5V1h2z" />
+                </svg>
+              </div>
+              <h3
+                className={`text-lg font-semibold mb-2 ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Fast & Local
+              </h3>
+              <p
+                className={`text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                No uploads. No waiting. All conversions happen instantly on your
+                device.
+              </p>
+            </div>
+
+            <div
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:bg-white/10"
+                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+              }`}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#CBDEFF] to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                </svg>
+              </div>
+              <h3
+                className={`text-lg font-semibold mb-2 ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                100% Private
+              </h3>
+              <p
+                className={`text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                Your images never leave your Mac. No cloud. No tracking. No
+                compromise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* App Screenshot Section */}
+      <section className="relative z-10 px-6 py-20">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-16">
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
+              Convert images without breaking your flow
+            </span>
+          </h2>
+
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/10 to-[#2483FF]/15 rounded-3xl blur-3xl"></div>
+            <div
+              className={`relative backdrop-blur-xl border rounded-3xl p-8 shadow-2xl ${
+                isDark
+                  ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-white/10"
+                  : "bg-gradient-to-br from-white/90 to-[#F2F6FF]/90 border-[#CBDEFF]/30"
+              }`}
+            >
+              <div
+                className={`rounded-2xl p-6 ${
+                  isDark
+                    ? "bg-gradient-to-br from-gray-800 to-gray-900"
+                    : "bg-gradient-to-br from-[#F2F6FF] to-white"
+                }`}
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-[#1B5BFF]/10 border border-[#1B5BFF]/20 rounded-lg p-4">
+                    <div className="text-[#1B5BFF] text-sm font-medium">
+                      image-001.jpg
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      2.4 MB • Ready
+                    </div>
+                  </div>
+                  <div className="bg-[#2483FF]/10 border border-[#2483FF]/20 rounded-lg p-4">
+                    <div className="text-[#2483FF] text-sm font-medium">
+                      photo-batch.png
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      1.8 MB • Converting...
+                    </div>
+                  </div>
+                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
+                    <div className="text-emerald-400 text-sm font-medium">
+                      converted.webp
+                    </div>
+                    <div
+                      className={`text-xs ${
+                        isDark ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      0.8 MB • Complete
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Supported Formats */}
+      <section
+        className={`relative z-10 px-6 py-20 ${isDark ? "" : "bg-[#F2F6FF]"}`}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-8">
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
+              20+ Supported Formats
+            </span>
+          </h2>
+          <p
+            className={`text-xl mb-12 ${
+              isDark ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Convert between all popular image formats
+          </p>
+
+          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4">
+            {[
+              "JPEG",
+              "PNG",
+              "HEIC",
+              "RAW",
+              "PSD",
+              "TIFF",
+              "GIF",
+              "BMP",
+              "SVG",
+              "WEBP",
+              "AVIF",
+              "ICO",
+              "DNG",
+              "CR2",
+              "NEF",
+              "ARW",
+            ].map((format) => (
+              <div
+                key={format}
+                className={`backdrop-blur border rounded-lg p-3 transition-colors ${
+                  isDark
+                    ? "bg-white/5 border-white/10 hover:bg-white/10"
+                    : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+                }`}
+              >
+                <div className="text-[#1B5BFF] font-semibold text-sm">
+                  {format}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="relative z-10 px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span
+                className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                  isDark
+                    ? "from-white to-gray-300"
+                    : "from-gray-900 to-gray-600"
+                }`}
+              >
+                💬 Frequently Asked Questions
+              </span>
+            </h2>
+          </div>
+
+          <FAQAccordion isDark={isDark} />
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="relative z-10 px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-16">
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
+              Simple, one-time purchase
+            </span>
+          </h2>
+
+          <div className="relative max-w-md mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/20 to-[#2483FF]/25 rounded-3xl blur-2xl"></div>
+            <div
+              className={`relative backdrop-blur border rounded-3xl p-8 ${
+                isDark
+                  ? "bg-white/5 border-white/10"
+                  : "bg-white/90 border-[#CBDEFF]/30"
+              }`}
+            >
+              <div className="text-6xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] bg-clip-text text-transparent">
+                  $8
+                </span>
+              </div>
+              <div
+                className={`mb-8 ${isDark ? "text-gray-400" : "text-gray-600"}`}
+              >
+                One-time purchase
+              </div>
+
+              <ul className="text-left space-y-4 mb-8">
+                {[
+                  "20+ supported formats",
+                  "Batch conversion",
+                  "100% local processing",
+                  "Native macOS design",
+                  "Metadata management",
+                  "Free updates",
+                ].map((feature, index) => (
+                  <li
+                    key={index}
+                    className={`flex items-center ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    <svg
+                      className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg">
+                Download Picmal
+              </button>
+              <div className="text-sm text-gray-500 mt-4">
+                macOS Sonoma or later required
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer
+        className={`relative z-10 px-6 py-12 border-t ${
+          isDark ? "border-white/10" : "border-[#CBDEFF]/30 bg-white"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="flex items-center justify-center space-x-2 mb-4">
+            <Image
+              src="/logo.webp"
+              alt="Picmal Logo"
+              width={64}
+              height={64}
+              className="rounded-lg w-8 h-8 object-cover"
+            />
+            <div
+              className={`text-xl font-semibold ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Picmal
+            </div>
+          </div>
+          <p className={`mb-6 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+            Privacy-first image conversion for Mac
+          </p>
+          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+            <a
+              href="mailto:support@picmal.app"
+              className="hover:text-[#1B5BFF] transition-colors"
+            >
+              Support
+            </a>
+            <span>•</span>
+            <span>Version 1.0.5</span>
+            <span>•</span>
+            <span>Made with ❤️ for Mac</span>
+          </div>
+        </div>
       </footer>
     </div>
   );

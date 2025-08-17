@@ -1,0 +1,37 @@
+import { BlogLayout } from '../../components/mdx-components';
+
+export const meta = {
+  title: 'Picmal v1.0.5 - Enhanced File Naming and Metadata Display',
+  description: 'New features for better file organization and metadata visibility in your image conversion workflow.',
+  date: 'July 22, 2025',
+  category: 'Changelog',
+  readTime: '2 min read'
+};
+
+export default function Layout({ children }) {
+  return <BlogLayout meta={meta}>{children}</BlogLayout>;
+}
+
+## What's New in v1.0.5
+
+<FeatureCard title="Custom File Naming" icon="✓">
+You can now add custom prefixes and suffixes to your converted images. Perfect for organizing batches or adding timestamps to your files.
+</FeatureCard>
+
+<FeatureCard title="Image Metadata Display" icon="✓">
+View detailed metadata information for your images directly in Picmal, including EXIF data, color profiles, and file properties.
+</FeatureCard>
+
+## How to Use These Features
+
+### Adding Prefixes and Suffixes
+
+In the conversion settings, you'll find new options to add text before (prefix) or after (suffix) your image filenames. This is especially useful when processing large batches where you need consistent naming conventions.
+
+### Viewing Metadata
+
+Right-click on any image in Picmal and select "Show Metadata" to view detailed information about your images. This includes camera settings, GPS data (if available), color space information, and more.
+
+<ProTip>
+Use prefixes like "web_" for images destined for web use, or "print_" for high-resolution print files. This makes it easy to organize your converted images by their intended purpose.
+</ProTip>

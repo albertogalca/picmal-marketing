@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Header from './Header';
+import Footer from './Footer';
 
 // Blog layout wrapper
 export function BlogLayout({ children, meta }) {
@@ -24,40 +26,23 @@ export function BlogLayout({ children, meta }) {
           : 'bg-gradient-to-br from-[#F2F6FF] via-white to-[#CBDEFF]/30'
       }`}></div>
       
-      {/* Navigation */}
-      <nav className={`relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 ${
-        isDark 
-          ? 'bg-black/50 border-b border-white/10'
-          : 'bg-white/80 border-b border-[#CBDEFF]/30'
-      }`}>
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#1B5BFF] to-[#2483FF] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">P</span>
-              </div>
-              <div className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>Picmal</div>
-            </Link>
-          </div>
-          <div className="flex items-center space-x-6">
-            <Link href="/blog" className={`transition-colors ${
-              isDark 
-                ? 'text-gray-300 hover:text-white' 
-                : 'text-gray-600 hover:text-[#1B5BFF]'
-            }`}>← Back to Blog</Link>
-            <button 
-              onClick={toggleTheme}
-              className={`p-2 rounded-full transition-colors ${
-                isDark 
-                  ? 'bg-white/10 hover:bg-white/20 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-              }`}
-            >
-              {isDark ? '☀️' : '🌙'}
-            </button>
-          </div>
+      <Header isDark={isDark} toggleTheme={toggleTheme} currentPage="blog" />
+      
+      {/* Back to Blog Link */}
+      <div className="relative z-10 px-6 pt-6">
+        <div className="max-w-4xl mx-auto">
+          <Link href="/blog" className={`inline-flex items-center transition-colors ${
+            isDark 
+              ? 'text-gray-300 hover:text-white' 
+              : 'text-gray-600 hover:text-[#1B5BFF]'
+          }`}>
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
+            Back to Blog
+          </Link>
         </div>
-      </nav>
+      </div>
 
       {/* Article */}
       <article className="relative z-10 px-6 py-20">
@@ -111,33 +96,7 @@ export function BlogLayout({ children, meta }) {
         </div>
       </article>
 
-      {/* Footer */}
-      <footer className={`relative z-10 px-6 py-12 border-t ${
-        isDark 
-          ? 'border-white/10'
-          : 'border-[#CBDEFF]/30 bg-white'
-      }`}>
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#1B5BFF] to-[#2483FF] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
-            <div className={`text-xl font-semibold ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}>Picmal</div>
-          </div>
-          <p className={`mb-6 ${
-            isDark ? 'text-gray-400' : 'text-gray-600'
-          }`}>Privacy-first image conversion for Mac</p>
-          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
-            <a href="mailto:support@picmal.app" className="hover:text-[#1B5BFF] transition-colors">Support</a>
-            <span>•</span>
-            <span>Version 1.0.5</span>
-            <span>•</span>
-            <span>Made with ❤️ for Mac</span>
-          </div>
-        </div>
-      </footer>
+      <Footer isDark={isDark} />
     </div>
   );
 }

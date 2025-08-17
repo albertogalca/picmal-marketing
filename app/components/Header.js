@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Header({ toggleTheme, currentPage = "home" }) {
   return (
-    <nav className="relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white/80 border-b border-[#CBDEFF]/30 dark:bg-black/50 dark:border-white/10">
+    <nav className="relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white border-b border-[#CBDEFF]/30 dark:bg-black/50 dark:border-white/10">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-2">
@@ -50,14 +50,19 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           </Link>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full transition-colors mr-4 bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
+            className="rounded-full w-8 h-8 transition-colors mr-4 hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
           >
             <span className="dark:hidden">🌙</span>
             <span className="hidden dark:inline">☀️</span>
           </button>
-          <button className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-6 py-2.5 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium">
+          <a
+            href="https://albertogalca.gumroad.com/l/picmal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-6 py-2.5 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium"
+          >
             Download for Mac
-          </button>
+          </a>
         </div>
       </div>
     </nav>

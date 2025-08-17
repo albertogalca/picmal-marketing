@@ -1,11 +1,12 @@
-import { BlogLayout } from '../../components/mdx-components';
+import { BlogLayout } from "../../components/mdx-components";
 
 export const meta = {
-  title: 'Picmal v1.0.3 - Performance Optimizations and Format Support',
-  description: 'Improved conversion speeds, added SVG support, and enhanced batch processing performance.',
-  date: 'July 12, 2025',
-  category: 'Changelog',
-  readTime: '2 min read'
+  title: "Picmal v1.0.3 - Performance Optimizations and Format Support",
+  description:
+    "Improved conversion speeds, added SVG support, and enhanced batch processing performance.",
+  date: "July 12, 2025",
+  category: "Changelog",
+  readTime: "2 min read",
 };
 
 export default function Layout({ children }) {
@@ -14,17 +15,10 @@ export default function Layout({ children }) {
 
 ## What's New in v1.0.3
 
-<FeatureCard title="SVG Format Support" icon="✓">
-Convert vector graphics to raster formats while maintaining crisp quality. Perfect for converting icons and illustrations to PNG or JPEG.
-</FeatureCard>
-
-<FeatureCard title="40% Faster Conversions" icon="⚡">
-Optimized conversion engine delivers significantly faster processing times, especially noticeable with large batches and high-resolution images.
-</FeatureCard>
-
-<FeatureCard title="Memory Usage Improvements" icon="🔧">
-Reduced memory footprint by 30% when processing large images, allowing for smoother operation on older Mac models.
-</FeatureCard>
+- **SVG Format Support:** Convert vector graphics to raster formats while maintaining crisp quality. Perfect for converting icons and illustrations to PNG or JPEG.
+- **40% Faster Conversions:** Optimized conversion engine delivers significantly faster processing times, especially noticeable with large batches and high-resolution images.
+- **Memory Usage Improvements:** Reduced memory footprint by 30% when processing large images, allowing for
+  smoother operation on older Mac models.
 
 ## Performance Improvements
 
@@ -42,11 +36,14 @@ This update focuses on making Picmal faster and more efficient. Whether you're c
 Vector graphics are now supported as input format. This is particularly useful for designers who need to convert SVG icons or illustrations to raster formats for different use cases.
 
 **Supported SVG Features:**
+
 - Basic shapes and paths
 - Text elements (converted to outlines)
 - Gradients and solid fills
 - Stroke properties
 
 <ProTip>
-When converting SVG files, you can specify custom output dimensions to ensure your converted images are exactly the size you need. This is perfect for creating different icon sizes from a single SVG source.
+  When converting SVG files, you can specify custom output dimensions to ensure
+  your converted images are exactly the size you need. This is perfect for
+  creating different icon sizes from a single SVG source.
 </ProTip>

@@ -5,9 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer
-      className="relative z-10 px-6 py-16 border-t border-[#CBDEFF]/30 bg-white dark:border-white/10 dark:bg-transparent"
-    >
+    <footer className="relative z-10 px-6 py-16 border-t border-[#CBDEFF]/30 bg-white dark:border-white/10 dark:bg-transparent">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and Copyright */}
@@ -31,7 +29,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Company
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               <li>
                 <a
                   href="mailto:support@picmal.app"
@@ -43,6 +41,8 @@ export default function Footer() {
               <li>
                 <a
                   href="https://x.com/picmalapp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Follow on X
@@ -72,10 +72,12 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Product
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               <li>
                 <a
-                  href="#download"
+                  href="https://albertogalca.gumroad.com/l/picmal"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Download for Mac
@@ -97,47 +99,6 @@ export default function Footer() {
                   Changelog
                 </Link>
               </li>
-              <li>
-                <a
-                  href="https://apps.apple.com/app/picmal/id6739063162"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  Picmal on App Store
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Compare with */}
-          <div>
-            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
-              Compare with
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/compare/imageoptim"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  ImageOptim
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/compare/squash"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  Squash
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/compare/preview"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  Preview
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -146,7 +107,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Resources
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               <li>
                 <Link
                   href="/blog"
@@ -161,22 +122,6 @@ export default function Footer() {
                   className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                 >
                   Feedback & Roadmap
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/docs"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/support"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  Manage your license
                 </Link>
               </li>
             </ul>

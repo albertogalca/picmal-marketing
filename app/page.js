@@ -140,8 +140,10 @@ export default function Home() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
       setIsDark(true);
       document.documentElement.classList.add("dark");
@@ -262,7 +264,7 @@ export default function Home() {
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/15 to-[#2483FF]/20 rounded-3xl blur-3xl"></div>
             <div
-              className={`relative backdrop-blur-xl border rounded-3xl p-6 shadow-2xl ${
+              className={`relative backdrop-blur-xl border rounded-3xl p-12 shadow-2xl ${
                 isDark
                   ? "bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-white/10"
                   : "bg-gradient-to-br from-white/95 to-[#F2F6FF]/95 border-[#CBDEFF]/30"
@@ -666,9 +668,14 @@ export default function Home() {
                 ))}
               </ul>
 
-              <button className="w-full bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg">
+              <a
+                href="https://albertogalca.gumroad.com/l/picmal"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="w-full bg-gradient-to-r block rounded-full from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg"
+              >
                 Download Picmal
-              </button>
+              </a>
               <div className="text-sm text-gray-500 mt-4">
                 macOS Sonoma or later required
               </div>

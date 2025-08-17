@@ -239,7 +239,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <button className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg shadow-2xl">
+            <a
+              href="https://albertogalca.gumroad.com/l/picmal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg shadow-2xl"
+            >
               <span className="flex items-center space-x-2">
                 <span>Download Picmal</span>
                 <svg
@@ -254,7 +259,7 @@ export default function Home() {
                   />
                 </svg>
               </span>
-            </button>
+            </a>
             <div className="text-sm text-gray-500">
               $8 • macOS Sonoma or later
             </div>

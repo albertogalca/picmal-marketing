@@ -303,43 +303,25 @@ export default function Home() {
             </div>
           </div>
 
-          {/* App Preview - Similar to LookAway */}
-          <div className="relative max-w-4xl mx-auto">
+          {/* App Preview */}
+          <div className="relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/15 to-[#2483FF]/20 rounded-3xl blur-3xl"></div>
             <div
-              className={`relative backdrop-blur-xl border rounded-3xl p-8 shadow-2xl ${
+              className={`relative backdrop-blur-xl border rounded-3xl p-6 shadow-2xl ${
                 isDark
                   ? "bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-white/10"
                   : "bg-gradient-to-br from-white/95 to-[#F2F6FF]/95 border-[#CBDEFF]/30"
               }`}
             >
-              <div className="bg-gradient-to-br from-[#1B5BFF]/10 to-[#2483FF]/5 rounded-2xl p-8 border border-[#1B5BFF]/20">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div
-                    className={`text-sm ${
-                      isDark ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    Picmal
-                  </div>
-                </div>
-                <div className="border-2 border-dashed border-[#1B5BFF]/30 rounded-xl p-12 text-center">
-                  <div className="text-[#1B5BFF] text-lg font-medium mb-2">
-                    Drop images to convert
-                  </div>
-                  <div
-                    className={`text-sm ${
-                      isDark ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    Supports 20+ formats • Drag. Drop. Done.
-                  </div>
-                </div>
+              <div className="rounded-2xl overflow-hidden">
+                <Image
+                  src="/picmal-main.webp"
+                  alt="Picmal App Interface"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto rounded-2xl shadow-xl"
+                  priority
+                />
               </div>
             </div>
           </div>

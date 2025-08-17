@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { getLatestChangelogPost } from "./data/blogPosts";
 
 function FAQAccordion({ isDark }) {
   const [openIndex, setOpenIndex] = useState(null);
@@ -134,10 +135,22 @@ function FAQAccordion({ isDark }) {
 }
 
 export default function Home() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  const latestChangelog = getLatestChangelogPost();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setIsDark(savedTheme === "dark");
+    } else {
+      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
   };
 
   return (
@@ -177,13 +190,14 @@ export default function Home() {
             }`}
           >
             <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full"></div>
-            <span
-              className={`text-sm ${
+            <a
+              href={`/blog/${latestChangelog.slug}`}
+              className={`text-sm transition-colors hover:text-[#1B5BFF] ${
                 isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >
-              Privacy-first image converter
-            </span>
+              {latestChangelog.title.replace(/^Picmal\s+/, "")}
+            </a>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings">
@@ -250,7 +264,7 @@ export default function Home() {
                   alt="Picmal App Interface"
                   width={1200}
                   height={800}
-                  className="w-full h-auto rounded-2xl shadow-xl"
+                  className="w-full h-auto shadow-xl"
                   priority
                 />
               </div>

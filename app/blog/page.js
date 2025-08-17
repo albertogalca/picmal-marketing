@@ -1,70 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { blogPosts } from "../data/blogPosts";
 
 export default function Blog() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDark(savedTheme === 'dark');
+    } else {
+      setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+  }, []);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
   };
 
-  const blogPosts = [
-    {
-      id: "changelog-v1-0-5",
-      title: "Picmal v1.0.5 - Enhanced File Naming and Metadata Display",
-      excerpt:
-        "New features for better file organization and metadata visibility in your image conversion workflow.",
-      date: "July 22, 2025",
-      category: "Changelog",
-      readTime: "2 min read",
-      slug: "changelog-v1-0-5",
-    },
-    {
-      id: "changelog-v1-0-4",
-      title: "Picmal v1.0.4 - Metadata Control and Stability Improvements",
-      excerpt:
-        "Advanced metadata management options and important bug fixes for AVIF image processing.",
-      date: "July 17, 2025",
-      category: "Changelog",
-      readTime: "2 min read",
-      slug: "changelog-v1-0-4",
-    },
-    {
-      id: "changelog-v1-0-3",
-      title: "Picmal v1.0.3 - Expanded Format Support",
-      excerpt:
-        "Better SVG handling and support for professional design formats including EPS, AI, and ICO.",
-      date: "July 14, 2025",
-      category: "Changelog",
-      readTime: "2 min read",
-      slug: "changelog-v1-0-3",
-    },
-    {
-      id: "best-image-formats-2025",
-      title: "Best Image Formats for Web and Print in 2025",
-      excerpt:
-        "Complete guide to choosing the right image format for your projects, from WEBP to AVIF and beyond.",
-      date: "July 15, 2025",
-      category: "Guide",
-      readTime: "8 min read",
-      slug: "best-image-formats-2025",
-    },
-    {
-      id: "batch-convert-images-mac",
-      title: "How to Batch Convert Images on Mac: Complete Guide",
-      excerpt:
-        "Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions.",
-      date: "July 10, 2025",
-      category: "Tutorial",
-      readTime: "6 min read",
-      slug: "batch-convert-images-mac",
-    },
-  ];
 
   const categories = ["All", "Changelog", "Guide", "Tutorial"];
   const [selectedCategory, setSelectedCategory] = useState("All");

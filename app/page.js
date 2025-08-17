@@ -491,64 +491,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Supported Formats */}
-      <section
-        className={`relative z-10 px-6 py-20 ${isDark ? "" : "bg-[#F2F6FF]"}`}
-      >
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">
-            <span
-              className={`bg-gradient-to-r bg-clip-text text-transparent ${
-                isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
-              }`}
-            >
-              20+ Supported Formats
-            </span>
-          </h2>
-          <p
-            className={`text-xl mb-12 ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            Convert between all popular image formats
-          </p>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4">
-            {[
-              "JPEG",
-              "PNG",
-              "HEIC",
-              "RAW",
-              "PSD",
-              "TIFF",
-              "GIF",
-              "BMP",
-              "SVG",
-              "WEBP",
-              "AVIF",
-              "ICO",
-              "DNG",
-              "CR2",
-              "NEF",
-              "ARW",
-            ].map((format) => (
-              <div
-                key={format}
-                className={`backdrop-blur border rounded-lg p-3 transition-colors ${
-                  isDark
-                    ? "bg-white/5 border-white/10 hover:bg-white/10"
-                    : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
-                }`}
-              >
-                <div className="text-[#1B5BFF] font-semibold text-sm">
-                  {format}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-4xl mx-auto">

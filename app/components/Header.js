@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Header({ toggleTheme, currentPage = "home" }) {
   return (
-    <nav className="relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white border-b border-[#CBDEFF]/30 dark:bg-black/50 dark:border-white/10">
+    <nav className="relative z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white/30 border-b border-[#CBDEFF]/20 dark:bg-black/50 dark:border-white/10">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-2">

@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Picmal</title>
+        <item>
+            <title>1.0.7</title>
+            <pubDate>Tue, 19 Aug 2025 16:28:43 +0200</pubDate>
+            <link>https://picmal-marketing.vercel.app/</link>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal-marketing.vercel.app/apps/picmal/updates/1.0.7-18/Picmal.dmg" length="19196562" type="application/octet-stream" sparkle:edSignature="gdu8p2/OQK/ibQ1OfR694BlqQXfUDuqubOEbaxUqw/lBfJ7Wk1jLVnD6euIJXkNCHZ5Oo2bB1qFIx13Z7uxiDw=="/>
+        </item>
+    </channel>
+</rss>

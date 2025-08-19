@@ -192,7 +192,7 @@ export default function Home() {
       <Header isDark={isDark} toggleTheme={toggleTheme} currentPage="home" />
 
       {/* Hero Section */}
-      <main id="main-content" className="relative z-10 px-6 py-20">
+      <main id="main-content" className="relative z-10 px-6 pt-32 pb-20">
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
           <div

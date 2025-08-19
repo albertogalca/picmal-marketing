@@ -39,7 +39,7 @@ export function BlogLayout({ children, meta }) {
       <Header toggleTheme={toggleTheme} currentPage="blog" />
 
       {/* Back to Blog Link */}
-      <div className="relative z-10 px-6 pt-6">
+      <div className="relative z-10 px-6 pt-32">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/blog"
@@ -62,7 +62,7 @@ export function BlogLayout({ children, meta }) {
       </div>
 
       {/* Article */}
-      <article className="relative z-10 px-6 py-20">
+      <article className="relative z-10 px-6 pb-20">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <header className="mb-12">

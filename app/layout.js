@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Picmal - Privacy-First Image Converter for Mac",
+  title: "Picmal - Effortless image conversion for Mac",
   description:
     "Fast, secure, and lightweight image conversion app for macOS. Convert between 20+ formats locally with no cloud uploads. Perfect for photographers and designers.",
 };

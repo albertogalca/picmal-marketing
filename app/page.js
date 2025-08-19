@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import VideoPlayer from "./components/VideoPlayer";
 import { getLatestChangelogPost } from "./data/blogPosts";
 
 function FAQAccordion({ isDark }) {
@@ -268,7 +269,7 @@ export default function Home() {
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/15 to-[#2483FF]/20 rounded-3xl blur-3xl"></div>
             <div
-              className={`relative backdrop-blur-xl border rounded-3xl shadow-2xl ${
+              className={`relative backdrop-blur-xl border rounded-3xl shadow-2xl overflow-hidden ${
                 isDark
                   ? "bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-white/10"
                   : "bg-gradient-to-br from-white/95 to-[#F2F6FF]/95 border-[#CBDEFF]/30"
@@ -280,8 +281,9 @@ export default function Home() {
                   alt="Picmal App Interface"
                   width={1200}
                   height={800}
-                  className="w-full h-auto shadow-xl"
+                  className="w-full h-auto"
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 />
               </div>
             </div>
@@ -471,27 +473,11 @@ export default function Home() {
             Watch how easy it is to convert images with just a few clicks
           </p>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/10 to-[#2483FF]/15 rounded-3xl blur-3xl"></div>
-            <div
-              className={`relative backdrop-blur-xl border rounded-3xl shadow-2xl ${
-                isDark
-                  ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-white/10"
-                  : "bg-gradient-to-br from-white/90 to-[#F2F6FF]/90 border-[#CBDEFF]/30"
-              }`}
-            >
-              <div className="relative rounded-2xl overflow-hidden">
-                <video
-                  controls
-                  className="w-full h-auto"
-                  poster="/picmal-main.webp"
-                >
-                  <source src="/picmal-demo.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-          </div>
+          <VideoPlayer 
+            src="/picmal-demo.mp4"
+            poster="/picmal-main.webp"
+            isDark={isDark}
+          />
         </div>
       </section>
 

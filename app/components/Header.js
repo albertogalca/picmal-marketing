@@ -10,7 +10,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white/10 border-b border-[#CBDEFF]/20 dark:bg-black/10 dark:border-white/10">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 cursor-pointer">
             <Image
               src="/logo.webp"
               alt="Picmal Logo"
@@ -26,7 +26,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-md p-2 text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white transition-colors"
+            className="rounded-md p-2 text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white transition-colors cursor-pointer"
           >
             <svg
               className={
@@ -53,7 +53,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             href="/"
-            className={`transition-colors ${
+            className={`transition-colors cursor-pointer ${
               currentPage === "home"
                 ? "text-[#1B5BFF] dark:text-white"
                 : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
@@ -63,13 +63,13 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           </Link>
           <a
             href="#pricing"
-            className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
+            className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer"
           >
             Pricing
           </a>
           <Link
             href="/blog"
-            className={`transition-colors ${
+            className={`transition-colors cursor-pointer ${
               currentPage === "blog"
                 ? "text-[#1B5BFF] dark:text-white"
                 : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
@@ -79,7 +79,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           </Link>
           <button
             onClick={toggleTheme}
-            className="rounded-full w-8 h-8 transition-colors mr-4 hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
+            className="rounded-full w-8 h-8 transition-colors mr-4 hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white cursor-pointer"
           >
             <span className="dark:hidden">🌙</span>
             <span className="hidden dark:inline">☀️</span>
@@ -88,7 +88,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
             href="https://albertogalca.gumroad.com/l/picmal"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-6 py-2.5 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium"
+            className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-6 py-2.5 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium cursor-pointer"
           >
             Download for Mac
           </a>
@@ -104,7 +104,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           <Link
             href="/"
             onClick={() => setIsMenuOpen(false)}
-            className={`block transition-colors ${
+            className={`block transition-colors cursor-pointer ${
               currentPage === "home"
                 ? "text-[#1B5BFF] dark:text-white"
                 : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
@@ -115,14 +115,14 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           <a
             href="#pricing"
             onClick={() => setIsMenuOpen(false)}
-            className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
+            className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer"
           >
             Pricing
           </a>
           <Link
             href="/blog"
             onClick={() => setIsMenuOpen(false)}
-            className={`block transition-colors ${
+            className={`block transition-colors cursor-pointer ${
               currentPage === "blog"
                 ? "text-[#1B5BFF] dark:text-white"
                 : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
@@ -133,7 +133,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           <div className="flex items-center justify-between pt-4">
             <button
               onClick={toggleTheme}
-              className="rounded-full w-8 h-8 transition-colors hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white"
+              className="rounded-full w-8 h-8 transition-colors hover:bg-gray-200 text-gray-700 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white cursor-pointer"
             >
               <span className="dark:hidden">🌙</span>
               <span className="hidden dark:inline">☀️</span>
@@ -142,7 +142,7 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
               href="https://albertogalca.gumroad.com/l/picmal"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-4 py-2 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium text-sm"
+              className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-4 py-2 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium text-sm cursor-pointer"
             >
               Download for Mac
             </a>

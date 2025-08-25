@@ -112,7 +112,7 @@ export default function Blog() {
                 aria-selected={selectedCategory === category}
                 aria-controls={`posts-${category.toLowerCase()}`}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full transition-all duration-300 font-medium transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1B5BFF] focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black ${
+                className={`px-6 py-2 rounded-full transition-all duration-300 font-medium transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1B5BFF] focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black cursor-pointer ${
                   selectedCategory === category
                     ? "bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white shadow-lg shadow-[#1B5BFF]/25"
                     : isDark
@@ -137,7 +137,7 @@ export default function Blog() {
             aria-label={`${selectedCategory} blog posts`}
           >
             {filteredPosts.map((post, index) => (
-              <Link key={post.id} href={`/blog/${post.slug}`}>
+              <Link key={post.id} href={`/blog/${post.slug}`} className="cursor-pointer">
                 <article
                   className={`group backdrop-blur border rounded-2xl p-8 transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:shadow-xl focus-within:ring-2 focus-within:ring-[#1B5BFF] focus-within:ring-offset-2 focus-within:ring-offset-white dark:focus-within:ring-offset-black ${
                     isDark

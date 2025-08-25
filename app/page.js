@@ -83,7 +83,7 @@ function FAQAccordion({ isDark }) {
         >
           <button
             id={`faq-button-${index}`}
-            className="w-full p-6 flex items-center justify-between text-left focus:outline-none rounded-2xl"
+            className="w-full p-6 flex items-center justify-between text-left focus:outline-none rounded-2xl cursor-pointer"
             onClick={() => toggleFAQ(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             aria-expanded={openIndex === index}
@@ -220,7 +220,7 @@ export default function Home() {
             <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full"></div>
             <a
               href={`/blog/${latestChangelog.slug}`}
-              className={`text-sm transition-colors hover:text-[#1B5BFF] ${
+              className={`text-sm transition-colors hover:text-[#1B5BFF] cursor-pointer ${
                 isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >
@@ -262,7 +262,7 @@ export default function Home() {
               href="https://albertogalca.gumroad.com/l/picmal"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:shadow-2xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg shadow-xl transform hover:scale-105 hover:-translate-y-1"
+              className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:shadow-2xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg shadow-xl transform hover:scale-105 hover:-translate-y-1 cursor-pointer"
             >
               <span className="flex items-center space-x-2">
                 <span>Download Picmal</span>
@@ -614,7 +614,7 @@ export default function Home() {
                 href="https://albertogalca.gumroad.com/l/picmal"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="w-full bg-gradient-to-r block from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:shadow-xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+                className="w-full bg-gradient-to-r block from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:shadow-xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105 cursor-pointer"
               >
                 Download Picmal
               </a>

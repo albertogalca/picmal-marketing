@@ -33,7 +33,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:support@picmal.app"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Get in touch
                 </a>
@@ -43,7 +43,7 @@ export default function Footer() {
                   href="https://x.com/picmalapp"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Follow on X
                 </a>
@@ -51,7 +51,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Terms of Use
                 </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Privacy Policy
                 </Link>
@@ -78,7 +78,7 @@ export default function Footer() {
                   href="https://albertogalca.gumroad.com/l/picmal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Download for Mac
                 </a>
@@ -86,7 +86,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#pricing"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Pricing
                 </a>
@@ -94,7 +94,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Changelog
                 </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Blog
                 </Link>
@@ -119,7 +119,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/guides"
-                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  className="text-sm transition-colors text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white cursor-pointer"
                 >
                   Feedback & Roadmap
                 </Link>

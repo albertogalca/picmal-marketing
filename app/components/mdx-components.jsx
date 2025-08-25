@@ -63,7 +63,7 @@ export function BlogLayout({ children, meta }) {
         <div className="max-w-4xl mx-auto">
           <Link
             href="/blog"
-            className={`inline-flex items-center text-sm font-medium transition-all duration-300 group ${
+            className={`inline-flex items-center text-sm font-medium transition-all duration-300 group cursor-pointer ${
               isDark
                 ? "text-gray-400 hover:text-[#2483FF]"
                 : "text-gray-500 hover:text-[#1B5BFF]"
@@ -160,7 +160,7 @@ export function BlogLayout({ children, meta }) {
                 href="https://albertogalca.gumroad.com/l/picmal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-3 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium text-lg"
+                className="inline-block bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-3 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium text-lg cursor-pointer"
               >
                 Download Picmal
               </a>

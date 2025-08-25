@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { blogPosts } from "../data/blogPosts";
 
-export default function Blog() {
+function BlogContent() {
   const [isDark, setIsDark] = useState(false);
   const searchParams = useSearchParams();
 
@@ -240,5 +240,13 @@ export default function Blog() {
 
       <Footer isDark={isDark} />
     </div>
+  );
+}
+
+export default function Blog() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F2F6FF]"></div>}>
+      <BlogContent />
+    </Suspense>
   );
 }

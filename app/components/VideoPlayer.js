@@ -2,8 +2,9 @@
 
 import { useState, useRef } from "react";
 
-export default function VideoPlayer({ src, poster, className = "", isDark = false }) {
+export default function VideoPlayer({ src, className = "", isDark = false }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef(null);
 
   const handleVideoClick = () => {
@@ -15,6 +16,13 @@ export default function VideoPlayer({ src, poster, className = "", isDark = fals
         videoRef.current.play();
         setIsPlaying(true);
       }
+    }
+  };
+
+  const handleLoadedData = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0; // Start at the beginning
+      setIsLoaded(true);
     }
   };
 
@@ -32,18 +40,20 @@ export default function VideoPlayer({ src, poster, className = "", isDark = fals
           <video
             ref={videoRef}
             className="w-full h-auto"
-            poster={poster}
+            preload="metadata"
+            muted
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
+            onLoadedData={handleLoadedData}
           >
             <source src={src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           {!isPlaying && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-all duration-300">
-              <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all duration-300">
+              <div className="w-16 h-16 bg-white/95 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg
-                  className="w-8 h-8 text-[#1B5BFF] ml-1"
+                  className="w-6 h-6 text-[#1B5BFF] ml-0.5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >

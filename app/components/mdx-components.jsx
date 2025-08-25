@@ -7,6 +7,8 @@ import Footer from "./Footer";
 
 // Blog layout wrapper
 export function BlogLayout({ children, meta }) {
+  const [isDark, setIsDark] = React.useState(false);
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia(
@@ -14,39 +16,61 @@ export function BlogLayout({ children, meta }) {
     ).matches;
 
     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setIsDark(true);
       document.documentElement.classList.add("dark");
     } else {
+      setIsDark(false);
       document.documentElement.classList.remove("dark");
     }
   }, []);
 
   const toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   };
 
   return (
-    <div className="min-h-screen overflow-hidden transition-colors duration-300 bg-[#F2F6FF] text-gray-900 dark:bg-black dark:text-white">
-      {/* Background gradient */}
-      <div className="fixed inset-0 transition-all duration-300 bg-gradient-to-br from-[#F2F6FF] via-white to-[#CBDEFF]/30 dark:from-[#1B5BFF]/10 dark:via-black dark:to-[#2483FF]/15"></div>
+    <div
+      className={`min-h-screen overflow-hidden transition-colors duration-300 ${
+        isDark ? "bg-slate-900 text-white" : "bg-[#F2F6FF] text-gray-900"
+      }`}
+    >
+      {/* Enhanced Background gradient */}
+      <div
+        className={`fixed inset-0 transition-all duration-300 ${
+          isDark
+            ? "bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-800"
+            : "bg-gradient-to-br from-[#F2F6FF] via-white to-[#CBDEFF]/20"
+        }`}
+      >
+        {/* Decorative gradient orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#2483FF] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#1B5BFF] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#CBDEFF] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+      </div>
 
-      <Header toggleTheme={toggleTheme} currentPage="blog" />
+      <Header isDark={isDark} toggleTheme={toggleTheme} currentPage="blog" />
 
       {/* Back to Blog Link */}
-      <div className="relative z-10 px-6 pt-32">
+      <div className="relative z-10 px-6 pt-32 pb-8">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/blog"
-            className="inline-flex items-center transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
+            className={`inline-flex items-center text-sm font-medium transition-all duration-300 group ${
+              isDark
+                ? "text-gray-400 hover:text-[#2483FF]"
+                : "text-gray-500 hover:text-[#1B5BFF]"
+            }`}
           >
             <svg
-              className="w-4 h-4 mr-2"
+              className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -62,7 +86,7 @@ export function BlogLayout({ children, meta }) {
       </div>
 
       {/* Article */}
-      <article className="relative z-10 px-6 pb-20">
+      <article className={`relative z-10 px-6 pb-20`}>
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <header className="mb-12">
@@ -70,10 +94,10 @@ export function BlogLayout({ children, meta }) {
               <span
                 className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                   meta?.category === "Changelog"
-                    ? "bg-[#1B5BFF]/20 text-[#1B5BFF]"
+                    ? "bg-[#1B5BFF]/10 text-[#1B5BFF]"
                     : meta?.category === "Guide"
-                    ? "bg-emerald-500/20 text-emerald-400"
-                    : "bg-purple-500/20 text-purple-400"
+                    ? "bg-emerald-500/10 text-emerald-600"
+                    : "bg-purple-500/10 text-purple-600"
                 }`}
               >
                 {meta?.category || "Article"}
@@ -85,19 +109,29 @@ export function BlogLayout({ children, meta }) {
 
             <h1
               id="article-title"
-              className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-900 dark:text-white"
+              className={`text-4xl md:text-5xl font-bold mb-6 leading-tight bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark
+                  ? "from-white via-[#CBDEFF] to-[#2483FF]"
+                  : "from-gray-900 via-[#1B5BFF] to-[#2483FF]"
+              }`}
             >
               {meta?.title}
             </h1>
 
-            <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-400">
+            <p
+              className={`text-xl leading-relaxed ${
+                isDark ? "text-gray-300" : "text-gray-700"
+              }`}
+            >
               {meta?.description}
             </p>
           </header>
 
           {/* Content */}
           <div
-            className="prose prose-lg prose-picmal max-w-none dark:prose-invert"
+            className={`prose prose-lg prose-picmal max-w-none ${
+              isDark ? "prose-invert" : ""
+            }`}
             role="main"
             aria-labelledby="article-title"
           >
@@ -105,18 +139,44 @@ export function BlogLayout({ children, meta }) {
           </div>
 
           {/* Download CTA */}
-          <div className="mt-12 text-center">
-            <button className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg shadow-2xl">
-              Download Picmal
-            </button>
-            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              $8 • One-time purchase • macOS Sonoma or later
-            </p>
+          <div
+            className="mt-16 text-center"
+          >
+            <div
+              className={`border rounded-2xl p-8 ${
+                isDark
+                  ? "bg-slate-800/30 border-white/10"
+                  : "bg-white/80 border-[#CBDEFF]/30"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-4 ${
+                  isDark ? "text-white" : "text-gray-900"
+                }`}
+              >
+                Ready to start converting images?
+              </h3>
+              <a
+                href="https://albertogalca.gumroad.com/l/picmal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-3 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-medium text-lg"
+              >
+                Download Picmal
+              </a>
+              <p
+                className={`mt-4 text-sm ${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                $8 • One-time purchase • macOS Sonoma or later
+              </p>
+            </div>
           </div>
         </div>
       </article>
 
-      <Footer />
+      <Footer isDark={isDark} />
     </div>
   );
 }

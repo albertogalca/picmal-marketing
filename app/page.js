@@ -9,6 +9,7 @@ import { getLatestChangelogPost } from "./data/blogPosts";
 
 function FAQAccordion({ isDark }) {
   const [openIndex, setOpenIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const faqs = [
     {
@@ -67,11 +68,18 @@ function FAQAccordion({ isDark }) {
       {faqs.map((faq, index) => (
         <div
           key={index}
-          className={`backdrop-blur border rounded-2xl transition-all duration-300 ${
+          className={`backdrop-blur border rounded-2xl transition-all duration-500 hover:shadow-xl transform ${
+            openIndex === index ? "scale-[1.02]" : "hover:scale-[1.01]"
+          } ${
             isDark
-              ? "bg-white/5 border-white/10 hover:bg-white/10"
-              : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+              ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#1B5BFF]/30"
+              : "bg-gradient-to-r from-white to-[#F2F6FF]/50 border-[#CBDEFF]/30 hover:border-[#1B5BFF]/30 hover:shadow-[#1B5BFF]/10"
           }`}
+          onMouseEnter={() => setHoveredIndex(index)}
+          onMouseLeave={() => setHoveredIndex(null)}
+          style={{
+            transitionDelay: `${index * 50}ms`,
+          }}
         >
           <button
             id={`faq-button-${index}`}
@@ -89,9 +97,11 @@ function FAQAccordion({ isDark }) {
               {faq.question}
             </h3>
             <div
-              className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
+              className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                 isDark ? "bg-white/10" : "bg-[#1B5BFF]/10"
-              } ${openIndex === index ? "rotate-180" : ""}`}
+              } ${openIndex === index ? "rotate-180 scale-110" : ""} ${
+                hoveredIndex === index ? "scale-110" : ""
+              }`}
               aria-hidden="true"
             >
               <svg
@@ -169,7 +179,7 @@ export default function Home() {
   return (
     <div
       className={`min-h-screen overflow-hidden transition-colors duration-300 ${
-        isDark ? "bg-black text-white" : "bg-[#F2F6FF] text-gray-900"
+        isDark ? "bg-slate-900 text-white" : "bg-[#F2F6FF] text-gray-900"
       }`}
     >
       {/* Skip to main content link */}
@@ -184,10 +194,15 @@ export default function Home() {
       <div
         className={`fixed inset-0 transition-all duration-300 ${
           isDark
-            ? "bg-gradient-to-br from-[#1B5BFF]/10 via-black to-[#2483FF]/15"
-            : "bg-gradient-to-br from-[#F2F6FF] via-white to-[#CBDEFF]/30"
+            ? "bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-800"
+            : "bg-gradient-to-br from-[#F2F6FF] via-[#CBDEFF]/30 to-white"
         }`}
-      ></div>
+      >
+        {/* Static gradient orbs */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-[#1B5BFF] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute top-40 right-20 w-[500px] h-[500px] bg-[#2483FF] rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-[#CBDEFF] rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+      </div>
 
       <Header isDark={isDark} toggleTheme={toggleTheme} currentPage="home" />
 
@@ -199,7 +214,7 @@ export default function Home() {
             className={`inline-flex items-center space-x-2 backdrop-blur border rounded-full px-4 py-2 mb-8 ${
               isDark
                 ? "bg-white/5 border-white/10"
-                : "bg-white/80 border-[#CBDEFF]/50"
+                : "bg-gradient-to-r from-[#CBDEFF]/40 to-[#F2F6FF] border-[#2483FF]/30 shadow-lg shadow-[#1B5BFF]/10"
             }`}
           >
             <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full"></div>
@@ -213,37 +228,41 @@ export default function Home() {
             </a>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings">
+          <h1
+            className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings"
+          >
             <span
               className={`bg-gradient-to-r bg-clip-text text-transparent ${
                 isDark
-                  ? "from-white via-gray-200 to-gray-400"
-                  : "from-gray-900 via-gray-700 to-gray-600"
+                  ? "from-white via-[#CBDEFF] to-[#2483FF]"
+                  : "from-gray-900 via-[#1B5BFF] to-[#2483FF]"
               }`}
             >
               Effortless image
             </span>
             <br />
-            <span className="bg-gradient-to-r from-[#1B5BFF] via-[#2483FF] to-[#CBDEFF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1B5BFF] via-[#2483FF] to-[#CBDEFF] bg-clip-text text-transparent animate-gradient">
               conversion for Mac
             </span>
           </h1>
 
           <p
             className={`text-xl mb-12 max-w-3xl mx-auto leading-relaxed ${
-              isDark ? "text-gray-400" : "text-gray-600"
+              isDark ? "text-gray-300" : "text-gray-700"
             }`}
           >
             Picmal is a privacy-first image converter that makes converting
             images quickly and easily while keeping them secure.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
             <a
               href="https://albertogalca.gumroad.com/l/picmal"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg shadow-2xl"
+              className="group bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] text-white px-8 py-4 rounded-full hover:shadow-2xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg shadow-xl transform hover:scale-105 hover:-translate-y-1"
             >
               <span className="flex items-center space-x-2">
                 <span>Download Picmal</span>
@@ -266,8 +285,10 @@ export default function Home() {
           </div>
 
           {/* App Preview */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/15 to-[#2483FF]/20 rounded-3xl blur-3xl"></div>
+          <div
+            className="relative max-w-5xl mx-auto"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/20 via-[#2483FF]/15 to-[#CBDEFF]/20 rounded-3xl blur-3xl animate-pulse-glow"></div>
             <div
               className={`relative backdrop-blur-xl border rounded-3xl shadow-2xl overflow-hidden ${
                 isDark
@@ -294,7 +315,11 @@ export default function Home() {
       {/* Features Section */}
       <section
         id="features"
-        className={`relative z-10 px-6 py-20 ${isDark ? "" : "bg-white"}`}
+        className={`relative z-10 px-6 py-20 ${
+          isDark
+            ? "bg-slate-800/50"
+            : "bg-gradient-to-b from-white via-[#F2F6FF]/50 to-white"
+        }`}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -320,13 +345,13 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div
-              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 isDark
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+                  ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#1B5BFF]/30"
+                  : "bg-gradient-to-br from-white to-[#F2F6FF] border-[#CBDEFF]/30 hover:border-[#1B5BFF]/40 hover:shadow-[#1B5BFF]/10"
               }`}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#1B5BFF] to-[#2483FF] rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#1B5BFF] to-[#2483FF] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="currentColor"
@@ -353,13 +378,13 @@ export default function Home() {
             </div>
 
             <div
-              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 isDark
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+                  ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#2483FF]/30"
+                  : "bg-gradient-to-br from-white to-[#CBDEFF]/20 border-[#CBDEFF]/30 hover:border-[#2483FF]/40 hover:shadow-[#2483FF]/10"
               }`}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#2483FF] to-[#CBDEFF] rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#2483FF] to-[#CBDEFF] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="currentColor"
@@ -385,13 +410,13 @@ export default function Home() {
             </div>
 
             <div
-              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 isDark
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+                  ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30"
+                  : "bg-gradient-to-br from-white to-emerald-50/30 border-[#CBDEFF]/30 hover:border-emerald-400/40 hover:shadow-emerald-400/10"
               }`}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:rotate-3">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="currentColor"
@@ -418,13 +443,13 @@ export default function Home() {
             </div>
 
             <div
-              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 ${
+              className={`group backdrop-blur border rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 isDark
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white/80 border-[#CBDEFF]/30 hover:bg-white"
+                  ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#CBDEFF]/30"
+                  : "bg-gradient-to-br from-white to-[#F2F6FF] border-[#CBDEFF]/30 hover:border-[#CBDEFF]/60 hover:shadow-[#CBDEFF]/20"
               }`}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#CBDEFF] to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#CBDEFF] to-[#1B5BFF] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:-rotate-3">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="currentColor"
@@ -454,7 +479,12 @@ export default function Home() {
       </section>
 
       {/* Demo Video Section */}
-      <section className="relative z-10 px-6 py-20">
+      <section className="relative z-10 px-6 py-20 overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#CBDEFF]/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1B5BFF]/10 rounded-full blur-3xl"></div>
+        </div>
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">
             <span
@@ -473,16 +503,21 @@ export default function Home() {
             Watch how easy it is to convert images with just a few clicks
           </p>
 
-          <VideoPlayer 
+          <VideoPlayer
             src="/picmal-demo.mp4"
-            poster="/picmal-main.webp"
             isDark={isDark}
           />
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="relative z-10 px-6 py-20">
+      <section
+        className={`relative z-10 px-6 py-20 ${
+          isDark
+            ? "bg-gradient-to-b from-slate-900 to-slate-800/50"
+            : "bg-gradient-to-b from-white to-[#F2F6FF]/30"
+        }`}
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -493,7 +528,7 @@ export default function Home() {
                     : "from-gray-900 to-gray-600"
                 }`}
               >
-                💬 Frequently Asked Questions
+                Frequently asked questions
               </span>
             </h2>
           </div>
@@ -503,7 +538,16 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="relative z-10 px-6 py-20">
+      <section
+        id="pricing"
+        className="relative z-10 px-6 py-20 overflow-hidden"
+      >
+        {/* Decorative elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/10 via-[#2483FF]/10 to-[#CBDEFF]/10 rounded-full blur-3xl animate-pulse-glow"></div>
+          </div>
+        </div>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-16">
             <span
@@ -516,12 +560,12 @@ export default function Home() {
           </h2>
 
           <div className="relative max-w-md mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/20 to-[#2483FF]/25 rounded-3xl blur-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/20 to-[#2483FF]/25 rounded-3xl blur-2xl animate-pulse-glow"></div>
             <div
-              className={`relative backdrop-blur border rounded-3xl p-8 ${
+              className={`relative backdrop-blur border rounded-3xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${
                 isDark
-                  ? "bg-white/5 border-white/10"
-                  : "bg-white/90 border-[#CBDEFF]/30"
+                  ? "bg-gradient-to-br from-gray-900/90 to-black/90 border-white/10 hover:border-[#1B5BFF]/40"
+                  : "bg-gradient-to-br from-white to-[#F2F6FF] border-[#CBDEFF]/30 hover:border-[#1B5BFF]/40 hover:shadow-[#1B5BFF]/20"
               }`}
             >
               <div className="text-6xl font-bold mb-4">
@@ -551,7 +595,7 @@ export default function Home() {
                     }`}
                   >
                     <svg
-                      className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0"
+                      className="w-5 h-5 text-[#1B5BFF] mr-3 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -570,7 +614,7 @@ export default function Home() {
                 href="https://albertogalca.gumroad.com/l/picmal"
                 rel="noopener noreferrer"
                 target="_blank"
-                className="w-full bg-gradient-to-r block from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:from-[#2483FF] hover:to-[#1B5BFF] transition-all duration-300 font-semibold text-lg"
+                className="w-full bg-gradient-to-r block from-[#1B5BFF] to-[#2483FF] text-white py-4 rounded-2xl hover:shadow-xl hover:shadow-[#1B5BFF]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
               >
                 Download Picmal
               </a>

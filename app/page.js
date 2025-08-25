@@ -228,9 +228,7 @@ export default function Home() {
             </a>
           </div>
 
-          <h1
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings"
-          >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight prose-headings">
             <span
               className={`bg-gradient-to-r bg-clip-text text-transparent ${
                 isDark
@@ -255,9 +253,7 @@ export default function Home() {
             images quickly and easily while keeping them secure.
           </p>
 
-          <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <a
               href="https://albertogalca.gumroad.com/l/picmal"
               target="_blank"
@@ -280,7 +276,7 @@ export default function Home() {
               </span>
             </a>
             <div className="text-sm text-gray-500">
-              $8 • macOS Sonoma or later
+              $8 beta price • macOS Sonoma or later
             </div>
           </div>
 
@@ -492,15 +488,56 @@ export default function Home() {
             Watch how easy it is to convert images with just a few clicks
           </p>
 
-          <VideoPlayer
-            src="/picmal-demo.mp4"
-            isDark={isDark}
-          />
+          <VideoPlayer src="/picmal-demo.mp4" isDark={isDark} />
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section
+        id="testimonials"
+        className="relative z-10 px-6 py-20 bg-white dark:bg-slate-900"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-12">
+            <span
+              className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                isDark ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
+              What users are saying
+            </span>
+          </h2>
+
+          <div className="max-w-md mx-auto mb-8">
+            <Image
+              src="/testimonials/1.webp"
+              alt="User testimonial showing 5 stars and positive feedback about Picmal"
+              width={400}
+              height={300}
+              className="w-full h-auto rounded-2xl shadow-lg"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
+          </div>
+
+          <a
+            href="mailto:support@picmal.app?subject=Picmal Review"
+            className="inline-flex items-center space-x-2 text-[#1B5BFF] hover:text-[#2483FF] transition-colors font-medium"
+          >
+            <span>Leave a review</span>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </a>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section
+        id="faq"
         className={`relative z-10 px-6 py-20 ${
           isDark
             ? "bg-gradient-to-b from-slate-900 to-slate-800/50"
@@ -561,11 +598,18 @@ export default function Home() {
                 <span className="bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] bg-clip-text text-transparent">
                   $8
                 </span>
+                <span
+                  className={`text-3xl font-normal line-through ml-4 ${
+                    isDark ? "text-gray-500" : "text-gray-400"
+                  }`}
+                >
+                  $14
+                </span>
               </div>
               <div
                 className={`mb-8 ${isDark ? "text-gray-400" : "text-gray-600"}`}
               >
-                One-time purchase
+                Beta price • One-time purchase
               </div>
 
               <ul className="text-left space-y-4 mb-8">

@@ -51,28 +51,100 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
           </button>
         </div>
         <div className="hidden md:flex items-center space-x-8">
-          <Link
-            href="/"
-            className={`transition-colors cursor-pointer ${
-              currentPage === "home"
-                ? "text-[#1B5BFF] dark:text-white"
-                : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
-            }`}
-          >
-            {currentPage === "home" ? "Features" : "Home"}
-          </Link>
-          <a
-            href="#pricing"
-            className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer"
-          >
-            Pricing
-          </a>
+          {currentPage === "home" ? (
+            <a
+              href="#features"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("features")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Features
+            </a>
+          ) : (
+            <Link
+              href="/#features"
+              className="transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Features
+            </Link>
+          )}
+{currentPage === "home" ? (
+            <a
+              href="#pricing"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("pricing")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              Pricing
+            </a>
+          ) : (
+            <Link
+              href="/#pricing"
+              className="transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Pricing
+            </Link>
+          )}
+          {currentPage === "home" ? (
+            <a
+              href="#testimonials"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("testimonials")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              Testimonials
+            </a>
+          ) : (
+            <Link
+              href="/#testimonials"
+              className="transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Testimonials
+            </Link>
+          )}
+          {currentPage === "home" ? (
+            <a
+              href="#faq"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("faq")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              FAQ
+            </a>
+          ) : (
+            <Link
+              href="/#faq"
+              className="transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              FAQ
+            </Link>
+          )}
           <Link
             href="/blog"
             className={`transition-colors cursor-pointer ${
               currentPage === "blog"
                 ? "text-[#1B5BFF] dark:text-white"
-                : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
+                : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
             }`}
           >
             Blog
@@ -101,28 +173,106 @@ export default function Header({ toggleTheme, currentPage = "home" }) {
         }
       >
         <div className="px-6 py-4 space-y-4">
-          <Link
-            href="/"
-            onClick={() => setIsMenuOpen(false)}
-            className={`block transition-colors cursor-pointer ${
-              currentPage === "home"
-                ? "text-[#1B5BFF] dark:text-white"
-                : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"
-            }`}
-          >
-            {currentPage === "home" ? "Features" : "Home"}
-          </Link>
-          <a
-            href="#pricing"
-            onClick={() => setIsMenuOpen(false)}
-            className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer"
-          >
-            Pricing
-          </a>
+          {currentPage === "home" ? (
+            <a
+              href="#features"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                document.getElementById("features")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="block transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Features
+            </a>
+          ) : (
+            <Link
+              href="/#features"
+              onClick={() => setIsMenuOpen(false)}
+              className="block transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Features
+            </Link>
+          )}
+{currentPage === "home" ? (
+            <a
+              href="#pricing"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                document.getElementById("pricing")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              Pricing
+            </a>
+          ) : (
+            <Link
+              href="/#pricing"
+              onClick={() => setIsMenuOpen(false)}
+              className="block transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Pricing
+            </Link>
+          )}
+          {currentPage === "home" ? (
+            <a
+              href="#testimonials"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                document.getElementById("testimonials")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              Testimonials
+            </a>
+          ) : (
+            <Link
+              href="/#testimonials"
+              onClick={() => setIsMenuOpen(false)}
+              className="block transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              Testimonials
+            </Link>
+          )}
+          {currentPage === "home" ? (
+            <a
+              href="#faq"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMenuOpen(false);
+                document.getElementById("faq")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              className="block transition-colors text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white cursor-pointer font-medium"
+            >
+              FAQ
+            </a>
+          ) : (
+            <Link
+              href="/#faq"
+              onClick={() => setIsMenuOpen(false)}
+              className="block transition-colors cursor-pointer text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white font-medium"
+            >
+              FAQ
+            </Link>
+          )}
           <Link
             href="/blog"
             onClick={() => setIsMenuOpen(false)}
-            className={`block transition-colors cursor-pointer ${
+            className={`block transition-colors cursor-pointer font-medium ${
               currentPage === "blog"
                 ? "text-[#1B5BFF] dark:text-white"
                 : "text-gray-600 hover:text-[#1B5BFF] dark:text-gray-300 dark:hover:text-white"

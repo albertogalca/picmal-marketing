@@ -1,11 +1,12 @@
-import { BlogLayout } from '../../components/mdx-components';
+import { BlogLayout } from "../../components/mdx-components";
 
 export const meta = {
-  title: 'How to Batch Convert Images on Mac: Complete Guide',
-  description: 'Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions.',
-  date: 'July 10, 2025',
-  category: 'Tutorial',
-  readTime: '6 min read'
+  title: "How to batch convert images on Mac: Complete Guide",
+  description:
+    "Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions.",
+  date: "July 10, 2025",
+  category: "Tutorial",
+  readTime: "6 min read",
 };
 
 export default function Layout({ children }) {
@@ -26,7 +27,7 @@ Whether you're a photographer processing hundreds of RAW files, a web developer 
 6. **Set quality:** Adjust quality settings if available
 7. **Export:** Choose destination folder and click "Choose"
 
-> **✅ Pros:** Free, built-in, no installation required  
+> **✅ Pros:** Free, built-in, no installation required
 > **❌ Cons:** Limited format support, basic options only
 
 ## Method 2: Using Automator (Advanced Built-in)
@@ -42,7 +43,8 @@ Whether you're a photographer processing hundreds of RAW files, a web developer 
 7. **Use it:** Select images in Finder, right-click → Services → Your Workflow Name
 
 <ProTip>
-You can add more actions like "Scale Images" to resize and convert simultaneously.
+  You can add more actions like "Scale Images" to resize and convert
+  simultaneously.
 </ProTip>
 
 ## Method 3: Using Command Line (Terminal)
@@ -60,7 +62,7 @@ magick *.jpg -format png -path ./converted %t.png
 magick *.jpg -resize 800x600 -format webp ./converted/%t.webp
 ```
 
-> **⚡ Pros:** Very powerful, scriptable, supports all formats  
+> **⚡ Pros:** Very powerful, scriptable, supports all formats
 > **⚠️ Cons:** Command line only, steep learning curve
 
 ## Method 4: Using Dedicated Apps
@@ -68,6 +70,7 @@ magick *.jpg -resize 800x600 -format webp ./converted/%t.webp
 ### Why Choose a Dedicated App?
 
 **✅ Advantages**
+
 - User-friendly interface
 - More format options
 - Advanced compression settings
@@ -76,6 +79,7 @@ magick *.jpg -resize 800x600 -format webp ./converted/%t.webp
 - Metadata management
 
 **Popular Options**
+
 - **Picmal** - Privacy-focused, native macOS
 - ImageOptim - Web optimization focus
 - Squash - Simple compression tool
@@ -103,11 +107,8 @@ Invest in professional tools or learn command line for maximum control and speed
 - **Monitor quality:** Check a few converted images to ensure quality meets your needs
 
 <ProTip>
-**⚡ Quick Start Checklist**
-1. Backup your original images
-2. Choose your conversion method based on volume and complexity
-3. Test with 2-3 images first
-4. Check quality and file sizes
-5. Process your full batch
-6. Organize converted files appropriately
+  **⚡ Quick Start Checklist** 1. Backup your original images 2. Choose your
+  conversion method based on volume and complexity 3. Test with 2-3 images first
+  4. Check quality and file sizes 5. Process your full batch 6. Organize
+  converted files appropriately
 </ProTip>

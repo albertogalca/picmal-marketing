@@ -1,7 +1,7 @@
 export const blogPosts = [
   {
     id: "changelog-v1-0-5",
-    title: "Picmal v1.0.5 - Enhanced File Naming and Metadata Display",
+    title: "Picmal v1.0.5 - Enhanced file naming and metadata display",
     excerpt:
       "New features for better file organization and metadata visibility in your image conversion workflow.",
     date: "July 22, 2025",
@@ -11,7 +11,7 @@ export const blogPosts = [
   },
   {
     id: "changelog-v1-0-4",
-    title: "Picmal v1.0.4 - Metadata Control and Stability Improvements",
+    title: "Picmal v1.0.4 - Metadata control and stability improvements",
     excerpt:
       "Advanced metadata management options and important bug fixes for AVIF image processing.",
     date: "July 17, 2025",
@@ -21,7 +21,7 @@ export const blogPosts = [
   },
   {
     id: "changelog-v1-0-3",
-    title: "Picmal v1.0.3 - Expanded Format Support",
+    title: "Picmal v1.0.3 - Expanded format support",
     excerpt:
       "Better SVG handling and support for professional design formats including EPS, AI, and ICO.",
     date: "July 14, 2025",
@@ -31,7 +31,7 @@ export const blogPosts = [
   },
   {
     id: "best-image-formats-2025",
-    title: "Best Image Formats for Web and Print in 2025",
+    title: "Best image formats for 2025",
     excerpt:
       "Complete guide to choosing the right image format for your projects, from WEBP to AVIF and beyond.",
     date: "July 15, 2025",
@@ -41,7 +41,7 @@ export const blogPosts = [
   },
   {
     id: "batch-convert-images-mac",
-    title: "How to Batch Convert Images on Mac: Complete Guide",
+    title: "How to batch convert images on Mac",
     excerpt:
       "Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions.",
     date: "July 10, 2025",
@@ -52,5 +52,5 @@ export const blogPosts = [
 ];
 
 export function getLatestChangelogPost() {
-  return blogPosts.find(post => post.category === "Changelog");
+  return blogPosts.find((post) => post.category === "Changelog");
 }

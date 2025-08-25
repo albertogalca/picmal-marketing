@@ -211,16 +211,16 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
           <div
-            className={`inline-flex items-center space-x-2 backdrop-blur border rounded-full px-4 py-2 mb-8 ${
+            className={`inline-flex items-center space-x-2 backdrop-blur border rounded-full px-3 md:px-4 py-2 mb-8 text-center ${
               isDark
                 ? "bg-white/5 border-white/10"
                 : "bg-gradient-to-r from-[#CBDEFF]/40 to-[#F2F6FF] border-[#2483FF]/30 shadow-lg shadow-[#1B5BFF]/10"
             }`}
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full"></div>
+            <div className="w-2 h-2 bg-gradient-to-r from-[#1B5BFF] to-[#2483FF] rounded-full flex-shrink-0"></div>
             <a
               href={`/blog/${latestChangelog.slug}`}
-              className={`text-sm transition-colors hover:text-[#1B5BFF] cursor-pointer ${
+              className={`text-xs md:text-sm transition-colors hover:text-[#1B5BFF] cursor-pointer whitespace-nowrap ${
                 isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >

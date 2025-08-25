@@ -285,28 +285,17 @@ export default function Home() {
           </div>
 
           {/* App Preview */}
-          <div
-            className="relative max-w-5xl mx-auto"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1B5BFF]/20 via-[#2483FF]/15 to-[#CBDEFF]/20 rounded-3xl blur-3xl animate-pulse-glow"></div>
-            <div
-              className={`relative backdrop-blur-xl border rounded-3xl shadow-2xl overflow-hidden ${
-                isDark
-                  ? "bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-white/10"
-                  : "bg-gradient-to-br from-white/95 to-[#F2F6FF]/95 border-[#CBDEFF]/30"
-              }`}
-            >
-              <div className="rounded-2xl overflow-hidden">
-                <Image
-                  src="/picmal-main.webp"
-                  alt="Picmal App Interface"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                />
-              </div>
+          <div className="relative max-w-6xl mx-auto">
+            <div className="rounded-2xl overflow-hidden">
+              <Image
+                src="/picmal-main.webp"
+                alt="Picmal App Interface showing batch image conversion with multiple format support including WEBP, TIFF, SVG, RAW, PNG, JPEG, HEIC, GIF, EPS, and more"
+                width={1200}
+                height={800}
+                className="w-full h-auto"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+              />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
@@ -9,6 +10,7 @@ import { blogPosts } from "../data/blogPosts";
 
 export default function Blog() {
   const [isDark, setIsDark] = useState(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -38,7 +40,33 @@ export default function Blog() {
   };
 
   const categories = ["All", "Changelog", "Guide", "Tutorial"];
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  
+  // Initialize selectedCategory based on URL parameter
+  const getInitialCategory = () => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam) {
+      const capitalizedCategory = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1).toLowerCase();
+      if (categories.includes(capitalizedCategory)) {
+        return capitalizedCategory;
+      }
+    }
+    return "All";
+  };
+  
+  const [selectedCategory, setSelectedCategory] = useState(getInitialCategory());
+
+  // Update selectedCategory when URL parameters change
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam) {
+      const capitalizedCategory = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1).toLowerCase();
+      if (categories.includes(capitalizedCategory)) {
+        setSelectedCategory(capitalizedCategory);
+      }
+    } else {
+      setSelectedCategory("All");
+    }
+  }, [searchParams, categories]);
 
   const filteredPosts =
     selectedCategory === "All"

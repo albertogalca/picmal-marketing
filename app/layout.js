@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="manifest" href="/site.webmanifest" />
+        <script defer data-domain="picmal.app" src="https://plausible.io/js/script.js"></script>
       </head>
       <body className="antialiased smooth-scroll">{children}</body>
     </html>

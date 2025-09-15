@@ -16,10 +16,10 @@ const { src, className = "", isDark = false } = Astro.props;
       : "bg-gradient-to-br from-white/90 to-[#F2F6FF]/90 border-[#CBDEFF]/30"
   }`}>
     <div
-      class="relative rounded-lg overflow-hidden group cursor-pointer video-container"
+      class="relative rounded-lg overflow-hidden group cursor-pointer video-container aspect-video"
     >
       <video
-        class="w-full h-auto video-element"
+        class="absolute inset-0 w-full h-full object-cover video-element"
         preload="metadata"
         muted
       >
@@ -49,7 +49,6 @@ const { src, className = "", isDark = false } = Astro.props;
       const video = container.querySelector('.video-element') as HTMLVideoElement;
       const playOverlay = container.querySelector('.play-overlay') as HTMLElement;
       let isPlaying = false;
-      let isLoaded = false;
 
       const handleVideoClick = () => {
         if (video) {
@@ -68,7 +67,6 @@ const { src, className = "", isDark = false } = Astro.props;
       const handleLoadedData = () => {
         if (video) {
           video.currentTime = 0;
-          isLoaded = true;
         }
       };
 

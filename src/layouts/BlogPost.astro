@@ -7,7 +7,10 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import ArticleSchema from "../components/schema/ArticleSchema.astro";
 
-type Props = CollectionEntry<"blog">["data"] & { category?: string; slug?: string };
+type Props = CollectionEntry<"blog">["data"] & {
+  category?: string;
+  slug?: string;
+};
 
 const { title, description, pubDate, updatedDate, heroImage, category, slug } =
   Astro.props;
@@ -16,26 +19,22 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} image={heroImage} />
-    {slug && (
-      <ArticleSchema
-        post={{ title, description, pubDate, updatedDate, heroImage, category }}
-        url={Astro.site!.href}
-        slug={slug}
-      />
-    )}
-    <script>
-      // Theme management
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
+    {
+      slug && (
+        <ArticleSchema
+          post={{
+            title,
+            description,
+            pubDate,
+            updatedDate,
+            heroImage,
+            category,
+          }}
+          url={Astro.site!.href}
+          slug={slug}
+        />
+      )
+    }
   </head>
 
   <body
@@ -60,6 +59,19 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
       <div class="max-w-3xl mx-auto">
         <!-- Header -->
         <header class="mb-8">
+          {
+            heroImage && (
+              <div class="mb-6">
+                <Image
+                  src={heroImage}
+                  alt={`Hero image for the article ${title}`}
+                  width={800}
+                  height={400}
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            )
+          }
           <div class="flex items-center gap-3 mb-3 text-sm">
             {
               category && (
@@ -102,14 +114,6 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
           >
             {title}
           </h1>
-
-          {
-            description && (
-              <p class="text-lg leading-relaxed text-slate-700">
-                {description}
-              </p>
-            )
-          }
         </header>
 
         <!-- Content -->

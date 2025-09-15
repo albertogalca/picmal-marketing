@@ -1,0 +1,97 @@
+---
+title: "Publish your macOS App outside the App Store"
+description: "This is the result of my research while building Picmal"
+pubDate: "2025-09-15"
+category: "Tutorial"
+heroImage: "../../../public/images/blog/publish-your-macos-app-outside-the-app-store/hero.jpg"
+---
+
+When I first started building <a href="https://picmal.app/" target="_blank">Picmal</a>, a simple image converter for macOS, the App Store was the obvious destination. That changed quickly.
+
+After paying for the Apple Developer license and getting my first version ready, I hit an unexpected wall: every time users tried to save an image, a permission dialog appeared. It was intrusive and ruined the experience. The cause? Apple’s sandbox restrictions.
+
+The only way around it was to skip the App Store entirely and distribute the app independently.
+
+But before that, let me tell you why I built Picmal in the first place. The idea came from a daily frustration: opening a browser, finding an online converter, uploading images, waiting for them to process in the cloud, and then downloading them again. I wanted something simple, fast, and offline.
+
+So I decided to make it native, even though I had never built a fully native app before. That was challenge number one. Challenge number two was finding a smooth way to share it without the App Store.
+
+After some research, I discovered <a href="https://gumroad.com/" target="_blank">Gumroad</a>. It turned out to be the simplest way to sell and distribute my app directly. Here's how I did it:
+
+## Step 1: Build and Export the App from Xcode
+
+Once your app is ready for release, do the following:
+
+![Xcode direct distribution option for exporting macOS app outside App Store](/images/blog/publish-your-macos-app-outside-the-app-store/direct-distribution.webp)
+
+1. In Xcode, go to **Product > Archive**. Select the method **"Direct distribution"**.
+2. Wait until the build status shows **"Ready for Distribution"**.
+3. Click on **"Export"** and you will export the `.app` file.
+
+![Xcode export dialog showing app ready for distribution](/images/blog/publish-your-macos-app-outside-the-app-store/expo-app-store.webp)
+
+## Step 2: Create a DMG Installer
+
+To give users a better experience in order to install the app, I used <a href="https://github.com/sindresorhus/create-dmg" target="_blank">create-dmg</a>, a simple CLI tool that outputs a polished DMG file.
+
+In the terminal you need to execute this:
+
+```bash
+# Install create-dmg if you haven't already
+brew install create-dmg
+
+# Create the DMG installer
+create-dmg \
+  --volname "Your App Name" \
+  --window-pos 200 120 \
+  --window-size 600 300 \
+  --icon-size 100 \
+  --icon "YourApp.app" 175 120 \
+  --hide-extension "YourApp.app" \
+  --app-drop-link 425 120 \
+  "YourApp.dmg" \
+  "source_folder/"
+```
+
+![Terminal output showing create-dmg tool generating a DMG installer for macOS app](/images/blog/publish-your-macos-app-outside-the-app-store/create-dmg.webp)
+
+Once it's done you will have your DMG installer ready, but you need to do an extra step, which is notarize this DMG too to avoid getting an error like this:
+
+![macOS security warning dialog showing malware detection for unsigned app](/images/blog/publish-your-macos-app-outside-the-app-store/malware.webp)
+
+## Step 3: Notarize DMG installer
+
+First I highly recommend you to create a profile so that every time you have to notarize your new releases you don't need to remember the password:
+
+```bash
+xcrun notarytool store-credentials --apple-id "your-email@example.com" \
+  --team-id "YOUR_TEAM_ID_HERE" \
+  --password "your-app-specific-password" \
+  your-app-profile
+```
+
+> **Note:** The password you use here must be an <a href="https://support.apple.com/en-us/102654" target="_blank">app-specific password</a> generated from your Apple ID account. Regular Apple ID passwords will not work for notarization. If you haven't created one before, follow <a href="https://support.apple.com/en-us/102654" target="_blank">Apple's instructions</a> to generate an app-specific password for use with `notarytool`.
+
+After creating the profile you need to notarize the DMG file with your newly created profile:
+
+```bash
+xcrun notarytool submit YourApp.dmg --keychain-profile "your-app-profile" --wait
+```
+
+Now you need to staple the DMG:
+
+```bash
+xcrun stapler staple YourApp.dmg
+```
+
+And finally you are almost ready, just to check that this process has worked, you can check it in your terminal using:
+
+```bash
+spctl --assess --type open --context context:primary-signature -v YourApp.dmg
+
+# Expected output:
+# YourApp.dmg: accepted
+# source=Notarized Developer ID
+```
+
+If you see something like this message, you're done. You can upload your DMG to Gumroad (or wherever you prefer) and start selling.

@@ -1,0 +1,47 @@
+---
+const faqs = [
+  {
+    question: "Is Picmal available for Windows or Linux?",
+    answer: "Picmal is a native Mac app, so it's only available for Mac. For now and forever."
+  },
+  {
+    question: "What image formats does Picmal support?",
+    answer: "Picmal supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW (CR2, NEF, ARW), TIFF, PSD, GIF, BMP, SVG, EPS, AI, ICO, and more."
+  },
+  {
+    question: "Where are my images processed?",
+    answer: "All image processing happens locally on your Mac. Picmal does not upload your images to any servers."
+  },
+  {
+    question: "Can I convert multiple images at once?",
+    answer: "Yes! Picmal excels at batch processing. Simply drag and drop multiple images, or even entire folders, and convert them all at once."
+  },
+  {
+    question: "What macOS versions are supported?",
+    answer: "Picmal requires macOS Sonoma (14.0) or later. It's optimized for Apple Silicon Macs but also works great on Intel Macs."
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer: "No, but if you try and don't like it, contact me and I will refund you the money."
+  },
+  {
+    question: "Do I need an internet connection to use Picmal?",
+    answer: "No internet connection is required after installation. Picmal works completely offline, ensuring your images never leave your device."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>

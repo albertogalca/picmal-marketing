@@ -1,0 +1,210 @@
+---
+import { Image } from "astro:assets";
+
+const today = new Date();
+---
+
+<div>
+  <!-- Newsletter Section -->
+  <section class="relative z-10 px-6 py-16 bg-white">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900">
+        Be the first to know
+      </h2>
+      <p class="text-lg mb-8 text-slate-700">
+        I'll inform you about new updates and deals, but no spam, I promise.
+      </p>
+
+      <form
+        action="https://buttondown.com/api/emails/embed-subscribe/picmal"
+        method="post"
+        target="popupwindow"
+        class="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto"
+      >
+        <label for="bd-email" class="sr-only">Enter your email</label>
+        <input
+          type="email"
+          name="email"
+          id="bd-email"
+          placeholder="Enter your email"
+          required
+          class="w-full sm:flex-1 px-4 py-3 rounded-lg border focus:ring-2 focus:ring-[#1B5BFF] focus:border-transparent outline-none bg-white border-slate-300 text-slate-900 placeholder-slate-500"
+        />
+        <button
+          type="submit"
+          class="w-full sm:w-auto bg-[#1B5BFF] text-white px-6 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+
+      <p class="text-xs mt-4 text-slate-600"></p>
+    </div>
+  </section>
+
+  <!-- Main Footer -->
+  <footer
+    class="relative z-10 px-6 py-16 border-t border-[#CBDEFF]/30 bg-white"
+  >
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <!-- Logo and Copyright -->
+        <div class="md:col-span-1">
+          <div class="flex items-center space-x-2 mb-4">
+            <Image
+              src="/logo.webp"
+              alt="Picmal Logo"
+              width="32"
+              height="32"
+              class="rounded-lg w-8 h-8 object-cover"
+            />
+          </div>
+          <p class="text-sm text-slate-500">
+            © {today.getFullYear()}
+            <a
+              href="https://cantimplora.studio/"
+              target="_blank"
+              rel="noopener nofollow noreferrer"
+              class="underline underline-offset-4"
+            >
+              Cantimplora Studio
+            </a>, LLC. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="font-semibold mb-4 text-slate-900">Company</h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="mailto:support@picmal.app"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Get in touch
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://x.com/picmalapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Follow on X
+              </a>
+            </li>
+            <li>
+              <a
+                href="/terms"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Terms of Use
+              </a>
+            </li>
+            <li>
+              <a
+                href="/privacy"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Privacy Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <h3 class="font-semibold mb-4 text-slate-900">Product</h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="https://albertogalca.gumroad.com/l/picmal"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Download for Mac
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#features"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Features
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#pricing"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#testimonials"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Testimonials
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#faq"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a
+                href="/blog?category=Changelog"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Changelog
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="font-semibold mb-4 text-slate-900">Resources</h3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="/blog"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://picmal.userjot.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Feedback & roadmap
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Handle newsletter form submission
+  const form = document.querySelector('form[action*="buttondown.com"]');
+  if (form) {
+    form.addEventListener("submit", function () {
+      window.open("https://buttondown.com/picmal", "popupwindow");
+    });
+  }
+</script>

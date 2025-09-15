@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">["data"];
+  url: string;
+  slug: string;
+}
+
+const { post, url, slug } = Astro.props;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.description,
+  "image": post.heroImage ? new URL(post.heroImage.src, url).href : new URL("/og.png", url).href,
+  "author": {
+    "@type": "Person",
+    "name": "Alberto",
+    "url": "https://albertogalca.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Picmal",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/logo.webp", url).href
+    }
+  },
+  "datePublished": post.pubDate.toISOString(),
+  "dateModified": post.updatedDate ? post.updatedDate.toISOString() : post.pubDate.toISOString(),
+  "url": new URL(`/blog/${slug}`, url).href,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(`/blog/${slug}`, url).href
+  },
+  "articleSection": post.category || "Guide",
+  "keywords": post.title.toLowerCase().split(' ').filter(word => word.length > 3).join(', ')
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>

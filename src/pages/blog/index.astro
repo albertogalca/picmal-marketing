@@ -1,0 +1,217 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import "../../styles/global.css";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const categories = ["All", "Changelog", "Guide", "Tutorial"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-white">
+    <Header />
+    <main class="relative z-10 px-6 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto">
+        <!-- Blog Header -->
+        <div class="mb-12">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight"
+          >
+            Blog
+          </h1>
+          <p class="text-lg text-slate-600">
+            Updates, guides, and the occasional thought about building software
+            for Mac.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-3 mb-16">
+          {
+            categories.map((category) => (
+              <button
+                class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  category === "All"
+                    ? "bg-[#1B5BFF] text-white"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
+                data-category={category}
+              >
+                {category}
+              </button>
+            ))
+          }
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {
+            posts.map((post) => (
+              <article
+                class="group cursor-pointer bg-white rounded-none border-none p-0 m-0"
+                data-category={post.data.category}
+              >
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="block bg-white rounded-none border-none p-0 m-0"
+                >
+                  {post.data.heroImage ? (
+                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-slate-200">
+                      <Image
+                        src={post.data.heroImage}
+                        alt={post.data.title}
+                        width={400}
+                        height={225}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-slate-200" />
+                  )}
+                  <div class="flex items-center gap-3 mb-2 text-sm">
+                    {post.data.category && (
+                      <>
+                        <span
+                          class={
+                            post.data.category === "Changelog"
+                              ? "text-[#1B5BFF]"
+                              : post.data.category === "Guide"
+                                ? "text-emerald-600"
+                                : post.data.category === "Tutorial"
+                                  ? "text-purple-600"
+                                  : "text-slate-600"
+                          }
+                        >
+                          {post.data.category}
+                        </span>
+                        <span class="text-slate-300">•</span>
+                      </>
+                    )}
+                    <time
+                      class="text-slate-500"
+                      datetime={post.data.pubDate.toISOString()}
+                    >
+                      <FormattedDate date={post.data.pubDate} />
+                    </time>
+                  </div>
+                  <h3 class="text-xl font-bold text-slate-900 group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
+                    {post.data.title}
+                  </h3>
+                  {post.data.description && (
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                      {post.data.description}
+                    </p>
+                  )}
+                </a>
+              </article>
+            ))
+          }
+        </div>
+
+        {
+          posts.length === 0 && (
+            <div class="text-center py-16">
+              <p class="text-slate-600 text-lg">No blog posts found.</p>
+            </div>
+          )
+        }
+      </div>
+    </main>
+    <Footer />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const categoryButtons = document.querySelectorAll(
+          "[data-category]"
+        ) as NodeListOf<HTMLButtonElement>;
+        const articles = document.querySelectorAll(
+          ".grid article[data-category]"
+        ) as NodeListOf<HTMLElement>;
+
+        // Get URL parameter for initial filter
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialCategory = urlParams.get("category") || "All";
+
+        // Function to filter articles
+        function filterArticles(selectedCategory: string) {
+          // Update active button styles
+          categoryButtons.forEach((btn) => {
+            const btnCategory = btn.getAttribute("data-category");
+            if (btnCategory === selectedCategory) {
+              btn.className =
+                "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-[#1B5BFF] text-white";
+            } else {
+              btn.className =
+                "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200";
+            }
+          });
+
+          // Filter articles
+          articles.forEach((article) => {
+            const articleCategory = article.getAttribute("data-category");
+
+            if (
+              selectedCategory === "All" ||
+              articleCategory === selectedCategory
+            ) {
+              article.style.display = "block";
+            } else {
+              article.style.display = "none";
+            }
+          });
+        }
+
+        // Apply initial filter from URL
+        filterArticles(initialCategory);
+
+        // Add click handlers
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", function (this: HTMLButtonElement) {
+            const selectedCategory = this.getAttribute("data-category");
+            if (selectedCategory) {
+              filterArticles(selectedCategory);
+            }
+          });
+        });
+      });
+    </script>
+
+    <style>
+      /* Reset any button styling that might be affecting articles */
+      article {
+        background: white !important;
+        border-radius: 0 !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      article a {
+        background: white !important;
+        border-radius: 0 !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        text-decoration: none !important;
+      }
+
+      .grid article {
+        background: white !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
+    </style>
+  </body>
+</html>

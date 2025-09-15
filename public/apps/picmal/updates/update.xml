@@ -1,0 +1,52 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>picmal</title>
+        <item>
+            <title>1.0.8</title>
+            <pubDate>Fri, 12 Sep 2025 13:01:53 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.0.8/Picmal.dmg"
+                length="70164303" type="application/octet-stream"
+                sparkle:edSignature="OenjX6NOx+t2Lc0uzIBJi/lhcxD2EA1ZktAiYmGfK1hCg4/9/EhhZ+1NzH79w2ljAhXMOIQXM9cDK2B1hXs/DQ==" />
+            <description><![CDATA[
+                <ul>
+                    <li>Added batch output format selection to apply a single format to multiple files at once.</li>
+                    <li>Added notifications when file conversions are complete.</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
+            <title>1.0.7</title>
+            <pubDate>Thu, 11 Sep 2025 13:26:33 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.0.7/Picmal.dmg"
+                length="70096137" type="application/octet-stream"
+                sparkle:edSignature="VKtIGHpDUwuCXjJrAokfTXVPmJ73EuG08qGbIOHGBT11bcaiHonZJ9b2swE8j9IJmShs9K4fivHxrU/qx/ghCw==" />
+            <description><![CDATA[
+                <ul>
+                    <li>Added ability to set default output formats for drag & drop. Dropped files will now automatically use these formats.</li>
+                    <li>Introduced dark mode for a more comfortable viewing experience.</li>
+                    <li>Improved settings menu with a cleaner and more intuitive UI.</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
+            <title>1.0.6</title>
+            <pubDate>Fri, 29 Aug 2025 16:24:30 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.0.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.0.6-15/Picmal.dmg"
+                length="70000988" type="application/octet-stream"
+                sparkle:edSignature="i0pRK7qpPXdVUKtM6WAgwHnIkqcJOdPCaiN9IL/wViFqNyFAknRXJU/eNn0J5DhwhlnjmS5j3RzNJ/RPyBVTCg==" />
+        </item>
+    </channel>
+</rss>

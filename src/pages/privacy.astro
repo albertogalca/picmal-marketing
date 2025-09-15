@@ -1,0 +1,128 @@
+---
+import StaticPageLayout from '../components/StaticPageLayout.astro';
+
+const meta = {
+  title: "Privacy Policy",
+  description: "Privacy Policy for Picmal image converter application",
+  date: "Last updated: September 8, 2025",
+};
+---
+
+<StaticPageLayout meta={meta}>
+  <h2>The short version</h2>
+
+  <p><strong>Picmal respects your privacy.</strong> Your images never leave your Mac, and I can't see them. The app only sends minimal technical data to help me fix bugs and improve the experience. No personal information, no tracking, no ads.</p>
+
+  <p>But since you might want more details, here they are:</p>
+
+  <h2>What the app collects (very little)</h2>
+
+  <p>Picmal collects minimal technical data through TelemetryDeck to help me improve the app:</p>
+
+  <ul>
+    <li>Anonymous usage events (like "app opened" or "conversion completed")</li>
+    <li>Error reports and crash logs (no personal data included)</li>
+    <li>Basic system info (macOS version, app version)</li>
+    <li>Performance metrics (conversion times, memory usage)</li>
+  </ul>
+
+  <p><strong>What Picmal never collects:</strong></p>
+
+  <ul>
+    <li>Your name, email, or any personal information</li>
+    <li>Your actual images or their contents</li>
+    <li>File paths, folder names, or EXIF data</li>
+    <li>Anything that could identify you personally</li>
+  </ul>
+
+  <p>All data is anonymized and aggregated. I use this only to fix bugs and make the app better.</p>
+
+  <h2>How it works</h2>
+
+  <ul>
+    <li><strong>Everything is local</strong>: Image conversion happens on your Mac, not on some server</li>
+    <li><strong>No internet needed</strong>: You can use Picmal on a plane, in a cabin, wherever</li>
+    <li><strong>Your images stay put</strong>: They never leave your computer</li>
+    <li><strong>EXIF data</strong>: If your images have it, Picmal preserves it (unless you tell it not to)</li>
+  </ul>
+
+  <h2>The website</h2>
+
+  <p>The website (picmal.app) uses Plausible Analytics to understand how many people visit and which pages are popular. Plausible is privacy-friendly—no cookies, no tracking across sites, just basic visitor counts and page views.</p>
+
+  <p>This website analytics data is completely separate from the app's technical telemetry.</p>
+
+  <h2>Updates</h2>
+
+  <p>Picmal checks for updates occasionally. When it does:</p>
+
+  <ul>
+    <li>It only sends the version number</li>
+    <li>No personal info is shared</li>
+    <li>It uses HTTPS</li>
+    <li>You can turn off update checks if you want</li>
+  </ul>
+
+  <h2>Third parties</h2>
+
+  <p>Picmal uses two privacy-focused services:</p>
+
+  <ul>
+    <li><strong>TelemetryDeck</strong>: For anonymous app analytics and crash reporting</li>
+    <li><strong>Plausible Analytics</strong>: For privacy-friendly website visitor stats (website only)</li>
+  </ul>
+
+  <p>Both services are privacy-focused and don't track users across sites or collect personal information. Your images never touch any third-party service.</p>
+
+  <h2>Security</h2>
+
+  <p>Since everything stays on your Mac, security is mostly about keeping your Mac secure:</p>
+
+  <ul>
+    <li>Keep macOS updated</li>
+    <li>Use FileVault if you want disk encryption</li>
+    <li>Follow Apple's security recommendations</li>
+  </ul>
+
+  <p>Picmal itself runs sandboxed (Apple's security feature) and only has permission to access files you give it.</p>
+
+  <h2>Kids</h2>
+
+  <p>Picmal is safe for kids because it doesn't collect any data from anyone, regardless of age. No accounts, no data collection, no online features.</p>
+
+  <h2>International users</h2>
+
+  <p>Doesn't matter where you are—France, Japan, Brazil, anywhere. Your images stay on your Mac, so there's no international data transfer to worry about.</p>
+
+  <h2>Your rights</h2>
+
+  <p>You have all the rights because you have all the data:</p>
+
+  <ul>
+    <li>Your images are yours</li>
+    <li>Delete Picmal anytime and everything's gone</li>
+    <li>No accounts to delete because there are no accounts</li>
+    <li>No data to request because I don't have any</li>
+  </ul>
+
+  <h2>Trust</h2>
+
+  <p>I built Picmal to be as private as possible while still allowing me to fix bugs and improve the experience. Your images are yours, your privacy matters, and I only collect what's necessary to make the app better. If you have questions about privacy, just email me at <a href="mailto:support@picmal.app">support@picmal.app</a>.</p>
+
+  <h2>Questions?</h2>
+
+  <p><strong>Email</strong>: <a href="mailto:support@picmal.app">support@picmal.app</a></p>
+
+  <p>If you really need the mailing address:<br>
+  Cantimplora Studio, LLC<br>
+  30 N Gould St Ste R<br>
+  Sheridan, WY 82801</p>
+
+  <h2>Updates to this policy</h2>
+
+  <p>If I update this policy, I'll post the new version here. The core promise won't change: your images stay private, and I only collect minimal technical data to improve the app.</p>
+
+  <hr>
+
+  <p><em>That's it. Your images are yours, your privacy matters, and Picmal just helps you convert between formats with minimal data collection. Simple.</em></p>
+</StaticPageLayout>

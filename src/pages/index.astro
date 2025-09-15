@@ -1,0 +1,349 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import VideoPlayer from "../components/VideoPlayer.astro";
+import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
+import { Image } from "astro:assets";
+
+const SITE_TITLE = "Picmal - Privacy-first image converter for Mac";
+const SITE_DESCRIPTION =
+  "Picmal is a privacy-first image converter for Mac. It works entirely offline and lets you convert multiple images at once.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <FAQSchema />
+  </head>
+  <body>
+    <Header />
+
+    <!-- Hero Section -->
+    <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <span class="text-slate-900">
+            Picmal is a{" "}
+            <span class="text-[#1B5BFF]">
+              privacy-first image converter for Mac.
+            </span>{" "}
+            It works entirely offline and lets you convert multiple images at once.
+          </span>
+        </h1>
+
+        <div class="flex flex-col md:flex-row md:items-center gap-4 mb-12">
+          <a
+            href="https://albertogalca.gumroad.com/l/picmal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block self-start bg-[#1B5BFF] text-white px-8 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium"
+          >
+            Buy Picmal for $8
+          </a>
+          <div class="flex flex-col items-start gap-1">
+            <span class="text-sm text-slate-600">
+              14-day money back guarantee
+            </span>
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div class="mb-16">
+          <VideoPlayer src="/picmal-demo.mp4" />
+        </div>
+      </div>
+    </main>
+
+    <!-- Features Section -->
+    <section id="features" class="relative z-10 px-6 py-20 bg-slate-100">
+      <div class="max-w-3xl mx-auto">
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-900"
+        >
+          Why choose Picmal?
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
+          <div>
+            <div
+              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
+            >
+              <svg
+                class="w-6 h-6 text-slate-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">
+              Fast & local
+            </h3>
+            <p class="text-lg leading-relaxed text-slate-700">
+              No uploads. No waiting. All conversions happen instantly on your
+              device.
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
+            >
+              <svg
+                class="w-6 h-6 text-slate-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">
+              100% private
+            </h3>
+            <p class="text-lg leading-relaxed text-slate-700">
+              > Your images never leave your Mac. No cloud. No tracking. Just
+              conversion.
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
+            >
+              <svg
+                class="w-6 h-6 text-slate-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width={2}
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">
+              Batch processing
+            </h3>
+            <p class="text-lg leading-relaxed text-slate-700">
+              Convert dozens of images at once. Drag. Drop. Done.
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
+            >
+              <svg
+                class="w-6 h-6 text-slate-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">
+              Native macOS experience
+            </h3>
+            <p class="text-lg leading-relaxed text-slate-700">
+              Works like a Mac app should. Clean, familiar, and just makes
+              sense.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="relative z-10 px-6 py-20 bg-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-12">
+          <span
+            class="bg-gradient-to-r bg-clip-text text-transparent from-slate-900 to-slate-600"
+          >
+            What users are saying
+          </span>
+        </h2>
+
+        <script
+          src="https://widget.senja.io/widget/651f143b-b91a-421d-96b6-bd77e092de27/platform.js"
+          type="text/javascript"
+          async></script>
+        <div
+          class="senja-embed"
+          data-id="651f143b-b91a-421d-96b6-bd77e092de27"
+          data-mode="shadow"
+          data-lazyload="false"
+          style="display: block; width: 100%"
+        >
+        </div>
+
+        <a
+          href="https://senja.io/p/picmal/r/3w0olw"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center space-x-2 text-[#1B5BFF] hover:text-[#2483FF] transition-colors font-medium mt-8"
+        >
+          <span>Leave a review</span>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative z-10 px-6 py-20 bg-slate-100">
+      <div class="max-w-3xl mx-auto">
+        <div class="relative">
+          <!-- Background layer -->
+          <div
+            class="absolute inset-0 transform rotate-1 translate-x-2 translate-y-2 rounded-2xl bg-slate-100 border-slate-300/30 border"
+          >
+          </div>
+
+          <!-- Main letter -->
+          <div
+            class="relative transform -rotate-1 bg-white border-slate-200 border rounded-2xl p-8 shadow-lg"
+          >
+            <div class="text-lg leading-relaxed text-slate-700">
+              <p class="mb-6">Hello there!</p>
+
+              <p class="mb-6">
+                I'm{" "}
+                <a
+                  href="https://albertogalca.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline underline-offset-4"
+                >
+                  Alberto
+                </a>
+                , the developer behind Picmal.
+              </p>
+
+              <p class="mb-6">
+                I was tired of relying on external websites to convert my images
+                to other formats. The local solutions I found weren't great
+                either — they were too complex or required using the terminal.
+              </p>
+
+              <p class="mb-6">
+                That's why I decided to create this app. My goals were simple:
+                it had to be native (for speed), fully private (I didn't want to
+                upload my images anywhere), and capable of converting multiple
+                images at once.
+              </p>
+
+              <p class="mb-6">
+                I hope you like it — I built it with a lot of care and love.
+              </p>
+
+              <p class="mb-8">
+                If you have any questions or suggestions, feel free to reach out
+                to me.
+              </p>
+
+              <div class="flex items-center gap-4">
+                <Image
+                  src="/alberto.webp"
+                  alt="Alberto, creator of Picmal"
+                  width={64}
+                  height={64}
+                  class="w-16 h-16 object-cover rounded-full border-2 border-slate-300"
+                />
+                <div>
+                  <p class="font-medium text-slate-900">Alberto</p>
+                  <p class="text-sm text-slate-600">Creator of Picmal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-slate-900">
+          Frequently asked questions
+        </h2>
+
+        <FAQ />
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="relative z-10 px-6 py-20 bg-slate-100">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center text-slate-900">
+          A few words about pricing
+        </h2>
+
+        <div class="space-y-8">
+          <div class="text-lg leading-relaxed space-y-6 text-slate-700">
+            <p>
+              <span class="font-semibold">Picmal costs $8.</span>{" "}
+              That's the beta price—it'll go up to $15 once I add a few more features.
+            </p>
+
+            <p>
+              It's a one-time purchase. No subscription, no recurring fees. You
+              buy it once and it's yours forever, including all future updates.
+            </p>
+
+            <p>
+              I don't offer a free trial, but if you try it and don't like it,
+              just email me and I'll refund you.{" "}
+              <span class="font-semibold"> 14-day money back guarantee. </span>{
+                " "
+              }
+              No questions asked.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center space-y-4">
+            <a
+              href="https://albertogalca.gumroad.com/l/picmal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-[#1B5BFF] text-white px-8 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium"
+            >
+              Buy Picmal for $8
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

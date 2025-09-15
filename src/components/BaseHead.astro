@@ -67,3 +67,15 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Analytics -->
+<script
+  defer
+  data-domain="picmal.app"
+  src="https://plausible.io/js/script.js"
+></script>
+<script
+  src="https://analytics.ahrefs.com/analytics.js"
+  data-key="GpINWaj6bBGM/GR4cPUegg"
+  async
+></script>

@@ -15,7 +15,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={heroImage} />
     {slug && (
       <ArticleSchema
         post={{ title, description, pubDate, updatedDate, heroImage, category }}

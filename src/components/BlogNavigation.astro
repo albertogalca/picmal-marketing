@@ -1,0 +1,31 @@
+---
+interface Props {
+  currentCategory?: "All" | "Changelog" | "Guide" | "Tutorial";
+}
+
+const { currentCategory = "All" } = Astro.props;
+
+const categories = [
+  { name: "All", href: "/blog" },
+  { name: "Changelog", href: "/blog/changelog" },
+  { name: "Guide", href: "/blog/guide" },
+  { name: "Tutorial", href: "/blog/tutorial" },
+];
+---
+
+<div class="flex flex-wrap gap-3 mb-16">
+  {
+    categories.map((category) => (
+      <a
+        href={category.href}
+        class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          currentCategory === category.name
+            ? "bg-[#1B5BFF] text-white"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        }`}
+      >
+        {category.name}
+      </a>
+    ))
+  }
+</div>

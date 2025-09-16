@@ -9,15 +9,15 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import "../../styles/global.css";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = (await getCollection("blog"))
+  .filter(post => post.data.category === "Tutorial")
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <BaseHead title={`Tutorials - ${SITE_TITLE} | Step-by-Step Image Conversion Guides`} description="Learn image conversion with our step-by-step tutorials. Master batch conversion, file formats, and optimization techniques." />
   </head>
   <body class="bg-white">
     <Header />
@@ -28,16 +28,15 @@ const posts = (await getCollection("blog")).sort(
           <h1
             class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight"
           >
-            Blog
+            Tutorials
           </h1>
           <p class="text-lg text-slate-600">
-            Updates, guides, and the occasional thought about building software
-            for Mac.
+            Step-by-step tutorials to help you master image conversion and optimization.
           </p>
         </div>
 
         <!-- Category Navigation -->
-        <BlogNavigation currentCategory="All" />
+        <BlogNavigation currentCategory="Tutorial" />
 
         <!-- Blog Posts Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -62,24 +61,8 @@ const posts = (await getCollection("blog")).sort(
                     <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-slate-200" />
                   )}
                   <div class="flex items-center gap-3 mb-2 text-sm">
-                    {post.data.category && (
-                      <>
-                        <span
-                          class={
-                            post.data.category === "Changelog"
-                              ? "text-[#1B5BFF]"
-                              : post.data.category === "Guide"
-                                ? "text-emerald-600"
-                                : post.data.category === "Tutorial"
-                                  ? "text-purple-600"
-                                  : "text-slate-600"
-                          }
-                        >
-                          {post.data.category}
-                        </span>
-                        <span class="text-slate-300">•</span>
-                      </>
-                    )}
+                    <span class="text-purple-600">Tutorial</span>
+                    <span class="text-slate-300">•</span>
                     <time
                       class="text-slate-500"
                       datetime={post.data.pubDate.toISOString()}
@@ -104,38 +87,12 @@ const posts = (await getCollection("blog")).sort(
         {
           posts.length === 0 && (
             <div class="text-center py-16">
-              <p class="text-slate-600 text-lg">No blog posts found.</p>
+              <p class="text-slate-600 text-lg">No tutorial posts found.</p>
             </div>
           )
         }
       </div>
     </main>
     <Footer />
-
-    <style>
-      /* Reset any button styling that might be affecting articles */
-      article {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      article a {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-decoration: none !important;
-      }
-
-      .grid article {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-      }
-    </style>
   </body>
 </html>

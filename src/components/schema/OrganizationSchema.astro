@@ -8,66 +8,69 @@ const { url } = Astro.props;
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Picmal",
-  "url": url,
-  "logo": new URL("/logo.webp", url).href,
-  "sameAs": [
-    "https://albertogalca.com/"
-  ],
-  "description": "Picmal is a privacy-first image converter for Mac. It works entirely offline and lets you convert multiple images at once.",
-  "founder": {
+  name: "Picmal",
+  url: url,
+  logo: new URL("/logo.webp", url).href,
+  sameAs: ["https://albertogalca.com/"],
+  description:
+    "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.",
+  founder: {
     "@type": "Person",
-    "name": "Alberto",
-    "url": "https://albertogalca.com/"
-  }
+    name: "Alberto",
+    url: "https://albertogalca.com/",
+  },
 };
 
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Picmal",
-  "description": "Privacy-first image converter for Mac. Works entirely offline and lets you convert multiple images at once. Supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW, TIFF, PSD, and more.",
-  "url": url,
-  "image": new URL("/picmal-main.webp", url).href,
-  "screenshot": new URL("/picmal-main.webp", url).href,
-  "operatingSystem": "macOS",
-  "applicationCategory": "UtilitiesApplication",
-  "offers": {
+  name: "Picmal",
+  description:
+    "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.",
+  url: url,
+  image: new URL("/picmal-main.webp", url).href,
+  screenshot: new URL("/picmal-main.webp", url).href,
+  operatingSystem: "macOS",
+  applicationCategory: "UtilitiesApplication",
+  offers: {
     "@type": "Offer",
-    "price": "8",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "url": "https://albertogalca.gumroad.com/l/picmal",
-    "seller": {
+    price: "8",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    url: "https://albertogalca.gumroad.com/l/picmal",
+    seller: {
       "@type": "Organization",
-      "name": "Picmal"
-    }
+      name: "Picmal",
+    },
   },
-  "aggregateRating": {
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "50",
-    "bestRating": "5",
-    "worstRating": "1"
+    ratingValue: "4.8",
+    reviewCount: "50",
+    bestRating: "5",
+    worstRating: "1",
   },
-  "featureList": [
+  featureList: [
     "Privacy-first image conversion",
     "Batch processing of multiple images",
     "20+ image format support",
     "Offline processing",
     "Native macOS experience",
     "RAW file support",
-    "Drag and drop interface"
+    "Drag and drop interface",
   ],
-  "requirements": "macOS Sonoma (14.0) or later",
-  "downloadUrl": "https://albertogalca.gumroad.com/l/picmal",
-  "author": {
+  requirements: "macOS Sonoma (14.0) or later",
+  downloadUrl: "https://albertogalca.gumroad.com/l/picmal",
+  author: {
     "@type": "Person",
-    "name": "Alberto",
-    "url": "https://albertogalca.com/"
-  }
+    name: "Alberto",
+    url: "https://albertogalca.com/",
+  },
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
-<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)}></script>
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(organizationSchema)}
+/>
+<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />

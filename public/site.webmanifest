@@ -1,7 +1,7 @@
 {
-  "name": "Picmal - Privacy-first image converter for Mac",
+  "name": "Picmal - Image Converter for Mac (Fast, Private, Offline)",
   "short_name": "Picmal",
-  "description": "Privacy-first image converter for Mac. Works entirely offline and lets you convert multiple images at once.",
+  "description": "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.",
   "icons": [
     {
       "src": "/favicon-96x96.png",

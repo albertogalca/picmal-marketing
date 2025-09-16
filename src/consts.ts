@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Picmal";
 export const SITE_DESCRIPTION =
-  "Picmal is a privacy-first image converter for Mac. It works entirely offline and lets you convert multiple images at once. Supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW, TIFF, PSD, and more.";
+  "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.";

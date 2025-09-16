@@ -89,8 +89,17 @@ const currentPage = Astro.url.pathname;
         aria-expanded="false"
       >
         <span class="sr-only">Open main menu</span>
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
@@ -140,6 +149,12 @@ const currentPage = Astro.url.pathname;
         class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
       >
         Blog
+      </a>
+      <a
+        href="/tools"
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+      >
+        Free Tools
       </a>
       <a
         href="https://albertogalca.gumroad.com/l/picmal"

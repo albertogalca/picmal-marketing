@@ -1,0 +1,466 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PicmalCTA from "../../components/PicmalCTA.astro";
+import "../../styles/global.css";
+
+const SITE_TITLE = "Which image format should I use? Free format selector tool";
+const SITE_DESCRIPTION =
+  "Not sure if you need JPG, PNG, or WebP? Check out this free tool that asks a few questions about your project and instantly recommends the perfect image format for your needs.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+
+    <main class="relative z-10 px-6 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <span class="text-slate-900">
+            Which image format should I use?{" "}
+            <span class="text-[#1B5BFF]">Let's find out together</span>
+          </span>
+        </h1>
+        <p class="text-lg text-slate-600 mb-12">
+          Not sure if you need JPG, PNG, or WebP? Tell us about your project and
+          we'll recommend the perfect format for your specific needs.
+        </p>
+
+        <div id="format-selector" class="space-y-8">
+          <!-- Question 1: Primary Use -->
+          <div class="question-section">
+            <h2 class="text-2xl font-semibold mb-4">
+              Where will you use these images?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-use="web"
+              >
+                <h3 class="font-semibold mb-2">🌐 Website or Social Media</h3>
+                <p class="text-sm text-slate-600">
+                  For your website, blog, Instagram, or online portfolio
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-use="print"
+              >
+                <h3 class="font-semibold mb-2">🖨️ Printing</h3>
+                <p class="text-sm text-slate-600">
+                  Business cards, posters, brochures, or photo prints
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-use="graphics"
+              >
+                <h3 class="font-semibold mb-2">🎨 Design Work</h3>
+                <p class="text-sm text-slate-600">
+                  Logos, icons, or graphics that need transparent backgrounds
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-use="photography"
+              >
+                <h3 class="font-semibold mb-2">📸 Professional Photos</h3>
+                <p class="text-sm text-slate-600">
+                  Photography work, photo editing, or archiving your images
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 2: Image Type -->
+          <div class="question-section" style="display: none;">
+            <h2 class="text-2xl font-semibold mb-4">
+              Tell me about your images
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-type="photo"
+              >
+                <h3 class="font-semibold mb-2">📷 Real Photos</h3>
+                <p class="text-sm text-slate-600">
+                  Those beautiful shots from your camera or phone
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-type="graphic"
+              >
+                <h3 class="font-semibold mb-2">✏️ Graphics & Illustrations</h3>
+                <p class="text-sm text-slate-600">
+                  Logos, icons, drawings, or any designed graphics
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-type="screenshot"
+              >
+                <h3 class="font-semibold mb-2">💻 Screenshots</h3>
+                <p class="text-sm text-slate-600">
+                  Screen captures, app interfaces, or UI elements
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-type="mixed"
+              >
+                <h3 class="font-semibold mb-2">🔀 A bit of everything</h3>
+                <p class="text-sm text-slate-600">
+                  Mix of photos, graphics, and other visual content
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3: Requirements -->
+          <div class="question-section" style="display: none;">
+            <h2 class="text-2xl font-semibold mb-4">
+              What matters most to you right now?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-priority="quality"
+              >
+                <h3 class="font-semibold mb-2">👁️ Perfect Quality</h3>
+                <p class="text-sm text-slate-600">
+                  I want my images to look absolutely stunning
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-priority="size"
+              >
+                <h3 class="font-semibold mb-2">📦 Tiny File Sizes</h3>
+                <p class="text-sm text-slate-600">
+                  I need them to load fast and take less space
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-priority="compatibility"
+              >
+                <h3 class="font-semibold mb-2">🔄 Universal Support</h3>
+                <p class="text-sm text-slate-600">
+                  They should work everywhere without issues
+                </p>
+              </div>
+              <div
+                class="border-2 border-slate-200 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500 hover:shadow-lg"
+                data-priority="features"
+              >
+                <h3 class="font-semibold mb-2">✨ Cool Features</h3>
+                <p class="text-sm text-slate-600">
+                  Transparency, animations, or special effects
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div id="results" style="display: none;" class="space-y-6">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-semibold">
+                🎉 Here are your perfect matches!
+              </h2>
+              <button
+                id="restart-btn"
+                class="bg-slate-200 text-slate-700 p-2 rounded-lg hover:bg-slate-300 transition-colors cursor-pointer"
+                title="Start over"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <div id="recommendations" class="space-y-3">
+              <!-- Recommendations will be inserted here -->
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-6 mt-8">
+              <h3 class="font-semibold mb-3">
+                Quick cheat sheet for image formats:
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span class="font-medium">JPEG/JPG:</span> Perfect for photos,
+                  keeps files small
+                </div>
+                <div>
+                  <span class="font-medium">PNG:</span> Great for logos and graphics
+                  with transparency
+                </div>
+                <div>
+                  <span class="font-medium">WebP:</span> Modern and super efficient
+                  compression
+                </div>
+                <div>
+                  <span class="font-medium">TIFF:</span> Professional quality for
+                  printing
+                </div>
+                <div>
+                  <span class="font-medium">SVG:</span> Vector magic - scales beautifully
+                  at any size
+                </div>
+                <div>
+                  <span class="font-medium">HEIC:</span> Apple's space-saving format
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="mt-16">
+          <PicmalCTA />
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      const formatData = {
+        recommendations: {
+          web: {
+            photo: {
+              quality: ["WebP", "JPEG", "PNG"],
+              size: ["WebP", "JPEG", "AVIF"],
+              compatibility: ["JPEG", "PNG", "WebP"],
+              features: ["WebP", "PNG", "AVIF"],
+            },
+            graphic: {
+              quality: ["PNG", "SVG", "WebP"],
+              size: ["SVG", "WebP", "PNG"],
+              compatibility: ["PNG", "JPEG", "SVG"],
+              features: ["SVG", "PNG", "WebP"],
+            },
+            screenshot: {
+              quality: ["PNG", "WebP"],
+              size: ["WebP", "PNG", "JPEG"],
+              compatibility: ["PNG", "JPEG"],
+              features: ["PNG", "WebP"],
+            },
+            mixed: {
+              quality: ["WebP", "PNG"],
+              size: ["WebP", "JPEG"],
+              compatibility: ["JPEG", "PNG"],
+              features: ["WebP", "PNG"],
+            },
+          },
+          print: {
+            photo: {
+              quality: ["TIFF", "PNG", "JPEG"],
+              size: ["JPEG", "PDF"],
+              compatibility: ["PDF", "JPEG", "TIFF"],
+              features: ["TIFF", "PDF", "PNG"],
+            },
+            graphic: {
+              quality: ["PDF", "SVG", "TIFF"],
+              size: ["PDF", "SVG"],
+              compatibility: ["PDF", "PNG"],
+              features: ["PDF", "SVG", "TIFF"],
+            },
+            screenshot: {
+              quality: ["PNG", "TIFF", "PDF"],
+              size: ["PDF", "PNG"],
+              compatibility: ["PDF", "PNG"],
+              features: ["PDF", "PNG", "TIFF"],
+            },
+            mixed: {
+              quality: ["PDF", "TIFF", "PNG"],
+              size: ["PDF", "JPEG"],
+              compatibility: ["PDF", "JPEG"],
+              features: ["PDF", "TIFF"],
+            },
+          },
+          graphics: {
+            photo: {
+              quality: ["PNG", "TIFF"],
+              size: ["PNG", "WebP"],
+              compatibility: ["PNG", "JPEG"],
+              features: ["PNG", "WebP"],
+            },
+            graphic: {
+              quality: ["SVG", "PNG", "PDF"],
+              size: ["SVG", "WebP"],
+              compatibility: ["PNG", "PDF"],
+              features: ["SVG", "PNG", "PDF"],
+            },
+            screenshot: {
+              quality: ["PNG", "TIFF"],
+              size: ["PNG", "WebP"],
+              compatibility: ["PNG"],
+              features: ["PNG"],
+            },
+            mixed: {
+              quality: ["PNG", "PDF"],
+              size: ["WebP", "PNG"],
+              compatibility: ["PNG", "PDF"],
+              features: ["PNG", "PDF"],
+            },
+          },
+          photography: {
+            photo: {
+              quality: ["RAW", "TIFF", "PNG"],
+              size: ["HEIC", "JPEG", "WebP"],
+              compatibility: ["JPEG", "TIFF", "PNG"],
+              features: ["RAW", "TIFF", "HEIC"],
+            },
+            graphic: {
+              quality: ["PNG", "TIFF"],
+              size: ["PNG", "WebP"],
+              compatibility: ["PNG", "JPEG"],
+              features: ["PNG", "TIFF"],
+            },
+            screenshot: {
+              quality: ["PNG", "TIFF"],
+              size: ["PNG", "JPEG"],
+              compatibility: ["PNG", "JPEG"],
+              features: ["PNG", "TIFF"],
+            },
+            mixed: {
+              quality: ["TIFF", "PNG"],
+              size: ["JPEG", "HEIC"],
+              compatibility: ["JPEG", "PNG"],
+              features: ["TIFF", "PNG"],
+            },
+          },
+        },
+        descriptions: {
+          JPEG: "The classic choice! Works everywhere and keeps photo file sizes small. You might lose a tiny bit of quality, but most people won't notice.",
+          PNG: "Perfect for graphics and logos! Keeps every pixel crisp and supports transparent backgrounds. Files are a bit larger, but quality is pristine.",
+          WebP: "Google's modern powerhouse - up to 35% smaller files with better quality than JPEG. Not all browsers love it yet, but it's getting there!",
+          TIFF: "The professional's choice for printing. Massive files but zero quality loss. Your printer will thank you!",
+          SVG: "Vector magic! Scale it to billboard size or thumbnail - it always looks perfect. Ideal for logos and simple graphics.",
+          PDF: "The reliable document format. Great when you need everything to look exactly the same everywhere, especially for printing.",
+          HEIC: "Apple's space-saving genius - half the size of JPEG with better quality! Just make sure your audience can open it.",
+          AVIF: "The new kid on the block with amazing compression. Better than WebP, but still gaining support across browsers.",
+          RAW: "The photographer's goldmine - all the original camera data for maximum editing flexibility. You'll need special software though!",
+        },
+      };
+
+      let selections = {};
+      let currentQuestion = 0;
+      const questions = document.querySelectorAll(".question-section");
+
+      document
+        .querySelectorAll("[data-use], [data-type], [data-priority]")
+        .forEach((card) => {
+          card.addEventListener("click", function () {
+            const parent = this.closest(".question-section");
+            parent
+              .querySelectorAll("[data-use], [data-type], [data-priority]")
+              .forEach((c) => {
+                c.classList.remove("border-blue-500", "bg-blue-50");
+                c.classList.add("border-slate-200");
+              });
+            this.classList.remove("border-slate-200");
+            this.classList.add("border-blue-500", "bg-blue-50");
+
+            if (this.dataset.use) {
+              selections.use = this.dataset.use;
+              showNextQuestion();
+            } else if (this.dataset.type) {
+              selections.type = this.dataset.type;
+              showNextQuestion();
+            } else if (this.dataset.priority) {
+              selections.priority = this.dataset.priority;
+              showResults();
+            }
+          });
+        });
+
+      function showNextQuestion() {
+        questions[currentQuestion].style.display = "none";
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          questions[currentQuestion].style.display = "block";
+          questions[currentQuestion].scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }
+      }
+
+      function showResults() {
+        questions.forEach((q) => (q.style.display = "none"));
+        document.getElementById("results").style.display = "block";
+
+        const formats =
+          formatData.recommendations[selections.use][selections.type][
+            selections.priority
+          ];
+        const recommendationsDiv = document.getElementById("recommendations");
+
+        recommendationsDiv.innerHTML = formats
+          .map((format, index) => {
+            const badgeClass =
+              index === 0
+                ? "bg-green-100 text-green-800"
+                : index === 1
+                  ? "bg-blue-100 text-blue-800"
+                  : "bg-slate-100 text-slate-800";
+            const label =
+              index === 0
+                ? "BEST CHOICE"
+                : index === 1
+                  ? "GOOD ALTERNATIVE"
+                  : "ALSO WORKS";
+
+            return `
+            <div class="bg-white rounded-lg p-4 border border-slate-200">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold">${format}</h3>
+                <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${badgeClass}">${label}</span>
+              </div>
+              <p class="text-slate-600 text-sm">${formatData.descriptions[format]}</p>
+            </div>
+          `;
+          })
+          .join("");
+
+        document
+          .getElementById("results")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.getElementById("restart-btn").addEventListener("click", () => {
+        selections = {};
+        currentQuestion = 0;
+        questions.forEach((q, i) => {
+          q.style.display = i === 0 ? "block" : "none";
+          q.querySelectorAll(
+            "[data-use], [data-type], [data-priority]"
+          ).forEach((c) => {
+            c.classList.remove("border-blue-500", "bg-blue-50");
+            c.classList.add("border-slate-200");
+          });
+        });
+        document.getElementById("results").style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

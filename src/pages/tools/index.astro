@@ -1,0 +1,182 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PicmalCTA from "../../components/PicmalCTA.astro";
+import "../../styles/global.css";
+
+const SITE_TITLE =
+  "Free Image Tools - Format Selection, Conversion Tips & More";
+const SITE_DESCRIPTION =
+  "Collection of free tools to help you work with images: format selector, conversion guides, and optimization tips.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+
+    <main class="relative z-10 px-6 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto">
+        <!-- Header Section -->
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <span class="text-slate-900">
+            Free{" "}
+            <span class="text-[#1B5BFF]"> image tools </span>{" "}
+            to help optimize your workflow
+          </span>
+        </h1>
+
+        <p class="text-lg text-slate-600 mb-12">
+          Simple, free tools to help you make better decisions about image
+          formats and optimization.
+        </p>
+
+        <!-- Tools Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Image Format Selector Tool -->
+          <div
+            class="bg-white border-2 border-slate-200 rounded-xl p-6 hover:border-blue-500 hover:shadow-lg transition-all"
+          >
+            <a href="/tools/image-format-selector" class="block">
+              <div class="mb-3">
+                <h2 class="text-xl font-semibold text-slate-900 mb-2">
+                  🎯 Image format selector
+                </h2>
+                <span
+                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium"
+                >
+                  AVAILABLE
+                </span>
+              </div>
+              <p class="text-slate-600 mb-4">
+                Answer a few questions about your use case and get instant
+                recommendations for the best image format.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-700"
+                >
+                  Web vs Print
+                </span>
+                <span
+                  class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-700"
+                >
+                  Quality vs Size
+                </span>
+              </div>
+              <span class="text-[#1B5BFF] font-medium hover:underline text-sm">
+                Try Format Selector →
+              </span>
+            </a>
+          </div>
+
+          <!-- Compression Analyzer (Coming Soon) -->
+          <div
+            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+          >
+            <div class="mb-3">
+              <h2 class="text-xl font-semibold text-slate-700 mb-2">
+                📊 Compression Analyzer
+              </h2>
+              <span
+                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
+              >
+                COMING SOON
+              </span>
+            </div>
+            <p class="text-slate-500 mb-4">
+              Visualize how different compression levels affect your image
+              quality and file size.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                Quality Analysis
+              </span>
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                Size Optimization
+              </span>
+            </div>
+          </div>
+
+          <!-- Batch Processing Guide (Coming Soon) -->
+          <div
+            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+          >
+            <div class="mb-3">
+              <h2 class="text-xl font-semibold text-slate-700 mb-2">
+                🚀 Batch Processing Guide
+              </h2>
+              <span
+                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
+              >
+                COMING SOON
+              </span>
+            </div>
+            <p class="text-slate-500 mb-4">
+              Learn best practices for processing multiple images efficiently.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                Workflow Tips
+              </span>
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                Automation
+              </span>
+            </div>
+          </div>
+
+          <!-- Metadata Viewer (Coming Soon) -->
+          <div
+            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+          >
+            <div class="mb-3">
+              <h2 class="text-xl font-semibold text-slate-700 mb-2">
+                🔍 Metadata Viewer
+              </h2>
+              <span
+                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
+              >
+                COMING SOON
+              </span>
+            </div>
+            <p class="text-slate-500 mb-4">
+              Check what metadata your images contain and learn how to optimize
+              it.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                EXIF Data
+              </span>
+              <span
+                class="bg-slate-100 px-2 py-1 rounded-full text-xs text-slate-500"
+              >
+                Privacy
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="mt-16">
+          <PicmalCTA />
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

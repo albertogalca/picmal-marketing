@@ -1,15 +1,16 @@
 ---
 import { Image } from "astro:assets";
+import Button from "./Button.astro";
 
 const currentPage = Astro.url.pathname;
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 px-6 py-6 backdrop-blur-md transition-colors duration-300 bg-white/90 border-b border-slate-200/50"
+  class="fixed top-0 left-0 right-0 z-50 px-6 py-6 backdrop-blur-md text-sm transition-colors duration-300 bg-white/90 border-b border-gray-100"
 >
   <div class="max-w-6xl mx-auto flex items-center justify-between">
-    <div class="flex items-center space-x-2">
-      <a href="/" class="flex items-center space-x-2 cursor-pointer">
+    <div class="flex items-center">
+      <a href="/" class="flex items-center gap-3 cursor-pointer">
         <Image
           src="/logo.webp"
           alt="Picmal Logo"
@@ -18,58 +19,59 @@ const currentPage = Astro.url.pathname;
           class="rounded-lg w-10 h-10 object-cover"
           loading="eager"
         />
-        <div class="text-xl font-semibold text-slate-900">Picmal</div>
+        <div class="text-xl font-semibold text-black">Picmal</div>
       </a>
     </div>
 
     <div class="hidden xl:flex items-center space-x-6 2xl:space-x-8">
       <a
         href="/#features"
-        class="transition-colors cursor-pointer text-slate-600 hover:text-slate-900 font-medium"
+        class="text-sm transition-colors cursor-pointer text-black/65 hover:text-black font-medium"
       >
         Features
       </a>
       <a
-        href="/#pricing"
-        class="transition-colors cursor-pointer text-slate-600 hover:text-slate-900 font-medium"
-      >
-        Pricing
-      </a>
-      <a
         href="/#testimonials"
-        class="transition-colors cursor-pointer text-slate-600 hover:text-slate-900 font-medium"
+        class="text-sm transition-colors cursor-pointer text-black/65 hover:text-black font-medium"
       >
         Testimonials
       </a>
       <a
-        href="/#faq"
-        class="transition-colors cursor-pointer text-slate-600 hover:text-slate-900 font-medium"
-      >
-        FAQ
-      </a>
-      <a
         href="/#about"
-        class="transition-colors cursor-pointer text-slate-600 hover:text-slate-900 font-medium"
+        class="text-sm transition-colors cursor-pointer text-black/65 hover:text-black font-medium"
       >
         About
       </a>
       <a
+        href="/#faq"
+        class="text-sm transition-colors cursor-pointer text-black/65 hover:text-black font-medium"
+      >
+        FAQ
+      </a>
+
+      <a
+        href="/#pricing"
+        class="text-sm transition-colors cursor-pointer text-black/65 hover:text-black font-medium"
+      >
+        Pricing
+      </a>
+      <a
         href="/blog/changelog"
-        class={`transition-colors cursor-pointer font-medium ${
+        class={`text-sm transition-colors cursor-pointer font-medium ${
           currentPage.startsWith("/blog/changelog")
-            ? "text-[#1B5BFF] "
-            : "text-slate-600 hover:text-slate-900 "
+            ? "text-accent"
+            : "text-black/65 hover:text-black "
         }`}
       >
         Changelog
       </a>
       <a
         href="/blog"
-        class={`transition-colors cursor-pointer font-medium ${
+        class={`text-sm transition-colors cursor-pointer font-medium ${
           currentPage.startsWith("/blog") &&
           !currentPage.startsWith("/blog/changelog")
-            ? "text-[#1B5BFF] "
-            : "text-slate-600 hover:text-slate-900 "
+            ? "text-accent"
+            : "text-black/65 hover:text-black "
         }`}
       >
         Blog
@@ -78,19 +80,12 @@ const currentPage = Astro.url.pathname;
 
     <div class="flex items-center space-x-3">
       <!-- Buy button - hidden on mobile, shown on xl+ -->
-      <a
-        href="https://albertogalca.gumroad.com/l/picmal"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden xl:inline-block bg-[#1B5BFF] text-white px-6 py-2 rounded-lg hover:bg-[#1548CC] transition-colors font-medium"
-      >
-        Buy for Mac
-      </a>
+      <Button size="small" text="Buy for Mac" class="hidden xl:inline-block" useGumroad={true} />
 
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-button"
-        class="xl:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+        class="xl:hidden inline-flex items-center justify-center p-2 rounded-md text-black/65 hover:text-black hover:bg-gray-100 text-sm transition-colors"
         aria-controls="mobile-menu"
         aria-expanded="false"
       >
@@ -113,63 +108,63 @@ const currentPage = Astro.url.pathname;
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden xl:hidden">
-    <div class="px-2 pt-2 pb-3 space-y-1">
+    <div class="py-3 space-y-1">
       <a
         href="/#features"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         Features
       </a>
       <a
-        href="/#pricing"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
-      >
-        Pricing
-      </a>
-      <a
         href="/#testimonials"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         Testimonials
       </a>
       <a
-        href="/#faq"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
-      >
-        FAQ
-      </a>
-      <a
         href="/#about"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         About
       </a>
+
+      <a
+        href="/#faq"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
+      >
+        FAQ
+      </a>
+
       <a
         href="/blog/changelog"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         Changelog
       </a>
       <a
+        href="/#pricing"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
+      >
+        Pricing
+      </a>
+      <a
         href="/blog"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         Blog
       </a>
       <a
         href="/tools"
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-slate-900"
+        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
       >
         Free Tools
       </a>
-      <a
-        href="https://albertogalca.gumroad.com/l/picmal"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block mx-3 my-2 px-6 py-2 rounded-lg text-base font-medium bg-[#1B5BFF] text-white hover:bg-[#1548CC] transition-colors text-center"
-      >
-        Buy for Mac
-      </a>
+      <Button
+        size="small"
+        text="Buy for Mac"
+        class="block my-4 py-2 text-center"
+        useGumroad={true}
+      />
     </div>
   </div>
 </nav>

@@ -1,7 +1,8 @@
 ---
-import BaseHead from './BaseHead.astro';
-import Header from './Header.astro';
-import Footer from './Footer.astro';
+import BaseHead from "./BaseHead.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import H1 from "./H1.astro";
 
 export interface Props {
   meta: {
@@ -27,7 +28,7 @@ const { meta } = Astro.props;
       <div class="max-w-3xl mx-auto">
         <a
           href="/"
-          class="inline-flex items-center text-sm transition-colors cursor-pointer text-slate-500 hover:text-slate-900"
+          class="inline-flex items-center text-sm transition-colors cursor-pointer text-gray-500 hover:text-black"
         >
           ← Back to home
         </a>
@@ -39,28 +40,30 @@ const { meta } = Astro.props;
       <div class="max-w-3xl mx-auto">
         <!-- Header -->
         <header class="mb-8">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight text-slate-900">
+          <H1 class="mb-4">
             {meta.title}
-          </h1>
-          <p class="text-sm text-slate-500 mb-6">
+          </H1>
+          <p class="text-sm text-gray-500 mb-6">
             {meta.date}
           </p>
         </header>
 
         <!-- Content -->
-        <div class="prose prose-lg max-w-none
-                    prose-headings:text-slate-900
-                    prose-p:text-slate-700
+        <div
+          class="prose prose-lg max-w-none
+                    prose-headings:text-black
+                    prose-p:text-gray-700
                     prose-a:text-[#1B5BFF] hover:prose-a:text-[#1548CC]
-                    prose-strong:text-slate-900
-                    prose-code:text-[#1B5BFF] prose-code:bg-slate-100
-                    prose-pre:bg-slate-900
-                    prose-blockquote:border-l-[#1B5BFF] prose-blockquote:text-slate-600
-                    prose-th:text-slate-900
-                    prose-td:text-slate-700
-                    prose-ul:text-slate-700
-                    prose-ol:text-slate-700
-                    prose-li:text-slate-700">
+                    prose-strong:text-black
+                    prose-code:text-[#1B5BFF] prose-code:bg-gray-100
+                    prose-pre:bg-black
+                    prose-blockquote:border-l-[#1B5BFF] prose-blockquote:text-gray-600
+                    prose-th:text-black
+                    prose-td:text-gray-700
+                    prose-ul:text-gray-700
+                    prose-ol:text-gray-700
+                    prose-li:text-gray-700"
+        >
           <slot />
         </div>
       </div>

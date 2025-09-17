@@ -1,0 +1,33 @@
+---
+import H3 from "./H3.astro";
+
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  dataAttribute: string;
+  dataValue: string;
+  class?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  dataAttribute,
+  dataValue,
+  class: className = "",
+} = Astro.props;
+
+const dataAttrs = { [dataAttribute]: dataValue };
+---
+
+<div
+  class={`border-2 border-gray-200 rounded-lg p-8 cursor-pointer transition-all hover:border-accent text-left  ${className}`}
+  {...dataAttrs}
+>
+  <H3 class="mb-2">{title}</H3>
+  <p class="text-black/65 font-medium text-sm">
+    {description}
+  </p>
+</div>

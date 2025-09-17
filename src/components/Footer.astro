@@ -1,5 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import H2 from "./H2.astro";
+import H3 from "./H3.astro";
+import Button from "./Button.astro";
 
 const today = new Date();
 const isHomePage = Astro.url.pathname === "/";
@@ -8,14 +11,13 @@ const isHomePage = Astro.url.pathname === "/";
 <div>
   <!-- Newsletter Section -->
   <section
-    class={`relative z-10 px-6 py-16 ${isHomePage ? "bg-white" : "bg-slate-100"}`}
+    class={`relative z-10 px-6 py-16 ${isHomePage ? "bg-white" : "bg-accent-background"}`}
   >
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900">
-        Be the first to know
-      </h2>
-      <p class="text-lg mb-8 text-slate-700">
-        I'll inform you about new updates and deals, but no spam, I promise.
+      <H2 class="mb-4"> Join to know about new updates </H2>
+      <p class="text-base text-black/65 mb-6 leading-relaxed">
+        Everytime I release a new feature or have a deal I will email you. No
+        spam, I promise!
       </p>
 
       <form
@@ -31,24 +33,21 @@ const isHomePage = Astro.url.pathname === "/";
           id="bd-email"
           placeholder="Enter your email"
           required
-          class="w-full sm:flex-1 px-4 py-3 rounded-lg border focus:ring-2 focus:ring-[#1B5BFF] focus:border-transparent outline-none bg-white border-slate-300 text-slate-900 placeholder-slate-500"
+          class="w-full sm:flex-1 px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent focus:border-transparent outline-none bg-white border-gray-300 text-base placeholder-gray-500"
         />
-        <button
+        <Button
           type="submit"
-          class="w-full sm:w-auto bg-[#1B5BFF] text-white px-6 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium whitespace-nowrap"
-        >
-          Subscribe
-        </button>
+          text="Subscribe"
+          class="w-full sm:w-auto whitespace-nowrap"
+        />
       </form>
 
-      <p class="text-xs mt-4 text-slate-600"></p>
+      <p class="text-xs mt-4 text-black/65"></p>
     </div>
   </section>
 
   <!-- Main Footer -->
-  <footer
-    class="relative z-10 px-6 py-16 border-t border-[#CBDEFF]/30 bg-white"
-  >
+  <footer class="relative z-10 px-6 py-16 border-t border-gray-100 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
         <!-- Logo and Copyright -->
@@ -62,7 +61,7 @@ const isHomePage = Astro.url.pathname === "/";
               class="rounded-lg w-8 h-8 object-cover"
             />
           </div>
-          <p class="text-sm text-slate-500">
+          <p class="text-sm text-black/65 leading-relaxed">
             © {today.getFullYear()}
             <a
               href="https://cantimplora.studio/"
@@ -70,19 +69,19 @@ const isHomePage = Astro.url.pathname === "/";
               rel="noopener nofollow noreferrer"
               class="underline underline-offset-4"
             >
-              Cantimplora Studio
-            </a>, LLC. All rights reserved.
+              Cantimplora Studio</a
+            >, LLC. All rights reserved.
           </p>
         </div>
 
         <!-- Company -->
         <div>
-          <h3 class="font-semibold mb-4 text-slate-900">Company</h3>
+          <H3 class="mb-4">Company</H3>
           <ul class="space-y-1">
             <li>
               <a
                 href="mailto:support@picmal.app"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Get in touch
               </a>
@@ -92,7 +91,7 @@ const isHomePage = Astro.url.pathname === "/";
                 href="https://x.com/picmalapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Follow on X
               </a>
@@ -100,7 +99,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/terms"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Terms of Use
               </a>
@@ -108,7 +107,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/privacy"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Privacy Policy
               </a>
@@ -118,56 +117,47 @@ const isHomePage = Astro.url.pathname === "/";
 
         <!-- Product -->
         <div>
-          <h3 class="font-semibold mb-4 text-slate-900">Product</h3>
+          <H3 class="mb-4">Product</H3>
           <ul class="space-y-1">
             <li>
               <a
-                href="https://albertogalca.gumroad.com/l/picmal"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
-              >
-                Download for Mac
-              </a>
-            </li>
-            <li>
-              <a
                 href="/#features"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Features
               </a>
             </li>
-            <li>
-              <a
-                href="/#pricing"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
-              >
-                Pricing
-              </a>
-            </li>
+
             <li>
               <a
                 href="/#testimonials"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Testimonials
               </a>
             </li>
             <li>
               <a
+                href="/#about"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
                 href="/#faq"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 FAQ
               </a>
             </li>
             <li>
               <a
-                href="/blog?category=Changelog"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                href="/#pricing"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
-                Changelog
+                Pricing
               </a>
             </li>
           </ul>
@@ -175,14 +165,22 @@ const isHomePage = Astro.url.pathname === "/";
 
         <!-- Resources -->
         <div>
-          <h3 class="font-semibold mb-4 text-slate-900">Resources</h3>
+          <H3 class="mb-4">Resources</H3>
           <ul class="space-y-1">
             <li>
               <a
                 href="/blog"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Blog
+              </a>
+            </li>
+            <li>
+              <a
+                href="/blog?category=Changelog"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+              >
+                Changelog
               </a>
             </li>
             <li>
@@ -190,7 +188,7 @@ const isHomePage = Astro.url.pathname === "/";
                 href="https://picmal.userjot.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Feedback & roadmap
               </a>
@@ -198,7 +196,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/tools/image-format-selector"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 Format selector
               </a>
@@ -206,7 +204,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/tools"
-                class="text-sm transition-colors text-slate-600 hover:text-slate-900 cursor-pointer"
+                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
               >
                 All tools
               </a>

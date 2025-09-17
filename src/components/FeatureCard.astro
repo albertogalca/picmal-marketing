@@ -1,0 +1,48 @@
+---
+import H3 from "./H3.astro";
+
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  iconBgClass?: string;
+  iconTextClass?: string;
+  titleClass?: string;
+  descriptionClass?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  iconBgClass = "bg-gray-100 border border-gray-200",
+  iconTextClass = "text-gray-600",
+  titleClass = "mb-2",
+  descriptionClass = "text-base text-black/65 font-medium mb-10 leading-relaxed",
+} = Astro.props;
+---
+
+<div>
+  <div
+    class={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${iconBgClass}`}
+  >
+    <svg
+      class={`w-6 h-6 ${iconTextClass}`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width={2}
+        d={icon}></path>
+    </svg>
+  </div>
+  <H3 class={titleClass}>
+    {title}
+  </H3>
+  <p class={descriptionClass}>
+    {description}
+  </p>
+</div>

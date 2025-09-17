@@ -7,6 +7,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import ArticleSchema from "../components/schema/ArticleSchema.astro";
 import PicmalCTA from "../components/PicmalCTA.astro";
+import H1 from "../components/H1.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -38,17 +39,15 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
     }
   </head>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-white text-slate-900"
-  >
+  <body class="min-h-screen transition-colors duration-300 bg-white text-black">
     <Header />
 
     <!-- Back to Blog Link -->
-    <div class="relative z-10 px-6 pt-32 pb-6">
+    <div class="relative z-10 px-6 pt-32 pb-12">
       <div class="max-w-3xl mx-auto">
         <a
           href="/blog"
-          class="inline-flex items-center text-sm transition-colors cursor-pointer text-slate-500 hover:text-slate-900"
+          class="inline-flex items-center transition-colors cursor-pointer text-black/65 hover:text-black"
         >
           ← Back to blog
         </a>
@@ -73,35 +72,38 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
               </div>
             )
           }
-          <div class="flex items-center gap-3 mb-3 text-sm">
+          <div class="flex items-center gap-3 mb-8 text-base font-medium">
             {
               category && (
                 <>
                   <span
                     class={
                       category === "Changelog"
-                        ? "text-[#1B5BFF]"
+                        ? "text-accent"
                         : category === "Guide"
                           ? "text-emerald-600"
                           : category === "Tutorial"
                             ? "text-purple-600"
-                            : "text-slate-600"
+                            : "text-gray-600"
                     }
                   >
                     {category}
                   </span>
-                  <span class="text-slate-500">•</span>
+                  <span class="text-black/65 font-medium">•</span>
                 </>
               )
             }
-            <time datetime={pubDate.toISOString()} class="text-slate-500">
+            <time
+              datetime={pubDate.toISOString()}
+              class="text-black/65 font-medium"
+            >
               <FormattedDate date={pubDate} />
             </time>
             {
               updatedDate && (
                 <>
-                  <span class="text-slate-500">•</span>
-                  <span class="text-slate-500 italic">
+                  <span class="text-gray-500">•</span>
+                  <span class="text-gray-500 italic">
                     Updated <FormattedDate date={updatedDate} />
                   </span>
                 </>
@@ -109,27 +111,26 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
             }
           </div>
 
-          <h1
-            id="article-title"
-            class="text-4xl md:text-5xl font-bold mb-4 leading-tight text-slate-900"
-          >
+          <H1 id="article-title" class="mb-4">
             {title}
-          </h1>
+          </H1>
         </header>
 
         <!-- Content -->
         <div
-          class="prose prose-lg max-w-none
-                prose-headings:text-slate-900
-                prose-p:text-slate-700
-                prose-a:text-[#1B5BFF] hover:prose-a:text-[#1548CC]
-                prose-strong:text-slate-900
-                prose-code:text-[#1B5BFF] prose-code:bg-slate-100
-                prose-pre:bg-slate-900
-                prose-blockquote:border-l-[#1B5BFF] prose-blockquote:text-slate-600
-                prose-th:text-slate-900
-                prose-td:text-slate-700
-                prose-img:rounded-lg prose-img:shadow-lg"
+          class="prose max-w-none
+                prose-headings:text-black prose-headings:font-semibold
+                prose-p:text-black/65 prose-p:leading-relaxed
+                prose-ol:text-black/65 prose-ul:text-black/65
+                prose-li:text-black/65
+                prose-a:text-black/65 prose-a:underline-offset-4 prose-a:underline hover:prose-a:text-black
+                prose-strong:text-black
+                prose-code:text-accent prose-code:bg-gray-100
+                prose-pre:bg-black
+                prose-blockquote:border-l-accent prose-blockquote:text-black/65 prose-blockquote:bg-accent-background
+                prose-th:text-black
+                prose-td:text-black/65
+                prose-img:rounded-lg"
           role="main"
           aria-labelledby="article-title"
         >
@@ -137,7 +138,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
         </div>
 
         <!-- Download CTA -->
-        <div class="mt-12 pt-8 border-t border-slate-200">
+        <div class="mt-12 pt-8">
           <PicmalCTA />
         </div>
       </div>

@@ -1,0 +1,133 @@
+---
+export interface Props {
+  class?: string;
+  href?: string;
+  text?: string;
+  size?: "small" | "normal";
+  variant?: "primary" | "secondary";
+  type?: "link" | "submit" | "button";
+  disabled?: boolean;
+  icon?: string;
+  id?: string;
+  title?: string;
+  useGumroad?: boolean;
+}
+
+const {
+  class: className = "",
+  href = "https://albertogalca.gumroad.com/l/picmal",
+  text = "",
+  size = "normal",
+  variant = "primary",
+  type = "link",
+  disabled = false,
+  icon,
+  id,
+  title,
+  useGumroad = false,
+} = Astro.props;
+
+const sizeClasses = {
+  small: "text-sm py-2",
+  normal: "text-base py-3",
+};
+
+// For icon-only buttons, use square padding and fixed dimensions
+const iconOnlyClasses = {
+  small: "p-0 w-8 h-8 flex items-center justify-center",
+  normal: "p-0 w-12 h-12 flex items-center justify-center",
+};
+
+const variantClasses = {
+  primary: "bg-accent text-white hover:bg-accent-dark",
+  secondary: "bg-gray-100 text-black hover:bg-gray-200 border border-gray-200",
+};
+
+// Use icon-only classes if no text, otherwise use regular classes
+const isIconOnly = icon && !text;
+const paddingClasses = isIconOnly
+  ? iconOnlyClasses[size]
+  : `px-6 ${sizeClasses[size]}`;
+const baseClasses = `rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-medium ${paddingClasses} ${variantClasses[variant]} ${className}`;
+---
+
+{
+  type === "submit" ? (
+    <button
+      disabled={disabled}
+      type="submit"
+      class={baseClasses}
+      id={id}
+      title={title}
+    >
+      {icon && (
+        <svg
+          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d={icon}
+          />
+        </svg>
+      )}
+      {text}
+    </button>
+  ) : type === "button" ? (
+    <button
+      disabled={disabled}
+      type="button"
+      class={baseClasses}
+      id={id}
+      title={title}
+    >
+      {icon && (
+        <svg
+          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d={icon}
+          />
+        </svg>
+      )}
+      {text}
+    </button>
+  ) : (
+    <a
+      href={disabled ? undefined : href}
+      target="_blank"
+      rel={useGumroad ? undefined : "noopener noreferrer"}
+      class={`${baseClasses}`}
+      data-gumroad-overlay-checkout={useGumroad ? "true" : undefined}
+      id={id}
+      title={title}
+    >
+      {icon && (
+        <svg
+          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d={icon}
+          />
+        </svg>
+      )}
+      {text}
+    </a>
+  )
+}

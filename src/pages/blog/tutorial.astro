@@ -8,16 +8,20 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import "../../styles/global.css";
+import H1 from "../../components/H1.astro";
 
 const posts = (await getCollection("blog"))
-  .filter(post => post.data.category === "Tutorial")
+  .filter((post) => post.data.category === "Tutorial")
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Tutorials - ${SITE_TITLE} | Step-by-Step Image Conversion Guides`} description="Learn image conversion with our step-by-step tutorials. Master batch conversion, file formats, and optimization techniques." />
+    <BaseHead
+      title={`Tutorials - ${SITE_TITLE} | Step-by-Step Image Conversion Guides`}
+      description="Learn image conversion with our step-by-step tutorials. Master batch conversion, file formats, and optimization techniques."
+    />
   </head>
   <body class="bg-white">
     <Header />
@@ -25,13 +29,10 @@ const posts = (await getCollection("blog"))
       <div class="max-w-3xl mx-auto">
         <!-- Blog Header -->
         <div class="mb-12">
-          <h1
-            class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight"
-          >
-            Tutorials
-          </h1>
-          <p class="text-lg text-slate-600">
-            Step-by-step tutorials to help you master image conversion and optimization.
+          <H1 class="mb-4"> Tutorials </H1>
+          <p class="text-lg text-gray-600">
+            Step-by-step tutorials to help you master image conversion and
+            optimization.
           </p>
         </div>
 
@@ -48,7 +49,7 @@ const posts = (await getCollection("blog"))
                   class="block bg-white rounded-none border-none p-0 m-0"
                 >
                   {post.data.heroImage ? (
-                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-slate-200">
+                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-gray-200">
                       <Image
                         src={post.data.heroImage}
                         alt={post.data.title}
@@ -58,23 +59,23 @@ const posts = (await getCollection("blog"))
                       />
                     </div>
                   ) : (
-                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-slate-200" />
+                    <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-gray-200" />
                   )}
                   <div class="flex items-center gap-3 mb-2 text-sm">
                     <span class="text-purple-600">Tutorial</span>
-                    <span class="text-slate-300">•</span>
+                    <span class="text-gray-300">•</span>
                     <time
-                      class="text-slate-500"
+                      class="text-gray-500"
                       datetime={post.data.pubDate.toISOString()}
                     >
                       <FormattedDate date={post.data.pubDate} />
                     </time>
                   </div>
-                  <h3 class="text-xl font-bold text-slate-900 group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
+                  <h3 class="text-xl font-bold text-black group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
                     {post.data.title}
                   </h3>
                   {post.data.description && (
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <p class="text-gray-600 text-sm leading-relaxed">
                       {post.data.description}
                     </p>
                   )}
@@ -87,7 +88,7 @@ const posts = (await getCollection("blog"))
         {
           posts.length === 0 && (
             <div class="text-center py-16">
-              <p class="text-slate-600 text-lg">No tutorial posts found.</p>
+              <p class="text-gray-600 text-lg">No tutorial posts found.</p>
             </div>
           )
         }

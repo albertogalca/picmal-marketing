@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import H3 from "./H3.astro";
+import Button from "./Button.astro";
 
 export interface Props {
   showImage?: boolean;
@@ -16,43 +18,38 @@ const {
   title = "Use Picmal to easily convert images on your Mac",
   description = "If you're not happy with your purchase, you can request a refund within 14 days.",
   buttonText = "Buy now",
-  className = ""
+  className = "",
 } = Astro.props;
 
 const isDark = variant === "dark";
 ---
 
-<div class={`relative ${isDark ? 'bg-black' : 'bg-gradient-to-r from-blue-50 to-indigo-50'} rounded-2xl p-6 sm:p-8 overflow-hidden ${className}`}>
+<div
+  class={`relative ${isDark ? "bg-black" : "bg-gradient-to-r from-blue-50 to-indigo-50"} rounded-2xl p-6 sm:p-8 overflow-hidden ${className}`}
+>
   <!-- Picmal app interface - hidden on mobile -->
-  {showImage && (
-    <div class="absolute -bottom-30 -right-40 hidden lg:block">
-      <Image
-        src="/picmal-main.webp"
-        alt="Picmal App Interface"
-        width={480}
-        height={360}
-        class="w-120 h-auto rounded-tl-lg"
-      />
-    </div>
-  )}
+  {
+    showImage && (
+      <div class="absolute -bottom-30 -right-40 hidden lg:block">
+        <Image
+          src="/picmal-main.webp"
+          alt="Picmal App Interface"
+          width={480}
+          height={360}
+          class="w-120 h-auto rounded-tl-lg"
+        />
+      </div>
+    )
+  }
 
   <!-- Content -->
-  <div class="relative z-10 max-w-full sm:max-w-md lg:max-w-xs">
-    <h3
-      class={`text-xl sm:text-2xl font-bold mb-3 leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}
-    >
+  <div class="relative z-10 max-w-full sm:max-w-md lg:max-w-xs text-left">
+    <H3 class="mb-3 text-white">
       {title}
-    </h3>
-    <p class={`mb-6 text-base sm:text-lg ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+    </H3>
+    <p class="mb-8 text-white/75 font-medium leading-relaxed">
       {description}
     </p>
-    <a
-      href="https://albertogalca.gumroad.com/l/picmal"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-block bg-[#1B5BFF] text-white px-6 sm:px-8 py-3 rounded-xl hover:bg-[#1548CC] transition-colors font-semibold text-base sm:text-lg cursor-pointer w-full sm:w-auto text-center"
-    >
-      {buttonText}
-    </a>
+    <Button text={buttonText} />
   </div>
 </div>

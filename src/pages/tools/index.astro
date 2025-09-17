@@ -4,6 +4,9 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import PicmalCTA from "../../components/PicmalCTA.astro";
 import "../../styles/global.css";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Button from "../../components/Button.astro";
 
 const SITE_TITLE =
   "Free Image Tools - Format Selection, Conversion Tips & More";
@@ -20,17 +23,15 @@ const SITE_DESCRIPTION =
     <Header />
 
     <main class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto">
+      <main class="max-w-3xl mx-auto text-center">
         <!-- Header Section -->
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-          <span class="text-slate-900">
-            Free{" "}
-            <span class="text-[#1B5BFF]"> image tools </span>{" "}
-            to help optimize your workflow
-          </span>
-        </h1>
+        <H1 class="mb-6">
+          Free image tools to help you optimize your workflow
+        </H1>
 
-        <p class="text-lg text-slate-600 mb-12">
+        <p
+          class="text-base text-black/65 mb-24 leading-relaxed max-w-3xl font-medium mx-auto"
+        >
           Simple, free tools to help you make better decisions about image
           formats and optimization.
         </p>
@@ -39,86 +40,86 @@ const SITE_DESCRIPTION =
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Image Format Selector Tool -->
           <div
-            class="bg-white border-2 border-slate-200 rounded-xl p-6 hover:border-blue-500 hover:shadow-lg transition-all"
+            class="bg-white border-1 border-gray-200 rounded-lg p-6 hover:border-accent transition-all"
           >
-            <a href="/tools/image-format-selector" class="block">
-              <div class="mb-3">
-                <h2 class="text-xl font-semibold text-slate-900 mb-2">
-                  🎯 Image format selector
-                </h2>
-                <span
-                  class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium"
-                >
-                  AVAILABLE
-                </span>
-              </div>
-              <p class="text-slate-600 mb-4">
-                Answer a few questions about your use case and get instant
-                recommendations for the best image format.
-              </p>
-              <span class="text-[#1B5BFF] font-medium hover:underline text-sm">
-                Try Format Selector →
-              </span>
+            <a
+              href="/tools/image-format-selector"
+              class="flex justify-between flex-col text-left h-full"
+            >
+              <header class="gap-2 flex flex-col mb-8">
+                <H2 class="text-lg md:text-xl mb-0">Image format selector</H2>
+                <p class="text-black/65 font-medium text-base">
+                  Answer a few questions about your use case and get instant
+                  recommendations for the best image format.
+                </p>
+              </header>
+              <Button type="submit" text="Try this tool" />
             </a>
           </div>
 
           <!-- Compression Analyzer (Coming Soon) -->
           <div
-            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+            class="bg-accent-background border-2 border-gray-100 rounded-lg p-6"
           >
-            <div class="mb-3">
-              <h2 class="text-xl font-semibold text-slate-700 mb-2">
-                📊 Compression analyzer
-              </h2>
-              <span
-                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
-              >
-                COMING SOON
-              </span>
+            <div class="flex justify-between flex-col text-left h-full">
+              <header class="gap-2 flex flex-col">
+                <H2 class="text-lg md:text-xl mb-0"> Compression analyzer </H2>
+                <p class="text-gray-500 mb-4">
+                  Visualize how different compression levels affect your image
+                  quality and file size.
+                </p>
+              </header>
+              <Button
+                disabled
+                variant="secondary"
+                type="submit"
+                text="Try this tool"
+              />
             </div>
-            <p class="text-slate-500 mb-4">
-              Visualize how different compression levels affect your image
-              quality and file size.
-            </p>
           </div>
 
           <!-- Batch Processing Guide (Coming Soon) -->
           <div
-            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+            class="bg-accent-background border-2 border-gray-100 rounded-lg p-6"
           >
-            <div class="mb-3">
-              <h2 class="text-xl font-semibold text-slate-700 mb-2">
-                🚀 Batch processing guide
-              </h2>
-              <span
-                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
-              >
-                COMING SOON
-              </span>
+            <div class="flex justify-between flex-col text-left h-full">
+              <header class="gap-2 flex flex-col">
+                <H2 class="text-lg md:text-xl mb-0">
+                  Batch processing guide
+                </H2>
+                <p class="text-gray-500 mb-4">
+                  Learn best practices for processing multiple images
+                  efficiently.
+                </p>
+              </header>
+              <Button
+                disabled
+                variant="secondary"
+                type="submit"
+                text="Try this tool"
+              />
             </div>
-            <p class="text-slate-500 mb-4">
-              Learn best practices for processing multiple images efficiently.
-            </p>
           </div>
 
           <!-- Metadata Viewer (Coming Soon) -->
           <div
-            class="bg-slate-50 border-2 border-slate-100 rounded-xl p-6 opacity-75"
+            class="bg-accent-background border-2 border-gray-100 rounded-lg p-6"
           >
-            <div class="mb-3">
-              <h2 class="text-xl font-semibold text-slate-700 mb-2">
-                🔍 Metadata viewer
-              </h2>
-              <span
-                class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-medium"
-              >
-                COMING SOON
-              </span>
+            <div class="flex justify-between flex-col text-left h-full">
+              <header class="gap-2 flex flex-col">
+                <H2 class="text-lg md:text-xl mb-0"> Metadata viewer </H2>
+                <p class="text-gray-500 mb-4">
+                  Check what metadata your images contain and learn how to
+                  optimize it.
+                </p>
+              </header>
+              <Button
+                disabled
+                variant="secondary"
+                type="submit"
+                text="Try this tool"
+              />
             </div>
-            <p class="text-slate-500 mb-4">
-              Check what metadata your images contain and learn how to optimize
-              it.
-            </p>
           </div>
         </div>
 
@@ -126,7 +127,7 @@ const SITE_DESCRIPTION =
         <div class="mt-16">
           <PicmalCTA />
         </div>
-      </div>
+      </main>
     </main>
 
     <Footer />

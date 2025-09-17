@@ -6,11 +6,15 @@ import FAQ from "../components/FAQ.astro";
 import VideoPlayer from "../components/VideoPlayer.astro";
 import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import FeatureCard from "../components/FeatureCard.astro";
 import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
 
-const SITE_TITLE = "Picmal - Image Converter for Mac (Fast, Private, Offline)";
+const SITE_TITLE = "Picmal - Image Converter for Mac";
 const SITE_DESCRIPTION =
-  "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.";
+  "Picmal converts JPG, PNG, HEIC, RAW, PSD, PDF and more on your Mac. Works fully offline, keeps your data private, and makes image conversion effortless. Drag. Drop. Done.";
 ---
 
 <!doctype html>
@@ -25,156 +29,65 @@ const SITE_DESCRIPTION =
 
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-          <span class="text-slate-900">
-            Picmal is a{" "}
-            <span class="text-[#1B5BFF]">
-              privacy-first image converter for Mac.
-            </span>{" "}
-            It works entirely offline and lets you convert multiple images at once.
-          </span>
-        </h1>
+      <div class="max-w-5xl mx-auto text-center">
+        <H1> Image converter for Mac </H1>
 
-        <div class="flex flex-col md:flex-row md:items-center gap-4 mb-12">
-          <a
-            href="https://albertogalca.gumroad.com/l/picmal"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block self-start bg-[#1B5BFF] text-white px-8 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium"
-          >
-            Buy Picmal for $8
-          </a>
-          <div class="flex flex-col items-start gap-1">
-            <span class="text-sm text-slate-600">
-              14-day money back guarantee
-            </span>
-          </div>
+        <p
+          class="text-base text-black/65 mb-10 leading-relaxed max-w-3xl font-medium mx-auto"
+        >
+          Convert more than a dozen formats in seconds. Everything runs locally
+          on your Mac, so it’s fast, private, and reliable. With a clean,
+          Apple-like design, Picmal skips the clutter and gives you a simple
+          tool that just works—perfect for photographers, designers, and anyone
+          who needs image conversion done right.
+        </p>
+
+        <div class="flex flex-col items-center gap-4 mb-16">
+          <Button text="Buy for Mac" useGumroad={true} />
+          <span class="text-sm text-black/65">
+            One-time purchase • 14-day money back guarantee
+          </span>
         </div>
 
         <!-- Demo Video -->
-        <div class="mb-16">
+        <div class="max-w-4xl mx-auto">
           <VideoPlayer src="/picmal-demo.mp4" />
         </div>
       </div>
     </main>
 
     <!-- Features Section -->
-    <section id="features" class="relative z-10 px-6 py-20 bg-slate-100">
+    <section
+      id="features"
+      class="relative z-10 px-6 py-20 bg-accent-background"
+    >
       <div class="max-w-3xl mx-auto">
-        <h2
-          class="text-3xl md:text-4xl font-bold mb-12 text-center text-slate-900"
-        >
-          Why choose Picmal?
-        </h2>
+        <H2 class="mb-24 text-center">Why choose Picmal?</H2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
-          <div>
-            <div
-              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
-            >
-              <svg
-                class="w-6 h-6 text-slate-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">
-              Lightning-fast conversions
-            </h3>
-            <p class="text-lg leading-relaxed text-slate-700">
-              Convert JPG, PNG, HEIC, and WebP images in seconds. Everything
-              happens locally on your Mac — no internet required.
-            </p>
-          </div>
+          <FeatureCard
+            icon="M13 10V3L4 14h7v7l9-11h-7z"
+            title="It's fast & local"
+            description="Picmal works offline. You don't need an internet connection for anything. Everything happens on your laptop."
+          />
 
-          <div>
-            <div
-              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
-            >
-              <svg
-                class="w-6 h-6 text-slate-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width={2}
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">
-              Your photos stay private
-            </h3>
-            <p class="text-lg leading-relaxed text-slate-700">
-              Unlike online converters, your images never leave your device. No
-              uploads, no cloud storage, no data collection.
-            </p>
-          </div>
+          <FeatureCard
+            icon="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            title="It's 100% private"
+            description="From the analytics tool I use to the way your pictures are handled, I do not upload any of your private data anywhere."
+          />
 
-          <div>
-            <div
-              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
-            >
-              <svg
-                class="w-6 h-6 text-slate-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">
-              Handle hundreds of images at once
-            </h3>
-            <p class="text-lg leading-relaxed text-slate-700">
-              Perfect for photographers and designers. Just drag your folder of
-              images and convert them all to any format you need.
-            </p>
-          </div>
+          <FeatureCard
+            icon="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            title="It's designed to be simple"
+            description="If I add anything else, it will be absolutely necessary. No unnecessary AI or random features. It's just a simple UI that works well and looks like an app designed by Apple."
+          />
 
-          <div>
-            <div
-              class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-slate-200"
-            >
-              <svg
-                class="w-6 h-6 text-slate-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">
-              Built for Mac users
-            </h3>
-            <p class="text-lg leading-relaxed text-slate-700">
-              Feels right at home on your Mac with native design, drag & drop
-              support, and all the shortcuts you'd expect.
-            </p>
-          </div>
+          <FeatureCard
+            icon="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            title="It's designed to save you time"
+            description="Although there are many options available to convert images, Picmal looks for the best approach to make your work easier and save you time."
+          />
         </div>
       </div>
     </section>
@@ -182,13 +95,7 @@ const SITE_DESCRIPTION =
     <!-- Testimonials Section -->
     <section id="testimonials" class="relative z-10 px-6 py-20 bg-white">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-12">
-          <span
-            class="bg-gradient-to-r bg-clip-text text-transparent from-slate-900 to-slate-600"
-          >
-            What users are saying
-          </span>
-        </h2>
+        <H2 class="mb-10">What users are saying </H2>
 
         <script
           src="https://widget.senja.io/widget/651f143b-b91a-421d-96b6-bd77e092de27/platform.js"
@@ -203,38 +110,36 @@ const SITE_DESCRIPTION =
         >
         </div>
 
-        <a
-          href="https://senja.io/p/picmal/r/3w0olw"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center space-x-2 text-[#1B5BFF] hover:text-[#2483FF] transition-colors font-medium mt-8"
-        >
-          <span>Leave a review</span>
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fill-rule="evenodd"
-              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </a>
+        <div class="mt-12 space-y-4">
+          <p class="text-black/65 font-bold text-base">
+            Are you happy with Picmal?
+          </p>
+          <Button
+            href="https://senja.io/p/picmal/r/3w0olw"
+            text="Leave a review"
+            variant="secondary"
+            size="small"
+            class="block max-w-[200px] mx-auto"
+          />
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="relative z-10 px-6 py-20 bg-slate-100">
-      <div class="max-w-3xl mx-auto">
+    <section id="about" class="relative z-10 px-6 py-20 bg-accent-background">
+      <div class="max-w-xl mx-auto">
         <div class="relative">
           <!-- Background layer -->
           <div
-            class="absolute inset-0 transform rotate-1 translate-x-2 translate-y-2 rounded-2xl bg-slate-100 border-slate-300/30 border"
+            class="absolute inset-0 transform rotate-1 trangray-x-2 trangray-y-2 rounded-2xl bg-gray-100 border-gray-300/30 border"
           >
           </div>
 
           <!-- Main letter -->
           <div
-            class="relative transform -rotate-1 bg-white border-slate-200 border rounded-2xl p-8 shadow-lg"
+            class="relative transform -rotate-1 bg-white border-gray-200 border rounded-2xl p-8 shadow-lg"
           >
-            <div class="text-lg leading-relaxed text-slate-700">
+            <div class="text-lg leading-relaxed text-black/65">
               <p class="mb-6">Hello there!</p>
 
               <p class="mb-6">
@@ -245,44 +150,44 @@ const SITE_DESCRIPTION =
                   rel="noopener noreferrer"
                   class="underline underline-offset-4"
                 >
-                  Alberto
-                </a>
+                  Alberto</a
+                >
                 , the developer behind Picmal.
               </p>
 
               <p class="mb-6">
-                I was tired of relying on external websites to convert my images
-                to other formats. The local solutions I found weren't great
-                either — they were too complex or required using the terminal.
+                I built this app because I was frustrated with existing options.
+                Online converters meant uploading private images, and the local
+                tools I tried were either too complicated or required using the
+                terminal.
               </p>
 
               <p class="mb-6">
-                That's why I decided to create this app. My goals were simple:
-                it had to be native (for speed), fully private (I didn't want to
-                upload my images anywhere), and capable of converting multiple
-                images at once.
-              </p>
-
-              <p class="mb-6">
-                I hope you like it — I built it with a lot of care and love.
+                Picmal is my answer: a native Mac app that's fast, fully
+                private, and able to handle multiple images at once. Simple,
+                reliable, and designed with care.
               </p>
 
               <p class="mb-8">
-                If you have any questions or suggestions, feel free to reach out
-                to me.
+                If you have questions or ideas to improve it, I'd love to hear
+                from you.
               </p>
 
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2">
                 <Image
                   src="/alberto.webp"
                   alt="Alberto, creator of Picmal"
                   width={64}
                   height={64}
-                  class="w-16 h-16 object-cover rounded-full border-2 border-slate-300"
+                  class="w-14 h-14 object-cover rounded-full"
                 />
                 <div>
-                  <p class="font-medium text-slate-900">Alberto</p>
-                  <p class="text-sm text-slate-600">Creator of Picmal</p>
+                  <p class="font-bold text-black text-base leading-relaxed">
+                    Alberto
+                  </p>
+                  <p class="text-base text-black/65 leading-relaxed">
+                    Creator of Picmal
+                  </p>
                 </div>
               </div>
             </div>
@@ -294,52 +199,99 @@ const SITE_DESCRIPTION =
     <!-- FAQ Section -->
     <section id="faq" class="relative z-10 px-6 py-20 bg-white">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-slate-900">
-          Frequently asked questions
-        </h2>
-
+        <H2 class="mb-10"> Frequently asked questions </H2>
         <FAQ />
       </div>
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20 bg-slate-100">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-center text-slate-900">
-          A few words about pricing
-        </h2>
-
-        <div class="space-y-8">
-          <div class="text-lg leading-relaxed space-y-6 text-slate-700">
+    <section id="pricing" class="relative z-10 px-6 py-16 bg-accent-background">
+      <div class="max-w-2xl mx-auto">
+        <H2 class="mb-4">A few words about pricing…</H2>
+        <div class="space-y-6">
+          <div
+            class="text-base leading-relaxed font-medium text-black/65 space-y-4"
+          >
             <p>
-              <span class="font-semibold">Picmal costs $8.</span>{" "}
-              That's the beta price—it'll go up to $15 once I add a few more features.
+              Picmal is a one-time purchase. There are no subscriptions or
+              recurring fees — buy it once and it's yours forever, including all
+              future updates.
             </p>
 
             <p>
-              It's a one-time purchase. No subscription, no recurring fees. You
-              buy it once and it's yours forever, including all future updates.
+              As more people buy the app and provide feedback, I will implement
+              this to improve the app. I will keep increasing <strong
+                >the price until it reaches $16</strong
+              >, which I truly believe is a fair price for this kind of apps.
             </p>
 
             <p>
-              I don't offer a free trial, but if you try it and don't like it,
-              just email me and I'll refund you.{" "}
-              <span class="font-semibold"> 14-day money back guarantee. </span>{
-                " "
-              }
-              No questions asked.
+              I believe this pricing model is fair because it enables me to
+              continuously improve the app based on user feedback, while
+              ensuring that those who adopt the app early get the best deal.
             </p>
           </div>
 
-          <div class="flex flex-col items-center space-y-4">
-            <a
-              href="https://albertogalca.gumroad.com/l/picmal"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block bg-[#1B5BFF] text-white px-8 py-3 rounded-lg hover:bg-[#1548CC] transition-colors font-medium"
+          <!-- Pricing Table -->
+          <div class="bg-white rounded-lg p-6 border border-gray-200 relative">
+            <div
+              class="flex justify-between items-center pb-4 border-b border-gray-200 mb-4"
             >
-              Buy Picmal for $8
-            </a>
+              <h3 class="text-base font-semibold text-black">Customers</h3>
+              <h3 class="text-base font-semibold text-black">Price</h3>
+            </div>
+
+            <div class="space-y-3">
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
+              >
+                <span class="text-base text-black font-medium">1–10</span>
+                <span class="text-base text-black font-medium">$6</span>
+              </div>
+
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
+              >
+                <span class="text-base text-black font-medium">11–20</span>
+                <span class="text-base text-black font-medium">$8</span>
+              </div>
+
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-accent/10 border border-accent rounded-lg"
+              >
+                <span class="text-base text-black font-medium">21–30</span>
+                <span class="text-base text-black font-medium"
+                  >$10 (current)</span
+                >
+              </div>
+
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
+              >
+                <span class="text-base text-black font-medium">31–40</span>
+                <span class="text-base text-black font-medium">$12</span>
+              </div>
+
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
+              >
+                <span class="text-base text-black font-medium">41–50</span>
+                <span class="text-base text-black font-medium">$14</span>
+              </div>
+
+              <div
+                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
+              >
+                <span class="text-base text-black font-medium">51+</span>
+                <span class="text-base text-black font-medium"
+                  >$16 (final price)</span
+                >
+              </div>
+            </div>
+
+            <div class="flex justify-end mt-6">
+              <Button text="Buy for Mac" size="small" useGumroad={true} />
+            </div>
           </div>
         </div>
       </div>

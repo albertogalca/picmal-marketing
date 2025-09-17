@@ -79,8 +79,8 @@ const currentPage = Astro.url.pathname;
     </div>
 
     <div class="flex items-center space-x-3">
-      <!-- Buy button - hidden on mobile, shown on xl+ -->
-      <Button size="small" text="Buy for Mac" class="hidden xl:inline-block" useGumroad={true} />
+      <!-- Buy button - always visible -->
+      <Button size="small" text="Buy for Mac" />
 
       <!-- Mobile menu button -->
       <button
@@ -108,63 +108,89 @@ const currentPage = Astro.url.pathname;
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="hidden xl:hidden">
-    <div class="py-3 space-y-1">
-      <a
-        href="/#features"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Features
-      </a>
-      <a
-        href="/#testimonials"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Testimonials
-      </a>
-      <a
-        href="/#about"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        About
-      </a>
+    <div class="py-6 px-2">
+      <div class="grid grid-cols-2 gap-4">
+        <a
+          href="/#pricing"
+          class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Pricing</span>
+        </a>
 
-      <a
-        href="/#faq"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        FAQ
-      </a>
+        <a
+          href="/#about"
+          class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">About</span>
+        </a>
 
-      <a
-        href="/blog/changelog"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Changelog
-      </a>
-      <a
-        href="/#pricing"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Pricing
-      </a>
-      <a
-        href="/blog"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Blog
-      </a>
-      <a
-        href="/tools"
-        class="text-sm block py-2 rounded-md font-medium text-black/65 hover:text-black"
-      >
-        Free Tools
-      </a>
-      <Button
-        size="small"
-        text="Buy for Mac"
-        class="block my-4 py-2 text-center"
-        useGumroad={true}
-      />
+        <a
+          href="/#features"
+          class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Features</span>
+        </a>
+
+        <a
+          href="/#faq"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">FAQ</span>
+        </a>
+
+        <a
+          href="/#testimonials"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Testimonials</span>
+        </a>
+
+        <a
+          href="/blog"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Blog</span>
+        </a>
+
+        <a
+          href="/tools"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Free Tools</span>
+        </a>
+
+        <a
+          href="/blog/changelog"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-5 h-5 text-black/65" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Changelog</span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
@@ -176,5 +202,15 @@ const currentPage = Astro.url.pathname;
   // Mobile menu functionality
   mobileMenuButton?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("hidden");
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
+    const isClickOnButton = mobileMenuButton?.contains(event.target as Node);
+
+    if (!isClickInsideMenu && !isClickOnButton && !mobileMenu?.classList.contains("hidden")) {
+      mobileMenu?.classList.add("hidden");
+    }
   });
 </script>

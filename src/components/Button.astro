@@ -10,7 +10,6 @@ export interface Props {
   icon?: string;
   id?: string;
   title?: string;
-  useGumroad?: boolean;
 }
 
 const {
@@ -24,7 +23,6 @@ const {
   icon,
   id,
   title,
-  useGumroad = false,
 } = Astro.props;
 
 const sizeClasses = {
@@ -106,9 +104,8 @@ const baseClasses = `rounded-lg transition-colors text-center cursor-pointer dis
     <a
       href={disabled ? undefined : href}
       target="_blank"
-      rel={useGumroad ? undefined : "noopener noreferrer"}
-      class={`${baseClasses}`}
-      data-gumroad-overlay-checkout={useGumroad ? "true" : undefined}
+      rel="noopener noreferrer"
+      class={baseClasses}
       id={id}
       title={title}
     >

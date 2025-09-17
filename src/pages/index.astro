@@ -11,6 +11,7 @@ import H2 from "../components/H2.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
+import Testimonials from "../components/Testimonials.astro";
 
 const SITE_TITLE = "Picmal - Image Converter for Mac";
 const SITE_DESCRIPTION =
@@ -94,28 +95,17 @@ const SITE_DESCRIPTION =
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="relative z-10 px-6 py-20 bg-white">
-      <div class="max-w-3xl mx-auto text-center">
-        <H2 class="mb-10">What users are saying </H2>
+      <div class="max-w-5xl mx-auto">
+        <H2 class="mb-10 text-center">What users are saying</H2>
 
-        <script
-          src="https://widget.senja.io/widget/651f143b-b91a-421d-96b6-bd77e092de27/platform.js"
-          type="text/javascript"
-          async></script>
-        <div
-          class="senja-embed"
-          data-id="651f143b-b91a-421d-96b6-bd77e092de27"
-          data-mode="shadow"
-          data-lazyload="false"
-          style="display: block; width: 100%"
-        >
-        </div>
+        <Testimonials />
 
-        <div class="mt-12 space-y-4">
+        <div class="mt-12 text-center space-y-4">
           <p class="text-black/65 font-bold text-base">
             Are you happy with Picmal?
           </p>
           <Button
-            href="https://senja.io/p/picmal/r/3w0olw"
+            href="https://albertogalca.gumroad.com/l/picmal"
             text="Leave a review"
             variant="secondary"
             size="small"

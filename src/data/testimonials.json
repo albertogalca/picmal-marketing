@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Marynes",
+    "email": "marynesrf@gmail.com",
+    "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
+    "rating": 5,
+    "date": "Sep 16, 2025"
+  },
+  {
+    "id": 2,
+    "name": "Anthony Nguyen",
+    "email": "a.van.nguyen@gmail.com",
+    "content": "Reviewed Picmal - Image converter for Mac. Great app! Simple and easy to use.",
+    "rating": 5,
+    "date": "Sep 15, 2025"
+  },
+  {
+    "id": 3,
+    "name": "Anonymous",
+    "email": "anonymous@example.com",
+    "content": "Totally worth it! The app is super easy to use and works great.",
+    "rating": 5,
+    "date": "Sep 8, 2025"
+  },
+  {
+    "id": 4,
+    "name": "Beckett R",
+    "email": "beckettreynolds32@icloud.com",
+    "content": "Great app! Simple and easy to use.",
+    "rating": 5,
+    "date": "Sep 7, 2025"
+  }
+]

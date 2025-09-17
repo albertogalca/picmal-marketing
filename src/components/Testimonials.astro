@@ -1,0 +1,47 @@
+---
+import testimonials from "../data/testimonials.json";
+import crypto from "crypto";
+
+function getGravatarUrl(email: string, size: number = 80): string {
+  const hash = crypto
+    .createHash("md5")
+    .update(email.toLowerCase().trim())
+    .digest("hex");
+  return `https://gravatar.com/avatar/${hash}?s=${size}&d=mp&r=g`;
+}
+
+function renderStars(rating: number): string {
+  return Array.from({ length: 5 }, (_, i) => (i < rating ? "★" : "☆")).join("");
+}
+---
+
+<div class="max-w-4xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      testimonials.map((testimonial) => (
+        <div class="bg-white border border-gray-200 rounded-lg p-6">
+          <div class="flex items-start gap-4">
+            <img
+              src={getGravatarUrl(testimonial.email, 48)}
+              alt={testimonial.name}
+              class="w-12 h-12 rounded-full"
+              loading="lazy"
+            />
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <h3 class="font-semibold text-black">{testimonial.name}</h3>
+                <div class="text-yellow-400 text-sm">
+                  {renderStars(testimonial.rating)}
+                </div>
+              </div>
+              <p class="text-black/65 font-medium leading-relaxed mb-3">
+                {testimonial.content}
+              </p>
+              <time class="text-xs text-black/65">{testimonial.date}</time>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -22,7 +22,7 @@ function renderStars(rating: number): string {
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {
       testimonials.map((testimonial) => (
-        <div class="bg-[#f5edeb]/50 border border-[#eededa] rounded-lg p-6">
+        <div class="bg-accent-background/65 border border-gray-200 rounded-lg p-6">
           <div class="flex items-start gap-4">
             <Image
               src={getGravatarUrl(testimonial.email, 48)}

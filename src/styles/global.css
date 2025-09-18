@@ -2,9 +2,10 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-background: theme("colors.white");
-  --color-accent-background: #f9fafb;
-  --color-foreground: #171717;
+  --color-background: #ffffff;
+  --color-accent-background: #faf6f5;
+  --color-secondary-border: #eededa;
+  --color-foreground: #000000;
   --color-accent: #1b5bff;
   --color-accent-dark: #1548cc;
 }
@@ -12,8 +13,8 @@
 @layer base {
   :root {
     --background: #ffffff;
-    --accent-background: #f9fafb;
-    --foreground: #171717;
+    --accent-background: #d7e8ff;
+    --foreground: #000000;
     --accent: #1b5bff;
     --accent-dark: #1548cc;
   }

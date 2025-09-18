@@ -38,7 +38,8 @@ const iconOnlyClasses = {
 
 const variantClasses = {
   primary: "bg-accent text-white hover:bg-accent-dark",
-  secondary: "bg-gray-100 text-black hover:bg-gray-200 border border-gray-200",
+  secondary:
+    "bg-accent-background text-black/65 hover:bg-secondary-border border border-secondary-border",
 };
 
 // Use icon-only classes if no text, otherwise use regular classes
@@ -46,7 +47,7 @@ const isIconOnly = icon && !text;
 const paddingClasses = isIconOnly
   ? iconOnlyClasses[size]
   : `px-6 ${sizeClasses[size]}`;
-const baseClasses = `rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-medium ${paddingClasses} ${variantClasses[variant]} ${className}`;
+const baseClasses = `rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
 ---
 
 {

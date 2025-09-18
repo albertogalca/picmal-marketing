@@ -12,6 +12,7 @@ import FeatureCard from "../components/FeatureCard.astro";
 import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import Testimonials from "../components/Testimonials.astro";
+import Paragraph from "../components/Paragraph.astro";
 
 const SITE_TITLE = "Picmal - Image Converter for Mac";
 const SITE_DESCRIPTION =
@@ -33,21 +34,16 @@ const SITE_DESCRIPTION =
       <div class="max-w-5xl mx-auto text-center">
         <H1> Image converter for Mac </H1>
 
-        <p
-          class="text-base text-black/65 mb-10 leading-relaxed max-w-3xl font-medium mx-auto"
-        >
-          Convert more than a dozen formats in seconds. Everything runs locally
-          on your Mac, so it’s fast, private, and reliable. With a clean,
-          Apple-like design, Picmal skips the clutter and gives you a simple
-          tool that just works—perfect for photographers, designers, and anyone
-          who needs image conversion done right.
-        </p>
+        <Paragraph class="mb-10 max-w-xl mx-auto">
+          Picmal makes image conversion simple. Convert batches of images
+          between formats, entirely offline on your Mac—fast and private.
+        </Paragraph>
 
         <div class="flex flex-col items-center gap-4 mb-16">
           <Button text="Buy for Mac" />
-          <span class="text-sm text-black/65">
+          <Paragraph size="small">
             One-time purchase • 14-day money back guarantee
-          </span>
+          </Paragraph>
         </div>
 
         <!-- Demo Video -->
@@ -101,9 +97,7 @@ const SITE_DESCRIPTION =
         <Testimonials />
 
         <div class="mt-12 text-center space-y-4">
-          <p class="text-black/65 font-bold text-base">
-            Are you happy with Picmal?
-          </p>
+          <Paragraph class="font-bold"> Are you happy with Picmal? </Paragraph>
           <Button
             href="https://albertogalca.gumroad.com/l/picmal"
             text="Leave a review"
@@ -130,9 +124,9 @@ const SITE_DESCRIPTION =
             class="relative transform -rotate-1 bg-white border-gray-200 border rounded-2xl p-8 shadow-lg"
           >
             <div class="text-lg leading-relaxed text-black/65">
-              <p class="mb-6">Hello there!</p>
+              <Paragraph class="mb-6 text-lg">Hello there!</Paragraph>
 
-              <p class="mb-6">
+              <Paragraph class="mb-6 text-lg">
                 I'm{" "}
                 <a
                   href="https://albertogalca.com/"
@@ -143,25 +137,25 @@ const SITE_DESCRIPTION =
                   Alberto</a
                 >
                 , the developer behind Picmal.
-              </p>
+              </Paragraph>
 
-              <p class="mb-6">
+              <Paragraph class="mb-6 text-lg">
                 I built this app because I was frustrated with existing options.
                 Online converters meant uploading private images, and the local
                 tools I tried were either too complicated or required using the
                 terminal.
-              </p>
+              </Paragraph>
 
-              <p class="mb-6">
+              <Paragraph class="mb-6 text-lg">
                 Picmal is my answer: a native Mac app that's fast, fully
                 private, and able to handle multiple images at once. Simple,
                 reliable, and designed with care.
-              </p>
+              </Paragraph>
 
-              <p class="mb-8">
+              <Paragraph class="mb-8 text-lg">
                 If you have questions or ideas to improve it, I'd love to hear
                 from you.
-              </p>
+              </Paragraph>
 
               <div class="flex items-center gap-2">
                 <Image
@@ -175,9 +169,7 @@ const SITE_DESCRIPTION =
                   <p class="font-bold text-black text-base leading-relaxed">
                     Alberto
                   </p>
-                  <p class="text-base text-black/65 leading-relaxed">
-                    Creator of Picmal
-                  </p>
+                  <Paragraph> Creator of Picmal </Paragraph>
                 </div>
               </div>
             </div>
@@ -199,27 +191,25 @@ const SITE_DESCRIPTION =
       <div class="max-w-2xl mx-auto">
         <H2 class="mb-4">A few words about pricing…</H2>
         <div class="space-y-6">
-          <div
-            class="text-base leading-relaxed font-medium text-black/65 space-y-4"
-          >
-            <p>
+          <div class="space-y-4">
+            <Paragraph>
               Picmal is a one-time purchase. There are no subscriptions or
               recurring fees — buy it once and it's yours forever, including all
               future updates.
-            </p>
+            </Paragraph>
 
-            <p>
+            <Paragraph>
               As more people buy the app and provide feedback, I will implement
               this to improve the app. I will keep increasing <strong
                 >the price until it reaches $16</strong
               >, which I truly believe is a fair price for this kind of apps.
-            </p>
+            </Paragraph>
 
-            <p>
+            <Paragraph>
               I believe this pricing model is fair because it enables me to
               continuously improve the app based on user feedback, while
               ensuring that those who adopt the app early get the best deal.
-            </p>
+            </Paragraph>
           </div>
 
           <!-- Pricing Table -->
@@ -247,7 +237,7 @@ const SITE_DESCRIPTION =
               </div>
 
               <div
-                class="flex justify-between items-center py-3 px-4 bg-accent/10 border border-accent rounded-lg"
+                class="flex justify-between items-center py-3 px-4 bg-[#edf5ff] border border-[#b9d8ff] rounded-lg"
               >
                 <span class="text-base text-black font-medium">21–30</span>
                 <span class="text-base text-black font-medium"

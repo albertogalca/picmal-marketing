@@ -1,13 +1,15 @@
 ---
+import { twMerge } from "tailwind-merge";
+
 export interface Props {
   class?: string;
 }
 
 const { class: className = "" } = Astro.props;
+const defaultClasses = "text-lg md:text-xl font-semibold leading-tight";
+const mergedClasses = twMerge(defaultClasses, className);
 ---
 
-<h3
-  class={`text-lg md:text-xl font-semibold leading-tight text-black ${className}`}
->
+<h3 class={mergedClasses}>
   <slot />
 </h3>

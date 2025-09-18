@@ -1,6 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import testimonials from "../data/testimonials.json";
 import crypto from "crypto";
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
 
 function getGravatarUrl(email: string, size: number = 80): string {
   const hash = crypto
@@ -21,23 +24,27 @@ function renderStars(rating: number): string {
       testimonials.map((testimonial) => (
         <div class="bg-[#f5edeb]/50 border border-[#eededa] rounded-lg p-6">
           <div class="flex items-start gap-4">
-            <img
+            <Image
               src={getGravatarUrl(testimonial.email, 48)}
               alt={testimonial.name}
+              width={48}
+              height={48}
               class="w-12 h-12 rounded-full"
               loading="lazy"
             />
             <div class="flex-1">
               <div class="flex items-center gap-2 mb-2">
-                <h3 class="font-semibold text-black">{testimonial.name}</h3>
-                <div class="text-yellow-400 text-sm">
+                <H3 class="font-semibold text-base md:text-base">
+                  {testimonial.name}
+                </H3>
+                <div class="text-yellow-500 text-sm">
                   {renderStars(testimonial.rating)}
                 </div>
               </div>
-              <p class="text-black/65 font-medium leading-relaxed mb-3">
-                {testimonial.content}
-              </p>
-              <time class="text-xs text-black/65">{testimonial.date}</time>
+              <Paragraph class="mb-3">{testimonial.content}</Paragraph>
+              <Paragraph>
+                <time class="text-base">{testimonial.date}</time>
+              </Paragraph>
             </div>
           </div>
         </div>

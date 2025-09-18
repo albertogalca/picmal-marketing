@@ -1,5 +1,6 @@
 ---
 import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
 
 interface Props {
   isDark?: boolean;
@@ -49,7 +50,7 @@ const faqs = [
 <div class="space-y-1">
   {
     faqs.map((faq) => (
-      <div class="border-b transition-colors border-gray-200 last:border-0">
+      <div class="border-b transition-colors border-blue-ribbon-950/10 last:border-0">
         <details class="group">
           <summary class="w-full py-4 flex items-center justify-between text-left cursor-pointer list-none">
             <H3 class="pr-4">{faq.question}</H3>
@@ -73,7 +74,7 @@ const faqs = [
             </div>
           </summary>
           <div class="pb-4">
-            <p class="text-black/65 leading-relaxed text-base">{faq.answer}</p>
+            <Paragraph>{faq.answer}</Paragraph>
           </div>
         </details>
       </div>

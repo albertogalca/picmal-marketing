@@ -9,6 +9,7 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
+import Paragraph from "../../components/Paragraph.astro";
 
 const posts = (await getCollection("blog"))
   .filter((post) => post.data.category === "Tutorial")
@@ -30,10 +31,10 @@ const posts = (await getCollection("blog"))
         <!-- Blog Header -->
         <div class="mb-12">
           <H1 class="mb-4"> Tutorials </H1>
-          <p class="text-lg text-gray-600">
+          <Paragraph>
             Step-by-step tutorials to help you master image conversion and
             optimization.
-          </p>
+          </Paragraph>
         </div>
 
         <!-- Category Navigation -->
@@ -75,9 +76,7 @@ const posts = (await getCollection("blog"))
                     {post.data.title}
                   </h3>
                   {post.data.description && (
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                      {post.data.description}
-                    </p>
+                    <Paragraph size="small">{post.data.description}</Paragraph>
                   )}
                 </a>
               </article>
@@ -88,7 +87,7 @@ const posts = (await getCollection("blog"))
         {
           posts.length === 0 && (
             <div class="text-center py-16">
-              <p class="text-gray-600 text-lg">No tutorial posts found.</p>
+              <Paragraph>No tutorial posts found.</Paragraph>
             </div>
           )
         }

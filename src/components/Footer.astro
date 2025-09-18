@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
 import Button from "./Button.astro";
+import Paragraph from "./Paragraph.astro";
 
 const today = new Date();
 const isHomePage = Astro.url.pathname === "/";
@@ -15,10 +16,10 @@ const isHomePage = Astro.url.pathname === "/";
   >
     <div class="max-w-2xl mx-auto text-center">
       <H2 class="mb-4"> Join to know about new updates </H2>
-      <p class="text-base text-black/65 mb-6 leading-relaxed">
+      <Paragraph class="mb-6">
         Everytime I release a new feature or have a deal I will email you. No
         spam, I promise!
-      </p>
+      </Paragraph>
 
       <form
         action="https://buttondown.com/api/emails/embed-subscribe/picmal"
@@ -41,8 +42,6 @@ const isHomePage = Astro.url.pathname === "/";
           class="w-full sm:w-auto whitespace-nowrap"
         />
       </form>
-
-      <p class="text-xs mt-4 text-black/65"></p>
     </div>
   </section>
 
@@ -61,17 +60,17 @@ const isHomePage = Astro.url.pathname === "/";
               class="rounded-lg w-8 h-8 object-cover"
             />
           </div>
-          <p class="text-sm text-black/65 leading-relaxed">
+          <Paragraph size="small">
             © {today.getFullYear()}
             <a
               href="https://cantimplora.studio/"
               target="_blank"
               rel="noopener nofollow noreferrer"
-              class="underline underline-offset-4"
+              class="underline underline-offset-4 hover:text-black transition-colors"
             >
               Cantimplora Studio</a
             >, LLC. All rights reserved.
-          </p>
+          </Paragraph>
         </div>
 
         <!-- Company -->
@@ -81,7 +80,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="mailto:support@picmal.app"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Get in touch
               </a>
@@ -91,7 +90,7 @@ const isHomePage = Astro.url.pathname === "/";
                 href="https://x.com/picmalapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Follow on X
               </a>
@@ -99,7 +98,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/terms"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Terms of Use
               </a>
@@ -107,7 +106,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/privacy"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Privacy Policy
               </a>
@@ -122,7 +121,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/#features"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Features
               </a>
@@ -131,7 +130,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/#testimonials"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Testimonials
               </a>
@@ -139,7 +138,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/#about"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 About
               </a>
@@ -147,7 +146,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/#faq"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 FAQ
               </a>
@@ -155,7 +154,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/#pricing"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Pricing
               </a>
@@ -170,7 +169,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/blog"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Blog
               </a>
@@ -178,7 +177,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/blog?category=Changelog"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Changelog
               </a>
@@ -188,7 +187,7 @@ const isHomePage = Astro.url.pathname === "/";
                 href="https://picmal.userjot.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Feedback & roadmap
               </a>
@@ -196,7 +195,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/tools/image-format-selector"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Format selector
               </a>
@@ -204,7 +203,7 @@ const isHomePage = Astro.url.pathname === "/";
             <li>
               <a
                 href="/tools"
-                class="text-sm transition-colors text-black/65 hover:text-black cursor-pointer"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 All tools
               </a>

@@ -1,17 +1,22 @@
 ---
+import { twMerge } from "tailwind-merge";
+
 interface Props {
   class?: string;
-  size?: 'base' | 'small';
+  size?: "base" | "small";
 }
 
-const { class: className, size = 'base' } = Astro.props;
+const { class: className, size = "base" } = Astro.props;
 
 const sizeClasses = {
-  base: 'text-base',
-  small: 'text-sm'
+  base: "text-base md:text-lg",
+  small: "text-sm",
 };
+
+const defaultClasses = `${sizeClasses[size]} leading-relaxed text-black/65`;
+const mergedClasses = twMerge(defaultClasses, className);
 ---
 
-<p class={`${sizeClasses[size]} text-black/65 leading-relaxed font-medium ${className || ''}`}>
+<p class={mergedClasses}>
   <slot />
 </p>

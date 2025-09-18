@@ -16,7 +16,7 @@ import Paragraph from "../components/Paragraph.astro";
 
 const SITE_TITLE = "Picmal - Image Converter for Mac";
 const SITE_DESCRIPTION =
-  "Picmal converts JPG, PNG, HEIC, RAW, PSD, PDF and more on your Mac. Works fully offline, keeps your data private, and makes image conversion effortless. Drag. Drop. Done.";
+  "Picmal makes image conversion simple. Convert batches of images between formats, entirely offline on your Mac—fast and private.";
 ---
 
 <!doctype html>
@@ -32,14 +32,13 @@ const SITE_DESCRIPTION =
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
       <div class="max-w-5xl mx-auto text-center">
-        <H1> Image converter for Mac </H1>
-
-        <Paragraph class="mb-10 max-w-xl mx-auto">
+        <H1 class="mb-6"> Image converter for Mac </H1>
+        <Paragraph class="mb-6 max-w-xl mx-auto">
           Picmal makes image conversion simple. Convert batches of images
           between formats, entirely offline on your Mac—fast and private.
         </Paragraph>
 
-        <div class="flex flex-col items-center gap-4 mb-16">
+        <div class="flex flex-col items-center gap-4 mb-12">
           <Button text="Buy for Mac" />
           <Paragraph size="small">
             One-time purchase • 14-day money back guarantee
@@ -97,7 +96,9 @@ const SITE_DESCRIPTION =
         <Testimonials />
 
         <div class="mt-12 text-center space-y-4">
-          <Paragraph class="font-bold"> Are you happy with Picmal? </Paragraph>
+          <Paragraph class="font-bold text-black">
+            Are you happy with Picmal?
+          </Paragraph>
           <Button
             href="https://albertogalca.gumroad.com/l/picmal"
             text="Leave a review"
@@ -123,7 +124,7 @@ const SITE_DESCRIPTION =
           <div
             class="relative transform -rotate-1 bg-white border-gray-200 border rounded-2xl p-8 shadow-lg"
           >
-            <div class="text-lg leading-relaxed text-black/65">
+            <div class="text-lg leading-relaxed text-black">
               <Paragraph class="mb-6 text-lg">Hello there!</Paragraph>
 
               <Paragraph class="mb-6 text-lg">
@@ -132,7 +133,7 @@ const SITE_DESCRIPTION =
                   href="https://albertogalca.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="underline underline-offset-4"
+                  class="underline underline-offset-4 hover:text-black transition-colors duration-200"
                 >
                   Alberto</a
                 >
@@ -166,9 +167,8 @@ const SITE_DESCRIPTION =
                   class="w-14 h-14 object-cover rounded-full"
                 />
                 <div>
-                  <p class="font-bold text-black text-base leading-relaxed">
-                    Alberto
-                  </p>
+                  <Paragraph class="font-semibold text-black">Alberto</Paragraph
+                  >
                   <Paragraph> Creator of Picmal </Paragraph>
                 </div>
               </div>
@@ -188,10 +188,10 @@ const SITE_DESCRIPTION =
 
     <!-- Pricing -->
     <section id="pricing" class="relative z-10 px-6 py-16 bg-accent-background">
-      <div class="max-w-2xl mx-auto">
-        <H2 class="mb-4">A few words about pricing…</H2>
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">A few words about pricing…</H2>
         <div class="space-y-6">
-          <div class="space-y-4">
+          <div class="space-y-4 mb-8">
             <Paragraph>
               Picmal is a one-time purchase. There are no subscriptions or
               recurring fees — buy it once and it's yours forever, including all
@@ -269,8 +269,8 @@ const SITE_DESCRIPTION =
               </div>
             </div>
 
-            <div class="flex justify-end mt-6">
-              <Button text="Buy for Mac" size="small" />
+            <div class="flex justify-end mt-8">
+              <Button text="Buy for Mac" />
             </div>
           </div>
         </div>

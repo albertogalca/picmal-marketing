@@ -1,5 +1,6 @@
 ---
 import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
 
 export interface Props {
   icon: string;
@@ -15,10 +16,10 @@ const {
   icon,
   title,
   description,
-  iconBgClass = "bg-gray-50 border border-secondary-border",
-  iconTextClass = "text-black/65",
+  iconBgClass = "bg-white/50 border border-blue-ribbon-950/15",
+  iconTextClass = "text-black",
   titleClass = "mb-2",
-  descriptionClass = "text-base text-black/65 font-medium mb-10 leading-relaxed",
+  descriptionClass = "mb-10 ",
 } = Astro.props;
 ---
 
@@ -42,7 +43,7 @@ const {
   <H3 class={titleClass}>
     {title}
   </H3>
-  <p class={descriptionClass}>
+  <Paragraph class={descriptionClass}>
     {description}
-  </p>
+  </Paragraph>
 </div>

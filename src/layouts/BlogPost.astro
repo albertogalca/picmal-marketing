@@ -47,7 +47,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
       <div class="max-w-3xl mx-auto">
         <a
           href="/blog"
-          class="inline-flex items-center transition-colors cursor-pointer text-black/65 hover:text-black"
+          class="inline-flex items-center transition-colors cursor-pointer text-black hover:text-black"
         >
           ← Back to blog
         </a>
@@ -89,13 +89,13 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
                   >
                     {category}
                   </span>
-                  <span class="text-black/65 font-medium">•</span>
+                  <span class="text-black font-medium">•</span>
                 </>
               )
             }
             <time
               datetime={pubDate.toISOString()}
-              class="text-black/65 font-medium"
+              class="text-black font-medium"
             >
               <FormattedDate date={pubDate} />
             </time>
@@ -118,19 +118,20 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 
         <!-- Content -->
         <div
-          class="prose max-w-none
-                prose-headings:text-black prose-headings:font-semibold
-                prose-p:text-black/65 prose-p:leading-relaxed
-                prose-ol:text-black/65 prose-ul:text-black/65
-                prose-li:text-black/65
-                prose-a:text-black/65 prose-a:underline-offset-4 prose-a:underline hover:prose-a:text-black
-                prose-strong:text-black
-                prose-code:text-accent prose-code:bg-gray-100
-                prose-pre:bg-black
-                prose-blockquote:border-l-accent prose-blockquote:text-black/65 prose-blockquote:bg-accent-background
-                prose-th:text-black
-                prose-td:text-black/65
-                prose-img:rounded-lg"
+          class="prose md:prose-lg max-w-none
+              prose-headings:text-black prose-headings:font-semibold
+              prose-p:text-black/65 prose-p:leading-relaxed
+              prose-a:text-black/65 hover:prose-a:text-black prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
+              prose-strong:text-black
+              prose-code:text-accent prose-code:bg-gray-100
+              prose-pre:bg-black
+              prose-blockquote:border-l-accent prose-blockquote:text-gray-600 prose-blockquote:bg-accent-background
+              prose-th:text-black
+              prose-td:text-black/65
+              prose-ul:text-black/65
+              prose-ol:text-black/65
+              prose-li:text-black/65
+              prose-img:rounded-lg"
           role="main"
           aria-labelledby="article-title"
         >

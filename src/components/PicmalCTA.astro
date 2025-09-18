@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import H3 from "./H3.astro";
 import Button from "./Button.astro";
+import Paragraph from "./Paragraph.astro";
 
 export interface Props {
   showImage?: boolean;
@@ -44,12 +45,12 @@ const isDark = variant === "dark";
 
   <!-- Content -->
   <div class="relative z-10 max-w-full sm:max-w-md lg:max-w-xs text-left">
-    <H3 class="mb-3 text-white">
+    <H3 class="mb-2 text-white">
       {title}
     </H3>
-    <p class="mb-8 text-white/75 font-medium leading-relaxed">
+    <Paragraph class="mb-8 text-white/75">
       {description}
-    </p>
+    </Paragraph>
     <Button text={buttonText} />
   </div>
 </div>

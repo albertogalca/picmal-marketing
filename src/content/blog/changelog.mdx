@@ -1,0 +1,206 @@
+---
+title: "Picmal Changelog - All Updates & New Features"
+description: "Complete changelog of all Picmal updates, new features, and improvements. Stay up-to-date with the latest image conversion enhancements."
+pubDate: "2025-09-21"
+category: "Changelog"
+---
+
+## v1.0.9 - September 21, 2025
+
+- **Fixed default format conversion storage:** Resolved an issue where default format conversion settings were not being stored properly in some cases
+- **General stability improvements:** Various small fixes to improve overall app reliability
+
+---
+
+## v1.0.8 - September 11, 2025
+
+- Added batch output format selection to apply a single format to multiple files at once.
+- Added notifications when file conversions are complete.
+
+### Major improvements
+
+#### Batch output format selection
+
+![Batch outuput format selection feature](/images/changelog/1.0.8/multiple_output_update.png)
+
+Apply a single format to multiple files at once. There is no need to set the format for each file individually anymore. Select multiple files and apply one output format to all of them at once to save time and clicks.
+
+#### Conversion notifications
+
+![Notifications active](/images/changelog/1.0.8/notifications_picmal.png)
+
+Picmal will now notify you when your files have finished converting. Whether you're working on a single file or a batch, you'll get a quick alert so you can move on to the next task without constantly checking.
+
+![Conversion complete notification](/images/changelog/1.0.8/notification_complete.png)
+
+---
+
+## v1.0.7 - September 10, 2025
+
+### What's new in v1.0.7
+
+- **Default output formats:** Set preferred formats once and automatically use them for every drag & drop
+- **Dark mode:** Switch to dark mode for comfortable viewing, especially on fully dark Mac setups
+- **Improved settings UI:** Redesigned settings menu with cleaner, more intuitive interface
+- **Seamless updates:** Continue using the built-in update system or download from Gumroad
+
+### Major improvements
+
+#### Set and forget conversion formats
+
+![Default format conversion settings](/images/changelog/1.0.7/default_format.png)
+
+No more selecting output formats every single time. Set your preferred formats once in the settings, and Picmal will automatically apply them to every file you drag and drop. Perfect for users who consistently convert to the same formats.
+
+#### Dark mode for comfortable viewing
+
+![Dark mode interface](/images/changelog/1.0.7/dark_mode.png)
+
+If you're running your Mac in dark mode, you'll appreciate this addition. No more "nuclear white blasting in your face" when opening Picmal. Simply go to **Settings > General** and choose your preferred appearance mode.
+
+![Dark mode setting](/images/changelog/1.0.7/dark_mode_setting.png)
+
+#### Enhanced settings experience
+
+The settings menu has been redesigned with a cleaner, more intuitive interface. This is the foundation for upcoming features, making it easier to navigate and configure Picmal as new options are added.
+
+### How to get the update
+
+You can download v1.0.7 in two ways:
+
+- Use the built-in "Check for Updates" feature inside your Picmal app
+- Download directly from Gumroad as usual
+
+### Looking ahead
+
+#### Your feedback matters
+
+Have ideas for Picmal's future? Send them to support@picmal.app. User feedback continues to drive development priorities and feature decisions.
+
+#### Continued development
+
+With the improved settings foundation in place, expect more configuration options and features in upcoming releases. The redesigned interface makes it easier to add new settings without cluttering the user experience.
+
+---
+
+## v1.0.6 - August 28, 2025
+
+### What's new in v1.0.6
+
+- **Built-in update system:** Check for and install updates directly from the app without visiting Gumroad
+- **Bug fixes:** Resolved conversion issues affecting EPS, AI, and WebP formats
+- **Error reporting system:** Automatic error detection to help improve app stability (no personal data collected)
+- **New website:** Picmal now has a dedicated home at [picmal.app](https://picmal.app)
+
+### Major improvements
+
+#### Seamless updates
+
+No more manual downloads from Gumroad or waiting for email notifications that might end up in spam. Simply go to Preferences and click "Check for Updates" to get the latest version instantly.
+
+#### Format conversion fixes
+
+Fixed critical bugs that were affecting several image format conversions, particularly EPS, AI, and WebP files. These formats should now convert reliably without errors.
+
+#### Proactive error detection
+
+A new error-reporting system has been implemented to identify and resolve issues faster. This system:
+
+- Does not collect personal data or device information
+- Only analyzes errors to improve app stability
+- Helps prevent future conversion problems
+
+### Looking ahead
+
+#### Upcoming features
+
+The next major update will focus on:
+
+- **Default conversion settings:** Set preferred output formats (e.g., always convert PNG to WebP)
+- **Batch format changes:** Select multiple images and change output formats all at once
+- **Homebrew installation:** Install and update Picmal via Homebrew (coming soon)
+
+#### Licensing system
+
+A new licensing system is in development to replace Gumroad dependency. Current users will receive their licenses via email with no interruption to service.
+
+---
+
+## v1.0.5 - July 21, 2025
+
+### What's New in v1.0.5
+
+- **Custom file naming:** You can now add custom prefixes and suffixes to your converted images. Perfect for organizing batches or adding timestamps to your files.
+- **Image metadata display:** View detailed metadata information for your images directly in Picmal,
+  including EXIF data, color profiles, and file properties.
+
+### How to use these features
+
+#### Adding prefixes and suffixes
+
+In the conversion settings, you'll find new options to add text before (prefix) or after (suffix) your image filenames. This is especially useful when processing large batches where you need consistent naming conventions.
+
+#### Viewing metadata
+
+Right-click on any image in Picmal and select "Show Metadata" to view detailed information about your images. This includes camera settings, GPS data (if available), color space information, and more.
+
+---
+
+## v1.0.4 - July 16, 2025
+
+### What's New in v1.0.4
+
+- **Metadata Removal Option:** Protect your privacy by removing EXIF data, ICC profiles, GPS coordinates, and other metadata from your images during conversion.
+- **Improved Window Resizing:** Better handling of window resizing with smoother animations and more
+  responsive layout adjustments.
+- **AVIF Corruption Fix:** Fixed a critical issue where AVIF images could become corrupted during batch
+  conversion processes.
+
+### Privacy-First Metadata Management
+
+This update reinforces Picmal's commitment to privacy. The new metadata removal feature gives you complete control over what information remains in your converted images.
+
+#### What metadata can be removed?
+
+- **EXIF Data:** Camera settings, timestamps, device information
+- **GPS Coordinates:** Location data embedded in photos
+- **ICC Profiles:** Color management profiles
+- **XMP Data:** Adobe metadata and keywords
+- **IPTC Data:** Copyright and authorship information
+
+#### Enhanced AVIF Support
+
+AVIF is one of the most efficient modern image formats, offering superior compression compared to JPEG and PNG. This update ensures reliable AVIF conversion, especially important for web developers and content creators working with large image collections.
+
+---
+
+## v1.0.3 - July 11, 2025
+
+### What's New in v1.0.3
+
+- **SVG Format Support:** Convert vector graphics to raster formats while maintaining crisp quality. Perfect for converting icons and illustrations to PNG or JPEG.
+- **40% Faster Conversions:** Optimized conversion engine delivers significantly faster processing times, especially noticeable with large batches and high-resolution images.
+- **Memory Usage Improvements:** Reduced memory footprint by 30% when processing large images, allowing for
+  smoother operation on older Mac models.
+
+### Performance Improvements
+
+This update focuses on making Picmal faster and more efficient. Whether you're converting a single high-resolution image or processing hundreds of files, you'll notice the improved speed and responsiveness.
+
+#### What's been optimized?
+
+- **Conversion Engine:** Core image processing algorithms have been rewritten for better performance
+- **Memory Management:** More efficient handling of large files reduces system impact
+- **Batch Processing:** Parallel processing for multiple files when system resources allow
+- **UI Responsiveness:** Interface remains smooth even during intensive conversion tasks
+
+#### New SVG Support
+
+Vector graphics are now supported as input format. This is particularly useful for designers who need to convert SVG icons or illustrations to raster formats for different use cases.
+
+**Supported SVG Features:**
+
+- Basic shapes and paths
+- Text elements (converted to outlines)
+- Gradients and solid fills
+- Stroke properties

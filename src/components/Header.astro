@@ -57,9 +57,9 @@ const currentPage = Astro.url.pathname;
         Pricing
       </a>
       <a
-        href="/blog/changelog"
+        href="/changelog"
         class={`text-sm transition-colors cursor-pointer font-medium ${
-          currentPage.startsWith("/blog/changelog")
+          currentPage.startsWith("/changelog")
             ? "text-accent"
             : "text-black hover:text-black "
         }`}
@@ -70,7 +70,7 @@ const currentPage = Astro.url.pathname;
         href="/blog"
         class={`text-sm transition-colors cursor-pointer font-medium ${
           currentPage.startsWith("/blog") &&
-          !currentPage.startsWith("/blog/changelog")
+          !currentPage.startsWith("/changelog")
             ? "text-accent"
             : "text-black hover:text-black "
         }`}
@@ -256,7 +256,7 @@ const currentPage = Astro.url.pathname;
         </a>
 
         <a
-          href="/blog/changelog"
+          href="/changelog"
           class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
         >
           <svg

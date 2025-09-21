@@ -1,13 +1,12 @@
 ---
 interface Props {
-  currentCategory?: "All" | "Changelog" | "Guide" | "Tutorial";
+  currentCategory?: "All" | "Guide" | "Tutorial";
 }
 
 const { currentCategory = "All" } = Astro.props;
 
 const categories = [
   { name: "All", href: "/blog" },
-  { name: "Changelog", href: "/blog/changelog" },
   { name: "Guide", href: "/blog/guide" },
   { name: "Tutorial", href: "/blog/tutorial" },
 ];

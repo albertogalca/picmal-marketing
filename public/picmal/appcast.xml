@@ -3,6 +3,23 @@
     <channel>
         <title>picmal</title>
         <item>
+            <title>1.0.9</title>
+            <pubDate>Sun, 21 Sep 2025 13:36:11 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.0.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.0.9/Picmal.dmg"
+                length="70162033" type="application/octet-stream"
+                sparkle:edSignature="DA4IqZq51fYqrV9WRmvFulditHZEBlZDCvsTtSJV2LFrARi5RwzPxvNQ3+17xgyeSz8mkRUooy1AqFf+JRJZDQ==" />
+            <description><![CDATA[
+                <ul>
+                    <li>Fix: Sometimes default format conversion was not stored properly.</li>
+                    <li>Other small fixes.</li>
+                </ul>
+            ]]></description>
+        </item>
+        <item>
             <title>1.0.8</title>
             <pubDate>Fri, 12 Sep 2025 13:01:53 +0200</pubDate>
             <link>https://picmal.app/</link>

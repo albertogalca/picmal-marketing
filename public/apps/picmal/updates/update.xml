@@ -3,6 +3,24 @@
     <channel>
         <title>picmal</title>
         <item>
+            <title>1.1.0</title>
+            <pubDate>Tue, 23 Sep 2025 14:45:43 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.0/Picmal.dmg"
+                length="70257223" type="application/octet-stream"
+                sparkle:edSignature="EtLS6rwpyqOmnZHUEgczRMafjw6Ub3vBRKjGsmmtA4HDHVuTe8pr56idb68dN7maeM8QVUI2fIxMKaYanhOaCQ==" />
+            <description><![CDATA[
+                    <ul>
+                        <li>New compress mode: directly reduce the size of JPG, WebP, PNG, GIF, TIFF, AVIF, and PDF files without converting them first.</li>
+                        <li>Option to compress images after converting them to JPG, WebP, PNG, GIF, TIFF, AVIF, or PDF.</li>
+                        <li>Minor improvements and bug fixes.</li>
+                    </ul>
+                ]]></description>
+        </item>
+        <item>
             <title>1.0.9</title>
             <pubDate>Sun, 21 Sep 2025 13:36:11 +0200</pubDate>
             <link>https://picmal.app/</link>

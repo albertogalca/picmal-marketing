@@ -3,6 +3,23 @@
     <channel>
         <title>picmal</title>
         <item>
+            <title>1.1.1</title>
+            <pubDate>Mon, 29 Sep 2025 14:27:55 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.1/Picmal.dmg" length="70256786" type="application/octet-stream" sparkle:edSignature="YBOgPKNRhEcy2eEwLe8zER3BsmmIJkEqBLgb5fLh8pScgZWhAIoo5V2OhgVZ4mpQLfD/kMD+887IePsG3he0Ag=="/>
+              <description><![CDATA[
+                    <ul>
+                        <li>Fixed compression output: Resolved issue where files were not being compressed correctly in the output when compression settings were enabled.</li>
+                        <li>Auto Compress Mode: Enable automatic compression on file drop! Turn on "Auto compress mode" in Preferences → Files, then simply drag files into compress mode - compression begins instantly without needing to press any buttons. Perfect for streamlined batch processing workflows.</li>
+                        <li>Custom file naming for compression: Added prefix and suffix options for compressed output files. Configure custom naming in Preferences → Output, or leave fields blank to overwrite original files.</li>
+                        <li>Added "Clear settings" button to reset all compression quality settings to defaults.</li>
+                    </ul>
+                ]]></description>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Tue, 23 Sep 2025 14:45:43 +0200</pubDate>
             <link>https://picmal.app/</link>

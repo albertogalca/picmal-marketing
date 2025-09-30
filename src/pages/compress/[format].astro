@@ -1,0 +1,255 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import H1 from '../../components/H1.astro';
+import H2 from '../../components/H2.astro';
+import Paragraph from '../../components/Paragraph.astro';
+import Button from '../../components/Button.astro';
+import FAQ from '../../components/FAQ.astro';
+import PicmalCTA from '../../components/PicmalCTA.astro';
+import { getAllCompressionFormats, generateCompressionData, compressionFormats } from '../../data/compression';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const formats = getAllCompressionFormats();
+
+  return formats.map((format) => ({
+    params: { format },
+    props: {
+      compressionData: generateCompressionData(format),
+      formatInfo: compressionFormats[format]
+    }
+  }));
+};
+
+const { compressionData, formatInfo } = Astro.props as {
+  compressionData: any;
+  formatInfo: any;
+};
+const { format } = Astro.params as { format: string };
+
+// Generate comparison table data
+const comparisonFeatures = [
+  {
+    feature: 'Privacy',
+    online: 'Upload required',
+    picmal: '100% Offline'
+  },
+  {
+    feature: 'Speed',
+    online: 'Internet-dependent',
+    picmal: 'Instant'
+  },
+  {
+    feature: 'Batch Processing',
+    online: 'Limited',
+    picmal: 'Unlimited'
+  },
+  {
+    feature: 'File Size Limit',
+    online: 'Usually 10-50MB',
+    picmal: 'No limit'
+  },
+  {
+    feature: 'Quality Control',
+    online: 'Basic presets',
+    picmal: 'Advanced settings'
+  },
+  {
+    feature: 'Ads',
+    online: 'Yes',
+    picmal: 'No'
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={compressionData.title} description={compressionData.description} />
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": `How to Compress ${formatInfo.name} Images on Mac`,
+        "description": `Simple steps to compress ${formatInfo.name} images using Picmal on macOS`,
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Download Picmal",
+            "text": "Download and install Picmal for Mac from the official website"
+          },
+          {
+            "@type": "HowToStep",
+            "name": `Add ${formatInfo.name} Files`,
+            "text": `Drag and drop your ${formatInfo.name} images into Picmal`
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Choose Compression Settings",
+            "text": "Select your desired quality and compression level"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Compress",
+            "text": `Click compress and get your optimized ${formatInfo.name} files instantly`
+          }
+        ],
+        "tool": {
+          "@type": "HowToTool",
+          "name": "Picmal for Mac"
+        }
+      })}
+    </script>
+  </head>
+
+  <body>
+    <Header />
+
+    <!-- Hero Section -->
+    <main class="relative z-10 px-6 pt-32 pb-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <H1 class="mb-6">Compress {formatInfo.name} Images on Mac</H1>
+        <Paragraph class="mb-8 max-w-xl mx-auto">
+          Reduce {formatInfo.name} file sizes by up to 90% while maintaining quality. 100% offline processing. No uploads. No subscriptions. No hassle.
+        </Paragraph>
+
+        <div class="flex flex-col items-center gap-4">
+          <Button text="Buy for Mac" />
+          <Paragraph size="small">
+            One-time purchase • 14-day money back guarantee
+          </Paragraph>
+        </div>
+      </div>
+    </main>
+
+    <!-- How to Section -->
+    <section class="relative z-10 px-6 py-24 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">How to Compress {formatInfo.name} Images</H2>
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">1</div>
+            <div>
+              <h3 class="font-semibold text-black mb-1">Download Picmal for Mac</h3>
+              <Paragraph>Get the native Mac app that works offline</Paragraph>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">2</div>
+            <div>
+              <h3 class="font-semibold text-black mb-1">Drag and drop your {formatInfo.name} files</h3>
+              <Paragraph>Add single images or entire folders</Paragraph>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">3</div>
+            <div>
+              <h3 class="font-semibold text-black mb-1">Choose your compression settings</h3>
+              <Paragraph>Select quality level and compression strength</Paragraph>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">4</div>
+            <div>
+              <h3 class="font-semibold text-black mb-1">Simply click on 'Compress'</h3>
+              <Paragraph>All processing happens locally on your Mac</Paragraph>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="relative z-10 px-6 py-24 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">Why Choose Picmal for {formatInfo.name} Compression?</H2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="py-4 px-4 font-semibold text-black text-base">Feature</th>
+                <th class="py-4 px-4 font-semibold text-black text-base">Online Compressors</th>
+                <th class="py-4 px-4 font-semibold text-black text-base">Picmal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonFeatures.map((feature) => (
+                <tr class="border-b border-gray-200">
+                  <td class="py-4 px-4 text-black font-medium">{feature.feature}</td>
+                  <td class="py-4 px-4 text-gray-600">{feature.online}</td>
+                  <td class="py-4 px-4 text-black font-semibold">{feature.picmal}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="relative z-10 px-6 py-24 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">Perfect for {formatInfo.useCase}</H2>
+
+        <div class="space-y-8">
+          {compressionData.use_cases.map((useCase: string, index: number) => (
+            <div>
+              <h3 class="font-semibold text-black text-lg mb-2">{useCase}</h3>
+              <Paragraph>
+                {index === 0 && compressionData.why_compress}
+                {index === 1 && `Batch compress multiple ${formatInfo.name} files efficiently. ${compressionData.compression_range}.`}
+                {index === 2 && `Optimize your ${formatInfo.name} files for faster loading and better performance across all platforms.`}
+                {index === 3 && `Save storage space while maintaining visual quality for ${formatInfo.useCase}.`}
+                {index === 4 && `Efficiently manage your image library with smart ${formatInfo.name} compression.`}
+              </Paragraph>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="relative z-10 px-6 py-24 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">Frequently asked questions</H2>
+        <FAQ faqs={compressionData.faqs} />
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative z-10 px-6 py-24 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <PicmalCTA
+          variant="dark"
+          title={`Start compressing ${formatInfo.name} images now`}
+          description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
+          buttonText="Buy for Mac"
+        />
+      </div>
+    </section>
+
+    <!-- More Formats Section -->
+    <section class="relative z-10 px-6 py-24 bg-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <H2 class="mb-6">More Compression Formats</H2>
+        <Paragraph class="mb-8">
+          Need to compress other formats? Picmal supports 7+ image formats for all your compression needs.
+        </Paragraph>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          {format !== 'jpg' && <a href="/compress/jpg" class="text-blue-600 hover:text-blue-800 hover:underline">Compress JPG</a>}
+          {format !== 'webp' && <a href="/compress/webp" class="text-blue-600 hover:text-blue-800 hover:underline">Compress WebP</a>}
+          {format !== 'png' && <a href="/compress/png" class="text-blue-600 hover:text-blue-800 hover:underline">Compress PNG</a>}
+          {format !== 'avif' && <a href="/compress/avif" class="text-blue-600 hover:text-blue-800 hover:underline">Compress AVIF</a>}
+          {format !== 'pdf' && <a href="/compress/pdf" class="text-blue-600 hover:text-blue-800 hover:underline">Compress PDF</a>}
+          <span class="text-gray-400">•</span>
+          <a href="/compress" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold">View All Formats →</a>
+        </div>
+      </div>
+    </section>
+    <Footer />
+  </body>
+</html>

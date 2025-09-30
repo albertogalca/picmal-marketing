@@ -1,0 +1,234 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import Button from "../../components/Button.astro";
+import PicmalCTA from "../../components/PicmalCTA.astro";
+import { compressionFormats } from "../../data/compression";
+import type { CompressionFormatInfo } from "../../data/compression";
+
+const SITE_TITLE = "Image Compression for Mac | Reduce File Size Without Quality Loss";
+const SITE_DESCRIPTION =
+  "Compress JPEG, WebP, PNG, GIF, TIFF, AVIF, and PDF images on Mac. Reduce file sizes by up to 90% while maintaining quality. 100% offline, batch processing, privacy-focused.";
+
+// Popular compression formats to highlight
+const popularFormats = [
+  { format: "jpg", label: "Compress JPG" },
+  { format: "png", label: "Compress PNG" },
+  { format: "webp", label: "Compress WebP" },
+  { format: "avif", label: "Compress AVIF" },
+  { format: "pdf", label: "Compress PDF" },
+  { format: "gif", label: "Compress GIF" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+
+  <body>
+    <Header />
+
+    <!-- Hero Section -->
+    <main class="relative z-10 px-6 pt-32 pb-24">
+      <div class="max-w-xl mx-auto text-center">
+        <H1 class="mb-6">Compress images without quality loss</H1>
+        <Paragraph class="mb-8 max-w-xl mx-auto">
+          Reduce file sizes by up to 90% while maintaining visual quality.
+          Support for JPG, PNG, WebP, AVIF, GIF, TIFF, and PDF. 100% offline
+          processing.
+        </Paragraph>
+
+        <div class="flex flex-col items-center gap-4">
+          <Button text="Buy for Mac" />
+          <Paragraph size="small">
+            One-time purchase • 14-day money back guarantee
+          </Paragraph>
+        </div>
+      </div>
+    </main>
+
+    <!-- Popular Formats Section -->
+    <section class="relative z-10 px-6 py-24 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">Popular Compression Formats</H2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            popularFormats.map(({ format, label }) => (
+              <a
+                href={`/compress/${format}`}
+                class="block p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-600 hover:shadow-md transition-all duration-200"
+              >
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-semibold text-black text-lg">{label}</h3>
+                    <p class="text-gray-600 text-sm mt-1">
+                      {compressionFormats[format].useCase}
+                    </p>
+                  </div>
+                  <svg
+                    class="w-5 h-5 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- All Compression Formats Section -->
+    <section class="relative z-10 px-6 py-24 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-16">All Supported Formats</H2>
+
+        <div class="space-y-12">
+          {
+            Object.entries(compressionFormats).map(
+              ([format, info]: [string, CompressionFormatInfo]) => (
+                <div class="border-b border-gray-100 pb-12 last:border-0 last:pb-0">
+                  <h3 class="font-bold text-black text-2xl mb-3">
+                    Compress {info.name.toUpperCase()}
+                  </h3>
+                  <p class="text-gray-600 mb-4">{info.description}</p>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <p class="text-sm font-semibold text-black mb-1">
+                        Typical Compression
+                      </p>
+                      <p class="text-sm text-gray-600">
+                        {info.typical_compression}
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-black mb-1">
+                        Quality Retention
+                      </p>
+                      <p class="text-sm text-gray-600">
+                        {info.quality_retention}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <p class="text-sm font-semibold text-black mb-2">
+                      Best for:
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                      {info.best_for.map((use) => (
+                        <span class="text-xs px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
+                          {use}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href={`/compress/${format}`}
+                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline font-semibold"
+                  >
+                    Learn more about {info.name} compression
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              )
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="relative z-10 px-6 py-24 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10">Why Compress Images?</H2>
+
+        <div class="space-y-6">
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-black text-lg mb-2">
+              Faster Website Loading
+            </h3>
+            <Paragraph>
+              Smaller image files load faster, improving user experience and SEO
+              rankings. Compressed images can reduce page load times by 50-80%.
+            </Paragraph>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-black text-lg mb-2">
+              Save Storage Space
+            </h3>
+            <Paragraph>
+              Reduce file sizes by 60-90% to free up storage on your Mac,
+              iPhone, and cloud services. Perfect for photographers and content
+              creators.
+            </Paragraph>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-black text-lg mb-2">
+              Email & Upload Limits
+            </h3>
+            <Paragraph>
+              Stay within email attachment limits and upload restrictions.
+              Compressed images share faster while maintaining visual quality.
+            </Paragraph>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-black text-lg mb-2">
+              Faster Backups
+            </h3>
+            <Paragraph>
+              Smaller files mean faster cloud backups and transfers. Save time
+              and bandwidth while keeping your images safe.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative z-10 px-6 py-24 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <PicmalCTA
+          variant="dark"
+          title="Compress images effortlessly on your Mac"
+          description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
+          buttonText="Buy for Mac"
+        />
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

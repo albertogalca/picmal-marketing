@@ -87,40 +87,38 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
 <html lang="en">
   <head>
     <BaseHead title={conversionData.title} description={conversionData.description} />
-    <script type="application/ld+json" is:inline>
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": `How to Convert ${fromFormat.name} to ${toFormat.name} on Mac`,
-        "description": `Simple steps to convert ${fromFormat.name} images to ${toFormat.name} format using Picmal on macOS`,
-        "step": [
-          {
-            "@type": "HowToStep",
-            "name": "Download Picmal",
-            "text": "Download and install Picmal for Mac from the official website"
-          },
-          {
-            "@type": "HowToStep",
-            "name": `Add ${fromFormat.name} Files`,
-            "text": `Drag and drop your ${fromFormat.name} images into Picmal`
-          },
-          {
-            "@type": "HowToStep",
-            "name": `Select ${toFormat.name} Format`,
-            "text": `Choose ${toFormat.name} as your output format`
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Convert",
-            "text": `Click convert and get your ${toFormat.name} files instantly`
-          }
-        ],
-        "tool": {
-          "@type": "HowToTool",
-          "name": "Picmal for Mac"
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": `How to Convert ${fromFormat.name} to ${toFormat.name} on Mac`,
+      "description": `Simple steps to convert ${fromFormat.name} images to ${toFormat.name} format using Picmal on macOS`,
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Download Picmal",
+          "text": "Download and install Picmal for Mac from the official website"
+        },
+        {
+          "@type": "HowToStep",
+          "name": `Add ${fromFormat.name} Files`,
+          "text": `Drag and drop your ${fromFormat.name} images into Picmal`
+        },
+        {
+          "@type": "HowToStep",
+          "name": `Select ${toFormat.name} Format`,
+          "text": `Choose ${toFormat.name} as your output format`
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Convert",
+          "text": `Click convert and get your ${toFormat.name} files instantly`
         }
-      })}
-    </script>
+      ],
+      "tool": {
+        "@type": "HowToTool",
+        "name": "Picmal for Mac"
+      }
+    })} />
   </head>
 
   <body>

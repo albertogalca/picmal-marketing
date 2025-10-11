@@ -111,6 +111,25 @@ const currentPage = Astro.url.pathname;
     <div class="py-6 px-2">
       <div class="grid grid-cols-2 gap-4">
         <a
+          href="/#features"
+          class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg
+            class="w-5 h-5 text-black"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Features</span>
+        </a>
+
+        <a
           href="/#pricing"
           class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
         >
@@ -128,6 +147,26 @@ const currentPage = Astro.url.pathname;
             ></path>
           </svg>
           <span class="text-sm font-medium text-black">Pricing</span>
+        </a>
+
+        <a
+          href="/#testimonials"
+          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg
+            class="w-5 h-5 text-black"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+            ></path>
+          </svg>
+          <span class="text-sm font-medium text-black">Testimonials</span>
         </a>
 
         <a
@@ -151,25 +190,6 @@ const currentPage = Astro.url.pathname;
         </a>
 
         <a
-          href="/#features"
-          class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          <svg
-            class="w-5 h-5 text-black"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-          <span class="text-sm font-medium text-black">Features</span>
-        </a>
-
-        <a
           href="/#faq"
           class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
         >
@@ -190,7 +210,7 @@ const currentPage = Astro.url.pathname;
         </a>
 
         <a
-          href="/#testimonials"
+          href="/changelog"
           class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
         >
           <svg
@@ -203,10 +223,10 @@ const currentPage = Astro.url.pathname;
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+              d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
             ></path>
           </svg>
-          <span class="text-sm font-medium text-black">Testimonials</span>
+          <span class="text-sm font-medium text-black">Changelog</span>
         </a>
 
         <a
@@ -252,26 +272,6 @@ const currentPage = Astro.url.pathname;
               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
           </svg>
           <span class="text-sm font-medium text-black">Free Tools</span>
-        </a>
-
-        <a
-          href="/changelog"
-          class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          <svg
-            class="w-5 h-5 text-black"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-            ></path>
-          </svg>
-          <span class="text-sm font-medium text-black">Changelog</span>
         </a>
       </div>
     </div>

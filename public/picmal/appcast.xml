@@ -3,6 +3,36 @@
     <channel>
         <title>picmal</title>
         <item>
+            <title>1.1.3</title>
+            <pubDate>Sat, 11 Oct 2025 07:58:34 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <description><![CDATA[
+                <h3>🔐 License Activation Required</h3>
+                <p><strong>To use Picmal from this version onward, you'll need to activate your license within the app.</strong></p>
+
+                <h4>How to get your license key:</h4>
+                <ol>
+                    <li>Go to <a href="https://app.lemonsqueezy.com/my-orders">app.lemonsqueezy.com/my-orders</a></li>
+                    <li>Enter your email address</li>
+                    <li>Check your email for a link to access your order</li>
+                    <li>Copy your license key from the order page</li>
+                </ol>
+
+                <h4>How to activate:</h4>
+                <ol>
+                    <li>Open Picmal</li>
+                    <li>Go to <strong>Picmal → Register License…</strong></li>
+                    <li>Enter your license key</li>
+                </ol>
+
+                <p><em>Thank you for supporting Picmal!</em></p>
+            ]]></description>
+            <sparkle:version>22</sparkle:version>
+            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.3/Picmal.dmg" length="70471120" type="application/octet-stream" sparkle:edSignature="nX8ivzV4kpE3EYGIvFr6zliGpG5OA2YOQm+xvKyrKoNMSzIiQqJViKr6G5otCjZurB7LsTN1eOOVjkgbS7xcAg=="/>
+        </item>
+        <item>
             <title>1.1.2</title>
             <pubDate>Fri, 03 Oct 2025 15:27:56 +0200</pubDate>
             <link>https://picmal.app/</link>

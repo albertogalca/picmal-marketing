@@ -13,10 +13,82 @@ import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Paragraph from "../components/Paragraph.astro";
+import H3 from "../components/H3.astro";
 
 const SITE_TITLE = "Picmal - Image converter & compressor for Mac";
 const SITE_DESCRIPTION =
   "Picmal makes converting and compressing images a breeze. Convert or compress batches of images, entirely offline on your Mac—fast and private.";
+
+const faqs = [
+  {
+    question: "Is Picmal available for Windows or Linux?",
+    answer:
+      "Picmal is a native Mac app, so it's only available for Mac. For now and forever.",
+  },
+  {
+    question: "What image formats does Picmal support?",
+    answer:
+      "Picmal supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW (CR2, NEF, ARW), TIFF, PSD, GIF, BMP, SVG, EPS, AI, ICO, and more.",
+  },
+  {
+    question: "What compression formats are supported?",
+    answer:
+      "Picmal supports compression for the following formats: JPEG, WebP, PNG, GIF, TIFF, AVIF and PDF. You can either compress images directly without converting them or compress them after converting them to one of these formats.",
+  },
+  {
+    question: "Where are my images processed?",
+    answer:
+      "All image processing happens locally on your Mac. Picmal does not upload your images to any servers.",
+  },
+  {
+    question: "Can I convert multiple images at once?",
+    answer:
+      "Yes! Picmal excels at batch processing. Simply drag and drop multiple images, or even entire folders, and convert them all at once.",
+  },
+  {
+    question: "What macOS versions are supported?",
+    answer:
+      "Picmal requires macOS Sonoma (14.0) or later. It's optimized for Apple Silicon Macs but also works great on Intel Macs.",
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer:
+      "No, but if you try and don't like it, contact me and I will refund you the money.",
+  },
+  {
+    question: "Do I need an internet connection to use Picmal?",
+    answer:
+      "No internet connection is required after installation. Picmal works completely offline, ensuring your images never leave your device.",
+  },
+];
+
+const licenseFaqs = [
+  {
+    question: "How does the license work?",
+    answer:
+      "When you purchase a Picmal license, you can use it indefinitely without any additional fees. This means you won't need to renew your license or make any regular payments to continue using it. You can move your license between devices, but you must first deactivate the license on the current device before activating it on a new one.",
+  },
+  {
+    question: "How many devices can I use Picmal on?",
+    answer:
+      "Each license lets you use Picmal on that number of different Macs — for example, the 2-device license works on two Macs, the 5-device license on five, and so on.",
+  },
+  {
+    question: "Can I use Picmal on multiple Macs?",
+    answer:
+      "While your license is tied to one active device at a time, you can transfer it between your Macs. Simply deactivate the license from your current Mac and activate it on another Mac when needed.",
+  },
+  {
+    question: "What happens if I get a new Mac?",
+    answer:
+      "You can easily transfer your Picmal license to your new Mac. Just deactivate the license on your old Mac (via Picmal → Register license), then install Picmal on your new Mac and activate it with your existing license key.",
+  },
+  {
+    question: "Can I get a refund?",
+    answer:
+      "Yes, there is a 14-day money-back guarantee. No questions asked. If you're not satisfied with Picmal, send your refund request to support@picmal.app and I'd love to hear your feedback too!",
+  },
+];
 ---
 
 <!doctype html>
@@ -40,7 +112,20 @@ const SITE_DESCRIPTION =
         </Paragraph>
 
         <div class="flex flex-col items-center gap-4 mb-12">
-          <Button text="Buy for Mac" />
+          <div
+            class="flex flex-col sm:flex-row gap-3 items-center justify-center"
+          >
+            <Button text="Buy for Mac" />
+            <Button
+              href="/apps/picmal/updates/Picmal.dmg"
+              text="Download"
+              variant="secondary"
+              icon="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+              iconType="fill"
+              target="_self"
+              rel=""
+            />
+          </div>
           <Paragraph size="small">
             One-time purchase • 14-day money back guarantee
           </Paragraph>
@@ -101,7 +186,7 @@ const SITE_DESCRIPTION =
             Are you happy with Picmal?
           </Paragraph>
           <Button
-            href="https://albertogalca.gumroad.com/l/picmal"
+            href="mailto:support@picmal.com"
             text="Leave a review"
             variant="secondary"
             size="small"
@@ -183,97 +268,239 @@ const SITE_DESCRIPTION =
     <section id="faq" class="relative z-10 px-6 py-20 bg-white">
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-10"> Frequently asked questions </H2>
-        <FAQ />
+        <FAQ faqs={faqs} />
       </div>
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-16 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-10">A few words about pricing…</H2>
-        <div class="space-y-6">
-          <div class="space-y-4 mb-8">
-            <Paragraph>
-              Picmal is a one-time purchase. There are no monthly or yearly
-              fees. You only pay for it once, and you own it forever, including
-              all future updates.
-            </Paragraph>
+    <section id="pricing" class="relative z-10 px-6 py-20 bg-accent-background">
+      <div class="max-w-xl mx-auto">
+        <H2 class="mb-10 text-center">Pricing</H2>
 
-            <Paragraph>
-              As more people buy the app and provide feedback, I will implement
-              these changes to improve the app. I will keep increasing <strong
-                >the price until it reaches $15.99</strong
-              >, which I think is a fair price for this kind of app.
-            </Paragraph>
-
-            <Paragraph>
-              I think this pricing model is fair because it lets me keep
-              improving the app based on what users tell me, while also making
-              sure that people who use the app early get the best deal.
-            </Paragraph>
+        <!-- Pricing Card -->
+        <div class="bg-white rounded-xl p-4 md:p-8 border border-gray-200">
+          <div class="mb-6">
+            <H3 class="text-xl md:text-3xl" }>Single license</H3>
           </div>
 
-          <!-- Pricing Table -->
-          <div class="bg-white rounded-lg p-6 border border-gray-200 relative">
-            <div
-              class="flex justify-between items-center pb-4 border-b border-gray-200 mb-4"
-            >
-              <h3 class="text-base font-semibold text-black">Customers</h3>
-              <h3 class="text-base font-semibold text-black">Price</h3>
-            </div>
+          <!-- Price -->
+          <div class="mb-8 flex items-start">
+            <span class="text-4xl md:text-5xl font-bold text-black">$9.99</span>
+            <span class="text-gray-500 text-xl md:text-2xl ml-2">/once</span>
+          </div>
 
-            <div class="space-y-3">
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
-              >
-                <span class="text-base text-black font-medium">1–10</span>
-                <span class="text-base text-black font-medium">$5.99</span>
-              </div>
+          <!-- Pricing Tiers Info -->
+          <div
+            class="mb-8 bg-gray-50 rounded-lg px-4 py-6 md:px-6 border border-gray-100"
+          >
+            <h4 class="text-base font-bold text-black mb-4">
+              Price increases with each tier
+            </h4>
 
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
-              >
-                <span class="text-base text-black font-medium">11–20</span>
-                <span class="text-base text-black font-medium">$7.99</span>
-              </div>
-
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-[#edf5ff] border border-[#b9d8ff] rounded-lg"
-              >
-                <span class="text-base text-black font-medium">21–30</span>
-                <span class="text-base text-black font-medium"
-                  >$9.99 (current)</span
+            <div class="space-y-2 text-base">
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-gray-400 flex-shrink-0 hidden md:block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"></circle>
+                  <circle cx="10" cy="10" r="3" fill="currentColor"></circle>
+                </svg>
+                <span class="text-gray-500 line-through"
+                  >$5.99 for customers 1–10 (sold)</span
                 >
               </div>
 
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
-              >
-                <span class="text-base text-black font-medium">31–40</span>
-                <span class="text-base text-black font-medium">$11.99</span>
-              </div>
-
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
-              >
-                <span class="text-base text-black font-medium">41–50</span>
-                <span class="text-base text-black font-medium">$13.99</span>
-              </div>
-
-              <div
-                class="flex justify-between items-center py-3 px-4 bg-white border border-gray-100 rounded-lg"
-              >
-                <span class="text-base text-black font-medium">51+</span>
-                <span class="text-base text-black font-medium"
-                  >$15.99 (final price)</span
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-gray-400 flex-shrink-0 hidden md:block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"></circle>
+                  <circle cx="10" cy="10" r="3" fill="currentColor"></circle>
+                </svg>
+                <span class="text-gray-500 line-through"
+                  >$7.99 for customers 11–20 (sold)</span
                 >
               </div>
-            </div>
 
-            <div class="flex justify-end mt-8">
-              <Button text="Buy for Mac" />
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-accent flex-shrink-0 hidden md:block"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="font-medium text-black"
+                  >$9.99 for customers 21–30</span
+                >
+              </div>
+
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-gray-300 flex-shrink-0 hidden md:block"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"></circle>
+                </svg>
+                <span class="text-gray-600">$11.99 for customers 31–40</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-gray-300 flex-shrink-0 hidden md:block"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"></circle>
+                </svg>
+                <span class="text-gray-600">$13.99 for customers 41–50</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <svg
+                  class="w-4 h-4 text-gray-300 flex-shrink-0 hidden md:block"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="2"></circle>
+                </svg>
+                <span class="text-gray-600">$15.99 for customers 51+</span>
+              </div>
             </div>
           </div>
+
+          <!-- Features Label -->
+          <div class="mb-4">
+            <p class="text-base font-semibold text-gray-600">Features</p>
+          </div>
+
+          <!-- Features List -->
+          <div class="space-y-3 mb-8">
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700">All future updates included</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700">Convert 20+ image formats</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700"
+                >Compress images without quality loss</span
+              >
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700"
+                >Batch processing for multiple images</span
+              >
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-gray-700"
+                >100% offline - your images never leave your Mac</span
+              >
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <Button text="Buy for Mac" class="w-full" />
+        </div>
+
+        <p class="text-center text-sm text-gray-600 mt-8">
+          Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-16">
+        <!-- License FAQ -->
+        <div class="mt-12">
+          <FAQ faqs={licenseFaqs} />
         </div>
       </div>
     </section>

@@ -1,0 +1,94 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Button from "../components/Button.astro";
+import Paragraph from "../components/Paragraph.astro";
+import FAQ from "../components/FAQ.astro";
+
+const SITE_TITLE = "Picmal Affiliate Program - Earn 25% Commission";
+const SITE_DESCRIPTION =
+  "Become a Picmal affiliate and earn 25% commission on each sale. Refer customers and start earning cash today!";
+
+const affiliateFaqs = [
+  {
+    question: "Why promote Picmal?",
+    answer:
+      "Affiliate partnerships are one of the simplest yet most profitable ways to make money online. Picmal has clear value proposition and effective solution for the big pain point of image conversion and compression. With a growing user base and positive reviews, you can earn rewards for every successful referral you make.",
+  },
+  {
+    question: "How do I make money as an affiliate?",
+    answer:
+      "All you have to do is recommend Picmal using your affiliate link on your website, blog, and social media. We track your clicks and transactions so you can get paid.",
+  },
+  {
+    question: "How much can I earn?",
+    answer:
+      "You earn 25% commission on every sale made through your affiliate link. With Picmal's one-time purchase model, you get a generous commission for each customer you refer.",
+  },
+  {
+    question: "When do I get paid?",
+    answer:
+      "Payments are processed monthly through Lemon Squeezy once you reach the minimum payout threshold. You can track your earnings and referrals in real-time through your affiliate dashboard.",
+  },
+  {
+    question: "How do I sign up?",
+    answer:
+      'Simply click the "Become an affiliate" button above to join the Picmal affiliate program through Lemon Squeezy. The registration process is quick and easy, and you\'ll get your unique affiliate link immediately after approval.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+
+    <!-- Hero Section -->
+    <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto text-center">
+        <H1 class="mb-6"> Become an affiliate & earn 25% on each sale</H1>
+
+        <div class="flex flex-col items-center gap-4 mb-8">
+          <Button
+            href="https://affiliates.lemonsqueezy.com/programs/picmal"
+            text="Become an affiliate"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+          <Paragraph size="small" class="text-gray-500">
+            Powered by Lemon Squeezy
+          </Paragraph>
+        </div>
+      </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10 text-center">FAQ</H2>
+
+        <FAQ faqs={affiliateFaqs} />
+
+        <div class="flex flex-col items-center gap-4 mt-12">
+          <Button
+            href="https://affiliates.lemonsqueezy.com/programs/picmal"
+            text="Become an affiliate"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+          <Paragraph size="small" class="text-gray-500">
+            Powered by Lemon Squeezy
+          </Paragraph>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

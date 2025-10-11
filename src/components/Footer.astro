@@ -6,13 +6,14 @@ import Button from "./Button.astro";
 import Paragraph from "./Paragraph.astro";
 
 const today = new Date();
-const isHomePage = Astro.url.pathname === "/";
+const itShouldBeWhite =
+  Astro.url.pathname === "/" || Astro.url.pathname === "/affiliate";
 ---
 
 <div>
   <!-- Newsletter Section -->
   <section
-    class={`relative z-10 px-6 py-16 ${isHomePage ? "bg-white" : "bg-accent-background"}`}
+    class={`relative z-10 px-6 py-16 ${itShouldBeWhite ? "bg-white" : "bg-accent-background"}`}
   >
     <div class="max-w-2xl mx-auto text-center">
       <H2 class="mb-4"> Join to know about new updates </H2>
@@ -73,51 +74,18 @@ const isHomePage = Astro.url.pathname === "/";
           </Paragraph>
         </div>
 
-        <!-- Company -->
-        <div>
-          <H3 class="mb-4">Company</H3>
-          <ul class="space-y-1">
-            <li>
-              <a
-                href="mailto:support@picmal.app"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                Get in touch
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://x.com/picmalapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                Follow on X
-              </a>
-            </li>
-            <li>
-              <a
-                href="/terms"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                Terms of Use
-              </a>
-            </li>
-            <li>
-              <a
-                href="/privacy"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                Privacy Policy
-              </a>
-            </li>
-          </ul>
-        </div>
-
         <!-- Product -->
         <div>
           <H3 class="mb-4">Product</H3>
           <ul class="space-y-1">
+            <li>
+              <a
+                href="/apps/picmal/updates/Picmal.dmg"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                Download
+              </a>
+            </li>
             <li>
               <a
                 href="/#features"
@@ -126,37 +94,20 @@ const isHomePage = Astro.url.pathname === "/";
                 Features
               </a>
             </li>
-
-            <li>
-              <a
-                href="/#testimonials"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                Testimonials
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#about"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#faq"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                FAQ
-              </a>
-            </li>
             <li>
               <a
                 href="/#pricing"
                 class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
                 Pricing
+              </a>
+            </li>
+            <li>
+              <a
+                href="/affiliate"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                Earn 25% as affiliate
               </a>
             </li>
           </ul>
@@ -184,28 +135,66 @@ const isHomePage = Astro.url.pathname === "/";
             </li>
             <li>
               <a
-                href="https://picmal.userjot.com"
+                href="/tools"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                Tools
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <H3 class="mb-4">Company</H3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="/#about"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:support@picmal.app"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                Get in touch
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://x.com/picmalapp"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
-                Feedback & roadmap
+                Follow on X
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <H3 class="mb-4">Legal</H3>
+          <ul class="space-y-1">
+            <li>
+              <a
+                href="/terms"
+                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
+              >
+                Terms of Use
               </a>
             </li>
             <li>
               <a
-                href="/tools/image-format-selector"
+                href="/privacy"
                 class="text-sm transition-colors text-black hover:text-black cursor-pointer"
               >
-                Format selector
-              </a>
-            </li>
-            <li>
-              <a
-                href="/tools"
-                class="text-sm transition-colors text-black hover:text-black cursor-pointer"
-              >
-                All tools
+                Privacy Policy
               </a>
             </li>
           </ul>

@@ -8,21 +8,27 @@ export interface Props {
   type?: "link" | "submit" | "button";
   disabled?: boolean;
   icon?: string;
+  iconType?: "stroke" | "fill";
   id?: string;
   title?: string;
+  target?: string;
+  rel?: string;
 }
 
 const {
   class: className = "",
-  href = "https://albertogalca.gumroad.com/l/picmal",
+  href = "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
   text = "",
   size = "normal",
   variant = "primary",
   type = "link",
   disabled = false,
   icon,
+  iconType = "stroke",
   id,
   title,
+  target = "_blank",
+  rel = "noopener noreferrer",
 } = Astro.props;
 
 const sizeClasses = {
@@ -46,7 +52,7 @@ const isIconOnly = icon && !text;
 const paddingClasses = isIconOnly
   ? iconOnlyClasses[size]
   : `px-6 ${sizeClasses[size]}`;
-const baseClasses = `rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
+const baseClasses = `block rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
 ---
 
 {
@@ -61,14 +67,14 @@ const baseClasses = `rounded-lg transition-colors text-center cursor-pointer dis
       {icon && (
         <svg
           class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill="none"
-          stroke="currentColor"
+          fill={iconType === "fill" ? "currentColor" : "none"}
+          stroke={iconType === "stroke" ? "currentColor" : "none"}
           viewBox="0 0 24 24"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width={2}
+            stroke-linecap={iconType === "stroke" ? "round" : undefined}
+            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
+            stroke-width={iconType === "stroke" ? 2 : undefined}
             d={icon}
           />
         </svg>
@@ -86,14 +92,14 @@ const baseClasses = `rounded-lg transition-colors text-center cursor-pointer dis
       {icon && (
         <svg
           class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill="none"
-          stroke="currentColor"
+          fill={iconType === "fill" ? "currentColor" : "none"}
+          stroke={iconType === "stroke" ? "currentColor" : "none"}
           viewBox="0 0 24 24"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width={2}
+            stroke-linecap={iconType === "stroke" ? "round" : undefined}
+            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
+            stroke-width={iconType === "stroke" ? 2 : undefined}
             d={icon}
           />
         </svg>
@@ -103,8 +109,8 @@ const baseClasses = `rounded-lg transition-colors text-center cursor-pointer dis
   ) : (
     <a
       href={disabled ? undefined : href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={target}
+      rel={rel}
       class={baseClasses}
       id={id}
       title={title}
@@ -112,14 +118,14 @@ const baseClasses = `rounded-lg transition-colors text-center cursor-pointer dis
       {icon && (
         <svg
           class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill="none"
-          stroke="currentColor"
+          fill={iconType === "fill" ? "currentColor" : "none"}
+          stroke={iconType === "stroke" ? "currentColor" : "none"}
           viewBox="0 0 24 24"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width={2}
+            stroke-linecap={iconType === "stroke" ? "round" : undefined}
+            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
+            stroke-width={iconType === "stroke" ? 2 : undefined}
             d={icon}
           />
         </svg>

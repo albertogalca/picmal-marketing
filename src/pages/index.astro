@@ -14,6 +14,9 @@ import Button from "../components/Button.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H3 from "../components/H3.astro";
+import TrustBar from "../components/TrustBar.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import FileSizeComparison from "../components/FileSizeComparison.astro";
 
 const SITE_TITLE = "Picmal - Image converter & compressor for Mac";
 const SITE_DESCRIPTION =
@@ -135,6 +138,11 @@ const licenseFaqs = [
         <div class="max-w-4xl mx-auto">
           <VideoPlayer src="/picmal-demo.mp4" />
         </div>
+
+        <!-- Trust Bar -->
+        <div class="mt-12">
+          <TrustBar />
+        </div>
       </div>
     </main>
 
@@ -156,7 +164,7 @@ const licenseFaqs = [
           <FeatureCard
             icon="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             title="It's all kept private"
-            description=" Everything's handled from the analytics tool I use to how your pictures are stored — I don't upload any of your private data anywhere."
+            description="Everything's handled from the analytics tool I use to how your pictures are stored — I don't upload any of your private data anywhere."
           />
 
           <FeatureCard
@@ -168,119 +176,21 @@ const licenseFaqs = [
           <FeatureCard
             icon="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"
             title="It's designed to save you time"
-            description="There are a lot of options out there for converting and compressing images, but Picmal looks for the best approach to make your work easier and save you time."
+            description="Batch process thousands of images at once. Drop entire folders and let Picmal handle the rest while you focus on what matters."
           />
         </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="relative z-10 px-6 py-20 bg-white">
-      <div class="max-w-5xl mx-auto">
-        <H2 class="mb-10 text-center">What users are saying</H2>
-
-        <Testimonials />
-
-        <div class="mt-12 text-center space-y-4">
-          <Paragraph class="font-bold text-black">
-            Are you happy with Picmal?
-          </Paragraph>
-          <Button
-            href="mailto:support@picmal.com"
-            text="Leave a review"
-            variant="secondary"
-            size="small"
-            class="block max-w-[200px] mx-auto"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="relative z-10 px-6 py-20 bg-accent-background">
-      <div class="max-w-xl mx-auto">
-        <div class="relative">
-          <!-- Background layer -->
-          <div
-            class="absolute inset-0 transform rotate-1 trangray-x-2 trangray-y-2 rounded-2xl bg-gray-100 border-gray-300/30 border"
-          >
-          </div>
-
-          <!-- Main letter -->
-          <div
-            class="relative transform -rotate-1 bg-white border-gray-200 border rounded-2xl p-8 shadow-lg"
-          >
-            <div class="text-lg leading-relaxed text-black">
-              <Paragraph class="mb-6 text-lg">Hey there!</Paragraph>
-
-              <Paragraph class="mb-6 text-lg">
-                I'm{" "}
-                <a
-                  href="https://albertogalca.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="underline underline-offset-4 hover:text-black transition-colors duration-200"
-                >
-                  Alberto</a
-                >
-                , the developer behind Picmal.
-              </Paragraph>
-
-              <Paragraph class="mb-6 text-lg">
-                I built this app because I was frustrated with the options that
-                were already out there. Online converters were a pain because
-                you had to upload private images, and the local tools I tried
-                were either too complicated or required using the terminal.
-              </Paragraph>
-
-              <Paragraph class="mb-6 text-lg">
-                Picmal is my go-to: a native Mac app that's fast, fully private,
-                and can handle multiple images at once. Simple, reliable, and
-                designed with care.
-              </Paragraph>
-
-              <Paragraph class="mb-8 text-lg">
-                If you have any questions or suggestions for improvement, I'd be
-                happy to hear them.
-              </Paragraph>
-
-              <div class="flex items-center gap-2">
-                <Image
-                  src="/alberto.webp"
-                  alt="Alberto, creator of Picmal"
-                  width={64}
-                  height={64}
-                  class="w-14 h-14 object-cover rounded-full"
-                />
-                <div>
-                  <Paragraph class="font-semibold text-black">Alberto</Paragraph
-                  >
-                  <Paragraph> Creator of Picmal </Paragraph>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20 bg-white">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-10"> Frequently asked questions </H2>
-        <FAQ faqs={faqs} />
       </div>
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20 bg-accent-background">
+    <section id="pricing" class="relative z-10 px-6 py-20 bg-white">
       <div class="max-w-xl mx-auto">
         <H2 class="mb-10 text-center">Pricing</H2>
 
         <!-- Pricing Card -->
-        <div class="bg-white rounded-xl p-4 md:p-8 border border-gray-200">
+        <div class="bg-white rounded-xl p-4 md:p-8 border border-gray-200 shadow-sm">
           <div class="mb-6">
-            <H3 class="text-xl md:text-3xl" }>Single license</H3>
+            <H3 class="text-xl md:text-3xl">Single license</H3>
           </div>
 
           <!-- Price -->
@@ -502,6 +412,129 @@ const licenseFaqs = [
         <div class="mt-12">
           <FAQ faqs={licenseFaqs} />
         </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="relative z-10 px-6 py-20 bg-accent-background">
+      <div class="max-w-5xl mx-auto">
+        <H2 class="mb-10 text-center">What users are saying</H2>
+
+        <Testimonials />
+
+        <div class="mt-12 text-center space-y-4">
+          <Paragraph class="font-bold text-black">
+            Are you happy with Picmal?
+          </Paragraph>
+          <Button
+            href="mailto:support@picmal.app"
+            text="Leave a review"
+            variant="secondary"
+            size="small"
+            class="block max-w-[200px] mx-auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative z-10 px-6 py-20 bg-white">
+      <div class="max-w-xl mx-auto">
+        <div class="relative">
+          <!-- Background layer -->
+          <div
+            class="absolute inset-0 transform rotate-1 trangray-x-2 trangray-y-2 rounded-2xl bg-gray-100 border-gray-300/30 border"
+          >
+          </div>
+
+          <!-- Main letter -->
+          <div
+            class="relative transform -rotate-1 bg-white border-gray-200 border rounded-2xl p-8 shadow-lg"
+          >
+            <div class="text-lg leading-relaxed text-black">
+              <Paragraph class="mb-6 text-lg">Hey there!</Paragraph>
+
+              <Paragraph class="mb-6 text-lg">
+                I'm{" "}
+                <a
+                  href="https://albertogalca.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline underline-offset-4 hover:text-black transition-colors duration-200"
+                >
+                  Alberto</a
+                >
+                , the developer behind Picmal.
+              </Paragraph>
+
+              <Paragraph class="mb-6 text-lg">
+                I built this app because I was frustrated with the options that
+                were already out there. Online converters were a pain because
+                you had to upload private images, and the local tools I tried
+                were either too complicated or required using the terminal.
+              </Paragraph>
+
+              <Paragraph class="mb-6 text-lg">
+                Picmal is my go-to: a native Mac app that's fast, fully private,
+                and can handle multiple images at once. Simple, reliable, and
+                designed with care.
+              </Paragraph>
+
+              <Paragraph class="mb-8 text-lg">
+                If you have any questions or suggestions for improvement, I'd be
+                happy to hear them.
+              </Paragraph>
+
+              <div class="flex items-center gap-2">
+                <Image
+                  src="/alberto.webp"
+                  alt="Alberto, creator of Picmal"
+                  width={64}
+                  height={64}
+                  class="w-14 h-14 object-cover rounded-full"
+                />
+                <div>
+                  <Paragraph class="font-semibold text-black">Alberto</Paragraph
+                  >
+                  <Paragraph> Creator of Picmal </Paragraph>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20 bg-accent-background">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-10"> Frequently asked questions </H2>
+        <FAQ faqs={faqs} />
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="relative z-10 px-6 py-20 bg-white">
+      <div class="max-w-2xl mx-auto text-center">
+        <H2 class="mb-6">Ready to start converting?</H2>
+        <Paragraph class="mb-8 text-lg">
+          Join Mac users who trust Picmal for fast, private image conversion.
+        </Paragraph>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button text="Buy for Mac" />
+          <Button
+            href="/apps/picmal/updates/Picmal.dmg"
+            text="Download"
+            variant="secondary"
+            icon="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+            iconType="fill"
+            target="_self"
+            rel=""
+          />
+        </div>
+        <Paragraph size="small" class="mt-4">
+          14-day money back guarantee
+        </Paragraph>
       </div>
     </section>
 

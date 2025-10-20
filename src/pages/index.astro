@@ -513,122 +513,127 @@ const licenseFaqs = [
           </div>
 
           <!-- Pricing Card (appears second on mobile and desktop) -->
-          <div
-            class="bg-background-subtle rounded-2xl p-8 border border-text/10 md:order-2"
-          >
-            <div class="mb-8">
-              <H3 class="mb-1">One device</H3>
-              <div class="flex items-start gap-2 mb-8">
-                <span class="text-4xl font-bold text-text">$9.99</span>
-                <span class="text-text-secondary text-lg">/once</span>
-              </div>
+          <div class="md:order-2">
+            <div
+              class="bg-background-subtle rounded-2xl p-8 border border-text/10"
+            >
+              <div class="mb-8">
+                <H3 class="mb-1">One device</H3>
+                <div class="flex items-start gap-2 mb-8">
+                  <span class="text-4xl font-bold text-text">$9.99</span>
+                  <span class="text-text-secondary text-lg">/once</span>
+                </div>
 
-              <!-- Tiered Pricing Box -->
-              <div class="bg-background-subtle rounded-xl mb-8">
-                <Paragraph size="small" class="mb-4 font-semibold">
-                  Price increases with each tier
-                </Paragraph>
+                <!-- Tiered Pricing Box -->
+                <div class="bg-background-subtle rounded-xl mb-8">
+                  <Paragraph size="small" class="mb-4 font-semibold">
+                    Price increases with each tier
+                  </Paragraph>
 
-                <div class="space-y-3">
-                  <!-- Tier 1: Sold -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
-                    >
-                      <svg
-                        class="w-2.5 h-2.5 text-text-secondary"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                  <div class="space-y-3">
+                    <!-- Tier 1: Sold -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
                       >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                    </div>
-                    <Paragraph size="small" class="line-through"
-                      >$5.99 for customers 1-10 (sold)</Paragraph
-                    >
-                  </div>
-
-                  <!-- Tier 2: Sold -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
-                    >
-                      <svg
-                        class="w-2.5 h-2.5 text-text-secondary"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                        <svg
+                          class="w-2.5 h-2.5 text-text-secondary"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <Paragraph size="small" class="line-through"
+                        >$5.99 for customers 1-10 (sold)</Paragraph
                       >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
                     </div>
-                    <Paragraph size="small" class="line-through"
-                      >$7.99 for customers 11-20 (sold)</Paragraph
-                    >
-                  </div>
 
-                  <!-- Tier 3: Current -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full bg-accent flex-shrink-0 flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                    <!-- Tier 2: Sold -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
                       >
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
+                        <svg
+                          class="w-2.5 h-2.5 text-text-secondary"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <Paragraph size="small" class="line-through"
+                        >$7.99 for customers 11-20 (sold)</Paragraph
+                      >
                     </div>
-                    <Paragraph size="small" class="font-semibold"
-                      >$9.99 for customers 21-30</Paragraph
-                    >
-                  </div>
 
-                  <!-- Tier 4 -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                    >
+                    <!-- Tier 3: Current -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full bg-accent flex-shrink-0 flex items-center justify-center"
+                      >
+                        <svg
+                          class="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <Paragraph size="small" class="font-semibold"
+                        >$9.99 for customers 21-30</Paragraph
+                      >
                     </div>
-                    <Paragraph size="small"
-                      >$11.99 for customers 31-40</Paragraph
-                    >
-                  </div>
 
-                  <!-- Tier 5 -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                    >
+                    <!-- Tier 4 -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
+                      >
+                      </div>
+                      <Paragraph size="small"
+                        >$11.99 for customers 31-40</Paragraph
+                      >
                     </div>
-                    <Paragraph size="small"
-                      >$13.99 for customers 41-50</Paragraph
-                    >
-                  </div>
 
-                  <!-- Tier 6 -->
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                    >
+                    <!-- Tier 5 -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
+                      >
+                      </div>
+                      <Paragraph size="small"
+                        >$13.99 for customers 41-50</Paragraph
+                      >
                     </div>
-                    <Paragraph size="small">$15.99 for customers 51+</Paragraph>
+
+                    <!-- Tier 6 -->
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
+                      >
+                      </div>
+                      <Paragraph size="small">$15.99 for customers 51+</Paragraph>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- CTA Button -->
-            <Button text="Buy for Mac" class="w-full" />
+              <!-- CTA Button -->
+              <Button text="Buy for Mac" class="w-full" />
+            </div>
+            <Paragraph size="small" class="text-center text-text-secondary mt-4">
+              Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+            </Paragraph>
           </div>
 
           <!-- FAQs for mobile (appears third on mobile, hidden on desktop) -->

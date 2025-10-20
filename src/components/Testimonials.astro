@@ -1,54 +1,77 @@
 ---
-import { Image } from "astro:assets";
 import testimonials from "../data/testimonials.json";
-import crypto from "crypto";
-import H3 from "./H3.astro";
-import Paragraph from "./Paragraph.astro";
-
-function getGravatarUrl(email: string, size: number = 80): string {
-  const hash = crypto
-    .createHash("md5")
-    .update(email.toLowerCase().trim())
-    .digest("hex");
-  return `https://gravatar.com/avatar/${hash}?s=${size}&d=mp&r=g`;
-}
-
-function renderStars(rating: number): string {
-  return Array.from({ length: 5 }, (_, i) => (i < rating ? "★" : "☆")).join("");
-}
+import TestimonialCard from "./TestimonialCard.astro";
 ---
 
-<div class="max-w-4xl mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {
-      testimonials.map((testimonial) => (
-        <div class="bg-white border border-gray-200 rounded-lg p-6">
-          <div class="flex items-start gap-4">
-            <Image
-              src={getGravatarUrl(testimonial.email, 48)}
-              alt={testimonial.name}
-              width={48}
-              height={48}
-              class="w-12 h-12 rounded-full"
-              loading="lazy"
-            />
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-2">
-                <H3 class="font-semibold text-base md:text-base">
-                  {testimonial.name}
-                </H3>
-                <div class="text-yellow-500 text-sm">
-                  {renderStars(testimonial.rating)}
-                </div>
-              </div>
-              <Paragraph class="mb-3">{testimonial.content}</Paragraph>
-              <Paragraph>
-                <time class="text-base">{testimonial.date}</time>
-              </Paragraph>
-            </div>
-          </div>
-        </div>
-      ))
-    }
+<!-- 5 Stars centered at top -->
+<div class="flex justify-center gap-1 mb-8">
+  {
+    [...Array(5)].map(() => (
+      <svg class="w-6 h-6 text-text" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ))
+  }
+</div>
+
+<div class="relative overflow-hidden">
+  <!-- Blur Edges -->
+  <div
+    class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"
+  >
+  </div>
+
+  <!-- Scrolling Container -->
+  <div class="flex gap-6 animate-marquee">
+    <!-- First Set -->
+    <div class="flex gap-6 min-w-max">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialCard
+            name={testimonial.name}
+            email={testimonial.email}
+            content={testimonial.content}
+            rating={testimonial.rating}
+          />
+        ))
+      }
+    </div>
+
+    <!-- Duplicate Set for Seamless Loop -->
+    <div class="flex gap-6 min-w-max" aria-hidden="true">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialCard
+            name={testimonial.name}
+            email={testimonial.email}
+            content={testimonial.content}
+            rating={testimonial.rating}
+          />
+        ))
+      }
+    </div>
   </div>
 </div>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>

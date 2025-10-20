@@ -10,7 +10,8 @@ import PicmalCTA from "../../components/PicmalCTA.astro";
 import { compressionFormats } from "../../data/compression";
 import type { CompressionFormatInfo } from "../../data/compression";
 
-const SITE_TITLE = "Image Compression for Mac | Reduce File Size Without Quality Loss";
+const SITE_TITLE =
+  "Image Compression for Mac | Reduce File Size Without Quality Loss";
 const SITE_DESCRIPTION =
   "Compress JPEG, WebP, PNG, GIF, TIFF, AVIF, and PDF images on Mac. Reduce file sizes by up to 90% while maintaining quality. 100% offline, batch processing, privacy-focused.";
 
@@ -31,7 +32,7 @@ const popularFormats = [
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
 
-  <body>
+  <body class="bg-background">
     <Header />
 
     <!-- Hero Section -->
@@ -54,8 +55,8 @@ const popularFormats = [
     </main>
 
     <!-- Popular Formats Section -->
-    <section class="relative z-10 px-6 py-24 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Popular Compression Formats</H2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -63,12 +64,12 @@ const popularFormats = [
             popularFormats.map(({ format, label }) => (
               <a
                 href={`/compress/${format}`}
-                class="block p-6 bg-white rounded-lg border border-gray-200 hover:border-blue-600 hover:shadow-md transition-all duration-200"
+                class="block p-6 bg-background rounded-lg border border-gray-200 hover:border-blue-600 transition-all duration-200"
               >
                 <div class="flex items-center justify-between">
                   <div>
-                    <h3 class="font-semibold text-black text-lg">{label}</h3>
-                    <p class="text-gray-600 text-sm mt-1">
+                    <h3 class="font-semibold text-text text-lg">{label}</h3>
+                    <p class="text-text-secondary text-sm mt-1">
                       {compressionFormats[format].useCase}
                     </p>
                   </div>
@@ -94,8 +95,8 @@ const popularFormats = [
     </section>
 
     <!-- All Compression Formats Section -->
-    <section class="relative z-10 px-6 py-24 bg-white">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background">
+      <div class="max-w-4xl mx-auto">
         <H2 class="mb-16">All Supported Formats</H2>
 
         <div class="space-y-12">
@@ -103,32 +104,32 @@ const popularFormats = [
             Object.entries(compressionFormats).map(
               ([format, info]: [string, CompressionFormatInfo]) => (
                 <div class="border-b border-gray-100 pb-12 last:border-0 last:pb-0">
-                  <h3 class="font-bold text-black text-2xl mb-3">
+                  <h3 class="font-bold text-text text-2xl mb-3">
                     Compress {info.name.toUpperCase()}
                   </h3>
-                  <p class="text-gray-600 mb-4">{info.description}</p>
+                  <p class="text-text-secondary mb-4">{info.description}</p>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <p class="text-sm font-semibold text-black mb-1">
+                      <p class="text-sm font-semibold text-text mb-1">
                         Typical Compression
                       </p>
-                      <p class="text-sm text-gray-600">
+                      <p class="text-sm text-text-secondary">
                         {info.typical_compression}
                       </p>
                     </div>
                     <div>
-                      <p class="text-sm font-semibold text-black mb-1">
+                      <p class="text-sm font-semibold text-text mb-1">
                         Quality Retention
                       </p>
-                      <p class="text-sm text-gray-600">
+                      <p class="text-sm text-text-secondary">
                         {info.quality_retention}
                       </p>
                     </div>
                   </div>
 
                   <div class="mb-4">
-                    <p class="text-sm font-semibold text-black mb-2">
+                    <p class="text-sm font-semibold text-text mb-2">
                       Best for:
                     </p>
                     <div class="flex flex-wrap gap-2">
@@ -168,13 +169,13 @@ const popularFormats = [
     </section>
 
     <!-- Benefits Section -->
-    <section class="relative z-10 px-6 py-24 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Why Compress Images?</H2>
 
         <div class="space-y-6">
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 class="font-semibold text-black text-lg mb-2">
+          <div class="bg-background p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-text text-lg mb-2">
               Faster Website Loading
             </h3>
             <Paragraph>
@@ -183,8 +184,8 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 class="font-semibold text-black text-lg mb-2">
+          <div class="bg-background p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-text text-lg mb-2">
               Save Storage Space
             </h3>
             <Paragraph>
@@ -194,8 +195,8 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 class="font-semibold text-black text-lg mb-2">
+          <div class="bg-background p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-text text-lg mb-2">
               Email & Upload Limits
             </h3>
             <Paragraph>
@@ -204,10 +205,8 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 class="font-semibold text-black text-lg mb-2">
-              Faster Backups
-            </h3>
+          <div class="bg-background p-6 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-text text-lg mb-2">Faster Backups</h3>
             <Paragraph>
               Smaller files mean faster cloud backups and transfers. Save time
               and bandwidth while keeping your images safe.
@@ -218,8 +217,8 @@ const popularFormats = [
     </section>
 
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-24 bg-white">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background">
+      <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
           title="Compress images effortlessly on your Mac"

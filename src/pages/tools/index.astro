@@ -20,15 +20,13 @@ const SITE_DESCRIPTION =
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="bg-background">
     <Header />
 
     <main class="relative z-10 px-6 pt-32 pb-16">
-      <main class="max-w-3xl mx-auto text-center">
+      <main class="max-w-4xl mx-auto text-center">
         <!-- Header Section -->
-        <H1 class="mb-6">
-          Free image tools to help you optimize your workflow
-        </H1>
+        <H1 class="mb-6"> Optimize your workflow </H1>
         <Paragraph class="mb-24">
           Simple, free tools to help you make better decisions about image
           formats and optimization.
@@ -38,7 +36,7 @@ const SITE_DESCRIPTION =
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Image Format Selector Tool -->
           <div
-            class="bg-white border border-gray-200 rounded-lg p-6 hover:border-accent transition-all"
+            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6 transition-all"
           >
             <a
               href="/tools/image-format-selector"
@@ -51,13 +49,13 @@ const SITE_DESCRIPTION =
                   recommendations for the best image format.
                 </Paragraph>
               </header>
-              <Button type="submit" text="Try this tool" />
+              <Button type="submit" text="Use it" />
             </a>
           </div>
 
           <!-- Compression Analyzer (Coming Soon) -->
           <div
-            class="bg-accent-background/35 border border-gray-100 rounded-lg p-6"
+            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -71,14 +69,14 @@ const SITE_DESCRIPTION =
                 disabled
                 variant="secondary"
                 type="submit"
-                text="Try this tool"
+                text="Use it"
               />
             </div>
           </div>
 
           <!-- Batch Processing Guide (Coming Soon) -->
           <div
-            class="bg-accent-background/35 border border-gray-100 rounded-lg p-6"
+            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -94,14 +92,14 @@ const SITE_DESCRIPTION =
                 disabled
                 variant="secondary"
                 type="submit"
-                text="Try this tool"
+                text="Use it"
               />
             </div>
           </div>
 
           <!-- Metadata Viewer (Coming Soon) -->
           <div
-            class="bg-accent-background/35 border border-gray-100 rounded-lg p-6"
+            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -115,7 +113,7 @@ const SITE_DESCRIPTION =
                 disabled
                 variant="secondary"
                 type="submit"
-                text="Try this tool"
+                text="Use it"
               />
             </div>
           </div>

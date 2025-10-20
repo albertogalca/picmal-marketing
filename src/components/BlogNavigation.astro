@@ -17,10 +17,10 @@ const categories = [
     categories.map((category) => (
       <a
         href={category.href}
-        class={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
+        class={`px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
           currentCategory === category.name
             ? "bg-accent text-white"
-            : "bg-accent-background text-black hover:bg-accent hover:text-white"
+            : "bg-background-subtle text-text hover:bg-accent hover:text-white"
         }`}
       >
         {category.name}

@@ -26,29 +26,29 @@ const isDark = variant === "dark";
 ---
 
 <div
-  class={`relative ${isDark ? "bg-black" : "bg-gradient-to-r from-blue-50 to-indigo-50"} rounded-2xl p-6 sm:p-8 overflow-hidden ${className}`}
+  class={`relative bg-background-subtle rounded-lg p-6 sm:p-8 overflow-hidden ${className}`}
 >
   <!-- Picmal app interface - hidden on mobile -->
   {
     showImage && (
-      <div class="absolute -bottom-30 -right-40 hidden lg:block">
+      <div class="absolute -bottom-30 -right-40 hidden md:block border border-text-secondary/10 rounded-lg">
         <Image
-          src="/picmal-main.webp"
+          src="/convert_demo.png"
           alt="Picmal App Interface"
           width={480}
           height={360}
-          class="w-120 h-auto rounded-tl-lg"
+          class="w-130 h-auto rounded-tl-lg"
         />
       </div>
     )
   }
 
   <!-- Content -->
-  <div class="relative z-10 max-w-full sm:max-w-md lg:max-w-xs text-left">
-    <H3 class="mb-2 text-white">
+  <div class="relative z-10 max-w-full sm:max-w-md md:max-w-xs text-left">
+    <H3 class="mb-2">
       {title}
     </H3>
-    <Paragraph class="mb-8 text-white/75">
+    <Paragraph class="mb-8 text-text-secondary">
       {description}
     </Paragraph>
     <Button text={buttonText} />

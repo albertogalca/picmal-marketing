@@ -39,15 +39,17 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
     }
   </head>
 
-  <body class="min-h-screen transition-colors duration-300 bg-white text-black">
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text"
+  >
     <Header />
 
     <!-- Back to Blog Link -->
     <div class="relative z-10 px-6 pt-32 pb-12">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <a
           href="/blog"
-          class="inline-flex items-center transition-colors cursor-pointer text-black hover:text-black"
+          class="inline-flex items-center transition-colors cursor-pointer text-text hover:text-text"
         >
           ← Back to blog
         </a>
@@ -56,7 +58,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 
     <!-- Article -->
     <article class="relative z-10 px-6 pb-20">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <!-- Header -->
         <header class="mb-8">
           {
@@ -72,38 +74,26 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
               </div>
             )
           }
-          <div class="flex items-center gap-3 mb-8 text-base font-medium">
+          <div class="flex items-center gap-3 mb-8 text-base font-semibold">
             {
               category && (
                 <>
-                  <span
-                    class={
-                      category === "Changelog"
-                        ? "text-accent"
-                        : category === "Guide"
-                          ? "text-emerald-600"
-                          : category === "Tutorial"
-                            ? "text-purple-600"
-                            : "text-gray-600"
-                    }
-                  >
-                    {category}
-                  </span>
-                  <span class="text-black font-medium">•</span>
+                  <span class="text-text-secondary">{category}</span>
+                  <span class="text-text font-semibold">•</span>
                 </>
               )
             }
             <time
               datetime={pubDate.toISOString()}
-              class="text-black font-medium"
+              class="text-text font-semibold"
             >
               <FormattedDate date={pubDate} />
             </time>
             {
               updatedDate && (
                 <>
-                  <span class="text-gray-500">•</span>
-                  <span class="text-gray-500 italic">
+                  <span class="text-text-secondary">•</span>
+                  <span class="text-text-secondary italic">
                     Updated <FormattedDate date={updatedDate} />
                   </span>
                 </>
@@ -119,18 +109,18 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
         <!-- Content -->
         <div
           class="prose md:prose-lg max-w-none
-              prose-headings:text-black prose-headings:font-semibold
-              prose-p:text-black/65 prose-p:leading-relaxed
-              prose-a:text-black/65 hover:prose-a:text-black prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
-              prose-strong:text-black
+              prose-headings:text-text prose-headings:font-semibold
+              prose-p:text-text/65 prose-p:leading-relaxed
+              prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
+              prose-strong:text-text
               prose-code:text-accent prose-code:bg-gray-100
               prose-pre:bg-black
-              prose-blockquote:border-l-accent prose-blockquote:text-gray-600 prose-blockquote:bg-accent-background
-              prose-th:text-black
-              prose-td:text-black/65
-              prose-ul:text-black/65
-              prose-ol:text-black/65
-              prose-li:text-black/65
+              prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle
+              prose-th:text-text
+              prose-td:text-text/65
+              prose-ul:text-text/65
+              prose-ol:text-text/65
+              prose-li:text-text/65
               prose-img:rounded-lg"
           role="main"
           aria-labelledby="article-title"

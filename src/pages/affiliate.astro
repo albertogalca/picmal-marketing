@@ -46,12 +46,12 @@ const affiliateFaqs = [
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="bg-background">
     <Header />
 
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto text-center">
+      <div class="max-w-4xl mx-auto text-center">
         <H1 class="mb-6"> Become an affiliate & earn 25% on each sale</H1>
 
         <div class="flex flex-col items-center gap-4 mb-8">
@@ -61,7 +61,7 @@ const affiliateFaqs = [
             target="_blank"
             rel="noopener noreferrer"
           />
-          <Paragraph size="small" class="text-gray-500">
+          <Paragraph size="small" class="text-text-secondary">
             Powered by Lemon Squeezy
           </Paragraph>
         </div>
@@ -69,8 +69,8 @@ const affiliateFaqs = [
     </main>
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
+    <section id="faq" class="relative z-10 px-6 py-20 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
         <H2 class="mb-10 text-center">FAQ</H2>
 
         <FAQ faqs={affiliateFaqs} />
@@ -82,7 +82,7 @@ const affiliateFaqs = [
             target="_blank"
             rel="noopener noreferrer"
           />
-          <Paragraph size="small" class="text-gray-500">
+          <Paragraph size="small" class="text-text-secondary">
             Powered by Lemon Squeezy
           </Paragraph>
         </div>

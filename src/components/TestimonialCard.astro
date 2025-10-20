@@ -1,0 +1,42 @@
+---
+import crypto from "crypto";
+import { Image } from "astro:assets";
+import Paragraph from "./Paragraph.astro";
+
+interface Props {
+  name: string;
+  email: string;
+  content: string;
+  rating: number;
+}
+
+const { name, email, content } = Astro.props;
+
+function getGravatarUrl(email: string, size: number = 80): string {
+  const hash = crypto
+    .createHash("md5")
+    .update(email.toLowerCase().trim())
+    .digest("hex");
+  return `https://gravatar.com/avatar/${hash}?s=${size}&d=mp&r=g`;
+}
+---
+
+<div class="rounded-2xl p-8 min-w-[380px] max-w-[380px]">
+  <!-- Quote -->
+  <Paragraph class="mb-6 text-center">
+    "{content}"
+  </Paragraph>
+
+  <!-- Author info -->
+  <div class="flex items-center gap-4 justify-center">
+    <Image
+      src={getGravatarUrl(email, 64)}
+      alt={name}
+      width={64}
+      height={64}
+      class="w-10 h-10 rounded-full flex-shrink-0"
+      loading="lazy"
+    />
+    <Paragraph class="font-bold">{name}</Paragraph>
+  </div>
+</div>

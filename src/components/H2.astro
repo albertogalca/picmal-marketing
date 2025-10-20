@@ -6,7 +6,8 @@ export interface Props {
 }
 
 const { class: className = "" } = Astro.props;
-const defaultClasses = "text-3xl md:text-4xl font-medium leading-tight";
+const defaultClasses =
+  "text-4xl md:text-6xl font-semibold leading-tight text-text";
 const mergedClasses = twMerge(defaultClasses, className);
 ---
 

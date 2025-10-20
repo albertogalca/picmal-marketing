@@ -1,15 +1,19 @@
 ---
-import type { GetStaticPaths } from 'astro';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import H1 from '../../components/H1.astro';
-import H2 from '../../components/H2.astro';
-import Paragraph from '../../components/Paragraph.astro';
-import Button from '../../components/Button.astro';
-import FAQ from '../../components/FAQ.astro';
-import PicmalCTA from '../../components/PicmalCTA.astro';
-import { getAllConversions, generateConversionData, formats } from '../../data/conversions';
+import type { GetStaticPaths } from "astro";
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import Button from "../../components/Button.astro";
+import FAQ from "../../components/FAQ.astro";
+import PicmalCTA from "../../components/PicmalCTA.astro";
+import {
+  getAllConversions,
+  generateConversionData,
+  formats,
+} from "../../data/conversions";
 
 export const getStaticPaths: GetStaticPaths = () => {
   const allConversions = getAllConversions();
@@ -19,8 +23,8 @@ export const getStaticPaths: GetStaticPaths = () => {
     props: {
       conversionData: generateConversionData(from, to),
       fromFormat: formats[from],
-      toFormat: formats[to]
-    }
+      toFormat: formats[to],
+    },
   }));
 };
 
@@ -34,51 +38,51 @@ const { from, to } = Astro.params as { from: string; to: string };
 // Generate comparison table data
 const comparisonFeatures = [
   {
-    feature: 'Privacy',
-    online: 'Upload required',
-    picmal: '100% Offline'
+    feature: "Privacy",
+    online: "Upload required",
+    picmal: "100% Offline",
   },
   {
-    feature: 'Speed',
-    online: 'Internet-dependent',
-    picmal: 'Instant'
+    feature: "Speed",
+    online: "Internet-dependent",
+    picmal: "Instant",
   },
   {
-    feature: 'Batch Processing',
-    online: 'Limited',
-    picmal: 'Unlimited'
+    feature: "Batch Processing",
+    online: "Limited",
+    picmal: "Unlimited",
   },
   {
-    feature: 'File Size Limit',
-    online: 'Usually 10-50MB',
-    picmal: 'No limit'
+    feature: "File Size Limit",
+    online: "Usually 10-50MB",
+    picmal: "No limit",
   },
   {
-    feature: 'Quality Control',
-    online: 'Basic',
-    picmal: 'Advanced'
+    feature: "Quality Control",
+    online: "Basic",
+    picmal: "Advanced",
   },
   {
-    feature: 'Ads',
-    online: 'Yes',
-    picmal: 'No'
-  }
+    feature: "Ads",
+    online: "Yes",
+    picmal: "No",
+  },
 ];
 
 // Add format-specific comparison features
-if (from === 'heic' || from === 'dng') {
+if (from === "heic" || from === "dng") {
   comparisonFeatures.splice(2, 0, {
-    feature: fromFormat.name + ' Support',
-    online: 'Limited',
-    picmal: 'Full native support'
+    feature: fromFormat.name + " Support",
+    online: "Limited",
+    picmal: "Full native support",
   });
 }
 
 if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
   comparisonFeatures.splice(4, 0, {
-    feature: 'Transparency Handling',
-    online: 'Limited options',
-    picmal: 'Custom background colors'
+    feature: "Transparency Handling",
+    online: "Limited options",
+    picmal: "Custom background colors",
   });
 }
 ---
@@ -86,50 +90,59 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={conversionData.title} description={conversionData.description} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": `How to Convert ${fromFormat.name} to ${toFormat.name} on Mac`,
-      "description": `Simple steps to convert ${fromFormat.name} images to ${toFormat.name} format using Picmal on macOS`,
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Download Picmal",
-          "text": "Download and install Picmal for Mac from the official website"
+    <BaseHead
+      title={conversionData.title}
+      description={conversionData.description}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: `How to Convert ${fromFormat.name} to ${toFormat.name} on Mac`,
+        description: `Simple steps to convert ${fromFormat.name} images to ${toFormat.name} format using Picmal on macOS`,
+        step: [
+          {
+            "@type": "HowToStep",
+            name: "Download Picmal",
+            text: "Download and install Picmal for Mac from the official website",
+          },
+          {
+            "@type": "HowToStep",
+            name: `Add ${fromFormat.name} Files`,
+            text: `Drag and drop your ${fromFormat.name} images into Picmal`,
+          },
+          {
+            "@type": "HowToStep",
+            name: `Select ${toFormat.name} Format`,
+            text: `Choose ${toFormat.name} as your output format`,
+          },
+          {
+            "@type": "HowToStep",
+            name: "Convert",
+            text: `Click convert and get your ${toFormat.name} files instantly`,
+          },
+        ],
+        tool: {
+          "@type": "HowToTool",
+          name: "Picmal for Mac",
         },
-        {
-          "@type": "HowToStep",
-          "name": `Add ${fromFormat.name} Files`,
-          "text": `Drag and drop your ${fromFormat.name} images into Picmal`
-        },
-        {
-          "@type": "HowToStep",
-          "name": `Select ${toFormat.name} Format`,
-          "text": `Choose ${toFormat.name} as your output format`
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Convert",
-          "text": `Click convert and get your ${toFormat.name} files instantly`
-        }
-      ],
-      "tool": {
-        "@type": "HowToTool",
-        "name": "Picmal for Mac"
-      }
-    })} />
+      })}
+    />
   </head>
 
-  <body>
+  <body class="bg-background">
     <Header />
 
     <!-- Hero Section -->
     <main class="relative z-10 px-6 pt-32 pb-24">
-      <div class="max-w-3xl mx-auto text-center">
-        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1>
+      <div class="max-w-4xl mx-auto text-center">
+        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1
+        >
         <Paragraph class="mb-8 max-w-xl mx-auto">
-          Tired of online converters that compromise your privacy or quality? Picmal converts {fromFormat.name} files to {toFormat.name} instantly on your Mac. No uploads. No subscriptions. No hassle.
+          Tired of online converters that compromise your privacy or quality?
+          Picmal converts {fromFormat.name} files to {toFormat.name} instantly on
+          your Mac. No uploads. No subscriptions. No hassle.
         </Paragraph>
 
         <div class="flex flex-col items-center gap-4">
@@ -142,35 +155,63 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     </main>
 
     <!-- How to Section -->
-    <section class="relative z-10 px-6 py-24 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-10">How to Convert {fromFormat.name} to {toFormat.name}</H2>
+    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-10"
+          >How to Convert {fromFormat.name} to {toFormat.name}</H2
+        >
         <div class="space-y-6">
           <div class="flex items-start gap-4">
-            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">1</div>
+            <div
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+            >
+              1
+            </div>
             <div>
-              <h3 class="font-semibold text-black mb-1">Download Picmal for Mac</h3>
+              <h3 class="font-semibold text-text mb-1">
+                Download Picmal for Mac
+              </h3>
               <Paragraph>Get the native Mac app that works offline</Paragraph>
             </div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">2</div>
+            <div
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+            >
+              2
+            </div>
             <div>
-              <h3 class="font-semibold text-black mb-1">Drag and drop your {fromFormat.name} files</h3>
+              <h3 class="font-semibold text-text mb-1">
+                Drag and drop your {fromFormat.name} files
+              </h3>
               <Paragraph>Add single images or entire folders</Paragraph>
             </div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">3</div>
+            <div
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+            >
+              3
+            </div>
             <div>
-              <h3 class="font-semibold text-black mb-1">Choose {toFormat.name}</h3>
-              <Paragraph>Select {toFormat.name} as your output format in the row "To" </Paragraph>
+              <h3 class="font-semibold text-text mb-1">
+                Choose {toFormat.name}
+              </h3>
+              <Paragraph
+                >Select {toFormat.name} as your output format in the row "To"
+              </Paragraph>
             </div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-semibold">4</div>
+            <div
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+            >
+              4
+            </div>
             <div>
-              <h3 class="font-semibold text-black mb-1">Simply click on 'Convert'</h3>
+              <h3 class="font-semibold text-text mb-1">
+                Simply click on 'Convert'
+              </h3>
               <Paragraph>All processing happens locally on your Mac</Paragraph>
             </div>
           </div>
@@ -179,27 +220,43 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     </section>
 
     <!-- Comparison Section -->
-    <section class="relative z-10 px-6 py-24 bg-white">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-10">Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?</H2>
+    <section class="relative z-10 px-6 py-24 bg-background">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-10"
+          >Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?</H2
+        >
 
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="border-b border-gray-200">
-                <th class="py-4 px-4 font-semibold text-black text-base">Feature</th>
-                <th class="py-4 px-4 font-semibold text-black text-base">Online Converters</th>
-                <th class="py-4 px-4 font-semibold text-black text-base">Picmal</th>
+                <th class="py-4 px-4 font-semibold text-text text-base"
+                  >Feature</th
+                >
+                <th class="py-4 px-4 font-semibold text-text text-base"
+                  >Online Converters</th
+                >
+                <th class="py-4 px-4 font-semibold text-text text-base"
+                  >Picmal</th
+                >
               </tr>
             </thead>
             <tbody>
-              {comparisonFeatures.map((feature) => (
-                <tr class="border-b border-gray-200">
-                  <td class="py-4 px-4 text-black font-medium">{feature.feature}</td>
-                  <td class="py-4 px-4 text-gray-600">{feature.online}</td>
-                  <td class="py-4 px-4 text-black font-semibold">{feature.picmal}</td>
-                </tr>
-              ))}
+              {
+                comparisonFeatures.map((feature) => (
+                  <tr class="border-b border-gray-200">
+                    <td class="py-4 px-4 text-text font-semibold">
+                      {feature.feature}
+                    </td>
+                    <td class="py-4 px-4 text-text-secondary">
+                      {feature.online}
+                    </td>
+                    <td class="py-4 px-4 text-text font-semibold">
+                      {feature.picmal}
+                    </td>
+                  </tr>
+                ))
+              }
             </tbody>
           </table>
         </div>
@@ -207,38 +264,51 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     </section>
 
     <!-- Use Cases Section -->
-    <section class="relative z-10 px-6 py-24 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-10">Perfect for {toFormat.name === 'jpg' ? 'Universal photo sharing and web use' : toFormat.useCase}</H2>
+    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-10"
+          >Perfect for {
+            toFormat.name === "jpg"
+              ? "Universal photo sharing and web use"
+              : toFormat.useCase
+          }</H2
+        >
 
         <div class="space-y-8">
-          {conversionData.use_cases.map((useCase: string, index: number) => (
-            <div>
-              <h3 class="font-semibold text-black text-lg mb-2">{useCase}</h3>
-              <Paragraph>
-                {index === 0 && conversionData.why_convert}
-                {index === 1 && `Batch process multiple ${fromFormat.name} files efficiently. ${conversionData.size_reduction}.`}
-                {index === 2 && `Share your converted ${toFormat.name} files across all platforms and devices without compatibility concerns.`}
-                {index === 3 && to === 'jpg' && 'Optimize images for faster website loading and better user experience.'}
-                {index === 4 && `Efficiently manage your image library by converting ${fromFormat.name} files to ${toFormat.name} format.`}
-              </Paragraph>
-            </div>
-          ))}
+          {
+            conversionData.use_cases.map((useCase: string, index: number) => (
+              <div>
+                <h3 class="font-semibold text-text text-lg mb-2">{useCase}</h3>
+                <Paragraph>
+                  {index === 0 && conversionData.why_convert}
+                  {index === 1 &&
+                    `Batch process multiple ${fromFormat.name} files efficiently. ${conversionData.size_reduction}.`}
+                  {index === 2 &&
+                    `Share your converted ${toFormat.name} files across all platforms and devices without compatibility concerns.`}
+                  {index === 3 &&
+                    to === "jpg" &&
+                    "Optimize images for faster website loading and better user experience."}
+                  {index === 4 &&
+                    `Efficiently manage your image library by converting ${fromFormat.name} files to ${toFormat.name} format.`}
+                </Paragraph>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="relative z-10 px-6 py-24 bg-white">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background">
+      <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Frequently asked questions</H2>
         <FAQ faqs={conversionData.faqs} />
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-24 bg-accent-background">
-      <div class="max-w-3xl mx-auto">
+    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+      <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
           title={`Start converting ${fromFormat.name} to ${toFormat.name} now`}
@@ -249,32 +319,94 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     </section>
 
     <!-- More Conversions Section -->
-    <section class="relative z-10 px-6 py-24 bg-white">
-      <div class="max-w-3xl mx-auto text-center">
+    <section class="relative z-10 px-6 py-24 bg-background">
+      <div class="max-w-4xl mx-auto text-center">
         <H2 class="mb-6">More Format Conversions</H2>
         <Paragraph class="mb-8">
-          Need to convert other formats? Picmal supports 30+ image formats for all your conversion needs.
+          Need to convert other formats? Picmal supports 30+ image formats for
+          all your conversion needs.
         </Paragraph>
 
         <div class="flex flex-wrap justify-center gap-4">
-          {to === 'jpg' ? (
-            <>
-              {from !== 'heic' && <a href="/convert/heic-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">HEIC to JPG</a>}
-              {from !== 'webp' && <a href="/convert/webp-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">WebP to JPG</a>}
-              {from !== 'avif' && <a href="/convert/avif-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">AVIF to JPG</a>}
-              {from !== 'png' && <a href="/convert/png-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">PNG to JPG</a>}
-              {from !== 'dng' && <a href="/convert/dng-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">DNG to JPG</a>}
-            </>
-          ) : (
-            <>
-              <a href="/convert/heic-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">HEIC to JPG</a>
-              <a href="/convert/webp-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">WebP to JPG</a>
-              <a href="/convert/avif-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">AVIF to JPG</a>
-              <a href="/convert/png-to-jpg" class="text-blue-600 hover:text-blue-800 hover:underline">PNG to JPG</a>
-            </>
-          )}
-          <span class="text-gray-400">•</span>
-          <a href="/convert" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold">View All Formats →</a>
+          {
+            to === "jpg" ? (
+              <>
+                {from !== "heic" && (
+                  <a
+                    href="/convert/heic-to-jpg"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    HEIC to JPG
+                  </a>
+                )}
+                {from !== "webp" && (
+                  <a
+                    href="/convert/webp-to-jpg"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    WebP to JPG
+                  </a>
+                )}
+                {from !== "avif" && (
+                  <a
+                    href="/convert/avif-to-jpg"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    AVIF to JPG
+                  </a>
+                )}
+                {from !== "png" && (
+                  <a
+                    href="/convert/png-to-jpg"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    PNG to JPG
+                  </a>
+                )}
+                {from !== "dng" && (
+                  <a
+                    href="/convert/dng-to-jpg"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    DNG to JPG
+                  </a>
+                )}
+              </>
+            ) : (
+              <>
+                <a
+                  href="/convert/heic-to-jpg"
+                  class="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  HEIC to JPG
+                </a>
+                <a
+                  href="/convert/webp-to-jpg"
+                  class="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  WebP to JPG
+                </a>
+                <a
+                  href="/convert/avif-to-jpg"
+                  class="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  AVIF to JPG
+                </a>
+                <a
+                  href="/convert/png-to-jpg"
+                  class="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  PNG to JPG
+                </a>
+              </>
+            )
+          }
+          <span class="text-text-secondary">•</span>
+          <a
+            href="/convert"
+            class="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
+            >View All Formats →</a
+          >
         </div>
       </div>
     </section>

@@ -2,7 +2,9 @@
 import Paragraph from "./Paragraph.astro";
 ---
 
-<div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 py-4">
+<div
+  class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 py-4"
+>
   <!-- Rating Stars -->
   <div class="flex items-center gap-2">
     <div class="flex items-center text-yellow-500">
@@ -32,14 +34,14 @@ import Paragraph from "./Paragraph.astro";
         ></path>
       </svg>
     </div>
-    <Paragraph class="font-semibold text-black">5.0</Paragraph>
+    <Paragraph class="font-semibold text-text">5.0</Paragraph>
   </div>
 
   <!-- Separator -->
   <div class="hidden sm:block h-5 w-px bg-gray-300"></div>
 
   <!-- User Count -->
-  <Paragraph class="font-medium text-gray-700">
-    Trusted by <span class="font-semibold text-black">20+ Mac users</span>
+  <Paragraph class="font-semibold text-text-secondary">
+    Trusted by <span class="font-semibold text-text">20+ Mac users</span>
   </Paragraph>
 </div>

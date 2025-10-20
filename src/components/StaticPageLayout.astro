@@ -21,15 +21,15 @@ const { meta } = Astro.props;
   <head>
     <BaseHead title={meta.title} description={meta.description} />
   </head>
-  <body class="bg-white">
+  <body class="bg-background">
     <Header />
 
     <!-- Back to Home Link -->
     <div class="relative z-10 px-6 pt-32 pb-6">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <a
           href="/"
-          class="inline-flex items-center text-sm transition-colors cursor-pointer text-gray-500 hover:text-black"
+          class="inline-flex items-center text-sm transition-colors cursor-pointer text-text-secondary hover:text-text"
         >
           ← Back to home
         </a>
@@ -38,7 +38,7 @@ const { meta } = Astro.props;
 
     <!-- Page Content -->
     <article class="relative z-10 px-6 pb-20">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <!-- Header -->
         <header class="mb-8">
           <H1 class="mb-4">
@@ -52,18 +52,18 @@ const { meta } = Astro.props;
         <!-- Content -->
         <div
           class="prose md:prose-lg max-w-none
-              prose-headings:text-black prose-headings:font-semibold
-              prose-p:text-black/65 prose-p:leading-relaxed
-              prose-a:text-black/65 hover:prose-a:text-black prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
-              prose-strong:text-black
+              prose-headings:text-text prose-headings:font-semibold
+              prose-p:text-text/65 prose-p:leading-relaxed
+              prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
+              prose-strong:text-text
               prose-code:text-accent prose-code:bg-gray-100
               prose-pre:bg-black
-              prose-blockquote:border-l-accent prose-blockquote:text-gray-600 prose-blockquote:bg-accent-background
-              prose-th:text-black
-              prose-td:text-black/65
-              prose-ul:text-black/65
-              prose-ol:text-black/65
-              prose-li:text-black/65
+              prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle
+              prose-th:text-text
+              prose-td:text-text/65
+              prose-ul:text-text/65
+              prose-ol:text-text/65
+              prose-li:text-text/65
               prose-img:rounded-lg"
         >
           <slot />

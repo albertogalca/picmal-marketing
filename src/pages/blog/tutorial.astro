@@ -24,10 +24,10 @@ const posts = (await getCollection("blog"))
       description="Learn image conversion with our step-by-step tutorials. Master batch conversion, file formats, and optimization techniques."
     />
   </head>
-  <body class="bg-white">
+  <body class="bg-background">
     <Header />
     <main class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <!-- Blog Header -->
         <div class="mb-12">
           <H1 class="mb-4"> Tutorials </H1>
@@ -44,10 +44,10 @@ const posts = (await getCollection("blog"))
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {
             posts.map((post) => (
-              <article class="group cursor-pointer bg-white rounded-none border-none p-0 m-0">
+              <article class="group cursor-pointer bg-background rounded-none border-none p-0 m-0">
                 <a
                   href={`/blog/${post.id}`}
-                  class="block bg-white rounded-none border-none p-0 m-0"
+                  class="block bg-background rounded-none border-none p-0 m-0"
                 >
                   <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-gray-200">
                     <Image
@@ -59,16 +59,16 @@ const posts = (await getCollection("blog"))
                     />
                   </div>
                   <div class="flex items-center gap-3 mb-2 text-sm">
-                    <span class="text-purple-600">Tutorial</span>
-                    <span class="text-gray-300">•</span>
+                    <span class="text-text-secondary">Tutorial</span>
+                    <span class="text-text-secondary">•</span>
                     <time
-                      class="text-gray-500"
+                      class="text-text-secondary"
                       datetime={post.data.pubDate.toISOString()}
                     >
                       <FormattedDate date={post.data.pubDate} />
                     </time>
                   </div>
-                  <h3 class="text-xl font-bold text-black group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
+                  <h3 class="text-xl font-bold text-text group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
                     {post.data.title}
                   </h3>
                   {post.data.description && (

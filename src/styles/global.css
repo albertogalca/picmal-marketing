@@ -1,38 +1,29 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
-  --color-background: #ffffff;
-  --color-accent-background: #f2f6ff;
-  --color-secondary-border: #b9d8ff;
-  --color-foreground: #000000;
-  --color-accent: #1b5bff;
-  --color-accent-dark: #1548cc;
-  --color-blue-ribbon-50: #edf5ff;
-  --color-blue-ribbon-100: #d7e8ff;
-  --color-blue-ribbon-200: #b9d8ff;
-  --color-blue-ribbon-300: #88c0ff;
-  --color-blue-ribbon-400: #509dff;
-  --color-blue-ribbon-500: #2876ff;
-  --color-blue-ribbon-600: #1b5bff;
-  --color-blue-ribbon-700: #0a3eeb;
-  --color-blue-ribbon-800: #0f32be;
-  --color-blue-ribbon-900: #133195;
-  --color-blue-ribbon-950: #11205a;
-}
+@variant dark (&:is(.dark *));
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --accent-background: #d7e8ff;
-    --foreground: #000000;
-    --accent: #1b5bff;
-    --accent-dark: #1548cc;
-  }
+@theme {
+  /* Static colors that don't change */
+  --color-accent: #1b5bff;
+  --color-accent-dark: #1450e0;
+
+  /* Use CSS variables for dynamic colors */
+  --color-background: light-dark(#ffffff, #1e1e1e);
+  --color-text: light-dark(#1e1e1e, #ffffff);
+  --color-text-secondary: light-dark(#808080, #bcbcbc);
+  --color-background-subtle: light-dark(#f6f7f8, #2d2e30);
+  --color-border: light-dark(#e5e7eb, #374151);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Default to light, will be overridden by inline script */
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -43,7 +34,6 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--color-black);
 }
 
 @keyframes float {

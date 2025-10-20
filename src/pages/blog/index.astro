@@ -21,10 +21,10 @@ const posts = (await getCollection("blog")).sort(
   <head>
     <BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-white">
+  <body class="bg-background">
     <Header />
     <main class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-4xl mx-auto">
         <!-- Blog Header -->
         <div class="mb-12">
           <H1 class="mb-4">Blog</H1>
@@ -41,10 +41,10 @@ const posts = (await getCollection("blog")).sort(
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {
             posts.map((post) => (
-              <article class="group cursor-pointer bg-white rounded-none border-none p-0 m-0">
+              <article class="group cursor-pointer bg-background rounded-none border-none p-0 m-0">
                 <a
                   href={`/blog/${post.id}`}
-                  class="block bg-white rounded-none border-none p-0 m-0"
+                  class="block bg-background rounded-none border-none p-0 m-0"
                 >
                   <div class="relative aspect-video overflow-hidden mb-4 rounded-md bg-gray-200">
                     <Image
@@ -58,30 +58,20 @@ const posts = (await getCollection("blog")).sort(
                   <div class="flex items-center gap-3 mb-2 text-sm">
                     {post.data.category && (
                       <>
-                        <span
-                          class={
-                            post.data.category === "Changelog"
-                              ? "text-[#1B5BFF]"
-                              : post.data.category === "Guide"
-                                ? "text-emerald-600"
-                                : post.data.category === "Tutorial"
-                                  ? "text-purple-600"
-                                  : "text-gray-600"
-                          }
-                        >
+                        <span class="text-text-secondary">
                           {post.data.category}
                         </span>
-                        <span class="text-gray-300">•</span>
+                        <span class="text-text-secondary">•</span>
                       </>
                     )}
                     <time
-                      class="text-gray-500"
+                      class="text-text-secondary"
                       datetime={post.data.pubDate.toISOString()}
                     >
                       <FormattedDate date={post.data.pubDate} />
                     </time>
                   </div>
-                  <h3 class="text-xl font-bold text-black group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
+                  <h3 class="text-xl font-bold text-text group-hover:text-[#1B5BFF] transition-colors mb-2 leading-snug">
                     {post.data.title}
                   </h3>
                   {post.data.description && (
@@ -103,31 +93,5 @@ const posts = (await getCollection("blog")).sort(
       </div>
     </main>
     <Footer />
-
-    <style>
-      /* Reset any button styling that might be affecting articles */
-      article {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      article a {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-decoration: none !important;
-      }
-
-      .grid article {
-        background: white !important;
-        border-radius: 0 !important;
-        border: none !important;
-      }
-    </style>
   </body>
 </html>

@@ -116,6 +116,26 @@ const licenseFaqs = [
 
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
+      <!-- Background Images -->
+      <div class="absolute inset-0 -z-10 overflow-hidden hidden md:block">
+        <Image
+          src="/background.png"
+          alt=""
+          class="w-full h-full object-cover block dark:hidden"
+          width={1920}
+          height={1080}
+          loading="eager"
+        />
+        <Image
+          src="/background_dark.png"
+          alt=""
+          class="w-full h-full object-cover hidden dark:block"
+          width={1920}
+          height={1080}
+          loading="eager"
+        />
+      </div>
+
       <div class="max-w-5xl mx-auto text-center">
         <div class="max-w-3xl mx-auto">
           <H1 class="mb-6"> Image converter & compressor for Mac </H1>
@@ -152,26 +172,30 @@ const licenseFaqs = [
           </Paragraph>
         </div>
 
-        <!-- Demo Image -->
+        <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mb-12 rounded-2xl overflow-hidden border border-border"
+          class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden border border-text-secondary/20"
         >
-          <Image
-            src="/main.png"
-            alt="Picmal app interface showing drag and drop conversion"
+          <video
+            src="/main.mp4"
             class="w-full h-auto block dark:hidden"
-            width={1400}
-            height={900}
-            loading="eager"
-          />
-          <Image
-            src="/main_dark.png"
-            alt="Picmal app interface showing drag and drop conversion"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal app interface showing drag and drop conversion"
+          >
+          </video>
+          <video
+            src="/main_dark.mp4"
             class="w-full h-auto hidden dark:block"
-            width={1400}
-            height={900}
-            loading="eager"
-          />
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal app interface showing drag and drop conversion"
+          >
+          </video>
         </div>
       </div>
     </main>
@@ -191,21 +215,29 @@ const licenseFaqs = [
         </Paragraph>
 
         <!-- Demo Interface -->
-        <div class="rounded-2xl overflow-hidden border border-border">
-          <Image
-            src="/convert_demo.png"
-            alt="Picmal conversion interface showing PNG to WEBP conversion"
+        <div
+          class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden border border-text-secondary/20"
+        >
+          <video
+            src="/convert.mp4"
             class="w-full h-auto block dark:hidden"
-            width={1400}
-            height={900}
-          />
-          <Image
-            src="/convert_demo_dark.png"
-            alt="Picmal conversion interface showing PNG to WEBP conversion"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal conversion interface showing PNG to WEBP conversion"
+          >
+          </video>
+          <video
+            src="/convert_dark.mp4"
             class="w-full h-auto hidden dark:block"
-            width={1400}
-            height={900}
-          />
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal conversion interface showing PNG to WEBP conversion"
+          >
+          </video>
         </div>
       </div>
     </section>
@@ -222,21 +254,29 @@ const licenseFaqs = [
         </Paragraph>
 
         <!-- Compression Demo -->
-        <div class="rounded-2xl overflow-hidden border border-border">
-          <Image
-            src="/compress_demo.png"
-            alt="Picmal compression interface showing multiple images ready for compression"
+        <div
+          class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden border border-text-secondary/20"
+        >
+          <video
+            src="/compress.mp4"
             class="w-full h-auto block dark:hidden"
-            width={1400}
-            height={900}
-          />
-          <Image
-            src="/compress_demo_dark.png"
-            alt="Picmal compression interface showing multiple images ready for compression"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal compression interface showing multiple images ready for compression"
+          >
+          </video>
+          <video
+            src="/compress_dark.mp4"
             class="w-full h-auto hidden dark:block"
-            width={1400}
-            height={900}
-          />
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Picmal compression interface showing multiple images ready for compression"
+          >
+          </video>
         </div>
       </div>
     </section>
@@ -622,7 +662,9 @@ const licenseFaqs = [
                         class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
                       >
                       </div>
-                      <Paragraph size="small">$15.99 for customers 51+</Paragraph>
+                      <Paragraph size="small"
+                        >$15.99 for customers 51+</Paragraph
+                      >
                     </div>
                   </div>
                 </div>
@@ -631,7 +673,10 @@ const licenseFaqs = [
               <!-- CTA Button -->
               <Button text="Buy for Mac" class="w-full" />
             </div>
-            <Paragraph size="small" class="text-center text-text-secondary mt-4">
+            <Paragraph
+              size="small"
+              class="text-center text-text-secondary mt-4"
+            >
               Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
             </Paragraph>
           </div>

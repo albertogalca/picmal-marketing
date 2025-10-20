@@ -26,34 +26,62 @@ import TestimonialCard from "./TestimonialCard.astro";
   </div>
 
   <!-- Scrolling Container -->
-  <div class="flex gap-6 animate-marquee">
+  <div class="flex animate-marquee-mobile md:animate-marquee">
     <!-- First Set -->
-    <div class="flex gap-6 min-w-max">
-      {
-        testimonials.map((testimonial) => (
+    {
+      testimonials.map((testimonial) => (
+        <div class="flex-shrink-0 mr-6">
           <TestimonialCard
             name={testimonial.name}
             email={testimonial.email}
             content={testimonial.content}
             rating={testimonial.rating}
           />
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
 
-    <!-- Duplicate Set for Seamless Loop -->
-    <div class="flex gap-6 min-w-max" aria-hidden="true">
-      {
-        testimonials.map((testimonial) => (
+    <!-- Second Set -->
+    {
+      testimonials.map((testimonial) => (
+        <div class="flex-shrink-0 mr-6" aria-hidden="true">
           <TestimonialCard
             name={testimonial.name}
             email={testimonial.email}
             content={testimonial.content}
             rating={testimonial.rating}
           />
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
+
+    <!-- Third Set -->
+    {
+      testimonials.map((testimonial) => (
+        <div class="flex-shrink-0 mr-6" aria-hidden="true">
+          <TestimonialCard
+            name={testimonial.name}
+            email={testimonial.email}
+            content={testimonial.content}
+            rating={testimonial.rating}
+          />
+        </div>
+      ))
+    }
+
+    <!-- Fourth Set -->
+    {
+      testimonials.map((testimonial) => (
+        <div class="flex-shrink-0 mr-6" aria-hidden="true">
+          <TestimonialCard
+            name={testimonial.name}
+            email={testimonial.email}
+            content={testimonial.content}
+            rating={testimonial.rating}
+          />
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -63,15 +91,22 @@ import TestimonialCard from "./TestimonialCard.astro";
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-25%);
     }
   }
 
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
+  .animate-marquee-mobile {
+    animation: marquee 20s linear infinite;
   }
 
-  .animate-marquee:hover {
+  @media (min-width: 768px) {
+    .animate-marquee {
+      animation: marquee 40s linear infinite;
+    }
+  }
+
+  .animate-marquee:hover,
+  .animate-marquee-mobile:hover {
     animation-play-state: paused;
   }
 </style>

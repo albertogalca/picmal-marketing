@@ -3,6 +3,20 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.1.5</title>
+            <pubDate>Mon, 20 Oct 2025 16:29:44 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>24</sparkle:version>
+            <sparkle:shortVersionString>1.1.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.5/Picmal.dmg" length="71311629" type="application/octet-stream" sparkle:edSignature="KqhaVJocBVSKPQnkx0KaFYMaKjxnuQ+1zk8Fi6sEBNGjzHYN+ieFBdBoWustpBNhZi6+4OibzbHcqNk+s0MABQ=="/>
+        <description><![CDATA[<div><ul><li>Performance has been improved.</li>
+<li>PDFs now convert every page, not just the first one.</li>
+<li>SVG compression is now available.</li>
+<li>I fixed a crash that happened when you dragged and dropped something.</li>
+<li>Compression presets: You can choose from six different compression settings (maximum quality, high quality, balanced, web optimised, social media, maximum compression) or make your own custom settings.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.1.4</title>
             <pubDate>Sun, 12 Oct 2025 13:00:17 +0200</pubDate>
             <link>https://picmal.app/</link>

@@ -68,40 +68,39 @@ const comparisonFeatures = [
 <html lang="en">
   <head>
     <BaseHead title={compressionData.title} description={compressionData.description} />
-    <script type="application/ld+json" is:inline>
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": `How to Compress ${formatInfo.name} Images on Mac`,
-        "description": `Simple steps to compress ${formatInfo.name} images using Picmal on macOS`,
-        "step": [
-          {
-            "@type": "HowToStep",
-            "name": "Download Picmal",
-            "text": "Download and install Picmal for Mac from the official website"
-          },
-          {
-            "@type": "HowToStep",
-            "name": `Add ${formatInfo.name} Files`,
-            "text": `Drag and drop your ${formatInfo.name} images into Picmal`
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Choose Compression Settings",
-            "text": "Select your desired quality and compression level"
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Compress",
-            "text": `Click compress and get your optimized ${formatInfo.name} files instantly`
-          }
-        ],
-        "tool": {
-          "@type": "HowToTool",
-          "name": "Picmal for Mac"
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": `How to Compress ${formatInfo.name} Images on Mac`,
+      "description": `Simple steps to compress ${formatInfo.name} images using Picmal on macOS`,
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Download Picmal",
+          "text": "Download and install Picmal for Mac from the official website"
+        },
+        {
+          "@type": "HowToStep",
+          "name": `Add ${formatInfo.name} Files`,
+          "text": `Drag and drop your ${formatInfo.name} images into Picmal`
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose Compression Settings",
+          "text": "Select your desired quality and compression level"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Compress",
+          "text": `Click compress and get your optimized ${formatInfo.name} files instantly`
         }
-      })}
-    </script>
+      ],
+      "tool": {
+        "@type": "HowToTool",
+        "name": "Picmal for Mac"
+      }
+    })} />
+
   </head>
 
   <body class="bg-background">

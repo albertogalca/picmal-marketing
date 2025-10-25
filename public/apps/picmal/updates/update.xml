@@ -3,6 +3,16 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.1.8</title>
+            <pubDate>Sat, 25 Oct 2025 11:49:57 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>27</sparkle:version>
+            <sparkle:shortVersionString>1.1.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.8/Picmal.dmg" length="70490780" type="application/octet-stream" sparkle:edSignature="kYiy9kfWPaRuMhnlGc29d+0Gyuh5/ciMM3PvaWe6LNbO+FMLO84jusAxLrpJKsbRjNi02/43hpd2VtdWgYTPBQ=="/>
+        <description><![CDATA[<div><ul><li>Small fixes</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.1.7</title>
             <pubDate>Thu, 23 Oct 2025 07:46:22 +0200</pubDate>
             <link>https://picmal.app/</link>

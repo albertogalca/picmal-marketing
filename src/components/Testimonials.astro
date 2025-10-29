@@ -35,13 +35,14 @@ import TestimonialCard from "./TestimonialCard.astro";
             name={testimonial.name}
             email={testimonial.email}
             content={testimonial.content}
-            rating={testimonial.rating}
+            link={testimonial.link}
+            image={testimonial.image}
           />
         </div>
       ))
     }
 
-    <!-- Second Set -->
+    <!-- Second Set (duplicate for seamless loop) -->
     {
       testimonials.map((testimonial) => (
         <div class="flex-shrink-0 mr-6" aria-hidden="true">
@@ -49,35 +50,8 @@ import TestimonialCard from "./TestimonialCard.astro";
             name={testimonial.name}
             email={testimonial.email}
             content={testimonial.content}
-            rating={testimonial.rating}
-          />
-        </div>
-      ))
-    }
-
-    <!-- Third Set -->
-    {
-      testimonials.map((testimonial) => (
-        <div class="flex-shrink-0 mr-6" aria-hidden="true">
-          <TestimonialCard
-            name={testimonial.name}
-            email={testimonial.email}
-            content={testimonial.content}
-            rating={testimonial.rating}
-          />
-        </div>
-      ))
-    }
-
-    <!-- Fourth Set -->
-    {
-      testimonials.map((testimonial) => (
-        <div class="flex-shrink-0 mr-6" aria-hidden="true">
-          <TestimonialCard
-            name={testimonial.name}
-            email={testimonial.email}
-            content={testimonial.content}
-            rating={testimonial.rating}
+            link={testimonial.link}
+            image={testimonial.image}
           />
         </div>
       ))
@@ -91,17 +65,17 @@ import TestimonialCard from "./TestimonialCard.astro";
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-25%);
+      transform: translateX(-50%);
     }
   }
 
   .animate-marquee-mobile {
-    animation: marquee 20s linear infinite;
+    animation: marquee 30s linear infinite;
   }
 
   @media (min-width: 768px) {
     .animate-marquee {
-      animation: marquee 40s linear infinite;
+      animation: marquee 60s linear infinite;
     }
   }
 

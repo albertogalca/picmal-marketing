@@ -2,9 +2,9 @@
   {
     "id": 1,
     "name": "Marynes",
+    "image": "https://media.licdn.com/dms/image/v2/C5603AQHTG6s9L737HA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1645558794161?e=1763596800&v=beta&t=GGnQRRchoLhyoRtikrW2n3KOfrXZy51paoPPpfSZs1w",
     "email": "marynesrf@gmail.com",
     "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
-    "rating": 5,
     "date": "Sep 16, 2025"
   },
   {
@@ -12,7 +12,6 @@
     "name": "Anthony Nguyen",
     "email": "a.van.nguyen@gmail.com",
     "content": "Everything works as expected - great app!",
-    "rating": 5,
     "date": "Sep 15, 2025"
   },
   {
@@ -20,15 +19,23 @@
     "name": "Anonymous",
     "email": "anonymous@example.com",
     "content": "Totally worth it! The app is super easy to use and works great.",
-    "rating": 5,
-    "date": "Sep 8, 2025"
+    "date": "Sep 8, 2025",
+    "link": "https://albertogalca.gumroad.com/l/picmal"
   },
   {
     "id": 4,
     "name": "Beckett R",
     "email": "beckettreynolds32@icloud.com",
     "content": "Great app! Simple and easy to use.",
-    "rating": 5,
-    "date": "Sep 7, 2025"
+    "date": "Sep 7, 2025",
+    "link": "https://albertogalca.gumroad.com/l/picmal"
+  },
+  {
+    "id": 5,
+    "name": "7107Labs",
+    "image": "https://styles.redditmedia.com/t5_egkh2/styles/profileIcon_r7riy8yyehzb1.jpg?width=64&height=64&frame=1&auto=webp&crop=64%3A64%2Csmart&s=b9a49293569935c45551cdcff2cb1b16fdf950c9",
+    "content": "It works perfectly now! Thanks and good work. It's really the kind of utility that I find very useful. I know that there are tons of free online tools doing the same thing but it's so much faster that way.",
+    "date": "Jun 29, 2025",
+    "link": "https://www.reddit.com/r/macapps/comments/1lyjr1i/comment/n301vlk/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button"
   }
 ]

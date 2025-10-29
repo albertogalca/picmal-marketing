@@ -3,7 +3,6 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
-import VideoPlayer from "../components/VideoPlayer.astro";
 import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
 import H1 from "../components/H1.astro";
@@ -14,13 +13,11 @@ import Button from "../components/Button.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H3 from "../components/H3.astro";
-import TrustBar from "../components/TrustBar.astro";
-import ProcessSteps from "../components/ProcessSteps.astro";
-import FileSizeComparison from "../components/FileSizeComparison.astro";
 
-const SITE_TITLE = "Picmal - Image converter & compressor for Mac";
+const SITE_TITLE =
+  "Picmal - Convert & compress multiple images without leaving your Mac";
 const SITE_DESCRIPTION =
-  "Picmal makes converting and compressing images a breeze. Convert or compress batches of images, entirely offline on your Mac—fast and private.";
+  "Batch convert and compress images offline on your Mac. Beautiful, private, and straightforward.";
 
 const faqs = [
   {
@@ -124,7 +121,7 @@ const licenseFaqs = [
         <Image
           src="/background_dark.png"
           alt=""
-          class="w-full h-full object-cover hidden dark:block"
+          class="w-full h-full object-cover hidden dark:block opacity-10"
           width={1920}
           height={1080}
           loading="eager"
@@ -133,7 +130,9 @@ const licenseFaqs = [
 
       <div class="max-w-5xl mx-auto text-center">
         <div class="max-w-3xl mx-auto">
-          <H1 class="mb-6"> Image converter & compressor for Mac </H1>
+          <H1 class="mb-6">
+            Convert & compress multiple images without leaving your Mac
+          </H1>
           <Paragraph class="mb-8 max-w-xl mx-auto">
             Picmal makes converting and compressing images a breeze. Convert or
             compress batches of images, entirely offline on your Mac—fast and

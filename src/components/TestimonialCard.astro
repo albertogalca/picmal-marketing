@@ -5,12 +5,13 @@ import Paragraph from "./Paragraph.astro";
 
 interface Props {
   name: string;
-  email: string;
+  email?: string;
   content: string;
-  rating: number;
+  image?: string;
+  link?: string;
 }
 
-const { name, email, content } = Astro.props;
+const { name, email, content, image, link } = Astro.props;
 
 function getGravatarUrl(email: string, size: number = 80): string {
   const hash = crypto
@@ -21,7 +22,9 @@ function getGravatarUrl(email: string, size: number = 80): string {
 }
 ---
 
-<div class="rounded-2xl p-6 md:p-8 min-w-[280px] max-w-[280px] md:min-w-[380px] md:max-w-[380px]">
+<div
+  class="rounded-2xl p-6 md:p-8 min-w-[280px] max-w-[280px] md:min-w-[380px] md:max-w-[380px]"
+>
   <!-- Quote -->
   <Paragraph class="mb-6 text-center">
     "{content}"
@@ -30,13 +33,41 @@ function getGravatarUrl(email: string, size: number = 80): string {
   <!-- Author info -->
   <div class="flex items-center gap-4 justify-center">
     <Image
-      src={getGravatarUrl(email, 64)}
+      src={image || getGravatarUrl(email || "", 64)}
       alt={name}
       width={64}
       height={64}
       class="w-10 h-10 rounded-full flex-shrink-0"
       loading="lazy"
     />
-    <Paragraph class="font-bold">{name}</Paragraph>
+    <div class="flex items-center gap-2">
+      <Paragraph class="font-bold">{name}</Paragraph>
+      {
+        link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="nofollow noreferer"
+            class="cursor-pointer inline-flex"
+            aria-label="View source"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 opacity-60 hover:opacity-100 transition-opacity"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        )
+      }
+    </div>
   </div>
 </div>

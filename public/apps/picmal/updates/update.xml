@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.1.9</title>
+            <pubDate>Wed, 29 Oct 2025 17:39:55 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>28</sparkle:version>
+            <sparkle:shortVersionString>1.1.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.1.9/Picmal.dmg" length="70320655" type="application/octet-stream" sparkle:edSignature="afn3Xb1cnpX8DqGdRNC+Cods9RfdGeVo6psB05BoS5TK1L7+e84PpjahBY+FpTXXASd3DrJf2/E86jQ1WOiQCw=="/>
+        <description><![CDATA[<div><ul><li>18 new formats now support conversion: JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM,PCX, XBM, XPM, QOI, PSD.</li>
+<li>10 new formats now support compression: BMP, JP2, TGA, JXL, DDS, EXR, PCX, SGI, QOI.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.1.8</title>
             <pubDate>Sat, 25 Oct 2025 11:49:57 +0200</pubDate>
             <link>https://picmal.app/</link>

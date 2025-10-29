@@ -26,16 +26,12 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
               class="rounded-lg w-8 h-8 object-cover"
             />
           </div>
+          <Paragraph size="small" class="mb-2">
+            Batch convert and compress images offline on your Mac. Beautiful,
+            private, and straightforward.
+          </Paragraph>
           <Paragraph size="small">
-            © {today.getFullYear()}
-            <a
-              href="https://cantimplora.studio/"
-              target="_blank"
-              rel="noopener nofollow noreferrer"
-              class="underline underline-offset-4 hover:text-text transition-colors"
-            >
-              Cantimplora Studio</a
-            >, LLC. All rights reserved.
+            Copyright © {today.getFullYear()} - All rights reserved.
           </Paragraph>
 
           <!-- Theme Switcher -->
@@ -69,11 +65,15 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
           </button>
 
           <!-- TinyLaunch Badge -->
-          <div class="mt-6">
+          <!-- <div class="mt-6">
             <a href="https://tinylaunch.com" target="_blank" rel="noopener">
-              <img src="https://tinylaunch.com/tinylaunch_badge_3.svg" alt="TinyLaunch Badge" style="width:202px; height:auto;" />
+              <img
+                src="https://tinylaunch.com/tinylaunch_badge_3.svg"
+                alt="TinyLaunch Badge"
+                style="width:202px; height:auto;"
+              />
             </a>
-          </div>
+          </div> -->
         </div>
 
         <!-- Product -->
@@ -168,6 +168,15 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
                 Follow on X
               </a>
             </li>
+            <li>
+              <a
+                href="https://albertogalca.com"
+                target="_blank"
+                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
+              >
+                About the author
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -206,16 +215,12 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
             class="rounded-lg w-8 h-8 object-cover"
           />
         </div>
+        <Paragraph size="small" class="mb-2">
+          Batch convert and compress images offline on your Mac. Beautiful,
+          private, and straightforward.
+        </Paragraph>
         <Paragraph size="small">
-          © {today.getFullYear()}
-          <a
-            href="https://cantimplora.studio/"
-            target="_blank"
-            rel="noopener nofollow noreferrer"
-            class="underline underline-offset-4 hover:text-text transition-colors"
-          >
-            Cantimplora Studio</a
-          >, LLC. All rights reserved.
+          Copyright © {today.getFullYear()} - All rights reserved.
         </Paragraph>
 
         <!-- Theme Switcher -->
@@ -249,11 +254,15 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
         </button>
 
         <!-- TinyLaunch Badge -->
-        <div class="mt-6">
+        <!-- <div class="mt-6">
           <a href="https://tinylaunch.com" target="_blank" rel="noopener">
-            <img src="https://tinylaunch.com/tinylaunch_badge_3.svg" alt="TinyLaunch Badge" style="width:202px; height:auto;" />
+            <img
+              src="https://tinylaunch.com/tinylaunch_badge_3.svg"
+              alt="TinyLaunch Badge"
+              style="width:202px; height:auto;"
+            />
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </footer>
@@ -274,8 +283,12 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
     const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
     const themeIconLight = document.getElementById("theme-icon-light");
     const themeIconDark = document.getElementById("theme-icon-dark");
-    const themeIconLightDesktop = document.getElementById("theme-icon-light-desktop");
-    const themeIconDarkDesktop = document.getElementById("theme-icon-dark-desktop");
+    const themeIconLightDesktop = document.getElementById(
+      "theme-icon-light-desktop"
+    );
+    const themeIconDarkDesktop = document.getElementById(
+      "theme-icon-dark-desktop"
+    );
     const themeLabel = document.getElementById("theme-label");
     const themeLabelDesktop = document.getElementById("theme-label-desktop");
     const html = document.documentElement;

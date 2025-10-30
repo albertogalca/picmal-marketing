@@ -6,24 +6,34 @@ const faqs = [
       "Picmal is a native Mac app, so it's only available for Mac. For now and forever.",
   },
   {
-    question: "What image formats does Picmal support?",
+    question: "What formats does Picmal support?",
     answer:
-      "Picmal supports 20+ formats including JPEG, PNG, WEBP, AVIF, HEIC, RAW (CR2, NEF, ARW), TIFF, PSD, GIF, BMP, SVG, EPS, AI, ICO, and more.",
+      "Picmal supports 90+ formats total: 20+ image formats (JPEG, PNG, WebP, AVIF, HEIC, PSD, RAW, SVG, PDF, and more), 15+ video formats (MP4, MOV, AVI, MKV, WebM, and more), and 35+ audio formats (MP3, WAV, AAC, FLAC, OGG, OPUS, and more).",
   },
   {
-    question: "What compression formats are supported?",
+    question: "Can I compress videos and audio files?",
     answer:
-      "Picmal supports compression for the following formats: JPEG, WebP, PNG, GIF, TIFF, AVIF and PDF. You can either compress images directly without converting them or compress them after converting them to one of these formats.",
+      "Yes! Picmal supports compression for all media types. Images can be compressed in formats like JPEG, PNG, WebP, GIF, SVG, TIFF, HEIC, AVIF, and PDF. Videos are compressed using H.264 encoding, and audio files use AAC encoding. You can adjust quality settings for optimal file size.",
   },
   {
-    question: "Where are my images processed?",
+    question: "Where are my files processed?",
     answer:
-      "All image processing happens locally on your Mac. Picmal does not upload your images to any servers.",
+      "All processing happens locally on your Mac. Picmal does not upload your images, videos, or audio files to any servers. Everything stays on your device.",
   },
   {
-    question: "Can I convert multiple images at once?",
+    question: "Can I convert multiple files at once?",
     answer:
-      "Yes! Picmal excels at batch processing. Simply drag and drop multiple images, or even entire folders, and convert them all at once.",
+      "Yes! Picmal excels at batch processing. Simply drag and drop multiple files, or even entire folders, and convert them all at once with individual progress tracking for each file.",
+  },
+  {
+    question: "Can I compress without converting?",
+    answer:
+      "Yes! You can compress files in their current format without converting them. Just select the compression option and adjust the quality slider to reduce file size while maintaining the original format.",
+  },
+  {
+    question: "Can I remove metadata from my files?",
+    answer:
+      "Yes! Picmal can remove metadata from images, which helps reduce file sizes and protect your privacy by stripping location data, camera information, and other embedded details.",
   },
   {
     question: "What macOS versions are supported?",
@@ -33,7 +43,7 @@ const faqs = [
   {
     question: "Do I need an internet connection to use Picmal?",
     answer:
-      "No internet connection is required after installation. Picmal works completely offline, ensuring your images never leave your device.",
+      "No internet connection is required after installation. Picmal works completely offline, ensuring your files never leave your device.",
   },
 ];
 

@@ -2,12 +2,9 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import Paragraph from "./Paragraph.astro";
-import ProductHuntBanner from "./ProductHuntBanner.astro";
 
 const currentPage = Astro.url.pathname;
 ---
-
-<ProductHuntBanner />
 
 <nav
   id="main-nav"
@@ -230,58 +227,3 @@ const currentPage = Astro.url.pathname;
     </div>
   </div>
 </nav>
-
-<script>
-  const mobileMenuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const mainNav = document.getElementById("main-nav");
-  const phBanner = document.getElementById("ph-banner");
-
-  // Function to adjust nav position based on banner visibility
-  function adjustNavPosition() {
-    if (phBanner && mainNav) {
-      const bannerHeight = phBanner.offsetHeight;
-      const isBannerVisible = phBanner.style.display !== "none";
-
-      if (isBannerVisible) {
-        mainNav.style.top = `${bannerHeight}px`;
-      } else {
-        mainNav.style.top = "0";
-      }
-    }
-  }
-
-  // Adjust position on load
-  adjustNavPosition();
-
-  // Listen for banner dismissal (check periodically and on storage change)
-  window.addEventListener("storage", adjustNavPosition);
-
-  // Observe banner visibility changes
-  if (phBanner) {
-    const observer = new MutationObserver(adjustNavPosition);
-    observer.observe(phBanner, {
-      attributes: true,
-      attributeFilter: ["style"],
-    });
-  }
-
-  // Mobile menu functionality
-  mobileMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (event) => {
-    const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
-    const isClickOnButton = mobileMenuButton?.contains(event.target as Node);
-
-    if (
-      !isClickInsideMenu &&
-      !isClickOnButton &&
-      !mobileMenu?.classList.contains("hidden")
-    ) {
-      mobileMenu?.classList.add("hidden");
-    }
-  });
-</script>

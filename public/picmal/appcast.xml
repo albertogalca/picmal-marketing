@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.0</title>
+            <pubDate>Thu, 30 Oct 2025 17:23:36 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>29</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.0/Picmal.dmg" length="97478855" type="application/octet-stream" sparkle:edSignature="ptE+z65Vbh2QXP1KV0PfF0syFtqjKgAkK7Am8IPx0MIE8S+vOdS3jlziwTJxljDMEVGbmrr2souKt21hSEv9Bw=="/>
+        <description><![CDATA[<div><ul><li>Support audio formats: MP3, WAV, AAC, M4A, FLAC, OGG, OGA, WMA, OPUS, M4R, AC3, WV, FSSD, AU, SPH, GSRT, CVS, CVSD, CAF, SPX, IRCAM, SND, CVU, VOC, VMS, PRC, AMB, DTS, TTA, 8SVX, DVMS, SNDR, VOX, SD2, HTK, SOU, W64, SLN, TXW, SMP, RA, SNDT, HCOM, FAP, CDDA, PAF, MAUD, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, IMA, PVF.</li>
+<li>Support video formats: MP4, MOV, AVI, MKV, WEBM, FLV, WMV, M4V, MPG, MPEG, 3GP, M2TS, MTS, VOB, ASF, OGV, WTV, TS, MJPEG, M2V, HEVC, F4V, MXF.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.1.9</title>
             <pubDate>Wed, 29 Oct 2025 17:39:55 +0100</pubDate>
             <link>https://picmal.app/</link>

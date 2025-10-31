@@ -556,119 +556,146 @@ const licenseFaqs = [
               class="bg-background-subtle rounded-2xl p-8 border border-text/10"
             >
               <div class="mb-8">
-                <H3 class="mb-1">One device</H3>
-                <div class="flex items-start gap-2 mb-8">
+                <H3 class="mb-6">Single Device</H3>
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="text-text-secondary text-2xl line-through"
+                    >$15.99</span
+                  >
                   <span class="text-4xl font-bold text-text">$9.99</span>
                   <span class="text-text-secondary text-lg">/once</span>
                 </div>
+                <Paragraph size="small" class="text-text-secondary mb-8">
+                  Early adopter pricing — Limited time
+                </Paragraph>
 
-                <!-- Early Supporter Pricing Box -->
-                <div class="bg-background-subtle rounded-xl mb-8">
-                  <Paragraph size="small" class="mb-2 font-semibold">
-                    Early supporter pricing
-                  </Paragraph>
-                  <Paragraph size="small" class="mb-4 text-text-secondary">
-                    As a thank you to early supporters, Picmal is available at a
-                    special introductory price. Future customers will pay the
-                    standard price of $15.99.
-                  </Paragraph>
+                <!-- Features Header -->
+                <Paragraph class="mb-4"> Features </Paragraph>
 
-                  <div class="space-y-3">
-                    <!-- Tier 1: Early Supporters -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
-                      >
-                        <svg
-                          class="w-2.5 h-2.5 text-text-secondary"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                      </div>
-                      <Paragraph size="small" class="line-through"
-                        >First 10 supporters: $5.99</Paragraph
-                      >
+                <!-- Features List -->
+                <ul class="space-y-2 mb-8">
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph>1 device (1 seat)</Paragraph>
                     </div>
+                  </li>
 
-                    <!-- Tier 2: Early Supporters -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0 flex items-center justify-center relative"
-                      >
-                        <svg
-                          class="w-2.5 h-2.5 text-text-secondary"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                      </div>
-                      <Paragraph size="small" class="line-through"
-                        >Next 10 supporters: $7.99</Paragraph
-                      >
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph class="font-semibold">14 days money back guarantee</Paragraph>
                     </div>
+                  </li>
 
-                    <!-- Tier 3: Current -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full bg-accent flex-shrink-0 flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                      </div>
-                      <Paragraph size="small" class="font-semibold"
-                        >Current: $9.99 (38% off)</Paragraph
-                      >
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph>90+ formats (images, videos, audio)</Paragraph>
                     </div>
-
-                    <!-- Tier 4 -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                      >
-                      </div>
-                      <Paragraph size="small">Next 10: $11.99 (25% off)</Paragraph
-                      >
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph>Convert between formats</Paragraph>
                     </div>
-
-                    <!-- Tier 5 -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                      >
-                      </div>
-                      <Paragraph size="small">Next 10: $13.99 (13% off)</Paragraph
-                      >
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph>Compress files</Paragraph>
                     </div>
-
-                    <!-- Tier 6 -->
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-5 h-5 rounded-full border-2 border-background-subtle bg-background flex-shrink-0"
-                      >
-                      </div>
-                      <Paragraph size="small"
-                        >Standard price: $15.99</Paragraph
-                      >
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph class="font-semibold">Batch processing</Paragraph>
                     </div>
-                  </div>
-                </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph class="font-semibold">Works offline</Paragraph>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <Paragraph>Free updates</Paragraph>
+                    </div>
+                  </li>
+                </ul>
               </div>
 
               <!-- CTA Button -->

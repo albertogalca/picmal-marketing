@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
 import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
-import FAQSchema from "../components/schema/FAQSchema.astro";
+import FAQSchema, { faqs } from "../components/schema/FAQSchema.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import FeatureCard from "../components/FeatureCard.astro";
@@ -18,54 +18,6 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 const SITE_TITLE = "Picmal - All-in-one media converter for Mac";
 const SITE_DESCRIPTION =
   "Batch convert and compress your images, videos and audios offline on your Mac.";
-
-const faqs = [
-  {
-    question: "Is Picmal available for Windows or Linux?",
-    answer:
-      "Picmal is a native Mac app, so it's only available for Mac. For now and forever.",
-  },
-  {
-    question: "What formats does Picmal support?",
-    answer:
-      "Picmal supports 90+ formats total: 20+ image formats (JPEG, PNG, WebP, AVIF, HEIC, PSD, RAW, SVG, PDF, and more), 15+ video formats (MP4, MOV, AVI, MKV, WebM, and more), and 35+ audio formats (MP3, WAV, AAC, FLAC, OGG, OPUS, and more).",
-  },
-  {
-    question: "Can I compress videos and audio files?",
-    answer:
-      "Yes! Picmal supports compression for all media types. Images can be compressed in formats like JPEG, PNG, WebP, GIF, SVG, TIFF, HEIC, AVIF, and PDF. Videos are compressed using H.264 encoding, and audio files use AAC encoding. You can adjust quality settings for optimal file size.",
-  },
-  {
-    question: "Where are my files processed?",
-    answer:
-      "All processing happens locally on your Mac. Picmal does not upload your images, videos, or audio files to any servers. Everything stays on your device.",
-  },
-  {
-    question: "Can I convert multiple files at once?",
-    answer:
-      "Yes! Picmal excels at batch processing. Simply drag and drop multiple files, or even entire folders, and convert them all at once with individual progress tracking for each file.",
-  },
-  {
-    question: "Can I compress without converting?",
-    answer:
-      "Yes! You can compress files in their current format without converting them. Just select the compression option and adjust the quality slider to reduce file size while maintaining the original format.",
-  },
-  {
-    question: "Can I remove metadata from my files?",
-    answer:
-      "Yes! Picmal can remove metadata from images, which helps reduce file sizes and protect your privacy by stripping location data, camera information, and other embedded details.",
-  },
-  {
-    question: "What macOS versions are supported?",
-    answer:
-      "Picmal requires macOS Sonoma (14.0) or later. It's optimized for Apple Silicon Macs but also works great on Intel Macs.",
-  },
-  {
-    question: "Do I need an internet connection to use Picmal?",
-    answer:
-      "No internet connection is required after installation. Picmal works completely offline, ensuring your files never leave your device.",
-  },
-];
 
 const licenseFaqs = [
   {
@@ -199,7 +151,7 @@ const licenseFaqs = [
     <!-- Convert Between Formats Section -->
     <section id="features" class="relative z-10 px-6 py-20">
       <div class="max-w-5xl mx-auto">
-        <H2 class="mb-6 text-center">Convert between<br />90+ formats</H2>
+        <H2 class="mb-6 text-center">Convert between<br />100+ formats</H2>
         <Paragraph class="text-center mb-12 max-w-xl mx-auto">
           From PSD to PNG, MOV to MP4, or WAV to MP3. Handle any image, video,
           or audio format with professional-grade quality. No technical
@@ -601,7 +553,9 @@ const licenseFaqs = [
                         clip-rule="evenodd"></path>
                     </svg>
                     <div>
-                      <Paragraph class="font-semibold">14 days money back guarantee</Paragraph>
+                      <Paragraph class="font-semibold"
+                        >14 days money back guarantee</Paragraph
+                      >
                     </div>
                   </li>
 
@@ -617,7 +571,8 @@ const licenseFaqs = [
                         clip-rule="evenodd"></path>
                     </svg>
                     <div>
-                      <Paragraph>90+ formats (images, videos, audio)</Paragraph>
+                      <Paragraph>100+ formats (images, videos, audio)</Paragraph
+                      >
                     </div>
                   </li>
                   <li class="flex items-start gap-3">
@@ -662,7 +617,9 @@ const licenseFaqs = [
                         clip-rule="evenodd"></path>
                     </svg>
                     <div>
-                      <Paragraph class="font-semibold">Batch processing</Paragraph>
+                      <Paragraph class="font-semibold"
+                        >Batch processing</Paragraph
+                      >
                     </div>
                   </li>
                   <li class="flex items-start gap-3">

@@ -3,6 +3,24 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.1</title>
+            <pubDate>Sat, 01 Nov 2025 10:08:36 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>30</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.1/Picmal.dmg" length="97752882" type="application/octet-stream" sparkle:edSignature="RhBZwS/0q2oTXBzy5US6Gi68dd1DCFVW9bVSFq8l9kgQfMXwifXfXupI+Siy4CyVCKcKXUKVxu11VieF1qADCg=="/>
+        <description><![CDATA[<div><ul><li>Batch resize images with 5 flexible modes (percentage, fixed, max</li>
+  dimensions, width/height-only).</li>
+<li>Display metadata for audio and video files (duration, bitrate, codec,</li>
+  sample rate).</li>
+<li>Advanced mode for audio and video with enhanced FFmpeg controls.</li>
+<li>Fixed PDF compression corrupting colors in Keynote/PowerPoint</li>
+  presentations.</li>
+<li>Compressed files now automatically include "_compressed" suffix.</li>
+<li>Improved format support (31 audio, 25 video formats).</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.0</title>
             <pubDate>Thu, 30 Oct 2025 17:23:36 +0100</pubDate>
             <link>https://picmal.app/</link>

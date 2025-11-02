@@ -1,0 +1,279 @@
+---
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
+import Button from "./Button.astro";
+
+// Pricing tiers configuration
+const pricingTiers = [
+  { devices: 1, price: 9.99, regularPrice: 15.99, url: "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc" },
+  { devices: 3, price: 26.97, regularPrice: 41.97, url: "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc" },
+  { devices: 5, price: 39.95, regularPrice: 65.95, url: "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc" },
+];
+---
+
+<div class="bg-background-subtle rounded-2xl p-8 border border-text/10">
+  <div class="mb-8">
+    <!-- Title -->
+    <H3 class="mb-6">Select number of devices</H3>
+
+    <!-- Price Display -->
+    <div class="flex items-baseline gap-3 mb-2">
+      <span
+        id="regular-price"
+        class="text-text-secondary text-2xl line-through"
+      >
+        ${pricingTiers[0].regularPrice.toFixed(2)}
+      </span>
+      <span id="current-price" class="text-4xl font-bold text-text">
+        ${pricingTiers[0].price.toFixed(2)}
+      </span>
+      <span class="text-text-secondary text-lg">/once</span>
+    </div>
+    <Paragraph size="small" class="text-text-secondary mb-8">
+      Early adopter pricing — Limited time
+    </Paragraph>
+
+    <!-- Features Header -->
+    <Paragraph class="mb-4"> Features </Paragraph>
+
+    <!-- Features List -->
+    <ul class="space-y-2 mb-8">
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div class="flex items-center gap-2">
+          <!-- Device Selector -->
+          <div class="flex items-center gap-2">
+            <button
+              id="decrease-devices"
+              class="w-7 h-7 rounded bg-background hover:bg-background-subtle border border-text/10 hover:border-text/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Decrease number of devices"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 12H4"></path>
+              </svg>
+            </button>
+
+            <div
+              class="flex items-center justify-center min-w-[85px] h-7 rounded border border-text/10 bg-background px-2.5"
+            >
+              <span id="device-count" class="text-base font-bold">1</span>
+              <span class="ml-1.5 text-sm text-text-secondary" id="device-label">device</span>
+            </div>
+
+            <button
+              id="increase-devices"
+              class="w-7 h-7 rounded bg-background hover:bg-background-subtle border border-text/10 hover:border-text/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Increase number of devices"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
+          </div>
+
+          <Paragraph>
+            (<span id="seat-count-text">1 seat</span>)
+          </Paragraph>
+        </div>
+      </li>
+
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph class="font-semibold"
+            >14 days money back guarantee</Paragraph
+          >
+        </div>
+      </li>
+
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>100+ formats (images, videos, audio)</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>Convert between formats</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>Compress files</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph class="font-semibold">Batch processing</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph class="font-semibold">Works offline</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>Free updates</Paragraph>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CTA Button -->
+  <Button id="buy-button" text="Buy for Mac" class="w-full" />
+</div>
+<Paragraph size="small" class="text-center text-text-secondary mt-4">
+  Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+</Paragraph>
+
+<script define:vars={{ pricingTiers }}>
+  // Initialize state
+  let currentTierIndex = 0;
+
+  // Get DOM elements
+  const decreaseBtn = document.getElementById("decrease-devices");
+  const increaseBtn = document.getElementById("increase-devices");
+  const deviceCountEl = document.getElementById("device-count");
+  const deviceLabelEl = document.getElementById("device-label");
+  const regularPriceEl = document.getElementById("regular-price");
+  const currentPriceEl = document.getElementById("current-price");
+  const seatCountTextEl = document.getElementById("seat-count-text");
+  const buyButton = document.getElementById("buy-button");
+
+  // Update UI function
+  function updateUI() {
+    const tier = pricingTiers[currentTierIndex];
+
+    // Update device count
+    deviceCountEl.textContent = tier.devices;
+    deviceLabelEl.textContent = tier.devices === 1 ? "device" : "devices";
+
+    // Update prices
+    regularPriceEl.textContent = `$${tier.regularPrice.toFixed(2)}`;
+    currentPriceEl.textContent = `$${tier.price.toFixed(2)}`;
+
+    // Update feature list
+    seatCountTextEl.textContent = `${tier.devices} ${tier.devices === 1 ? "seat" : "seats"}`;
+
+    // Update buy button URL
+    buyButton.href = tier.url;
+
+    // Update button states
+    decreaseBtn.disabled = currentTierIndex === 0;
+    increaseBtn.disabled = currentTierIndex === pricingTiers.length - 1;
+  }
+
+  // Event listeners
+  decreaseBtn.addEventListener("click", () => {
+    if (currentTierIndex > 0) {
+      currentTierIndex--;
+      updateUI();
+    }
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    if (currentTierIndex < pricingTiers.length - 1) {
+      currentTierIndex++;
+      updateUI();
+    }
+  });
+
+  // Initial UI update
+  updateUI();
+</script>

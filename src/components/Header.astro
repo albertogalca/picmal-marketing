@@ -227,3 +227,35 @@ const currentPage = Astro.url.pathname;
     </div>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+
+        // Toggle aria-expanded
+        mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
+
+        // Toggle menu visibility
+        if (isExpanded) {
+          mobileMenu.classList.add('hidden');
+        } else {
+          mobileMenu.classList.remove('hidden');
+        }
+      });
+
+      // Close menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>

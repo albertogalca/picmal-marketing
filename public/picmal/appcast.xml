@@ -3,6 +3,21 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.2</title>
+            <pubDate>Tue, 04 Nov 2025 13:34:37 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>35</sparkle:version>
+            <sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.2/Picmal.dmg" length="102095702" type="application/octet-stream" sparkle:edSignature="FuvrDVAuwh2me4q+0G9GFt0NCVp67E/6F1VSd69GLc3oL1qaEI8TiWo56ALpdCZGRpPiuHXSyzQejAd3O0ALCw=="/>
+        <description><![CDATA[<div><ul><li>Fixed the non-clickable checkbox in Advanced mode.</li>
+<li>Added Advanced mode to both Conversion and Compression modes.</li>
+<li>Fixed the bottom tab bar so that it now truncates text when there is too much.</li>
+<li>Some PDF compression errors that were not working well have been fixed.</li>
+<li>Progress has been added to the compression and conversion of files to improve the user experience. Sometimes, compressing long files can take more than 2–3 minutes, and users thought it was stuck.</li>
+<li>A “Cancel” button has been added while converting/compressing to allow you to stop the process.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.1</title>
             <pubDate>Sat, 01 Nov 2025 10:08:36 +0100</pubDate>
             <link>https://picmal.app/</link>

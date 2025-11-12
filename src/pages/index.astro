@@ -12,7 +12,6 @@ import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Paragraph from "../components/Paragraph.astro";
-import H3 from "../components/H3.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
 import DynamicPricing from "../components/DynamicPricing.astro";
 
@@ -55,6 +54,7 @@ const licenseFaqs = [
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <OrganizationSchema url={Astro.site!.href} />
     <FAQSchema />
+    <link rel="preload" href="/picmal-1.2.0-demo.mp4" as="video" type="video/mp4" />
   </head>
   <body class="bg-background">
     <Header />
@@ -119,24 +119,31 @@ const licenseFaqs = [
         <!-- Demo Video -->
         <div
           class="max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden border border-text-secondary/20"
+          style="aspect-ratio: 16/10;"
         >
           <video
             src="/picmal-1.2.0-demo.mp4"
-            class="w-full h-auto block dark:hidden"
+            class="w-full h-full object-cover block dark:hidden"
+            width="1920"
+            height="1200"
             autoplay
             loop
             muted
             playsinline
+            preload="auto"
             aria-label="Picmal app interface showing drag and drop conversion"
           >
           </video>
           <video
             src="/picmal-1.2.0-demo.mp4"
-            class="w-full h-auto hidden dark:block"
+            class="w-full h-full object-cover hidden dark:block"
+            width="1920"
+            height="1200"
             autoplay
             loop
             muted
             playsinline
+            preload="auto"
             aria-label="Picmal app interface showing drag and drop conversion"
           >
           </video>

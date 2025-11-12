@@ -3,16 +3,20 @@ import Paragraph from "./Paragraph.astro";
 import { Image } from "astro:assets";
 ---
 
-<div class="w-full pb-8">
-  <div class="max-w-5xl mx-auto px-6">
+<div class="w-full py-12">
+  <div class="max-w-screen-7xl mx-auto px-8">
     <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12"
+      class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16"
     >
       <!-- Featured On Label -->
-      <Paragraph size="small" class="uppercase"> Featured on </Paragraph>
+      <Paragraph class="uppercase flex-shrink-0 font-medium">
+        Featured on
+      </Paragraph>
 
       <!-- Logos -->
-      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 lg:flex items-center justify-center gap-6 sm:gap-8 lg:gap-12"
+      >
         <!-- Product Hunt -->
         <a
           href="https://www.producthunt.com/products/picmal?utm_source=picmal.app"
@@ -23,7 +27,7 @@ import { Image } from "astro:assets";
           <Image
             src="/ph-social_proof.webp"
             alt="Product Hunt"
-            class="h-10 w-auto grayscale opacity-60 dark:invert dark:opacity-50"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
             width={128}
             height={32}
             loading="lazy"
@@ -40,7 +44,7 @@ import { Image } from "astro:assets";
           <Image
             src="/tl-social_proof.webp"
             alt="TinyLaunch"
-            class="h-10 w-auto grayscale opacity-60 dark:invert dark:opacity-50"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
             width={128}
             height={32}
             loading="lazy"
@@ -52,30 +56,67 @@ import { Image } from "astro:assets";
           href="https://startupfa.me/s/picmal?utm_source=picmal.app"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:opacity-80 transition-opacity"
+          class="hover:opacity-80 transition-opacity flex items-center"
         >
-          <img
+          <Image
             src="https://startupfa.me/images/logo.svg"
             alt="Startup Fame"
-            class="h-7 w-auto grayscale opacity-60 dark:invert dark:opacity-50"
-            width="208"
-            height="36"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
+            width={208}
+            height={36}
             loading="lazy"
           />
         </a>
 
+        <!-- Scout Forge -->
+        <a
+          href="https://scoutforge.net/reviews/picmal/"
+          title="Trusted and reviewed by Scout Forge"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity flex items-center"
+        >
+          <Image
+            src="/scoutforge_proof.webp"
+            alt="Scout Forge"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
+            width={1073}
+            height={180}
+            loading="lazy"
+          />
+        </a>
+
+        <!-- MacStories -->
+        <a
+          href="https://www.macstories.net/reviews/picmal-streamlines-batch-conversion-and-compression-on-the-mac/"
+          title="Featured on MacStories"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:opacity-80 transition-opacity flex items-center"
+        >
+          <Image
+            src="/macstories_proof.webp"
+            alt="MacStories Featured"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
+            width={240}
+            height={73}
+            loading="lazy"
+          />
+        </a>
+
+        <!-- LaunchIgniter -->
         <a
           href="https://launchigniter.com/product/picmal?ref=badge-picmal&utm_source=picmal.app"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:opacity-80 transition-opacity"
+          class="hover:opacity-80 transition-opacity flex items-center"
         >
-          <img
+          <Image
             src="/launchigniter_proof.webp"
             alt="Featured on LaunchIgniter"
-            class="h-10 w-auto grayscale opacity-60 dark:invert dark:opacity-50"
-            width="208"
-            height="36"
+            class="w-32 sm:w-28 lg:w-32 h-auto object-contain grayscale opacity-60 dark:invert dark:opacity-50"
+            width={208}
+            height={36}
             loading="lazy"
           />
         </a>

@@ -4,12 +4,12 @@
         <title>Picmal</title>
         <item>
             <title>1.2.4</title>
-            <pubDate>Thu, 13 Nov 2025 15:43:02 +0100</pubDate>
+            <pubDate>Thu, 13 Nov 2025 16:33:45 +0100</pubDate>
             <link>https://picmal.app/</link>
-            <sparkle:version>37</sparkle:version>
+            <sparkle:version>38</sparkle:version>
             <sparkle:shortVersionString>1.2.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.4/Picmal.dmg" length="102252500" type="application/octet-stream" sparkle:edSignature="5sQy9gkFKSLGiWfRvSbzVMm1ZEDoDS1iKLVqumag4PKAEv7v3GQvBWUEgr4JaUUG1WCyol+Njly+lzlxKHJTAg=="/>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.4/Picmal.dmg" length="102254989" type="application/octet-stream" sparkle:edSignature="MggmfBDYSxRDG//cPVWgMoTkRQv5CeWvguynxU0FrS4ZOlBAd3cDSKGUnYo1O1TAcvkzQOc1ddWnvPgpVgjeAg=="/>
         <description><![CDATA[<div><ul><li>You can now see the conversion speed percentage, along with an estimated time remaining, for videos and audio files.</li>
 <li>You can now experience significant performance improvements: Video conversions are much faster and use less memory, especially for long files. Instant conversion (no re-encoding) works for 50+ format combinations including WebM, MKV, MP4, FLV, 3GP, and more.</li>
 <li>You can now use VideoToolbox's H.264 hardware encoding for over 12 video formats on Apple Silicon, offering a speed boost of 10–50x for FLV, WMV, MPEG, 3GP, WTV, F4V and MXF.</li>

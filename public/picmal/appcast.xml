@@ -4,6 +4,16 @@
         <title>Picmal</title>
         <item>
             <title>1.2.4</title>
+            <pubDate>Fri, 14 Nov 2025 11:42:34 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>39</sparkle:version>
+            <sparkle:shortVersionString>1.2.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.4/Picmal.dmg" length="102258483" type="application/octet-stream" sparkle:edSignature="rb8CCW3KKne07KLASSM1C0CXdPPDQr2joNwpRfpmKBXaD+N2EQElynSrbsgMO2nbQf3zOjPGLWUwN7dIAnJPCg=="/>
+        <description><![CDATA[<div><ul><li>Display a banner when the licence is not active to make it clear that Picmal cannot be used without a licence.</li></ul></div>]]></description>
+        </item>
+        <item>
+            <title>1.2.4</title>
             <pubDate>Thu, 13 Nov 2025 16:33:45 +0100</pubDate>
             <link>https://picmal.app/</link>
             <sparkle:version>38</sparkle:version>

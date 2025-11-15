@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.5</title>
+            <pubDate>Sat, 15 Nov 2025 07:21:43 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>40</sparkle:version>
+            <sparkle:shortVersionString>1.2.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.5/Picmal.dmg" length="104834329" type="application/octet-stream" sparkle:edSignature="ozQ64Y9DZCakTOlN5CQZiiPsaOn54STwfxWAi5VP6Um/+ryx7Y4OBGq/mubSyTgcOfu1ZZDjsK+QnfudWw/dAQ=="/>
+        <description><![CDATA[<div><ul><li>Conversion from EPS to SVG has been added.</li>
+<li>Conversion from AI to SVG added.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.4</title>
             <pubDate>Fri, 14 Nov 2025 11:42:34 +0100</pubDate>
             <link>https://picmal.app/</link>

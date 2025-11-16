@@ -3,6 +3,18 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.6</title>
+            <pubDate>Sun, 16 Nov 2025 08:56:18 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>42</sparkle:version>
+            <sparkle:shortVersionString>1.2.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://picmal.app/apps/picmal/updates/1.2.6/Picmal.dmg" length="104840361" type="application/octet-stream" sparkle:edSignature="+pjgTCfM47GwlHvp+5kwxpnrpnL9hyUYi3jxsn/4yCfKKObgNje8qfeusqwQYgQcVO807YyL5ijQqCk6FPKbBA=="/>
+        <description><![CDATA[<div><ul><li>Color space conversion: Convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, or Rec. 2020 with proper ICC profile embedding.</li>
+<li>View color space info for converted images via a new clickable icon in the Size column.</li>
+<li>Fixed FLAC to AAC audio conversion issues in optimized advanced mode.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.5</title>
             <pubDate>Sat, 15 Nov 2025 09:22:41 +0100</pubDate>
             <link>https://picmal.app/</link>

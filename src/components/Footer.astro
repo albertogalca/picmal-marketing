@@ -1,272 +1,152 @@
 ---
-import { Image } from "astro:assets";
-import H2 from "./H2.astro";
-import H3 from "./H3.astro";
-import Button from "./Button.astro";
-import Paragraph from "./Paragraph.astro";
-
 const today = new Date();
-const itShouldBeWhite = Astro.url.pathname === "/affiliate";
 ---
 
-<div>
-  <!-- Main Footer -->
-  <footer class="relative z-10 px-6 py-16">
-    <div class="max-w-6xl mx-auto">
-      <!-- Footer Links Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-        <!-- Logo and Copyright - Desktop only -->
-        <div class="hidden md:block md:col-span-1">
-          <div class="flex items-center space-x-2 mb-4">
-            <Image
-              src="/logo.webp"
-              alt="Picmal Logo"
-              width="32"
-              height="32"
-              class="rounded-lg w-8 h-8 object-cover"
-            />
-          </div>
-          <Paragraph size="small" class="mb-2">
-            Batch convert and compress your images, videos and audios offline on
-            your Mac.
-          </Paragraph>
-          <Paragraph size="small">
-            Copyright © {today.getFullYear()} - All rights reserved.
-          </Paragraph>
-
-          <!-- Theme Switcher -->
-          <button
-            id="theme-toggle-desktop"
-            class="mt-4 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors"
-            aria-label="Toggle theme"
-          >
-            <svg
-              id="theme-icon-light-desktop"
-              class="w-4 h-4 hidden"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                fill-rule="evenodd"
-                clip-rule="evenodd"></path>
-            </svg>
-            <svg
-              id="theme-icon-dark-desktop"
-              class="w-4 h-4 hidden"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-              ></path>
-            </svg>
-            <span id="theme-label-desktop">Dark</span>
-          </button>
-
-          <!-- TinyLaunch Badge -->
-          <!-- <div class="mt-6">
-            <a href="https://tinylaunch.com" target="_blank" rel="noopener">
-              <img
-                src="https://tinylaunch.com/tinylaunch_badge_3.svg"
-                alt="TinyLaunch Badge"
-                style="width:202px; height:auto;"
-              />
-            </a>
-          </div> -->
-        </div>
-
-        <!-- Product -->
-        <div>
-          <H3 class="mb-4">Product</H3>
-          <ul class="space-y-2">
-            <li>
-              <a
-                href="/apps/picmal/updates/Picmal.dmg"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Download
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#features"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#pricing"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                href="/affiliate"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Earn 25% as affiliate
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Resources -->
-        <div>
-          <H3 class="mb-4">Resources</H3>
-          <ul class="space-y-2">
-            <li>
-              <a
-                href="/blog"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Blog
-              </a>
-            </li>
-            <li>
-              <a
-                href="/changelog"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Changelog
-              </a>
-            </li>
-            <li>
-              <a
-                href="/tools"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Tools
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Company -->
-        <div>
-          <H3 class="mb-4">Company</H3>
-          <ul class="space-y-2">
-            <li>
-              <a
-                href="mailto:support@picmal.app"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Get in touch
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://x.com/picmalapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Follow on X
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://albertogalca.com"
-                target="_blank"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                About the author
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Legal -->
-        <div>
-          <H3 class="mb-4">Legal</H3>
-          <ul class="space-y-2">
-            <li>
-              <a
-                href="/terms"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Terms of Use
-              </a>
-            </li>
-            <li>
-              <a
-                href="/privacy"
-                class="text-sm transition-colors text-text-secondary hover:text-text cursor-pointer"
-              >
-                Privacy Policy
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Mobile: Logo at bottom -->
-      <div class="md:hidden mt-8">
-        <div class="flex items-center space-x-2 mb-4">
-          <Image
-            src="/logo.webp"
+<footer class="py-16 bg-background transition-colors">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      <div class="col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <img
+            src="https://picmal.app/logo.webp"
             alt="Picmal Logo"
-            width="32"
-            height="32"
-            class="rounded-lg w-8 h-8 object-cover"
+            class="h-8 w-8 rounded-lg shadow-sm"
+            loading="lazy"
+            decoding="async"
           />
+          <span class="font-semibold text-lg text-text">Picmal</span>
         </div>
-        <Paragraph size="small" class="mb-2">
+        <p class="text-sm text-text-secondary max-w-xs mb-6">
           Batch convert and compress your images, videos and audios offline on
           your Mac.
-        </Paragraph>
-        <Paragraph size="small">
-          Copyright © {today.getFullYear()} - All rights reserved.
-        </Paragraph>
+        </p>
+        <p class="text-xs text-text-secondary">
+          &copy; {today.getFullYear()} - All rights reserved.
+        </p>
+      </div>
 
-        <!-- Theme Switcher -->
-        <button
-          id="theme-toggle"
-          class="mt-4 inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text transition-colors"
-          aria-label="Toggle theme"
-        >
-          <svg
-            id="theme-icon-light"
-            class="w-4 h-4 hidden"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-              fill-rule="evenodd"
-              clip-rule="evenodd"></path>
-          </svg>
-          <svg
-            id="theme-icon-dark"
-            class="w-4 h-4 hidden"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-            ></path>
-          </svg>
-          <span id="theme-label">Dark</span>
-        </button>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
+          Product
+        </p>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li>
+            <a
+              href="/apps/picmal/updates/Picmal.dmg"
+              class="transition-colors hover:text-text">Download</a
+            >
+          </li>
+          <li>
+            <a href="/#features" class="transition-colors hover:text-text"
+              >Features</a
+            >
+          </li>
+          <li>
+            <a href="/#pricing" class="transition-colors hover:text-text"
+              >Pricing</a
+            >
+          </li>
+          <li>
+            <a href="/affiliate" class="transition-colors hover:text-text"
+              >Earn 25% as affiliate</a
+            >
+          </li>
+        </ul>
+      </div>
 
-        <!-- TinyLaunch Badge -->
-        <!-- <div class="mt-6">
-          <a href="https://tinylaunch.com" target="_blank" rel="noopener">
-            <img
-              src="https://tinylaunch.com/tinylaunch_badge_3.svg"
-              alt="TinyLaunch Badge"
-              style="width:202px; height:auto;"
-            />
-          </a>
-        </div> -->
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
+          Resources
+        </p>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li>
+            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
+          </li>
+          <li>
+            <a href="/changelog" class="transition-colors hover:text-text"
+              >Changelog</a
+            >
+          </li>
+          <li>
+            <a href="/tools" class="transition-colors hover:text-text">Tools</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
+          Company
+        </p>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li>
+            <a
+              href="mailto:support@picmal.app"
+              class="transition-colors hover:text-text">Get in touch</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://x.com/picmalapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Follow on X</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://albertogalca.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">About the author</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
-  </footer>
-</div>
+
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-text/10 text-xs text-text-secondary"
+    >
+      <button
+        onclick="toggleTheme()"
+        class="flex items-center gap-2 hover:text-text transition-colors"
+        type="button"
+      >
+        <svg
+          class="w-4 h-4 hidden dark:block"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fill-rule="evenodd"
+            clip-rule="evenodd"></path>
+        </svg>
+        <svg
+          class="w-4 h-4 block dark:hidden"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+          ></path>
+        </svg>
+        <span class="hidden dark:block">Light Mode</span>
+        <span class="block dark:hidden">Dark Mode</span>
+      </button>
+      <div class="flex gap-4">
+        <a href="/terms" class="transition-colors hover:text-text"
+          >Terms of use</a
+        >
+        <a href="/privacy" class="transition-colors hover:text-text"
+          >Privacy policy</a
+        >
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
   // Handle newsletter form submission
@@ -277,65 +157,26 @@ const itShouldBeWhite = Astro.url.pathname === "/affiliate";
     });
   }
 
-  // Theme switcher
-  function initTheme() {
-    const themeToggle = document.getElementById("theme-toggle");
-    const themeToggleDesktop = document.getElementById("theme-toggle-desktop");
-    const themeIconLight = document.getElementById("theme-icon-light");
-    const themeIconDark = document.getElementById("theme-icon-dark");
-    const themeIconLightDesktop = document.getElementById(
-      "theme-icon-light-desktop"
-    );
-    const themeIconDarkDesktop = document.getElementById(
-      "theme-icon-dark-desktop"
-    );
-    const themeLabel = document.getElementById("theme-label");
-    const themeLabelDesktop = document.getElementById("theme-label-desktop");
-    const html = document.documentElement;
+  const html = document.documentElement;
 
-    // Initialize theme from localStorage or default to light
-    const savedTheme = localStorage.getItem("theme") || "light";
+  function setTheme(theme) {
     html.classList.remove("light", "dark");
-    html.classList.add(savedTheme);
-    html.style.colorScheme = savedTheme;
-    updateThemeUI(savedTheme);
-
-    function updateThemeUI(theme) {
-      if (theme === "dark") {
-        themeIconLight?.classList.remove("hidden");
-        themeIconDark?.classList.add("hidden");
-        themeIconLightDesktop?.classList.remove("hidden");
-        themeIconDarkDesktop?.classList.add("hidden");
-        if (themeLabel) themeLabel.textContent = "Light";
-        if (themeLabelDesktop) themeLabelDesktop.textContent = "Light";
-      } else {
-        themeIconLight?.classList.add("hidden");
-        themeIconDark?.classList.remove("hidden");
-        themeIconLightDesktop?.classList.add("hidden");
-        themeIconDarkDesktop?.classList.remove("hidden");
-        if (themeLabel) themeLabel.textContent = "Dark";
-        if (themeLabelDesktop) themeLabelDesktop.textContent = "Dark";
-      }
-    }
-
-    function toggleTheme() {
-      const currentTheme = html.classList.contains("dark") ? "dark" : "light";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-      html.classList.remove("light", "dark");
-      html.classList.add(newTheme);
-      html.style.colorScheme = newTheme;
-      localStorage.setItem("theme", newTheme);
-      updateThemeUI(newTheme);
-    }
-
-    themeToggle?.addEventListener("click", toggleTheme);
-    themeToggleDesktop?.addEventListener("click", toggleTheme);
+    html.classList.add(theme);
+    html.style.colorScheme = theme;
+    localStorage.setItem("theme", theme);
   }
 
-  // Initialize theme on page load
-  initTheme();
+  function initTheme() {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+  }
 
-  // Re-initialize on Astro page transitions (if using View Transitions)
+  window.toggleTheme = function toggleTheme() {
+    const currentTheme = html.classList.contains("dark") ? "dark" : "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
+
+  initTheme();
   document.addEventListener("astro:page-load", initTheme);
 </script>

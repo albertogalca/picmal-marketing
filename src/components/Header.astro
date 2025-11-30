@@ -2,10 +2,8 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import Paragraph from "./Paragraph.astro";
-import PromoBanner from "./PromoBanner.astro";
 
 const currentPage = Astro.url.pathname;
-const showPromoBanner = currentPage === "/";
 ---
 
 <nav
@@ -13,7 +11,6 @@ const showPromoBanner = currentPage === "/";
   class="fixed left-0 right-0 z-30 text-sm transition-all duration-300 bg-background border-b border-text/10"
   style="top: 0;"
 >
-  {showPromoBanner && <PromoBanner />}
   <div class="px-6 py-4">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
       <div class="flex items-center">

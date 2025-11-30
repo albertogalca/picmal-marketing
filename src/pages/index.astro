@@ -14,6 +14,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 import DynamicPricing from "../components/DynamicPricing.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import PromoBanner from "../components/PromoBanner.astro";
 
 const SITE_TITLE = "Picmal - All-in-one media converter for Mac";
 const SITE_DESCRIPTION =
@@ -65,12 +66,14 @@ const licenseFaqs = [
     <Header />
 
     <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-50 pb-32">
+    <main id="main-content" class="relative z-10 pt-32 pb-24">
       <!-- Subtle gradient background -->
       <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
       <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
+        <PromoBanner />
+
+        <div class="text-center mb-12">
           <div class="max-w-4xl mx-auto">
             <H1 class="mb-6 max-w-2xl mx-auto"
               >All-in-one media converter for Mac</H1

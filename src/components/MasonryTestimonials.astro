@@ -14,7 +14,7 @@ function getGravatarUrl(email: string, size: number = 80): string {
 }
 ---
 
-<section class="relative z-10 px-6 py-20">
+<section id="testimonials" class="relative z-10 px-6 py-20">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
       <div class="flex justify-center gap-1 mb-6">
@@ -48,8 +48,7 @@ function getGravatarUrl(email: string, size: number = 80): string {
                 rel={hasLink ? "nofollow noreferrer" : undefined}
                 class:list={[
                   "block bg-background-subtle rounded-2xl p-6 border border-text/10",
-                  hasLink &&
-                    "hover:border-text/20 hover:shadow-sm transition-all cursor-pointer",
+                  hasLink && "hover:border-text/20 cursor-pointer",
                 ]}
               >
                 <Paragraph class="mb-6">"{testimonial.content}"</Paragraph>

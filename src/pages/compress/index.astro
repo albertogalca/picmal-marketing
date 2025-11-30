@@ -37,8 +37,7 @@ const popularFormats = [
 
     <!-- Hero Section with gradient -->
     <main class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient">
-      </div>
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
@@ -73,7 +72,9 @@ const popularFormats = [
               >
                 <div class="flex items-center justify-between">
                   <div>
-                    <h3 class="font-semibold text-text text-lg group-hover:text-accent transition-colors">{label}</h3>
+                    <h3 class="font-semibold text-text text-lg group-hover:text-accent transition-colors">
+                      {label}
+                    </h3>
                     <p class="text-text-secondary text-sm mt-1">
                       {compressionFormats[format].useCase}
                     </p>
@@ -109,7 +110,7 @@ const popularFormats = [
             Object.entries(compressionFormats).map(
               ([format, info]: [string, CompressionFormatInfo]) => (
                 <div class="border-b border-gray-100 pb-12 last:border-0 last:pb-0">
-                  <h3 class="font-bold text-text text-2xl mb-3">
+                  <h3 class="font-semibold text-text text-2xl mb-3">
                     Compress {info.name.toUpperCase()}
                   </h3>
                   <p class="text-text-secondary mb-4">{info.description}</p>

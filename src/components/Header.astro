@@ -23,26 +23,32 @@ const currentPage = Astro.url.pathname;
             class="rounded-lg w-10 h-10 object-cover"
             loading="eager"
           />
-          <Paragraph class="font-bold text-text">Picmal</Paragraph>
+          <Paragraph class="font-semibold text-text">Picmal</Paragraph>
         </a>
       </div>
 
       <div class="hidden xl:flex items-center space-x-6 2xl:space-x-8">
         <a
           href="/#features"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text-secondary font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
         >
           Features
         </a>
         <a
           href="/#pricing"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text-secondary font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
         >
           Pricing
         </a>
         <a
+          href="/#testimonials"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
+        >
+          Testimonials
+        </a>
+        <a
           href="/#faq"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text-secondary font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
         >
           FAQ
         </a>
@@ -138,6 +144,26 @@ const currentPage = Astro.url.pathname;
               ></path>
             </svg>
             <span class="text-sm font-semibold text-text">Pricing</span>
+          </a>
+
+          <a
+            href="/#testimonials"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              ></path>
+            </svg>
+            <span class="text-sm font-semibold text-text">Testimonials</span>
           </a>
 
           <a

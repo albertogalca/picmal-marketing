@@ -3,6 +3,22 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.8</title>
+            <pubDate>Sun, 30 Nov 2025 09:56:53 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>44</sparkle:version>
+            <sparkle:shortVersionString>1.2.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.8/Picmal.dmg" length="126311701" type="application/octet-stream" sparkle:edSignature="a5mYGLGldUsPuMB2ZLg9Ip/oJuA0lk1QWH2uuzmCyUjrYYoWdz+gKbQCcjAf3sqn9Iy3Nmg/GQTALvYeZJrgCA=="/>
+        <description><![CDATA[<div><ul><li>Presets for audio and video conversion.</li>
+<li>Support for converting HEIC to WebP.</li>
+<li>You can now strip the metadata from audio, video and image files.</li>
+<li>Output file displays the settings used.</li>
+<li>Parts of the code have been rewritten to improve stability and reliability.</li>
+<li>The Preferences menu has been reorganised for better usability.</li>
+<li>Issues resulting in unusable files during MKV to MP4 conversions when certain codecs were used have been resolved.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.7</title>
             <pubDate>Fri, 21 Nov 2025 14:37:43 +0100</pubDate>
             <link>https://picmal.app/</link>

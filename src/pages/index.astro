@@ -87,7 +87,7 @@ const licenseFaqs = [
           <!-- CTA Buttons -->
           <div class="flex flex-col items-center gap-4">
             <div
-              class="flex flex-col sm:flex-row gap-3 items-center justify-center"
+              class="flex flex-col lg:flex-row gap-3 items-center justify-center"
             >
               <Button text="Buy for Mac ($9.99)" />
               <a
@@ -236,7 +236,7 @@ const licenseFaqs = [
       <div class="max-w-6xl mx-auto">
         <H2 class="mb-16 text-center">Why Picmal?</H2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-left">
           <FeatureCard
             title="Designed for Mac"
             description="Native macOS app that feels right at home with beautiful interface and smooth performance."
@@ -497,24 +497,26 @@ const licenseFaqs = [
     <!-- Pricing -->
     <section id="pricing" class="relative z-10 px-6 py-20">
       <div class="max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <!-- Pricing Card -->
-          <div class="md:order-2">
+          <div class="order-2">
             <div class="sticky top-8">
               <DynamicPricing />
             </div>
           </div>
 
           <!-- Benefits -->
-          <div class="md:order-1">
-            <div class="space-y-6 mb-10">
-              <H2 class="mb-6">Pay once, own forever</H2>
-              <Paragraph class="max-w-2xl mx-auto">
-                No subscriptions, no hidden fees. Buy Picmal once and use it
-                forever with all future updates included.
-              </Paragraph>
+          <div class="lg:space-y-6 text-center lg:text-left order-1">
+            <H2 class="mb-6">Pay once, own forever</H2>
+            <Paragraph class="max-w-2xl mx-auto">
+              No subscriptions, no hidden fees. Buy Picmal once and use it
+              forever with all future updates included.
+            </Paragraph>
+            <div class="hidden lg:block">
+              <FAQ faqs={licenseFaqs} />
             </div>
-
+          </div>
+          <div class="lg:hidden order-3">
             <FAQ faqs={licenseFaqs} />
           </div>
         </div>
@@ -531,7 +533,7 @@ const licenseFaqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-8"
+          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-4 lg:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

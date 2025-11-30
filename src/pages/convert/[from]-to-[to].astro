@@ -140,7 +140,8 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
       <div class="max-w-4xl mx-auto px-6 text-center">
-        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1>
+        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1
+        >
         <Paragraph class="mb-8 max-w-xl mx-auto">
           Tired of online converters that compromise your privacy or quality?
           Picmal converts {fromFormat.name} files to {toFormat.name} instantly on
@@ -161,7 +162,9 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     <!-- How to Section -->
     <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">How to Convert {fromFormat.name} to {toFormat.name}</H2>
+        <H2 class="mb-10"
+          >How to Convert {fromFormat.name} to {toFormat.name}</H2
+        >
 
         <div class="space-y-6">
           <div class="flex items-start gap-4">
@@ -232,7 +235,9 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
         </H2>
 
         <div class="overflow-x-auto rounded-xl border border-text/10">
-          <table class="w-full text-left border-collapse bg-background-subtle/50">
+          <table
+            class="w-full text-left border-collapse bg-background-subtle/50"
+          >
             <thead>
               <tr class="border-b border-gray-200">
                 <th class="py-4 px-4 font-semibold text-text text-base">
@@ -312,7 +317,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Frequently asked questions</H2>
         <div
-          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-8"
+          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-4 lg:p-8"
         >
           <FAQ faqs={conversionData.faqs} />
         </div>

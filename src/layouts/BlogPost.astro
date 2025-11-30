@@ -46,8 +46,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 
     <!-- Hero with gradient -->
     <div class="relative z-10 pt-32 pb-12">
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient">
-      </div>
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
       <div class="max-w-4xl mx-auto px-6">
         <a
@@ -81,15 +80,14 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
             {
               category && (
                 <>
-                  <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">{category}</span>
+                  <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+                    {category}
+                  </span>
                   <span class="text-text-secondary">•</span>
                 </>
               )
             }
-            <time
-              datetime={pubDate.toISOString()}
-              class="text-text-secondary"
-            >
+            <time datetime={pubDate.toISOString()} class="text-text-secondary">
               <FormattedDate date={pubDate} />
             </time>
             {
@@ -111,7 +109,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
 
         <!-- Content -->
         <div
-          class="prose md:prose-lg max-w-none
+          class="prose lg:prose-lg max-w-none
               prose-headings:text-text prose-headings:font-semibold
               prose-p:text-text/65 prose-p:leading-relaxed
               prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200

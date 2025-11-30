@@ -49,25 +49,28 @@ const affiliateFaqs = [
   <body class="bg-background">
     <Header />
 
-    <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 px-6 pt-32 pb-16">
-      <div class="max-w-3xl mx-auto text-center">
-        <H1 class="mb-6"> Become an affiliate & earn 25% on each sale</H1>
-        <Paragraph class="mb-8 max-w-xl mx-auto">
-          You can earn between $2.50 and $17.48 for every customer you refer to
-          Picmal. Sign up today and start earning cash by promoting a good tool.
-        </Paragraph>
+    <!-- Hero Section with gradient -->
+    <main id="main-content" class="relative z-10 pt-32 pb-20">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
-        <div class="flex flex-col items-center gap-4 mb-8">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <H1 class="mb-4">Become an affiliate & earn 25% on each sale</H1>
+          <Paragraph class="max-w-2xl mx-auto">
+            You can earn between $2.50 and $17.48 for every customer you refer
+            to Picmal. Sign up today and start earning cash by promoting a good
+            tool.
+          </Paragraph>
+        </div>
+
+        <div class="flex flex-col items-center gap-4">
           <Button
             href="https://affiliates.lemonsqueezy.com/programs/picmal"
             text="Become an affiliate"
             target="_blank"
             rel="noopener noreferrer"
           />
-          <Paragraph size="small" class="text-text-secondary">
-            Powered by Lemon Squeezy
-          </Paragraph>
+          <p class="text-sm text-text-secondary">Powered by Lemon Squeezy</p>
         </div>
       </div>
     </main>
@@ -75,9 +78,14 @@ const affiliateFaqs = [
     <!-- FAQ Section -->
     <section id="faq" class="relative z-10 px-6 py-20">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10 text-center">FAQ</H2>
-
-        <FAQ faqs={affiliateFaqs} />
+        <div class="text-center mb-12">
+          <H2 class="mb-6">FAQ</H2>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-8"
+        >
+          <FAQ faqs={affiliateFaqs} />
+        </div>
 
         <div class="flex flex-col items-center gap-4 mt-12">
           <Button
@@ -86,9 +94,7 @@ const affiliateFaqs = [
             target="_blank"
             rel="noopener noreferrer"
           />
-          <Paragraph size="small" class="text-text-secondary">
-            Powered by Lemon Squeezy
-          </Paragraph>
+          <p class="text-sm text-text-secondary">Powered by Lemon Squeezy</p>
         </div>
       </div>
     </section>

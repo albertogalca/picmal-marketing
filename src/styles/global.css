@@ -75,6 +75,28 @@ body {
   }
 }
 
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes rotate-slow {
   from {
     transform: rotate(0deg);
@@ -101,8 +123,33 @@ body {
   animation: fade-in 0.3s ease-out;
 }
 
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
+}
+
+/* Staggered animation delays for lists */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
 }
 
 .gradient-mesh {
@@ -242,4 +289,13 @@ blockquote {
 blockquote p {
   color: #475569 !important;
   margin: 0 !important;
+}
+
+/* Hero gradient background for light/dark mode */
+.hero-gradient {
+  background: radial-gradient(
+    ellipse at top,
+    light-dark(rgba(27, 91, 255, 0.05), rgba(27, 91, 255, 0.1)),
+    transparent 50%
+  );
 }

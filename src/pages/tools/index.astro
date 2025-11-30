@@ -23,20 +23,25 @@ const SITE_DESCRIPTION =
   <body class="bg-background">
     <Header />
 
-    <main class="relative z-10 px-6 pt-32 pb-16">
-      <main class="max-w-4xl mx-auto text-center">
-        <!-- Header Section -->
-        <H1 class="mb-6"> Optimize your workflow </H1>
-        <Paragraph class="mb-24">
-          Simple, free tools to help you make better decisions about image
-          formats and optimization.
-        </Paragraph>
+    <!-- Hero with gradient -->
+    <main class="relative z-10 pt-32 pb-20">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient">
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <H1 class="mb-4">Optimize your workflow</H1>
+          <Paragraph class="max-w-2xl mx-auto">
+            Simple, free tools to help you make better decisions about image
+            formats and optimization.
+          </Paragraph>
+        </div>
 
         <!-- Tools Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           <!-- Image Format Selector Tool -->
           <div
-            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6 transition-all"
+            class="bg-background-subtle border border-text/10 rounded-xl p-6 hover:border-accent/30 transition-all duration-300"
           >
             <a
               href="/tools/image-format-selector"
@@ -55,7 +60,7 @@ const SITE_DESCRIPTION =
 
           <!-- Compression Analyzer (Coming Soon) -->
           <div
-            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
+            class="bg-background-subtle border border-text/10 rounded-xl p-6 hover:border-accent/30 transition-all duration-300"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -76,7 +81,7 @@ const SITE_DESCRIPTION =
 
           <!-- Batch Processing Guide (Coming Soon) -->
           <div
-            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
+            class="bg-background-subtle border border-text/10 rounded-xl p-6 hover:border-accent/30 transition-all duration-300"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -99,7 +104,7 @@ const SITE_DESCRIPTION =
 
           <!-- Metadata Viewer (Coming Soon) -->
           <div
-            class="bg-background-subtle border border-text-secondary/20 rounded-lg p-6"
+            class="bg-background-subtle border border-text/10 rounded-xl p-6 hover:border-accent/30 transition-all duration-300"
           >
             <div class="flex justify-between flex-col text-left h-full">
               <header class="gap-2 flex flex-col">
@@ -123,7 +128,7 @@ const SITE_DESCRIPTION =
         <div class="mt-16">
           <PicmalCTA />
         </div>
-      </main>
+      </div>
     </main>
 
     <Footer />

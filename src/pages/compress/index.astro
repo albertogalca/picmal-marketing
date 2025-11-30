@@ -35,21 +35,26 @@ const popularFormats = [
   <body class="bg-background">
     <Header />
 
-    <!-- Hero Section -->
-    <main class="relative z-10 px-6 pt-32 pb-24">
-      <div class="max-w-xl mx-auto text-center">
-        <H1 class="mb-6">Compress images without quality loss</H1>
-        <Paragraph class="mb-8 max-w-xl mx-auto">
-          Reduce file sizes by up to 90% while maintaining visual quality.
-          Support for JPG, PNG, WebP, AVIF, GIF, TIFF, and PDF. 100% offline
-          processing.
-        </Paragraph>
+    <!-- Hero Section with gradient -->
+    <main class="relative z-10 pt-32 pb-20">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient">
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <H1 class="mb-4">Compress images without quality loss</H1>
+          <Paragraph class="max-w-2xl mx-auto">
+            Reduce file sizes by up to 90% while maintaining visual quality.
+            Support for JPG, PNG, WebP, AVIF, GIF, TIFF, and PDF. 100% offline
+            processing.
+          </Paragraph>
+        </div>
 
         <div class="flex flex-col items-center gap-4">
           <Button text="Buy for Mac" />
-          <Paragraph size="small">
+          <p class="text-sm text-text-secondary">
             One-time purchase • 14-day money back guarantee
-          </Paragraph>
+          </p>
         </div>
       </div>
     </main>
@@ -59,22 +64,22 @@ const popularFormats = [
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Popular Compression Formats</H2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {
             popularFormats.map(({ format, label }) => (
               <a
                 href={`/compress/${format}`}
-                class="block p-6 bg-background rounded-lg border border-gray-200 hover:border-blue-600 transition-all duration-200"
+                class="block p-6 bg-background rounded-xl border border-text/10 hover:border-accent/30 transition-all duration-300 group"
               >
                 <div class="flex items-center justify-between">
                   <div>
-                    <h3 class="font-semibold text-text text-lg">{label}</h3>
+                    <h3 class="font-semibold text-text text-lg group-hover:text-accent transition-colors">{label}</h3>
                     <p class="text-text-secondary text-sm mt-1">
                       {compressionFormats[format].useCase}
                     </p>
                   </div>
                   <svg
-                    class="w-5 h-5 text-blue-600"
+                    class="w-5 h-5 text-accent"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -134,7 +139,7 @@ const popularFormats = [
                     </p>
                     <div class="flex flex-wrap gap-2">
                       {info.best_for.map((use) => (
-                        <span class="text-xs px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
+                        <span class="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full">
                           {use}
                         </span>
                       ))}
@@ -143,7 +148,7 @@ const popularFormats = [
 
                   <a
                     href={`/compress/${format}`}
-                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline font-semibold"
+                    class="inline-flex items-center gap-2 text-accent hover:underline font-semibold"
                   >
                     Learn more about {info.name} compression
                     <svg
@@ -174,7 +179,7 @@ const popularFormats = [
         <H2 class="mb-10">Why Compress Images?</H2>
 
         <div class="space-y-6">
-          <div class="bg-background p-6 rounded-lg border border-gray-200">
+          <div class="bg-background p-6 rounded-xl border border-text/10">
             <h3 class="font-semibold text-text text-lg mb-2">
               Faster Website Loading
             </h3>
@@ -184,7 +189,7 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-background p-6 rounded-lg border border-gray-200">
+          <div class="bg-background p-6 rounded-xl border border-text/10">
             <h3 class="font-semibold text-text text-lg mb-2">
               Save Storage Space
             </h3>
@@ -195,7 +200,7 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-background p-6 rounded-lg border border-gray-200">
+          <div class="bg-background p-6 rounded-xl border border-text/10">
             <h3 class="font-semibold text-text text-lg mb-2">
               Email & Upload Limits
             </h3>
@@ -205,7 +210,7 @@ const popularFormats = [
             </Paragraph>
           </div>
 
-          <div class="bg-background p-6 rounded-lg border border-gray-200">
+          <div class="bg-background p-6 rounded-xl border border-text/10">
             <h3 class="font-semibold text-text text-lg mb-2">Faster Backups</h3>
             <Paragraph>
               Smaller files mean faster cloud backups and transfers. Save time

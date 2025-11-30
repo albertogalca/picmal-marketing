@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const today = new Date();
 ---
 
@@ -7,12 +9,13 @@ const today = new Date();
     <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
       <div class="col-span-2">
         <div class="flex items-center gap-3 mb-4">
-          <img
-            src="https://picmal.app/logo.webp"
+          <Image
+            src="/logo.webp"
             alt="Picmal Logo"
-            class="h-8 w-8 rounded-lg shadow-sm"
+            width={32}
+            height={32}
+            class="h-8 w-8 rounded-lg"
             loading="lazy"
-            decoding="async"
           />
           <span class="font-semibold text-lg text-text">Picmal</span>
         </div>

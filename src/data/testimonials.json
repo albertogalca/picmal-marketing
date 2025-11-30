@@ -1,8 +1,16 @@
 [
   {
+    "id": 7,
+    "type": "press",
+    "publication": "MacStories",
+    "logo": "/macstories_proof.webp",
+    "content": "Picmal is an excellent way to manage file conversion and compression jobs of any size. There are other apps that accomplish something similar, but the simplicity and speed with which you can manage batch conversion and compression with Picmal sets it apart and makes it worth checking out.",
+    "link": "https://www.macstories.net/reviews/picmal-streamlines-batch-conversion-and-compression-on-the-mac/"
+  },
+  {
     "id": 1,
     "name": "Marynes",
-    "image": "https://media.licdn.com/dms/image/v2/C5603AQHTG6s9L737HA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1645558794161?e=1763596800&v=beta&t=GGnQRRchoLhyoRtikrW2n3KOfrXZy51paoPPpfSZs1w",
+    "image": "https://media.licdn.com/dms/image/v2/C5603AQHTG6s9L737HA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1645558794161?e=1766016000&v=beta&t=9SmPCtkGlkU2mrzwQBU0wzNqHZz6e0n6ELOz8TgpDec",
     "email": "marynesrf@gmail.com",
     "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
     "date": "Sep 16, 2025"

@@ -9,6 +9,8 @@ import Paragraph from '../../components/Paragraph.astro';
 import Button from '../../components/Button.astro';
 import FAQ from '../../components/FAQ.astro';
 import PicmalCTA from '../../components/PicmalCTA.astro';
+import SectionDivider from '../../components/SectionDivider.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import { getAllCompressionFormats, generateCompressionData, compressionFormats } from '../../data/compression';
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -107,8 +109,10 @@ const comparisonFeatures = [
     <Header />
 
     <!-- Hero Section -->
-    <main class="relative z-10 px-6 pt-32 pb-24">
-      <div class="max-w-4xl mx-auto text-center">
+    <main class="relative z-10 pt-50 pb-32">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+
+      <div class="max-w-4xl mx-auto px-6 text-center">
         <H1 class="mb-6">Compress {formatInfo.name} Images on Mac</H1>
         <Paragraph class="mb-8 max-w-xl mx-auto">
           Reduce {formatInfo.name} file sizes by up to 90% while maintaining quality. 100% offline processing. No uploads. No subscriptions. No hassle.
@@ -123,10 +127,21 @@ const comparisonFeatures = [
       </div>
     </main>
 
+    <SectionDivider />
+
     <!-- How to Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">How to Compress {formatInfo.name} Images</H2>
+
+        <div class="mb-8 rounded-xl overflow-hidden border border-text/10">
+          <ImagePlaceholder
+            text={`Compress ${formatInfo.name} Images`}
+            aspectRatio="16/9"
+            rounded={false}
+          />
+        </div>
+
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold">1</div>
@@ -160,13 +175,15 @@ const comparisonFeatures = [
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- Comparison Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Why Choose Picmal for {formatInfo.name} Compression?</H2>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
+        <div class="overflow-x-auto rounded-xl border border-text/10">
+          <table class="w-full text-left border-collapse bg-background-subtle/50">
             <thead>
               <tr class="border-b border-gray-200">
                 <th class="py-4 px-4 font-semibold text-text text-base">Feature</th>
@@ -188,8 +205,10 @@ const comparisonFeatures = [
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- Use Cases Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Perfect for {formatInfo.useCase}</H2>
 
@@ -210,16 +229,24 @@ const comparisonFeatures = [
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- FAQ Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Frequently asked questions</H2>
-        <FAQ faqs={compressionData.faqs} />
+        <div
+          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-8"
+        >
+          <FAQ faqs={compressionData.faqs} />
+        </div>
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
@@ -230,8 +257,10 @@ const comparisonFeatures = [
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- More Formats Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto text-center">
         <H2 class="mb-6">More Compression Formats</H2>
         <Paragraph class="mb-8">

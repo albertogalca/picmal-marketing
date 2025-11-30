@@ -9,6 +9,7 @@ import Paragraph from "../../components/Paragraph.astro";
 import Button from "../../components/Button.astro";
 import FAQ from "../../components/FAQ.astro";
 import PicmalCTA from "../../components/PicmalCTA.astro";
+import SectionDivider from "../../components/SectionDivider.astro";
 import {
   getAllConversions,
   generateConversionData,
@@ -135,10 +136,11 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     <Header />
 
     <!-- Hero Section -->
-    <main class="relative z-10 px-6 pt-32 pb-24">
-      <div class="max-w-4xl mx-auto text-center">
-        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1
-        >
+    <main class="relative z-10 pt-50 pb-32">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1>
         <Paragraph class="mb-8 max-w-xl mx-auto">
           Tired of online converters that compromise your privacy or quality?
           Picmal converts {fromFormat.name} files to {toFormat.name} instantly on
@@ -154,12 +156,13 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </main>
 
+    <SectionDivider />
+
     <!-- How to Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10"
-          >How to Convert {fromFormat.name} to {toFormat.name}</H2
-        >
+        <H2 class="mb-10">How to Convert {fromFormat.name} to {toFormat.name}</H2>
+
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div
@@ -197,8 +200,8 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
               <h3 class="font-semibold text-text mb-1">
                 Choose {toFormat.name}
               </h3>
-              <Paragraph
-                >Select {toFormat.name} as your output format in the row "To"
+              <Paragraph>
+                Select {toFormat.name} as your output format in the row "To"
               </Paragraph>
             </div>
           </div>
@@ -219,26 +222,28 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
-    <!-- Comparison Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10"
-          >Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?</H2
-        >
+    <SectionDivider />
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
+    <!-- Comparison Section -->
+    <section class="relative z-10 px-6 py-20 bg-background">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-10">
+          Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?
+        </H2>
+
+        <div class="overflow-x-auto rounded-xl border border-text/10">
+          <table class="w-full text-left border-collapse bg-background-subtle/50">
             <thead>
               <tr class="border-b border-gray-200">
-                <th class="py-4 px-4 font-semibold text-text text-base"
-                  >Feature</th
-                >
-                <th class="py-4 px-4 font-semibold text-text text-base"
-                  >Online Converters</th
-                >
-                <th class="py-4 px-4 font-semibold text-text text-base"
-                  >Picmal</th
-                >
+                <th class="py-4 px-4 font-semibold text-text text-base">
+                  Feature
+                </th>
+                <th class="py-4 px-4 font-semibold text-text text-base">
+                  Online Converters
+                </th>
+                <th class="py-4 px-4 font-semibold text-text text-base">
+                  Picmal
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -263,16 +268,18 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- Use Cases Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10"
-          >Perfect for {
+        <H2 class="mb-10">
+          Perfect for {
             toFormat.name === "jpg"
               ? "Universal photo sharing and web use"
               : toFormat.useCase
-          }</H2
-        >
+          }
+        </H2>
 
         <div class="space-y-8">
           {
@@ -298,16 +305,24 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- FAQ Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Frequently asked questions</H2>
-        <FAQ faqs={conversionData.faqs} />
+        <div
+          class="bg-background-subtle/50 border border-text/10 rounded-2xl p-8"
+        >
+          <FAQ faqs={conversionData.faqs} />
+        </div>
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
@@ -318,8 +333,10 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- More Conversions Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-6 py-20 bg-background">
       <div class="max-w-4xl mx-auto text-center">
         <H2 class="mb-6">More Format Conversions</H2>
         <Paragraph class="mb-8">

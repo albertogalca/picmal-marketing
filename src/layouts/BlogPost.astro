@@ -44,12 +44,15 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
   >
     <Header />
 
-    <!-- Back to Blog Link -->
-    <div class="relative z-10 px-6 pt-32 pb-12">
-      <div class="max-w-4xl mx-auto">
+    <!-- Hero with gradient -->
+    <div class="relative z-10 pt-32 pb-12">
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient">
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6">
         <a
           href="/blog"
-          class="inline-flex items-center transition-colors cursor-pointer text-text hover:text-text"
+          class="inline-flex items-center transition-colors cursor-pointer text-text-secondary hover:text-text"
         >
           ← Back to blog
         </a>
@@ -69,23 +72,23 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
                   alt={`Hero image for the article ${title}`}
                   width={800}
                   height={400}
-                  class="w-full h-auto rounded-lg"
+                  class="w-full h-auto rounded-xl border border-text/10"
                 />
               </div>
             )
           }
-          <div class="flex items-center gap-3 mb-8 text-base font-semibold">
+          <div class="flex items-center gap-3 mb-8 text-sm">
             {
               category && (
                 <>
-                  <span class="text-text-secondary">{category}</span>
-                  <span class="text-text font-semibold">•</span>
+                  <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">{category}</span>
+                  <span class="text-text-secondary">•</span>
                 </>
               )
             }
             <time
               datetime={pubDate.toISOString()}
-              class="text-text font-semibold"
+              class="text-text-secondary"
             >
               <FormattedDate date={pubDate} />
             </time>

@@ -15,42 +15,48 @@ export interface Props {
 
 const {
   showImage = true,
-  variant = "dark",
   title = "Use Picmal to easily convert your media on your Mac",
   description = "If you're not happy with your purchase, you can request a refund within 14 days.",
   buttonText = "Buy now",
   className = "",
 } = Astro.props;
-
-const isDark = variant === "dark";
 ---
 
 <div
-  class={`relative bg-background-subtle rounded-lg p-6 sm:p-8 overflow-hidden ${className}`}
+  class={`relative bg-background-subtle border border-text/10 rounded-2xl overflow-hidden group grid grid-cols-1 lg:grid-cols-8 items-center ${className}`}
 >
-  <!-- Picmal app interface - hidden on mobile -->
+  <!-- Subtle gradient overlay -->
+  <div
+    class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+    style="background: radial-gradient(circle at bottom right, rgba(27, 91, 255, 0.03), transparent 60%);"
+  >
+  </div>
+
+  <!-- Content with space for image on the right -->
+  <div class="relative px-4 py-8 sm:p-10 md:p-12 col-span-3">
+    <div class="relative z-10 text-left max-w-full">
+      <H3 class="mb-4">
+        {title}
+      </H3>
+      <Paragraph class="mb-8 text-text-secondary">
+        {description}
+      </Paragraph>
+      <Button text={buttonText} />
+    </div>
+  </div>
+
+  <!-- Picmal app interface - positioned absolute bottom-right -->
   {
     showImage && (
-      <div class="absolute -bottom-30 -right-40 hidden md:block border border-text-secondary/10 rounded-lg">
+      <div class="pointer-events-none px-4 col-span-5 hidden lg:block">
         <Image
           src="/convert_demo.png"
           alt="Picmal App Interface"
           width={480}
           height={360}
-          class="w-130 h-auto rounded-tl-lg"
+          class="w-full ml-auto h-auto"
         />
       </div>
     )
   }
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-full sm:max-w-md md:max-w-xs text-left">
-    <H3 class="mb-2">
-      {title}
-    </H3>
-    <Paragraph class="mb-8 text-text-secondary">
-      {description}
-    </Paragraph>
-    <Button text={buttonText} />
-  </div>
 </div>

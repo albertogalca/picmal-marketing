@@ -7,20 +7,17 @@ import Button from "./Button.astro";
 const pricingTiers = [
   {
     devices: 1,
-    price: 9.99,
-    regularPrice: 15.99,
+    price: 15.99,
     url: "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
   },
   {
     devices: 3,
-    price: 26.97,
-    regularPrice: 41.97,
+    price: 41.97,
     url: "https://picmal.lemonsqueezy.com/buy/00394b68-9753-4c9f-81a4-17ed7c192fea",
   },
   {
     devices: 5,
-    price: 39.95,
-    regularPrice: 65.95,
+    price: 65.95,
     url: "https://picmal.lemonsqueezy.com/buy/e77fee96-f07a-4f57-91ec-56836cf6d23b",
   },
 ];
@@ -32,21 +29,12 @@ const pricingTiers = [
     <H3 class="mb-6">Select number of devices</H3>
 
     <!-- Price Display -->
-    <div class="flex items-baseline gap-3 mb-2">
-      <span
-        id="regular-price"
-        class="text-text-secondary text-2xl line-through"
-      >
-        ${pricingTiers[0].regularPrice.toFixed(2)}
-      </span>
+    <div class="flex items-baseline gap-3 mb-8">
       <span id="current-price" class="text-4xl font-semibold text-text">
         ${pricingTiers[0].price.toFixed(2)}
       </span>
       <span class="text-text-secondary text-lg">/once</span>
     </div>
-    <Paragraph size="small" class="text-amber-500 mb-8">
-      Early adopter pricing — Limited time
-    </Paragraph>
 
     <!-- Features Header -->
     <Paragraph class="mb-4"> Features </Paragraph>
@@ -248,7 +236,6 @@ const pricingTiers = [
   const increaseBtn = document.getElementById("increase-devices");
   const deviceCountEl = document.getElementById("device-count");
   const deviceLabelEl = document.getElementById("device-label");
-  const regularPriceEl = document.getElementById("regular-price");
   const currentPriceEl = document.getElementById("current-price");
   const seatCountTextEl = document.getElementById("seat-count-text");
   const buyButton = document.getElementById("buy-button");
@@ -261,8 +248,7 @@ const pricingTiers = [
     deviceCountEl.textContent = tier.devices;
     deviceLabelEl.textContent = tier.devices === 1 ? "device" : "devices";
 
-    // Update prices
-    regularPriceEl.textContent = `$${tier.regularPrice.toFixed(2)}`;
+    // Update price
     currentPriceEl.textContent = `$${tier.price.toFixed(2)}`;
 
     // Update feature list

@@ -23,7 +23,7 @@ const pricingTiers = [
 ];
 ---
 
-<div class="bg-background-subtle rounded-lg p-4 lg:p-8 border border-text/10">
+<div class="bg-background-subtle rounded-lg p-4 md:p-8 border border-text/10">
   <div class="mb-8">
     <!-- Title -->
     <H3 class="mb-6">Select number of devices</H3>
@@ -108,7 +108,27 @@ const pricingTiers = [
             clip-rule="evenodd"></path>
         </svg>
         <div>
-          <Paragraph>100+ formats (images, videos, audio)</Paragraph>
+          <Paragraph>
+            Convert & compress images, videos, audio <button
+              id="open-formats-modal"
+              class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle ml-0.5"
+              type="button"
+              aria-label="View supported formats"
+              ><svg
+                class="w-2.5 h-2.5 text-text-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg></button
+            >
+          </Paragraph>
         </div>
       </li>
       <li class="flex items-start gap-3">
@@ -123,77 +143,43 @@ const pricingTiers = [
             clip-rule="evenodd"></path>
         </svg>
         <div>
-          <Paragraph>Convert between formats</Paragraph>
-
-          <li class="flex items-start gap-3">
-            <svg
-              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <div>
-              <Paragraph>Compress files</Paragraph>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg
-              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <div>
-              <Paragraph>Batch processing</Paragraph>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg
-              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <div>
-              <Paragraph>Works offline</Paragraph>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg
-              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <div>
-              <Paragraph>Free updates</Paragraph>
-            </div>
-          </li>
+          <Paragraph>Batch processing for multiple files</Paragraph>
         </div>
       </li>
-
-      <!-- CTA Button -->
-      <Button id="buy-button" text="Buy for Mac" class="w-full" />
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>Works offline, no data leaves your Mac</Paragraph>
+        </div>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg
+          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div>
+          <Paragraph>Free updates included</Paragraph>
+        </div>
+      </li>
     </ul>
-    <Paragraph size="small" class="text-center text-text-secondary mt-4">
-      Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
-    </Paragraph>
+
+    <!-- CTA Button -->
+    <Button id="buy-button" text="Buy for Mac" class="w-full mt-6" />
 
     <script define:vars={{ pricingTiers }}>
       // Initialize state
@@ -250,3 +236,7 @@ const pricingTiers = [
     </script>
   </div>
 </div>
+
+<Paragraph size="small" class="text-center text-text-secondary mt-4">
+  Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+</Paragraph>

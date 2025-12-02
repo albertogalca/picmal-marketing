@@ -14,6 +14,7 @@ import FeaturedOn from "../components/FeaturedOn.astro";
 import DynamicPricing from "../components/DynamicPricing.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import { Image } from "astro:assets";
 
 const SITE_TITLE = "Picmal - Your media converter for Mac";
@@ -95,10 +96,9 @@ const licenseFaqs = [
 
           <!-- CTA Buttons -->
           <div class="flex flex-col items-center gap-4">
-            <div
-              class="flex flex-col lg:flex-row gap-3 items-center justify-center"
-            >
-              <Button text="Buy for Mac ($15.99)" />
+            <div class="flex flex-row gap-2 items-center justify-center">
+              <Button class="md:hidden" text="Buy for Mac" />
+              <Button class="hidden md:block" text="Buy for Mac ($15.99)" />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
                 class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-text/10 hover:border-text/20"
@@ -161,7 +161,27 @@ const licenseFaqs = [
 
     <section id="features" class="relative z-10 px-6 py-20">
       <div class="max-w-5xl mx-auto">
-        <H2 class="mb-6 text-center">Convert between<br />100+ formats</H2>
+        <H2 class="mb-6 text-center"
+          >Convert between<br />multiple formats <button
+            id="open-formats-modal-hero"
+            class="inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all -translate-y-1"
+            type="button"
+            aria-label="View supported formats"
+            ><svg
+              class="w-3.5 h-3.5 md:w-4 md:h-4 text-text-secondary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg></button
+          ></H2
+        >
         <Paragraph class="text-center mb-12 max-w-xl mx-auto">
           From PSD to PNG, MOV to MP4, or WAV to MP3. Handle any image, video,
           or audio format with professional-grade quality. No technical
@@ -245,7 +265,9 @@ const licenseFaqs = [
       <div class="max-w-5xl mx-auto">
         <H2 class="mb-16 text-center">Why Picmal?</H2>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-left">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-left"
+        >
           <FeatureCard
             title="Designed for Mac"
             description="Native macOS app that feels right at home with beautiful interface and smooth performance."
@@ -506,30 +528,41 @@ const licenseFaqs = [
     <!-- Pricing -->
     <section id="pricing" class="relative z-10 px-6 py-20">
       <div class="max-w-5xl mx-auto">
+        <!-- Mobile: Title centered above pricing -->
+        <div class="md:hidden text-center mb-8">
+          <H2 class="mb-4">Pay once, own forever</H2>
+          <Paragraph class="max-w-md mx-auto">
+            Buy Picmal once and use it forever with all future updates included.
+            14-days money back guarantee.
+          </Paragraph>
+        </div>
+
         <div
-          class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-20 items-start"
+          class="flex flex-col md:flex-row justify-between gap-8 md:gap-16 items-center md:items-start"
         >
           <!-- Pricing Card -->
-          <div class="order-2">
-            <div class="sticky top-8">
+          <div
+            class="w-full max-w-md md:max-w-none md:w-auto order-1 md:order-2"
+          >
+            <div class="md:sticky md:top-8">
               <DynamicPricing />
             </div>
           </div>
 
-          <!-- Benefits -->
-          <div class="lg:space-y-6 text-center lg:text-left order-1 max-w-md">
+          <!-- Benefits (Desktop only) -->
+          <div class="hidden md:block md:space-y-6 text-left order-1 max-w-md">
             <H2 class="mb-6">Pay once, own forever</H2>
-            <Paragraph class="max-w-2xl mx-auto">
+            <Paragraph>
               Buy Picmal once and use it forever with all future updates
               included. 14-days money back guarantee.
             </Paragraph>
-            <div class="hidden lg:block">
-              <FAQ faqs={licenseFaqs} />
-            </div>
-          </div>
-          <div class="lg:hidden order-3">
             <FAQ faqs={licenseFaqs} />
           </div>
+        </div>
+
+        <!-- Mobile: FAQ below pricing -->
+        <div class="md:hidden mt-8">
+          <FAQ faqs={licenseFaqs} />
         </div>
       </div>
     </section>
@@ -544,7 +577,7 @@ const licenseFaqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-text/10 rounded-lg p-4 lg:p-8"
+          class="bg-background-subtle/50 border border-text/10 rounded-lg p-4 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>
@@ -552,6 +585,10 @@ const licenseFaqs = [
     </section>
 
     <Footer />
+
+    <!-- Modal rendered at page level to avoid z-index issues -->
+    <SupportedFormatsModal />
+
     <script>
       window.lemonSqueezyAffiliateConfig = { store: "picmal" };
     </script>

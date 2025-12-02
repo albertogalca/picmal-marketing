@@ -44,7 +44,7 @@ const posts = (await getCollection("blog"))
         <BlogNavigation currentCategory="Guide" />
 
         <!-- Blog Posts Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {
             posts.map((post) => (
               <article class="group">

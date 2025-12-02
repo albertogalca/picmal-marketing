@@ -1,0 +1,292 @@
+---
+import H2 from "./H2.astro";
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
+
+// Modal component for displaying supported formats
+const imageFormats = {
+  standard: [
+    "JPEG",
+    "PNG",
+    "GIF",
+    "BMP",
+    "TIFF",
+    "WebP",
+    "AVIF",
+    "HEIC",
+    "HEIF",
+    "ICO",
+  ],
+  professional: ["PSD", "AI", "EPS", "PDF"],
+  raw: ["CR2", "NEF", "ARW", "RAF", "DNG"],
+  modern: ["AVIF", "JXL", "WebP", "QOI"],
+  specialized: [
+    "JP2",
+    "TGA",
+    "DDS",
+    "EXR",
+    "SGI",
+    "PCX",
+    "XBM",
+    "XPM",
+    "PBM",
+    "PGM",
+    "PPM",
+    "PNM",
+  ],
+  vector: ["SVG", "PDF"],
+};
+
+const audioFormats = {
+  common: ["MP3", "WAV", "AAC", "M4A", "FLAC", "OGG", "Opus", "AIFF"],
+  professional: ["AC3", "DTS", "WV", "TTA"],
+  legacy: [
+    "AU",
+    "CAF",
+    "SPX",
+    "IRCAM",
+    "SND",
+    "VOC",
+    "W64",
+    "SLN",
+    "HCOM",
+    "PAF",
+    "MP2",
+    "WVE",
+    "NIST",
+    "AIF",
+    "AIFC",
+    "AVR",
+    "PVF",
+    "WMA",
+    "OGA",
+    "M4R",
+  ],
+};
+
+const videoFormats = {
+  common: ["MP4", "MOV", "AVI", "MKV", "WebM", "FLV", "WMV", "M4V"],
+  broadcast: ["MPEG", "MPG", "M2TS", "MTS", "VOB", "TS", "WTV"],
+  specialized: ["3GP", "ASF", "OGV", "MJPEG", "M2V", "HEVC", "F4V", "MXF"],
+};
+---
+
+<div
+  id="formats-modal"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="formats-modal-title"
+>
+  <!-- Backdrop -->
+  <div
+    id="formats-modal-backdrop"
+    class="fixed inset-0 bg-background/80 backdrop-blur-md"
+  >
+  </div>
+
+  <!-- Modal Content -->
+  <div
+    class="relative z-10 bg-background border border-text/10 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+  >
+    <!-- Header -->
+    <div
+      class="flex items-center justify-between bg-background-subtle px-6 py-4 border-b border-text/10"
+    >
+      <Paragraph id="formats-modal-title" class="font-semibold text-text">
+        Supported formats
+      </Paragraph>
+      <button
+        id="formats-modal-close"
+        class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-text/5 transition-colors -mr-1"
+        aria-label="Close modal"
+      >
+        <svg
+          class="w-5 h-5 text-text-secondary"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="px-6 py-6 overflow-y-auto max-h-[calc(90vh-80px)] space-y-8">
+      <!-- Images Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-lg">Images</H3>
+            <Paragraph size="small" class="text-xs text-text-secondary"
+              >29+ input · 17 output</Paragraph
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            Object.values(imageFormats)
+              .flat()
+              .map((format) => (
+                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                  {format}
+                </span>
+              ))
+          }
+        </div>
+      </section>
+
+      <!-- Audio Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-lg">Audio</H3>
+            <Paragraph size="small">31 input · 6 output</Paragraph>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            Object.values(audioFormats)
+              .flat()
+              .map((format) => (
+                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                  {format}
+                </span>
+              ))
+          }
+        </div>
+      </section>
+
+      <!-- Video Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-lg">Video</H3>
+            <Paragraph size="small">25 input · 13 output</Paragraph>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            Object.values(videoFormats)
+              .flat()
+              .map((format) => (
+                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                  {format}
+                </span>
+              ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initFormatsModal() {
+    const modal = document.getElementById("formats-modal");
+    const backdrop = document.getElementById("formats-modal-backdrop");
+    const closeBtn = document.getElementById("formats-modal-close");
+    const openBtn = document.getElementById("open-formats-modal");
+    const openBtnHero = document.getElementById("open-formats-modal-hero");
+
+    function openFormatsModal() {
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFormatsModal() {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    // Open modal triggers
+    openBtn?.addEventListener("click", openFormatsModal);
+    openBtnHero?.addEventListener("click", openFormatsModal);
+
+    // Close on backdrop click
+    backdrop?.addEventListener("click", closeFormatsModal);
+
+    // Close on button click
+    closeBtn?.addEventListener("click", closeFormatsModal);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+        closeFormatsModal();
+      }
+    });
+  }
+
+  // Run on DOMContentLoaded and on Astro page transitions
+  document.addEventListener("DOMContentLoaded", initFormatsModal);
+  document.addEventListener("astro:page-load", initFormatsModal);
+
+  // Also run immediately in case DOM is already loaded
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initFormatsModal();
+  }
+</script>

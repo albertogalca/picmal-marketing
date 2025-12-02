@@ -11,7 +11,7 @@ const currentPage = Astro.url.pathname;
   class="fixed left-0 right-0 z-30 text-sm transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-text/10"
   style="top: 0;"
 >
-  <div class="px-6 lg:px-0 py-4">
+  <div class="px-6 xl:px-0 py-4">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div class="flex items-center">
         <a href="/" class="flex items-center gap-3 cursor-pointer">
@@ -27,7 +27,7 @@ const currentPage = Astro.url.pathname;
         </a>
       </div>
 
-      <div class="hidden xl:flex items-center space-x-6 2xl:space-x-8">
+      <div class="hidden md:flex items-center space-x-6 2md:space-x-8">
         <a
           href="/#features"
           class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
@@ -82,7 +82,7 @@ const currentPage = Astro.url.pathname;
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-button"
-          class="xl:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-secondary hover:bg-background-subtle text-sm transition-colors"
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-secondary hover:bg-background-subtle text-sm transition-colors"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -104,7 +104,7 @@ const currentPage = Astro.url.pathname;
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden xl:hidden">
+    <div id="mobile-menu" class="hidden md:hidden">
       <div class="py-6 px-2">
         <div class="grid grid-cols-2 gap-4">
           <a

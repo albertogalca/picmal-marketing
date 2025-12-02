@@ -3,7 +3,7 @@ import { getEntry, render } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { SITE_TITLE } from "../../consts";
 import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
 import Paragraph from "../../components/Paragraph.astro";
@@ -28,9 +28,9 @@ const { Content } = await render(changelog);
 
     <!-- Hero with gradient -->
     <main class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
 
-      <div class="max-w-5xl mx-auto px-6">
+      <div class="max-w-3xl mx-auto px-6">
         <div class="text-center mb-16">
           <H1 class="mb-4">Changelog</H1>
           <Paragraph class="max-w-2xl mx-auto">
@@ -39,28 +39,36 @@ const { Content } = await render(changelog);
         </div>
 
         <!-- Review CTA -->
-        <div class="relative overflow-hidden rounded-2xl p-[1px] bg-gradient-to-r from-accent/40 via-accent/20 to-accent/40 mb-12">
-          <div class="relative bg-background rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+        <div class="relative overflow-hidden rounded-lg mb-12">
+          <div
+            class="relative bg-background-subtle border border-text/10 rounded-lg p-6 flex flex-col sm:items-start sm:justify-between gap-4 sm:gap-6"
+          >
             <div class="flex items-start sm:items-center gap-4">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                </svg>
-              </div>
-              <p class="text-text-secondary leading-relaxed text-sm sm:text-base">
-                As an indie developer, Picmal grows through word of mouth. A review only takes a minute and makes a huge difference.
-              </p>
+              <Paragraph>
+                As an indie developer, Picmal grows through word of mouth. A
+                review only takes a minute and makes a huge difference.
+              </Paragraph>
             </div>
             <a
               href="https://tally.so/r/Me18qE"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex-shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-dark text-white font-medium rounded-lg transition-colors w-full sm:w-auto"
+              class="flex-shrink-0 inline-flex items-center justify-center gap-2 text-accent hover:text-accent-dark font-medium transition-colors w-full sm:w-auto"
             >
               Leave a review
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"/>
-                <path d="m12 5 7 7-7 7"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
               </svg>
             </a>
           </div>
@@ -74,16 +82,14 @@ const { Content } = await render(changelog);
                  prose-h3:text-xl prose-h3:mb-3
                  prose-h4:text-lg prose-h4:mb-2
                  prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-                 prose-img:rounded-xl prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border
-                 prose-video:rounded-xl prose-video:my-6 prose-video:shadow-lg
+                 prose-img:rounded-lg prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border
+                 prose-video:rounded-lg prose-video:my-6 prose-video:shadow-lg
                  prose-li:text-text-secondary prose-li:leading-relaxed
                  prose-ul:space-y-2
                  prose-strong:text-text prose-strong:font-semibold
                  prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
                  prose-pre:bg-background-subtle prose-pre:border prose-pre:border-text/10
-                 prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50
-                 [&>hr]:my-12 [&>hr]:border-border [&>hr]:border-t-0
-                 [&>h2]:text-2xl [&>h2]:mb-4 [&>h2]:mt-0 [&>h2]:pb-3 [&>h2]:border-b [&>h2]:border-border"
+                 prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50"
         >
           <Content />
         </div>
@@ -92,30 +98,3 @@ const { Content } = await render(changelog);
     <Footer />
   </body>
 </html>
-
-<style>
-  /* Latest badge on first entry */
-  .changelog-content > h2:first-of-type {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .changelog-content > h2:first-of-type::after {
-    content: 'Latest';
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
-    background: rgba(27, 91, 255, 0.1);
-    padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
-  }
-
-  @media (max-width: 640px) {
-    .changelog-content > h2:first-of-type::after {
-      display: none;
-    }
-  }
-</style>

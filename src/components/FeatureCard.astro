@@ -10,8 +10,10 @@ export interface Props {
 const { title, description } = Astro.props;
 ---
 
-<div class="bg-background-subtle rounded-2xl p-6 border border-text/10">
-  <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-text/10">
+<div class="bg-background-subtle rounded-lg p-6 border border-text/10">
+  <div
+    class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-text/10"
+  >
     <div class="w-9 h-9 [&_path]:stroke-text [&_path]:stroke-[2.5px]">
       <slot name="icon" />
     </div>

@@ -23,36 +23,23 @@ const pricingTiers = [
 ];
 ---
 
-<div class="bg-background-subtle rounded-2xl p-4 lg:p-8 border border-text/10">
+<div class="bg-background-subtle rounded-lg p-4 lg:p-8 border border-text/10">
   <div class="mb-8">
     <!-- Title -->
     <H3 class="mb-6">Select number of devices</H3>
 
     <!-- Price Display -->
-    <div class="flex items-baseline gap-3 mb-8">
+    <div class="flex items-baseline gap-1 mb-8">
       <span id="current-price" class="text-4xl font-semibold text-text">
         ${pricingTiers[0].price.toFixed(2)}
       </span>
-      <span class="text-text-secondary text-lg">/once</span>
+      <span class="text-text-secondary text-lg">/ once</span>
     </div>
-
-    <!-- Features Header -->
-    <Paragraph class="mb-4"> Features </Paragraph>
 
     <!-- Features List -->
     <ul class="space-y-2 mb-8">
       <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 mb-4">
           <!-- Device Selector -->
           <div class="flex items-center gap-2">
             <button
@@ -121,24 +108,6 @@ const pricingTiers = [
             clip-rule="evenodd"></path>
         </svg>
         <div>
-          <Paragraph class="font-semibold"
-            >14 days money back guarantee</Paragraph
-          >
-        </div>
-      </li>
-
-      <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div>
           <Paragraph>100+ formats (images, videos, audio)</Paragraph>
         </div>
       </li>
@@ -155,128 +124,129 @@ const pricingTiers = [
         </svg>
         <div>
           <Paragraph>Convert between formats</Paragraph>
+
+          <li class="flex items-start gap-3">
+            <svg
+              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <Paragraph>Compress files</Paragraph>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg
+              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <Paragraph>Batch processing</Paragraph>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg
+              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <Paragraph>Works offline</Paragraph>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg
+              class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <Paragraph>Free updates</Paragraph>
+            </div>
+          </li>
         </div>
       </li>
-      <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div>
-          <Paragraph>Compress files</Paragraph>
-        </div>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div>
-          <Paragraph>Batch processing</Paragraph>
-        </div>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div>
-          <Paragraph>Works offline</Paragraph>
-        </div>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg
-          class="w-5 h-5 text-text-secondary flex-shrink-0 mt-0.5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <div>
-          <Paragraph>Free updates</Paragraph>
-        </div>
-      </li>
+
+      <!-- CTA Button -->
+      <Button id="buy-button" text="Buy for Mac" class="w-full" />
     </ul>
+    <Paragraph size="small" class="text-center text-text-secondary mt-4">
+      Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+    </Paragraph>
+
+    <script define:vars={{ pricingTiers }}>
+      // Initialize state
+      let currentTierIndex = 0;
+
+      // Get DOM elements
+      const decreaseBtn = document.getElementById("decrease-devices");
+      const increaseBtn = document.getElementById("increase-devices");
+      const deviceCountEl = document.getElementById("device-count");
+      const deviceLabelEl = document.getElementById("device-label");
+      const currentPriceEl = document.getElementById("current-price");
+      const seatCountTextEl = document.getElementById("seat-count-text");
+      const buyButton = document.getElementById("buy-button");
+
+      // Update UI function
+      function updateUI() {
+        const tier = pricingTiers[currentTierIndex];
+
+        // Update device count
+        deviceCountEl.textContent = tier.devices;
+        deviceLabelEl.textContent = tier.devices === 1 ? "device" : "devices";
+
+        // Update price
+        currentPriceEl.textContent = `$${tier.price.toFixed(2)}`;
+
+        // Update feature list
+        seatCountTextEl.textContent = `${tier.devices} ${tier.devices === 1 ? "seat" : "seats"}`;
+
+        // Update buy button URL
+        buyButton.href = tier.url;
+
+        // Update button states
+        decreaseBtn.disabled = currentTierIndex === 0;
+        increaseBtn.disabled = currentTierIndex === pricingTiers.length - 1;
+      }
+
+      // Event listeners
+      decreaseBtn.addEventListener("click", () => {
+        if (currentTierIndex > 0) {
+          currentTierIndex--;
+          updateUI();
+        }
+      });
+
+      increaseBtn.addEventListener("click", () => {
+        if (currentTierIndex < pricingTiers.length - 1) {
+          currentTierIndex++;
+          updateUI();
+        }
+      });
+
+      // Initial UI update
+      updateUI();
+    </script>
   </div>
-
-  <!-- CTA Button -->
-  <Button id="buy-button" text="Buy for Mac" class="w-full" />
 </div>
-<Paragraph size="small" class="text-center text-text-secondary mt-4">
-  Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
-</Paragraph>
-
-<script define:vars={{ pricingTiers }}>
-  // Initialize state
-  let currentTierIndex = 0;
-
-  // Get DOM elements
-  const decreaseBtn = document.getElementById("decrease-devices");
-  const increaseBtn = document.getElementById("increase-devices");
-  const deviceCountEl = document.getElementById("device-count");
-  const deviceLabelEl = document.getElementById("device-label");
-  const currentPriceEl = document.getElementById("current-price");
-  const seatCountTextEl = document.getElementById("seat-count-text");
-  const buyButton = document.getElementById("buy-button");
-
-  // Update UI function
-  function updateUI() {
-    const tier = pricingTiers[currentTierIndex];
-
-    // Update device count
-    deviceCountEl.textContent = tier.devices;
-    deviceLabelEl.textContent = tier.devices === 1 ? "device" : "devices";
-
-    // Update price
-    currentPriceEl.textContent = `$${tier.price.toFixed(2)}`;
-
-    // Update feature list
-    seatCountTextEl.textContent = `${tier.devices} ${tier.devices === 1 ? "seat" : "seats"}`;
-
-    // Update buy button URL
-    buyButton.href = tier.url;
-
-    // Update button states
-    decreaseBtn.disabled = currentTierIndex === 0;
-    increaseBtn.disabled = currentTierIndex === pricingTiers.length - 1;
-  }
-
-  // Event listeners
-  decreaseBtn.addEventListener("click", () => {
-    if (currentTierIndex > 0) {
-      currentTierIndex--;
-      updateUI();
-    }
-  });
-
-  increaseBtn.addEventListener("click", () => {
-    if (currentTierIndex < pricingTiers.length - 1) {
-      currentTierIndex++;
-      updateUI();
-    }
-  });
-
-  // Initial UI update
-  updateUI();
-</script>

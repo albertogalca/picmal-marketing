@@ -23,7 +23,7 @@ const {
 ---
 
 <div
-  class={`relative bg-background-subtle border border-text/10 rounded-2xl overflow-hidden group grid grid-cols-1 lg:grid-cols-8 items-center ${className}`}
+  class={`relative bg-background-subtle border border-text/10 rounded-lg overflow-hidden group grid grid-cols-1 lg:grid-cols-8 items-center ${className}`}
 >
   <!-- Subtle gradient overlay -->
   <div
@@ -33,12 +33,12 @@ const {
   </div>
 
   <!-- Content with space for image on the right -->
-  <div class="relative px-4 py-8 lg:p-10 lg:p-12 col-span-3">
+  <div class="relative px-4 py-8 lg:p-12 col-span-4">
     <div class="relative z-10 text-left max-w-full">
       <H3 class="mb-4">
         {title}
       </H3>
-      <Paragraph class="mb-8 text-text-secondary">
+      <Paragraph size="small" class="mb-8 text-text-secondary">
         {description}
       </Paragraph>
       <Button text={buttonText} />
@@ -48,7 +48,7 @@ const {
   <!-- Picmal app interface - positioned absolute bottom-right -->
   {
     showImage && (
-      <div class="pointer-events-none px-4 col-span-5 hidden lg:block">
+      <div class="pointer-events-none px-4 col-span-4 hidden lg:block">
         <Image
           src="/convert_demo.png"
           alt="Picmal App Interface"

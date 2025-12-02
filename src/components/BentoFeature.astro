@@ -31,7 +31,7 @@ const accentClass = accent
 ---
 
 <div
-  class={`group relative overflow-hidden rounded-2xl border transition-all duration-500 hover:border-text/20 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 ${sizeClasses[size]} ${accentClass}`}
+  class={`group relative overflow-hidden rounded-lg border transition-all duration-500 hover:border-text/20 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 ${sizeClasses[size]} ${accentClass}`}
 >
   <!-- Subtle gradient overlay on hover -->
   <div
@@ -45,7 +45,7 @@ const accentClass = accent
     {
       icon && (
         <div class="mb-6">
-          <div class="w-14 h-14 rounded-xl bg-background flex items-center justify-center border border-text/10 group-hover:border-accent/30 group-hover:bg-accent/5 transition-all duration-300">
+          <div class="w-14 h-14 rounded-lg bg-background flex items-center justify-center border border-text/10 group-hover:border-accent/30 group-hover:bg-accent/5 transition-all duration-300">
             <div class="w-8 h-8 [&_path]:stroke-text [&_path]:stroke-[2.5px] [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:stroke-accent">
               <slot name="icon" />
             </div>

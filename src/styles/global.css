@@ -9,11 +9,17 @@
   --color-accent-dark: #1450e0;
 
   /* Use CSS variables for dynamic colors */
-  --color-background: light-dark(#fafbfc, #151517);
-  --color-text: light-dark(#1a1a1a, #f5f5f5);
-  --color-text-secondary: light-dark(#6b7280, #9ca3af);
-  --color-background-subtle: light-dark(#f0f2f5, #1e1f22);
-  --color-border: light-dark(#e5e7eb, #2d2e32);
+  --color-background: light-dark(rgb(251, 251, 251), rgb(36, 36, 36));
+  --color-text: light-dark(rgba(0, 0, 0, 0.85), rgba(255, 255, 255, 0.85));
+  --color-text-secondary: light-dark(
+    rgba(0, 0, 0, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  --color-background-subtle: light-dark(
+    rgba(245, 245, 245, 0.85),
+    rgba(42, 42, 42, 0.85)
+  );
+  --color-border: light-dark(#e5e7eb, rgba(36, 36, 36, 0.85));
 }
 
 html {

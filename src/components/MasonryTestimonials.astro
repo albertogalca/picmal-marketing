@@ -1,17 +1,9 @@
 ---
-import crypto from "crypto";
 import { Image } from "astro:assets";
 import testimonials from "../data/testimonials.json";
 import H2 from "./H2.astro";
 import Paragraph from "./Paragraph.astro";
-
-function getGravatarUrl(email: string, size: number = 80): string {
-  const hash = crypto
-    .createHash("md5")
-    .update(email.toLowerCase().trim())
-    .digest("hex");
-  return `https://gravatar.com/avatar/${hash}?s=${size}&d=mp&r=g`;
-}
+import { getGravatarUrl } from "../utils/gravatar";
 ---
 
 <section id="testimonials" class="relative z-10 px-6 py-20">

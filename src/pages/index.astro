@@ -15,6 +15,7 @@ import DynamicPricing from "../components/DynamicPricing.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import AvatarTrustBar from "../components/AvatarTrustBar.astro";
 import { Image } from "astro:assets";
 
 const SITE_TITLE = "Picmal - Your media converter for Mac";
@@ -154,6 +155,9 @@ const licenseFaqs = [
             </video>
           </div>
         </div>
+
+        <!-- Trust Bar -->
+        <AvatarTrustBar />
       </div>
     </main>
 
@@ -263,7 +267,7 @@ const licenseFaqs = [
     <!-- And More Features Section -->
     <section class="relative z-10 px-6 py-20">
       <div class="max-w-5xl mx-auto">
-        <H2 class="mb-16 text-center">Why Picmal?</H2>
+        <H2 class="mb-16 text-center">Why Picmal</H2>
 
         <div
           class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-left"

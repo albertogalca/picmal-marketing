@@ -83,11 +83,11 @@ const popularConversions = [
             popularConversions.map(({ from, to, label }) => (
               <a
                 href={`/convert/${from}-to-${to}`}
-                class="block p-6 bg-background rounded-lg border border-text/10 hover:border-accent/30 transition-all duration-300 group"
+                class="block p-6 bg-background rounded-lg border border-border hover:border-accent/30 transition-all duration-300 group"
               >
                 <div class="flex items-center justify-between">
                   <div>
-                    <h3 class="font-semibold text-text text-lg group-hover:text-accent transition-colors">
+                    <h3 class="font-semibold text-text text-base group-hover:text-accent transition-colors">
                       {label}
                     </h3>
                     <p class="text-text-secondary text-sm mt-1">
@@ -158,8 +158,8 @@ const popularConversions = [
         <div class="space-y-6">
           {
             Object.entries(formats).map(([_, format]: [string, FormatInfo]) => (
-              <div class="bg-background p-6 rounded-lg border border-text/10">
-                <h3 class="font-semibold text-text text-lg mb-1">
+              <div class="bg-background p-6 rounded-lg border border-border">
+                <h3 class="font-semibold text-text text-base mb-1">
                   {format.name}
                 </h3>
                 <p class="text-sm text-text-secondary mb-2">

@@ -5,7 +5,7 @@ import Paragraph from "./Paragraph.astro";
 
 // Modal component for displaying supported formats
 const imageFormats = {
-  standard: [
+  input: [
     "JPEG",
     "PNG",
     "GIF",
@@ -16,11 +16,17 @@ const imageFormats = {
     "HEIC",
     "HEIF",
     "ICO",
-  ],
-  professional: ["PSD", "AI", "EPS", "PDF"],
-  raw: ["CR2", "NEF", "ARW", "RAF", "DNG"],
-  modern: ["AVIF", "JXL", "WebP", "QOI"],
-  specialized: [
+    "PSD",
+    "AI",
+    "EPS",
+    "PDF",
+    "CR2",
+    "NEF",
+    "ARW",
+    "RAF",
+    "DNG",
+    "JXL",
+    "QOI",
     "JP2",
     "TGA",
     "DDS",
@@ -33,14 +39,44 @@ const imageFormats = {
     "PGM",
     "PPM",
     "PNM",
+    "SVG",
   ],
-  vector: ["SVG", "PDF"],
+  output: [
+    "JPEG",
+    "PNG",
+    "GIF",
+    "BMP",
+    "TIFF",
+    "WebP",
+    "AVIF",
+    "HEIC",
+    "SVG",
+    "PDF",
+    "ICO",
+    "JP2",
+    "TGA",
+    "JXL",
+    "DDS",
+    "EXR",
+    "QOI",
+    "PSD",
+  ],
 };
 
 const audioFormats = {
-  common: ["MP3", "WAV", "AAC", "M4A", "FLAC", "OGG", "Opus", "AIFF"],
-  professional: ["AC3", "DTS", "WV", "TTA"],
-  legacy: [
+  input: [
+    "MP3",
+    "WAV",
+    "AAC",
+    "M4A",
+    "FLAC",
+    "OGG",
+    "Opus",
+    "AIFF",
+    "AC3",
+    "DTS",
+    "WV",
+    "TTA",
     "AU",
     "CAF",
     "SPX",
@@ -62,12 +98,50 @@ const audioFormats = {
     "OGA",
     "M4R",
   ],
+  output: ["MP3", "WAV", "AAC", "FLAC", "OGG", "Opus"],
 };
 
 const videoFormats = {
-  common: ["MP4", "MOV", "AVI", "MKV", "WebM", "FLV", "WMV", "M4V"],
-  broadcast: ["MPEG", "MPG", "M2TS", "MTS", "VOB", "TS", "WTV"],
-  specialized: ["3GP", "ASF", "OGV", "MJPEG", "M2V", "HEVC", "F4V", "MXF"],
+  input: [
+    "MP4",
+    "MOV",
+    "AVI",
+    "MKV",
+    "WebM",
+    "FLV",
+    "WMV",
+    "M4V",
+    "MPEG",
+    "MPG",
+    "M2TS",
+    "MTS",
+    "VOB",
+    "TS",
+    "WTV",
+    "3GP",
+    "ASF",
+    "OGV",
+    "MJPEG",
+    "M2V",
+    "HEVC",
+    "F4V",
+    "MXF",
+  ],
+  output: [
+    "MP4",
+    "MOV",
+    "AVI",
+    "MKV",
+    "WebM",
+    "FLV",
+    "WMV",
+    "M4V",
+    "3GP",
+    "MPEG",
+    "OGV",
+    "HEVC",
+    "WTV",
+  ],
 };
 ---
 
@@ -87,11 +161,11 @@ const videoFormats = {
 
   <!-- Modal Content -->
   <div
-    class="relative z-10 bg-background border border-text/10 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+    class="relative z-10 bg-background border border-border rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
   >
     <!-- Header -->
     <div
-      class="flex items-center justify-between bg-background-subtle px-6 py-4 border-b border-text/10"
+      class="flex items-center justify-between bg-background-subtle px-6 py-4 border-b border-border"
     >
       <Paragraph id="formats-modal-title" class="font-semibold text-text">
         Supported formats
@@ -139,23 +213,38 @@ const videoFormats = {
             </svg>
           </div>
           <div>
-            <H3 class="text-sm sm:text-base md:text-lg">Images</H3>
+            <H3 class="text-sm sm:text-base md:text-base">Images</H3>
             <Paragraph size="small" class="text-xs text-text-secondary"
-              >29+ input · 17 output</Paragraph
+              >{imageFormats.input.length} input · {imageFormats.output.length} output</Paragraph
             >
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-1.5">
-          {
-            Object.values(imageFormats)
-              .flat()
-              .map((format) => (
-                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
-                  {format}
-                </span>
-              ))
-          }
+        <div class="space-y-3">
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Input formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                imageFormats.input.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Output formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                imageFormats.output.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/10 text-text">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </section>
 
@@ -180,21 +269,36 @@ const videoFormats = {
             </svg>
           </div>
           <div>
-            <H3 class="text-sm sm:text-base md:text-lg">Audio</H3>
-            <Paragraph size="small">31 input · 6 output</Paragraph>
+            <H3 class="text-sm sm:text-base md:text-base">Audio</H3>
+            <Paragraph size="small">{audioFormats.input.length} input · {audioFormats.output.length} output</Paragraph>
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-1.5">
-          {
-            Object.values(audioFormats)
-              .flat()
-              .map((format) => (
-                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
-                  {format}
-                </span>
-              ))
-          }
+        <div class="space-y-3">
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Input formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                audioFormats.input.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Output formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                audioFormats.output.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/10 text-text">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </section>
 
@@ -219,21 +323,36 @@ const videoFormats = {
             </svg>
           </div>
           <div>
-            <H3 class="text-sm sm:text-base md:text-lg">Video</H3>
-            <Paragraph size="small">25 input · 13 output</Paragraph>
+            <H3 class="text-sm sm:text-base md:text-base">Video</H3>
+            <Paragraph size="small">{videoFormats.input.length} input · {videoFormats.output.length} output</Paragraph>
           </div>
         </div>
 
-        <div class="flex flex-wrap gap-1.5">
-          {
-            Object.values(videoFormats)
-              .flat()
-              .map((format) => (
-                <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
-                  {format}
-                </span>
-              ))
-          }
+        <div class="space-y-3">
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Input formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                videoFormats.input.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+          <div>
+            <Paragraph size="small" class="text-xs text-text-secondary mb-1.5">Output formats</Paragraph>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                videoFormats.output.map((format) => (
+                  <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/10 text-text">
+                    {format}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -247,6 +366,7 @@ const videoFormats = {
     const closeBtn = document.getElementById("formats-modal-close");
     const openBtn = document.getElementById("open-formats-modal");
     const openBtnHero = document.getElementById("open-formats-modal-hero");
+    const openBtnBento = document.getElementById("open-formats-modal-bento");
 
     function openFormatsModal() {
       modal?.classList.remove("hidden");
@@ -263,6 +383,7 @@ const videoFormats = {
     // Open modal triggers
     openBtn?.addEventListener("click", openFormatsModal);
     openBtnHero?.addEventListener("click", openFormatsModal);
+    openBtnBento?.addEventListener("click", openFormatsModal);
 
     // Close on backdrop click
     backdrop?.addEventListener("click", closeFormatsModal);

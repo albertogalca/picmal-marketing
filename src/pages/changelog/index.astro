@@ -41,7 +41,7 @@ const { Content } = await render(changelog);
         <!-- Review CTA -->
         <div class="relative overflow-hidden rounded-lg mb-12">
           <div
-            class="relative bg-background-subtle border border-text/10 rounded-lg p-6 flex flex-col sm:items-start sm:justify-between gap-4 sm:gap-6"
+            class="relative bg-background-subtle border border-border rounded-lg p-6 flex flex-col sm:items-start sm:justify-between gap-4 sm:gap-6"
           >
             <div class="flex items-start sm:items-center gap-4">
               <Paragraph>
@@ -53,7 +53,7 @@ const { Content } = await render(changelog);
               href="https://tally.so/r/Me18qE"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex-shrink-0 inline-flex items-center justify-center gap-2 text-accent hover:text-accent-dark font-medium transition-colors w-full sm:w-auto"
+              class="flex-shrink-0 inline-flex items-center justify-center gap-2 font-semibold transition-colors w-full sm:w-auto"
             >
               Leave a review
               <svg
@@ -80,7 +80,7 @@ const { Content } = await render(changelog);
                  prose-headings:text-text prose-headings:font-semibold
                  prose-p:text-text-secondary prose-p:leading-relaxed
                  prose-h3:text-xl prose-h3:mb-3
-                 prose-h4:text-lg prose-h4:mb-2
+                 prose-h4:text-base prose-h4:mb-2
                  prose-a:text-accent prose-a:no-underline hover:prose-a:underline
                  prose-img:rounded-lg prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border
                  prose-video:rounded-lg prose-video:my-6 prose-video:shadow-lg
@@ -88,7 +88,7 @@ const { Content } = await render(changelog);
                  prose-ul:space-y-2
                  prose-strong:text-text prose-strong:font-semibold
                  prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                 prose-pre:bg-background-subtle prose-pre:border prose-pre:border-text/10
+                 prose-pre:bg-background-subtle prose-pre:border prose-pre:border-border
                  prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50"
         >
           <Content />

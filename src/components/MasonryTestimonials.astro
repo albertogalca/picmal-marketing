@@ -39,8 +39,8 @@ import { getGravatarUrl } from "../utils/gravatar";
                 target={hasLink ? "_blank" : undefined}
                 rel={hasLink ? "nofollow noreferrer" : undefined}
                 class:list={[
-                  "block bg-background-subtle rounded-lg p-6 border border-text/10",
-                  hasLink && "hover:border-text/20 cursor-pointer",
+                  "block bg-background-subtle rounded-lg p-6 border border-border",
+                  hasLink && "hover:border-border/20 cursor-pointer",
                 ]}
               >
                 <Paragraph class="mb-6">"{testimonial.content}"</Paragraph>

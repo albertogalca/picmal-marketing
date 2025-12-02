@@ -151,7 +151,7 @@ const SITE_DESCRIPTION =
             </div>
 
             <div
-              class="bg-background-subtle border border-text/10 p-6 rounded-lg mt-8 text-left"
+              class="bg-background-subtle border border-border p-6 rounded-lg mt-8 text-left"
             >
               <H3 class="mb-6">Quick cheat sheet for image formats:</H3>
               <div
@@ -328,9 +328,9 @@ const SITE_DESCRIPTION =
               .querySelectorAll("[data-use], [data-type], [data-priority]")
               .forEach((c) => {
                 c.classList.remove("border-accent", "bg-accent/5");
-                c.classList.add("border-text/10");
+                c.classList.add("border-border");
               });
-            this.classList.remove("border-text/10");
+            this.classList.remove("border-border");
             this.classList.add("border-accent", "bg-accent/5");
 
             if (this.dataset.use) {
@@ -384,9 +384,9 @@ const SITE_DESCRIPTION =
                   : "ALSO WORKS";
 
             return `
-            <div class="bg-background-subtle border border-text/10 rounded-lg p-6 transition-all text-left">
+            <div class="bg-background-subtle border border-border rounded-lg p-6 transition-all text-left">
               <div class="flex justify-between items-center mb-2">
-                <h3 class="text-lg font-semibold text-text">${format}</h3>
+                <h3 class="text-base font-semibold text-text">${format}</h3>
                 <span class="inline-block px-2 py-1 rounded-full text-xs font-medium ${badgeClass}">${label}</span>
               </div>
               <p class="text-text-secondary text-sm leading-relaxed">${formatData.descriptions[format]}</p>
@@ -409,7 +409,7 @@ const SITE_DESCRIPTION =
             "[data-use], [data-type], [data-priority]"
           ).forEach((c) => {
             c.classList.remove("border-accent", "bg-accent/5");
-            c.classList.add("border-text/10");
+            c.classList.add("border-border");
           });
         });
         document.getElementById("results").style.display = "none";

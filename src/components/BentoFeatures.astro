@@ -1,0 +1,424 @@
+---
+import { Image } from "astro:assets";
+import H2 from "./H2.astro";
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
+---
+
+<section id="features" class="relative z-10 px-6 py-20">
+  <div class="max-w-6xl mx-auto">
+    <H2 class="mb-4 text-center">What can you do with Picmal</H2>
+    <Paragraph class="text-center mb-16 max-w-xl mx-auto">
+      Convert, compress, and optimize your media files with a native Mac app
+      that works offline and respects your privacy.
+    </Paragraph>
+
+    <div class="flex flex-col gap-4">
+      <!-- Row 1: Convert + Batch Processing -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <!-- Convert Card - Large (spans 3 columns on lg) -->
+        <div
+          class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
+        >
+          <div class="flex items-start gap-4 mb-6">
+            <div>
+              <H3 class="mb-2"
+                >Convert between multiple formats <button
+                  id="open-formats-modal-bento"
+                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
+                  type="button"
+                  aria-label="View supported formats"
+                  ><svg
+                    class="w-3.5 h-3.5 text-text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg></button
+                ></H3
+              >
+              <Paragraph>
+                Change formats. Turn a PSD into a PNG, an AI file into SVG, a
+                MOV into MP4. You pick the output format, Picmal handles the
+                rest.
+              </Paragraph>
+            </div>
+          </div>
+          <div class="rounded-lg overflow-hidden opacity-90">
+            <video
+              src="/convert.mp4"
+              class="w-full h-auto block dark:hidden"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Picmal conversion interface"
+            >
+            </video>
+            <video
+              src="/convert_dark.mp4"
+              class="w-full h-auto hidden dark:block"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Picmal conversion interface"
+            >
+            </video>
+          </div>
+          <div class="mt-4">
+            <Paragraph
+              >👉🏼 You can also convert and compress in one go.</Paragraph
+            >
+          </div>
+        </div>
+
+        <!-- Batch Processing Card (spans 2 columns on lg) -->
+        <div
+          class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden"
+        >
+          <!-- <div
+            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+          >
+            <svg
+              class="w-7 h-7"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip_batch_main)">
+                <path
+                  d="M19.4587 4.875V15.0833H28.2087L16.542 31.125V20.9167H7.79199L19.4587 4.875Z"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </g>
+              <defs>
+                <clipPath id="clip_batch_main">
+                  <rect
+                    width="35"
+                    height="35"
+                    fill="white"
+                    transform="translate(0.5 0.5)"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div> -->
+          <H3 class="mb-2">Batch processing</H3>
+          <Paragraph>
+            Drop hundreds of files and let Picmal handle the work for you. Drag
+            files or folders into the app, use File > Open, or right click in
+            Finder to convert or compress. Whatever feels natural.
+          </Paragraph>
+          <div class="mt-6 relative">
+            <div
+              class="absolute -inset-x-4 -bottom-4 h-24 bg-text/[0.03] blur-2xl rounded-full pointer-events-none"
+            >
+            </div>
+            <Image
+              class="w-full relative"
+              src="/right-click.png"
+              width={400}
+              height={300}
+              alt="Right click menu integration"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Custom Presets + Compress -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <!-- Custom Presets Card (spans 2 columns on lg) -->
+        <div
+          class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden order-last lg:order-first"
+        >
+          <!-- <div
+            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+          >
+            <svg
+              class="w-7 h-7"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.875 9.25H10.708"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M14.625 9.25H31.125"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M4.875 18H21.375"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M25.292 18H31.125"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M4.875 26.75H14.625"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M18.542 26.75H31.125"
+                class="stroke-text"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <circle
+                cx="12.667"
+                cy="9.25"
+                r="2.917"
+                class="stroke-text"
+                stroke-width="2.5"></circle>
+              <circle
+                cx="23.333"
+                cy="18"
+                r="2.917"
+                class="stroke-text"
+                stroke-width="2.5"></circle>
+              <circle
+                cx="16.583"
+                cy="26.75"
+                r="2.917"
+                class="stroke-text"
+                stroke-width="2.5"></circle>
+            </svg>
+          </div> -->
+          <H3 class="mb-2"
+            >Use presets for any case, or fine tune them to your needs</H3
+          >
+          <Paragraph>
+            Picmal comes with presets for common use cases - web, social media,
+            archival, you name it. But if you want more control, you can tweak
+            everything: color space, resize options, codecs, bitrates, and more.
+          </Paragraph>
+          <div class="mt-6 relative">
+            <div
+              class="absolute -inset-x-4 -bottom-2 h-20 bg-text/5 blur-2xl pointer-events-none"
+            >
+            </div>
+            <Image
+              class="w-full relative -bottom-14 block dark:hidden"
+              src="/preferences.png"
+              width={400}
+              height={300}
+              alt="Custom presets interface"
+            />
+            <Image
+              class="w-full relative -bottom-14 hidden dark:block"
+              src="/preferences_dark.png"
+              width={400}
+              height={300}
+              alt="Custom presets interface"
+            />
+          </div>
+        </div>
+
+        <!-- Compress Card - Large (spans 3 columns on lg) -->
+        <div
+          class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
+        >
+          <div class="flex items-start gap-4 mb-6">
+            <div>
+              <H3 class="mb-2">Compress without compromising quality</H3>
+              <Paragraph>
+                Keep the same format, shrink the file size. Perfect for making
+                images web-ready or getting videos small enough to email.
+              </Paragraph>
+            </div>
+          </div>
+          <div class="rounded-lg overflow-hidden">
+            <video
+              src="/compress.mp4"
+              class="w-full h-auto block dark:hidden"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Picmal compression interface"
+            >
+            </video>
+            <video
+              src="/compress_dark.mp4"
+              class="w-full h-auto hidden dark:block"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Picmal compression interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Three small feature cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Designed for Mac Card -->
+        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+          <div
+            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+          >
+            <svg
+              class="w-7 h-7"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip_mac_bottom)">
+                <path
+                  d="M4.875 7.79134C4.875 7.40457 5.02865 7.03363 5.30214 6.76014C5.57563 6.48665 5.94656 6.33301 6.33333 6.33301H29.6667C30.0534 6.33301 30.4244 6.48665 30.6979 6.76014C30.9714 7.03363 31.125 7.40457 31.125 7.79134V28.208C31.125 28.5948 30.9714 28.9657 30.6979 29.2392C30.4244 29.5127 30.0534 29.6663 29.6667 29.6663H6.33333C5.94656 29.6663 5.57563 29.5127 5.30214 29.2392C5.02865 28.9657 4.875 28.5948 4.875 28.208V7.79134Z"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M10.708 12.167V13.6253"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M25.292 12.167V13.6253"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M18.7295 6.33301C17.7757 8.50009 16.892 11.354 16.542 19.458H20.1878C19.9107 23.6391 20.3249 26.7847 20.917 29.6663"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M10.708 23.1045C16.0557 26.0212 19.9436 26.0212 25.2913 23.1045"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </g>
+              <defs>
+                <clipPath id="clip_mac_bottom">
+                  <rect
+                    width="35"
+                    height="35"
+                    fill="white"
+                    transform="translate(0.5 0.5)"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <H3 class="mb-2">Designed for Mac</H3>
+          <Paragraph>
+            Native macOS app with a beautiful interface that feels right at
+            home.
+          </Paragraph>
+        </div>
+
+        <!-- Works Offline Card -->
+        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+          <div
+            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+          >
+            <svg
+              class="w-7 h-7"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip_offline_bottom)">
+                <path
+                  d="M14.4712 8.59099C14.8212 8.43057 15.1887 8.28912 15.5678 8.17391C18.3095 7.33974 21.337 7.89245 23.507 9.63224C25.677 11.3677 26.6599 14.0174 26.0882 16.587H27.532C30.3218 16.587 32.5837 18.862 32.5837 21.6708C32.5837 23.0664 32.0251 24.3308 31.1209 25.2495M26.7503 26.756H10.2085C6.45762 26.7502 3.41699 23.8233 3.41699 20.2124C3.41699 16.6031 6.45762 13.6762 10.2085 13.6762C10.398 12.8274 10.748 12.0312 11.2293 11.3137"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M4.875 4.875L31.125 31.125"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </g>
+              <defs>
+                <clipPath id="clip_offline_bottom">
+                  <rect
+                    width="35"
+                    height="35"
+                    fill="white"
+                    transform="translate(0.5 0.5)"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <H3 class="mb-2">Works offline</H3>
+          <Paragraph>
+            No internet required. Convert and compress anywhere, anytime.
+          </Paragraph>
+        </div>
+
+        <!-- Privacy First Card -->
+        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+          <div
+            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+          >
+            <svg
+              class="w-7 h-7"
+              viewBox="0 0 36 36"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip_privacy_bottom)">
+                <path
+                  d="M18 3.41699L29.6667 7.79199V16.542C29.6667 24.0628 24.8333 30.6462 18 32.5837C11.1667 30.6462 6.33334 24.0628 6.33334 16.542V7.79199L18 3.41699Z"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M12.167 18L16.542 22.375L24.5628 14.3542"
+                  class="stroke-text"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </g>
+              <defs>
+                <clipPath id="clip_privacy_bottom">
+                  <rect
+                    width="35"
+                    height="35"
+                    fill="white"
+                    transform="translate(0.5 0.5)"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <H3 class="mb-2">Privacy first</H3>
+          <Paragraph>
+            All processing happens locally. Your files never leave your Mac.
+          </Paragraph>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

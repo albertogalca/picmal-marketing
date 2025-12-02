@@ -234,7 +234,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
           Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?
         </H2>
 
-        <div class="overflow-x-auto rounded-lg border border-text/10">
+        <div class="overflow-x-auto rounded-lg border border-border">
           <table
             class="w-full text-left border-collapse bg-background-subtle/50"
           >
@@ -290,7 +290,9 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
           {
             conversionData.use_cases.map((useCase: string, index: number) => (
               <div>
-                <h3 class="font-semibold text-text text-lg mb-2">{useCase}</h3>
+                <h3 class="font-semibold text-text text-base mb-2">
+                  {useCase}
+                </h3>
                 <Paragraph>
                   {index === 0 && conversionData.why_convert}
                   {index === 1 &&
@@ -317,7 +319,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-10">Frequently asked questions</H2>
         <div
-          class="bg-background-subtle/50 border border-text/10 rounded-lg p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
         >
           <FAQ faqs={conversionData.faqs} />
         </div>

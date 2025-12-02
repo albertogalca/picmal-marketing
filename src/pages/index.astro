@@ -13,14 +13,14 @@ import Paragraph from "../components/Paragraph.astro";
 import FeaturedOn from "../components/FeaturedOn.astro";
 import DynamicPricing from "../components/DynamicPricing.astro";
 import SectionDivider from "../components/SectionDivider.astro";
-import FeatureCard from "../components/FeatureCard.astro";
+import BentoFeatures from "../components/BentoFeatures.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import TrustBar from "../components/TrustBar.astro";
 import { Image } from "astro:assets";
 
 const SITE_TITLE = "Picmal - Your media converter for Mac";
 const SITE_DESCRIPTION =
-  "Convert and compress your images, videos, and audio files without leaving your Mac. Everything happens locally, and you don't even need an internet connection.";
+  "Batch convert and compress your images, videos and audios offline on your Mac.";
 
 const licenseFaqs = [
   {
@@ -68,7 +68,7 @@ const licenseFaqs = [
     <Header />
 
     <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-24">
+    <main id="main-content" class="relative z-10 pt-32 pb-20">
       <!-- Subtle gradient background -->
       <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
@@ -88,21 +88,19 @@ const licenseFaqs = [
             <H1 class="mb-6 max-w-xl mx-auto"
               >Your media <br /> converter for Mac</H1
             >
-            <Paragraph class="mb-10 max-w-lg mx-auto">
-              Convert and compress your images, videos, and audio files without
-              leaving your Mac. Everything happens locally, and you don't even
-              need an internet connection.
+            <Paragraph class="mb-10 max-w-sm mx-auto">
+              Batch convert and compress your images, videos and audios offline
+              on your Mac.
             </Paragraph>
           </div>
 
           <!-- CTA Buttons -->
           <div class="flex flex-col items-center gap-4">
             <div class="flex flex-row gap-2 items-center justify-center">
-              <Button class="md:hidden" text="Buy for Mac" />
-              <Button class="hidden md:block" text="Buy for Mac ($15.99)" />
+              <Button text="Buy now" />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-text/10 hover:border-text/20"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20"
               >
                 <svg
                   class="w-4 h-4 inline-block mr-2"
@@ -124,7 +122,7 @@ const licenseFaqs = [
 
         <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mb-12 rounded-lg overflow-hidden border border-text/10"
+          class="max-w-5xl mx-auto mb-8 rounded-lg overflow-hidden border border-border"
         >
           <div style="aspect-ratio: 16/10;">
             <video
@@ -163,357 +161,7 @@ const licenseFaqs = [
 
     <SectionDivider />
 
-    <section id="features" class="relative z-10 px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <H2 class="mb-6 text-center"
-          >Convert between<br />multiple formats <button
-            id="open-formats-modal-hero"
-            class="inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all -translate-y-1"
-            type="button"
-            aria-label="View supported formats"
-            ><svg
-              class="w-3.5 h-3.5 md:w-4 md:h-4 text-text-secondary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg></button
-          ></H2
-        >
-        <Paragraph class="text-center mb-12 max-w-xl mx-auto">
-          From PSD to PNG, MOV to MP4, or WAV to MP3. Handle any image, video,
-          or audio format with professional-grade quality. No technical
-          knowledge needed.
-        </Paragraph>
-
-        <!-- Demo Interface -->
-        <div
-          class="max-w-5xl mx-auto mb-12 rounded-lg overflow-hidden border border-text-secondary/20"
-        >
-          <video
-            src="/convert.mp4"
-            class="w-full h-auto block dark:hidden"
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-label="Picmal conversion interface showing PNG to WEBP conversion"
-          >
-          </video>
-          <video
-            src="/convert_dark.mp4"
-            class="w-full h-auto hidden dark:block"
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-label="Picmal conversion interface showing PNG to WEBP conversion"
-          >
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <SectionDivider />
-
-    <!-- Compress Section -->
-    <section class="relative z-10 px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <H2 class="mb-6 text-center"
-          >Compress without<br />compromising quality</H2
-        >
-        <Paragraph class="text-center mb-12 max-w-xl mx-auto">
-          Reduce file sizes while maintaining quality. Perfect for web
-          optimization, email attachments, or freeing up storage space. Works
-          with images, videos, and audio files.
-        </Paragraph>
-
-        <!-- Compression Demo -->
-        <div
-          class="max-w-5xl mx-auto mb-12 rounded-lg overflow-hidden border border-text-secondary/20"
-        >
-          <video
-            src="/compress.mp4"
-            class="w-full h-auto block dark:hidden"
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-label="Picmal compression interface showing multiple images ready for compression"
-          >
-          </video>
-          <video
-            src="/compress_dark.mp4"
-            class="w-full h-auto hidden dark:block"
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-label="Picmal compression interface showing multiple images ready for compression"
-          >
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <SectionDivider />
-
-    <!-- And More Features Section -->
-    <section class="relative z-10 px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <H2 class="mb-16 text-center">Why Picmal</H2>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-left"
-        >
-          <FeatureCard
-            title="Designed for Mac"
-            description="Native macOS app that feels right at home with beautiful interface and smooth performance."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1361)">
-                <path
-                  d="M4.875 7.79134C4.875 7.40457 5.02865 7.03363 5.30214 6.76014C5.57563 6.48665 5.94656 6.33301 6.33333 6.33301H29.6667C30.0534 6.33301 30.4244 6.48665 30.6979 6.76014C30.9714 7.03363 31.125 7.40457 31.125 7.79134V28.208C31.125 28.5948 30.9714 28.9657 30.6979 29.2392C30.4244 29.5127 30.0534 29.6663 29.6667 29.6663H6.33333C5.94656 29.6663 5.57563 29.5127 5.30214 29.2392C5.02865 28.9657 4.875 28.5948 4.875 28.208V7.79134Z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 12.167V13.6253"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M25.292 12.167V13.6253"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M18.7295 6.33301C17.7757 8.50009 16.892 11.354 16.542 19.458H20.1878C19.9107 23.6391 20.3249 26.7847 20.917 29.6663"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 23.1045C16.0557 26.0212 19.9436 26.0212 25.2913 23.1045"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1361">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-
-          <FeatureCard
-            title="Batch processing"
-            description="Drop hundreds of files at once and let Picmal handle the rest. Save hours of repetitive work."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1406)">
-                <path
-                  d="M19.4587 4.875V15.0833H28.2087L16.542 31.125V20.9167H7.79199L19.4587 4.875Z"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1406">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-
-          <FeatureCard
-            title="Works offline"
-            description="No internet needed. All processing happens locally on your Mac for maximum speed and privacy."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1376)">
-                <path
-                  d="M14.4712 8.59099C14.8212 8.43057 15.1887 8.28912 15.5678 8.17391C18.3095 7.33974 21.337 7.89245 23.507 9.63224C25.677 11.3677 26.6599 14.0174 26.0882 16.587H27.532C30.3218 16.587 32.5837 18.862 32.5837 21.6708C32.5837 23.0664 32.0251 24.3308 31.1209 25.2495M26.7503 26.756H10.2085C6.45762 26.7502 3.41699 23.8233 3.41699 20.2124C3.41699 16.6031 6.45762 13.6762 10.2085 13.6762C10.398 12.8274 10.748 12.0312 11.2293 11.3137"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M4.875 4.875L31.125 31.125"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1376">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-
-          <FeatureCard
-            title="Custom output formats"
-            description="Set your preferred format once and forget it. Picmal remembers your settings for future conversions."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1381)">
-                <path
-                  d="M6.33301 28.2083V31.125H29.6663V10.7083L17.9997 4.875L6.33301 10.7083V13.625"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M19.458 20.917H6.33301"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 16.542L6.33301 20.917L10.708 25.292"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1381">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-
-          <FeatureCard
-            title="Smart compression"
-            description="Reduce file sizes by up to 80% while maintaining quality. Works with images, videos, and audio files. Perfect for the web and email."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1387)">
-                <path
-                  d="M20.917 4.875V10.7083C20.917 11.0951 21.0706 11.466 21.3441 11.7395C21.6176 12.013 21.9886 12.1667 22.3753 12.1667H28.2087"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M7.79199 18V7.79167C7.79199 7.01812 8.09928 6.27625 8.64626 5.72927C9.19324 5.18229 9.93511 4.875 10.7087 4.875H20.917L28.2087 12.1667V18"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M23.833 26.75H26.0205C26.6007 26.75 27.1571 26.5195 27.5673 26.1093C27.9775 25.6991 28.208 25.1427 28.208 24.5625C28.208 23.9823 27.9775 23.4259 27.5673 23.0157C27.1571 22.6055 26.6007 22.375 26.0205 22.375H23.833V31.125"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M18 22.375V31.125"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M7.79199 22.375H12.167L7.79199 31.125H12.167"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1387">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-
-          <FeatureCard
-            title="Privacy focused"
-            description="Your files never leave your Mac. No uploads, no cloud storage, no tracking. Complete privacy."
-          >
-            <svg
-              slot="icon"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_1109_1395)">
-                <path
-                  d="M4.875 23.8337V12.167"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 12.167V23.8337"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M4.875 18H10.7083"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M20.9163 12.167H17.9997M15.083 15.0837V23.8337H20.9163"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M15.083 18H17.9997"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M25.292 19.4587V15.0837C25.292 14.3101 25.5993 13.5682 26.1463 13.0213C26.6932 12.4743 27.4351 12.167 28.2087 12.167C28.9822 12.167 29.7241 12.4743 30.2711 13.0213C30.818 13.5682 31.1253 14.3101 31.1253 15.0837V23.8337"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M25.292 19.458H31.1253"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M4.875 4.875L31.125 31.125"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_1109_1395">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </FeatureCard>
-        </div>
-      </div>
-    </section>
+    <BentoFeatures />
 
     <SectionDivider />
 
@@ -581,7 +229,7 @@ const licenseFaqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-text/10 rounded-lg p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

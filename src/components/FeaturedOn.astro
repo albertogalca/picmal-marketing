@@ -20,6 +20,7 @@ const logos = [
     name: "Startup Fame",
     href: "https://startupfa.me/s/picmal?utm_source=picmal.app",
     src: "https://startupfa.me/images/logo.svg",
+    alt: "Picmal - Featured on Startup Fame",
     width: 208,
     height: 36,
   },
@@ -56,12 +57,11 @@ const logos = [
             <a
               href={logo.href}
               target="_blank"
-              rel="noopener noreferrer"
               class="logo-link w-auto h-auto flex items-center"
             >
               <Image
                 src={logo.src}
-                alt={logo.name}
+                alt={logo.alt || logo.name}
                 class="max-h-full w-auto min-w-[36px] max-w-[150px] object-contain h-auto"
                 width={logo.width}
                 height={logo.height}

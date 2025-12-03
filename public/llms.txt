@@ -1,0 +1,76 @@
+# Picmal
+
+> Picmal is a native macOS application for batch converting and compressing images, videos, and audio files. It processes files entirely offline for privacy, supports drag-and-drop workflows, and integrates with Finder via right-click context menu options.
+
+Picmal is designed for Mac users who need to convert media files quickly without uploading to cloud services. Key features include:
+
+- Batch processing of thousands of files at once
+- 100% offline processing (no data leaves your Mac)
+- Finder integration via Services menu (right-click to convert/compress)
+- Support for 20+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF
+- Video and audio conversion capabilities
+- Adjustable quality and compression settings
+- Metadata preservation during conversion
+
+## Pricing
+
+One-time purchase with lifetime license. No subscription required.
+- 1-device license: $15.99
+- 3-device license: $41.97
+- 5-device license: $65.95
+
+14-day money-back guarantee.
+
+## Supported Formats
+
+**Images:** HEIC, HEIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, PDF
+**Video:** MP4, MOV, AVI, MKV, WebM
+**Audio:** MP3, WAV, AAC, FLAC, OGG
+
+## Pages
+
+- [Home](https://picmal.app): Main landing page with features, pricing, and download
+- [Blog](https://picmal.app/blog): Tutorials and guides for image conversion
+- [Changelog](https://picmal.app/changelog): Version history and release notes
+- [Affiliate Program](https://picmal.app/affiliate): 25% commission affiliate program
+- [Privacy Policy](https://picmal.app/privacy): Privacy policy
+- [Terms of Service](https://picmal.app/terms): Terms of service
+
+## Conversion Guides
+
+- [Convert HEIC to JPG](https://picmal.app/convert/heic-to-jpg): Convert iPhone photos to universal JPG format
+- [Convert PNG to JPG](https://picmal.app/convert/png-to-jpg): Reduce file size by converting PNG to JPG
+- [Convert JPG to PNG](https://picmal.app/convert/jpg-to-png): Add transparency support by converting to PNG
+- [Convert HEIC to PNG](https://picmal.app/convert/heic-to-png): Convert iPhone photos with transparency support
+- [Convert WebP to JPG](https://picmal.app/convert/webp-to-jpg): Convert WebP images for universal compatibility
+- [Convert JPG to WebP](https://picmal.app/convert/jpg-to-webp): Optimize images for web with WebP format
+- [Convert PNG to WebP](https://picmal.app/convert/png-to-webp): Modern web format conversion
+- [All Conversions](https://picmal.app/convert): Full list of supported format conversions
+
+## Compression Guides
+
+- [Compress JPG](https://picmal.app/compress/jpg): Reduce JPG file sizes
+- [Compress PNG](https://picmal.app/compress/png): Optimize PNG images
+- [Compress WebP](https://picmal.app/compress/webp): Compress WebP files
+- [All Compression Options](https://picmal.app/compress): Full list of compression tools
+
+## Blog Articles
+
+- [How to Convert HEIC to JPG on Mac](https://picmal.app/blog/how-to-convert-heic-to-jpg-mac): Complete guide with 5 methods
+- [How to Batch Convert Images on Mac](https://picmal.app/blog/batch-convert-images-mac): Efficient batch conversion methods
+- [Best Image Formats for Web](https://picmal.app/blog/best-image-formats-for-web): Choosing the right format for websites
+- [Best Image Formats in 2025](https://picmal.app/blog/best-image-formats-2025): Modern format recommendations
+- [How to Enable Picmal Right-Click Menu](https://picmal.app/blog/how-to-enable-picmal-right-click-menu): Enable Finder context menu integration
+- [Convert PNG to JPEG on Mac](https://picmal.app/blog/convert-png-to-jpeg-mac): Step-by-step PNG conversion guide
+- [What is an Image File Format](https://picmal.app/blog/what-is-image-file-format): Understanding image formats
+- [Top Batch Image Converters for Mac](https://picmal.app/blog/top-batch-image-converter-mac): Comparison of Mac conversion tools
+- [How to Organize Digital Photos](https://picmal.app/blog/how-to-organize-digital-photos): Photo organization tips
+
+## Tools
+
+- [Image Format Selector](https://picmal.app/tools/image-format-selector): Interactive tool to choose the best format
+
+## Contact
+
+- Support: support@picmal.app
+- Website: https://picmal.app

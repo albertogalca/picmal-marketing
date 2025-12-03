@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import Paragraph from "./Paragraph.astro";
+
+export interface Props {
+  /** The URL to link to */
+  href: string;
+  /** Badge text (e.g., "Live", "New", "Sale") */
+  badge?: string;
+  /** Main text content */
+  text: string;
+  /** Bold/highlighted text within the message */
+  highlight?: string;
+  /** Optional promo code to display */
+  promoCode?: string;
+  /** Theme color in hex format (default: accent blue) */
+  color?: string;
+  /** Optional logo/icon path */
+  logo?: string;
+  /** Logo alt text */
+  logoAlt?: string;
+  /** Text to display after the logo */
+  afterText?: string;
+  /** Whether to open link in new tab (default: true) */
+  external?: boolean;
+  /** Show arrow icon (default: true) */
+  showArrow?: boolean;
+}
+
+const {
+  href,
+  badge,
+  text,
+  highlight,
+  promoCode,
+  color = "#1b5bff",
+  logo,
+  logoAlt = "Logo",
+  afterText,
+  external = true,
+  showArrow = true,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  class="inline-flex items-center gap-2 rounded-full py-1.5 pl-2 pr-4 border transition-all no-underline"
+  style={`border-color: ${color}4d; background-color: ${color}1a;`}
+  onmouseover={`this.style.backgroundColor='${color}33'; this.style.borderColor='${color}80';`}
+  onmouseout={`this.style.backgroundColor='${color}1a'; this.style.borderColor='${color}4d';`}
+>
+  {
+    badge && (
+      <span
+        class="px-2.5 py-0.5 rounded-full text-white text-xs font-semibold uppercase tracking-wide whitespace-nowrap"
+        style={`background-color: ${color};`}
+      >
+        {badge}
+      </span>
+    )
+  }
+
+  <Paragraph
+    size="small"
+    class="inline-flex items-center gap-1.5 whitespace-nowrap text-text"
+  >
+    {text}
+    {highlight && <strong class="font-semibold">{highlight}</strong>}
+    {
+      logo && (
+        <Image
+          width={120}
+          height={30}
+          src={logo}
+          alt={logoAlt}
+          class="h-3 w-auto block shrink-0 dark:invert"
+        />
+      )
+    }
+    {afterText}
+  </Paragraph>
+
+  {
+    promoCode && (
+      <span
+        class="px-2 py-0.5 rounded text-xs font-semibold font-mono tracking-wider bg-background-subtle border border-dashed"
+        style={`border-color: ${color}80; color: ${color};`}
+      >
+        {promoCode}
+      </span>
+    )
+  }
+
+  {
+    showArrow && (
+      <svg
+        class="w-4 h-4 text-text shrink-0"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    )
+  }
+</a>

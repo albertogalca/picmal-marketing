@@ -16,7 +16,6 @@ import SectionDivider from "../components/SectionDivider.astro";
 import BentoFeatures from "../components/BentoFeatures.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import TrustBar from "../components/TrustBar.astro";
-import PromoPod from "../components/PromoPod.astro";
 import { Image } from "astro:assets";
 
 const SITE_TITLE = "Picmal - All-in-one media converter for Mac";
@@ -50,9 +49,6 @@ const licenseFaqs = [
       "Yes, there is a 14-day money-back guarantee. No questions asked. If you're not satisfied with Picmal, send your refund request to support@picmal.app and I'd love to hear your feedback too!",
   },
 ];
-
-// Uneed launch banner - shows only on December 4th, 2025
-const showUneedPromo = true
 ---
 
 <!doctype html>
@@ -81,21 +77,6 @@ const showUneedPromo = true
           <div
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
-            {showUneedPromo && (
-              <!-- Uneed Launch Pod -->
-              <div class="mb-12">
-                <PromoPod
-                  href="https://www.uneed.best/tool/picmal"
-                  badge="Live"
-                  text="Picmal is live on"
-                  logo="/logos/uneed.svg"
-                  logoAlt="Uneed"
-                  afterText="— vote for it!"
-                  color="#f49643"
-                />
-              </div>
-            )}
-
             <Image
               src="/logo.webp"
               alt="Picmal Logo"

@@ -3,6 +3,20 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.2.9</title>
+            <pubDate>Wed, 10 Dec 2025 10:13:08 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>45</sparkle:version>
+            <sparkle:shortVersionString>1.2.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.9/Picmal.dmg" length="126311876" type="application/octet-stream" sparkle:edSignature="IbngIXyfAA4SyTMS6k93yhfeQjvnz91fjCoTkDLXBzWzpJMZ9vb9Vf/Wz7jphexn+BdTRki/0K93BUNdyHm8Ag=="/>
+        <description><![CDATA[<div><ul><li>Persist files when switching between the 'Convert' and 'Compress' tabs.</li>
+<li>Add support for dragging and dropping files onto the dock icon.</li>
+<li>Fixed an issue with SVG compression that was failing because it could not interpret some CSS classes correctly.</li>
+<li>HIF format support (Canon HEIF) was added.</li>
+<li>Fixed DNG/RAW rotation issue.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.8</title>
             <pubDate>Sun, 30 Nov 2025 09:56:53 +0100</pubDate>
             <link>https://picmal.app/</link>

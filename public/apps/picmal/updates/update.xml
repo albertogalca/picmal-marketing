@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.3.0</title>
+            <pubDate>Mon, 15 Dec 2025 17:55:51 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>46</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.0/Picmal.dmg" length="126737694" type="application/octet-stream" sparkle:edSignature="M+4Dj6L8jr4Du7yRIdkH9p8XKIG1GVvkxFiy8xPtDqJN5pmHrsUemq+6dPOAweIk32ox+CChqoyL9zSJgIWwAg=="/>
+        <description><![CDATA[<div><ul><li>I watched folders and added hot folder monitoring.</li>
+<li>You can now use Picmal with the Shortcuts app.</li>
+<li>Picmal runs in the background when you log in.</li>
+<li>Compress output it's available for images, audios and videos.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.2.9</title>
             <pubDate>Wed, 10 Dec 2025 10:13:08 +0100</pubDate>
             <link>https://picmal.app/</link>

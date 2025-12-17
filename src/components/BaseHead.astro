@@ -13,7 +13,7 @@ interface Props {
 }
 
 // Remove trailing slashes and query parameters for consistent canonical URLs
-const cleanPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const cleanPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const canonicalURL = new URL(cleanPath, Astro.site);
 
 const { title, description, image = FallbackImage } = Astro.props;
@@ -28,12 +28,12 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Prevent dark mode flash - must run before page renders -->
 <script is:inline>
   // This runs immediately before the page renders to prevent flash
-  (function() {
-    const theme = localStorage.getItem('theme') || 'light';
+  (function () {
+    const theme = localStorage.getItem("theme") || "light";
     const root = document.documentElement;
 
     // Set theme immediately
-    root.classList.remove('light', 'dark');
+    root.classList.remove("light", "dark");
     root.classList.add(theme);
 
     // Set color-scheme to match
@@ -89,17 +89,5 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Analytics -->
 <script
   defer
-  data-domain="picmal.app"
-  src="https://plausible.io/js/script.js"
-></script>
-<script
-  src="https://analytics.ahrefs.com/analytics.js"
-  data-key="GpINWaj6bBGM/GR4cPUegg"
-  async
-></script>
-<script
-  defer
-  data-website-id="dfid_HTnpp3MzeJcRb83o7PxU7"
-  data-domain="picmal.app"
-  src="https://datafa.st/js/script.js"
-></script>
+  src="https://cocky-mole.pikapod.net/script.js"
+  data-website-id="98378962-2963-4328-b2e2-748fa6732981"></script>

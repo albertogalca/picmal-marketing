@@ -13,6 +13,7 @@ export interface Props {
   title?: string;
   target?: string;
   rel?: string;
+  onclick?: string;
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   title,
   target = "_blank",
   rel = "noopener noreferrer",
+  onclick,
 } = Astro.props;
 
 const sizeClasses = {
@@ -115,6 +117,7 @@ const baseClasses = `block rounded-lg transition-colors text-center cursor-point
       class={baseClasses}
       id={id}
       title={title}
+      onclick={onclick}
     >
       {icon && (
         <svg

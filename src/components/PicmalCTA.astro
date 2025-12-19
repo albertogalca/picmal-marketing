@@ -41,7 +41,7 @@ const {
       <Paragraph size="small" class="mb-8 text-text-secondary">
         {description}
       </Paragraph>
-      <Button text={buttonText} />
+      <Button text={buttonText} onclick="posthog.capture('buy_clicked')" />
     </div>
   </div>
 

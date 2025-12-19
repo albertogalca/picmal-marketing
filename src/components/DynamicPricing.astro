@@ -179,7 +179,7 @@ const pricingTiers = [
     </ul>
 
     <!-- CTA Button -->
-    <Button id="buy-button" text="Buy for Mac" class="w-full mt-6" />
+    <Button id="buy-button" text="Buy for Mac" class="w-full mt-6" onclick="posthog.capture('buy_clicked')" />
 
     <script define:vars={{ pricingTiers }}>
       // Initialize state

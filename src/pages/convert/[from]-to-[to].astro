@@ -149,7 +149,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
         </Paragraph>
 
         <div class="flex flex-col items-center gap-4">
-          <Button text="Buy for Mac" />
+          <Button text="Buy for Mac" onclick="posthog.capture('buy_clicked')" />
           <Paragraph size="small">
             One-time purchase • 14-day money back guarantee
           </Paragraph>

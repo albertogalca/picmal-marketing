@@ -5,6 +5,7 @@ import "../styles/global.css";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../../public/og.png";
 import { SITE_TITLE } from "../consts";
+import PostHog from "./posthog.astro";
 
 interface Props {
   title: string;
@@ -91,3 +92,6 @@ const { title, description, image = FallbackImage } = Astro.props;
   defer
   src="https://cocky-mole.pikapod.net/script.js"
   data-website-id="98378962-2963-4328-b2e2-748fa6732981"></script>
+
+<!-- PostHog Analytics -->
+<PostHog />

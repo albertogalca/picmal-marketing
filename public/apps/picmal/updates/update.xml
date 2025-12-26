@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.3.1</title>
+            <pubDate>Fri, 26 Dec 2025 14:11:17 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>47</sparkle:version>
+            <sparkle:shortVersionString>1.3.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.1/Picmal.dmg" length="129192650" type="application/octet-stream" sparkle:edSignature="sLz++o02lU0fKz2YVLAD1QY21aF/WvRdio94At9Q+JpS7T+a/bhv4igAFe6PiY5bIQiKoxCEIU19AB95KwRmBg=="/>
+        <description><![CDATA[<div><ul><li>Clear error messages when switching between compress/convert modes.</li>
+<li>The app now starts in the background when launched at login with "Keep in Menu Bar" enabled.</li>
+<li>Improve images compression.</li>
+<li>Fixed video compression not reducing file sizes and improved encoding performance.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.3.0</title>
             <pubDate>Mon, 15 Dec 2025 17:55:51 +0100</pubDate>
             <link>https://picmal.app/</link>

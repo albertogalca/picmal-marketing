@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Paragraph from "./Paragraph.astro";
 import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
@@ -11,11 +12,13 @@ const displayUsers = users.slice(0, 8);
   <div class="flex items-center -space-x-2">
     {
       displayUsers.map((user: any) => (
-        <img
+        <Image
           src={getGravatarUrl(user.email, 64)}
           alt="User avatar"
+          width={32}
+          height={32}
           class="w-8 h-8 rounded-full ring-2 ring-background object-cover"
-          loading="lazy"
+          loading="eager"
         />
       ))
     }

@@ -1,0 +1,515 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import Button from "../components/Button.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import Paragraph from "../components/Paragraph.astro";
+import TrustBar from "../components/TrustBar.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+
+const SITE_TITLE =
+  "Batch Image Converter for Mac - Convert Thousands of Images at Once";
+const SITE_DESCRIPTION =
+  "Convert hundreds or thousands of images in one click. Native Mac batch converter with parallel processing. No file limits. Works offline.";
+
+const faqs = [
+  {
+    question: "How many images can I convert at once?",
+    answer:
+      "There are no limits. Picmal can batch convert thousands of images in a single operation. The only limit is your Mac's available storage space for the output files.",
+  },
+  {
+    question: "How fast is batch conversion?",
+    answer:
+      "Picmal uses parallel processing and all available CPU cores to convert images as fast as possible. Converting 1,000 HEIC to JPG images typically takes 1-3 minutes depending on your Mac's specifications.",
+  },
+  {
+    question: "Can I convert images of different formats at once?",
+    answer:
+      "Yes! Mix and match any formats. Drop HEIC, PNG, TIFF, and other formats together, and Picmal will convert them all to your chosen output format in one batch operation.",
+  },
+  {
+    question: "Will batch converting affect my Mac's performance?",
+    answer:
+      "Picmal is optimized to use your Mac's resources efficiently. While it uses multiple cores for speed, it won't freeze your system. You can continue working while conversions run in the background.",
+  },
+  {
+    question: "Can I preserve folder structure when batch converting?",
+    answer:
+      "Yes. Picmal can maintain your original folder structure when batch converting, making it easy to organize large photo libraries.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text"
+  >
+    <Header />
+
+    <!-- Hero Section -->
+    <main
+      id="main-content"
+      class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20"
+    >
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto">
+              Batch convert thousands of images on Mac
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+            >
+              Convert entire photo libraries in minutes. Drop hundreds of images
+              at once and let Picmal handle everything with blazing-fast
+              parallel processing.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked_batch_image_converter_mac')"
+              />
+              <a
+                href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              >
+                <svg
+                  class="w-4 h-4 inline-block mr-2"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8a4.35 4.35 0 0 1-2.59-4.03z"
+                  ></path></svg
+                >
+                Download for Mac
+              </a>
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back • macOS 12+
+            </p>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="mt-6 sm:mt-8">
+            <TrustBar />
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+        >
+          <div style="aspect-ratio: 16/10;">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal batch converter interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal batch converter interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <section class="relative z-10 px-6 py-20">
+      <div class="max-w-6xl mx-auto">
+        <H2 class="mb-4 text-center">Built for batch processing at scale</H2>
+        <Paragraph class="text-center mb-16 max-w-2xl mx-auto">
+          Stop converting images one by one. Picmal handles hundreds or
+          thousands of images in parallel with zero limits.
+        </Paragraph>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Feature 1 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Convert unlimited images at once</H3>
+            <Paragraph class="mb-4">
+              Drop your entire photo library and convert everything in one go.
+              No file count limits, no size restrictions, no artificial
+              barriers.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Convert 1,000+ images in minutes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Drag entire folders directly into the app</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Mix different formats in the same batch</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Blazing-fast parallel processing</H3>
+            <Paragraph class="mb-4">
+              Picmal uses every available CPU core on your Mac to process
+              multiple images simultaneously. Maximum speed, minimum wait time.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Multi-core processing for maximum speed</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Optimized for Apple Silicon and Intel Macs</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>10-100x faster than online converters</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Multiple ways to add files</H3>
+            <Paragraph class="mb-4">
+              Drag and drop folders, use the File menu, or right-click images in
+              Finder. Whatever workflow feels natural to you.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Drag entire folders into Picmal</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Right-click in Finder for quick access</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Use File > Open to browse your Mac</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Smart batch settings</H3>
+            <Paragraph class="mb-4">
+              Apply the same conversion settings to all images, or use custom
+              presets. Maintain folder structure and organize output easily.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Save presets for repeated batch jobs</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Preserve original folder structure</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Apply same settings to all files at once</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Use Cases Section -->
+    <section class="relative z-10 px-6 py-20 bg-background-subtle/50">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-12 text-center"
+          >Perfect for these batch conversion tasks</H2
+        >
+
+        <div class="grid gap-6">
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Photo Library Migration</H3>
+            <Paragraph>
+              Moving from iPhone to Android? Converting HEIC photos to JPG?
+              Batch convert your entire photo library in one operation.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Website Optimization</H3>
+            <Paragraph>
+              Convert hundreds of product images to WebP or AVIF for faster
+              website loading. Batch resize and compress for consistent quality.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Client Deliverables</H3>
+            <Paragraph>
+              Photographers and designers: deliver final files in multiple
+              formats at once. Convert RAW to JPG, resize for web and print
+              simultaneously.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Archive Conversion</H3>
+            <Paragraph>
+              Modernize old photo archives by batch converting outdated formats
+              (BMP, TIFF) to modern, efficient formats like HEIC or AVIF.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Testimonials -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- CTA Section -->
+    <section class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto text-center">
+        <H2 class="mb-6">Start batch converting images on your Mac</H2>
+        <Paragraph class="mb-10 max-w-2xl mx-auto">
+          One-time purchase. No subscription. 14-day money back guarantee.
+        </Paragraph>
+        <div
+          class="flex flex-col sm:flex-row gap-3 items-center justify-center"
+        >
+          <Button
+            text="Get Picmal for $15.99"
+            onclick="posthog.capture('buy_clicked_batch_image_converter_mac_bottom')"
+          />
+          <a
+            href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+            class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+          >
+            <svg
+              class="w-4 h-4 inline-block mr-2"
+              fill="currentColor"
+              stroke="none"
+              viewBox="0 0 24 24"
+              ><path
+                d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8a4.35 4.35 0 0 1-2.59-4.03z"
+              ></path></svg
+            >
+            Download for Mac
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-6">Batch conversion questions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Common questions about batch converting images on Mac.
+          </Paragraph>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
 import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
 import FAQSchema, { faqs } from "../components/schema/FAQSchema.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
@@ -54,6 +55,7 @@ const licenseFaqs = [
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <OrganizationSchema url={Astro.site!.href} />
+    <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
     <link
       rel="preload"

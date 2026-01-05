@@ -32,36 +32,76 @@ const popularFormats = [
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
 
-  <body class="bg-background">
+  <body class="min-h-screen transition-colors duration-300 bg-background text-text">
     <Header />
 
-    <!-- Hero Section with gradient -->
-    <main class="relative z-10 pt-32 pb-20">
+    <!-- Hero Section -->
+    <main class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <!-- Gradient background -->
       <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <H1 class="mb-4">Compress images without quality loss</H1>
-          <Paragraph class="max-w-2xl mx-auto">
-            Reduce file sizes by up to 90% while maintaining visual quality.
-            Support for JPG, PNG, WebP, AVIF, GIF, TIFF, and PDF. 100% offline
-            processing.
-          </Paragraph>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div class="max-w-4xl mx-auto flex justify-center items-center flex-col">
+            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">Compress images without quality loss</H1>
+            <p class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0">
+              Reduce file sizes by up to 90% while maintaining visual quality.
+              Support for JPG, PNG, WebP, AVIF, GIF, TIFF, and PDF. 100% offline
+              processing.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4">
+            <Button text="Get Picmal for $15.99" onclick="posthog.capture('buy_clicked')" />
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back guarantee
+            </p>
+          </div>
         </div>
 
-        <div class="flex flex-col items-center gap-4">
-          <Button text="Buy for Mac" onclick="posthog.capture('buy_clicked')" />
-          <p class="text-sm text-text-secondary">
-            One-time purchase • 14-day money back guarantee
-          </p>
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+        >
+          <div style="aspect-ratio: 16/10;">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+          </div>
         </div>
       </div>
     </main>
 
     <!-- Popular Formats Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background-subtle">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">Popular Compression Formats</H2>
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">Popular Compression Formats</H2>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {
@@ -101,9 +141,11 @@ const popularFormats = [
     </section>
 
     <!-- All Compression Formats Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-16">All Supported Formats</H2>
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">All Supported Formats</H2>
+        </div>
 
         <div class="space-y-12">
           {
@@ -175,9 +217,11 @@ const popularFormats = [
     </section>
 
     <!-- Benefits Section -->
-    <section class="relative z-10 px-6 py-24 bg-background-subtle">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background-subtle">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">Why Compress Images?</H2>
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">Why Compress Images?</H2>
+        </div>
 
         <div class="space-y-6">
           <div class="bg-background p-6 rounded-lg border border-border">
@@ -225,13 +269,13 @@ const popularFormats = [
     </section>
 
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-24 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background">
       <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
           title="Compress images effortlessly on your Mac"
           description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
-          buttonText="Buy for Mac"
+          buttonText="Get Picmal for $15.99"
         />
       </div>
     </section>

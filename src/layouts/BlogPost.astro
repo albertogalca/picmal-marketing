@@ -8,6 +8,7 @@ import Header from "../components/Header.astro";
 import ArticleSchema from "../components/schema/ArticleSchema.astro";
 import PicmalCTA from "../components/PicmalCTA.astro";
 import H1 from "../components/H1.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -47,20 +48,20 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
     <!-- Hero with gradient -->
     <div class="relative z-10 pt-32 pb-12">
       <div class="absolute inset-0 -z-10 overflow-hidden"></div>
-
-      <div class="max-w-3xl mx-auto">
-        <a
-          href="/blog"
-          class="inline-flex items-center transition-colors cursor-pointer text-text-secondary hover:text-text"
-        >
-          ← Back to blog
-        </a>
-      </div>
     </div>
 
     <!-- Article -->
     <article class="relative z-10 px-6 pb-20">
       <div class="max-w-3xl mx-auto">
+        <!-- Breadcrumb -->
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: title },
+          ]}
+        />
+
         <!-- Header -->
         <header class="mb-8">
           {
@@ -68,7 +69,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug } =
               <div class="mb-6">
                 <Image
                   src={heroImage}
-                  alt={`Hero image for the article ${title}`}
+                  alt={title}
                   width={800}
                   height={400}
                   class="w-full h-auto rounded-lg border border-border"

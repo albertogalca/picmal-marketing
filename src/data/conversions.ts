@@ -298,3 +298,65 @@ export function generateConversionData(from: string, to: string): ConversionInfo
     ]
   };
 }
+
+/**
+ * Get related conversions based on format properties
+ * Returns conversions that are contextually relevant to the current conversion
+ */
+export function getRelatedConversions(from: string, to: string, limit: number = 6): Array<{from: string, to: string, label: string}> {
+  const fromFormat = formats[from];
+  const toFormat = formats[to];
+  const related: Array<{from: string, to: string, label: string, priority: number}> = [];
+
+  // Helper to add related conversion with priority
+  const addRelated = (fromKey: string, toKey: string, label: string, priority: number) => {
+    if ((fromKey !== from || toKey !== to) && formats[fromKey] && formats[toKey]) {
+      related.push({ from: fromKey, to: toKey, label, priority });
+    }
+  };
+
+  // 1. Same source format, different targets (e.g., HEIC to JPG → HEIC to PNG)
+  Object.keys(formats).forEach(targetKey => {
+    if (targetKey !== to && targetKey !== from) {
+      const targetFormat = formats[targetKey];
+      // Prioritize popular formats
+      const isPriority = ['jpg', 'png', 'webp'].includes(targetKey);
+      addRelated(from, targetKey, `${fromFormat.name} to ${targetFormat.name}`, isPriority ? 10 : 5);
+    }
+  });
+
+  // 2. Similar source formats to same target (e.g., HEIC to JPG → HEIF to JPG)
+  Object.keys(formats).forEach(sourceKey => {
+    if (sourceKey !== from && sourceKey !== to) {
+      const sourceFormat = formats[sourceKey];
+      // Same quality type or similar use case
+      if (sourceFormat.quality === fromFormat.quality ||
+          sourceFormat.browser_support === fromFormat.browser_support) {
+        addRelated(sourceKey, to, `${sourceFormat.name} to ${toFormat.name}`, 8);
+      }
+    }
+  });
+
+  // 3. Reverse conversion (e.g., HEIC to JPG → JPG to HEIC)
+  if (formats[to] && formats[from]) {
+    addRelated(to, from, `${toFormat.name} to ${fromFormat.name}`, 12);
+  }
+
+  // 4. Popular alternative targets (e.g., if converting to JPG, also suggest PNG/WebP)
+  if (to === 'jpg') {
+    addRelated(from, 'png', `${fromFormat.name} to PNG`, 9);
+    addRelated(from, 'webp', `${fromFormat.name} to WebP`, 7);
+  } else if (to === 'png') {
+    addRelated(from, 'jpg', `${fromFormat.name} to JPG`, 9);
+    addRelated(from, 'webp', `${fromFormat.name} to WebP`, 7);
+  } else if (to === 'webp') {
+    addRelated(from, 'jpg', `${fromFormat.name} to JPG`, 9);
+    addRelated(from, 'png', `${fromFormat.name} to PNG`, 7);
+  }
+
+  // Sort by priority and return top results
+  return related
+    .sort((a, b) => b.priority - a.priority)
+    .slice(0, limit)
+    .map(({ from, to, label }) => ({ from, to, label }));
+}

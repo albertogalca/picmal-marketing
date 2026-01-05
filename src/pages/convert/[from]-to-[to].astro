@@ -10,11 +10,14 @@ import Button from "../../components/Button.astro";
 import FAQ from "../../components/FAQ.astro";
 import PicmalCTA from "../../components/PicmalCTA.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import {
   getAllConversions,
   generateConversionData,
   formats,
+  getRelatedConversions,
 } from "../../data/conversions";
+import H3 from "../../components/H3.astro";
 
 export const getStaticPaths: GetStaticPaths = () => {
   const allConversions = getAllConversions();
@@ -35,6 +38,9 @@ const { conversionData, fromFormat, toFormat } = Astro.props as {
   toFormat: any;
 };
 const { from, to } = Astro.params as { from: string; to: string };
+
+// Get smart related conversions
+const relatedConversions = getRelatedConversions(from, to, 6);
 
 // Generate comparison table data
 const comparisonFeatures = [
@@ -132,77 +138,463 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     />
   </head>
 
-  <body class="bg-background">
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text"
+  >
     <Header />
 
     <!-- Hero Section -->
-    <main class="relative z-10 pt-50 pb-32">
-      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
+    <main class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <!-- Gradient background -->
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <H1 class="mb-6">Convert {fromFormat.name} to {toFormat.name} on Mac</H1
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <!-- Breadcrumb -->
+        <div class="mb-6 sm:mb-8">
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Convert", href: "/convert" },
+              { label: `${fromFormat.name} to ${toFormat.name}` },
+            ]}
+          />
+        </div>
+
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">
+              Convert {fromFormat.name} to {toFormat.name} on Mac
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+            >
+              Tired of online converters that compromise your privacy or
+              quality? Picmal converts {fromFormat.name} files to {
+                toFormat.name
+              } instantly—offline, fast, and private.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked')"
+              />
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back guarantee
+            </p>
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
         >
-        <Paragraph class="mb-8 max-w-xl mx-auto">
-          Tired of online converters that compromise your privacy or quality?
-          Picmal converts {fromFormat.name} files to {toFormat.name} instantly on
-          your Mac. No uploads. No subscriptions. No hassle.
-        </Paragraph>
-
-        <div class="flex flex-col items-center gap-4">
-          <Button text="Buy for Mac" onclick="posthog.capture('buy_clicked')" />
-          <Paragraph size="small">
-            One-time purchase • 14-day money back guarantee
-          </Paragraph>
+          <div style="aspect-ratio: 16/10;">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+          </div>
         </div>
       </div>
     </main>
 
-    <SectionDivider />
+    <!-- Why You Might Need This Section -->
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">Why Convert {fromFormat.name} to {toFormat.name}?</H2
+          >
+        </div>
+
+        <div class="space-y-6">
+          <Paragraph>
+            {conversionData.why_convert}
+          </Paragraph>
+
+          <div class="space-y-4">
+            <h3 class="font-semibold text-text text-lg">Common Reasons:</h3>
+            <ul class="space-y-3 list-none pl-0">
+              {
+                conversionData.use_cases.map((useCase: string) => (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <Paragraph class="flex-1">{useCase}</Paragraph>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div
+            class="bg-background-subtle/50 border border-border rounded-lg p-6"
+          >
+            <Paragraph class="italic text-text-secondary">
+              <strong class="text-text not-italic">Quick Summary:</strong>
+              {fromFormat.name} is great for {fromFormat.useCase.toLowerCase()},
+              but {toFormat.name} excels at {toFormat.useCase.toLowerCase()}.
+              Converting makes sense when you need {
+                toFormat.advantages[0].toLowerCase()
+              }.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Happens When You Convert Section -->
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">What to Expect When Converting</H2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="space-y-4">
+            <h3 class="font-semibold text-text text-lg flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+              File Size Impact
+            </h3>
+            <Paragraph>{conversionData.size_reduction}</Paragraph>
+            <Paragraph size="small" class="text-text-secondary">
+              Typical file size: {fromFormat.typical_size} ({fromFormat.name}) → {
+                toFormat.typical_size
+              } ({toFormat.name})
+            </Paragraph>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-semibold text-text text-lg flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Quality Considerations
+            </h3>
+            <Paragraph>{conversionData.quality_impact}</Paragraph>
+            <Paragraph size="small" class="text-text-secondary">
+              Source format: {fromFormat.quality} compression • Target format: {
+                toFormat.quality
+              } compression
+            </Paragraph>
+          </div>
+        </div>
+
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-6"
+        >
+          <h3 class="font-semibold text-text mb-4">What You'll Keep & Lose:</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4
+                class="font-semibold text-text text-sm mb-3 flex items-center gap-2"
+              >
+                <svg
+                  class="w-4 h-4 text-green-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                You'll Keep:
+              </h4>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>Image dimensions</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>EXIF metadata (location, date, camera settings)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500">✓</span>
+                  <span>Color accuracy</span>
+                </li>
+                {
+                  toFormat.supports_transparency && (
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500">✓</span>
+                      <span>Transparency (if present)</span>
+                    </li>
+                  )
+                }
+              </ul>
+            </div>
+            <div>
+              <h4
+                class="font-semibold text-text text-sm mb-3 flex items-center gap-2"
+              >
+                <svg
+                  class="w-4 h-4 text-orange-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                Limitations:
+              </h4>
+              <ul class="space-y-2 text-sm">
+                {
+                  fromFormat.supports_animation &&
+                    !toFormat.supports_animation && (
+                      <li class="flex items-start gap-2">
+                        <span class="text-orange-500">✗</span>
+                        <span>
+                          Animation/Live Photos (converted to still image)
+                        </span>
+                      </li>
+                    )
+                }
+                {
+                  fromFormat.supports_transparency &&
+                    !toFormat.supports_transparency && (
+                      <li class="flex items-start gap-2">
+                        <span class="text-orange-500">✗</span>
+                        <span>
+                          Transparency (replaced with white/custom background)
+                        </span>
+                      </li>
+                    )
+                }
+                {
+                  fromFormat.quality === "lossless" &&
+                    toFormat.quality === "lossy" && (
+                      <li class="flex items-start gap-2">
+                        <span class="text-orange-500">✗</span>
+                        <span>Some quality loss due to lossy compression</span>
+                      </li>
+                    )
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- When NOT to Convert Section (Trust Building) -->
+    <section
+      class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background-subtle/30"
+    >
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">When You Should Keep {fromFormat.name}</H2>
+        </div>
+
+        <div class="space-y-6">
+          <Paragraph>
+            We believe in helping you make the <em>right</em> choice, not just our
+            choice. Here's when keeping {fromFormat.name} makes more sense:
+          </Paragraph>
+
+          <div class="bg-background border border-border rounded-lg p-6">
+            <h3 class="font-semibold text-text mb-4">
+              Stick with {fromFormat.name} if:
+            </h3>
+            <ul class="space-y-3">
+              {
+                fromFormat.advantages.map((advantage: string) => (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <Paragraph class="flex-1">
+                      You prioritize: <strong>{advantage}</strong>
+                    </Paragraph>
+                  </li>
+                ))
+              }
+              {
+                fromFormat.common_uses.length > 0 && (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <Paragraph class="flex-1">
+                      Your workflow is centered around:{" "}
+                      <strong>
+                        {fromFormat.common_uses.slice(0, 2).join(", ")}
+                      </strong>
+                    </Paragraph>
+                  </li>
+                )
+              }
+            </ul>
+          </div>
+
+          <div class="bg-background border border-border rounded-lg p-6">
+            <h3 class="font-semibold text-text mb-4">
+              Choose {toFormat.name} when:
+            </h3>
+            <ul class="space-y-3">
+              {
+                toFormat.advantages.map((advantage: string) => (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <Paragraph class="flex-1">
+                      You need: <strong>{advantage}</strong>
+                    </Paragraph>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <Paragraph class="text-text-secondary italic">
+            <strong class="text-text not-italic">Bottom line:</strong> If you're staying
+            in the {fromFormat.common_uses[0]?.toLowerCase() || fromFormat.name} ecosystem
+            and {fromFormat.advantages[0]?.toLowerCase()}, keep your files as {
+              fromFormat.name
+            }. But if you need {toFormat.useCase.toLowerCase()}, converting to {
+              toFormat.name
+            } is the way to go.
+          </Paragraph>
+        </div>
+      </div>
+    </section>
 
     <!-- How to Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10"
-          >How to Convert {fromFormat.name} to {toFormat.name}</H2
-        >
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4"
+            >How to Convert {fromFormat.name} to {toFormat.name}</H2
+          >
+        </div>
 
         <div class="space-y-6">
           <div class="flex items-start gap-4">
             <div
-              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white font-semibold"
             >
               1
             </div>
             <div>
-              <h3 class="font-semibold text-text mb-1">
+              <H3 class="font-semibold text-text mb-1">
                 Download Picmal for Mac
-              </h3>
+              </H3>
               <Paragraph>Get the native Mac app that works offline</Paragraph>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div
-              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white font-semibold"
             >
               2
             </div>
             <div>
-              <h3 class="font-semibold text-text mb-1">
+              <H3 class="font-semibold text-text mb-1">
                 Drag and drop your {fromFormat.name} files
-              </h3>
+              </H3>
               <Paragraph>Add single images or entire folders</Paragraph>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <div
-              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white font-semibold"
             >
               3
             </div>
             <div>
-              <h3 class="font-semibold text-text mb-1">
+              <H3 class="font-semibold text-text mb-1">
                 Choose {toFormat.name}
-              </h3>
+              </H3>
               <Paragraph>
                 Select {toFormat.name} as your output format in the row "To"
               </Paragraph>
@@ -210,14 +602,14 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
           </div>
           <div class="flex items-start gap-4">
             <div
-              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-text font-semibold"
+              class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white font-semibold"
             >
               4
             </div>
             <div>
-              <h3 class="font-semibold text-text mb-1">
+              <H3 class="font-semibold text-text mb-1">
                 Simply click on 'Convert'
-              </h3>
+              </H3>
               <Paragraph>All processing happens locally on your Mac</Paragraph>
             </div>
           </div>
@@ -225,14 +617,14 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
-    <SectionDivider />
-
     <!-- Comparison Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">
-          Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?
-        </H2>
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">
+            Why Choose Picmal for {fromFormat.name} to {toFormat.name} Conversion?
+          </H2>
+        </div>
 
         <div class="overflow-x-auto rounded-lg border border-border">
           <table
@@ -273,18 +665,18 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
-    <SectionDivider />
-
     <!-- Use Cases Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">
-          Perfect for {
-            toFormat.name === "jpg"
-              ? "Universal photo sharing and web use"
-              : toFormat.useCase
-          }
-        </H2>
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">
+            Perfect for {
+              toFormat.name === "jpg"
+                ? "Universal photo sharing and web use"
+                : toFormat.useCase
+            }
+          </H2>
+        </div>
 
         <div class="space-y-8">
           {
@@ -312,12 +704,12 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
-    <SectionDivider />
-
     <!-- FAQ Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-10">Frequently asked questions</H2>
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">Frequently Asked Questions</H2>
+        </div>
         <div
           class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
         >
@@ -326,111 +718,78 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
-    <SectionDivider />
-
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto">
         <PicmalCTA
           variant="dark"
           title={`Start converting ${fromFormat.name} to ${toFormat.name} now`}
           description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
-          buttonText="Buy for Mac"
+          buttonText="Get Picmal for $15.99"
         />
       </div>
     </section>
 
-    <SectionDivider />
-
     <!-- More Conversions Section -->
-    <section class="relative z-10 px-6 py-20 bg-background">
-      <div class="max-w-4xl mx-auto text-center">
-        <H2 class="mb-6">More Format Conversions</H2>
-        <Paragraph class="mb-8">
-          Need to convert other formats? Picmal supports 30+ image formats for
-          all your conversion needs.
-        </Paragraph>
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-10 sm:mb-12">
+          <H2 class="mb-4">More Format Conversions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Need to convert other formats? Picmal supports 30+ image formats for
+            all your conversion needs.
+          </Paragraph>
+        </div>
 
-        <div class="flex flex-wrap justify-center gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {
-            to === "jpg" ? (
-              <>
-                {from !== "heic" && (
-                  <a
-                    href="/convert/heic-to-jpg"
-                    class="text-blue-600 hover:text-blue-800 hover:underline"
+            relatedConversions.map((conversion) => (
+              <a
+                href={`/convert/${conversion.from}-to-${conversion.to}`}
+                class="block p-4 bg-background-subtle/50 border border-border rounded-lg hover:border-accent hover:bg-background-subtle transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <svg
+                    class="w-5 h-5 text-accent group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    HEIC to JPG
-                  </a>
-                )}
-                {from !== "webp" && (
-                  <a
-                    href="/convert/webp-to-jpg"
-                    class="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    WebP to JPG
-                  </a>
-                )}
-                {from !== "avif" && (
-                  <a
-                    href="/convert/avif-to-jpg"
-                    class="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    AVIF to JPG
-                  </a>
-                )}
-                {from !== "png" && (
-                  <a
-                    href="/convert/png-to-jpg"
-                    class="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    PNG to JPG
-                  </a>
-                )}
-                {from !== "dng" && (
-                  <a
-                    href="/convert/dng-to-jpg"
-                    class="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    DNG to JPG
-                  </a>
-                )}
-              </>
-            ) : (
-              <>
-                <a
-                  href="/convert/heic-to-jpg"
-                  class="text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  HEIC to JPG
-                </a>
-                <a
-                  href="/convert/webp-to-jpg"
-                  class="text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  WebP to JPG
-                </a>
-                <a
-                  href="/convert/avif-to-jpg"
-                  class="text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  AVIF to JPG
-                </a>
-                <a
-                  href="/convert/png-to-jpg"
-                  class="text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  PNG to JPG
-                </a>
-              </>
-            )
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  <span class="font-semibold text-text">
+                    {conversion.label}
+                  </span>
+                </div>
+              </a>
+            ))
           }
-          <span class="text-text-secondary">•</span>
+        </div>
+
+        <div class="mt-8">
           <a
             href="/convert"
-            class="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-            >View All Formats →</a
+            class="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-semibold transition-colors"
           >
+            View All Format Conversions
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

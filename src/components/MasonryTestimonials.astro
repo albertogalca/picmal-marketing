@@ -49,7 +49,7 @@ import { getGravatarUrl } from "../utils/gravatar";
                   {isPress ? (
                     <Image
                       src={testimonial.logo}
-                      alt={testimonial.publication}
+                      alt={`${testimonial.publication} logo`}
                       width={120}
                       height={120}
                       class="h-8 w-auto max-w-[120px] object-contain"
@@ -62,7 +62,7 @@ import { getGravatarUrl } from "../utils/gravatar";
                           testimonial.image ||
                           getGravatarUrl(testimonial.email || "", 64)
                         }
-                        alt={testimonial.name}
+                        alt={`${testimonial.name}, Picmal user`}
                         width={64}
                         height={64}
                         class="w-10 h-10 rounded-full flex-shrink-0"

@@ -3,8 +3,10 @@ import { Image } from "astro:assets";
 import Paragraph from "./Paragraph.astro";
 import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
+import { getCustomerCount } from "../utils/lemonsqueezy";
 
 const displayUsers = users.slice(0, 8);
+const customerCount = await getCustomerCount();
 ---
 
 <div class="flex flex-col md:flex-row items-center justify-center gap-3">
@@ -26,6 +28,6 @@ const displayUsers = users.slice(0, 8);
 
   <!-- Text -->
   <Paragraph size="small" class="text-text-secondary">
-    Trusted by <span class="font-semibold text-text">150+ Mac users</span>
+    Trusted by <span class="font-semibold text-text">{customerCount}+ Mac users</span>
   </Paragraph>
 </div>

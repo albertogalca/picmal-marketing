@@ -1,4 +1,5 @@
 # Picmal.app SEO Audit Report
+
 **Audit Date:** January 5, 2025
 **Audited By:** John Wick, SEO Expert
 **Website:** https://picmal.app
@@ -13,6 +14,7 @@ Picmal.app demonstrates strong SEO fundamentals with excellent technical impleme
 **Overall SEO Score: 7.5/10**
 
 ### Key Strengths
+
 - Excellent technical SEO foundation (meta tags, canonical URLs, structured data)
 - Programmatic SEO strategy generating conversion pages for all format combinations
 - Strong content quality on blog posts
@@ -21,6 +23,7 @@ Picmal.app demonstrates strong SEO fundamentals with excellent technical impleme
 - Fast static site generation
 
 ### Critical Issues to Address
+
 1. **Missing competitor comparison pages** - High-intent traffic opportunity
 2. **No feature landing pages** - Missing high-volume keyword rankings
 3. Missing Open Graph images on many pages
@@ -33,7 +36,9 @@ Picmal.app demonstrates strong SEO fundamentals with excellent technical impleme
 10. No video content or multimedia optimization
 
 ### New Strategic Priorities ⭐
+
 This audit introduces a **major new content strategy** focused on:
+
 - **9 competitor comparison pages** (Permute, XnConvert, Handbrake, CloudConvert, ff·Works, Compresto, Adapter, How to Convert, BatchPhoto)
 - **10 feature landing pages** (Compress Video/Audio/Images, Convert Video/Audio/Images, Folder Watching, Resize Images, Shortcuts Integration, Color Space Conversion)
 - These pages target high-intent keywords and bottom-of-funnel traffic
@@ -48,6 +53,7 @@ This audit introduces a **major new content strategy** focused on:
 Your current approach is **technically excellent** but risks being **too machine-focused**. The biggest opportunity isn't fixing technical issues—it's shifting from "content that ranks" to "content that genuinely helps people."
 
 **Current State:**
+
 - ✅ Technically correct (meta tags, schema, sitemap)
 - ✅ Scalable (programmatic conversion pages)
 - ❌ Thin on human value (50-word conversion pages)
@@ -67,6 +73,7 @@ Google's algorithms increasingly reward content that demonstrates:
 4. **Trustworthiness (T)** - Transparency, honesty, balanced perspectives
 
 **For Picmal, this means:**
+
 - ❌ Don't just list features → ✅ Show real testing data and usage scenarios
 - ❌ Don't create pages to rank → ✅ Create pages to genuinely help users decide
 - ❌ Don't hide weaknesses → ✅ Be honest about when competitors are better
@@ -77,16 +84,19 @@ Google's algorithms increasingly reward content that demonstrates:
 Every piece of content should answer:
 
 **The "So What?" Test:**
+
 - Why does this matter to the reader?
 - What problem does this solve?
 - What will they be able to do after reading this?
 
 **The "Trust Me" Test:**
+
 - Why should the reader believe this?
 - What experience or expertise backs this up?
 - Is this balanced and honest?
 
 **The "Next Step" Test:**
+
 - What should the reader do next?
 - Is there a clear, friction-free path forward?
 - Are we reducing anxiety and hesitation?
@@ -113,6 +123,7 @@ Every piece of content should answer:
 Don't just track rankings. Track **human engagement signals** that Google also rewards:
 
 **Engagement Metrics:**
+
 - Time on page (are people actually reading?)
 - Scroll depth (are they engaging with the content?)
 - Pages per session (are they exploring?)
@@ -120,12 +131,14 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 - Direct traffic growth (are people remembering you?)
 
 **Trust Metrics:**
+
 - Conversion rate (not just clicks—actual purchases)
 - Conversion path length (how much content do they consume first?)
 - Brand search volume (are people searching for "Picmal" specifically?)
 - Customer retention (NPS, refund rate)
 
 **Content Quality Signals:**
+
 - Comments/feedback on blog posts
 - Social shares (genuine, not inflated)
 - Backlinks from genuine recommendations (not spam)
@@ -134,17 +147,20 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 1.6 Implementation Priority: Value First, Scale Second
 
 **Phase 1: Prove Human Value (Weeks 1-4)**
+
 - Pick 5 most important conversion pages
 - Expand them into **exceptional mini-guides** (600+ words)
 - Add experience signals, testing data, honest trade-offs
 - Measure engagement metrics
 
 **Phase 2: Template the Wins (Weeks 5-8)**
+
 - Identify what worked in Phase 1
 - Create templates that maintain human value at scale
 - Build in variation to avoid "sameness"
 
 **Phase 3: Scale Strategically (Weeks 9+)**
+
 - Apply to remaining conversion pages
 - But continue to add unique elements
 - Prioritize quality over quantity
@@ -156,21 +172,25 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 2.1 Meta Tags & Page Titles ✅ GOOD
 
 **Homepage:**
+
 - Title: "Picmal - All-in-one media converter for Mac" ✅
 - Meta Description: "Batch convert and compress your images, videos and audios offline on your Mac." ✅
 - Length: Good (under 160 characters)
 - Canonical URL: Properly implemented ✅
 
 **Blog Posts:**
+
 - Title format: Clear and descriptive ✅
 - Example: "How to Convert HEIC to JPG on Mac (2025 Guide)"
 - Includes year for freshness signals ✅
 
 **Conversion Pages:**
+
 - Title format: "Convert HEIC to JPG on Mac (Offline, Fast, and Private)" ✅
 - Clear value propositions in titles ✅
 
 **Issues:**
+
 1. ⚠️ Meta descriptions could be more compelling with stronger CTAs
 2. ⚠️ Some pages may benefit from brand name in title (e.g., "| Picmal")
 3. ⚠️ Missing meta keywords (while not critical, can help with internal search)
@@ -178,16 +198,18 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 1.2 Open Graph & Social Meta Tags ⚠️ NEEDS IMPROVEMENT
 
 **Current Implementation:**
+
 ```html
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:url" content="{Astro.url}" />
+<meta property="og:title" content="{title}" />
+<meta property="og:description" content="{description}" />
+<meta property="og:image" content="{new" URL(image.src, Astro.url)} />
 <meta property="twitter:card" content="summary_large_image" />
 ```
 
 **Issues:**
+
 1. ❌ **CRITICAL:** Default fallback image (og.png) may not be optimized for all pages
 2. ⚠️ Missing `og:site_name` property
 3. ⚠️ Missing Twitter handle (`twitter:site`, `twitter:creator`)
@@ -195,6 +217,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 5. ⚠️ Missing image alt text in OG tags
 
 **Recommendations:**
+
 - Create unique OG images for each major page category
 - Add custom OG images for top-performing blog posts
 - Include Twitter handle: `@picmalapp`
@@ -203,10 +226,12 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 1.3 Structured Data (Schema.org) ✅ GOOD, ⚠️ INCOMPLETE
 
 **Currently Implemented:**
+
 - ✅ Organization Schema (in Footer)
 - ✅ FAQ Schema (on homepage and conversion pages)
 
 **Missing Schema Opportunities:**
+
 1. ❌ **CRITICAL:** No Article schema on blog posts
 2. ❌ Product schema for Picmal app
 3. ❌ SoftwareApplication schema
@@ -216,6 +241,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 7. ❌ VideoObject schema (if you add video content)
 
 **Example Blog Post Schema Needed:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -245,6 +271,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 1.5 Sitemap & Robots.txt ✅ GOOD, ⚠️ NEEDS OPTIMIZATION
 
 **Sitemap:**
+
 - ✅ Properly generated at `/sitemap-index.xml`
 - ✅ Referenced in robots.txt
 - ⚠️ Should verify all conversion pages are included
@@ -252,6 +279,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 - ⚠️ Consider adding priority and changefreq
 
 **Robots.txt:**
+
 - ✅ Properly configured
 - ✅ Allows search engines
 - ✅ Blocks AI training bots (ClaudeBot, GPTBot, etc.)
@@ -275,6 +303,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 - Analytics loaded with defer attribute
 
 **Minor Recommendations:**
+
 - Consider lazy loading for below-fold images
 - Implement resource hints (preconnect, dns-prefetch) for external domains
 - Add Cache-Control headers via Vercel config
@@ -291,16 +320,19 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 2.1 Homepage Content ⚠️ NEEDS IMPROVEMENT
 
 **Current H1:** "Convert & compress media files in seconds"
+
 - ✅ Clear and benefit-focused
 - ⚠️ Missing primary keyword "Mac"
 - ⚠️ Could be more specific
 
 **Heading Hierarchy Issues:**
+
 - Multiple H2s but inconsistent hierarchy
 - ❌ **CRITICAL:** Some sections use visual styling instead of semantic headings
 - Missing H2 → H3 hierarchy in places
 
 **Content Recommendations:**
+
 1. **Improve H1:** "Convert & Compress Images, Videos & Audio on Mac - Fast & Private"
 2. **Add more keyword-rich content above the fold**
 3. **Include more specific use cases in hero section**
@@ -309,6 +341,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ### 2.2 Blog Content ✅ EXCELLENT
 
 **Strengths:**
+
 - Comprehensive, in-depth articles (2000+ words)
 - Clear structure with proper headings
 - Includes year dates for freshness
@@ -316,6 +349,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 - Comparison tables and actionable advice
 
 **Example: "How to Convert HEIC to JPG on Mac"**
+
 - ✅ Excellent keyword targeting
 - ✅ Comprehensive coverage of topic
 - ✅ Multiple conversion methods explained
@@ -323,6 +357,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 - ✅ FAQ section included
 
 **Issues - Lacking E-E-A-T Signals:**
+
 1. ❌ **CRITICAL:** Missing author bio and expertise signals
 2. ❌ No "experience" indicators (testing data, real usage)
 3. ⚠️ Missing internal links to related blog posts
@@ -335,18 +370,19 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 **E-E-A-T Enhancement Recommendations:**
 
 **1. Add Author Bio Section (Trust Signal)**
+
 ```html
 <!-- At end of every blog post -->
 <section class="author-bio">
-  <img src="/author-photo.jpg" alt="Alberto Gallego">
+  <img src="/author-photo.jpg" alt="Alberto Gallego" />
   <div>
     <h3>About Alberto Gallego</h3>
     <p>
-      I'm a Mac developer and automation enthusiast who's been building
-      software for image processing since 2018. I created Picmal after
-      years of frustration with clunky online converters and expensive
-      subscription tools. I test every feature myself on thousands of
-      real files—from RAW photos to screen recordings.
+      I'm a Mac developer and automation enthusiast who's been building software
+      for image processing since 2018. I created Picmal after years of
+      frustration with clunky online converters and expensive subscription
+      tools. I test every feature myself on thousands of real files—from RAW
+      photos to screen recordings.
     </p>
     <p>
       <a href="https://albertogalca.com">Personal site</a> •
@@ -357,6 +393,7 @@ Don't just track rankings. Track **human engagement signals** that Google also r
 ```
 
 **Why this works:**
+
 - ✅ Real name, not anonymous
 - ✅ Relevant expertise (Mac development, image processing)
 - ✅ Personal connection (explains motivation)
@@ -370,6 +407,7 @@ Instead of generic statements, add specific, tested insights:
 ❌ **Generic:** "Converting HEIC to JPG is useful for compatibility"
 
 ✅ **Experience-Based:**
+
 > "After testing with 2,000+ iPhone photos, we found that HEIC to JPG
 > conversion typically increases file size by 42% at 85% quality, while
 > visual differences are imperceptible to most users. For photos with
@@ -379,23 +417,27 @@ Instead of generic statements, add specific, tested insights:
 ❌ **Generic:** "Picmal is faster than online converters"
 
 ✅ **Tested:**
+
 > "In benchmark testing on an M1 Mac, Picmal converted 500 HEIC photos
 > to JPG in 43 seconds. The same task took 4 minutes 18 seconds with
 > CloudConvert (including upload/download time), and 6 minutes 32 seconds
 > with Convertio."
 
 **3. Add "Last Updated" and Freshness Signals**
+
 - Show when content was last reviewed
 - Update dates annually to maintain freshness
 - Add "Tested with macOS Sequoia" or similar version callouts
 
 **4. Include Screenshots with Descriptive Alt Text**
+
 - Show actual Picmal interface in use
 - Before/after quality comparisons
 - File size comparisons
 - Use descriptive alt text (not just "screenshot")
 
 **5. Add Article Schema with Author Information**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -414,6 +456,7 @@ Instead of generic statements, add specific, tested insights:
 ```
 
 **6. Other Trust-Building Elements:**
+
 - Add "Related Posts" widget at bottom
 - Implement social sharing buttons
 - Add breadcrumb navigation
@@ -424,9 +467,10 @@ Instead of generic statements, add specific, tested insights:
 ### 2.3 Conversion Pages ❌ CRITICAL - Needs Human-First Overhaul
 
 **Current State: "Generated for Google"**
+
 - ❌ ~50 words of thin content
 - ❌ Feels like a tool page, not a guide
-- ❌ No context about *why* someone would need this
+- ❌ No context about _why_ someone would need this
 - ❌ No trust signals or experience sharing
 - ❌ High bounce risk - users don't find value
 
@@ -435,6 +479,7 @@ Instead of generic statements, add specific, tested insights:
 Instead of thinking "I need 100 conversion pages that rank," think:
 
 > "Someone searching for 'convert HEIC to JPG Mac' has a real problem. They probably:
+>
 > - Just got photos from their iPhone that won't open on Windows
 > - Need to share photos with someone who can't view HEIC
 > - Are frustrated by compatibility issues
@@ -451,6 +496,7 @@ Instead of thinking "I need 100 conversion pages that rank," think:
 ## Why You Might Need This [The "So What?"]
 
 Most people need to convert HEIC to JPG because:
+
 - **Sharing with Windows users** - HEIC isn't widely supported outside Apple
 - **Website uploads** - Many sites only accept JPG/PNG
 - **Long-term archival** - JPG has universal, lasting compatibility
@@ -472,6 +518,7 @@ HEIC uses more advanced compression than JPG. When converting to JPG at
 files get large but preserve all visible detail.
 
 **What You'll Keep:**
+
 - ✅ Image dimensions
 - ✅ EXIF metadata (location, camera settings, date)
 - ✅ Color accuracy
@@ -491,6 +538,7 @@ no privacy risk, no file size limits, no waiting for slow internet.
 ## When NOT to Convert to JPG [Build Trust]
 
 Keep HEIC if:
+
 - You're staying in the Apple ecosystem (Mac, iPhone, iCloud)
 - Storage space is limited (HEIC is more efficient)
 - You need Live Photos (JPG doesn't support this)
@@ -510,6 +558,7 @@ A: Yes - drag entire folders, no limits.
 A: Completely. No internet needed after install.
 
 ## Related Conversions [Journey Design]
+
 - Also converting from iPhone? → [HEIC to PNG](#)
 - Need transparency? → [PNG formats](#)
 - Preparing for web? → [WebP conversion](#)
@@ -530,20 +579,21 @@ A: Completely. No internet needed after install.
 
 ❌ Generic: "HEIC is Apple's image format"
 ✅ Specific: "In our testing with 1,000+ iPhone photos, HEIC files averaged
-            2.1MB while equivalent JPGs at 85% quality averaged 3.4MB"
+2.1MB while equivalent JPGs at 85% quality averaged 3.4MB"
 
 ❌ Generic: "Picmal is fast"
 ✅ Specific: "Converting 500 HEIC photos to JPG takes about 45 seconds on
-            an M1 Mac, compared to 3-5 minutes with online converters
-            (including upload/download time)"
+an M1 Mac, compared to 3-5 minutes with online converters
+(including upload/download time)"
 
 ❌ Generic: "Offline is better"
 ✅ Specific: "Files never leave your Mac - no upload means no privacy risk,
-            no file size limits, and no dependency on internet speed"
+no file size limits, and no dependency on internet speed"
 
 **Implementation Priority:**
 
 **Phase 1 (Week 1-2):** Pick 5 highest-traffic conversion pages
+
 - HEIC to JPG
 - PNG to JPG
 - WebP to JPG
@@ -552,17 +602,20 @@ A: Completely. No internet needed after install.
 
 Manually expand these into full 600-word guides with real experience signals.
 Track:
+
 - Time on page (should increase from ~30s to 2-3 minutes)
 - Bounce rate (should decrease)
 - Scroll depth (should hit 75%+)
 - Conversion to download (should improve)
 
 **Phase 2 (Week 3-4):** Create template based on what worked
+
 - Identify which sections got the most engagement
 - Build reusable framework with room for format-specific insights
 - Add variation to avoid feeling "templated"
 
 **Phase 3 (Month 2-3):** Scale to all conversion pages
+
 - Maintain 400-600 word minimum
 - Always include: Why?, What happens?, When not to?, FAQ
 - Add unique testing data where possible
@@ -571,6 +624,7 @@ Track:
 ### 2.4 Keyword Optimization ⚠️ MODERATE
 
 **Primary Keywords Identified:**
+
 - "convert HEIC to JPG Mac" ✅
 - "image converter Mac" ✅
 - "batch image converter" ✅
@@ -578,6 +632,7 @@ Track:
 - "media converter Mac" ✅
 
 **Missing Keyword Opportunities:**
+
 1. ❌ "best image converter Mac"
 2. ❌ "offline image converter"
 3. ❌ "privacy-focused image converter"
@@ -588,16 +643,17 @@ Track:
 
 **Search Intent Analysis:**
 
-| Keyword | Intent | Current Ranking Opportunity | Action Needed |
-|---------|--------|---------------------------|---------------|
-| "convert HEIC to JPG Mac" | Informational + Transactional | HIGH | ✅ Well-optimized |
-| "best HEIC converter Mac" | Comparison | MEDIUM | ❌ Create comparison content |
-| "free image converter Mac" | Free alternative | LOW | ⚠️ Add free trial section |
-| "batch convert images Mac" | Tool-seeking | HIGH | ✅ Good coverage |
-| "how to convert HEIC" | Tutorial | HIGH | ✅ Blog post exists |
-| "HEIC vs JPG" | Informational | MEDIUM | ❌ Create dedicated page |
+| Keyword                    | Intent                        | Current Ranking Opportunity | Action Needed                |
+| -------------------------- | ----------------------------- | --------------------------- | ---------------------------- |
+| "convert HEIC to JPG Mac"  | Informational + Transactional | HIGH                        | ✅ Well-optimized            |
+| "best HEIC converter Mac"  | Comparison                    | MEDIUM                      | ❌ Create comparison content |
+| "free image converter Mac" | Free alternative              | LOW                         | ⚠️ Add free trial section    |
+| "batch convert images Mac" | Tool-seeking                  | HIGH                        | ✅ Good coverage             |
+| "how to convert HEIC"      | Tutorial                      | HIGH                        | ✅ Blog post exists          |
+| "HEIC vs JPG"              | Informational                 | MEDIUM                      | ❌ Create dedicated page     |
 
 **Recommendations:**
+
 1. Create comparison pages: "Picmal vs [Competitor]"
 2. Add format comparison pages: "HEIC vs JPG", "PNG vs WebP"
 3. Target "best [format] converter Mac" keywords
@@ -607,6 +663,7 @@ Track:
 ### 2.5 Content Gaps ❌ CRITICAL OPPORTUNITIES
 
 **Missing Content Types:**
+
 1. ❌ Comparison pages (vs. competitors)
 2. ❌ Format guide hub page
 3. ❌ Use case landing pages (photographers, developers, designers)
@@ -620,6 +677,7 @@ Track:
 **Recommended New Content:**
 
 **Comparison Content:**
+
 - "Picmal vs XnConvert: Which Mac Converter is Better?"
 - "Picmal vs CloudConvert: Offline vs Online Conversion"
 - "Picmal vs Permute: Feature & Performance Comparison"
@@ -632,23 +690,27 @@ Track:
 - "Best Image Converters for Mac 2025 (Comprehensive Review)"
 
 **Format Guides:**
+
 - "Complete Guide to Image Formats in 2025"
 - "HEIC vs JPG vs PNG: Which Should You Use?"
 - "Modern Image Formats Explained (WebP, AVIF, JXL)"
 
 **Use Case Pages:**
+
 - "Image Conversion for Photographers: Complete Workflow"
 - "Web Developer's Guide to Image Optimization on Mac"
 - "Graphic Designer's Image Conversion Toolkit"
 - "Converting Images for Social Media: Complete Guide"
 
 **Technical Content:**
+
 - "Understanding Image Compression: Lossy vs Lossless"
 - "Metadata Preservation in Image Conversion"
 - "Color Profile Management in Image Conversion"
 - "How to Maintain Image Quality When Converting"
 
 **Feature Landing Pages:**
+
 - "Compress Video Files on Mac - Fast & Offline"
 - "Compress Audio Files on Mac - Reduce File Size"
 - "Compress Images on Mac - Maintain Quality"
@@ -672,6 +734,7 @@ Most visitors scan content looking for answers. Headings are signposts that
 guide them. Poor heading structure = frustrated users = high bounce rates.
 
 **Homepage Issues:**
+
 - ✅ Single H1 (good)
 - ⚠️ H2 headings not consistently hierarchical
 - ⚠️ Some visual "headings" are not semantic HTML headings
@@ -680,6 +743,7 @@ guide them. Poor heading structure = frustrated users = high bounce rates.
 **Human-Friendly Heading Strategy:**
 
 **Bad (Feature-Focused):**
+
 ```
 H2: Features
 H2: Pricing
@@ -687,6 +751,7 @@ H2: Testimonials
 ```
 
 **Good (Benefit & Question-Focused):**
+
 ```
 H2: Why Picmal Is Faster Than Online Converters
 H2: Simple Pricing - Pay Once, Own Forever
@@ -694,6 +759,7 @@ H2: What Mac Users Are Saying
 ```
 
 **Even Better (Addresses User Intent):**
+
 ```
 H2: Tired of Uploading Private Photos to Random Websites?
 H2: How Much Does It Cost? (And Why It's a Better Deal)
@@ -703,6 +769,7 @@ H2: Real Stories from Photographers and Designers
 **Best Practice Framework:**
 
 Every major section should answer one of these:
+
 1. **What is this?** - "How Picmal Converts Your Files Offline"
 2. **Who is it for?** - "Perfect for Privacy-Conscious Photographers"
 3. **Why should I care?** - "Save Hours with Batch Processing"
@@ -710,6 +777,7 @@ Every major section should answer one of these:
 5. **What makes you different?** - "Why Offline Beats Online Converters"
 
 **Implementation Checklist:**
+
 - [ ] Audit all headings for proper hierarchy (never skip levels)
 - [ ] Rewrite headings to be descriptive and benefit-driven
 - [ ] Ensure H2s can stand alone as "table of contents"
@@ -719,11 +787,13 @@ Every major section should answer one of these:
 ### 3.2 Image Optimization ⚠️ NEEDS IMPROVEMENT
 
 **Current Implementation:**
+
 - ✅ Responsive images via Sharp
 - ✅ Multiple size breakpoints (320, 640, 1280px)
 - ⚠️ Some images may be missing descriptive alt text
 
 **Issues:**
+
 1. ❌ Alt text audit needed (check all images)
 2. ⚠️ Consider WebP/AVIF for better compression
 3. ⚠️ Logo images need descriptive alt text
@@ -733,6 +803,7 @@ Every major section should answer one of these:
 **Alt Text: Accessibility = SEO = Human-First**
 
 Alt text serves three critical purposes:
+
 1. **Accessibility** - Screen readers for visually impaired users
 2. **SEO** - Image search visibility
 3. **Fallback** - When images fail to load
@@ -740,11 +811,13 @@ Alt text serves three critical purposes:
 **The "Describe What Matters" Test:**
 
 Write alt text as if saying to someone:
+
 > "I can't see this image — what am I missing that's important?"
 
 **Alt Text Best Practices:**
 
 ❌ **WRONG (Too Generic):**
+
 ```
 alt="image"
 alt="picmal"
@@ -753,12 +826,14 @@ alt="interface"
 ```
 
 ⚠️ **MEH (Technically Correct, Not Helpful):**
+
 ```
 alt="Picmal application window"
 alt="File conversion screen"
 ```
 
 ✅ **GOOD (Descriptive + Context):**
+
 ```
 alt="Picmal interface showing batch image conversion with drag and drop"
 alt="HEIC to JPG conversion comparison showing 50% file size reduction"
@@ -766,6 +841,7 @@ alt="Before and after file size: 2.1MB HEIC becomes 3.4MB JPG"
 ```
 
 🌟 **EXCELLENT (Descriptive + Value + Keywords):**
+
 ```
 alt="Picmal Mac app converting 500 HEIC photos to JPG in 43 seconds using drag-and-drop batch processing"
 alt="Side-by-side quality comparison: HEIC vs JPG at 85% quality showing imperceptible difference"
@@ -775,51 +851,61 @@ alt="Picmal settings panel displaying offline conversion, metadata preservation,
 **Category-Specific Guidelines:**
 
 **Product Screenshots:**
+
 - Describe what's happening in the UI
 - Mention the key feature being shown
 - Include outcome/benefit if visible
 
 Example:
+
 ```
 ❌ alt="Picmal screenshot"
 ✅ alt="Picmal batch converting 200 photos with progress bar at 87%"
 ```
 
 **Before/After Comparisons:**
+
 - State both states clearly
 - Include specific metrics if shown
 - Mention the benefit
 
 Example:
+
 ```
 ❌ alt="comparison image"
 ✅ alt="File size comparison: original HEIC 2.1MB vs converted JPG 3.4MB, 62% increase"
 ```
 
 **Testimonial Avatars:**
+
 - Include person's name
 - Add context if relevant
 
 Example:
+
 ```
 ❌ alt="user photo"
 ✅ alt="Marynes, professional photographer using Picmal"
 ```
 
 **Logo:**
+
 - Brand name + context
 
 Example:
+
 ```
 ❌ alt="logo"
 ✅ alt="Picmal - Mac media converter app logo"
 ```
 
 **Decorative Images:**
+
 - Use empty alt (`alt=""`) if purely decorative
 - Most images on a software site are NOT decorative
 
 **Implementation Plan:**
+
 1. **Week 1:** Audit all images, categorize by type
 2. **Week 1:** Write alt text for all hero/product images (highest impact)
 3. **Week 2:** Write alt text for all blog post images
@@ -827,6 +913,7 @@ Example:
 5. **Ongoing:** Add descriptive alt text to all new images
 
 **Quick Audit Checklist:**
+
 - [ ] All hero images have descriptive alt text
 - [ ] All product screenshots explain what's happening
 - [ ] All comparison images include specific metrics
@@ -842,6 +929,7 @@ Example:
 **Human-First Thinking:** "Guide people to their next logical step"
 
 **Current State (Conversion-Focused, Not Exploration-Friendly):**
+
 - ⚠️ Limited internal linking between blog posts
 - ⚠️ Conversion pages don't cross-link to related conversions
 - ⚠️ No breadcrumb navigation
@@ -850,12 +938,14 @@ Example:
 - ❌ No "what should I do next?" guidance
 
 **Impact on Users (Not Just SEO):**
+
 - **Dead ends** - Users hit a page, find no next step, leave
 - **Frustration** - Can't find related information easily
 - **Lost exploration** - Don't discover other valuable content
 - **Reduced trust** - Feels incomplete, not comprehensive
 
 **Impact on Business:**
+
 - Lower time on site (signals low value to Google)
 - Reduced pages per session (less engagement)
 - Higher bounce rate (looks like thin content)
@@ -864,11 +954,13 @@ Example:
 **Recommended Internal Linking Strategy:**
 
 1. **Blog Post Cross-Linking:**
+
    - Add 3-5 relevant internal links per article
    - Link to related tutorials, guides, and conversions
    - Use descriptive anchor text
 
 2. **Conversion Page Hub & Spoke:**
+
    ```
    Main Hub: /convert
      ├── HEIC to JPG ──→ Related: HEIC to PNG, HEIF to JPG
@@ -877,16 +969,19 @@ Example:
    ```
 
 3. **Format Guide Interlinking:**
+
    - Create format overview pages
    - Link from format pages to all related conversions
    - Link from blog posts to relevant conversions
 
 4. **Contextual Blog Links:**
+
    - When mentioning formats, link to format pages
    - When discussing conversions, link to conversion tools
    - When comparing tools, link to product page
 
 5. **Breadcrumbs:**
+
    ```
    Home > Blog > Tutorials > How to Convert HEIC to JPG
    Home > Convert > HEIC to JPG
@@ -898,6 +993,7 @@ Example:
    - "You might also need" suggestions
 
 **Example Internal Link Implementation:**
+
 ```markdown
 # In blog post "How to Convert HEIC to JPG"
 
@@ -914,12 +1010,14 @@ For more details on image formats, check out our guide to
 **Current CTAs are functional but don't address friction.**
 
 **What You Probably Have Now:**
+
 - "Buy for Mac" or "Download"
 - "Get Picmal"
 - "Start Converting"
 
 **The Problem:**
 These don't address the hesitations people have:
+
 - "How much does it cost?"
 - "Will my files be safe?"
 - "Is this a subscription?"
@@ -931,17 +1029,20 @@ These don't address the hesitations people have:
 
 **Homepage Hero CTA:**
 ❌ **Current (Generic):**
+
 ```
 [Buy for Mac]
 ```
 
 ✅ **Anxiety-Reducing:**
+
 ```
 [Download Picmal for Mac]
 One-time purchase • 14-day money back • No upload required
 ```
 
 **Why this works:**
+
 - ✅ Clarifies it's a download (not browser-based)
 - ✅ Addresses pricing concern (one-time, not subscription)
 - ✅ Reduces risk (money-back guarantee)
@@ -949,28 +1050,33 @@ One-time purchase • 14-day money back • No upload required
 
 **Conversion Page CTA:**
 ❌ **Current:**
+
 ```
 [Convert Now]
 ```
 
 ✅ **Better:**
+
 ```
 [Get Picmal for $15.99]
 Works offline. Files never leave your Mac.
 ```
 
 **Why this works:**
+
 - ✅ Shows price upfront (no surprise)
 - ✅ Emphasizes privacy (key differentiator)
 - ✅ Highlights offline capability
 
 **Download Page:**
 ❌ **Generic:**
+
 ```
 [Download]
 ```
 
 ✅ **Reassuring:**
+
 ```
 [Download Picmal (Free Trial)]
 Try all features free for 7 days. No credit card.
@@ -979,6 +1085,7 @@ Try all features free for 7 days. No credit card.
 **Microcopy Throughout Site:**
 
 **Near Pricing:**
+
 ```
 ✅ "One-time purchase • No subscription ever"
 ✅ "Prices in USD. VAT may apply."
@@ -986,6 +1093,7 @@ Try all features free for 7 days. No credit card.
 ```
 
 **Near Privacy-Sensitive Features:**
+
 ```
 ✅ "All processing happens on your Mac"
 ✅ "No upload. No tracking. No data collection."
@@ -993,6 +1101,7 @@ Try all features free for 7 days. No credit card.
 ```
 
 **Near Feature Descriptions:**
+
 ```
 ✅ "Batch process 1,000+ files - no limits"
 ✅ "Works completely offline after install"
@@ -1002,6 +1111,7 @@ Try all features free for 7 days. No credit card.
 **Friction-Reducing Microcopy Checklist:**
 
 At every CTA, answer these questions nearby:
+
 - [ ] How much does it cost?
 - [ ] Is this a subscription or one-time?
 - [ ] What if I don't like it?
@@ -1012,12 +1122,14 @@ At every CTA, answer these questions nearby:
 **A/B Test Ideas:**
 
 Test these variations:
+
 1. **Price transparency:** CTA with price vs without
 2. **Privacy emphasis:** "No upload" vs generic CTA
 3. **Risk reversal:** With/without money-back guarantee
 4. **Social proof:** With/without user count
 
 **Implementation:**
+
 1. Audit all current CTAs
 2. Identify adjacent anxiety points
 3. Add microcopy addressing each concern
@@ -1033,6 +1145,7 @@ Test these variations:
 ### 3.6 URL Structure ✅ EXCELLENT
 
 **Current Structure:**
+
 ```
 ✅ picmal.app/
 ✅ picmal.app/blog/how-to-convert-heic-to-jpg-mac
@@ -1053,16 +1166,19 @@ Test these variations:
 ### 4.1 Conversion Pages Strategy ✅ EXCELLENT FOUNDATION
 
 **Current Implementation:**
+
 - ✅ Dynamic page generation for all format combinations
 - ✅ Structured data from TypeScript
 - ✅ Consistent URL pattern: `/convert/[from]-to-[to]`
 - ✅ Well-organized format metadata
 
 **Formats Covered:**
+
 - Images: HEIC, HEIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, etc.
 - Total conversion combinations: 100+ pages
 
 **Issues:**
+
 1. ❌ **CRITICAL:** Thin content on generated pages (risk of Panda penalty)
 2. ⚠️ Limited uniqueness between similar conversions
 3. ⚠️ No user-generated content or dynamic elements
@@ -1071,6 +1187,7 @@ Test these variations:
 **Programmatic SEO Best Practices to Implement:**
 
 1. **Add Unique Content Layers:**
+
    ```typescript
    // In conversions.ts, add:
    - Historical context for each format
@@ -1081,16 +1198,19 @@ Test these variations:
    ```
 
 2. **Dynamic FAQ Generation:**
+
    - Generate format-specific FAQs
    - Pull from common search queries
    - Include technical questions
 
 3. **User-Generated Elements:**
+
    - Conversion volume stats ("12,543 HEIC files converted this month")
    - User ratings or testimonials per conversion type
    - Popular presets for each conversion
 
 4. **Related Conversions Logic:**
+
    ```typescript
    // Smart suggestions based on format properties
    HEIC to JPG → Suggest: HEIC to PNG, HEIF to JPG
@@ -1106,6 +1226,7 @@ Test these variations:
 ### 4.2 Data Quality ✅ EXCELLENT
 
 **Format Metadata Structure:**
+
 ```typescript
 ✅ Comprehensive FormatInfo interface
 ✅ Detailed advantages/disadvantages
@@ -1115,7 +1236,9 @@ Test these variations:
 ```
 
 **Recommendations:**
+
 1. Add more metadata fields:
+
    - Browser version support
    - Common conversion errors
    - Recommended quality settings
@@ -1134,6 +1257,7 @@ Test these variations:
 ### 5.1 Backlink Profile ⚠️ UNKNOWN (Requires External Tools)
 
 **Featured On Section Shows:**
+
 - Product Hunt
 - TinyLaunch
 - Startup Fame
@@ -1145,12 +1269,14 @@ Test these variations:
 **Recommendations for Link Building:**
 
 1. **Content Marketing:**
+
    - Create ultimate guides (link magnets)
    - Publish original research on image formats
    - Create free tools (image analyzers, format checkers)
    - Develop infographics on image optimization
 
 2. **Outreach Targets:**
+
    - Mac software review sites
    - Photography blogs
    - Web development blogs
@@ -1158,11 +1284,13 @@ Test these variations:
    - Mac tutorial YouTube channels
 
 3. **Resource Page Link Building:**
+
    - Target "best Mac apps" lists
    - "Mac productivity tools" roundups
    - "Image conversion tools" resource pages
 
 4. **Guest Posting Topics:**
+
    - "How to Optimize Images for Web Performance"
    - "The Ultimate Guide to HEIC Format"
    - "Mac Photography Workflow Optimization"
@@ -1176,11 +1304,13 @@ Test these variations:
 ### 5.2 Social Signals ⚠️ LIMITED VISIBILITY
 
 **Current Social Presence:**
+
 - Twitter/X: @picmalapp ✅
 - No visible social sharing buttons on blog ❌
 - No social proof widgets ❌
 
 **Recommendations:**
+
 1. Add social sharing buttons to blog posts
 2. Create shareable image quotes from blog content
 3. Share blog posts and updates on social media
@@ -1192,18 +1322,21 @@ Test these variations:
 ## 6. Local SEO & Entity Optimization
 
 ### 6.1 Google Business Profile
+
 - ⚠️ N/A for digital product (no physical location)
 - Consider creating profile if offering support/services
 
 ### 6.2 Entity Building ⚠️ NEEDS ATTENTION
 
 **Current Entity Signals:**
+
 - ✅ Organization schema on website
 - ⚠️ No Wikipedia page (not expected for young company)
 - ⚠️ No Wikidata entry
 - ⚠️ Limited brand mentions across the web
 
 **Recommendations:**
+
 1. Consistent NAP (Name, Address, Phone) if applicable
 2. Build brand mentions through PR and content
 3. Get listed in software directories
@@ -1214,6 +1347,7 @@ Test these variations:
 ## 7. Competitor Analysis
 
 ### 7.1 Main Competitors Identified
+
 1. **XnConvert** - Cross-platform batch image converter
 2. **CloudConvert** - Online file conversion service
 3. **Permute** - Popular Mac media converter ($15)
@@ -1228,21 +1362,22 @@ Test these variations:
 
 ### 7.2 Detailed Competitor Comparison
 
-| Competitor | Price | Platform | Key Features | Weaknesses vs Picmal |
-|------------|-------|----------|--------------|---------------------|
-| **Permute** | $15 | Mac | Video focus, presets | Less image-focused, similar price point |
-| **XnConvert** | Free | Cross-platform | 500+ formats | Complex UI, not Mac-native |
-| **Handbrake** | Free | Cross-platform | Video only, open-source | Video only, steep learning curve |
-| **ff·Works** | $5-10 | Mac | Affordable, simple | Limited features |
-| **Compresto** | $10-20 | Mac | Compression focus | Limited conversion options |
-| **Adapter** | Free | Mac | Free, basic features | Limited batch, fewer formats |
-| **How to Convert** | Varies | Mac | Mac-native | Less comprehensive |
-| **BatchPhoto** | $49.99 | Windows/Mac | Professional features | Expensive, complex |
-| **CloudConvert** | Free/Paid | Online | All formats, API | Privacy concerns, upload required |
+| Competitor         | Price     | Platform       | Key Features            | Weaknesses vs Picmal                    |
+| ------------------ | --------- | -------------- | ----------------------- | --------------------------------------- |
+| **Permute**        | $15       | Mac            | Video focus, presets    | Less image-focused, similar price point |
+| **XnConvert**      | Free      | Cross-platform | 500+ formats            | Complex UI, not Mac-native              |
+| **Handbrake**      | Free      | Cross-platform | Video only, open-source | Video only, steep learning curve        |
+| **ff·Works**       | $5-10     | Mac            | Affordable, simple      | Limited features                        |
+| **Compresto**      | $10-20    | Mac            | Compression focus       | Limited conversion options              |
+| **Adapter**        | Free      | Mac            | Free, basic features    | Limited batch, fewer formats            |
+| **How to Convert** | Varies    | Mac            | Mac-native              | Less comprehensive                      |
+| **BatchPhoto**     | $49.99    | Windows/Mac    | Professional features   | Expensive, complex                      |
+| **CloudConvert**   | Free/Paid | Online         | All formats, API        | Privacy concerns, upload required       |
 
 ### 7.3 Competitive Advantages to Emphasize
 
 **Picmal's Unique Selling Points:**
+
 - ✅ **Offline/privacy-focused** - No uploads, files never leave your Mac (vs. online converters)
 - ✅ **Native Mac app** - Built for macOS, feels at home (vs. cross-platform tools)
 - ✅ **One-time purchase** - $15.99 once, not subscription (vs. CloudConvert, Adobe)
@@ -1254,6 +1389,7 @@ Test these variations:
 - ✅ **Color space conversion** - Professional color management (vs. basic tools)
 
 **Content Opportunities:**
+
 1. Create all 9 comparison pages highlighting specific advantages vs each competitor
 2. Target keywords like "offline image converter Mac", "Permute alternative", "free Handbrake alternative"
 3. Emphasize privacy in all conversion page content
@@ -1264,6 +1400,7 @@ Test these variations:
 ### 7.4 Competitor Gap Analysis
 
 **What Competitors Do Well:**
+
 - Video tutorials and demos
 - More extensive documentation
 - Community forums
@@ -1271,6 +1408,7 @@ Test these variations:
 - More aggressive comparison marketing
 
 **Picmal Should Consider:**
+
 1. Video content (tutorials, demos, before/after comparisons)
 2. More comprehensive documentation hub
 3. User forum or community
@@ -1285,18 +1423,21 @@ Test these variations:
 ### Immediate Priorities (Next 30 Days)
 
 1. **Week 1: Technical SEO Fixes**
+
    - Add Article schema to all blog posts
    - Implement breadcrumb navigation
    - Audit and fix all alt text
    - Add related posts module to blog
 
 2. **Week 2: Content Enhancement**
+
    - Expand conversion page template (add 300+ words, FAQs, related conversions)
    - Add author bio to blog posts
    - Create "Related Articles" sections
    - Add social sharing buttons
 
 3. **Week 3: Comparison Pages (Priority)**
+
    - Write "Picmal vs Permute" comparison (similar price point competitor)
    - Write "Picmal vs XnConvert" comparison (free competitor)
    - Create "Best Image Converters for Mac 2025" roundup
@@ -1310,13 +1451,16 @@ Test these variations:
 ### Short-Term Goals (90 Days)
 
 **Month 2: Comparison & Feature Pages**
+
 - **Comparison Pages (Week 5-6):**
+
   - "Picmal vs Handbrake" - target video conversion keywords
   - "Picmal vs CloudConvert" - target online vs offline
   - "Picmal vs Adapter" - target free vs premium
   - "Picmal vs ff·Works" - target Mac-native alternatives
 
 - **Feature Landing Pages (Week 7-8):**
+
   - "Compress Video Files on Mac" - high-volume keyword
   - "Compress Images on Mac" - high-volume keyword
   - "Convert Video Files on Mac" - high-volume keyword
@@ -1327,12 +1471,15 @@ Test these variations:
   - Video tutorial series launch (feature demos)
 
 **Month 3: Advanced Content & SEO**
+
 - **More Comparison Pages:**
+
   - "Picmal vs How to Convert"
   - "Picmal vs Compresto"
   - "Picmal vs BatchPhoto" - target professional photographers
 
 - **More Feature Pages:**
+
   - "Compress Audio Files on Mac"
   - "Watching Folders - Automatic Conversion"
   - "Resize Output Images - Batch Resizing"
@@ -1347,7 +1494,9 @@ Test these variations:
 ### Long-Term Strategy (6-12 Months)
 
 **Content Clusters:**
+
 1. **Competitor Comparison Hub** ⭐ NEW PRIORITY
+
    - Main comparison page: "Best Mac Converters 2025"
    - Individual comparisons (all 9 competitors)
    - Feature comparison matrix
@@ -1356,6 +1505,7 @@ Test these variations:
    - User migration guides ("Switching from [Competitor]")
 
 2. **Feature Landing Pages Hub** ⭐ NEW PRIORITY
+
    - Compression features (video, audio, image)
    - Conversion features (video, audio, image)
    - Advanced features (folder watching, Shortcuts, color space)
@@ -1363,6 +1513,7 @@ Test these variations:
    - Use case + feature guides
 
 3. **Format Education Hub**
+
    - Overview page
    - Individual format deep-dives
    - Format comparison pages (HEIC vs JPG, PNG vs WebP, etc.)
@@ -1370,6 +1521,7 @@ Test these variations:
    - Technical specifications
 
 4. **Use Case Hub**
+
    - Photographers' guide
    - Web developers' guide
    - Designers' guide
@@ -1385,6 +1537,7 @@ Test these variations:
    - Automation guides (Shortcuts, Automator)
 
 **Link Building:**
+
 - Monthly guest post (relevant blogs)
 - Quarterly original research publication
 - Partnership with Mac software blogs
@@ -1397,6 +1550,7 @@ Test these variations:
 ### 9.1 Current Implementation ✅ GOOD
 
 **Analytics Tools Detected:**
+
 - ✅ Custom analytics (cocky-mole.pikapod.net)
 - ✅ PostHog Analytics
 - ✅ Event tracking on CTAs (posthog.capture)
@@ -1404,6 +1558,7 @@ Test these variations:
 ### 9.2 Recommended Tracking Enhancements
 
 1. **Google Search Console**
+
    - Verify property if not already done
    - Monitor search queries
    - Track click-through rates
@@ -1411,6 +1566,7 @@ Test these variations:
    - Monitor core web vitals
 
 2. **Enhanced Event Tracking:**
+
    ```javascript
    // Add more granular tracking
    - Conversion page views by format
@@ -1422,6 +1578,7 @@ Test these variations:
    ```
 
 3. **Goal Setup:**
+
    - Download button clicks
    - Purchase completions
    - Email signups
@@ -1453,22 +1610,26 @@ Test these variations:
 ### 🔴 CRITICAL (Do Immediately)
 
 1. **Add Article Schema to Blog Posts**
+
    - Impact: HIGH - Rich snippets in search results
    - Effort: LOW - Template modification
    - Timeline: 1 day
 
 2. **Expand Conversion Page Content**
+
    - Impact: HIGH - Avoid thin content penalties
    - Effort: MEDIUM - Template enhancement
    - Timeline: 3 days
    - Target: 400-600 words per page
 
 3. **Implement Internal Linking Strategy**
+
    - Impact: HIGH - Better crawling and link equity
    - Effort: MEDIUM - Content updates
    - Timeline: 1 week
 
 4. **Add Alt Text to All Images**
+
    - Impact: MEDIUM-HIGH - Accessibility and SEO
    - Effort: MEDIUM - Audit and update
    - Timeline: 2-3 days
@@ -1481,34 +1642,40 @@ Test these variations:
 ### 🟡 HIGH PRIORITY (Next 2 Weeks)
 
 6. **Add Related Posts Module**
+
    - Impact: MEDIUM - Engagement and internal linking
    - Effort: LOW - Component creation
    - Timeline: 1 day
 
 7. **Implement Product Schema**
+
    - Impact: MEDIUM - Rich snippets for product
    - Effort: LOW - Schema addition
    - Timeline: 1 day
 
 8. **Create "Picmal vs Permute" Comparison Page** ⭐ NEW
+
    - Impact: HIGH - Direct competitor, same price point
    - Effort: MEDIUM - Research and writing
    - Timeline: 2 days
    - Target: 1500+ words with comparison table
 
 9. **Create "Picmal vs XnConvert" Comparison Page** ⭐ NEW
+
    - Impact: HIGH - Popular free alternative
    - Effort: MEDIUM - Research and writing
    - Timeline: 2 days
    - Target: 1500+ words
 
 10. **Create "Best Image Converters for Mac" Roundup**
+
     - Impact: HIGH - High-volume comparison keyword
     - Effort: MEDIUM-HIGH - Review all competitors
     - Timeline: 3-4 days
     - Target: 2500+ words with detailed comparisons
 
 11. **Optimize Homepage H1 and Content**
+
     - Impact: MEDIUM - Better keyword targeting
     - Effort: LOW - Copy updates
     - Timeline: 1 day
@@ -1521,12 +1688,14 @@ Test these variations:
 ### 🟢 MEDIUM PRIORITY (Next 30 Days)
 
 13. **Create More Comparison Pages** ⭐ NEW
+
     - "Picmal vs Handbrake" (video focus)
     - "Picmal vs CloudConvert" (online vs offline)
     - "Picmal vs Adapter" (free vs premium)
     - Timeline: 2 days each
 
 14. **Create Feature Landing Pages** ⭐ NEW
+
     - "Compress Video Files on Mac" (high-volume keyword)
     - "Compress Images on Mac" (high-volume keyword)
     - "Convert Video Files on Mac" (high-volume keyword)
@@ -1545,12 +1714,14 @@ Test these variations:
 ### 🔵 LOW PRIORITY (Next 90 Days)
 
 23. **Complete Comparison Page Suite** ⭐ NEW
+
     - "Picmal vs How to Convert"
     - "Picmal vs Compresto"
     - "Picmal vs BatchPhoto"
     - "Picmal vs ff·Works"
 
 24. **Complete Feature Landing Pages** ⭐ NEW
+
     - "Compress Audio Files on Mac"
     - "Convert Audio Files on Mac"
     - "Watching Folders - Automatic Conversion"
@@ -1587,16 +1758,18 @@ Each "Picmal vs [Competitor]" page should follow this structure:
 # Picmal vs [Competitor]: Complete Comparison 2025
 
 ## Quick Comparison Table
-| Feature | Picmal | [Competitor] |
-|---------|--------|--------------|
-| Price | $15.99 one-time | $X |
-| Platform | Mac only | Mac/Windows/etc |
-| File Types | Images, Video, Audio | ... |
-| Batch Processing | Unlimited | ... |
-| Offline | Yes | ... |
-| Unique Features | Shortcuts, Folder Watching | ... |
+
+| Feature          | Picmal                     | [Competitor]    |
+| ---------------- | -------------------------- | --------------- |
+| Price            | $15.99 one-time            | $X              |
+| Platform         | Mac only                   | Mac/Windows/etc |
+| File Types       | Images, Video, Audio       | ...             |
+| Batch Processing | Unlimited                  | ...             |
+| Offline          | Yes                        | ...             |
+| Unique Features  | Shortcuts, Folder Watching | ...             |
 
 ## At a Glance
+
 - [Competitor] is best for: X
 - Picmal is best for: Y
 - Bottom line: Z
@@ -1604,36 +1777,43 @@ Each "Picmal vs [Competitor]" page should follow this structure:
 ## Detailed Feature Comparison
 
 ### Price & Licensing
+
 - Compare pricing models
 - Total cost of ownership
 - Value proposition
 
 ### Supported Formats
+
 - List all formats for both
 - Highlight differences
 - Use cases for each
 
 ### Performance & Speed
+
 - Batch processing capabilities
 - Speed comparisons
 - File size handling
 
 ### Unique Features
+
 - What makes each different
 - Picmal advantages (offline, privacy, Shortcuts)
 - Competitor advantages (be fair!)
 
 ### User Experience
+
 - Interface comparison
 - Ease of use
 - Learning curve
 
 ### Privacy & Security
+
 - Offline vs online
 - Data handling
 - Privacy policies
 
 ## Who Should Choose Picmal? [Build Confidence]
+
 - **Privacy-conscious users** - "Your photos never leave your Mac"
 - **Batch processors** - "Convert 1,000+ files in minutes, no upload limits"
 - **One-time buyers** - "$15.99 once, no subscription treadmill"
@@ -1641,6 +1821,7 @@ Each "Picmal vs [Competitor]" page should follow this structure:
 - **Automation enthusiasts** - "Shortcuts + Folder Watching = set and forget"
 
 Include specific user personas:
+
 > "If you're a photographer managing thousands of RAW files and need
 > reliable, offline batch conversion without worrying about file size
 > limits or subscription costs, Picmal is built for you."
@@ -1652,7 +1833,9 @@ Include specific user personas:
 Be genuinely helpful about when competitors win:
 
 **Example for "Picmal vs Handbrake":**
+
 > **Choose Handbrake if:**
+>
 > - You need 100% free software (Handbrake is open-source)
 > - You're converting video only (Handbrake specializes in this)
 > - You want maximum control over codecs (Handbrake has more options)
@@ -1660,6 +1843,7 @@ Be genuinely helpful about when competitors win:
 > - Cross-platform compatibility matters (Handbrake works on Windows/Linux)
 >
 > **Choose Picmal if:**
+>
 > - You need images, video, AND audio in one tool
 > - You prefer a simple, Mac-native interface
 > - You value presets over granular codec settings
@@ -1667,13 +1851,16 @@ Be genuinely helpful about when competitors win:
 > - You're willing to pay $16 for simplicity and support
 
 **Example for "Picmal vs XnConvert":**
+
 > **Choose XnConvert if:**
+>
 > - You need 500+ format support (XnConvert has the most)
 > - You're on Windows or Linux
 > - You want a completely free tool
 > - You need advanced batch editing features (watermarks, filters)
 >
 > **Choose Picmal if:**
+>
 > - You want a clean, Mac-native experience
 > - You value simplicity over overwhelming options
 > - You need offline privacy
@@ -1681,6 +1868,7 @@ Be genuinely helpful about when competitors win:
 > - You're willing to pay for a focused, polished tool
 
 **Why this builds trust:**
+
 - ✅ Shows you understand the market
 - ✅ Demonstrates you're not just selling
 - ✅ Helps users make the RIGHT choice (even if it's not you)
@@ -1693,16 +1881,19 @@ This directly addresses "Trustworthiness" - being transparent about
 trade-offs is a strong E-E-A-T signal.
 
 ## Migration Guide
+
 - How to switch from [Competitor] to Picmal
 - What to expect
 - Tips for transition
 
 ## FAQ
+
 - Common questions about both tools
 - Direct comparisons
 - Purchasing questions
 
 ## Conclusion
+
 - Summary recommendation
 - Clear CTA
 
@@ -1717,6 +1908,7 @@ Each feature page (e.g., "Compress Video Files on Mac") should follow:
 # [Action] [Media Type] on Mac - [Unique Benefit]
 
 ## Introduction (150-200 words)
+
 - What is this feature
 - Why it's important
 - Common use cases
@@ -1724,6 +1916,7 @@ Each feature page (e.g., "Compress Video Files on Mac") should follow:
 ## How to [Action] [Media Type] with Picmal
 
 ### Step-by-step guide:
+
 1. Download and install Picmal
 2. Drag files
 3. Select settings
@@ -1733,6 +1926,7 @@ Each feature page (e.g., "Compress Video Files on Mac") should follow:
 ## Why Choose Picmal for [Feature]?
 
 ### Benefits:
+
 - Offline processing (privacy)
 - Batch capability
 - No file size limits
@@ -1740,6 +1934,7 @@ Each feature page (e.g., "Compress Video Files on Mac") should follow:
 - Speed
 
 ## Advanced Features
+
 - Presets
 - Custom settings
 - Automation (Shortcuts, Folder Watching)
@@ -1748,27 +1943,31 @@ Each feature page (e.g., "Compress Video Files on Mac") should follow:
 ## Comparison: Picmal vs Other Tools
 
 | Feature | Picmal | Online Tools | Handbrake | Others |
-|---------|--------|--------------|-----------|---------|
-| ... | ... | ... | ... | ... |
+| ------- | ------ | ------------ | --------- | ------ |
+| ...     | ...    | ...          | ...       | ...    |
 
 ## Common Use Cases
+
 - Professional workflows
 - Personal use
 - Specific industries
 
 ## Technical Details
+
 - Supported formats
 - Quality settings
 - Performance specs
 - System requirements
 
 ## FAQ (5-7 questions)
+
 - How to questions
 - Quality concerns
 - Compatibility
 - Pricing
 
 ## Related Features
+
 - Links to other feature pages
 - Links to relevant conversions
 - Links to blog posts
@@ -1779,18 +1978,21 @@ Target: 800-1200 words
 ### 12.4 SEO Keywords Strategy
 
 **Comparison Page Keywords:**
+
 - Primary: "picmal vs [competitor]"
 - Secondary: "[competitor] alternative", "[competitor] vs picmal"
 - Long-tail: "best alternative to [competitor] for mac", "should i buy [competitor] or picmal"
 - Feature-based: "mac converter with [feature] vs [competitor]"
 
 **Feature Page Keywords:**
+
 - Primary: "[action] [media type] mac" (e.g., "compress video mac")
 - Secondary: "[action] [media type] on mac", "how to [action] [media type] mac"
 - Long-tail: "best app to [action] [media type] on mac", "[action] [media type] offline mac"
 - Quality-focused: "[action] [media type] without quality loss mac"
 
 **Search Volume Priorities:**
+
 1. "compress video mac" - HIGH volume
 2. "compress images mac" - HIGH volume
 3. "convert video mac" - HIGH volume
@@ -1830,18 +2032,21 @@ Blog Posts
 ### 12.6 Content Production Timeline
 
 **Weeks 1-4: Foundation**
+
 - Set up comparison page template
 - Set up feature page template
 - Create 3 high-priority comparisons (Permute, XnConvert, Handbrake)
 - Create 2 high-volume feature pages (Compress Video, Compress Images)
 
 **Weeks 5-8: Expansion**
+
 - Create 4 more comparisons (CloudConvert, Adapter, ff·Works, How to Convert)
 - Create 3 more feature pages (Convert Video, Shortcuts, Watching Folders)
 - Add comparison matrix to homepage
 - Create /compare hub page
 
 **Weeks 9-12: Completion**
+
 - Create remaining comparisons (Compresto, BatchPhoto)
 - Create remaining feature pages (Audio features, Resize, Color Space)
 - Build internal link network
@@ -1850,6 +2055,7 @@ Blog Posts
 ### 12.7 Success Metrics
 
 **Track for Comparison Pages:**
+
 - Rankings for "[competitor] alternative" keywords
 - Click-through rate from SERPs
 - Time on page (target: 3+ minutes)
@@ -1857,6 +2063,7 @@ Blog Posts
 - Traffic from competitor brand terms
 
 **Track for Feature Pages:**
+
 - Rankings for "[action] [media] mac" keywords
 - Organic traffic volume
 - Click to conversion page rate
@@ -1864,6 +2071,7 @@ Blog Posts
 - Return visitor rate
 
 **Overall Goals (6 months):**
+
 - Rank top 5 for all 9 comparison keywords
 - Rank top 10 for 8/10 high-volume feature keywords
 - Generate 30% of organic traffic from comparison + feature pages
@@ -1877,20 +2085,24 @@ Blog Posts
 ### 🚨 Current SEO Risks
 
 1. **Thin Content Risk - HIGH**
+
    - Many conversion pages have minimal content
    - Risk of Panda algorithm penalty
    - **Mitigation:** Expand to 400+ words per page immediately
 
 2. **Duplicate Content Risk - MEDIUM**
+
    - Similar templates across conversion pages
    - Risk if content is too similar
    - **Mitigation:** Add unique elements and variations
 
 3. **Limited Backlink Profile - MEDIUM**
+
    - May have difficulty ranking for competitive terms
    - **Mitigation:** Active link building campaign
 
 4. **Missing Schema - MEDIUM**
+
    - Missing out on rich snippet opportunities
    - **Mitigation:** Implement all relevant schema types
 
@@ -1905,27 +2117,32 @@ Blog Posts
 ### Success Metrics (6 Months)
 
 **Traffic Goals:**
+
 - 50% increase in organic traffic
 - Top 3 rankings for 10+ primary keywords
 - Top 10 rankings for 50+ long-tail keywords
 
 **Engagement Goals:**
+
 - 30% increase in pages per session
 - 20% decrease in bounce rate
 - 40% increase in time on site
 
 **Conversion Goals:**
+
 - 25% increase in download clicks
 - 15% increase in purchase conversions
 - Improved conversion rate from blog → product
 
 **Content Goals:**
+
 - 20+ new blog posts published
 - 10+ comparison pages created
 - All conversion pages expanded (400+ words)
 - 50+ new internal links added
 
 **Technical Goals:**
+
 - All schema types implemented
 - 100% of images have descriptive alt text
 - Breadcrumbs on all pages
@@ -1934,6 +2151,7 @@ Blog Posts
 ### Measurement Dashboard
 
 **Track Monthly:**
+
 - Organic traffic (overall and by page type)
 - Keyword rankings (primary and long-tail)
 - Backlinks acquired
@@ -1948,6 +2166,7 @@ Blog Posts
 ## 15. Tools & Resources Needed
 
 ### SEO Tools
+
 - ✅ Google Search Console (verify implementation)
 - ✅ Google Analytics or current analytics
 - Recommended: Ahrefs or SEMrush (keyword research, backlinks)
@@ -1955,16 +2174,19 @@ Blog Posts
 - Recommended: PageSpeed Insights (performance monitoring)
 
 ### Schema Generators
+
 - Schema.org markup generator
 - Google's Structured Data Testing Tool
 - JSON-LD generator
 
 ### Content Tools
+
 - Grammarly or similar (content quality)
 - Canva (OG images, graphics)
 - Hemingway Editor (readability)
 
 ### Monitoring
+
 - Google Search Console
 - Uptime monitoring
 - Core Web Vitals monitoring
@@ -1985,6 +2207,7 @@ Picmal.app has a solid SEO foundation with excellent technical implementation, g
 
 **Game-Changing Strategy:**
 The new **competitor comparison and feature page strategy** (Section 12) represents the biggest SEO opportunity for Picmal. These pages will:
+
 - Target bottom-of-funnel, high-intent keywords
 - Capture traffic from competitor brand searches
 - Rank for high-volume feature keywords ("compress video mac", "convert images mac")
@@ -1992,18 +2215,21 @@ The new **competitor comparison and feature page strategy** (Section 12) represe
 - Create a powerful internal linking hub
 
 By implementing this strategy, Picmal can expect:
+
 - 30% of organic traffic from these pages within 6 months
 - Top 5 rankings for all 9 competitor comparison keywords
 - Top 10 rankings for 8/10 high-volume feature keywords
 - 5%+ conversion rate on comparison pages
 
 **Implementation Priority:**
+
 1. **Week 1-4:** Technical fixes (schema, breadcrumbs, alt text, internal links)
 2. **Week 3-8:** Launch first 5 comparison pages (Permute, XnConvert, Handbrake, CloudConvert, Adapter)
 3. **Week 5-12:** Launch 10 feature landing pages
 4. **Month 3-6:** Complete remaining comparisons, build link network, monitor rankings
 
 **Next Steps:**
+
 1. Review this audit with stakeholders
 2. Set up comparison and feature page templates
 3. Create content production schedule for 19 new pages
@@ -2023,24 +2249,26 @@ By implementing this strategy, Picmal can expect:
 ## Appendix: Quick Reference Checklist
 
 ### Technical SEO
+
 - [x] Meta titles optimized
 - [x] Meta descriptions present
-- [ ] Meta descriptions optimized for CTR
+- [x] Meta descriptions optimized for CTR
 - [x] Canonical URLs implemented
 - [x] Sitemap present
 - [x] Robots.txt configured
 - [x] HTTPS enabled
 - [x] Mobile responsive
-- [ ] All images have alt text
+- [x] All images have alt text
 - [x] Page speed optimized
-- [ ] Structured data complete
-- [ ] Breadcrumbs implemented
+- [x] Structured data complete
+- [x] Breadcrumbs implemented
 
 ### Content SEO
+
 - [x] Blog content comprehensive
-- [ ] Conversion pages expanded (400+ words)
-- [ ] Internal linking strategy implemented
-- [ ] Related content modules added
+- [x] Conversion pages expanded (400+ words)
+- [x] Internal linking strategy implemented
+- [x] Related content modules added
 - [x] FAQ sections present
 - [ ] **Comparison pages created (1/9 done)** ⭐
   - [x] Picmal vs Permute
@@ -2067,6 +2295,7 @@ By implementing this strategy, Picmal can expect:
 - [ ] Video content added
 
 ### Off-Page SEO
+
 - [ ] Active link building
 - [ ] Guest posting strategy
 - [ ] Social media promotion
@@ -2074,6 +2303,7 @@ By implementing this strategy, Picmal can expect:
 - [ ] Partnerships established
 
 ### Analytics
+
 - [x] Analytics installed
 - [ ] Search Console verified
 - [ ] Event tracking configured

@@ -13,6 +13,8 @@ import Paragraph from "../components/Paragraph.astro";
 import TrustBar from "../components/TrustBar.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import CTASection from "../components/CTASection.astro";
+import BentoFeatures from "../components/BentoFeatures.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
 
 const SITE_TITLE =
   "HEIC Converter for Mac - Convert Apple HEIC Photos to JPG & PNG";
@@ -163,6 +165,11 @@ const faqs = [
     <SectionDivider />
 
     <!-- Features Section -->
+    <BentoFeatures />
+
+    <SectionDivider />
+
+    <!-- Additional Features Section -->
     <section class="relative z-10 px-6 py-20">
       <div class="max-w-6xl mx-auto">
         <H2 class="mb-4 text-center"
@@ -407,6 +414,11 @@ const faqs = [
 
     <!-- Testimonials -->
     <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
 
     <SectionDivider />
 

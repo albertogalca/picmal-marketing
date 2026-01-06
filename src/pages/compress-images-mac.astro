@@ -1,0 +1,503 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import Button from "../components/Button.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import Paragraph from "../components/Paragraph.astro";
+import TrustBar from "../components/TrustBar.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import CTASection from "../components/CTASection.astro";
+import BentoFeatures from "../components/BentoFeatures.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
+
+const SITE_TITLE = "Compress Images on Mac - Reduce File Size Up to 90%";
+const SITE_DESCRIPTION =
+  "Compress JPG, PNG, WebP, AVIF, and other image files on Mac. Reduce file sizes by up to 90% while maintaining visual quality. Batch processing, 100% offline, no file limits.";
+
+const faqs = [
+  {
+    question: "How much can I compress image files?",
+    answer:
+      "Compression results vary by format and content. JPG images can typically be reduced by 50-80% with minimal quality loss. PNG images can be compressed 40-70%. Modern formats like WebP and AVIF offer even better compression, often 30-50% smaller than JPG at the same quality.",
+  },
+  {
+    question: "Will image compression reduce quality?",
+    answer:
+      "Picmal gives you full control over the quality-to-size tradeoff. You can use lossless compression (no quality loss) or lossy compression (smaller files with minimal visual impact). Most users can't tell the difference at 85-90% quality settings.",
+  },
+  {
+    question: "What's the best format for compressed images?",
+    answer:
+      "For photos, WebP or AVIF offer the best compression with excellent quality. For universal compatibility, use JPG at 85-90% quality. For graphics with transparency, use PNG with compression or WebP. For web use, AVIF provides the smallest files.",
+  },
+  {
+    question: "Can I compress thousands of images at once?",
+    answer:
+      "Yes! Picmal is built for batch processing. Drop entire folders of images and compress them all with the same settings. No file count limits, and all processing happens in parallel for maximum speed.",
+  },
+  {
+    question: "Does Picmal support lossless compression?",
+    answer:
+      "Yes. Picmal supports lossless compression for PNG, WebP, and AVIF formats. This reduces file size without any quality loss, perfect for archiving or when you need pixel-perfect results.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text"
+  >
+    <Header />
+
+    <!-- Hero Section -->
+    <main
+      id="main-content"
+      class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20"
+    >
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto">
+              Compress images on Mac without losing quality
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+            >
+              Reduce image file sizes by up to 90% while maintaining visual
+              quality. Perfect for web, email, and storage. Batch process
+              thousands of images offline.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked_compress_images_mac')"
+              />
+              <a
+                href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              >
+                <svg
+                  class="w-4 h-4 inline-block mr-2"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8a4.35 4.35 0 0 1-2.59-4.03z"
+                  ></path></svg
+                >
+                Download for Mac
+              </a>
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back • macOS 12+
+            </p>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="mt-6 sm:mt-8">
+            <TrustBar />
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+        >
+          <div style="aspect-ratio: 16/10;">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal image compression interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal image compression interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <BentoFeatures />
+
+    <SectionDivider />
+
+    <!-- Additional Features Section -->
+    <section class="relative z-10 px-6 py-20">
+      <div class="max-w-6xl mx-auto">
+        <H2 class="mb-4 text-center">Smart image compression for Mac</H2>
+        <Paragraph class="text-center mb-16 max-w-2xl mx-auto">
+          Compress JPG, PNG, WebP, AVIF, and more with intelligent algorithms
+          that preserve visual quality. Perfect for photographers, designers,
+          and web developers.
+        </Paragraph>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Feature 1 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Intelligent compression algorithms</H3>
+            <Paragraph class="mb-4">
+              Picmal uses advanced compression algorithms optimized for each
+              format. Get smaller files while maintaining visual quality that's
+              indistinguishable from the original.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>50-90% file size reduction</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Lossless or lossy compression options</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Quality presets or custom settings</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Modern format support</H3>
+            <Paragraph class="mb-4">
+              Compress to modern formats like WebP and AVIF for superior
+              compression. Get 30-50% smaller files compared to traditional JPG
+              and PNG.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>WebP: 25-35% smaller than JPG</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>AVIF: 50% smaller than JPG</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>PNG optimization for lossless compression</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Batch compress thousands of images</H3>
+            <Paragraph class="mb-4">
+              Process entire photo libraries and image folders with one click.
+              All images compressed in parallel for maximum speed.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Compress entire folders at once</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>No file count or size limits</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Parallel processing for speed</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">100% offline processing</H3>
+            <Paragraph class="mb-4">
+              Unlike web-based compressors, Picmal works completely offline.
+              Faster compression, complete privacy, and no file size limits.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>10-100x faster than online tools</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Your images never leave your Mac</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>No file uploads to third-party servers</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Use Cases Section -->
+    <section class="relative z-10 px-6 py-20 bg-background-subtle/50">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-12 text-center">Perfect for image compression tasks</H2>
+
+        <div class="grid gap-6">
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Website Optimization</H3>
+            <Paragraph>
+              Compress images for faster website loading. Reduce page load
+              times by 50-80% with optimized JPG, PNG, WebP, and AVIF images.
+              Better performance means better SEO and user experience.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Email & Cloud Storage</H3>
+            <Paragraph>
+              Stay within email attachment limits and save cloud storage space.
+              Compress photo albums to share via email, iCloud, Dropbox, or
+              Google Drive without quality loss.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Photo Library Management</H3>
+            <Paragraph>
+              Free up storage on your Mac and iPhone by compressing photo
+              libraries. Reduce file sizes by 60-90% while keeping photos
+              looking great. Perfect for archiving old photos.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">E-commerce & Product Photos</H3>
+            <Paragraph>
+              Compress hundreds of product images for online stores. Faster
+              loading product pages improve conversion rates. Batch compress to
+              WebP or AVIF for modern e-commerce platforms.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Testimonials -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
+
+    <SectionDivider />
+
+    <!-- CTA Section -->
+    <CTASection
+      heading="Start compressing images on your Mac"
+      analyticsEvent="buy_clicked_compress_images_mac_bottom"
+    />
+
+    <SectionDivider />
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-6">Image compression questions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Common questions about compressing images on Mac.
+          </Paragraph>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

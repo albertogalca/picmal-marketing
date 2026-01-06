@@ -1,0 +1,504 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import Button from "../components/Button.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import Paragraph from "../components/Paragraph.astro";
+import TrustBar from "../components/TrustBar.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import CTASection from "../components/CTASection.astro";
+import BentoFeatures from "../components/BentoFeatures.astro";
+import FeaturedOn from "../components/FeaturedOn.astro";
+
+const SITE_TITLE = "Compress Video on Mac - Reduce File Size Up to 90%";
+const SITE_DESCRIPTION =
+  "Compress MOV, MP4, MKV, and other video files on Mac. Reduce file sizes by up to 90% while maintaining quality. Hardware-accelerated, batch processing, 100% offline.";
+
+const faqs = [
+  {
+    question: "How much can I compress a video file?",
+    answer:
+      "Video compression results vary based on the original format and your quality settings. Typically, you can reduce file sizes by 50-90% while maintaining good visual quality. Modern codecs like H.265 (HEVC) and AV1 offer superior compression compared to H.264.",
+  },
+  {
+    question: "Will video compression affect quality?",
+    answer:
+      "Picmal gives you full control over the quality-to-size tradeoff. You can preserve near-original quality or compress aggressively for smaller files. Hardware-accelerated encoding ensures optimal quality at any compression level.",
+  },
+  {
+    question: "Can I compress 4K videos?",
+    answer:
+      "Yes! Picmal handles 4K and even 8K videos with hardware acceleration on Apple Silicon and Intel Macs. You can downscale to 1080p or 720p for dramatic file size reductions, or compress 4K while maintaining resolution.",
+  },
+  {
+    question: "How long does video compression take?",
+    answer:
+      "Compression time depends on video length, resolution, and your Mac's specs. With VideoToolbox hardware acceleration, a 5-minute 1080p video typically compresses in 30-60 seconds. Batch compression processes multiple videos in parallel.",
+  },
+  {
+    question: "What's the best format for compressed videos?",
+    answer:
+      "For maximum compression with good quality, use MP4 with H.265 (HEVC) codec. For web use, WebM with VP9 offers excellent compression. For universal compatibility, MP4 with H.264 works everywhere but produces larger files.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text"
+  >
+    <Header />
+
+    <!-- Hero Section -->
+    <main
+      id="main-content"
+      class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20"
+    >
+      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto">
+              Compress videos on Mac without losing quality
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+            >
+              Reduce video file sizes by up to 90% with hardware-accelerated
+              compression. Perfect for sharing, uploading, and storage. Works
+              completely offline.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked_compress_video_mac')"
+              />
+              <a
+                href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              >
+                <svg
+                  class="w-4 h-4 inline-block mr-2"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8a4.35 4.35 0 0 1-2.59-4.03z"
+                  ></path></svg
+                >
+                Download for Mac
+              </a>
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back • macOS 12+
+            </p>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="mt-6 sm:mt-8">
+            <TrustBar />
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+        >
+          <div style="aspect-ratio: 16/10;">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal video compression interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal video compression interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <BentoFeatures />
+
+    <SectionDivider />
+
+    <!-- Additional Features Section -->
+    <section class="relative z-10 px-6 py-20">
+      <div class="max-w-6xl mx-auto">
+        <H2 class="mb-4 text-center">Professional video compression for Mac</H2>
+        <Paragraph class="text-center mb-16 max-w-2xl mx-auto">
+          Compress videos with advanced codecs and hardware acceleration.
+          Perfect for content creators, videographers, and anyone managing
+          video files.
+        </Paragraph>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Feature 1 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Hardware-accelerated compression</H3>
+            <Paragraph class="mb-4">
+              Picmal uses VideoToolbox on Apple Silicon and Intel Macs for
+              blazing-fast hardware acceleration. Compress 4K videos 5-10x
+              faster than software encoding.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Native VideoToolbox acceleration</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Optimized for Apple Silicon M1/M2/M3</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Compress 4K and 8K without slowdown</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Advanced codec support</H3>
+            <Paragraph class="mb-4">
+              Choose from modern codecs like H.265 (HEVC), VP9, and AV1 for
+              superior compression. Get smaller files with better quality than
+              older H.264 codec.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>H.265 (HEVC) for 50% smaller files</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>VP9 and AV1 for web optimization</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>H.264 for universal compatibility</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Batch compress multiple videos</H3>
+            <Paragraph class="mb-4">
+              Process multiple videos at once with the same compression
+              settings. Perfect for content creators managing large video
+              libraries.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Compress entire folders of videos</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Parallel processing for maximum speed</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Save presets for repeated compression</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="bg-background-subtle rounded-xl p-8 border border-border">
+            <H3 class="mb-4">Full quality control</H3>
+            <Paragraph class="mb-4">
+              Fine-tune compression with precise control over bitrate,
+              resolution, and quality settings. Preview results before saving.
+            </Paragraph>
+            <ul class="space-y-2 text-text-secondary">
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Adjust bitrate for perfect file size</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Downscale 4K to 1080p or 720p</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg
+                  class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Quality presets or custom settings</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Use Cases Section -->
+    <section class="relative z-10 px-6 py-20 bg-background-subtle/50">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-12 text-center">Perfect for video compression tasks</H2>
+
+        <div class="grid gap-6">
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Social Media & YouTube</H3>
+            <Paragraph>
+              Compress videos for faster uploads to Instagram, TikTok, YouTube,
+              and Twitter. Meet platform file size limits without sacrificing
+              quality.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Email & Cloud Storage</H3>
+            <Paragraph>
+              Reduce video file sizes by 75-90% to stay within email attachment
+              limits and save cloud storage space. Perfect for sharing via
+              iCloud, Dropbox, or Google Drive.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">iPhone Video Management</H3>
+            <Paragraph>
+              Compress large iPhone MOV videos to free up storage space while
+              preserving memories. Convert to efficient formats like H.265 or
+              WebM.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background rounded-lg p-6 border border-border">
+            <H3 class="mb-2">Website Optimization</H3>
+            <Paragraph>
+              Compress video backgrounds, product demos, and promotional content
+              for faster website loading. WebM with VP9 offers the best web
+              compression.
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Testimonials -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
+
+    <SectionDivider />
+
+    <!-- CTA Section -->
+    <CTASection
+      heading="Start compressing videos on your Mac"
+      analyticsEvent="buy_clicked_compress_video_mac_bottom"
+    />
+
+    <SectionDivider />
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-6">Video compression questions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Common questions about compressing videos on Mac.
+          </Paragraph>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

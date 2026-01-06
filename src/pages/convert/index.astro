@@ -6,7 +6,12 @@ import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import Button from "../../components/Button.astro";
-import PicmalCTA from "../../components/PicmalCTA.astro";
+import CTASection from "../../components/CTASection.astro";
+import SectionDivider from "../../components/SectionDivider.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import BentoFeatures from "../../components/BentoFeatures.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
 import { getAllConversions, formats } from "../../data/conversions";
 import type { FormatInfo } from "../../data/conversions";
 
@@ -75,6 +80,11 @@ const popularConversions = [
           </div>
         </div>
 
+        <!-- Trust Bar -->
+        <div class="mb-8 sm:mb-12">
+          <TrustBar />
+        </div>
+
         <!-- Demo Video -->
         <div
           class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
@@ -110,6 +120,13 @@ const popularConversions = [
         </div>
       </div>
     </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <BentoFeatures />
+
+    <SectionDivider />
 
     <!-- Popular Conversions Section -->
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background-subtle">
@@ -234,17 +251,23 @@ const popularConversions = [
       </div>
     </section>
 
+    <SectionDivider />
+
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
+
+    <SectionDivider />
+
     <!-- CTA Section -->
-    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background">
-      <div class="max-w-4xl mx-auto">
-        <PicmalCTA
-          variant="dark"
-          title="Convert images effortlessly on your Mac"
-          description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
-          buttonText="Get Picmal for $15.99"
-        />
-      </div>
-    </section>
+    <CTASection
+      heading="Convert images effortlessly on your Mac"
+      analyticsEvent="buy_clicked_convert_index_bottom"
+    />
 
     <Footer />
   </body>

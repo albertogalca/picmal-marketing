@@ -12,6 +12,7 @@ import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import Paragraph from "../components/Paragraph.astro";
 import TrustBar from "../components/TrustBar.astro";
 import SectionDivider from "../components/SectionDivider.astro";
+import CTASection from "../components/CTASection.astro";
 
 const SITE_TITLE = "Video Converter for Mac - Convert MOV, MP4, MKV & More";
 const SITE_DESCRIPTION =
@@ -453,37 +454,10 @@ const faqs = [
     <SectionDivider />
 
     <!-- CTA Section -->
-    <section class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto text-center">
-        <H2 class="mb-6">Start converting videos on your Mac</H2>
-        <Paragraph class="mb-10 max-w-2xl mx-auto">
-          One-time purchase. No subscription. 14-day money back guarantee.
-        </Paragraph>
-        <div
-          class="flex flex-col sm:flex-row gap-3 items-center justify-center"
-        >
-          <Button
-            text="Get Picmal for $15.99"
-            onclick="posthog.capture('buy_clicked_video_converter_mac_bottom')"
-          />
-          <a
-            href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-            class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
-          >
-            <svg
-              class="w-4 h-4 inline-block mr-2"
-              fill="currentColor"
-              stroke="none"
-              viewBox="0 0 24 24"
-              ><path
-                d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8a4.35 4.35 0 0 1-2.59-4.03z"
-              ></path></svg
-            >
-            Download for Mac
-          </a>
-        </div>
-      </div>
-    </section>
+    <CTASection
+      heading="Start converting videos on your Mac"
+      analyticsEvent="buy_clicked_video_converter_mac_bottom"
+    />
 
     <SectionDivider />
 

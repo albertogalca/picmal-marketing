@@ -4,9 +4,9 @@
 @variant dark (&:is(.dark *));
 
 @theme {
-  /* Static colors that don't change */
-  --color-accent: #1b5bff;
-  --color-accent-dark: #1450e0;
+  /* Accent colors with proper contrast for light/dark mode */
+  --color-accent: light-dark(#1b5bff, #5080ff);
+  --color-accent-dark: light-dark(#1450e0, #4070ef);
 
   /* Use CSS variables for dynamic colors */
   --color-background: light-dark(rgb(251, 251, 251), rgb(36, 36, 36));

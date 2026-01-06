@@ -8,9 +8,12 @@ import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import Button from "../../components/Button.astro";
 import FAQ from "../../components/FAQ.astro";
-import PicmalCTA from "../../components/PicmalCTA.astro";
+import CTASection from "../../components/CTASection.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
-import ImagePlaceholder from "../../components/ImagePlaceholder.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import BentoFeatures from "../../components/BentoFeatures.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import {
   getAllCompressionFormats,
@@ -168,6 +171,11 @@ const comparisonFeatures = [
           </div>
         </div>
 
+        <!-- Trust Bar -->
+        <div class="mb-8 sm:mb-12">
+          <TrustBar />
+        </div>
+
         <!-- Demo Video -->
         <div
           class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
@@ -203,6 +211,11 @@ const comparisonFeatures = [
         </div>
       </div>
     </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <BentoFeatures />
 
     <SectionDivider />
 
@@ -324,6 +337,16 @@ const comparisonFeatures = [
 
     <SectionDivider />
 
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
+
+    <SectionDivider />
+
     <!-- Use Cases Section -->
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background">
       <div class="max-w-4xl mx-auto">
@@ -375,16 +398,10 @@ const comparisonFeatures = [
     <SectionDivider />
 
     <!-- CTA Section -->
-    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20 bg-background">
-      <div class="max-w-4xl mx-auto">
-        <PicmalCTA
-          variant="dark"
-          title={`Start compressing ${formatInfo.name} images now`}
-          description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
-          buttonText="Buy for Mac"
-        />
-      </div>
-    </section>
+    <CTASection
+      heading={`Start compressing ${formatInfo.name} images now`}
+      analyticsEvent={`buy_clicked_compress_${format}_bottom`}
+    />
 
     <SectionDivider />
 
@@ -404,7 +421,7 @@ const comparisonFeatures = [
             format !== "jpg" && (
               <a
                 href="/compress/jpg"
-                class="text-blue-600 hover:text-blue-800 hover:underline"
+                class="text-accent hover:text-accent-dark hover:underline"
               >
                 Compress JPG
               </a>
@@ -414,7 +431,7 @@ const comparisonFeatures = [
             format !== "webp" && (
               <a
                 href="/compress/webp"
-                class="text-blue-600 hover:text-blue-800 hover:underline"
+                class="text-accent hover:text-accent-dark hover:underline"
               >
                 Compress WebP
               </a>
@@ -424,7 +441,7 @@ const comparisonFeatures = [
             format !== "png" && (
               <a
                 href="/compress/png"
-                class="text-blue-600 hover:text-blue-800 hover:underline"
+                class="text-accent hover:text-accent-dark hover:underline"
               >
                 Compress PNG
               </a>
@@ -434,7 +451,7 @@ const comparisonFeatures = [
             format !== "avif" && (
               <a
                 href="/compress/avif"
-                class="text-blue-600 hover:text-blue-800 hover:underline"
+                class="text-accent hover:text-accent-dark hover:underline"
               >
                 Compress AVIF
               </a>
@@ -444,7 +461,7 @@ const comparisonFeatures = [
             format !== "pdf" && (
               <a
                 href="/compress/pdf"
-                class="text-blue-600 hover:text-blue-800 hover:underline"
+                class="text-accent hover:text-accent-dark hover:underline"
               >
                 Compress PDF
               </a>
@@ -453,7 +470,7 @@ const comparisonFeatures = [
           <span class="text-text-secondary">•</span>
           <a
             href="/compress"
-            class="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
+            class="text-accent hover:text-accent-dark hover:underline font-semibold"
             >View All Formats →</a
           >
         </div>

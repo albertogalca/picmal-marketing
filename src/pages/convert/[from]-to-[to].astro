@@ -8,9 +8,13 @@ import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import Button from "../../components/Button.astro";
 import FAQ from "../../components/FAQ.astro";
-import PicmalCTA from "../../components/PicmalCTA.astro";
+import CTASection from "../../components/CTASection.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import BentoFeatures from "../../components/BentoFeatures.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
 import {
   getAllConversions,
   generateConversionData,
@@ -193,6 +197,11 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
           </div>
         </div>
 
+        <!-- Trust Bar -->
+        <div class="mb-8 sm:mb-12">
+          <TrustBar />
+        </div>
+
         <!-- Demo Video -->
         <div
           class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
@@ -228,6 +237,13 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
         </div>
       </div>
     </main>
+
+    <SectionDivider />
+
+    <!-- Features Section -->
+    <BentoFeatures />
+
+    <SectionDivider />
 
     <!-- Why You Might Need This Section -->
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
@@ -704,6 +720,18 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
+    <SectionDivider />
+
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <FeaturedOn />
+
+    <SectionDivider />
+
     <!-- FAQ Section -->
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-3xl mx-auto">
@@ -718,17 +746,15 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
       </div>
     </section>
 
+    <SectionDivider />
+
     <!-- CTA Section -->
-    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <PicmalCTA
-          variant="dark"
-          title={`Start converting ${fromFormat.name} to ${toFormat.name} now`}
-          description="If you're not happy with your purchase, you can request a refund within 14 days. No questions asked."
-          buttonText="Get Picmal for $15.99"
-        />
-      </div>
-    </section>
+    <CTASection
+      heading={`Start converting ${fromFormat.name} to ${toFormat.name} now`}
+      analyticsEvent={`buy_clicked_convert_${from}_to_${to}_bottom`}
+    />
+
+    <SectionDivider />
 
     <!-- More Conversions Section -->
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">

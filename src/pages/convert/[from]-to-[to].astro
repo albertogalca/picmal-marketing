@@ -96,6 +96,16 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     picmal: "Custom background colors",
   });
 }
+
+// Check if there are any limitations
+const hasAnimationLoss =
+  fromFormat.supports_animation && !toFormat.supports_animation;
+const hasTransparencyLoss =
+  fromFormat.supports_transparency && !toFormat.supports_transparency;
+const hasQualityLoss =
+  fromFormat.quality === "lossless" && toFormat.quality === "lossy";
+const hasAnyLimitations =
+  hasAnimationLoss || hasTransparencyLoss || hasQualityLoss;
 ---
 
 <!doctype html>
@@ -417,35 +427,43 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
               </h4>
               <ul class="space-y-2 text-sm">
                 {
-                  fromFormat.supports_animation &&
-                    !toFormat.supports_animation && (
-                      <li class="flex items-start gap-2">
-                        <span class="text-orange-500">✗</span>
-                        <span>
-                          Animation/Live Photos (converted to still image)
-                        </span>
-                      </li>
-                    )
+                  hasAnimationLoss && (
+                    <li class="flex items-start gap-2">
+                      <span class="text-orange-500">✗</span>
+                      <span>
+                        Animation/Live Photos (converted to still image)
+                      </span>
+                    </li>
+                  )
                 }
                 {
-                  fromFormat.supports_transparency &&
-                    !toFormat.supports_transparency && (
-                      <li class="flex items-start gap-2">
-                        <span class="text-orange-500">✗</span>
-                        <span>
-                          Transparency (replaced with white/custom background)
-                        </span>
-                      </li>
-                    )
+                  hasTransparencyLoss && (
+                    <li class="flex items-start gap-2">
+                      <span class="text-orange-500">✗</span>
+                      <span>
+                        Transparency (replaced with white/custom background)
+                      </span>
+                    </li>
+                  )
                 }
                 {
-                  fromFormat.quality === "lossless" &&
-                    toFormat.quality === "lossy" && (
-                      <li class="flex items-start gap-2">
-                        <span class="text-orange-500">✗</span>
-                        <span>Some quality loss due to lossy compression</span>
-                      </li>
-                    )
+                  hasQualityLoss && (
+                    <li class="flex items-start gap-2">
+                      <span class="text-orange-500">✗</span>
+                      <span>Some quality loss due to lossy compression</span>
+                    </li>
+                  )
+                }
+                {
+                  !hasAnyLimitations && (
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500">✓</span>
+                      <span>
+                        No major limitations - {toFormat.name} supports all
+                        features of {fromFormat.name}
+                      </span>
+                    </li>
+                  )
                 }
               </ul>
             </div>
@@ -736,7 +754,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-10 sm:mb-12">
-          <H2 class="mb-4">Frequently Asked Questions</H2>
+          <H2 class="mb-4">Frequently asked questions</H2>
         </div>
         <div
           class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
@@ -760,7 +778,7 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
     <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10 sm:mb-12">
-          <H2 class="mb-4">More Format Conversions</H2>
+          <H2 class="mb-4">More format conversions</H2>
           <Paragraph class="max-w-2xl mx-auto">
             Need to convert other formats? Picmal supports 30+ image formats for
             all your conversion needs.
@@ -797,12 +815,12 @@ if (fromFormat.supports_transparency && !toFormat.supports_transparency) {
           }
         </div>
 
-        <div class="mt-8">
+        <div class="flex justify-center w-full mt-8">
           <a
             href="/convert"
             class="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-semibold transition-colors"
           >
-            View All Format Conversions
+            View all format conversions
             <svg
               class="w-4 h-4"
               fill="none"

@@ -219,15 +219,18 @@ export function getConversion(from: string, to: string): ConversionInfo | undefi
 }
 
 export function getAllConversions(): Array<{from: string, to: string}> {
-  // Generate all possible conversions to JPG
-  const fromFormats = ['heic', 'webp', 'avif', 'png', 'dng', 'tiff', 'gif'];
-  const toFormats = ['jpg', 'png', 'webp', 'avif', 'gif', 'tiff'];
+  // Generate all possible conversions
+  const fromFormats = ['heic', 'webp', 'avif', 'png', 'dng', 'tiff', 'gif', 'jpg'];
+  const toFormats = ['jpg', 'png', 'webp', 'avif', 'gif', 'tiff', 'heic', 'dng'];
 
   const allConversions: Array<{from: string, to: string}> = [];
 
+  // Include same-format conversions for optimization use cases (png-to-png, webp-to-webp, etc.)
+  const allowSameFormatConversions = ['png', 'webp'];
+
   for (const from of fromFormats) {
     for (const to of toFormats) {
-      if (from !== to) {
+      if (from !== to || allowSameFormatConversions.includes(from)) {
         allConversions.push({ from, to });
       }
     }

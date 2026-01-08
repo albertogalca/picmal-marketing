@@ -17,7 +17,7 @@ const allPosts = await getCollection("blog");
 
 // Filter and sort related posts
 const relatedPosts = allPosts
-  .filter((post) => post.slug !== currentSlug) // Exclude current post
+  .filter((post) => post.id !== currentSlug) // Exclude current post
   .map((post) => {
     let relevanceScore = 0;
 
@@ -51,7 +51,7 @@ const postsToShow =
   relatedPosts.length > 0
     ? relatedPosts
     : allPosts
-        .filter((post) => post.slug !== currentSlug)
+        .filter((post) => post.id !== currentSlug)
         .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
         .slice(0, limit);
 ---
@@ -74,7 +74,7 @@ const postsToShow =
         {postsToShow.map((post) => (
           <article class="group">
             <a
-              href={`/blog/${post.slug}`}
+              href={`/blog/${post.id}`}
               class="block rounded-lg border border-border bg-background-subtle hover:border-accent/50 transition-all duration-200 overflow-hidden h-full"
             >
               {post.data.heroImage && (

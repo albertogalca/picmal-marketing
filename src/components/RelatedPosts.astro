@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
+import ogImage from "../../public/og.png";
 
 interface Props {
   currentSlug: string;
@@ -10,7 +11,7 @@ interface Props {
   limit?: number;
 }
 
-const { currentSlug, category, tags = [], limit = 3 } = Astro.props;
+const { currentSlug, category, tags = [], limit = 2 } = Astro.props;
 
 // Get all blog posts
 const allPosts = await getCollection("blog");
@@ -29,7 +30,9 @@ const relatedPosts = allPosts
     // Score by matching tags
     const postTags = post.data.tags || [];
     const matchingTags = tags.filter((tag) =>
-      postTags.some((postTag: string) => postTag.toLowerCase() === tag.toLowerCase())
+      postTags.some(
+        (postTag: string) => postTag.toLowerCase() === tag.toLowerCase()
+      )
     );
     relevanceScore += matchingTags.length * 5;
 
@@ -61,7 +64,7 @@ const postsToShow =
     <section class="mt-16 pt-12 border-t border-border">
       <div class="mb-8">
         <h2 class="text-2xl font-bold text-text mb-2">
-          {relatedPosts.length > 0 ? "Related Articles" : "Recent Articles"}
+          {relatedPosts.length > 0 ? "Related articles" : "Recent articles"}
         </h2>
         <p class="text-text-secondary">
           {relatedPosts.length > 0
@@ -70,21 +73,31 @@ const postsToShow =
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {postsToShow.map((post) => (
           <article class="group">
             <a
               href={`/blog/${post.id}`}
               class="block rounded-lg border border-border bg-background-subtle hover:border-accent/50 transition-all duration-200 overflow-hidden h-full"
             >
-              {post.data.heroImage && (
+              {post.data.heroImage ? (
                 <div class="aspect-video overflow-hidden bg-background-subtle">
                   <Image
                     src={post.data.heroImage}
                     alt={post.data.title}
                     width={400}
                     height={225}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    class="w-full h-full object-cover transition-transform duration-200"
+                  />
+                </div>
+              ) : (
+                <div class="aspect-video overflow-hidden bg-background-subtle">
+                  <Image
+                    src={ogImage}
+                    alt={post.data.title}
+                    width={400}
+                    height={225}
+                    class="w-full h-full object-cover transition-transform duration-200"
                   />
                 </div>
               )}

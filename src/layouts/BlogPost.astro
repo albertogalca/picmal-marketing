@@ -18,8 +18,16 @@ type Props = CollectionEntry<"blog">["data"] & {
   tags?: string[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage, category, slug, tags } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  category,
+  slug,
+  tags,
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -146,7 +154,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug, tag
         <div class="mt-12">
           <CTASection
             heading="Use Picmal to easily convert your media on your Mac"
-            analyticsEvent={`buy_clicked_blog_${slug || 'post'}`}
+            analyticsEvent={`buy_clicked_blog_${slug || "post"}`}
           />
         </div>
 
@@ -157,7 +165,7 @@ const { title, description, pubDate, updatedDate, heroImage, category, slug, tag
               currentSlug={slug}
               category={category}
               tags={tags}
-              limit={3}
+              limit={2}
             />
           )
         }

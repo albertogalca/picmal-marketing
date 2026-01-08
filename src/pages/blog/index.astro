@@ -43,10 +43,10 @@ const posts = (await getCollection("blog")).sort(
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           {
             posts.map((post) => (
-              <article class="group">
+              <article class="group h-full">
                 <a
                   href={`/blog/${post.id}`}
-                  class="block bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 transition-all duration-300"
+                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 transition-all duration-300"
                 >
                   <div class="relative aspect-video overflow-hidden bg-background">
                     <Image
@@ -57,7 +57,7 @@ const posts = (await getCollection("blog")).sort(
                       class="w-full h-full object-cover"
                     />
                   </div>
-                  <div class="p-4">
+                  <div class="p-4 flex flex-col flex-1">
                     <div class="flex items-center gap-2 mb-3 text-xs text-text-secondary">
                       {post.data.category && (
                         <>
@@ -75,7 +75,7 @@ const posts = (await getCollection("blog")).sort(
                       {post.data.title}
                     </h3>
                     {post.data.description && (
-                      <p class="text-sm text-text-secondary leading-relaxed">
+                      <p class="text-sm text-text-secondary leading-relaxed line-clamp-3">
                         {post.data.description}
                       </p>
                     )}

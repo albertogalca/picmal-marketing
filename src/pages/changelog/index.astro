@@ -8,7 +8,7 @@ import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
 import Paragraph from "../../components/Paragraph.astro";
 
-const changelog = await getEntry("blog", "changelog");
+const changelog = await getEntry("changelog", "index");
 if (!changelog) {
   throw new Error("Changelog not found");
 }

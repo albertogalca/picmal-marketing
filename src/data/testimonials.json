@@ -3,7 +3,6 @@
     "id": 1,
     "name": "Marynes",
     "image": "/marynes-testimonial.jpeg",
-    "email": "marynesrf@gmail.com",
     "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
     "date": "Sep 16, 2025"
   },
@@ -66,5 +65,13 @@
     "email": "rmjh@me.com",
     "content": "It's a Mac-assed Mac App. Focused, customizable, flexible, well designed and super fast. 10+ times a day I need to convert a file for use on a website. Picmal makes that process a joy. My favorite conversion is taking a multipage PDF and converting each page to an individual image with one click (something even Preview can't do). ",
     "date": "Jan 9, 2026"
+  },
+  {
+    "id": 10,
+    "name": "limboy",
+    "image": "/limboy-testimonial.png",
+    "content": "I really like these kinds of tools: simple interface, focused functions, one-time purchase, and continuous updates.",
+    "link": "https://35mm.coffee/tweets/vfoq182b71777v4",
+    "date": "Jan 10, 2026"
   }
 ]

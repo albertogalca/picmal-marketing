@@ -5,8 +5,9 @@
 
 @theme {
   /* Accent colors with proper contrast for light/dark mode */
-  --color-accent: light-dark(#1b5bff, #5080ff);
-  --color-accent-dark: light-dark(#1450e0, #4070ef);
+  /* Light mode: vibrant blue | Dark mode: electric blue (high luminosity) */
+  --color-accent: light-dark(#1b5bff, #3B82F6);
+  --color-accent-dark: light-dark(#1450e0, #2563EB);
 
   /* Use CSS variables for dynamic colors */
   --color-background: light-dark(rgb(251, 251, 251), rgb(36, 36, 36));
@@ -282,19 +283,92 @@ pre {
   position: relative;
 }
 
-/* Blockquote improvements */
+/* Blockquote - Simple and functional */
 blockquote {
-  border-left: 4px solid #1b5bff !important;
-  background: #f8fafc !important;
+  background: light-dark(#f8fafc, rgba(255, 255, 255, 0.05)) !important;
   padding: 1rem 1.5rem !important;
   margin: 1.5rem 0 !important;
-  border-radius: 0 0.5rem 0.5rem 0 !important;
-  font-style: italic !important;
+  border-radius: 0.5rem !important;
+  font-style: normal !important;
 }
 
 blockquote p {
-  color: #475569 !important;
-  margin: 0 !important;
+  color: light-dark(rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.8)) !important;
+  margin: 0.5rem 0 !important;
+  line-height: 1.6 !important;
+}
+
+blockquote p:first-child {
+  margin-top: 0 !important;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* ==========================================
+   LIST STYLING - Simple
+   ========================================== */
+
+.prose ol,
+.prose ul {
+  margin: 1.25rem 0 !important;
+}
+
+.prose ol li,
+.prose ul li {
+  margin-bottom: 0.5rem !important;
+  line-height: 1.6 !important;
+}
+
+/* ==========================================
+   TABLE STYLING - Simple
+   ========================================== */
+
+.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+}
+
+.prose thead th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid light-dark(
+    rgba(0, 0, 0, 0.1),
+    rgba(255, 255, 255, 0.1)
+  ) !important;
+}
+
+.prose tbody td {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 1px solid light-dark(
+    rgba(0, 0, 0, 0.05),
+    rgba(255, 255, 255, 0.05)
+  ) !important;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ==========================================
+   HEADING STYLING - Simple
+   ========================================== */
+
+.prose h2 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  font-weight: 700 !important;
+  scroll-margin-top: 2rem !important;
+}
+
+.prose h3 {
+  margin-top: 2rem !important;
+  margin-bottom: 0.75rem !important;
+  font-weight: 600 !important;
+  scroll-margin-top: 2rem !important;
 }
 
 /* Hero gradient background for light/dark mode */

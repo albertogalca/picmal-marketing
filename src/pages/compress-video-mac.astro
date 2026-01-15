@@ -62,27 +62,26 @@ const faqs = [
   </head>
 
   <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text"
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
     <!-- Hero Section -->
-    <main
-      id="main-content"
-      class="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20"
-    >
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
 
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-8 sm:mb-12">
           <div
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
-            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto">
+            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto hero-title">
               Compress videos on Mac without losing quality
             </H1>
             <p
-              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
             >
               Reduce video file sizes by up to 90% with hardware-accelerated
               compression. Perfect for sharing, uploading, and storage. Works
@@ -91,17 +90,18 @@ const faqs = [
           </div>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4">
+          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
             <div
               class="flex flex-col sm:flex-row gap-2 items-center justify-center"
             >
               <Button
                 text="Get Picmal for $15.99"
                 onclick="posthog.capture('buy_clicked_compress_video_mac')"
+                class="apple-button-primary"
               />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
               >
                 <svg
                   class="w-4 h-4 inline-block mr-2"
@@ -116,21 +116,21 @@ const faqs = [
               </a>
             </div>
             <p class="text-xs sm:text-sm text-text-secondary">
-              One-time purchase • 14-day money back • macOS 12+
+              One-time purchase • 14-day money back • macOS 14+
             </p>
           </div>
 
           <!-- Social Proof -->
-          <div class="mt-6 sm:mt-8">
+          <div class="mt-6 sm:mt-8 hero-trust">
             <TrustBar />
           </div>
         </div>
 
         <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
         >
-          <div style="aspect-ratio: 16/10;">
+          <div class="aspect-[16/10]">
             <video
               src="/picmal-1.2.0-demo.mp4"
               class="w-full h-full object-cover block dark:hidden"
@@ -175,8 +175,8 @@ const faqs = [
         <H2 class="mb-4 text-center">Professional video compression for Mac</H2>
         <Paragraph class="text-center mb-16 max-w-2xl mx-auto">
           Compress videos with advanced codecs and hardware acceleration.
-          Perfect for content creators, videographers, and anyone managing
-          video files.
+          Perfect for content creators, videographers, and anyone managing video
+          files.
         </Paragraph>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -496,9 +496,201 @@ const faqs = [
 
     <Footer />
 
+    <style>
+      /* ==========================================
+         APPLE-INSPIRED MINIMALIST DESIGN
+         ========================================== */
+
+      body {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      /* ==========================================
+         SUBTLE GRADIENT BACKGROUND
+         ========================================== */
+      .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 96%, 0.4),
+          transparent
+        );
+      }
+
+      .dark .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 14%, 0.4),
+          transparent
+        );
+      }
+
+      /* ==========================================
+         GENTLE ENTRANCE ANIMATIONS - APPLE STYLE
+         ========================================== */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .hero-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .hero-trust {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      .hero-video {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         REFINED BUTTON INTERACTIONS
+         ========================================== */
+      .apple-button-primary {
+        transition: all 0.2s ease;
+      }
+
+      .apple-button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .dark .apple-button-primary:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .apple-button-secondary {
+        transition: all 0.2s ease;
+      }
+
+      .apple-button-secondary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .dark .apple-button-secondary:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ==========================================
+         SCROLL-TRIGGERED ANIMATIONS (SUBTLE)
+         ========================================== */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================
+         VIDEO PRESENTATION
+         ========================================== */
+      .hero-video {
+        transition: all 0.3s ease;
+      }
+
+      .hero-video:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .dark .hero-video:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      /* ==========================================
+         ACCESSIBILITY & REDUCED MOTION
+         ========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .hero-cta,
+        .hero-trust,
+        .hero-video,
+        .scroll-reveal {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+
+      /* ==========================================
+         RESPONSIVE
+         ========================================== */
+      @media (max-width: 640px) {
+        .apple-button-primary,
+        .apple-button-secondary {
+          width: 100%;
+        }
+      }
+    </style>
+
     <script>
       window.lemonSqueezyAffiliateConfig = { store: "picmal" };
     </script>
     <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+
+    <!-- Minimal Interactions -->
+    <script>
+      // Scroll-triggered animations with Intersection Observer
+      function initScrollReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px',
+          }
+        );
+
+        const sections = document.querySelectorAll('section:not(#main-content)');
+        sections.forEach((section) => {
+          section.classList.add('scroll-reveal');
+          observer.observe(section);
+        });
+      }
+
+      // Initialize
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+
+      // Smooth page load
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+    </script>
   </body>
 </html>

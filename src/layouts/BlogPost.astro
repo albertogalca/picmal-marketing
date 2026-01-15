@@ -52,29 +52,32 @@ const {
   </head>
 
   <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text"
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
     <!-- Hero with gradient -->
-    <div class="relative z-10 pt-32 pb-12">
-      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
-    </div>
+    <div class="relative z-10 pt-32 pb-12"></div>
 
     <!-- Article -->
     <article class="relative z-10 px-6 pb-20">
       <div class="max-w-3xl mx-auto">
         <!-- Breadcrumb -->
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Blog", href: "/blog" },
-            { label: title },
-          ]}
-        />
+        <div class="article-breadcrumb">
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: title },
+            ]}
+          />
+        </div>
 
         <!-- Header -->
-        <header class="mb-8">
+        <header class="mb-8 article-header">
           {
             heroImage && (
               <div class="mb-6">
@@ -121,7 +124,7 @@ const {
 
         <!-- Content -->
         <div
-          class="prose max-w-none
+          class="prose max-w-none article-content
               prose-headings:text-text prose-headings:font-semibold
               prose-p:text-text/65 prose-p:leading-relaxed
               prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
@@ -142,7 +145,7 @@ const {
         </div>
 
         <!-- Social Share -->
-        <div class="mt-12 pt-8 border-t border-border">
+        <div class="mt-12 pt-8 border-t border-border article-share">
           <SocialShare
             title={title}
             description={description}
@@ -151,7 +154,7 @@ const {
         </div>
 
         <!-- Download CTA -->
-        <div class="mt-12">
+        <div class="mt-12 article-cta">
           <CTASection
             heading="Use Picmal to easily convert your media on your Mac"
             analyticsEvent={`buy_clicked_blog_${slug || "post"}`}
@@ -159,19 +162,117 @@ const {
         </div>
 
         <!-- Related Posts -->
-        {
-          slug && (
-            <RelatedPosts
-              currentSlug={slug}
-              category={category}
-              tags={tags}
-              limit={2}
-            />
-          )
-        }
+        <div class="article-related">
+          {
+            slug && (
+              <RelatedPosts
+                currentSlug={slug}
+                category={category}
+                tags={tags}
+                limit={2}
+              />
+            )
+          }
+        </div>
       </div>
     </article>
 
     <Footer />
+
+    <style>
+      /* ==========================================
+         APPLE-INSPIRED MINIMALIST DESIGN
+         ========================================== */
+
+      body {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      /* ==========================================
+         SUBTLE GRADIENT BACKGROUND
+         ========================================== */
+      .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 96%, 0.4),
+          transparent
+        );
+      }
+
+      .dark .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 14%, 0.4),
+          transparent
+        );
+      }
+
+      /* ==========================================
+         GENTLE ENTRANCE ANIMATIONS - APPLE STYLE
+         ========================================== */
+      .article-breadcrumb {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .article-header {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .article-content {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .article-share {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      .article-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+      }
+
+      .article-related {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.6s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         ACCESSIBILITY & REDUCED MOTION
+         ========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .article-breadcrumb,
+        .article-header,
+        .article-content,
+        .article-share,
+        .article-cta,
+        .article-related {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Smooth page load
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+    </script>
   </body>
 </html>

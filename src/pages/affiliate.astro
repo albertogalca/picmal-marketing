@@ -7,6 +7,7 @@ import H2 from "../components/H2.astro";
 import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
 import FAQ from "../components/FAQ.astro";
+import SectionDivider from "../components/SectionDivider.astro";
 
 const SITE_TITLE = "Picmal Affiliate Program - Earn 25% Commission";
 const SITE_DESCRIPTION =
@@ -46,59 +47,461 @@ const affiliateFaqs = [
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-background">
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
-    <!-- Hero Section with gradient -->
-    <main id="main-content" class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
+    <!-- Hero Section -->
+    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto hero-title">
+              Become an affiliate and earn 25% on each sale
+            </H1>
 
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <H1 class="mb-4">Become an affiliate and earn 25% on each sale</H1>
-          <Paragraph class="max-w-lg mx-auto">
-            You can earn between $4.00 and $16.49 for every customer you refer
-            to Picmal. Sign up today and start earning cash by promoting a good
-            tool.
-          </Paragraph>
-        </div>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
+            >
+              You can earn between $4.00 and $16.49 for every customer you refer
+              to Picmal. Sign up today and start earning cash by promoting a
+              good tool.
+            </p>
+          </div>
 
-        <div class="flex flex-col items-center gap-4">
-          <Button
-            href="https://affiliates.lemonsqueezy.com/programs/picmal"
-            text="Become an affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
-          <p class="text-sm text-text-secondary">Powered by Lemon Squeezy</p>
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
+            <Button
+              href="https://affiliates.lemonsqueezy.com/programs/picmal"
+              text="Become an Affiliate"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="apple-button-primary"
+            />
+            <p class="text-xs sm:text-sm text-text-secondary">
+              Powered by Lemon Squeezy
+            </p>
+          </div>
         </div>
       </div>
     </main>
 
+    <SectionDivider />
+
+    <!-- Stats Section -->
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto"
+        >
+          <!-- Stat Card 1 -->
+          <div
+            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center hover:border-border/60 transition-all duration-300 stat-card"
+          >
+            <div
+              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
+            >
+              25%
+            </div>
+            <div class="text-base sm:text-lg font-medium text-text mb-1">
+              Commission Rate
+            </div>
+            <div class="text-sm text-text-secondary">
+              On every sale you refer
+            </div>
+          </div>
+
+          <!-- Stat Card 2 -->
+          <div
+            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center hover:border-border/60 transition-all duration-300 stat-card"
+          >
+            <div
+              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
+            >
+              90
+            </div>
+            <div class="text-base sm:text-lg font-medium text-text mb-1">
+              Cookie Days
+            </div>
+            <div class="text-sm text-text-secondary">Attribution window</div>
+          </div>
+
+          <!-- Stat Card 3 -->
+          <div
+            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center hover:border-border/60 transition-all duration-300 stat-card"
+          >
+            <div
+              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
+            >
+              $50
+            </div>
+            <div class="text-base sm:text-lg font-medium text-text mb-1">
+              Minimum Payout
+            </div>
+            <div class="text-sm text-text-secondary">Monthly threshold</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- How It Works Section -->
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 sm:mb-16">
+          <H2 class="mb-4">How it works</H2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div
+              class="bg-background-subtle/30 backdrop-blur-sm border border-border rounded-2xl p-8 h-full hover:border-border/60 transition-all duration-300"
+            >
+              <!-- Icon -->
+              <div class="mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
+                  <svg
+                    class="w-7 h-7 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <h3 class="text-xl font-semibold text-text mb-3">Sign up</h3>
+              <p class="text-text-secondary leading-relaxed">
+                Register through Lemon Squeezy and get your unique affiliate
+                link.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div
+              class="bg-background-subtle/30 backdrop-blur-sm border border-border rounded-2xl p-8 h-full hover:border-border/60 transition-all duration-300"
+            >
+              <!-- Icon -->
+              <div class="mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
+                  <svg
+                    class="w-7 h-7 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <h3 class="text-xl font-semibold text-text mb-3">
+                Share your link
+              </h3>
+              <p class="text-text-secondary leading-relaxed">
+                Share Picmal on your website, blog, or social media using your
+                affiliate link.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div
+              class="bg-background-subtle/30 backdrop-blur-sm border border-border rounded-2xl p-8 h-full hover:border-border/60 transition-all duration-300"
+            >
+              <!-- Icon -->
+              <div class="mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
+                  <svg
+                    class="w-7 h-7 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <h3 class="text-xl font-semibold text-text mb-3">
+                Earn commission
+              </h3>
+              <p class="text-text-secondary leading-relaxed">
+                Receive 25% commission on every sale. Track earnings in
+                real-time and get paid monthly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
+    <section id="faq" class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-12">
-          <H2 class="mb-6">FAQ</H2>
+          <H2 class="mb-6">Frequently asked questions</H2>
         </div>
         <div
-          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
         >
           <FAQ faqs={affiliateFaqs} />
         </div>
+      </div>
+    </section>
 
-        <div class="flex flex-col items-center gap-4 mt-12">
-          <Button
-            href="https://affiliates.lemonsqueezy.com/programs/picmal"
-            text="Become an affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
-          <p class="text-sm text-text-secondary">Powered by Lemon Squeezy</p>
+    <SectionDivider />
+
+    <!-- Final CTA Section -->
+    <section class="relative z-10 px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <div
+          class="bg-background-subtle/30 backdrop-blur-sm border border-border rounded-3xl p-8 sm:p-12 md:p-16 cta-final"
+        >
+          <H2 class="mb-4">Ready to get started?</H2>
+          <Paragraph class="max-w-2xl mx-auto mb-8">
+            Join the affiliate program and start earning commission.
+          </Paragraph>
+          <div class="flex justify-center">
+            <Button
+              href="https://affiliates.lemonsqueezy.com/programs/picmal"
+              text="Become an Affiliate"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="apple-button-primary"
+            />
+          </div>
         </div>
       </div>
     </section>
 
     <Footer />
+
+    <style>
+      /* ==========================================
+         APPLE-INSPIRED MINIMALIST DESIGN
+         ========================================== */
+
+      body {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      /* ==========================================
+         SUBTLE GRADIENT BACKGROUND
+         ========================================== */
+      .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 96%, 0.4),
+          transparent
+        );
+      }
+
+      .dark .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 14%, 0.4),
+          transparent
+        );
+      }
+
+      /* ==========================================
+         GENTLE ENTRANCE ANIMATIONS - APPLE STYLE
+         ========================================== */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.15s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.25s both;
+      }
+
+      .hero-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.35s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         REFINED BUTTON INTERACTIONS
+         ========================================== */
+      .apple-button-primary {
+        transition: all 0.2s ease;
+      }
+
+      .apple-button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .dark .apple-button-primary:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ==========================================
+         SCROLL-TRIGGERED ANIMATIONS (SUBTLE)
+         ========================================== */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================
+         CARD HOVER EFFECTS
+         ========================================== */
+      .stat-card {
+        transition: all 0.3s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+
+      .dark .stat-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ==========================================
+         STEP CARDS
+         ========================================== */
+      .step-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .step-card.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .step-card:hover .bg-background-subtle {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+
+      .dark .step-card:hover .bg-background-subtle {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ==========================================
+         ACCESSIBILITY & REDUCED MOTION
+         ========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .hero-cta,
+        .scroll-reveal,
+        .step-card,
+        .stat-card {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+
+    <!-- Minimal Interactions -->
+    <script>
+      // Scroll-triggered animations with Intersection Observer
+      function initScrollReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -80px 0px",
+          }
+        );
+
+        const sections = document.querySelectorAll(
+          "section:not(#main-content)"
+        );
+        sections.forEach((section) => {
+          section.classList.add("scroll-reveal");
+          observer.observe(section);
+        });
+
+        // Animate step cards with stagger
+        const stepCards = document.querySelectorAll(".step-card");
+        stepCards.forEach((card, index) => {
+          card.style.transitionDelay = `${index * 0.15}s`;
+          observer.observe(card);
+        });
+      }
+
+      // Initialize
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+
+      // Smooth page load
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+      });
+    </script>
   </body>
 </html>

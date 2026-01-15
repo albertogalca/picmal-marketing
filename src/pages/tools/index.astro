@@ -3,6 +3,7 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import CTASection from "../../components/CTASection.astro";
+import SectionDivider from "../../components/SectionDivider.astro";
 import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
@@ -13,6 +14,41 @@ const SITE_TITLE =
   "Free Image Tools - Format Selection, Conversion Tips & More";
 const SITE_DESCRIPTION =
   "Collection of free tools to help you work with images: format selector, conversion guides, and optimization tips.";
+
+const tools = [
+  {
+    id: "format-selector",
+    title: "Image format selector",
+    description:
+      "Answer a few questions about your use case and get instant recommendations for the best image format.",
+    href: "/tools/image-format-selector",
+    available: true,
+  },
+  {
+    id: "compression-analyzer",
+    title: "Compression analyzer",
+    description:
+      "Visualize how different compression levels affect your image quality and file size.",
+    href: "#",
+    available: false,
+  },
+  {
+    id: "batch-guide",
+    title: "Batch processing guide",
+    description:
+      "Learn best practices for processing multiple images efficiently.",
+    href: "#",
+    available: false,
+  },
+  {
+    id: "metadata-viewer",
+    title: "Metadata viewer",
+    description:
+      "Check what metadata your images contain and learn how to optimize it.",
+    href: "#",
+    available: false,
+  },
+];
 ---
 
 <!doctype html>
@@ -20,121 +56,253 @@ const SITE_DESCRIPTION =
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-background">
+  <body class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
-    <!-- Hero with gradient -->
-    <main class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
-
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <H1 class="mb-4">Optimize your workflow</H1>
-          <Paragraph class="max-w-2xl mx-auto">
-            Simple, free tools to help you make better decisions about image
+    <main class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <!-- Hero Section -->
+        <div class="text-center mb-12 sm:mb-16">
+          <H1 class="mb-4 sm:mb-6 hero-title">Free image tools</H1>
+          <Paragraph class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl hero-subtitle">
+            Simple, free utilities to help you make better decisions about image
             formats and optimization.
           </Paragraph>
         </div>
 
         <!-- Tools Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-          <!-- Image Format Selector Tool -->
-          <div
-            class="bg-background-subtle border border-border rounded-lg p-6 hover:border-accent/30 transition-all duration-300"
-          >
-            <a
-              href="/tools/image-format-selector"
-              class="flex justify-between flex-col text-left h-full"
-            >
-              <header class="gap-2 flex flex-col mb-8">
-                <H2 class="text-base md:text-xl mb-0">Image format selector</H2>
-                <Paragraph>
-                  Answer a few questions about your use case and get instant
-                  recommendations for the best image format.
-                </Paragraph>
-              </header>
-              <Button type="submit" text="Use it" />
-            </a>
-          </div>
-
-          <!-- Compression Analyzer (Coming Soon) -->
-          <div
-            class="bg-background-subtle border border-border rounded-lg p-6 hover:border-accent/30 transition-all duration-300"
-          >
-            <div class="flex justify-between flex-col text-left h-full">
-              <header class="gap-2 flex flex-col">
-                <H2 class="text-base md:text-xl mb-0">
-                  Compression analyzer
-                </H2>
-                <Paragraph class="mb-4">
-                  Visualize how different compression levels affect your image
-                  quality and file size.
-                </Paragraph>
-              </header>
-              <Button
-                disabled
-                variant="secondary"
-                type="submit"
-                text="Use it"
-              />
-            </div>
-          </div>
-
-          <!-- Batch Processing Guide (Coming Soon) -->
-          <div
-            class="bg-background-subtle border border-border rounded-lg p-6 hover:border-accent/30 transition-all duration-300"
-          >
-            <div class="flex justify-between flex-col text-left h-full">
-              <header class="gap-2 flex flex-col">
-                <H2 class="text-base md:text-xl mb-0">
-                  Batch processing guide
-                </H2>
-                <Paragraph class="mb-4">
-                  Learn best practices for processing multiple images
-                  efficiently.
-                </Paragraph>
-              </header>
-              <Button
-                disabled
-                variant="secondary"
-                type="submit"
-                text="Use it"
-              />
-            </div>
-          </div>
-
-          <!-- Metadata Viewer (Coming Soon) -->
-          <div
-            class="bg-background-subtle border border-border rounded-lg p-6 hover:border-accent/30 transition-all duration-300"
-          >
-            <div class="flex justify-between flex-col text-left h-full">
-              <header class="gap-2 flex flex-col">
-                <H2 class="text-base md:text-xl mb-0"> Metadata viewer </H2>
-                <Paragraph class="mb-4">
-                  Check what metadata your images contain and learn how to
-                  optimize it.
-                </Paragraph>
-              </header>
-              <Button
-                disabled
-                variant="secondary"
-                type="submit"
-                text="Use it"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA Section -->
-        <div class="mt-16">
-          <CTASection
-            heading="Use Picmal to easily convert your media on your Mac"
-            analyticsEvent="buy_clicked_tools_index"
-          />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 tool-grid">
+          {
+            tools.map((tool, index) => (
+              <div
+                class="tool-card"
+                style={`--card-index: ${index}`}
+              >
+                {tool.available ? (
+                  <a
+                    href={tool.href}
+                    class="tool-card-link bg-background-subtle border border-border rounded-lg p-6 transition-all duration-200 flex flex-col h-full"
+                  >
+                    <div class="mb-4">
+                      <h3 class="text-lg font-semibold mb-2">{tool.title}</h3>
+                      <p class="text-text-secondary text-sm leading-relaxed">
+                        {tool.description}
+                      </p>
+                    </div>
+                    <div class="mt-auto pt-4">
+                      <span class="text-accent font-semibold text-sm inline-flex items-center gap-2">
+                        Use tool
+                        <svg
+                          class="w-4 h-4 transition-transform duration-200"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <div class="bg-background-subtle border border-border rounded-lg p-6 flex flex-col h-full opacity-60">
+                    <div class="mb-4">
+                      <div class="flex items-center gap-2 mb-2">
+                        <h3 class="text-lg font-semibold">{tool.title}</h3>
+                        <span class="text-xs px-2 py-1 bg-background border border-border rounded text-text-secondary">
+                          Coming soon
+                        </span>
+                      </div>
+                      <p class="text-text-secondary text-sm leading-relaxed">
+                        {tool.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))
+          }
         </div>
       </div>
     </main>
 
+    <SectionDivider />
+
+    <!-- CTA Section -->
+    <section class="relative z-10 px-6 py-16 sm:py-20 cta-section">
+      <CTASection
+        heading="Use Picmal to easily convert your media on your Mac"
+        analyticsEvent="buy_clicked_tools_index"
+      />
+    </section>
+
     <Footer />
+
+    <style>
+      /* ==========================================
+         APPLE-INSPIRED MINIMALIST DESIGN
+         Matching the landing page aesthetic
+         ========================================== */
+
+      body {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      /* ==========================================
+         SUBTLE GRADIENT BACKGROUND - Same as landing page
+         ========================================== */
+      .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 96%, 0.4),
+          transparent
+        );
+      }
+
+      .dark .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 14%, 0.4),
+          transparent
+        );
+      }
+
+      /* ==========================================
+         GENTLE ENTRANCE ANIMATIONS - Apple style
+         ========================================== */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .tool-grid {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .cta-section {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         TOOL CARDS - Refined and minimal
+         ========================================== */
+      .tool-card-link {
+        transition: all 0.2s ease;
+      }
+
+      .tool-card-link:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: rgba(var(--accent-rgb), 0.3);
+      }
+
+      .dark .tool-card-link:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .tool-card-link:hover svg {
+        transform: translateX(2px);
+      }
+
+      .tool-card-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      /* ==========================================
+         SCROLL-TRIGGERED ANIMATIONS (SUBTLE)
+         ========================================== */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================
+         ACCESSIBILITY & REDUCED MOTION
+         ========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .tool-grid,
+        .cta-section,
+        .scroll-reveal,
+        .tool-card-link {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Scroll-triggered animations with Intersection Observer
+      function initScrollReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px',
+          }
+        );
+
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section) => {
+          section.classList.add('scroll-reveal');
+          observer.observe(section);
+        });
+      }
+
+      // Initialize
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+
+      // Smooth page load
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+    </script>
   </body>
 </html>

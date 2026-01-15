@@ -22,79 +22,147 @@ const { Content } = await render(changelog);
       title={`Changelog - ${SITE_TITLE}`}
       description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
     />
+    <style>
+      /* Staggered fade-in for version entries */
+      .version-entry {
+        animation: fade-in-up 0.6s ease-out backwards;
+      }
+
+      .version-entry:nth-child(1) { animation-delay: 0.1s; }
+      .version-entry:nth-child(2) { animation-delay: 0.15s; }
+      .version-entry:nth-child(3) { animation-delay: 0.2s; }
+      .version-entry:nth-child(4) { animation-delay: 0.25s; }
+      .version-entry:nth-child(5) { animation-delay: 0.3s; }
+      .version-entry:nth-child(n+6) { animation-delay: 0.35s; }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .version-entry {
+          animation: none !important;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-background">
+  <body class="bg-background text-text">
     <Header />
 
-    <!-- Hero with gradient -->
     <main class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
+      <!-- Hero -->
+      <div class="text-center mb-16 px-6 animate-fade-in-up">
+        <H1 class="mb-4">Changelog</H1>
+        <Paragraph class="max-w-2xl mx-auto">
+          Latest updates, new features, and improvements to Picmal.
+        </Paragraph>
+      </div>
 
-      <div class="max-w-3xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <H1 class="mb-4">Changelog</H1>
-          <Paragraph class="max-w-2xl mx-auto">
-            Latest updates, new features, and improvements to Picmal.
-          </Paragraph>
-        </div>
-
-        <!-- Review CTA -->
-        <div class="relative overflow-hidden rounded-lg mb-12">
-          <div
-            class="relative bg-background-subtle border border-border rounded-lg p-6 flex flex-col sm:items-start sm:justify-between gap-4 sm:gap-6"
-          >
-            <div class="flex items-start sm:items-center gap-4">
-              <Paragraph>
-                As an indie developer, Picmal grows through word of mouth. A
-                review only takes a minute and makes a huge difference.
-              </Paragraph>
-            </div>
-            <a
-              href="https://tally.so/r/Me18qE"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-shrink-0 inline-flex items-center justify-center gap-2 font-semibold transition-colors w-full sm:w-auto"
-            >
-              Leave a review
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Changelog Content -->
+      <!-- Review CTA -->
+      <div class="max-w-3xl mx-auto px-6 mb-16 animate-fade-in-up stagger-1">
         <div
-          class="changelog-content space-y-12 prose prose-lg max-w-none
-                 prose-headings:text-text prose-headings:font-semibold
-                 prose-p:text-text-secondary prose-p:leading-relaxed
-                 prose-h3:text-xl prose-h3:mb-3
-                 prose-h4:text-base prose-h4:mb-2
-                 prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-                 prose-img:rounded-lg prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border
-                 prose-video:rounded-lg prose-video:my-6 prose-video:shadow-lg
-                 prose-li:text-text-secondary prose-li:leading-relaxed
-                 prose-ul:space-y-2
-                 prose-strong:text-text prose-strong:font-semibold
-                 prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                 prose-pre:bg-background-subtle prose-pre:border prose-pre:border-border
-                 prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50"
+          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
         >
+          <Paragraph class="mb-0 flex-1">
+            As an indie developer, Picmal grows through word of mouth. A review only takes a minute and makes a huge difference.
+          </Paragraph>
+          <a
+            href="https://tally.so/r/Me18qE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-sm rounded-lg transition-all duration-200 hover:bg-accent-dark hover:scale-[1.02] whitespace-nowrap w-full sm:w-auto"
+          >
+            Leave a review
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Changelog -->
+      <div class="max-w-3xl mx-auto px-6 pb-20">
+        <div class="changelog-wrapper">
           <Content />
         </div>
       </div>
     </main>
+
     <Footer />
+
+    <script>
+      // Transform markdown content into timeline cards
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.querySelector('.changelog-wrapper');
+        if (!wrapper) return;
+
+        const content = wrapper.innerHTML;
+        const entries: string[] = [];
+        let currentEntry = '';
+
+        // Split by h2 (version headers)
+        const parts = content.split(/(<h2[^>]*>.*?<\/h2>)/);
+
+        for (let i = 0; i < parts.length; i++) {
+          const part = parts[i].trim();
+          if (!part) continue;
+
+          if (part.startsWith('<h2')) {
+            if (currentEntry) {
+              entries.push(currentEntry);
+            }
+            currentEntry = part;
+          } else if (currentEntry) {
+            currentEntry += part;
+          }
+        }
+
+        if (currentEntry) {
+          entries.push(currentEntry);
+        }
+
+        // Transform entries into timeline cards
+        const cards = entries.map(entry => {
+          const h2Match = entry.match(/<h2[^>]*>(.*?)<\/h2>/);
+          if (!h2Match) return '';
+
+          const headerText = h2Match[1];
+          const versionMatch = headerText.match(/v[\d.]+/);
+          const dateMatch = headerText.match(/\w+ \d+, \d+/);
+
+          const version = versionMatch ? versionMatch[0] : '';
+          const date = dateMatch ? dateMatch[0] : '';
+
+          let contentHtml = entry
+            .replace(/<h2[^>]*>.*?<\/h2>/, '')
+            .replace(/<hr\s*\/?>/g, '')
+            .trim();
+
+          return `
+            <div class="version-entry mb-12">
+              <div class="bg-background-subtle border border-border rounded-2xl p-6 sm:p-7">
+                <div class="flex items-baseline gap-3 mb-5 flex-wrap">
+                  <span class="text-2xl font-semibold text-text tracking-tight">${version}</span>
+                  <span class="text-sm text-text-secondary">${date}</span>
+                </div>
+                <div class="prose prose-lg max-w-none prose-headings:text-text prose-headings:font-semibold prose-p:text-text-secondary prose-p:leading-relaxed prose-h3:text-xl prose-h3:mb-3 prose-h4:text-base prose-h4:mb-2 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border prose-video:rounded-lg prose-video:my-6 prose-video:shadow-lg prose-li:text-text-secondary prose-li:leading-relaxed prose-ul:space-y-2 prose-strong:text-text prose-strong:font-semibold prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-background-subtle prose-pre:border prose-pre:border-border prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50">
+                  ${contentHtml}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        wrapper.innerHTML = cards;
+      });
+    </script>
   </body>
 </html>

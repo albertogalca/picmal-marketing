@@ -21,32 +21,36 @@ const posts = (await getCollection("blog")).sort(
   <head>
     <BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-background">
+  <body class="bg-background overflow-x-hidden">
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
     <!-- Hero with gradient -->
     <main class="relative z-10 pt-32 pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden"></div>
 
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
-          <H1 class="mb-4">Blog</H1>
-          <Paragraph class="max-w-2xl mx-auto">
+          <H1 class="mb-4 blog-title">Blog</H1>
+          <Paragraph class="max-w-2xl mx-auto blog-subtitle">
             Updates, guides, and thoughts about building software for Mac.
           </Paragraph>
         </div>
 
         <!-- Category Navigation -->
-        <BlogNavigation currentCategory="All" />
+        <div class="blog-nav">
+          <BlogNavigation currentCategory="All" />
+        </div>
 
         <!-- Blog Posts Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 blog-grid">
           {
             posts.map((post) => (
-              <article class="group h-full">
+              <article class="group h-full blog-card">
                 <a
                   href={`/blog/${post.id}`}
-                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 transition-all duration-300"
+                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 transition-all duration-200 apple-card"
                 >
                   <div class="relative aspect-video overflow-hidden bg-background">
                     <Image
@@ -97,5 +101,152 @@ const posts = (await getCollection("blog")).sort(
     </main>
 
     <Footer />
+
+    <style>
+      /* ==========================================
+         APPLE-INSPIRED MINIMALIST DESIGN
+         ========================================== */
+
+      body {
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      /* ==========================================
+         SUBTLE GRADIENT BACKGROUND
+         ========================================== */
+      .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 96%, 0.4),
+          transparent
+        );
+      }
+
+      .dark .apple-gradient {
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 0%,
+          hsla(220, 20%, 14%, 0.4),
+          transparent
+        );
+      }
+
+      /* ==========================================
+         GENTLE ENTRANCE ANIMATIONS - APPLE STYLE
+         ========================================== */
+      .blog-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .blog-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .blog-nav {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .blog-grid {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         REFINED CARD INTERACTIONS
+         ========================================== */
+      .apple-card {
+        transition: all 0.2s ease;
+      }
+
+      .apple-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      .dark .apple-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ==========================================
+         SCROLL-TRIGGERED ANIMATIONS (SUBTLE)
+         ========================================== */
+      .blog-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .blog-card.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================
+         ACCESSIBILITY & REDUCED MOTION
+         ========================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .blog-title,
+        .blog-subtitle,
+        .blog-nav,
+        .blog-grid,
+        .blog-card {
+          animation: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Scroll-triggered animations with Intersection Observer
+      function initScrollReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px',
+          }
+        );
+
+        const cards = document.querySelectorAll('.blog-card');
+        cards.forEach((card) => {
+          observer.observe(card);
+        });
+      }
+
+      // Initialize
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+
+      // Smooth page load
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+    </script>
   </body>
 </html>

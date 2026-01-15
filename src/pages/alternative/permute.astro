@@ -93,24 +93,26 @@ const licenseFaqs = [
   </head>
 
   <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text"
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
     <Header />
 
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div class="absolute inset-0 -z-10 overflow-hidden hero-gradient"></div>
 
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-8 sm:mb-12">
           <div
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
-            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">
+            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto hero-title">
               The simple Permute alternative for Mac
             </H1>
             <p
-              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0"
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
             >
               Convert images, videos, and audio with a beautifully designed
               native Mac app. No presets to manage. No complexity. Just drag,
@@ -119,17 +121,18 @@ const licenseFaqs = [
           </div>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4">
+          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
             <div
               class="flex flex-col sm:flex-row gap-2 items-center justify-center"
             >
               <Button
                 text="Get Picmal for $15.99"
                 onclick="posthog.capture('buy_clicked_permute_comparison')"
+                class="apple-button-primary"
               />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
               >
                 <svg
                   class="w-4 h-4 inline-block mr-2"
@@ -149,16 +152,16 @@ const licenseFaqs = [
           </div>
 
           <!-- Social Proof Above Fold -->
-          <div class="mt-6 sm:mt-8">
+          <div class="mt-6 sm:mt-8 hero-trust">
             <TrustBar />
           </div>
         </div>
 
         <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border"
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
         >
-          <div style="aspect-ratio: 16/10;">
+          <div class="aspect-[16/10]">
             <video
               src="/picmal-1.2.0-demo.mp4"
               class="w-full h-full object-cover block dark:hidden"
@@ -552,6 +555,137 @@ const licenseFaqs = [
     </section>
 
     <Footer />
+
+    <style>
+      /* Apple-style gradient background */
+      .apple-gradient {
+        background: radial-gradient(
+          circle at top,
+          rgba(99, 102, 241, 0.03),
+          transparent 50%
+        );
+      }
+
+      /* Hero animations */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .hero-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .hero-trust {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      .hero-video {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Button interactions */
+      .apple-button-primary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .apple-button-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .apple-button-secondary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-secondary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .apple-button-secondary:active {
+        transform: translateY(0);
+      }
+
+      /* Scroll reveal for sections */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s cubic-bezier(0.28, 0, 0.2, 1),
+          transform 0.6s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Accessibility: Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .hero-cta,
+        .hero-trust,
+        .hero-video,
+        .scroll-reveal,
+        .apple-button-primary,
+        .apple-button-secondary {
+          animation: none;
+          transition: none;
+        }
+
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+
+    <script>
+      // Smooth page load
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+
+        // Scroll reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+
+        document.querySelectorAll(".scroll-reveal").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
 
     <script>
       window.lemonSqueezyAffiliateConfig = { store: "picmal" };

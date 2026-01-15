@@ -1,0 +1,52 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/ThemeProvider.astro';
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<script>
+  // Sync theme changes between Starlight and marketing site
+  const StarlightThemeProvider = (() => {
+    const syncTheme = () => {
+      const select = document.getElementById('starlight-theme-select') as HTMLSelectElement;
+      if (!select) return;
+
+      // Listen for theme changes from Starlight
+      select.addEventListener('change', () => {
+        const newTheme = select.value;
+
+        // Sync to localStorage (marketing site's storage key)
+        localStorage.setItem('theme', newTheme);
+
+        // Apply both attribute systems
+        const root = document.documentElement;
+        root.setAttribute('data-theme', newTheme);
+        root.classList.remove('light', 'dark');
+        root.classList.add(newTheme);
+        root.style.colorScheme = newTheme;
+      });
+    };
+
+    // Watch for Starlight's theme select to be added to the DOM
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncTheme);
+    } else {
+      syncTheme();
+    }
+
+    // Also watch for select being added dynamically
+    const observer = new MutationObserver(() => {
+      const select = document.getElementById('starlight-theme-select');
+      if (select) {
+        observer.disconnect();
+        syncTheme();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  })();
+</script>

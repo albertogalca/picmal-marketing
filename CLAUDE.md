@@ -4,11 +4,6 @@
 
 Picmal is a macOS image conversion and compression application. This repository contains the marketing website built with Astro 5, featuring dynamic conversion pages, blog content, and an affiliate program.
 
-**Site URL**: https://picmal.app
-**Framework**: Astro 5.13.7
-**Deployment**: Vercel (Static)
-**Styling**: Tailwind CSS 4.1.13
-
 ## Key Features
 
 - **Programmatic SEO**: Dynamic conversion pages for all image format combinations (HEIC, JPG, PNG, WebP, AVIF, etc.)
@@ -78,6 +73,7 @@ npm run preview
 ### Dependencies
 
 **Core:**
+
 - `astro` - Static site framework
 - `@astrojs/mdx` - Markdown with components
 - `@astrojs/sitemap` - XML sitemap generation
@@ -85,22 +81,14 @@ npm run preview
 - `sharp` - Image optimization
 
 **Styling:**
+
 - `@tailwindcss/vite` - Tailwind CSS 4 Vite plugin
 - `@tailwindcss/typography` - Prose styling
 - `tailwind-merge` - Utility class merging
 
 **Development:**
+
 - `tsx` - TypeScript execution for scripts
-
-## Development Workflow
-
-### Running the Site Locally
-
-```bash
-npm run dev
-```
-
-The site will be available at `http://localhost:4321`
 
 ### Managing Conversion Pages
 
@@ -123,37 +111,7 @@ npm run generate-conversions -- --formats
 npm run generate-conversions -- --validate
 ```
 
-### Adding New Content
-
-**Blog Posts:** Add `.mdx` files to `src/content/blog/`
-
-**New Components:** Create in `src/components/` and import where needed
-
-**New Pages:** Add `.astro` files to `src/pages/` (file-based routing)
-
-### Building for Production
-
-```bash
-npm run build
-```
-
 Output is generated in `./dist/` directory
-
-## Key Components
-
-### Landing Page Components (Recently Added)
-
-- **`FileSizeComparison.astro`** (src/components/FileSizeComparison.astro:1): Visual comparison showing file size reduction benefits
-- **`ProcessSteps.astro`** (src/components/ProcessSteps.astro:1): Step-by-step conversion process display
-- **`TrustBar.astro`** (src/components/TrustBar.astro:1): Social proof and trust indicators
-- **`Testimonials.astro`** (src/components/Testimonials.astro:1): Customer testimonials section
-
-### Core Components
-
-- **`Header.astro`** (src/components/Header.astro:1): Navigation with download CTA
-- **`Footer.astro`** (src/components/Footer.astro:1): Site footer with links
-- **`Button.astro`** (src/components/Button.astro:1): Reusable button component
-- **`FAQ.astro`** (src/components/FAQ.astro:1): Accordion-style FAQ section
 
 ## Pages & Routes
 
@@ -174,11 +132,13 @@ Output is generated in `./dist/` directory
 ### Dynamic Conversion Pages
 
 The site generates conversion pages for all format combinations using the pattern:
+
 ```
 /convert/[from]-to-[to]
 ```
 
 Each page includes:
+
 - SEO-optimized title and description
 - Conversion benefits and use cases
 - File format comparison
@@ -202,6 +162,7 @@ Recent versions are tracked in the update manifests. Old DMG files (versions < 1
 ## Affiliate Program
 
 Integrated with Lemon Squeezy:
+
 - **Commission**: 25% per sale
 - **Page**: `/affiliate`
 - **Signup URL**: `https://affiliates.lemonsqueezy.com/programs/picmal`
@@ -241,11 +202,13 @@ Integrated with Lemon Squeezy:
 ## Recent Updates (Updated: 2025-10-20)
 
 ### Version 1.1.4 Release
+
 - App binary updated to version 1.1.4
 - Update manifests synchronized (update.xml, appcast.xml)
 - Changelog updated with release notes
 
 ### Landing Page UX Improvements
+
 - Added `FileSizeComparison` component for visual file size benefits
 - Added `ProcessSteps` component to show conversion workflow
 - Added `TrustBar` component for social proof
@@ -254,17 +217,20 @@ Integrated with Lemon Squeezy:
 - Enhanced footer layout
 
 ### Lemon Squeezy Integration
+
 - Implemented affiliate program with 25% commission
 - Created dedicated `/affiliate` page with FAQ
 - Updated button components to support affiliate links
 - Added Lemon Squeezy branding and links
 
 ### Repository Cleanup
+
 - Removed old DMG files (versions 1.0.6-15 through 1.1.3) to reduce repository size
 - Kept only latest version (1.1.4) for distribution
 - Update manifests still reference all versions via CDN
 
 ### Content Updates
+
 - Updated page titles for better SEO
 - Enhanced HEIC to JPG conversion guide
 - Testimonial added to demo section
@@ -272,17 +238,20 @@ Integrated with Lemon Squeezy:
 ## Development Notes
 
 ### Content Management
+
 - Blog posts use MDX for rich content with components
 - All content in `src/content/blog/` with frontmatter metadata
 - Changelog maintained as MDX for structured version history
 
 ### Styling Approach
+
 - Tailwind CSS 4 with Vite plugin
 - Component-scoped styles in `.astro` files
 - Typography plugin for prose content
 - Custom design system via Tailwind config
 
 ### Performance Optimization
+
 - Static site generation for all routes
 - Optimized images with Sharp
 - Minimal JavaScript (Astro Islands architecture)
@@ -291,6 +260,7 @@ Integrated with Lemon Squeezy:
 ## Common Tasks
 
 ### Update App Version
+
 1. Add new DMG to `public/apps/picmal/updates/[version]/`
 2. Update `public/apps/picmal/updates/update.xml`
 3. Update `public/picmal/appcast.xml`
@@ -298,12 +268,14 @@ Integrated with Lemon Squeezy:
 5. Update landing page if needed
 
 ### Add New Blog Post
+
 1. Create `.mdx` file in `src/content/blog/`
 2. Add frontmatter (title, description, pubDate, category, heroImage)
 3. Write content using MDX (supports components)
 4. Build to generate static page
 
 ### Modify Conversion Pages
+
 1. Edit `src/data/conversions.ts` for data changes
 2. Modify `src/pages/convert/[from]-to-[to].astro` for template changes
 3. Run `npm run generate-conversions -- --validate` to check data
@@ -317,11 +289,4 @@ Integrated with Lemon Squeezy:
 - Affiliate links point to Lemon Squeezy platform
 - Image formats and conversion data are managed in `src/data/conversions.ts`
 - Scripts in `scripts/` directory help manage programmatic SEO content
-
-## Contact & Support
-
-For issues related to the marketing website (not the app itself), check:
-- Site functionality and pages
-- Blog content and SEO
-- Conversion page generation
-- App update distribution
+- Don't add hover effects to elements that are not clickable. It doesn't make sense.

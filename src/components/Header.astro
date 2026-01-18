@@ -11,6 +11,13 @@ const currentPage = Astro.url.pathname;
   class="fixed left-0 right-0 z-30 text-sm transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
   style="top: 0;"
 >
+  <!-- Skip to main content link for accessibility -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+  >
+    Skip to main content
+  </a>
   <div class="px-6 xl:px-0 py-4">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div class="flex items-center">
@@ -30,31 +37,31 @@ const currentPage = Astro.url.pathname;
       <div class="hidden md:flex items-center space-x-6 2md:space-x-8">
         <a
           href="/#features"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text focus-visible:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent font-semibold rounded-sm"
         >
           Features
         </a>
         <a
           href="/#pricing"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text focus-visible:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent font-semibold rounded-sm"
         >
           Pricing
         </a>
         <a
           href="/#testimonials"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text focus-visible:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent font-semibold rounded-sm"
         >
           Testimonials
         </a>
         <a
           href="/#faq"
-          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text font-semibold"
+          class="text-sm transition-colors cursor-pointer text-text-secondary hover:text-text focus-visible:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent font-semibold rounded-sm"
         >
           FAQ
         </a>
         <a
           href="/changelog"
-          class={`text-sm transition-colors cursor-pointer font-semibold ${
+          class={`text-sm transition-colors cursor-pointer font-semibold rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
             currentPage.startsWith("/changelog")
               ? "text-accent"
               : "text-text-secondary hover:text-text-secondary"
@@ -64,7 +71,7 @@ const currentPage = Astro.url.pathname;
         </a>
         <a
           href="/blog"
-          class={`text-sm transition-colors cursor-pointer font-semibold ${
+          class={`text-sm transition-colors cursor-pointer font-semibold rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
             currentPage.startsWith("/blog") &&
             !currentPage.startsWith("/changelog")
               ? "text-accent"
@@ -87,7 +94,7 @@ const currentPage = Astro.url.pathname;
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-button"
-          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-secondary hover:bg-background-subtle text-sm transition-colors"
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text-secondary hover:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent text-sm transition-colors"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -97,6 +104,7 @@ const currentPage = Astro.url.pathname;
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -114,7 +122,7 @@ const currentPage = Astro.url.pathname;
         <div class="grid grid-cols-2 gap-4">
           <a
             href="/#features"
-            class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -133,7 +141,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/#pricing"
-            class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-center gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -153,7 +161,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/#testimonials"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -173,7 +181,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/#faq"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -193,7 +201,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/changelog"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -213,7 +221,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/blog"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -233,7 +241,7 @@ const currentPage = Astro.url.pathname;
 
           <!-- <a
             href="/docs"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"
@@ -253,7 +261,7 @@ const currentPage = Astro.url.pathname;
 
           <a
             href="/tools"
-            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle transition-colors"
+            class="flex items-start gap-3 py-3 px-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
             <svg
               class="w-5 h-5 text-text"

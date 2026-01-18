@@ -66,7 +66,7 @@ const licenseFaqs = [
   </head>
 
   <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
     <!-- Subtle gradient background - Apple style -->
     <div class="fixed inset-0 -z-20 apple-gradient"></div>
@@ -74,27 +74,26 @@ const licenseFaqs = [
     <Header />
 
     <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-8 sm:mb-12">
+    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12 sm:mb-16">
           <div
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
-            <H1 class="mb-4 sm:mb-6 max-w-xl mx-auto hero-title"
-              >Convert & compress media files in seconds</H1
+            <H1 class="mb-6 max-w-3xl mx-auto hero-title"
+              >All-in-one media converter for Mac</H1
             >
             <p
-              class="mb-8 sm:mb-10 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
+              class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty hero-subtitle"
             >
               Batch convert images, videos and audio offline on your Mac.
             </p>
           </div>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
+          <div class="flex flex-col items-center gap-4 sm:gap-6 hero-cta">
             <div
-              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+              class="flex flex-col sm:flex-row gap-3 items-center justify-center w-full sm:w-auto"
             >
               <Button
                 text="Get Picmal for $15.99"
@@ -103,11 +102,11 @@ const licenseFaqs = [
               />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base sm:text-lg py-3 sm:py-4 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
                 id="download-cta-button"
               >
                 <svg
-                  class="w-4 h-4 inline-block mr-2"
+                  class="size-4 inline-block mr-2"
                   fill="currentColor"
                   stroke="none"
                   viewBox="0 0 24 24"
@@ -119,20 +118,20 @@ const licenseFaqs = [
                 Download
               </a>
             </div>
-            <p class="text-xs sm:text-sm text-text-secondary">
-              One-time purchase • 14-day money back
-            </p>
-          </div>
 
-          <!-- Social Proof Above Fold -->
-          <div class="mt-6 sm:mt-8 hero-trust">
-            <TrustBar />
+            <!-- Social Proof & Guarantee -->
+            <div class="flex flex-col items-center gap-3">
+              <TrustBar />
+              <p class="text-xs sm:text-sm text-text-secondary text-pretty">
+                One-time purchase • 14-day money back
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
+          class="max-w-5xl mx-auto mt-12 sm:mt-16 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
         >
           <div class="aspect-[16/10]">
             <video
@@ -168,36 +167,38 @@ const licenseFaqs = [
 
     <SectionDivider />
 
-    <BentoFeatures />
+    <section id="features" class="relative z-10">
+      <BentoFeatures />
+    </section>
 
     <SectionDivider />
 
-    <!-- Testimonials Section -->
-    <MasonryTestimonials />
+    <section id="testimonials" class="relative z-10">
+      <MasonryTestimonials />
+    </section>
 
     <SectionDivider />
 
-    <!-- Featured On Section -->
-    <section class="relative z-10">
+    <section id="featured" class="relative z-10">
       <FeaturedOn />
     </section>
 
     <SectionDivider />
 
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
+    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20">
       <div class="max-w-5xl mx-auto">
-        <!-- Mobile: Title centered above pricing -->
-        <div class="md:hidden text-center mb-8">
-          <H2 class="mb-4">Pay once, own forever</H2>
-          <Paragraph class="max-w-md mx-auto">
+        <!-- Pricing Header -->
+        <div class="text-center md:text-left mb-12 md:mb-0">
+          <H2 class="mb-4 md:hidden">Pay once, own forever</H2>
+          <Paragraph class="max-w-md mx-auto md:hidden">
             Buy Picmal once and use it forever with all future updates included.
-            14-days money back guarantee.
+            14-day money-back guarantee.
           </Paragraph>
         </div>
 
         <div
-          class="flex flex-col md:flex-row justify-between gap-8 md:gap-16 items-center md:items-start"
+          class="flex flex-col md:flex-row justify-between gap-12 md:gap-16 items-center md:items-start"
         >
           <!-- Pricing Card -->
           <div
@@ -208,35 +209,39 @@ const licenseFaqs = [
             </div>
           </div>
 
-          <!-- Benefits (Desktop only) -->
-          <div class="hidden md:block md:space-y-6 text-left order-1 max-w-md">
-            <H2 class="mb-6">Pay once, own forever</H2>
-            <Paragraph>
-              Buy Picmal once and use it forever with all future updates
-              included. 14-days money back guarantee.
-            </Paragraph>
-            <FAQ faqs={licenseFaqs} />
+          <!-- Benefits & FAQ -->
+          <div
+            class="w-full md:max-w-md space-y-6 text-left order-2 md:order-1"
+          >
+            <div class="hidden md:block space-y-6">
+              <div>
+                <H2 class="mb-4">Pay once, <br />own forever</H2>
+                <Paragraph>
+                  Buy Picmal once and use it forever with all future updates
+                  included. 14-day money-back guarantee.
+                </Paragraph>
+              </div>
+              <FAQ faqs={licenseFaqs} />
+            </div>
+            <div class="md:hidden">
+              <FAQ faqs={licenseFaqs} />
+            </div>
           </div>
-        </div>
-
-        <!-- Mobile: FAQ below pricing -->
-        <div class="md:hidden mt-8">
-          <FAQ faqs={licenseFaqs} />
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
+    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
+          <H2 class="mb-4">Frequently Asked Questions</H2>
           <Paragraph class="max-w-2xl mx-auto">
             Can't find what you're looking for? Email support@picmal.app
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>
@@ -285,23 +290,23 @@ const licenseFaqs = [
          GENTLE ENTRANCE ANIMATIONS - APPLE STYLE
          ========================================== */
       .hero-title {
-        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+        animation: appleReveal 600ms ease-out 100ms both;
       }
 
       .hero-subtitle {
-        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+        animation: appleReveal 600ms ease-out 200ms both;
       }
 
       .hero-cta {
-        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+        animation: appleReveal 600ms ease-out 300ms both;
       }
 
       .hero-trust {
-        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+        animation: appleReveal 600ms ease-out 400ms both;
       }
 
       .hero-video {
-        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+        animation: appleReveal 600ms ease-out 500ms both;
       }
 
       @keyframes appleReveal {
@@ -319,29 +324,54 @@ const licenseFaqs = [
          REFINED BUTTON INTERACTIONS
          ========================================== */
       .apple-button-primary {
-        transition: all 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease;
       }
 
       .apple-button-primary:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      }
+
+      .apple-button-primary:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
       }
 
       .dark .apple-button-primary:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.3),
+          0 4px 6px -4px rgba(0, 0, 0, 0.3);
       }
 
       .apple-button-secondary {
-        transition: all 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease,
+          border-color 0.2s ease;
       }
 
       .apple-button-secondary:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      }
+
+      .apple-button-secondary:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
       }
 
       .dark .apple-button-secondary:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.2),
+          0 2px 4px -2px rgba(0, 0, 0, 0.2);
       }
 
       /* ==========================================
@@ -350,7 +380,9 @@ const licenseFaqs = [
       .scroll-reveal {
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.8s cubic-bezier(0.28, 0, 0.2, 1);
+        transition:
+          opacity 500ms ease-out,
+          transform 500ms ease-out;
       }
 
       .scroll-reveal.revealed {
@@ -362,15 +394,15 @@ const licenseFaqs = [
          VIDEO PRESENTATION
          ========================================== */
       .hero-video {
-        transition: all 0.3s ease;
+        transition: box-shadow 0.3s ease;
       }
 
       .hero-video:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       }
 
       .dark .hero-video:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       }
 
       /* ==========================================
@@ -404,23 +436,27 @@ const licenseFaqs = [
     <script>
       window.lemonSqueezyAffiliateConfig = { store: "picmal" };
     </script>
-    <script src="https://lmsqueezy.com/affiliate.js" defer onerror="console.warn('Failed to load Lemon Squeezy affiliate script')"></script>
+    <script
+      src="https://lmsqueezy.com/affiliate.js"
+      defer
+      onerror="console.warn('Failed to load Lemon Squeezy affiliate script')"
+    ></script>
 
     <!-- PostHog Analytics with keyboard accessibility -->
     <script>
       // Track buy button clicks (both mouse and keyboard)
-      const buyButton = document.getElementById('buy-cta-button');
-      if (buyButton && typeof posthog !== 'undefined') {
-        buyButton.addEventListener('click', () => {
-          posthog.capture('buy_clicked');
+      const buyButton = document.getElementById("buy-cta-button");
+      if (buyButton && typeof posthog !== "undefined") {
+        buyButton.addEventListener("click", () => {
+          posthog.capture("buy_clicked");
         });
       }
 
       // Track download button clicks
-      const downloadButton = document.getElementById('download-cta-button');
-      if (downloadButton && typeof posthog !== 'undefined') {
-        downloadButton.addEventListener('click', () => {
-          posthog.capture('download_clicked');
+      const downloadButton = document.getElementById("download-cta-button");
+      if (downloadButton && typeof posthog !== "undefined") {
+        downloadButton.addEventListener("click", () => {
+          posthog.capture("download_clicked");
         });
       }
     </script>
@@ -433,34 +469,36 @@ const licenseFaqs = [
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
+                entry.target.classList.add("revealed");
                 observer.unobserve(entry.target);
               }
             });
           },
           {
             threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px',
-          }
+            rootMargin: "0px 0px -80px 0px",
+          },
         );
 
-        const sections = document.querySelectorAll('section:not(#main-content)');
+        const sections = document.querySelectorAll(
+          "section:not(#main-content)",
+        );
         sections.forEach((section) => {
-          section.classList.add('scroll-reveal');
+          section.classList.add("scroll-reveal");
           observer.observe(section);
         });
       }
 
       // Initialize
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initScrollReveal);
       } else {
         initScrollReveal();
       }
 
       // Smooth page load
-      window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
       });
     </script>
   </body>

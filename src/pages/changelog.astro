@@ -1,9 +1,14 @@
 ---
-title: "Picmal Changelog - All Updates & New Features"
-description: "Complete changelog of all Picmal updates, new features, and improvements. Stay up-to-date with the latest image conversion enhancements."
-pubDate: "2025-09-21"
----
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_TITLE } from "../consts";
+import "../styles/global.css";
+import H1 from "../components/H1.astro";
+import Paragraph from "../components/Paragraph.astro";
+import { Markdown } from "@astropub/md";
 
+const changelogContent = `
 ## 1.3.3 - January 16, 2026
 
 - Integrated Sentry to detect possible crashes and errors.
@@ -69,6 +74,7 @@ pubDate: "2025-09-21"
   <source src="images/changelog/1.2.7/drop_folder.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
+
 ---
 
 ## v1.2.6 - November 16, 2025
@@ -116,20 +122,17 @@ pubDate: "2025-09-21"
 - Fixed the bottom tab bar so that it now truncates text when there is too much.
 - Some PDF compression errors that were not working well have been fixed.
 - Progress has been added to the compression and conversion of files to improve the user experience. Sometimes, compressing long files can take more than 2–3 minutes, and users thought it was stuck.
-- A “Cancel” button has been added while converting/compressing to allow you to stop the process.
+- A "Cancel" button has been added while converting/compressing to allow you to stop the process.
 
 ---
 
 ## v1.2.1 - November 01, 2025
 
-- Batch resize images with 5 flexible modes (percentage, fixed, max
-  dimensions, width/height-only).
-- Display metadata for audio and video files (duration, bitrate, codec,
-  sample rate).
+- Batch resize images with 5 flexible modes (percentage, fixed, max dimensions, width/height-only).
+- Display metadata for audio and video files (duration, bitrate, codec, sample rate).
 - Advanced mode for audio and video with enhanced FFmpeg controls.
-- Fixed PDF compression corrupting colors in Keynote/PowerPoint
-  presentations.
-- Compressed files now automatically include "\_compressed" suffix.
+- Fixed PDF compression corrupting colors in Keynote/PowerPoint presentations.
+- Compressed files now automatically include "\\_compressed" suffix.
 - Improved format support (31 audio, 25 video formats).
 
 ---
@@ -201,8 +204,7 @@ pubDate: "2025-09-21"
 
 - Fixed compression output: Resolved issue where files were not being compressed correctly in the output when compression settings were enabled.
 - Auto Compress Mode: Enable automatic compression on file drop! Turn on "Auto compress mode" in **Preferences → Files**, then simply drag files into compress mode - compression begins instantly without needing to press any buttons. Perfect for streamlined batch processing workflows.
-- Custom file naming for compression: Added prefix and suffix options for compressed output files. Configure custom naming in **Preferences → Output**, or leave fields blank to
-  overwrite original files.
+- Custom file naming for compression: Added prefix and suffix options for compressed output files. Configure custom naming in **Preferences → Output**, or leave fields blank to overwrite original files.
 - Added **"Clear settings"** button to reset all compression quality settings to defaults.
 
 ![Auto mode enabled](/images/changelog/1.1.1/auto_mode.png)
@@ -345,8 +347,7 @@ A new licensing system is in development to replace Gumroad dependency. Current 
 ### What's New in v1.0.5
 
 - **Custom file naming:** You can now add custom prefixes and suffixes to your converted images. Perfect for organizing batches or adding timestamps to your files.
-- **Image metadata display:** View detailed metadata information for your images directly in Picmal,
-  including EXIF data, color profiles, and file properties.
+- **Image metadata display:** View detailed metadata information for your images directly in Picmal, including EXIF data, color profiles, and file properties.
 
 ### How to use these features
 
@@ -365,10 +366,8 @@ Right-click on any image in Picmal and select "Show Metadata" to view detailed i
 ### What's New in v1.0.4
 
 - **Metadata Removal Option:** Protect your privacy by removing EXIF data, ICC profiles, GPS coordinates, and other metadata from your images during conversion.
-- **Improved Window Resizing:** Better handling of window resizing with smoother animations and more
-  responsive layout adjustments.
-- **AVIF Corruption Fix:** Fixed a critical issue where AVIF images could become corrupted during batch
-  conversion processes.
+- **Improved Window Resizing:** Better handling of window resizing with smoother animations and more responsive layout adjustments.
+- **AVIF Corruption Fix:** Fixed a critical issue where AVIF images could become corrupted during batch conversion processes.
 
 ### Privacy-First Metadata Management
 
@@ -394,8 +393,7 @@ AVIF is one of the most efficient modern image formats, offering superior compre
 
 - **SVG Format Support:** Convert vector graphics to raster formats while maintaining crisp quality. Perfect for converting icons and illustrations to PNG or JPEG.
 - **40% Faster Conversions:** Optimized conversion engine delivers significantly faster processing times, especially noticeable with large batches and high-resolution images.
-- **Memory Usage Improvements:** Reduced memory footprint by 30% when processing large images, allowing for
-  smoother operation on older Mac models.
+- **Memory Usage Improvements:** Reduced memory footprint by 30% when processing large images, allowing for smoother operation on older Mac models.
 
 ### Performance Improvements
 
@@ -418,3 +416,156 @@ Vector graphics are now supported as input format. This is particularly useful f
 - Text elements (converted to outlines)
 - Gradients and solid fills
 - Stroke properties
+`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Changelog - ${SITE_TITLE}`}
+      description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
+    />
+    <style>
+      /* Staggered fade-in for version entries */
+      .version-entry {
+        animation: fade-in-up 600ms ease-out backwards;
+      }
+
+      .version-entry:nth-child(1) { animation-delay: 100ms; }
+      .version-entry:nth-child(2) { animation-delay: 150ms; }
+      .version-entry:nth-child(3) { animation-delay: 200ms; }
+      .version-entry:nth-child(4) { animation-delay: 250ms; }
+      .version-entry:nth-child(5) { animation-delay: 300ms; }
+      .version-entry:nth-child(n+6) { animation-delay: 350ms; }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .version-entry {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-background text-text min-h-dvh">
+    <Header />
+
+    <main class="relative z-10 pt-32 pb-20">
+      <!-- Hero -->
+      <div class="text-center mb-16 px-6 animate-fade-in-up">
+        <H1 class="mb-4">Changelog</H1>
+        <Paragraph class="max-w-2xl mx-auto">
+          Latest updates, new features, and improvements to Picmal.
+        </Paragraph>
+      </div>
+
+      <!-- Review CTA -->
+      <div class="max-w-3xl mx-auto px-6 mb-16 animate-fade-in-up stagger-1">
+        <div
+          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
+        >
+          <Paragraph class="mb-0 flex-1">
+            As an indie developer, Picmal grows through word of mouth. A review only takes a minute and makes a huge difference.
+          </Paragraph>
+          <a
+            href="https://tally.so/r/Me18qE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-sm rounded-lg transition-all duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+          >
+            Leave a Review
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Changelog -->
+      <div class="max-w-3xl mx-auto px-6 pb-20">
+        <div class="changelog-wrapper" set:html={changelogContent} />
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      // Transform markdown content into timeline cards
+      document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.querySelector('.changelog-wrapper');
+        if (!wrapper) return;
+
+        const content = wrapper.innerHTML;
+        const entries: string[] = [];
+        let currentEntry = '';
+
+        // Split by h2 (version headers)
+        const parts = content.split(/(<h2[^>]*>.*?<\/h2>)/);
+
+        for (let i = 0; i < parts.length; i++) {
+          const part = parts[i].trim();
+          if (!part) continue;
+
+          if (part.startsWith('<h2')) {
+            if (currentEntry) {
+              entries.push(currentEntry);
+            }
+            currentEntry = part;
+          } else if (currentEntry) {
+            currentEntry += part;
+          }
+        }
+
+        if (currentEntry) {
+          entries.push(currentEntry);
+        }
+
+        // Transform entries into timeline cards
+        const cards = entries.map(entry => {
+          const h2Match = entry.match(/<h2[^>]*>(.*?)<\/h2>/);
+          if (!h2Match) return '';
+
+          const headerText = h2Match[1];
+          const versionMatch = headerText.match(/v?[\d.]+/);
+          const dateMatch = headerText.match(/\w+ \d+, \d+/);
+
+          const version = versionMatch ? versionMatch[0] : '';
+          const date = dateMatch ? dateMatch[0] : '';
+
+          let contentHtml = entry
+            .replace(/<h2[^>]*>.*?<\/h2>/, '')
+            .replace(/<hr\s*\/?>/g, '')
+            .trim();
+
+          return `
+            <div class="version-entry mb-12">
+              <div class="bg-background-subtle border border-border rounded-2xl p-6 sm:p-7">
+                <div class="flex items-baseline gap-3 mb-5 flex-wrap">
+                  <span class="text-2xl font-semibold text-text tracking-tight">${version}</span>
+                  <span class="text-sm text-text-secondary">${date}</span>
+                </div>
+                <div class="prose prose-lg max-w-none prose-headings:text-text prose-headings:font-semibold prose-p:text-text-secondary prose-p:leading-relaxed prose-h3:text-xl prose-h3:mb-3 prose-h4:text-base prose-h4:mb-2 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-img:my-6 prose-img:shadow-lg prose-img:border prose-img:border-border prose-video:rounded-lg prose-video:my-6 prose-video:shadow-lg prose-li:text-text-secondary prose-li:leading-relaxed prose-ul:space-y-2 prose-strong:text-text prose-strong:font-semibold prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-background-subtle prose-pre:border prose-pre:border-border prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle/50">
+                  ${contentHtml}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        wrapper.innerHTML = cards;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_TITLE } from "../consts";
+import "../styles/global.css";
+import H1 from "../components/H1.astro";
+import Paragraph from "../components/Paragraph.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Changelog - ${SITE_TITLE}`}
+      description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
+    />
+    <style>
+      .fade-in {
+        animation: fade-in-up 600ms ease-out backwards;
+      }
+
+      .fade-in-delay-1 {
+        animation-delay: 100ms;
+      }
+      .fade-in-delay-2 {
+        animation-delay: 200ms;
+      }
+
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fade-in {
+          animation: none !important;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-background text-text min-h-dvh">
+    <Header />
+
+    <main class="relative z-10 pt-32 pb-20">
+      <div class="text-center mb-16 px-6 fade-in">
+        <H1 class="mb-4">Changelog</H1>
+        <Paragraph class="max-w-2xl mx-auto">
+          Latest updates, new features, and improvements to Picmal.
+        </Paragraph>
+      </div>
+
+      <div class="max-w-3xl mx-auto px-6 mb-16 fade-in fade-in-delay-1">
+        <div
+          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
+        >
+          <Paragraph class="mb-0 flex-1">
+            As an indie developer, Picmal grows through word of mouth. A review
+            only takes a minute and makes a huge difference.
+          </Paragraph>
+          <a
+            href="https://tally.so/r/Me18qE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-sm rounded-lg transition-all duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+          >
+            Leave a Review
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mx-auto px-6 pb-20 fade-in fade-in-delay-2">
+        <div class="prose prose-lg max-w-none">
+          <slot />
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

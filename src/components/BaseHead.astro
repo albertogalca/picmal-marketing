@@ -3,7 +3,7 @@ import "../styles/global.css";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../../public/og.png";
 import { SITE_TITLE } from "../consts";
-import PostHog from "./Posthog.astro";
+import Posthog from "./Posthog.astro";
 
 interface Props {
   title: string;
@@ -66,4 +66,4 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
-<PostHog />
+<Posthog />

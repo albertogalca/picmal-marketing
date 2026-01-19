@@ -9,7 +9,6 @@ import ArticleSchema from "../components/schema/ArticleSchema.astro";
 import CTASection from "../components/CTASection.astro";
 import H1 from "../components/H1.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
-import SocialShare from "../components/SocialShare.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
@@ -144,15 +143,6 @@ const {
           <slot />
         </div>
 
-        <!-- Social Share -->
-        <div class="mt-12 pt-8 border-t border-border article-share">
-          <SocialShare
-            title={title}
-            description={description}
-            url={Astro.url.href}
-          />
-        </div>
-
         <!-- Download CTA -->
         <div class="mt-12 article-cta">
           <CTASection
@@ -270,8 +260,8 @@ const {
 
     <script>
       // Smooth page load
-      window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
       });
     </script>
   </body>

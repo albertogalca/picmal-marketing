@@ -1,0 +1,73 @@
+---
+import H2 from "./H2.astro";
+import Paragraph from "./Paragraph.astro";
+import DynamicPricing from "./DynamicPricing.astro";
+import FAQ from "./FAQ.astro";
+
+const licenseFaqs = [
+  {
+    question: "How does the license work?",
+    answer:
+      "When you purchase a Picmal license, you can use it indefinitely without any additional fees. This means you won't need to renew your license or make any regular payments to continue using it. You can move your license between devices, but you must first deactivate the license on the current device before activating it on a new one.",
+  },
+  {
+    question: "How many devices can I use Picmal on?",
+    answer:
+      "Each license lets you use Picmal on that number of different Macs — for example, the 3-device license works on three Macs, the 5-device license on five, and so on.",
+  },
+  {
+    question: "Can I use Picmal on multiple Macs?",
+    answer:
+      "While your license is tied to one active device at a time, you can transfer it between your Macs. Simply deactivate the license from your current Mac and activate it on another Mac when needed.",
+  },
+  {
+    question: "What happens if I get a new Mac?",
+    answer:
+      "You can easily transfer your Picmal license to your new Mac. Just deactivate the license on your old Mac (via Picmal → Register license), then install Picmal on your new Mac and activate it with your existing license key.",
+  },
+  {
+    question: "Can I get a refund?",
+    answer:
+      "Yes, there is a 14-day money-back guarantee. No questions asked. If you're not satisfied with Picmal, send your refund request to support@picmal.app and I'd love to hear your feedback too!",
+  },
+];
+---
+
+<div class="max-w-5xl mx-auto">
+  <!-- Pricing Header -->
+  <div class="text-center md:text-left mb-12 md:mb-0">
+    <H2 class="mb-4 md:hidden">Pay once, own forever</H2>
+    <Paragraph class="max-w-md mx-auto md:hidden">
+      Buy Picmal once and use it forever with all future updates included.
+      14-day money-back guarantee.
+    </Paragraph>
+  </div>
+
+  <div
+    class="flex flex-col md:flex-row justify-between gap-12 md:gap-16 items-center md:items-start"
+  >
+    <!-- Pricing Card -->
+    <div class="w-full max-w-md md:max-w-none md:w-auto order-1 md:order-2">
+      <div class="md:sticky md:top-8">
+        <DynamicPricing />
+      </div>
+    </div>
+
+    <!-- Benefits & FAQ -->
+    <div class="w-full md:max-w-md space-y-6 text-left order-2 md:order-1">
+      <div class="hidden md:block space-y-6">
+        <div>
+          <H2 class="mb-4">Pay once, <br />own forever</H2>
+          <Paragraph>
+            Buy Picmal once and use it forever with all future updates included.
+            14-day money-back guarantee.
+          </Paragraph>
+        </div>
+        <FAQ faqs={licenseFaqs} />
+      </div>
+      <div class="md:hidden">
+        <FAQ faqs={licenseFaqs} />
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,9 +13,10 @@ import Paragraph from "../../components/Paragraph.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import DynamicPricing from "../../components/DynamicPricing.astro";
 import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
+import PricingSection from "../../components/PricingSection.astro";
+import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 
 const SITE_TITLE = "Picmal: The Simple Permute Alternative for Mac";
 const SITE_DESCRIPTION =
@@ -48,34 +49,6 @@ const faqs = [
       "Full refund within 14 days, no questions asked. Email support@picmal.app.",
   },
 ];
-
-const licenseFaqs = [
-  {
-    question: "How does the license work?",
-    answer:
-      "When you purchase a Picmal license, you can use it indefinitely without any additional fees. This means you won't need to renew your license or make any regular payments to continue using it. You can move your license between devices, but you must first deactivate the license on the current device before activating it on a new one.",
-  },
-  {
-    question: "How many devices can I use Picmal on?",
-    answer:
-      "Each license lets you use Picmal on that number of different Macs — for example, the 3-device license works on three Macs, the 5-device license on five, and so on.",
-  },
-  {
-    question: "Can I use Picmal on multiple Macs?",
-    answer:
-      "While your license is tied to one active device at a time, you can transfer it between your Macs. Simply deactivate the license from your current Mac and activate it on another Mac when needed.",
-  },
-  {
-    question: "What happens if I get a new Mac?",
-    answer:
-      "You can easily transfer your Picmal license to your new Mac. Just deactivate the license on your old Mac (via Picmal → Register license), then install Picmal on your new Mac and activate it with your existing license key.",
-  },
-  {
-    question: "Can I get a refund?",
-    answer:
-      "Yes, there is a 14-day money-back guarantee. No questions asked. If you're not satisfied with Picmal, send your refund request to support@picmal.app and I'd love to hear your feedback too!",
-  },
-];
 ---
 
 <html lang="en">
@@ -102,7 +75,6 @@ const licenseFaqs = [
 
     <!-- Hero Section -->
     <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-8 sm:mb-12">
           <div
@@ -276,16 +248,23 @@ const licenseFaqs = [
         <div class="text-center mb-12">
           <H2 class="mb-4">Which one is right for you?</H2>
           <Paragraph class="max-w-2xl mx-auto">
-            Both are excellent Mac apps. Here's an honest comparison to help you decide.
+            Both are excellent Mac apps. Here's an honest comparison to help you
+            decide.
           </Paragraph>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div class="bg-background-subtle border border-border rounded-xl p-6 md:p-8">
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
             <div class="mb-6">
-              <h3 class="text-2xl font-semibold text-text mb-2">Choose Picmal</h3>
-              <p class="text-text-secondary">Best for simplicity, design, and privacy</p>
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose Picmal
+              </h3>
+              <p class="text-text-secondary">
+                Best for simplicity, design, and privacy
+              </p>
             </div>
 
             <ul class="space-y-4">
@@ -338,9 +317,7 @@ const licenseFaqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">
-                  100% offline—no cloud uploads
-                </span>
+                <span class="text-text"> 100% offline—no cloud uploads </span>
               </li>
 
               <li class="flex gap-3 items-start">
@@ -372,18 +349,22 @@ const licenseFaqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">
-                  Automatic metadata removal
-                </span>
+                <span class="text-text"> Automatic metadata removal </span>
               </li>
             </ul>
           </div>
 
           <!-- Permute Column -->
-          <div class="bg-background-subtle border border-border rounded-xl p-6 md:p-8">
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
             <div class="mb-6">
-              <h3 class="text-2xl font-semibold text-text mb-2">Choose Permute</h3>
-              <p class="text-text-secondary">Best for advanced video features</p>
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose Permute
+              </h3>
+              <p class="text-text-secondary">
+                Best for advanced video features
+              </p>
             </div>
 
             <ul class="space-y-4">
@@ -497,44 +478,7 @@ const licenseFaqs = [
 
     <!-- Pricing -->
     <section id="pricing" class="relative z-10 px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <!-- Mobile: Title centered above pricing -->
-        <div class="md:hidden text-center mb-8">
-          <H2 class="mb-4">Pay once, own forever</H2>
-          <Paragraph class="max-w-md mx-auto">
-            Buy Picmal once and use it forever with all future updates included.
-            14-days money back guarantee.
-          </Paragraph>
-        </div>
-
-        <div
-          class="flex flex-col md:flex-row justify-between gap-8 md:gap-16 items-center md:items-start"
-        >
-          <!-- Pricing Card -->
-          <div
-            class="w-full max-w-md md:max-w-none md:w-auto order-1 md:order-2"
-          >
-            <div class="md:sticky md:top-8">
-              <DynamicPricing />
-            </div>
-          </div>
-
-          <!-- Benefits (Desktop only) -->
-          <div class="hidden md:block md:space-y-6 text-left order-1 max-w-md">
-            <H2 class="mb-6">Pay once, own forever</H2>
-            <Paragraph>
-              Buy Picmal once and use it forever with all future updates
-              included. 14-days money back guarantee.
-            </Paragraph>
-            <FAQ faqs={licenseFaqs} />
-          </div>
-        </div>
-
-        <!-- Mobile: FAQ below pricing -->
-        <div class="md:hidden mt-8">
-          <FAQ faqs={licenseFaqs} />
-        </div>
-      </div>
+      <PricingSection />
     </section>
 
     <!-- FAQ Section -->
@@ -555,6 +499,8 @@ const licenseFaqs = [
     </section>
 
     <Footer />
+
+    <SupportedFormatsModal />
 
     <style>
       /* Apple-style gradient background */
@@ -678,7 +624,7 @@ const licenseFaqs = [
           {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px",
-          }
+          },
         );
 
         document.querySelectorAll(".scroll-reveal").forEach((el) => {

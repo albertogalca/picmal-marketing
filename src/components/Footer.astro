@@ -26,11 +26,44 @@ const today = new Date();
         <p class="text-xs text-text-secondary">
           &copy; {today.getFullYear()} - All rights reserved.
         </p>
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 text-xs text-text-secondary"
+        >
+          <button
+            onclick="toggleTheme()"
+            class="flex items-center gap-2 hover:text-text transition-colors"
+            type="button"
+          >
+            <svg
+              class="w-4 h-4 hidden dark:block"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"></path>
+            </svg>
+            <svg
+              class="w-4 h-4 block dark:hidden"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <span class="hidden dark:block">Light Mode</span>
+            <span class="block dark:hidden">Dark Mode</span>
+          </button>
+        </div>
       </div>
 
       <div>
         <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
-          Product
+          Resources
         </p>
         <ul class="space-y-3 text-sm text-text-secondary">
           <li>
@@ -50,12 +83,12 @@ const today = new Date();
             >
           </li>
           <li>
-            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
-          </li>
-          <li>
             <a href="/changelog" class="transition-colors hover:text-text"
               >Changelog</a
             >
+          </li>
+          <li>
+            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
           </li>
           <li>
             <a href="/tools" class="transition-colors hover:text-text">Tools</a>
@@ -63,70 +96,6 @@ const today = new Date();
           <li>
             <a href="/affiliate" class="transition-colors hover:text-text"
               >Earn 25% as affiliate</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
-          Converters
-        </p>
-        <ul class="space-y-3 text-sm text-text-secondary">
-          <li>
-            <a
-              href="/image-converter-mac"
-              class="transition-colors hover:text-text">Image converter</a
-            >
-          </li>
-          <li>
-            <a
-              href="/heic-converter-mac"
-              class="transition-colors hover:text-text">HEIC converter</a
-            >
-          </li>
-          <li>
-            <a
-              href="/batch-image-converter-mac"
-              class="transition-colors hover:text-text">Batch converter</a
-            >
-          </li>
-          <li>
-            <a
-              href="/video-converter-mac"
-              class="transition-colors hover:text-text">Video converter</a
-            >
-          </li>
-          <li>
-            <a
-              href="/media-converter-mac"
-              class="transition-colors hover:text-text">Media converter</a
-            >
-          </li>
-          <li>
-            <a
-              href="/compress-images-mac"
-              class="transition-colors hover:text-text">Compress images</a
-            >
-          </li>
-          <li>
-            <a
-              href="/compress-video-mac"
-              class="transition-colors hover:text-text">Compress video</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
-          Alternatives
-        </p>
-        <ul class="space-y-3 text-sm text-text-secondary">
-          <li>
-            <a
-              href="/alternative/permute"
-              class="transition-colors hover:text-text">Picmal vs Permute</a
             >
           </li>
         </ul>
@@ -167,49 +136,36 @@ const today = new Date();
               class="transition-colors hover:text-text">Leave a review</a
             >
           </li>
+          <li>
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Terms of use</a
+            >
+          </li>
+          <li>
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Privacy policy</a
+            >
+          </li>
         </ul>
       </div>
-    </div>
-
-    <div
-      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-border text-xs text-text-secondary"
-    >
-      <button
-        onclick="toggleTheme()"
-        class="flex items-center gap-2 hover:text-text transition-colors"
-        type="button"
-      >
-        <svg
-          class="w-4 h-4 hidden dark:block"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-        >
-          <path
-            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-            fill-rule="evenodd"
-            clip-rule="evenodd"></path>
-        </svg>
-        <svg
-          class="w-4 h-4 block dark:hidden"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-        >
-          <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-          ></path>
-        </svg>
-        <span class="hidden dark:block">Light Mode</span>
-        <span class="block dark:hidden">Dark Mode</span>
-      </button>
-      <div class="flex gap-4">
-        <a href="/terms" class="transition-colors hover:text-text"
-          >Terms of use</a
-        >
-        <a href="/privacy" class="transition-colors hover:text-text"
-          >Privacy policy</a
-        >
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
+          Alternatives
+        </p>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li>
+            <a
+              href="/alternative/permute"
+              class="transition-colors hover:text-text">Picmal vs Permute</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
   </div>

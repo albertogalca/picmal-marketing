@@ -1,0 +1,656 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import FAQSchema from "../../components/schema/FAQSchema.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Button from "../../components/Button.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionDivider from "../../components/SectionDivider.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
+import BentoFeatures from "../../components/BentoFeatures.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import PricingSection from "../../components/PricingSection.astro";
+import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+
+const SITE_TITLE = "Picmal: The Native Mac XnConvert Alternative";
+const SITE_DESCRIPTION =
+  "Looking for an XnConvert alternative on Mac? Picmal offers a native macOS interface for converting images, video, and audio. Shortcuts integration. $15.99 one-time.";
+
+const faqs = [
+  {
+    question: "Is Picmal a good XnConvert alternative?",
+    answer:
+      "If you want a native Mac experience with video and audio support, yes. Picmal offers a cleaner interface with Shortcuts integration. If you need 500+ formats, 80+ editing actions, or cross-platform support, XnConvert is more feature-rich.",
+  },
+  {
+    question: "Why pay for Picmal when XnConvert is free?",
+    answer:
+      "XnConvert is free for personal use and excellent for batch image processing. Picmal adds video and audio conversion, a native macOS interface, Shortcuts integration, and Finder right-click actions. If you only need image conversion with advanced editing, XnConvert works great.",
+  },
+  {
+    question: "Does XnConvert support more formats than Picmal?",
+    answer:
+      "Yes. XnConvert supports 500+ input formats and 70+ export formats with 80+ editing actions. Picmal supports 20+ image formats but also handles video and audio—which XnConvert doesn't.",
+  },
+  {
+    question: "Can Picmal add watermarks like XnConvert?",
+    answer:
+      "No. XnConvert offers advanced editing features like watermarks, metadata editing, transforms, and filters. Picmal focuses on simple, fast conversions with sensible defaults.",
+  },
+  {
+    question: "Does Picmal work on Windows or Linux like XnConvert?",
+    answer:
+      "No. Picmal is macOS-only with a native interface. XnConvert runs on Windows, Mac, and Linux.",
+  },
+  {
+    question: "What if Picmal doesn't work for me?",
+    answer:
+      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <ProductSchema url={Astro.site!.href} />
+    <FAQSchema />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
+    <Header />
+
+    <!-- Hero Section -->
+    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto hero-title">
+              The native Mac XnConvert alternative
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
+            >
+              XnConvert offers 500+ formats and 80+ editing actions. Picmal
+              offers simplicity. If you want an app that feels like Mac and
+              handles video too, Picmal gives you a native interface with
+              Shortcuts integration.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked_xnconvert_comparison')"
+                class="apple-button-primary"
+              />
+              <a
+                href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
+              >
+                <svg
+                  class="w-4 h-4 inline-block mr-2"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+                  ></path></svg
+                >
+                Download
+              </a>
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back
+            </p>
+          </div>
+
+          <!-- Social Proof Above Fold -->
+          <div class="mt-6 sm:mt-8 hero-trust">
+            <TrustBar />
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
+        >
+          <div class="aspect-[16/10]">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Comparison Table -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-4 text-center">Picmal vs XnConvert at a glance</H2>
+        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+          XnConvert is a powerful batch image processor with hundreds of
+          features. Picmal is a simple converter for all media types. Different
+          tools for different needs.
+        </Paragraph>
+
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="text-left p-4 font-semibold text-text">Feature</th>
+                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
+                  <th class="text-left p-4 font-semibold text-text"
+                    >XnConvert</th
+                  >
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="p-4 text-text-secondary">Price</td>
+                  <td class="p-4 text-text">$15.99 one-time</td>
+                  <td class="p-4 text-text">Free (personal), €15 (commercial)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Platforms</td>
+                  <td class="p-4 text-text">macOS only</td>
+                  <td class="p-4 text-text">Windows, Mac, Linux</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Privacy</td>
+                  <td class="p-4 text-text">100% offline</td>
+                  <td class="p-4 text-text">100% offline</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Interface</td>
+                  <td class="p-4 text-text">Native macOS, minimal</td>
+                  <td class="p-4 text-text">Cross-platform, feature-rich</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Image formats</td>
+                  <td class="p-4 text-text">20+</td>
+                  <td class="p-4 text-text">500+ input, 70+ output</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Video conversion</td>
+                  <td class="p-4 text-text">Yes—MP4, MOV, MKV, etc.</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Audio conversion</td>
+                  <td class="p-4 text-text">Yes—MP3, WAV, FLAC, etc.</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Editing actions</td>
+                  <td class="p-4 text-text">Basic (resize, compress)</td>
+                  <td class="p-4 text-text">80+ (watermarks, filters, transforms)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Watermarks</td>
+                  <td class="p-4 text-text">No</td>
+                  <td class="p-4 text-text">Yes</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Metadata editing</td>
+                  <td class="p-4 text-text">Removal only</td>
+                  <td class="p-4 text-text">Full editing</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Folder monitoring</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Yes (watch folder)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Finder right-click</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Custom presets</td>
+                  <td class="p-4 text-text">No</td>
+                  <td class="p-4 text-text">Yes</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">macOS</td>
+                  <td class="p-4 text-text">14+</td>
+                  <td class="p-4 text-text">10.13+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Picmal Is For / Who Should Stick with XnConvert -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-4">Which one is right for you?</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Both are excellent tools. Here's an honest comparison to help you
+            decide.
+          </Paragraph>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Picmal Column -->
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
+            <div class="mb-6">
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose Picmal
+              </h3>
+              <p class="text-text-secondary">
+                Best for simplicity and native Mac experience
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need a simple interface that just works
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You use Shortcuts for automation workflows
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You care about a well-designed UI that feels like Mac
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need video and audio conversion too
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- XnConvert Column -->
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
+            <div class="mb-6">
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose XnConvert
+              </h3>
+              <p class="text-text-secondary">
+                Best for advanced image processing and cross-platform
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You use Windows or Linux
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need advanced features like watermarks, transforms, and
+                  metadata editing
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You want 500+ format support with 80+ editing actions
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You prefer free software for personal use
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- BentoFeatures -->
+    <BentoFeatures />
+
+    <SectionDivider />
+
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <section class="relative z-10">
+      <FeaturedOn />
+    </section>
+
+    <SectionDivider />
+
+    <!-- Pricing -->
+    <section id="pricing" class="relative z-10 px-6 py-20">
+      <PricingSection />
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-6">Frequently asked questions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Can't find what you're looking for? Email support@picmal.app
+          </Paragraph>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <SupportedFormatsModal />
+
+    <style>
+      /* Apple-style gradient background */
+      .apple-gradient {
+        background: radial-gradient(
+          circle at top,
+          rgba(99, 102, 241, 0.03),
+          transparent 50%
+        );
+      }
+
+      /* Hero animations */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .hero-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .hero-trust {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      .hero-video {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Button interactions */
+      .apple-button-primary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .apple-button-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .apple-button-secondary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-secondary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .apple-button-secondary:active {
+        transform: translateY(0);
+      }
+
+      /* Scroll reveal for sections */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s cubic-bezier(0.28, 0, 0.2, 1),
+          transform 0.6s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Accessibility: Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .hero-cta,
+        .hero-trust,
+        .hero-video,
+        .scroll-reveal,
+        .apple-button-primary,
+        .apple-button-secondary {
+          animation: none;
+          transition: none;
+        }
+
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+
+    <script>
+      // Smooth page load
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+
+        // Scroll reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          },
+        );
+
+        document.querySelectorAll(".scroll-reveal").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

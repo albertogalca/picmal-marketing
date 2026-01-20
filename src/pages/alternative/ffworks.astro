@@ -1,0 +1,654 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import FAQSchema from "../../components/schema/FAQSchema.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Button from "../../components/Button.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionDivider from "../../components/SectionDivider.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
+import BentoFeatures from "../../components/BentoFeatures.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import PricingSection from "../../components/PricingSection.astro";
+import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+
+const SITE_TITLE = "Picmal: The Simple ffWorks Alternative for Mac";
+const SITE_DESCRIPTION =
+  "Looking for a simpler ffWorks alternative? Picmal converts images, video, and audio with a drag-and-drop interface. No 450+ options to learn. $15.99 one-time. 14-day refund.";
+
+const faqs = [
+  {
+    question: "Is Picmal a good ffWorks alternative?",
+    answer:
+      "If you want simplicity over control, yes. Picmal handles images, video, and audio with a minimal interface and Shortcuts integration. If you need professional-grade FFmpeg controls with 450+ options, ffWorks is the better choice.",
+  },
+  {
+    question: "Does Picmal have the same video options as ffWorks?",
+    answer:
+      "No. ffWorks exposes 450+ FFmpeg options and 60+ video filters for professional control. Picmal focuses on common conversions with sensible defaults—you pick a format and it works.",
+  },
+  {
+    question: "Can Picmal convert images? Can ffWorks?",
+    answer:
+      "Picmal converts 20+ image formats (HEIC, JPG, PNG, WebP, etc.). ffWorks focuses on video and audio—it's not designed for image conversion.",
+  },
+  {
+    question: "Does Picmal support 4K/8K video like ffWorks?",
+    answer:
+      "Picmal handles high-resolution video conversion, but ffWorks offers more granular control over encoding settings for professional 4K/8K workflows with quality metrics like VMAF.",
+  },
+  {
+    question: "Why choose Picmal over ffWorks?",
+    answer:
+      "Choose Picmal if you want one app for images, video, and audio with a simple interface. Choose ffWorks if you need professional video encoding with full FFmpeg power.",
+  },
+  {
+    question: "What if Picmal doesn't work for me?",
+    answer:
+      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <ProductSchema url={Astro.site!.href} />
+    <FAQSchema />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <!-- Subtle gradient background - Apple style -->
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
+    <Header />
+
+    <!-- Hero Section -->
+    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
+          >
+            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto hero-title">
+              The simple ffWorks alternative for Mac
+            </H1>
+            <p
+              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
+            >
+              ffWorks gives you 450+ FFmpeg options. Picmal gives you one
+              window. If you just want to convert files without learning video
+              encoding, Picmal handles images, video, and audio with sensible
+              defaults.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col items-center gap-3 sm:gap-4 hero-cta">
+            <div
+              class="flex flex-col sm:flex-row gap-2 items-center justify-center"
+            >
+              <Button
+                text="Get Picmal for $15.99"
+                onclick="posthog.capture('buy_clicked_ffworks_comparison')"
+                class="apple-button-primary"
+              />
+              <a
+                href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+                class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto apple-button-secondary"
+              >
+                <svg
+                  class="w-4 h-4 inline-block mr-2"
+                  fill="currentColor"
+                  stroke="none"
+                  viewBox="0 0 24 24"
+                  ><path
+                    d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+                  ></path></svg
+                >
+                Download
+              </a>
+            </div>
+            <p class="text-xs sm:text-sm text-text-secondary">
+              One-time purchase • 14-day money back
+            </p>
+          </div>
+
+          <!-- Social Proof Above Fold -->
+          <div class="mt-6 sm:mt-8 hero-trust">
+            <TrustBar />
+          </div>
+        </div>
+
+        <!-- Demo Video -->
+        <div
+          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
+        >
+          <div class="aspect-[16/10]">
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover block dark:hidden"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover hidden dark:block"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal app interface"
+            >
+            </video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Comparison Table -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-4 text-center">Picmal vs ffWorks at a glance</H2>
+        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+          ffWorks is a professional FFmpeg GUI with hundreds of options. Picmal
+          is a simple converter for everyday use. Different tools for different
+          needs.
+        </Paragraph>
+
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="text-left p-4 font-semibold text-text">Feature</th>
+                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
+                  <th class="text-left p-4 font-semibold text-text">ffWorks</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="p-4 text-text-secondary">Price</td>
+                  <td class="p-4 text-text">$15.99 one-time</td>
+                  <td class="p-4 text-text">€22 (~$24) one-time</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Primary purpose</td>
+                  <td class="p-4 text-text">Simple media conversion</td>
+                  <td class="p-4 text-text">Professional FFmpeg GUI</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Privacy</td>
+                  <td class="p-4 text-text">100% offline</td>
+                  <td class="p-4 text-text">100% offline</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Interface complexity</td>
+                  <td class="p-4 text-text">Single window, minimal options</td>
+                  <td class="p-4 text-text">450+ options, 60+ filters</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Image conversion</td>
+                  <td class="p-4 text-text">Yes—20+ formats</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Video conversion</td>
+                  <td class="p-4 text-text">Yes—common formats</td>
+                  <td class="p-4 text-text">Yes—full FFmpeg support</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Audio conversion</td>
+                  <td class="p-4 text-text">Yes—MP3, WAV, FLAC, etc.</td>
+                  <td class="p-4 text-text">Yes—full FFmpeg support</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Video filters</td>
+                  <td class="p-4 text-text">Basic</td>
+                  <td class="p-4 text-text">60+ filters (color, crop, overlay)</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Quality metrics</td>
+                  <td class="p-4 text-text">No</td>
+                  <td class="p-4 text-text">Yes—VMAF, PSNR, SSIM</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Hardware acceleration</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Yes—VideoToolBox</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Metadata removal</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Yes</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Folder monitoring</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Drop zones</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Finder right-click</td>
+                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">macOS</td>
+                  <td class="p-4 text-text">14+</td>
+                  <td class="p-4 text-text">10.13+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Picmal Is For / Who Should Stick with ffWorks -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-4">Which one is right for you?</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Both are excellent native Mac apps. Here's an honest comparison to
+            help you decide.
+          </Paragraph>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Picmal Column -->
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
+            <div class="mb-6">
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose Picmal
+              </h3>
+              <p class="text-text-secondary">
+                Best for simplicity and all media types
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need to convert images, videos, and audio in one app
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You want a simple interface with Shortcuts integration
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You prefer a one-time purchase with privacy-first offline
+                  processing
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You don't need 450+ encoding options
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ffWorks Column -->
+          <div
+            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+          >
+            <div class="mb-6">
+              <h3 class="text-2xl font-semibold text-text mb-2">
+                Choose ffWorks
+              </h3>
+              <p class="text-text-secondary">
+                Best for professional video encoding
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You want full FFmpeg power with 450+ options and 60+ filters
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You only work with video and need professional-grade control
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need quality metrics like VMAF, PSNR, and SSIM
+                </span>
+              </li>
+
+              <li class="flex gap-3 items-start">
+                <svg
+                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-text">
+                  You need advanced video filters and color adjustments
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- BentoFeatures -->
+    <BentoFeatures />
+
+    <SectionDivider />
+
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <SectionDivider />
+
+    <!-- Featured On Section -->
+    <section class="relative z-10">
+      <FeaturedOn />
+    </section>
+
+    <SectionDivider />
+
+    <!-- Pricing -->
+    <section id="pricing" class="relative z-10 px-6 py-20">
+      <PricingSection />
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative z-10 px-6 py-20">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <H2 class="mb-6">Frequently asked questions</H2>
+          <Paragraph class="max-w-2xl mx-auto">
+            Can't find what you're looking for? Email support@picmal.app
+          </Paragraph>
+        </div>
+        <div
+          class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
+        >
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <SupportedFormatsModal />
+
+    <style>
+      /* Apple-style gradient background */
+      .apple-gradient {
+        background: radial-gradient(
+          circle at top,
+          rgba(99, 102, 241, 0.03),
+          transparent 50%
+        );
+      }
+
+      /* Hero animations */
+      .hero-title {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.1s both;
+      }
+
+      .hero-subtitle {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.2s both;
+      }
+
+      .hero-cta {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.3s both;
+      }
+
+      .hero-trust {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.4s both;
+      }
+
+      .hero-video {
+        animation: appleReveal 1s cubic-bezier(0.28, 0, 0.2, 1) 0.5s both;
+      }
+
+      @keyframes appleReveal {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Button interactions */
+      .apple-button-primary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .apple-button-primary:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .apple-button-secondary {
+        transition: all 0.2s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .apple-button-secondary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .apple-button-secondary:active {
+        transform: translateY(0);
+      }
+
+      /* Scroll reveal for sections */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s cubic-bezier(0.28, 0, 0.2, 1),
+          transform 0.6s cubic-bezier(0.28, 0, 0.2, 1);
+      }
+
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Accessibility: Respect reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle,
+        .hero-cta,
+        .hero-trust,
+        .hero-video,
+        .scroll-reveal,
+        .apple-button-primary,
+        .apple-button-secondary {
+          animation: none;
+          transition: none;
+        }
+
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+
+    <script>
+      // Smooth page load
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+
+        // Scroll reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          },
+        );
+
+        document.querySelectorAll(".scroll-reveal").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

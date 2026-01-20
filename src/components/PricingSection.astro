@@ -8,27 +8,22 @@ const licenseFaqs = [
   {
     question: "How does the license work?",
     answer:
-      "When you purchase a Picmal license, you can use it indefinitely without any additional fees. This means you won't need to renew your license or make any regular payments to continue using it. You can move your license between devices, but you must first deactivate the license on the current device before activating it on a new one.",
+      "Pay once, use forever—no renewals or subscriptions. Your license works on one Mac at a time, but you can transfer it between devices whenever you need.",
   },
   {
     question: "How many devices can I use Picmal on?",
     answer:
-      "Each license lets you use Picmal on that number of different Macs — for example, the 3-device license works on three Macs, the 5-device license on five, and so on.",
-  },
-  {
-    question: "Can I use Picmal on multiple Macs?",
-    answer:
-      "While your license is tied to one active device at a time, you can transfer it between your Macs. Simply deactivate the license from your current Mac and activate it on another Mac when needed.",
+      "Each license covers a set number of Macs. Pick the tier that fits—1, 3, or 5 devices. You can transfer between Macs anytime.",
   },
   {
     question: "What happens if I get a new Mac?",
     answer:
-      "You can easily transfer your Picmal license to your new Mac. Just deactivate the license on your old Mac (via Picmal → Register license), then install Picmal on your new Mac and activate it with your existing license key.",
+      "Deactivate on your old Mac (Picmal → Register license), then activate on your new one. Takes seconds.",
   },
   {
     question: "Can I get a refund?",
     answer:
-      "Yes, there is a 14-day money-back guarantee. No questions asked. If you're not satisfied with Picmal, send your refund request to support@picmal.app and I'd love to hear your feedback too!",
+      "Yes—14-day money-back guarantee, no questions asked. Email support@picmal.app and you're covered.",
   },
 ];
 ---
@@ -38,8 +33,8 @@ const licenseFaqs = [
   <div class="text-center md:text-left mb-12 md:mb-0">
     <H2 class="mb-4 md:hidden">Pay once, own forever</H2>
     <Paragraph class="max-w-md mx-auto md:hidden">
-      Buy Picmal once and use it forever with all future updates included.
-      14-day money-back guarantee.
+      One purchase. Yours forever. All updates included, no subscriptions, no
+      renewals. 14-day money-back guarantee.
     </Paragraph>
   </div>
 
@@ -59,8 +54,8 @@ const licenseFaqs = [
         <div>
           <H2 class="mb-4">Pay once, <br />own forever</H2>
           <Paragraph>
-            Buy Picmal once and use it forever with all future updates included.
-            14-day money-back guarantee.
+            One purchase. Yours forever. All updates included, no subscriptions,
+            no renewals. 14-day money-back guarantee.
           </Paragraph>
         </div>
         <FAQ faqs={licenseFaqs} />

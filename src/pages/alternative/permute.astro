@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Is Picmal a good Permute alternative?",
     answer:
-      "Yes, if you want simpler conversions without video editing features. Picmal focuses on fast, private file conversion with a beautifully designed, native macOS interface that's easier to use.",
+      "Yes. Picmal focuses on fast, private file conversion with a simpler interface—ideal if you don't need video editing features like trimming or cropping.",
   },
   {
     question: "Does Picmal work offline like Permute?",
@@ -86,8 +86,8 @@ const faqs = [
             <p
               class="mb-8 sm:mb-10 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 hero-subtitle"
             >
-              Convert images, videos, and audio with a beautifully designed
-              native Mac app. No presets to manage. No complexity. Just drag,
+              Convert images, videos, and audio in a single drag-and-drop
+              window. No presets to configure. No settings to learn. Just drag,
               drop, done.
             </p>
           </div>
@@ -170,7 +170,11 @@ const faqs = [
     <!-- Comparison Table -->
     <section class="relative z-10 px-6 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Picmal vs Permute at a glance</H2>
+        <H2 class="mb-4 text-center">Picmal vs Permute at a glance</H2>
+        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+          Permute is powerful. But sometimes you just want to convert a file
+          without thinking about it.
+        </Paragraph>
 
         <div
           class="bg-background-subtle/50 border border-border rounded-lg p-4 md:p-8"
@@ -202,13 +206,13 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Interface</td>
-                  <td class="p-4 text-text">Single window, modern design</td>
+                  <td class="p-4 text-text">Single window—no hunting through menus</td>
                   <td class="p-4 text-text">Groups + presets</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Design quality</td>
                   <td class="p-4 text-text">Native macOS, polished UI</td>
-                  <td class="p-4 text-text">Functional</td>
+                  <td class="p-4 text-text">Traditional</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Image formats</td>
@@ -222,12 +226,12 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Metadata removal</td>
-                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Yes—strip location data before sharing</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Finder right-click</td>
-                  <td class="p-4 text-text">Yes</td>
+                  <td class="p-4 text-text">Yes—convert without opening the app</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
@@ -263,7 +267,7 @@ const faqs = [
                 Choose Picmal
               </h3>
               <p class="text-text-secondary">
-                Best for simplicity, design, and privacy
+                Best for simplicity and automation
               </p>
             </div>
 
@@ -282,7 +286,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  Beautifully designed, native Mac app
+                  You want a minimal, distraction-free interface
                 </span>
               </li>
 
@@ -300,7 +304,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  Zero learning curve, simple interface
+                  You use features such as folder monitoring
                 </span>
               </li>
 
@@ -317,7 +321,9 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text"> 100% offline—no cloud uploads </span>
+                <span class="text-text">
+                  You need Shortcuts integration for Mac automation workflows
+                </span>
               </li>
 
               <li class="flex gap-3 items-start">
@@ -333,23 +339,9 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">Work with images more than video</span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text"> Automatic metadata removal </span>
+                <span class="text-text">
+                  You prefer folder organization over advanced editing
+                </span>
               </li>
             </ul>
           </div>
@@ -363,7 +355,7 @@ const faqs = [
                 Choose Permute
               </h3>
               <p class="text-text-secondary">
-                Best for advanced video features
+                Best for advanced editing and processing
               </p>
             </div>
 
@@ -382,7 +374,8 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  Video trimming, cropping, stitching
+                  You need video editing features like trimming, cropping, and
+                  merging
                 </span>
               </li>
 
@@ -400,7 +393,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  Device presets (iPhone, iPad, Apple TV)
+                  You need scheduled conversions that run at specific times
                 </span>
               </li>
 
@@ -417,7 +410,9 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">Scheduled conversions</span>
+                <span class="text-text">
+                  You require OCR text extraction from images
+                </span>
               </li>
 
               <li class="flex gap-3 items-start">
@@ -433,7 +428,9 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">macOS 11-13 support</span>
+                <span class="text-text">
+                  You need audio normalization and volume adjustment
+                </span>
               </li>
 
               <li class="flex gap-3 items-start">
@@ -449,7 +446,9 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text">Available on Setapp</span>
+                <span class="text-text">
+                  You already have a Setapp subscription
+                </span>
               </li>
             </ul>
           </div>

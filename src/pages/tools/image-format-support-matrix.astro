@@ -1,0 +1,786 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CTASection from "../../components/CTASection.astro";
+import "../../styles/global.css";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+
+const SITE_TITLE =
+  "Image format support matrix - Browser & OS Compatibility Guide";
+const SITE_DESCRIPTION =
+  "Complete compatibility guide for HEIC, WebP, AVIF, PNG, JPG and other image formats. Check browser and operating system support before converting.";
+
+// Format support data
+const formatSupport = [
+  {
+    format: "HEIC/HEIF",
+    extension: ".heic, .heif",
+    chrome: { support: "partial", note: "Extension required" },
+    firefox: { support: "no", note: "Not supported" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "partial", note: "Extension required" },
+    ios: { support: "yes", note: "iOS 11+" },
+    android: { support: "yes", note: "Android 10+" },
+    macos: { support: "yes", note: "macOS High Sierra+" },
+    windows: { support: "partial", note: "With extension" },
+    linux: { support: "no", note: "Limited support" },
+    description:
+      "Apple's high-efficiency format. Best compression for photos but limited web support.",
+    useCase: "iPhone photos, Apple ecosystem",
+  },
+  {
+    format: "WebP",
+    extension: ".webp",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Safari 14+" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "iOS 14+" },
+    android: { support: "yes", note: "Android 4+" },
+    macos: { support: "yes", note: "Big Sur+" },
+    windows: { support: "yes", note: "Windows 10+" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Google's modern web format. Excellent compression with wide browser support.",
+    useCase: "Modern websites, web applications",
+  },
+  {
+    format: "AVIF",
+    extension: ".avif",
+    chrome: { support: "yes", note: "Chrome 85+" },
+    firefox: { support: "yes", note: "Firefox 93+" },
+    safari: { support: "yes", note: "Safari 16+" },
+    edge: { support: "yes", note: "Edge 85+" },
+    ios: { support: "yes", note: "iOS 16+" },
+    android: { support: "yes", note: "Android 12+" },
+    macos: { support: "yes", note: "Ventura+" },
+    windows: { support: "yes", note: "Windows 10+" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Newest format with best compression. Growing browser support, may need fallbacks.",
+    useCase: "Cutting-edge web performance",
+  },
+  {
+    format: "JPG/JPEG",
+    extension: ".jpg, .jpeg",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "yes", note: "Full support" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Universal standard. Works everywhere, good compression for photos.",
+    useCase: "Maximum compatibility, photos",
+  },
+  {
+    format: "PNG",
+    extension: ".png",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "yes", note: "Full support" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Lossless format with transparency. Larger files but perfect quality.",
+    useCase: "Logos, graphics, transparency",
+  },
+  {
+    format: "GIF",
+    extension: ".gif",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "yes", note: "Full support" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Classic animation format. Limited colors (256), better alternatives exist.",
+    useCase: "Simple animations, legacy support",
+  },
+  {
+    format: "TIFF",
+    extension: ".tif, .tiff",
+    chrome: { support: "no", note: "Not supported" },
+    firefox: { support: "no", note: "Not supported" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "no", note: "Not supported" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "no", note: "Not supported" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Professional format for printing. Lossless, very large files.",
+    useCase: "Professional printing, archival",
+  },
+  {
+    format: "BMP",
+    extension: ".bmp",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "yes", note: "Full support" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Windows bitmap format. Uncompressed, very large files. Rarely used today.",
+    useCase: "Legacy Windows applications",
+  },
+  {
+    format: "SVG",
+    extension: ".svg",
+    chrome: { support: "yes", note: "Full support" },
+    firefox: { support: "yes", note: "Full support" },
+    safari: { support: "yes", note: "Full support" },
+    edge: { support: "yes", note: "Full support" },
+    ios: { support: "yes", note: "Full support" },
+    android: { support: "yes", note: "Full support" },
+    macos: { support: "yes", note: "Full support" },
+    windows: { support: "yes", note: "Full support" },
+    linux: { support: "yes", note: "Full support" },
+    description:
+      "Vector format (not raster). Infinitely scalable, perfect for logos and icons.",
+    useCase: "Logos, icons, scalable graphics",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="min-h-dvh bg-background text-text overflow-x-hidden">
+    <Header />
+
+    <main class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Hero Section -->
+        <div class="text-center mb-12 sm:mb-16">
+          <H1 class="mb-6 max-w-4xl mx-auto hero-title text-balance"
+            >Image format support matrix</H1
+          >
+          <p
+            class="mb-6 sm:mb-8 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty hero-subtitle"
+          >
+            Complete browser and operating system compatibility guide for all
+            major image formats.
+          </p>
+        </div>
+
+        <!-- Search/Filter -->
+        <div class="max-w-lg mx-auto mb-12 sm:mb-16 search-section">
+          <div class="relative">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search formats (e.g., HEIC, WebP, AVIF)..."
+              class="w-full px-5 py-4 pl-12 bg-background-subtle/50 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent text-text placeholder:text-text-secondary/60"
+            />
+            <svg
+              class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary/70"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Support Matrix -->
+        <div class="mb-16 sm:mb-20 matrix-section">
+          <div
+            class="bg-background-subtle/30 border border-border rounded-2xl overflow-hidden shadow-sm"
+          >
+            <!-- Desktop Table View -->
+            <div class="hidden lg:block overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-background-subtle/50 border-b border-border">
+                  <tr>
+                    <th
+                      class="px-6 py-5 text-left font-semibold text-text sticky left-0 bg-background-subtle/50 backdrop-blur-sm"
+                      >Format</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Chrome</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Firefox</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Safari</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Edge</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >iOS</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Android</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >macOS</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Windows</th
+                    >
+                    <th class="px-4 py-5 text-center font-semibold text-text"
+                      >Linux</th
+                    >
+                  </tr>
+                </thead>
+                <tbody id="table-body" class="divide-y divide-border">
+                  {
+                    formatSupport.map((format) => (
+                      <tr
+                        class="format-row hover:bg-background-subtle/50"
+                        data-format={format.format.toLowerCase()}
+                      >
+                        <td class="px-6 py-5 sticky left-0 bg-background-subtle/30 backdrop-blur-sm">
+                          <div>
+                            <div class="font-semibold text-text text-base">
+                              {format.format}
+                            </div>
+                            <div class="text-xs text-text-secondary/80 mt-0.5">
+                              {format.extension}
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.chrome.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.chrome.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.chrome.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.chrome.support === "yes"
+                              ? "✓"
+                              : format.chrome.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.chrome.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.firefox.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.firefox.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.firefox.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.firefox.support === "yes"
+                              ? "✓"
+                              : format.firefox.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.firefox.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.safari.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.safari.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.safari.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.safari.support === "yes"
+                              ? "✓"
+                              : format.safari.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.safari.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.edge.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.edge.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.edge.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.edge.support === "yes"
+                              ? "✓"
+                              : format.edge.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.edge.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.ios.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.ios.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.ios.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.ios.support === "yes"
+                              ? "✓"
+                              : format.ios.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.ios.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.android.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.android.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.android.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.android.support === "yes"
+                              ? "✓"
+                              : format.android.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.android.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.macos.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.macos.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.macos.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.macos.support === "yes"
+                              ? "✓"
+                              : format.macos.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.macos.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.windows.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.windows.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.windows.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.windows.support === "yes"
+                              ? "✓"
+                              : format.windows.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.windows.note}
+                            </span>
+                          </span>
+                        </td>
+                        <td class="px-4 py-4 text-center">
+                          <span
+                            class:list={[
+                              "inline-flex items-center justify-center w-full",
+                              {
+                                "text-green-600 dark:text-green-400":
+                                  format.linux.support === "yes",
+                                "text-yellow-600 dark:text-yellow-400":
+                                  format.linux.support === "partial",
+                                "text-red-600 dark:text-red-400":
+                                  format.linux.support === "no",
+                              },
+                            ]}
+                          >
+                            {format.linux.support === "yes"
+                              ? "✓"
+                              : format.linux.support === "partial"
+                                ? "◐"
+                                : "✗"}
+                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                              {format.linux.note}
+                            </span>
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Mobile Card View -->
+            <div class="lg:hidden divide-y divide-border/50" id="mobile-cards">
+              {
+                formatSupport.map((format) => (
+                  <div
+                    class="format-card p-6 space-y-5 hover:bg-background-subtle/30"
+                    data-format={format.format.toLowerCase()}
+                  >
+                    <div>
+                      <h3 class="text-xl font-semibold text-text mb-1.5">
+                        {format.format}
+                      </h3>
+                      <p class="text-sm text-text-secondary/80 mb-3">
+                        {format.extension}
+                      </p>
+                      <p class="text-sm text-text-secondary leading-relaxed">
+                        {format.description}
+                      </p>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                      <div class="flex justify-between items-center py-1">
+                        <span class="text-text-secondary font-medium">
+                          Browsers:
+                        </span>
+                        <div class="flex gap-2">
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.chrome.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.chrome.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.chrome.support === "no",
+                              },
+                            ]}
+                          >
+                            Chrome
+                          </span>
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.safari.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.safari.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.safari.support === "no",
+                              },
+                            ]}
+                          >
+                            Safari
+                          </span>
+                        </div>
+                      </div>
+                      <div class="flex justify-between items-center py-1">
+                        <span class="text-text-secondary font-medium">
+                          Mobile:
+                        </span>
+                        <div class="flex gap-2">
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.ios.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.ios.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.ios.support === "no",
+                              },
+                            ]}
+                          >
+                            iOS
+                          </span>
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.android.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.android.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.android.support === "no",
+                              },
+                            ]}
+                          >
+                            Android
+                          </span>
+                        </div>
+                      </div>
+                      <div class="flex justify-between items-center py-1">
+                        <span class="text-text-secondary font-medium">
+                          Desktop:
+                        </span>
+                        <div class="flex gap-2">
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.macos.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.macos.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.macos.support === "no",
+                              },
+                            ]}
+                          >
+                            macOS
+                          </span>
+                          <span
+                            class:list={[
+                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              {
+                                "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
+                                  format.windows.support === "yes",
+                                "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-400":
+                                  format.windows.support === "partial",
+                                "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-400":
+                                  format.windows.support === "no",
+                              },
+                            ]}
+                          >
+                            Windows
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div
+            class="mt-6 hidden lg:flex flex-wrap gap-6 text-sm text-text-secondary px-2"
+          >
+            <div class="flex items-center gap-2.5">
+              <span
+                class="text-green-600 dark:text-green-400 text-lg font-semibold"
+                >✓</span
+              >
+              <span class="font-medium">Full support</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span
+                class="text-yellow-600 dark:text-yellow-400 text-lg font-semibold"
+                >◐</span
+              >
+              <span class="font-medium">Partial support</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="text-red-600 dark:text-red-400 text-lg font-semibold"
+                >✗</span
+              >
+              <span class="font-medium">Not supported</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Format Details -->
+        <div class="max-w-5xl mx-auto details-section">
+          <H2 class="mb-16 text-balance">Format details and use cases</H2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {
+              formatSupport.map((format) => (
+                <div
+                  class="group"
+                  data-format-detail={format.format.toLowerCase()}
+                >
+                  <div class="mb-4">
+                    <div class="flex items-baseline gap-3 mb-2">
+                      <h3 class="text-2xl font-semibold text-text">
+                        {format.format}
+                      </h3>
+                      <span class="text-sm text-text-secondary font-mono">
+                        {format.extension}
+                      </span>
+                    </div>
+                    <p class="text-xs font-medium text-text-secondary uppercase tracking-wide">
+                      {format.useCase}
+                    </p>
+                  </div>
+                  <p class="text-text-secondary leading-relaxed text-pretty">
+                    {format.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div
+          id="no-results"
+          class="text-center py-16 sm:py-20"
+          style="display: none;"
+        >
+          <p class="text-text-secondary text-lg">
+            No formats found. Try a different search term.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- CTA Section -->
+
+    <CTASection
+      heading="Convert between any image format with Picmal"
+      analyticsEvent="buy_clicked_format_support_matrix"
+    />
+
+    <Footer />
+
+    <style>
+      /* Table styling */
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Search functionality
+      const searchInput = document.getElementById("search-input");
+      const formatRows = document.querySelectorAll(".format-row");
+      const formatCards = document.querySelectorAll(".format-card");
+      const formatDetails = document.querySelectorAll("[data-format-detail]");
+      const noResults = document.getElementById("no-results");
+
+      searchInput?.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        let hasResults = false;
+
+        // Filter table rows (desktop)
+        formatRows.forEach((row) => {
+          const formatName = row.dataset.format || "";
+          if (formatName.includes(searchTerm)) {
+            row.style.display = "";
+            hasResults = true;
+          } else {
+            row.style.display = "none";
+          }
+        });
+
+        // Filter cards (mobile)
+        formatCards.forEach((card) => {
+          const formatName = card.dataset.format || "";
+          if (formatName.includes(searchTerm)) {
+            card.style.display = "";
+            hasResults = true;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        // Filter details
+        formatDetails.forEach((detail) => {
+          const formatName = detail.dataset.formatDetail || "";
+          if (formatName.includes(searchTerm)) {
+            detail.style.display = "";
+          } else {
+            detail.style.display = "none";
+          }
+        });
+
+        // Show/hide no results message
+        if (noResults) {
+          noResults.style.display = hasResults ? "none" : "block";
+        }
+      });
+
+      // Track with PostHog if available
+      if (typeof posthog !== "undefined") {
+        posthog.capture("format_support_matrix_viewed");
+      }
+    </script>
+  </body>
+</html>

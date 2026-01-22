@@ -6,8 +6,6 @@ import CTASection from "../../components/CTASection.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Button from "../../components/Button.astro";
 import Paragraph from "../../components/Paragraph.astro";
 
 const SITE_TITLE =
@@ -22,6 +20,22 @@ const tools = [
     description:
       "Answer a few questions about your use case and get instant recommendations for the best image format.",
     href: "/tools/image-format-selector",
+    available: true,
+  },
+  {
+    id: "file-size-calculator",
+    title: "Image file size calculator",
+    description:
+      "Calculate estimated file sizes for different image formats and see potential compression savings.",
+    href: "/tools/image-file-size-calculator",
+    available: true,
+  },
+  {
+    id: "format-support-matrix",
+    title: "Format support matrix",
+    description:
+      "Check browser and OS compatibility for HEIC, WebP, AVIF, and all major image formats.",
+    href: "/tools/image-format-support-matrix",
     available: true,
   },
   {
@@ -56,7 +70,9 @@ const tools = [
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden">
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
     <!-- Subtle gradient background - Apple style -->
     <div class="fixed inset-0 -z-20 apple-gradient"></div>
 
@@ -67,7 +83,9 @@ const tools = [
         <!-- Hero Section -->
         <div class="text-center mb-12 sm:mb-16">
           <H1 class="mb-4 sm:mb-6 hero-title">Free image tools</H1>
-          <Paragraph class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl hero-subtitle">
+          <Paragraph
+            class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl hero-subtitle"
+          >
             Simple, free utilities to help you make better decisions about image
             formats and optimization.
           </Paragraph>
@@ -77,10 +95,7 @@ const tools = [
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 tool-grid">
           {
             tools.map((tool, index) => (
-              <div
-                class="tool-card"
-                style={`--card-index: ${index}`}
-              >
+              <div class="tool-card" style={`--card-index: ${index}`}>
                 {tool.available ? (
                   <a
                     href={tool.href}
@@ -274,34 +289,34 @@ const tools = [
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
+                entry.target.classList.add("revealed");
                 observer.unobserve(entry.target);
               }
             });
           },
           {
             threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px',
-          }
+            rootMargin: "0px 0px -80px 0px",
+          },
         );
 
-        const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll("section");
         sections.forEach((section) => {
-          section.classList.add('scroll-reveal');
+          section.classList.add("scroll-reveal");
           observer.observe(section);
         });
       }
 
       // Initialize
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initScrollReveal);
       } else {
         initScrollReveal();
       }
 
       // Smooth page load
-      window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
+      window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
       });
     </script>
   </body>

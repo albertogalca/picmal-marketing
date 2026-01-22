@@ -1,0 +1,389 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CTASection from "../../components/CTASection.astro";
+import "../../styles/global.css";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import H3 from "../../components/H3.astro";
+
+const SITE_TITLE = "Image File Size Calculator - Estimate Compression Savings";
+const SITE_DESCRIPTION =
+  "Calculate image file sizes before converting. Estimate file sizes for HEIC, JPG, PNG, WebP, AVIF, and more. See compression savings instantly.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="min-h-dvh bg-background text-text overflow-x-hidden">
+    <Header />
+
+    <main class="pt-32 pb-16 sm:pb-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <!-- Hero Section -->
+        <div class="text-center mb-12 sm:mb-16">
+          <H1 class="mb-6 text-balance">Image file size calculator</H1>
+          <p
+            class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-text-secondary text-pretty"
+          >
+            Calculate estimated file sizes for different image formats and see
+            potential compression savings.
+          </p>
+        </div>
+
+        <!-- Calculator Section -->
+        <div class="max-w-3xl mx-auto mb-16 sm:mb-20">
+          <div
+            class="bg-background-subtle/30 border border-border rounded-2xl p-6 md:p-8"
+          >
+            <!-- Input Form -->
+            <form id="calculator-form" class="space-y-6">
+              <!-- Dimensions Row -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="width"
+                    class="block text-sm font-medium mb-2 text-text"
+                    >Width (pixels)</label
+                  >
+                  <input
+                    type="number"
+                    id="width"
+                    name="width"
+                    value="4000"
+                    min="1"
+                    max="100000"
+                    class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-text"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="height"
+                    class="block text-sm font-medium mb-2 text-text"
+                    >Height (pixels)</label
+                  >
+                  <input
+                    type="number"
+                    id="height"
+                    name="height"
+                    value="3000"
+                    min="1"
+                    max="100000"
+                    class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-text"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Common Presets -->
+              <div>
+                <label class="block text-sm font-medium mb-2 text-text"
+                  >Common sizes</label
+                >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <button
+                    type="button"
+                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    data-width="1920"
+                    data-height="1080">1080p</button
+                  >
+                  <button
+                    type="button"
+                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    data-width="3840"
+                    data-height="2160">4K</button
+                  >
+                  <button
+                    type="button"
+                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    data-width="1200"
+                    data-height="630">Social</button
+                  >
+                  <button
+                    type="button"
+                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    data-width="1000"
+                    data-height="1000">Square</button
+                  >
+                </div>
+              </div>
+
+              <!-- Image Type -->
+              <div>
+                <label class="block text-sm font-medium mb-2 text-text"
+                  >Image type</label
+                >
+                <select
+                  id="image-type"
+                  name="image-type"
+                  class="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-text"
+                >
+                  <option value="photo">Photograph (complex colors)</option>
+                  <option value="graphic"
+                    >Graphic / Screenshot (simple colors)</option
+                  >
+                </select>
+              </div>
+
+              <!-- Calculate Button -->
+              <button
+                type="submit"
+                class="w-full px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover"
+              >
+                Calculate file sizes
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="max-w-4xl mx-auto" style="display: none;">
+          <div class="mb-8">
+            <H2 class="mb-2 text-center text-balance">Estimated file sizes</H2>
+            <p class="text-center text-text-secondary text-sm">
+              Based on <span id="result-dimensions" class="font-semibold tabular-nums"
+              ></span> image
+            </p>
+          </div>
+
+          <!-- Results Grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8"
+          >
+            <!-- Results will be inserted here by JavaScript -->
+            <div id="results-grid" class="contents"></div>
+          </div>
+
+          <!-- Compression Insight -->
+          <div
+            id="compression-insight"
+            class="border-2 border-accent bg-accent/5 rounded-lg p-5 mb-8"
+          >
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 mt-0.5">
+                <svg
+                  class="size-5 text-accent"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-text text-sm mb-2">Compression savings</div>
+                <p class="text-text-secondary text-sm leading-relaxed" id="compression-text">
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Format Comparison -->
+          <div
+            class="border border-border rounded-lg p-5"
+          >
+            <div class="font-semibold text-text mb-4">Quick format comparison</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <div class="font-semibold text-text mb-0.5">HEIC/HEIF</div>
+                <p class="text-text-secondary">Best compression for photos, Apple devices</p>
+              </div>
+              <div>
+                <div class="font-semibold text-text mb-0.5">WebP</div>
+                <p class="text-text-secondary">Modern format, great compression, growing browser support</p>
+              </div>
+              <div>
+                <div class="font-semibold text-text mb-0.5">AVIF</div>
+                <p class="text-text-secondary">Newest format, excellent compression, limited support</p>
+              </div>
+              <div>
+                <div class="font-semibold text-text mb-0.5">JPG/JPEG</div>
+                <p class="text-text-secondary">Universal standard, good for photos</p>
+              </div>
+              <div>
+                <div class="font-semibold text-text mb-0.5">PNG</div>
+                <p class="text-text-secondary">Lossless quality, larger files, supports transparency</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recalculate Button -->
+          <div class="text-center mt-8">
+            <button
+              type="button"
+              id="recalculate-btn"
+              class="px-6 py-3 bg-background-subtle border border-border text-text font-semibold rounded-lg hover:border-accent"
+            >
+              Calculate again
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- CTA Section -->
+    <CTASection
+      heading="Convert and compress images in bulk with Picmal"
+      analyticsEvent="buy_clicked_file_size_calculator"
+    />
+
+    <Footer />
+
+    <style>
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Format data with file size multipliers (bytes per pixel)
+      const formatData = {
+        photo: {
+          HEIC: { multiplier: 0.5, description: "Best for photos" },
+          WebP: { multiplier: 0.8, description: "Modern web format" },
+          AVIF: { multiplier: 0.6, description: "Newest format" },
+          JPG: { multiplier: 1.5, description: "Universal standard" },
+          PNG: { multiplier: 3.0, description: "Lossless quality" },
+        },
+        graphic: {
+          PNG: { multiplier: 1.5, description: "Best for graphics" },
+          WebP: { multiplier: 0.6, description: "Excellent compression" },
+          JPG: { multiplier: 1.2, description: "Good for web" },
+          AVIF: { multiplier: 0.5, description: "Smallest size" },
+          HEIC: { multiplier: 0.7, description: "Apple format" },
+        },
+      };
+
+      function calculateFileSize(width, height, multiplier) {
+        // Base calculation: width × height × 3 bytes per pixel (RGB)
+        const baseSize = width * height * 3;
+        const estimatedSize = baseSize * multiplier;
+        return estimatedSize;
+      }
+
+      function formatBytes(bytes) {
+        if (bytes < 1024) return bytes.toFixed(0) + " B";
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+        return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+      }
+
+      function createResultCard(format, size, description, isRecommended) {
+        if (isRecommended) {
+          return `
+            <div class="border-2 border-accent bg-accent/5 rounded-lg p-4 relative">
+              <div class="absolute top-2 right-2">
+                <span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-accent text-white">Best</span>
+              </div>
+              <h3 class="text-base font-semibold text-text mb-1 pr-12">${format}</h3>
+              <p class="text-2xl font-bold text-accent tabular-nums mb-1">${formatBytes(size)}</p>
+              <p class="text-xs text-text-secondary">${description}</p>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="border border-border rounded-lg p-4">
+            <h3 class="text-base font-semibold text-text mb-1">${format}</h3>
+            <p class="text-2xl font-bold text-text tabular-nums mb-1">${formatBytes(size)}</p>
+            <p class="text-xs text-text-secondary">${description}</p>
+          </div>
+        `;
+      }
+
+      const form = document.getElementById("calculator-form");
+      const resultsDiv = document.getElementById("results");
+      const resultsGrid = document.getElementById("results-grid");
+      const resultDimensions = document.getElementById("result-dimensions");
+      const compressionText = document.getElementById("compression-text");
+      const recalculateBtn = document.getElementById("recalculate-btn");
+
+      // Preset buttons
+      document.querySelectorAll(".preset-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const width = btn.dataset.width;
+          const height = btn.dataset.height;
+          document.getElementById("width").value = width;
+          document.getElementById("height").value = height;
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const width = parseInt(document.getElementById("width").value);
+        const height = parseInt(document.getElementById("height").value);
+        const imageType = document.getElementById("image-type").value;
+
+        // Calculate sizes for all formats
+        const formats = formatData[imageType];
+        const results = Object.entries(formats).map(([format, data]) => ({
+          format,
+          size: calculateFileSize(width, height, data.multiplier),
+          description: data.description,
+        }));
+
+        // Sort by size (smallest first)
+        results.sort((a, b) => a.size - b.size);
+
+        // Generate result cards
+        resultsGrid.innerHTML = results
+          .map((result, index) =>
+            createResultCard(
+              result.format,
+              result.size,
+              result.description,
+              index === 0,
+            ),
+          )
+          .join("");
+
+        // Update dimensions display
+        resultDimensions.textContent = `${width} × ${height}px`;
+
+        // Calculate compression insight
+        const largestSize = Math.max(...results.map((r) => r.size));
+        const smallestSize = Math.min(...results.map((r) => r.size));
+        const savings = ((largestSize - smallestSize) / largestSize) * 100;
+        const largestFormat = results.find(
+          (r) => r.size === largestSize,
+        ).format;
+        const smallestFormat = results.find(
+          (r) => r.size === smallestSize,
+        ).format;
+
+        compressionText.textContent = `Converting from ${largestFormat} to ${smallestFormat} could save you up to ${savings.toFixed(0)}% in file size (${formatBytes(largestSize - smallestSize)} smaller).`;
+
+        // Show results
+        resultsDiv.style.display = "block";
+        resultsDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // Track with PostHog if available
+        if (typeof posthog !== "undefined") {
+          posthog.capture("file_size_calculated", {
+            width,
+            height,
+            imageType,
+          });
+        }
+      });
+
+      recalculateBtn.addEventListener("click", () => {
+        resultsDiv.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

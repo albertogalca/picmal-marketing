@@ -15,58 +15,19 @@ import Paragraph from "../components/Paragraph.astro";
       title={`Changelog - ${SITE_TITLE}`}
       description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
     />
-    <style>
-      .fade-in {
-        animation: fade-in-up 600ms ease-out backwards;
-      }
-
-      .fade-in-delay-1 {
-        animation-delay: 100ms;
-      }
-      .fade-in-delay-2 {
-        animation-delay: 200ms;
-      }
-
-      @keyframes fade-in-up {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .fade-in {
-          animation: none !important;
-        }
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-    </style>
   </head>
   <body class="bg-background text-text min-h-dvh">
     <Header />
 
     <main class="relative z-10 pt-32 pb-20">
-      <div class="text-center mb-16 px-6 fade-in">
+      <div class="text-center mb-16 px-6">
         <H1 class="mb-4">Changelog</H1>
         <Paragraph class="max-w-2xl mx-auto">
           Latest updates, new features, and improvements to Picmal.
         </Paragraph>
       </div>
 
-      <div class="max-w-3xl mx-auto px-6 mb-16 fade-in fade-in-delay-1">
+      <div class="max-w-3xl mx-auto px-6 mb-16">
         <div
           class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
         >
@@ -100,7 +61,7 @@ import Paragraph from "../components/Paragraph.astro";
         </div>
       </div>
 
-      <div class="max-w-3xl mx-auto px-6 pb-20 fade-in fade-in-delay-2">
+      <div class="max-w-3xl mx-auto px-6 pb-20">
         <div class="prose prose-lg max-w-none">
           <slot />
         </div>

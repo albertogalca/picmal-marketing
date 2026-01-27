@@ -4,12 +4,8 @@
 @variant dark (&:is(.dark *));
 
 @theme {
-  /* Accent colors with proper contrast for light/dark mode */
-  /* Light mode: vibrant blue | Dark mode: electric blue (high luminosity) */
-  --color-accent: light-dark(#1b5bff, #3B82F6);
-  --color-accent-dark: light-dark(#1450e0, #2563EB);
-
-  /* Use CSS variables for dynamic colors */
+  --color-accent: light-dark(#1b5bff, #3b82f6);
+  --color-accent-dark: light-dark(#1450e0, #2563eb);
   --color-background: light-dark(rgb(251, 251, 251), rgb(36, 36, 36));
   --color-text: light-dark(rgba(0, 0, 0, 0.85), rgba(255, 255, 255, 0.85));
   --color-text-secondary: light-dark(
@@ -25,7 +21,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* Default to light, will be overridden by inline script */
   color-scheme: light;
 }
 
@@ -34,8 +29,9 @@ html.dark {
 }
 
 body {
-  font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+  font-family:
+    "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif, "System Default", sans-serif;
   margin: 0;
   padding: 0;
@@ -43,167 +39,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes rotate-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.animate-fade-in {
-  animation: fade-in 0.3s ease-out;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.5s ease-out;
-}
-
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
-}
-
-/* Staggered animation delays for lists */
-.stagger-1 {
-  animation-delay: 0.1s;
-}
-
-.stagger-2 {
-  animation-delay: 0.2s;
-}
-
-.stagger-3 {
-  animation-delay: 0.3s;
-}
-
-.stagger-4 {
-  animation-delay: 0.4s;
-}
-
-.gradient-mesh {
-  background-image: radial-gradient(
-      at 40% 20%,
-      hsla(280, 100%, 75%, 0.3) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.3) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.3) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, hsla(340, 100%, 76%, 0.3) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(240, 100%, 70%, 0.3) 0px, transparent 50%),
-    radial-gradient(at 80% 100%, hsla(120, 100%, 60%, 0.3) 0px, transparent 50%),
-    radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 0.3) 0px, transparent 50%);
-}
-
-.gradient-mesh-dark {
-  background-image: radial-gradient(
-      at 40% 20%,
-      hsla(280, 100%, 60%, 0.2) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 80% 0%, hsla(189, 100%, 40%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, hsla(355, 100%, 60%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, hsla(340, 100%, 50%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(240, 100%, 50%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 80% 100%, hsla(120, 100%, 40%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 0%, hsla(343, 100%, 50%, 0.2) 0px, transparent 50%);
-}
-
-.sj-powered-by {
-  display: none !important;
-}
-
-/* Enhanced code block styling */
 pre {
   background: #1e293b !important;
   border-radius: 12px !important;
   border: 1px solid #334155 !important;
   padding: 1.5rem !important;
   margin: 1.5rem 0 !important;
-  font-family: "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New",
-    monospace !important;
+  font-family:
+    "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace !important;
   font-size: 0.875rem !important;
   line-height: 1.6 !important;
   overflow-x: auto !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -221,47 +69,11 @@ code:not(pre code) {
   color: #1b5bff !important;
   padding: 0.25rem 0.5rem !important;
   border-radius: 0.375rem !important;
-  font-family: "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New",
-    monospace !important;
+  font-family:
+    "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace !important;
   font-size: 0.875em !important;
   font-weight: 500 !important;
   border: 1px solid #e2e8f0 !important;
-}
-
-/* Syntax highlighting improvements */
-.token.comment {
-  color: #64748b !important;
-  font-style: italic !important;
-}
-
-.token.string {
-  color: #10b981 !important;
-}
-
-.token.number {
-  color: #f59e0b !important;
-}
-
-.token.keyword {
-  color: #8b5cf6 !important;
-  font-weight: 600 !important;
-}
-
-.token.operator {
-  color: #06b6d4 !important;
-}
-
-.token.function {
-  color: #3b82f6 !important;
-}
-
-.token.variable {
-  color: #ef4444 !important;
-}
-
-/* Command line styling */
-.token.property {
-  color: #06b6d4 !important;
 }
 
 /* Copy button styling for code blocks */
@@ -283,7 +95,6 @@ pre {
   position: relative;
 }
 
-/* Blockquote - Simple and functional */
 blockquote {
   background: light-dark(#f8fafc, rgba(255, 255, 255, 0.05)) !important;
   padding: 1rem 1.5rem !important;
@@ -335,18 +146,14 @@ blockquote p:last-child {
   padding: 0.75rem 1rem !important;
   text-align: left !important;
   font-weight: 600 !important;
-  border-bottom: 2px solid light-dark(
-    rgba(0, 0, 0, 0.1),
-    rgba(255, 255, 255, 0.1)
-  ) !important;
+  border-bottom: 2px solid
+    light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1)) !important;
 }
 
 .prose tbody td {
   padding: 0.75rem 1rem !important;
-  border-bottom: 1px solid light-dark(
-    rgba(0, 0, 0, 0.05),
-    rgba(255, 255, 255, 0.05)
-  ) !important;
+  border-bottom: 1px solid
+    light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) !important;
 }
 
 .prose tbody tr:last-child td {
@@ -369,13 +176,4 @@ blockquote p:last-child {
   margin-bottom: 0.75rem !important;
   font-weight: 600 !important;
   scroll-margin-top: 2rem !important;
-}
-
-/* Hero gradient background for light/dark mode */
-.hero-gradient {
-  background: radial-gradient(
-    ellipse at top,
-    light-dark(rgba(27, 91, 255, 0.05), rgba(27, 91, 255, 0.1)),
-    transparent 50%
-  );
 }

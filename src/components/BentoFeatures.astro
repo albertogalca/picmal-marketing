@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
+import CompressFormatsModal from "./CompressFormatsModal.astro";
 ---
 
 <section id="features" class="relative z-10 px-6 py-20">
@@ -240,7 +241,27 @@ import Paragraph from "./Paragraph.astro";
         >
           <div class="flex items-start gap-4 mb-6">
             <div>
-              <H3 class="mb-2">Shrink file sizes without visible quality loss</H3>
+              <H3 class="mb-2"
+                >Shrink file sizes without visible quality loss <button
+                  id="open-compress-formats-modal-bento"
+                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
+                  type="button"
+                  aria-label="View supported compression formats"
+                  ><svg
+                    class="w-3.5 h-3.5 text-text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg></button
+                ></H3
+              >
               <Paragraph>
                 Keep the same format, shrink the file size. Perfect for making
                 images web-ready or getting videos small enough to email.
@@ -423,3 +444,5 @@ import Paragraph from "./Paragraph.astro";
     </div>
   </div>
 </section>
+
+<CompressFormatsModal />

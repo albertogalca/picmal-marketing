@@ -1,0 +1,330 @@
+---
+import H2 from "./H2.astro";
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
+
+// Modal component for displaying supported compression formats
+const imageFormats = [
+  // Common formats
+  "JPEG",
+  "JPG",
+  "PNG",
+  "GIF",
+  "BMP",
+  "TIFF",
+  "TIF",
+  "WebP",
+  "HEIC",
+  "HEIF",
+  "AVIF",
+  "ICO",
+  // Modern/Advanced formats
+  "JXL",
+  "JP2",
+  "JPX",
+  "J2K",
+  "QOI",
+  // Professional/Specialized formats
+  "PSD",
+  "TGA",
+  "DDS",
+  "EXR",
+  "OpenEXR",
+  "PCX",
+  "SGI",
+  "RGB",
+  "BW",
+  // Netpbm formats
+  "PBM",
+  "PGM",
+  "PPM",
+  "PNM",
+  // Legacy formats
+  "PICT",
+  "PCT",
+  "QTIF",
+  "QTI",
+  "XBM",
+  "XPM",
+  // Vector/Professional Formats
+  "SVG",
+  "PDF",
+];
+
+const audioFormats = [
+  // Lossy
+  "MP3",
+  "AAC",
+  "M4A",
+  "OGG",
+  "OGA",
+  "Opus",
+  "WMA",
+  "AC3",
+  "MP2",
+  "SPX",
+  // Lossless
+  "FLAC",
+  "WAV",
+  "AIFF",
+  "AIF",
+  "AIFC",
+  "WV",
+  "TTA",
+  "ALAC",
+  // Specialized/Legacy
+  "M4R",
+  "AU",
+  "CAF",
+  "VOC",
+  "DTS",
+  "W64",
+  "SLN",
+  "HCOM",
+  "PAF",
+  "WVE",
+  "NIST",
+  "AVR",
+  "PVF",
+  "IRCAM",
+  "SND",
+];
+
+const videoFormats = [
+  "MP4",
+  "MOV",
+  "AVI",
+  "MKV",
+  "WebM",
+  "M4V",
+  "MPG",
+  "MPEG",
+  "HEVC",
+  "FLV",
+  "WMV",
+  "3GP",
+  "M2TS",
+  "MTS",
+  "VOB",
+  "ASF",
+  "OGV",
+  "WTV",
+  "TS",
+  "MJPEG",
+  "M2V",
+  "F4V",
+  "MXF",
+];
+---
+
+<div
+  id="compress-formats-modal"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="compress-formats-modal-title"
+>
+  <!-- Backdrop -->
+  <div
+    id="compress-formats-modal-backdrop"
+    class="fixed inset-0 bg-background/80 backdrop-blur-md"
+  >
+  </div>
+
+  <!-- Modal Content -->
+  <div
+    class="relative z-10 bg-background border border-border rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+  >
+    <!-- Header -->
+    <div
+      class="flex items-center justify-between bg-background-subtle px-6 py-4 border-b border-border"
+    >
+      <Paragraph id="compress-formats-modal-title" class="font-semibold text-text">
+        Compression supported formats
+      </Paragraph>
+      <button
+        id="compress-formats-modal-close"
+        class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-text/5 transition-colors -mr-1"
+        aria-label="Close modal"
+      >
+        <svg
+          class="w-5 h-5 text-text-secondary"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="px-6 py-6 overflow-y-auto max-h-[calc(90vh-80px)] space-y-8">
+      <!-- Images Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-base">Images</H3>
+            <Paragraph size="small" class="text-xs text-text-secondary"
+              >{imageFormats.length} formats supported</Paragraph
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            imageFormats.map((format) => (
+              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                {format}
+              </span>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Audio Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-base">Audio</H3>
+            <Paragraph size="small" class="text-xs text-text-secondary">{audioFormats.length} formats supported</Paragraph>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            audioFormats.map((format) => (
+              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                {format}
+              </span>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Video Section -->
+      <section>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-10 h-10 rounded-xl bg-text/5 flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-text"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <H3 class="text-sm sm:text-base md:text-base">Video</H3>
+            <Paragraph size="small" class="text-xs text-text-secondary">{videoFormats.length} formats supported</Paragraph>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5">
+          {
+            videoFormats.map((format) => (
+              <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-text/5 text-text-secondary">
+                {format}
+              </span>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCompressFormatsModal() {
+    const modal = document.getElementById("compress-formats-modal");
+    const backdrop = document.getElementById("compress-formats-modal-backdrop");
+    const closeBtn = document.getElementById("compress-formats-modal-close");
+    const openBtnBento = document.getElementById("open-compress-formats-modal-bento");
+
+    function openCompressFormatsModal() {
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeCompressFormatsModal() {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    // Open modal trigger
+    openBtnBento?.addEventListener("click", openCompressFormatsModal);
+
+    // Close on backdrop click
+    backdrop?.addEventListener("click", closeCompressFormatsModal);
+
+    // Close on button click
+    closeBtn?.addEventListener("click", closeCompressFormatsModal);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+        closeCompressFormatsModal();
+      }
+    });
+  }
+
+  // Run on DOMContentLoaded and on Astro page transitions
+  document.addEventListener("DOMContentLoaded", initCompressFormatsModal);
+  document.addEventListener("astro:page-load", initCompressFormatsModal);
+
+  // Also run immediately in case DOM is already loaded
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initCompressFormatsModal();
+  }
+</script>

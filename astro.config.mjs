@@ -24,44 +24,48 @@ export default defineConfig({
           label: "Quick start",
           items: [
             { label: "Introduction", link: "/docs" },
-            { label: "Getting Started", link: "/docs/getting-started" },
+            { label: "Getting started", link: "/docs/getting-started" },
           ],
         },
         {
           label: "Features",
           items: [
-            { label: "Converting Files", link: "/docs/converting-files" },
-            { label: "Compressing Files", link: "/docs/compressing-files" },
-            { label: "Watched Folders", link: "/docs/watched-folders" },
+            { label: "Converting files", link: "/docs/converting-files" },
+            { label: "Compressing files", link: "/docs/compressing-files" },
+            { label: "Watched folders", link: "/docs/watched-folders" },
             { label: "Integrations", link: "/docs/integrations" },
           ],
         },
         {
-          label: "Settings & Formats",
+          label: "Settings and formats",
           items: [
-            { label: "Supported Formats", link: "/docs/supported-formats" },
-            { label: "Image Compression", link: "/docs/image-compression" },
-            { label: "Audio & Video", link: "/docs/audio-and-video" },
-            { label: "Resize & Color Space", link: "/docs/resize-and-color-space" },
-            { label: "Output & Naming", link: "/docs/output-and-naming" },
+            { label: "Supported formats", link: "/docs/supported-formats" },
+            { label: "Image compression", link: "/docs/image-compression" },
+            { label: "Audio and video", link: "/docs/audio-and-video" },
+            {
+              label: "Resize and color space",
+              link: "/docs/resize-and-color-space",
+            },
+            { label: "Output and naming", link: "/docs/output-and-naming" },
           ],
         },
         {
           label: "Help",
           items: [
             { label: "License", link: "/docs/license" },
-            { label: "FAQ & Troubleshooting", link: "/docs/faq" },
+            { label: "FAQ and troubleshooting", link: "/docs/faq" },
           ],
         },
       ],
+      credits: false,
       plugins: [
         starlightThemeBlack({
+          footerText: "",
           navLinks: [
             {
               label: "Docs",
               link: "/getting-started",
             },
-
           ],
         }),
       ],

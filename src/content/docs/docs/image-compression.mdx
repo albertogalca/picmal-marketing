@@ -1,53 +1,53 @@
 ---
-title: Image Compression
+title: Image compression
 ---
 
-## Presets vs Custom
+## Presets vs custom
 
 Picmal ships with six built-in presets that apply sensible quality settings across all image formats. Pick **Custom** if you want full control over the quality slider for each format.
 
-See [Compressing Files](/docs/compressing-files) for the presets table.
+See [compressing files](/docs/compressing-files) for the presets table.
 
-## Lossy Formats (Quality 0–100)
+## Lossy formats (Quality 0–100)
 
 These formats use a quality percentage where **higher = better quality, larger file**.
 
-| Format | Range | Default | Notes |
-|--------|-------|---------|-------|
-| JPEG | 0–100 | 85 | Most common. 80–90 is usually the sweet spot |
-| WebP | 0–100 | 85 | Excellent compression, modern browsers |
-| HEIC | 0–100 | 85 | Apple ecosystem, great compression |
-| AVIF | 0–100 | 85 | Next-gen, best compression ratios |
-| TIFF | 0–100 | 85 | Archival/print use |
-| PDF | 0–100 | 85 | Image-in-PDF quality |
-| JP2 | 0–100 | 85 | JPEG 2000 |
-| JXL | 0–100 | 85 | JPEG XL |
-| EXR | 0–100 | 85 | HDR imagery |
-| PSD | 0–100 | 85 | Photoshop files |
-| BMP | 0–100 | 85 | Bitmap |
-| TGA | 0–100 | 85 | Targa |
-| DDS | 0–100 | 85 | DirectDraw Surface |
-| SGI | 0–100 | 85 | Silicon Graphics |
-| QOI | 0–100 | 85 | Quite OK Image |
+| Format | Range | Default | Notes                                        |
+| ------ | ----- | ------- | -------------------------------------------- |
+| JPEG   | 0–100 | 85      | Most common. 80–90 is usually the sweet spot |
+| WebP   | 0–100 | 85      | Excellent compression, modern browsers       |
+| HEIC   | 0–100 | 85      | Apple ecosystem, great compression           |
+| AVIF   | 0–100 | 85      | Next-gen, best compression ratios            |
+| TIFF   | 0–100 | 85      | Archival/print use                           |
+| PDF    | 0–100 | 85      | Image-in-PDF quality                         |
+| JP2    | 0–100 | 85      | JPEG 2000                                    |
+| JXL    | 0–100 | 85      | JPEG XL                                      |
+| EXR    | 0–100 | 85      | HDR imagery                                  |
+| PSD    | 0–100 | 85      | Photoshop files                              |
+| BMP    | 0–100 | 85      | Bitmap                                       |
+| TGA    | 0–100 | 85      | Targa                                        |
+| DDS    | 0–100 | 85      | DirectDraw Surface                           |
+| SGI    | 0–100 | 85      | Silicon Graphics                             |
+| QOI    | 0–100 | 85      | Quite OK Image                               |
 
-## Level-Based Formats (1–9)
+## Level-based formats (1–9)
 
 These formats use a compression level where **higher = more compression, smaller file** (but processing takes longer).
 
-| Format | Range | Default | Notes |
-|--------|-------|---------|-------|
-| PNG | 1–9 | 9 | Lossless — level affects compression effort, not quality |
-| GIF | 1–9 | 7 | Higher levels mean more aggressive optimization |
-| SVG | 1–9 | 7 | Optimization level for SVG cleanup |
+| Format | Range | Default | Notes                                                    |
+| ------ | ----- | ------- | -------------------------------------------------------- |
+| PNG    | 1–9   | 9       | Lossless — level affects compression effort, not quality |
+| GIF    | 1–9   | 7       | Higher levels mean more aggressive optimization          |
+| SVG    | 1–9   | 7       | Optimization level for SVG cleanup                       |
 
-## Quick Guide: What Preset Should I Use?
+## Quick Guide: What preset should I use?
 
-| Use Case | Recommended Preset |
-|----------|-------------------|
-| Archiving photos, printing | Maximum quality |
-| Portfolio website, client delivery | High quality |
-| Blog posts, documentation | Balanced |
-| Landing pages, e-commerce | Web optimized |
-| Social media posts | Social media |
+| Use Case                             | Recommended Preset  |
+| ------------------------------------ | ------------------- |
+| Archiving photos, printing           | Maximum quality     |
+| Portfolio website, client delivery   | High quality        |
+| Blog posts, documentation            | Balanced            |
+| Landing pages, e-commerce            | Web optimized       |
+| Social media posts                   | Social media        |
 | Email attachments, bandwidth-limited | Maximum compression |
-| Specific needs | Custom |
+| Specific needs                       | Custom              |

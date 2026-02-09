@@ -4,18 +4,20 @@ title: Converting Files
 
 Convert mode changes a file from one format to another. For example, HEIC to JPEG, WAV to MP3, or MOV to MP4.
 
-## How to Use
+## How to use
 
 1. Make sure you're on the **Convert** tab
 2. Drop files into the window or click **Add Files**
 3. Select the output format
 4. Click **Convert**
 
-## Optional Compression During Conversion
+## Optional compression during conversion
 
-You can apply compression as part of the conversion. Adjust the quality slider or pick a preset before converting. This lets you change format and reduce file size in one step.
+You can apply compression as part of the conversion. Enable **Compress output in convert mode** in Settings, then adjust the quality slider or pick a preset before converting. This lets you change format and reduce file size in one step.
 
-## Format Compatibility
+![Compress output in convert mode setting](/images/docs/compress_after_convert.png)
+
+## Format compatibility
 
 Picmal converts within the same media type:
 
@@ -23,16 +25,16 @@ Picmal converts within the same media type:
 - **Audio → Audio** (e.g., WAV → MP3, FLAC → AAC)
 - **Video → Video** (e.g., MOV → MP4, AVI → WebM)
 
-You can't convert across types (e.g., image to audio).
+You can also extract audio from video — for example, MP4 to MP3.
 
-## Metadata Control
+## Metadata control
 
 Choose how metadata is handled during conversion:
 
-| Mode | What It Does |
-|------|-------------|
-| Strip all | Removes all metadata for smallest file size |
+| Mode           | What It Does                                        |
+| -------------- | --------------------------------------------------- |
+| Strip all      | Removes all metadata for smallest file size         |
 | Keep essential | Preserves orientation, color profile, and copyright |
-| Keep all | Preserves all original metadata |
+| Keep all       | Preserves all original metadata                     |
 
-See [Supported Formats](/docs/supported-formats) for the full list of input and output formats.
+See [Supported formats](/docs/supported-formats) for the full list of input and output formats.

@@ -1,54 +1,54 @@
 ---
-title: Audio & Video
+title: Audio and video
 ---
 
-## Audio Compression
+## Audio compression
 
 ### Codecs
 
-| Codec | Type | Best For |
-|-------|------|----------|
-| AAC | Lossy | General music and audio — widest compatibility |
-| MP3 | Lossy | Legacy compatibility |
-| Opus | Lossy | Speech, podcasts, low-bitrate audio |
-| FLAC | Lossless | Archival, music production |
+| Codec | Type     | Best For                                       |
+| ----- | -------- | ---------------------------------------------- |
+| AAC   | Lossy    | General music and audio — widest compatibility |
+| MP3   | Lossy    | Legacy compatibility                           |
+| Opus  | Lossy    | Speech, podcasts, low-bitrate audio            |
+| FLAC  | Lossless | Archival, music production                     |
 
-### Bitrate Modes
+### Bitrate modes
 
-| Mode | Description |
-|------|-------------|
+| Mode           | Description                                                         |
+| -------------- | ------------------------------------------------------------------- |
 | VBR (Variable) | Allocates more bits to complex passages. Best quality per file size |
-| ABR (Average) | Targets an average bitrate. Good balance |
-| CBR (Constant) | Fixed bitrate throughout. Predictable file size |
+| ABR (Average)  | Targets an average bitrate. Good balance                            |
+| CBR (Constant) | Fixed bitrate throughout. Predictable file size                     |
 
-### Force Mono
+### Force mono
 
-Enable **Force Mono** to mix stereo audio down to a single channel. Useful for voice recordings and podcasts where stereo isn't needed — cuts file size roughly in half.
+Enable **force mono** to mix stereo audio down to a single channel. Useful for voice recordings and podcasts where stereo isn't needed — cuts file size roughly in half.
 
-### Audio Presets
+### Audio presets
 
-See [Compressing Files](/docs/compressing-files#audio-presets) for the full presets table.
+See [compressing files](/docs/compressing-files#audio-presets) for the full presets table.
 
-## Video Compression
+## Video compression
 
 ### Codecs
 
-| Codec | Compatibility | Compression | Notes |
-|-------|--------------|-------------|-------|
-| H.264 | Excellent | Good | Plays everywhere — web, mobile, desktop |
-| H.265 (HEVC) | Good | Better | ~50% smaller than H.264 at same quality |
-| VP9 | Good | Better | Google's codec, great for WebM |
-| AV1 | Growing | Best | Newest, best compression, slowest to encode |
+| Codec        | Compatibility | Compression | Notes                                       |
+| ------------ | ------------- | ----------- | ------------------------------------------- |
+| H.264        | Excellent     | Good        | Plays everywhere — web, mobile, desktop     |
+| H.265 (HEVC) | Good          | Better      | ~50% smaller than H.264 at same quality     |
+| VP9          | Good          | Better      | Google's codec, great for WebM              |
+| AV1          | Growing       | Best        | Newest, best compression, slowest to encode |
 
-### Encoding Speed
+### Encoding speed
 
-| Speed | Encode Time | File Size | Quality |
-|-------|------------|-----------|---------|
-| Ultrafast | Fastest | Largest | Lowest |
-| Fast | Fast | Larger | Lower |
-| Medium | Moderate | Balanced | Good |
-| Slow | Slow | Smaller | Better |
-| Slower | Slowest | Smallest | Best |
+| Speed     | Encode Time | File Size | Quality |
+| --------- | ----------- | --------- | ------- |
+| Ultrafast | Fastest     | Largest   | Lowest  |
+| Fast      | Fast        | Larger    | Lower   |
+| Medium    | Moderate    | Balanced  | Good    |
+| Slow      | Slow        | Smaller   | Better  |
+| Slower    | Slowest     | Smallest  | Best    |
 
 Slower speeds give the encoder more time to find efficient compression. For most uses, **Medium** is a good default.
 
@@ -56,14 +56,14 @@ Slower speeds give the encoder more time to find efficient compression. For most
 
 CRF controls quality on a 0–51 scale. **Lower = better quality, larger file.**
 
-| CRF Range | Quality Level |
-|-----------|--------------|
-| 18–20 | Visually lossless / archival |
-| 21–23 | High quality, good file size |
-| 24–26 | Balanced |
-| 27–28 | Noticeable compression, small files |
-| 29+ | Heavy compression |
+| CRF Range | Quality Level                       |
+| --------- | ----------------------------------- |
+| 18–20     | Visually lossless / archival        |
+| 21–23     | High quality, good file size        |
+| 24–26     | Balanced                            |
+| 27–28     | Noticeable compression, small files |
+| 29+       | Heavy compression                   |
 
-### Video Presets
+### Video presets
 
-See [Compressing Files](/docs/compressing-files#video-presets) for the full presets table.
+See [compressing files](/docs/compressing-files#video-presets) for the full presets table.

@@ -1,43 +1,43 @@
 ---
-title: Resize & Color Space
+title: Resize and color space
 ---
 
-## Image Resize
+## Image resize
 
 Enable resizing in the conversion settings to change image dimensions. Five modes are available:
 
-| Mode | What It Does | Default |
-|------|-------------|---------|
-| Percentage | Scale by a percentage of the original size | 50% |
-| Fixed Width | Set a specific width; height adjusts to maintain aspect ratio | 1920 px |
-| Fixed Height | Set a specific height; width adjusts to maintain aspect ratio | 1080 px |
-| Max Dimensions | Constrain to maximum width and height — image is scaled down only if it exceeds either limit | 1920 x 1080 px |
-| Exact Dimensions | Resize to an exact width and height | 1920 x 1080 px |
+| Mode             | What It Does                                                                                 | Default        |
+| ---------------- | -------------------------------------------------------------------------------------------- | -------------- |
+| Percentage       | Scale by a percentage of the original size                                                   | 50%            |
+| Fixed Width      | Set a specific width; height adjusts to maintain aspect ratio                                | 1920 px        |
+| Fixed Height     | Set a specific height; width adjusts to maintain aspect ratio                                | 1080 px        |
+| Max Dimensions   | Constrain to maximum width and height — image is scaled down only if it exceeds either limit | 1920 x 1080 px |
+| Exact Dimensions | Resize to an exact width and height                                                          | 1920 x 1080 px |
 
-### Aspect Ratio
+### Aspect ratio
 
 By default, Picmal preserves the original aspect ratio. In **Exact Dimensions** mode you can choose to stretch the image to fill the exact size instead.
 
-## Color Space
+## Color space
 
 Convert images between color spaces during processing. Useful when preparing images for different output targets.
 
-| Color Space | Best For |
-|-------------|----------|
-| sRGB | Web, email, general screen use (standard) |
-| Display P3 | Apple devices, wide-gamut displays |
-| Adobe RGB (1998) | Professional print workflows |
-| ProPhoto RGB | Professional photography, maximum color range |
-| Rec. 709 | HD video and broadcast |
-| Rec. 2020 | 4K / HDR video |
+| Color Space      | Best For                                      |
+| ---------------- | --------------------------------------------- |
+| sRGB             | Web, email, general screen use (standard)     |
+| Display P3       | Apple devices, wide-gamut displays            |
+| Adobe RGB (1998) | Professional print workflows                  |
+| ProPhoto RGB     | Professional photography, maximum color range |
+| Rec. 709         | HD video and broadcast                        |
+| Rec. 2020        | 4K / HDR video                                |
 
 Leave this off if you're unsure — sRGB is the safe default for most uses.
 
 ## Orientation
 
-| Mode | What It Does |
-|------|-------------|
+| Mode     | What It Does                                                                                  |
+| -------- | --------------------------------------------------------------------------------------------- |
 | Auto-fix | Physically rotates pixels and removes the orientation tag. The image looks correct everywhere |
-| Keep tag | Preserves the original orientation tag in metadata. Some apps may not read it correctly |
+| Keep tag | Preserves the original orientation tag in metadata. Some apps may not read it correctly       |
 
 **Auto-fix** is recommended if you're sharing images on the web or with apps that might ignore EXIF orientation.

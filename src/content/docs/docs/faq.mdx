@@ -1,0 +1,43 @@
+---
+title: FAQ & Troubleshooting
+---
+
+## Does Picmal send my files anywhere?
+
+No. Everything happens locally on your Mac. No files are uploaded, no internet is required for processing. The only network call is license activation.
+
+## Why is my file larger after compression?
+
+The file was likely already highly optimized. Re-compressing an already-compressed file can sometimes increase size due to encoding overhead. Try a more aggressive preset, or skip files that are already small.
+
+## EPS or AI files aren't converting?
+
+Picmal uses a bundled Ghostscript engine to handle EPS and AI files — no extra software needed. Make sure the file is a valid EPS or AI document. Some AI files saved in PDF-compatible mode work better.
+
+## Can I undo a conversion?
+
+Your original files are never modified. Converted and compressed files are saved as new files alongside the originals (unless you've enabled overwrite or delete-originals in watched folder settings).
+
+## How do I process files automatically?
+
+Use [Watched Folders](/docs/watched-folders). Set up a folder, configure your preferred settings, and any file added to that folder is processed automatically.
+
+For more control, use [Shortcuts](/docs/integrations#shortcuts-app) to build custom automations.
+
+## My license isn't working on a new Mac
+
+You need to deactivate the license on your old Mac first. Open **Settings** → **License** → **Deactivate** on the old machine, then activate on the new one.
+
+If you no longer have access to the old Mac, contact support.
+
+## What formats are input-only?
+
+RAW camera formats (ARW, CR2, DNG, NEF, RAF) and vector formats (AI, EPS) can be read and converted to other formats, but Picmal cannot write to them. See [Supported Formats](/docs/supported-formats#input-only-formats) for the full list.
+
+## Can I process multiple files at once?
+
+Yes. Drop multiple files or entire folders into Picmal. Batch processing works in both Convert and Compress modes, as well as in Watched Folders.
+
+## Does Picmal require Homebrew or other dependencies?
+
+No. Picmal is fully self-contained. All processing tools are bundled with the app.

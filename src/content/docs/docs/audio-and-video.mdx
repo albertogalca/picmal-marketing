@@ -1,0 +1,69 @@
+---
+title: Audio & Video
+---
+
+## Audio Compression
+
+### Codecs
+
+| Codec | Type | Best For |
+|-------|------|----------|
+| AAC | Lossy | General music and audio — widest compatibility |
+| MP3 | Lossy | Legacy compatibility |
+| Opus | Lossy | Speech, podcasts, low-bitrate audio |
+| FLAC | Lossless | Archival, music production |
+
+### Bitrate Modes
+
+| Mode | Description |
+|------|-------------|
+| VBR (Variable) | Allocates more bits to complex passages. Best quality per file size |
+| ABR (Average) | Targets an average bitrate. Good balance |
+| CBR (Constant) | Fixed bitrate throughout. Predictable file size |
+
+### Force Mono
+
+Enable **Force Mono** to mix stereo audio down to a single channel. Useful for voice recordings and podcasts where stereo isn't needed — cuts file size roughly in half.
+
+### Audio Presets
+
+See [Compressing Files](/docs/compressing-files#audio-presets) for the full presets table.
+
+## Video Compression
+
+### Codecs
+
+| Codec | Compatibility | Compression | Notes |
+|-------|--------------|-------------|-------|
+| H.264 | Excellent | Good | Plays everywhere — web, mobile, desktop |
+| H.265 (HEVC) | Good | Better | ~50% smaller than H.264 at same quality |
+| VP9 | Good | Better | Google's codec, great for WebM |
+| AV1 | Growing | Best | Newest, best compression, slowest to encode |
+
+### Encoding Speed
+
+| Speed | Encode Time | File Size | Quality |
+|-------|------------|-----------|---------|
+| Ultrafast | Fastest | Largest | Lowest |
+| Fast | Fast | Larger | Lower |
+| Medium | Moderate | Balanced | Good |
+| Slow | Slow | Smaller | Better |
+| Slower | Slowest | Smallest | Best |
+
+Slower speeds give the encoder more time to find efficient compression. For most uses, **Medium** is a good default.
+
+### CRF (Constant Rate Factor)
+
+CRF controls quality on a 0–51 scale. **Lower = better quality, larger file.**
+
+| CRF Range | Quality Level |
+|-----------|--------------|
+| 18–20 | Visually lossless / archival |
+| 21–23 | High quality, good file size |
+| 24–26 | Balanced |
+| 27–28 | Noticeable compression, small files |
+| 29+ | Heavy compression |
+
+### Video Presets
+
+See [Compressing Files](/docs/compressing-files#video-presets) for the full presets table.

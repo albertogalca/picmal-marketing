@@ -1,0 +1,67 @@
+---
+title: Watched Folders
+---
+
+Watched Folders let Picmal automatically process files as they appear in specific folders. Drop a file into a watched folder, and Picmal converts or compresses it without any manual steps.
+
+## Setup
+
+1. Open **Settings** → **Watched Folders**
+2. Click **Add Folder** and select a folder
+3. Configure the folder's processing settings
+4. New files added to that folder are processed automatically
+
+## Per-Folder Configuration
+
+Each watched folder has its own settings:
+
+### Processing Mode
+
+- **Convert** — Convert files to a specific format
+- **Compress** — Compress files in their original format
+
+### Output Destination
+
+| Option | Description |
+|--------|-------------|
+| Same folder | Save processed files alongside originals |
+| Output subfolder | Save into a "Processed" subfolder |
+| Custom location | Save to a folder you choose |
+
+### File Type Filter
+
+Choose which types of files to process:
+
+- Images
+- Audio
+- Video
+
+### Presets
+
+Pick image, audio, and video compression presets independently for each watched folder.
+
+### Naming
+
+Set a prefix and/or suffix for output files.
+
+### Additional Options
+
+| Option | Description |
+|--------|-------------|
+| Process subfolders | Also watch files in subdirectories |
+| Delete originals | Remove source files after processing |
+| Process existing files | Process files already in the folder when you add it |
+| Min file size | Skip files smaller than this (KB) |
+| Max file size | Skip files larger than this (MB) |
+| Remove metadata | Strip metadata from processed files |
+
+## Requirements
+
+- **Keep in Menu Bar** must be enabled in Settings for watched folders to work in the background
+- Pair with **Start at Login** for always-on automatic processing
+
+## Tips
+
+- Use watched folders with your Downloads folder to auto-compress screenshots and photos
+- Set up a "web export" folder that converts everything to WebP
+- Combine with cloud sync folders (iCloud, Dropbox) for automatic optimization

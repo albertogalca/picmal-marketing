@@ -57,6 +57,15 @@ export default defineConfig({
           ],
         },
       ],
+      head: [
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "https://picmal.app/og.png",
+          },
+        },
+      ],
       credits: false,
       plugins: [
         starlightThemeBlack({

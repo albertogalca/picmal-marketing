@@ -11,7 +11,6 @@ const currentPage = Astro.url.pathname;
   class="fixed left-0 right-0 z-30 text-sm transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
   style="top: 0;"
 >
-  <!-- Skip to main content link for accessibility -->
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
@@ -79,6 +78,16 @@ const currentPage = Astro.url.pathname;
           }`}
         >
           Blog
+        </a>
+               <a
+          href="/docs"
+          class={`text-sm transition-colors cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+            currentPage.startsWith("/docs")
+              ? "text-accent"
+              : "text-text-secondary hover:text-text-secondary"
+          }`}
+        >
+          Docs
         </a>
       </div>
 
@@ -239,7 +248,7 @@ const currentPage = Astro.url.pathname;
             <span class="text-sm text-text">Blog</span>
           </a>
 
-          <!-- <a
+          <a
             href="/docs"
             class="flex items-start gap-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent transition-colors"
           >
@@ -257,7 +266,7 @@ const currentPage = Astro.url.pathname;
               ></path>
             </svg>
             <span class="text-sm text-text">Docs</span>
-          </a> -->
+          </a>
         </div>
       </div>
     </div>
@@ -273,10 +282,8 @@ const currentPage = Astro.url.pathname;
           const isExpanded =
             mobileMenuButton.getAttribute("aria-expanded") === "true";
 
-          // Toggle aria-expanded
           mobileMenuButton.setAttribute("aria-expanded", String(!isExpanded));
 
-          // Toggle menu visibility
           if (isExpanded) {
             mobileMenu.classList.add("hidden");
           } else {
@@ -284,7 +291,6 @@ const currentPage = Astro.url.pathname;
           }
         });
 
-        // Close menu when clicking on a link
         const mobileMenuLinks = mobileMenu.querySelectorAll("a");
         mobileMenuLinks.forEach((link) => {
           link.addEventListener("click", () => {

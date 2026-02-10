@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.3.7</title>
+            <pubDate>Tue, 10 Feb 2026 11:29:26 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>53</sparkle:version>
+            <sparkle:shortVersionString>1.3.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.7/Picmal.dmg" length="115888353" type="application/octet-stream" sparkle:edSignature="zTv1klzr9oXwAZjaKXG+6M/tL903MkW++gESbDrLHgbig88ip8l/eeD9DEIabfeR3QYfkeIPInJe4yHIt3v/Ag=="/>
+        <description><![CDATA[<div><ul><li>Minor fixes.</li>
+<li>Improved licence handling.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.3.6</title>
             <pubDate>Mon, 02 Feb 2026 13:01:41 +0100</pubDate>
             <link>https://picmal.app/</link>

@@ -1,0 +1,150 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import H1 from "../components/H1.astro";
+import Paragraph from "../components/Paragraph.astro";
+import { SITE_TITLE } from "../consts";
+import { getCollection, render } from "astro:content";
+import "../styles/global.css";
+
+const entries = await getCollection("changelog");
+
+// Sort by pubDate desc, fallback to version string comparison
+entries.sort((a, b) => {
+  if (a.data.pubDate && b.data.pubDate) {
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  }
+  if (a.data.pubDate) return -1;
+  if (b.data.pubDate) return 1;
+  return b.data.version.localeCompare(a.data.version, undefined, {
+    numeric: true,
+  });
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Changelog - ${SITE_TITLE}`}
+      description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
+    />
+  </head>
+  <body class="bg-background text-text min-h-dvh">
+    <Header />
+
+    <main class="relative z-10 pt-32 pb-20">
+      <div class="text-center mb-16 px-6">
+        <H1 class="mb-4">Changelog</H1>
+        <Paragraph class="max-w-2xl mx-auto">
+          Latest updates, new features, and improvements to Picmal.
+        </Paragraph>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6 mb-16">
+        <div
+          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
+        >
+          <Paragraph class="mb-0 flex-1">
+            As an indie developer, Picmal grows through word of mouth. A review
+            only takes a minute and makes a huge difference.
+          </Paragraph>
+          <a
+            href="https://tally.so/r/Me18qE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-sm rounded-lg transition-all duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+          >
+            Leave a Review
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-6 pb-20">
+        {
+          entries.map(async (entry) => {
+            const { Content } = await render(entry);
+            const downloadUrl = `https://github.com/albertogalca/picmal-releases/releases/download/v${entry.data.version}/Picmal.dmg`;
+            const hasDownload = entry.data.version.localeCompare("1.2.8", undefined, { numeric: true }) >= 0;
+
+            return (
+              <article class="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0">
+                {/* Left: sticky metadata */}
+                <div class="md:w-[220px] lg:w-[260px] shrink-0 md:sticky md:top-28 md:self-start">
+                  {entry.data.pubDate && (
+                    <div class="text-sm text-text-secondary mb-2">
+                      <FormattedDate date={entry.data.pubDate} />
+                    </div>
+                  )}
+                  <span class="inline-block text-xs font-mono px-2 py-1 rounded-md bg-accent/10 text-accent">
+                    v{entry.data.version}
+                  </span>
+                  {hasDownload && (
+                    <a
+                      href={downloadUrl}
+                      class="flex items-center gap-1.5 text-sm text-text-secondary mt-3 transition-colors duration-150 hover:text-text"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Download
+                    </a>
+                  )}
+                </div>
+
+                {/* Right: title + MDX content */}
+                <div class="flex-1">
+                  {entry.data.title && (
+                    <h2 class="text-xl font-semibold text-text mb-4">{entry.data.title}</h2>
+                  )}
+                  <div class="prose max-w-none
+                    prose-headings:text-text prose-headings:font-semibold
+                    prose-p:text-text/65 prose-p:leading-relaxed
+                    prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
+                    prose-strong:text-text
+                    prose-ul:text-text/65
+                    prose-ol:text-text/65
+                    prose-li:text-text/65">
+                    <Content />
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

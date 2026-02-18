@@ -1,0 +1,9 @@
+---
+version: "1.3.4"
+title: "Stability fix for corrupted files"
+pubDate: 2026-01-19
+---
+
+Fixed an issue where Picmal could become unresponsive when processing complex or corrupted files. The app now handles these gracefully and moves on to the next file in the queue.
+
+Sentry error reporting has been improved to capture more context around failures, which helps us diagnose and ship fixes faster. Other minor stability improvements are included.

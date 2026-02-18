@@ -1,0 +1,77 @@
+---
+title: Clipboard optimization
+---
+
+Clipboard optimization lets Picmal automatically compress images you copy to the clipboard. Copy a screenshot, an image from a browser, or a file in Finder — Picmal optimizes it in the background and shows a small overlay so you can instantly copy the lighter version.
+
+<video src="/images/changelog/1.3.8/clipboard_demo.mp4" autoplay loop muted playsinline />
+
+## Setup
+
+1. Open **Settings**
+2. Enable **Optimize clipboard images** (under the Images tab)
+3. Every image you copy is now automatically compressed in the background
+
+## How it works
+
+When you copy an image, Picmal detects it, compresses it using your current quality settings, and shows a floating overlay near the bottom-right corner of your screen.
+
+The overlay shows:
+
+- A **thumbnail** of the image
+- The **original and compressed size** with the savings percentage
+- A **Copy** button (appears on hover) to replace your clipboard with the optimized version
+
+If the image is already as small as it can get, the overlay shows "Already optimized" instead.
+
+After you click **Copy**, a brief "Copied" confirmation appears and the overlay dismisses automatically.
+
+## What gets detected
+
+Picmal picks up images from two sources:
+
+- **Screenshots and app copies** — taking a screenshot, copying an image from a browser, Preview, Photoshop, or any other app
+- **Files copied in Finder** — selecting an image file and pressing **Cmd+C**
+
+Non-image content like text, PDFs, and documents is ignored.
+
+## Supported formats
+
+| Format                   | Detected from                  |
+| ------------------------ | ------------------------------ |
+| PNG                      | Screenshots, app copies, files |
+| JPEG                     | App copies, files              |
+| TIFF                     | App copies, files              |
+| HEIC                     | App copies, files              |
+| WebP                     | App copies, files              |
+| GIF                      | App copies, files              |
+| AVIF, BMP, JP2, JXL, SVG | Files only                     |
+
+## Quality settings
+
+Clipboard optimization uses the same compression settings you configure in Picmal's preferences — the same quality sliders that apply to regular compression. There are no separate settings for clipboard; adjusting your JPEG quality, PNG compression level, etc. applies everywhere.
+
+## Overlay behavior
+
+- The overlay floats above all windows without stealing focus from your current app
+- Multiple overlays stack vertically if you copy several images in quick succession
+- Hover over an overlay to reveal the **Copy** button and a dismiss (**X**) button
+- Overlays can be dragged to reposition them
+
+## Pasting the optimized image
+
+When you click **Copy**, Picmal writes the optimized image to your clipboard in a way that works everywhere:
+
+- **Paste into apps** (Slack, Mail, Notes, etc.) — pastes the compressed image directly
+- **Paste into Finder** — pastes the compressed file
+
+## Requirements
+
+- A valid Picmal license
+- **Keep in menu bar** does not need to be enabled — clipboard optimization works as long as Picmal is running
+
+## Tips
+
+- Use clipboard optimization to shrink screenshots before pasting into Slack, email, or issue trackers
+- Pair with **Start at login** so Picmal is always ready to optimize your copies
+- If you don't need it temporarily, toggle it off in Settings — the feature has no impact when disabled

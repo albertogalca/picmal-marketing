@@ -33,6 +33,10 @@ export default defineConfig({
             { label: "Converting files", link: "/docs/converting-files" },
             { label: "Compressing files", link: "/docs/compressing-files" },
             { label: "Watched folders", link: "/docs/watched-folders" },
+            {
+              label: "Clipboard optimization",
+              link: "/docs/clipboard-optimization",
+            },
             { label: "Integrations", link: "/docs/integrations" },
           ],
         },

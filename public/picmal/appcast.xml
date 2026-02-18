@@ -3,6 +3,18 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.3.8</title>
+            <pubDate>Wed, 18 Feb 2026 12:39:02 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>54</sparkle:version>
+            <sparkle:shortVersionString>1.3.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.8/Picmal.dmg" length="116587582" type="application/octet-stream" sparkle:edSignature="0xyZ+rbIx96lsk+5uJ4HxUNu/drkCqD8men7iGm+5rS0AaTyqQToOBMY29J0qB+tCT+8PdWGIGw8AUt6rB+nCA=="/>
+        <description><![CDATA[<div><ul><li>Improved WebP to GIF conversion. Animated WebP files now preserve all animation frames, and static WebP files convert reliably without errors.</li>
+<li>New clipboard image optimization feature. Images copied to your clipboard are automatically compressed, and a compact overlay lets you quickly copy the optimized version.</li>
+<li>You can now set the DPI resolution metadata on output images (72, 96, 144, 150, 300, 600 or custom) for print and display workflows — no resizing, just the metadata tag.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.3.7</title>
             <pubDate>Tue, 10 Feb 2026 11:29:26 +0100</pubDate>
             <link>https://picmal.app/</link>

@@ -82,7 +82,7 @@ entries.sort((a, b) => {
           entries.map(async (entry) => {
             const { Content } = await render(entry);
             const downloadUrl = `https://github.com/albertogalca/picmal-releases/releases/download/v${entry.data.version}/Picmal.dmg`;
-            const hasDownload = entry.data.version.localeCompare("1.2.8", undefined, { numeric: true }) >= 0;
+            const hasDownload = entry.data.version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0;
 
             return (
               <article class="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0">

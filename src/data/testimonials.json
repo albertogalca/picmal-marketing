@@ -88,5 +88,19 @@
     "email": "boniz.ale@gmail.com",
     "content": "I f* love this app. Just so you know. Keep building!",
     "date": "Feb 18, 2026"
+  },
+  {
+    "id": 13,
+    "name": "Charles Willson",
+    "email": "charles.willson@gmail.com",
+    "content": "I like the interface. I like the batch processing. I like the fact in the I can set default conversions. I like your program a lot.",
+    "date": "Feb 21, 2026"
+  },
+  {
+    "id": 14,
+    "name": "Yiannis",
+    "email": "porcupine@porcupine.gr",
+    "content": "I like the quality of the image processing. It also supports all the important image files. But it still needs some work regarding both the UI and the UX design of it.",
+    "date": "Feb 21, 2026"
   }
 ]

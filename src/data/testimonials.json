@@ -102,5 +102,12 @@
     "email": "porcupine@porcupine.gr",
     "content": "I like the quality of the image processing. It also supports all the important image files. But it still needs some work regarding both the UI and the UX design of it.",
     "date": "Feb 21, 2026"
+  },
+  {
+    "id": 15,
+    "name": "George",
+    "email": "gzagas@gmail.com",
+    "content": "I love how Picmal's made compressing videos a frictionless, easy and straightforward.",
+    "date": "Feb 22, 2026"
   }
 ]

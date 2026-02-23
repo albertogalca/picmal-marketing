@@ -1,0 +1,75 @@
+---
+title: "Everything I found while researching license managers for my Mac app"
+description: "A practical comparison of license management tools for indie Mac developers: Lemon Squeezy, Creem, Polar, LicenseSeat, Amore, and Keygen. Includes the key distinction between purchase-linked and standalone licenses."
+pubDate: "2026-02-23"
+category: "Guide"
+---
+
+A few months ago I chose Lemon Squeezy for <a href="https://picmal.app" target="_blank">Picmal</a> because it offered two things at once: payments and license management, with affiliate support included.
+
+But after using it for a few months, I ran into two real problems:
+
+- The checkout process is unreliable. I've seen developers who switched to Stripe improve their conversion rate just by making that change.
+- Each licence is linked to a customer and a purchase. That works fine for direct sales, but it breaks down with platforms like TheAppSquad, which buy a batch of licences in advance and handle their own sales.
+
+So I looked for alternatives. I spoke to the founder of Creem, emailed Polar, and spent a few evenings going through options. Here's what I found.
+
+## A distinction that matters first
+
+Most licence tools work in one of two ways:
+
+**Licenses that are ready to be purchased** — created after a purchase, always linked to the customer. This is how most platforms usually work.
+
+**Standalone licenses** are generated independently and are not linked to any specific purchase. This is a must if you want to work with resellers.
+
+If you're only doing direct sales, you'll never reach this point. But if you ever want to expand how you distribute your work, this distinction becomes very important.
+
+---
+
+## The tools
+
+### <a href="https://lemonsqueezy.com" target="_blank">Lemon Squeezy</a>
+
+The all-in-one option is the one most indie developers go for first. Everything you need to manage payments, licences and affiliates is in one place. It deals with VAT as a Merchant of Record, which is important if you're selling worldwide.
+
+The problems I had were that the checkout didn't always work properly, which meant I lost sales, and I couldn't get standalone licenses without buying something. If you need licensing that is suitable for resellers, this won't work for you.
+
+This is best for:
+
+- direct sales
+- simple products
+- getting started quickly
+
+### <a href="https://creem.io" target="_blank">Creem</a>
+
+I spoke to the person who started the company. It's reliable, and it's easy to sign up. It works in a similar way to the Lemon Squeezy, but costs less.
+
+### <a href="https://polar.sh" target="_blank">Polar.sh</a>
+
+It is developed with the developer in mind and is open-source friendly. It was a nice, clean experience. We've got the same problem though – the licenses are linked to purchases, and they've confirmed that they're not planning to change this.
+
+### <a href="https://licenseseat.com" target="_blank">LicenseSeat</a>
+
+This one is different. It's just a tool for creating licenses, and it costs a monthly fee. It lets you make your own licenses, which is exactly what I needed for the reseller use case. It works with Stripe, so you can link payments without having to start from scratch.
+
+This is perfect for anyone who needs to give out licenses through other companies or for those who want to separate licensing from payments.
+
+### <a href="https://amore.computer" target="_blank">Amore</a>
+
+Lucas is the developer behind Amore. I know him, and he's really serious about solving the problem of getting Mac apps that aren't from the App Store without all the usual hassle. So it's a really good choice.
+
+It puts Sparkle (the main way to update macOS) into a simple interface. You can drag and drop your app, write release notes, and publish. It also automatically creates DMG, supports beta channels, phased rollouts, and signing — all in one place. There's even a command-line interface (CLI) if you want to automate releases or integrate with continuous integration/continuous delivery (CI/CD).
+
+Payments and licences are on the roadmap, built on Stripe. This is worth keeping an eye on if you want everything in one place for Mac distribution.
+
+### <a href="https://keygen.sh" target="_blank">Keygen.sh</a>
+
+It's powerful and flexible. You can use it in different ways, like with floating licenses, node-locked, offline validation and complex entitlement models. If you're creating something for businesses or teams, it's worth checking out. You can also self-host, which is a good option.
+
+For a simple indie product, it's probably more than you need.
+
+---
+
+None of these tools solve the reseller case in a single, easy-to-understand place. If you're into direct sales, Creem is definitely an upgrade from Lemon Squeezy. If you want a standalone licence, the only real option is LicenseSeat. Amore is the one to watch if you want everything to be put together for Mac distribution in the future.
+
+I hope this helps you understand the options and helps you decide which one to choose.

@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.3.9</title>
+            <pubDate>Thu, 26 Feb 2026 14:43:14 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>55</sparkle:version>
+            <sparkle:shortVersionString>1.3.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.9/Picmal.dmg" length="116552488" type="application/octet-stream" sparkle:edSignature="OoP5sj+uOgM5HO/H3OK+ubt5O3x2/zKSLbosnbEolSoAVUwq/HtZWNF7jQ88fkaCNd+ZWeSnAJXPKeB2RyeNBw=="/>
+        <description><![CDATA[<div><ul><li>The app now remembers your last selected output format for each input type, so when you drop a new file it automatically uses the format you chose before.</li>
+<li>The clipboard overlay now disappears automatically after a configurable timeout, set to 5 seconds by default, and it is no longer included in macOS screenshots.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.3.8</title>
             <pubDate>Wed, 18 Feb 2026 12:39:02 +0100</pubDate>
             <link>https://picmal.app/</link>

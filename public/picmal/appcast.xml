@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.0</title>
+            <pubDate>Sat, 28 Feb 2026 15:47:16 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>56</sparkle:version>
+            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.0/Picmal.dmg" length="116648833" type="application/octet-stream" sparkle:edSignature="IKy0+H1KoHKf+LXr6Yh1VOFEsZ5iZb821AfnjR6X2JYqEFNtGjyAk1cj921fHauofhrC8wD5NiXL6lpijwTqAw=="/>
+        <description><![CDATA[<div><ul><li>Before / After Preview — Click the eye icon on any processed file to compare original and output images with an interactive slider.</li>
+<li>Video compression now offers an expanded CRF range (0–51) for finer quality control, and a new frame rate setting lets you reduce fps (e.g. 60→30) to shrink file sizes further.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.3.9</title>
             <pubDate>Thu, 26 Feb 2026 14:43:14 +0100</pubDate>
             <link>https://picmal.app/</link>

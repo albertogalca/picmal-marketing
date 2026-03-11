@@ -1,0 +1,13 @@
+---
+version: "1.4.1"
+title: "Bug fixes, per-folder resize, and video format conversion"
+pubDate: 2026-03-11
+---
+
+This release fixes JPEG compression silently producing corrupted (truncated) output, and resolves high CPU usage when idle caused by aggressive clipboard polling, always-on cache timers, broad UserDefaults observation, and unbatched FSEvents handling.
+
+Watched folders now support per-folder resize settings and a new "compress after convert" option — giving you full control over each folder's output without touching global preferences.
+
+Clipboard optimization gains an auto-copy mode: compressed images are automatically copied back to the clipboard, skipping the manual "Copy" button click. It's off by default, so your existing workflow stays the same until you opt in.
+
+Video compression now lets you change the output container format (e.g. MOV → MP4, MKV, WebM, AVI) with automatic codec compatibility handling — pick the format you need and Picmal takes care of the rest.

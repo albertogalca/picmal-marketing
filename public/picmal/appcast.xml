@@ -3,6 +3,20 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.1</title>
+            <pubDate>Wed, 11 Mar 2026 12:20:44 +0100</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>57</sparkle:version>
+            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.1/Picmal.dmg" length="116537679" type="application/octet-stream" sparkle:edSignature="K0gEv6xrsmj8HjPlmB7J+ot+I70J/1gjLrG3hqMgG/TXAHbTsHT5ULcrtIXMdKydp8SlVeSGnPYY9QZniU5BAA=="/>
+        <description><![CDATA[<div><ul><li>Fixed JPEG compression silently producing corrupted (truncated) output.</li>
+<li>Fixed high CPU usage when idle caused by aggressive clipboard polling, always-on cache timers, broad UserDefaults observation, and unbatched FSEvents handling.</li>
+<li>Watched folders now support per-folder resize settings and a "compress after convert" option.</li>
+<li>New auto-copy option for clipboard optimization: compressed images are automatically copied back to the clipboard, skipping the manual "Copy" button click. Off by default.</li>
+<li>Video compression now lets you change the output container format (e.g. MOV → MP4, MKV, WebM, AVI) with automatic codec compatibility handling.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.0</title>
             <pubDate>Sat, 28 Feb 2026 15:47:16 +0100</pubDate>
             <link>https://picmal.app/</link>

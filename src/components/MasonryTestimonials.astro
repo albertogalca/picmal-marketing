@@ -65,8 +65,9 @@ import { getGravatarUrl } from "../utils/gravatar";
                         alt={`${testimonial.name}, Picmal user`}
                         width={64}
                         height={64}
-                        class="w-10 h-10 rounded-full flex-shrink-0"
+                        class="w-10 h-10 rounded-full flex-shrink-0 testimonial-avatar"
                         loading="lazy"
+                        data-initials={testimonial.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)}
                       />
                       <span class="font-semibold text-text">
                         {testimonial.name}
@@ -106,3 +107,14 @@ import { getGravatarUrl } from "../utils/gravatar";
     margin-bottom: 1rem;
   }
 </style>
+
+<script>
+  document.querySelectorAll('.testimonial-avatar').forEach((img) => {
+    img.addEventListener('error', function () {
+      const initials = this.getAttribute('data-initials') || '?';
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="%23e5e7eb"/><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="%236b7280">${initials}</text></svg>`;
+      this.src = `data:image/svg+xml,${svg}`;
+      this.onerror = null;
+    });
+  });
+</script>

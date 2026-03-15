@@ -1,0 +1,52 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H1 from "../components/H1.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Page Not Found - Picmal"
+      description="The page you're looking for doesn't exist. Browse Picmal's tools, blog, or head back to the homepage."
+    />
+  </head>
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
+    <Header />
+
+    <main class="relative z-10 pt-32 pb-20">
+      <div class="max-w-2xl mx-auto px-6 text-center">
+        <p class="text-8xl font-bold text-accent mb-6">404</p>
+        <H1 class="mb-4">Page not found</H1>
+        <Paragraph class="mb-10 max-w-lg mx-auto">
+          The page you're looking for doesn't exist or has been moved.
+        </Paragraph>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          <Button href="/" text="Back to home" class="apple-button-primary" />
+          <a
+            href="/blog"
+            class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20"
+          >
+            Read the blog
+          </a>
+          <a
+            href="/tools"
+            class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20"
+          >
+            Browse tools
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

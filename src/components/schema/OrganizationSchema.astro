@@ -13,56 +13,8 @@ const organizationSchema = {
   logo: new URL("/logo.webp", url).href,
   sameAs: ["https://albertogalca.com/"],
   description:
-    "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.",
+    "All-in-one media converter for Mac. Batch convert and compress images, videos, and audio files offline on your Mac.",
   founder: {
-    "@type": "Person",
-    name: "Alberto",
-    url: "https://albertogalca.com/",
-  },
-};
-
-const softwareSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Picmal",
-  description:
-    "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.",
-  url: url,
-  image: new URL("/picmal-main.webp", url).href,
-  screenshot: new URL("/picmal-main.webp", url).href,
-  operatingSystem: "macOS",
-  applicationCategory: "UtilitiesApplication",
-  offers: {
-    "@type": "Offer",
-    price: "8",
-    priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
-    url: "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
-    seller: {
-      "@type": "Organization",
-      name: "Picmal",
-    },
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "50",
-    bestRating: "5",
-    worstRating: "1",
-  },
-  featureList: [
-    "Privacy-first image conversion",
-    "Batch processing of multiple images",
-    "20+ image format support",
-    "Offline processing",
-    "Native macOS experience",
-    "RAW file support",
-    "Drag and drop interface",
-  ],
-  requirements: "macOS Sonoma (14.0) or later",
-  downloadUrl:
-    "https://picmal.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
-  author: {
     "@type": "Person",
     name: "Alberto",
     url: "https://albertogalca.com/",
@@ -74,4 +26,3 @@ const softwareSchema = {
   type="application/ld+json"
   set:html={JSON.stringify(organizationSchema)}
 />
-<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />

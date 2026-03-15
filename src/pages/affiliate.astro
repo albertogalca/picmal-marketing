@@ -46,6 +46,16 @@ const affiliateFaqs = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Picmal Affiliate Program",
+      description: SITE_DESCRIPTION,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["#main-content h1", "#main-content p"],
+      },
+    })} />
   </head>
 
   <body

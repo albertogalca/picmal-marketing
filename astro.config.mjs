@@ -70,6 +70,7 @@ export default defineConfig({
           },
         },
       ],
+      disable404Route: true,
       credits: false,
       plugins: [
         starlightThemeBlack({

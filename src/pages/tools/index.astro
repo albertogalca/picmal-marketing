@@ -69,6 +69,20 @@ const tools = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: SITE_TITLE,
+      description: SITE_DESCRIPTION,
+      mainEntity: tools.filter((t) => t.available).map((t) => ({
+        "@type": "WebApplication",
+        name: t.title,
+        description: t.description,
+        url: `https://picmal.app${t.href}`,
+        applicationCategory: "UtilityApplication",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      })),
+    })} />
   </head>
   <body
     class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"

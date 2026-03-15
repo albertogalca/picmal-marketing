@@ -31,6 +31,18 @@ entries.sort((a, b) => {
       title={`Changelog - ${SITE_TITLE}`}
       description="Stay updated with the latest Picmal updates, new features, and improvements in our changelog."
     />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Picmal Changelog",
+      description: "Version history and release notes for Picmal",
+      itemListElement: entries.map((entry, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: `Picmal v${entry.data.version}${entry.data.title ? ` - ${entry.data.title}` : ""}`,
+        url: `https://picmal.app/changelog#v${entry.data.version}`,
+      })),
+    })} />
   </head>
   <body class="bg-background text-text min-h-dvh">
     <Header />

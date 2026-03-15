@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Picmal";
 export const SITE_DESCRIPTION =
-  "Convert JPG, PNG, HEIC and more on your Mac with Picmal. A fast, privacy-first image converter that works entirely offline with batch support.";
+  "Convert images, videos, and audio on your Mac with Picmal. A fast, privacy-first media converter that works entirely offline with batch support.";

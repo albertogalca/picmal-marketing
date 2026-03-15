@@ -17,6 +17,15 @@ const SITE_DESCRIPTION =
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: SITE_TITLE,
+      description: SITE_DESCRIPTION,
+      url: "https://picmal.app/tools/image-file-size-calculator",
+      applicationCategory: "UtilityApplication",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    })} />
   </head>
   <body class="min-h-dvh bg-background text-text overflow-x-hidden">
     <Header />

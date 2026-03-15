@@ -12,6 +12,16 @@ const SITE_TITLE =
 const SITE_DESCRIPTION =
   "Complete compatibility guide for HEIC, WebP, AVIF, PNG, JPG and other image formats. Check browser and operating system support before converting.";
 
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  url: "https://picmal.app/tools/image-format-support-matrix",
+  applicationCategory: "UtilityApplication",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 // Format support data
 const formatSupport = [
   {
@@ -165,6 +175,7 @@ const formatSupport = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
   </head>
   <body class="min-h-dvh bg-background text-text overflow-x-hidden">
     <Header />

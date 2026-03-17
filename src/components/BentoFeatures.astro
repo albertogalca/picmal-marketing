@@ -53,18 +53,9 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
           </div>
           <div class="rounded-lg overflow-hidden opacity-90">
             <video
-              src="/convert.mp4"
-              class="w-full h-auto block dark:hidden"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Picmal conversion interface"
-            >
-            </video>
-            <video
-              src="/convert_dark.mp4"
-              class="w-full h-auto hidden dark:block"
+              class="w-full h-auto theme-video"
+              data-light-src="/convert.mp4"
+              data-dark-src="/convert_dark.mp4"
               autoplay
               loop
               muted
@@ -75,7 +66,7 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
           </div>
           <div class="mt-4">
             <Paragraph
-              >👉🏼 You can also convert and compress in one go.</Paragraph
+              >You can also convert and compress in one go.</Paragraph
             >
           </div>
         </div>
@@ -270,18 +261,9 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
           </div>
           <div class="rounded-lg overflow-hidden">
             <video
-              src="/compress.mp4"
-              class="w-full h-auto block dark:hidden"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Picmal compression interface"
-            >
-            </video>
-            <video
-              src="/compress_dark.mp4"
-              class="w-full h-auto hidden dark:block"
+              class="w-full h-auto theme-video"
+              data-light-src="/compress.mp4"
+              data-dark-src="/compress_dark.mp4"
               autoplay
               loop
               muted
@@ -293,15 +275,15 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
         </div>
       </div>
 
-      <!-- Row 3: Three small feature cards -->
+      <!-- Row 3: Three differentiator cards — horizontal layout -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Designed for Mac Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
           <div
-            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-blue-500/10"
           >
             <svg
-              class="w-7 h-7"
+              class="w-5 h-5 text-blue-500"
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -309,31 +291,31 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               <g clip-path="url(#clip_mac_bottom)">
                 <path
                   d="M4.875 7.79134C4.875 7.40457 5.02865 7.03363 5.30214 6.76014C5.57563 6.48665 5.94656 6.33301 6.33333 6.33301H29.6667C30.0534 6.33301 30.4244 6.48665 30.6979 6.76014C30.9714 7.03363 31.125 7.40457 31.125 7.79134V28.208C31.125 28.5948 30.9714 28.9657 30.6979 29.2392C30.4244 29.5127 30.0534 29.6663 29.6667 29.6663H6.33333C5.94656 29.6663 5.57563 29.5127 5.30214 29.2392C5.02865 28.9657 4.875 28.5948 4.875 28.208V7.79134Z"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M10.708 12.167V13.6253"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M25.292 12.167V13.6253"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M18.7295 6.33301C17.7757 8.50009 16.892 11.354 16.542 19.458H20.1878C19.9107 23.6391 20.3249 26.7847 20.917 29.6663"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M10.708 23.1045C16.0557 26.0212 19.9436 26.0212 25.2913 23.1045"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
@@ -349,20 +331,21 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               </defs>
             </svg>
           </div>
-          <H3 class="mb-2">Designed for Mac</H3>
-          <Paragraph>
-            Built for macOS. Fast, lightweight, and works with Finder, Quick
-            Actions, and Shortcuts.
-          </Paragraph>
+          <div>
+            <h3 class="text-sm font-semibold text-text mb-1">Designed for Mac</h3>
+            <Paragraph size="small">
+              Fast, lightweight, works with Finder, Quick Actions, and Shortcuts.
+            </Paragraph>
+          </div>
         </div>
 
         <!-- Works Offline Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
           <div
-            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-amber-500/10"
           >
             <svg
-              class="w-7 h-7"
+              class="w-5 h-5 text-amber-500"
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -370,13 +353,13 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               <g clip-path="url(#clip_offline_bottom)">
                 <path
                   d="M14.4712 8.59099C14.8212 8.43057 15.1887 8.28912 15.5678 8.17391C18.3095 7.33974 21.337 7.89245 23.507 9.63224C25.677 11.3677 26.6599 14.0174 26.0882 16.587H27.532C30.3218 16.587 32.5837 18.862 32.5837 21.6708C32.5837 23.0664 32.0251 24.3308 31.1209 25.2495M26.7503 26.756H10.2085C6.45762 26.7502 3.41699 23.8233 3.41699 20.2124C3.41699 16.6031 6.45762 13.6762 10.2085 13.6762C10.398 12.8274 10.748 12.0312 11.2293 11.3137"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M4.875 4.875L31.125 31.125"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
@@ -392,20 +375,21 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               </defs>
             </svg>
           </div>
-          <H3 class="mb-2">Works offline</H3>
-          <Paragraph>
-            No uploads. No waiting. Works on a plane, at a café, or when your
-            Wi-Fi dies.
-          </Paragraph>
+          <div>
+            <h3 class="text-sm font-semibold text-text mb-1">Works offline</h3>
+            <Paragraph size="small">
+              No uploads, no waiting. Works on a plane, at a café, or when your Wi-Fi dies.
+            </Paragraph>
+          </div>
         </div>
 
         <!-- Privacy First Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border">
+        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
           <div
-            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
+            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-green-500/10"
           >
             <svg
-              class="w-7 h-7"
+              class="w-5 h-5 text-green-500"
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -413,13 +397,13 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               <g clip-path="url(#clip_privacy_bottom)">
                 <path
                   d="M18 3.41699L29.6667 7.79199V16.542C29.6667 24.0628 24.8333 30.6462 18 32.5837C11.1667 30.6462 6.33334 24.0628 6.33334 16.542V7.79199L18 3.41699Z"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
                 <path
                   d="M12.167 18L16.542 22.375L24.5628 14.3542"
-                  class="stroke-text"
+                  stroke="currentColor"
                   stroke-width="2.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"></path>
@@ -435,10 +419,12 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
               </defs>
             </svg>
           </div>
-          <H3 class="mb-2">Privacy first</H3>
-          <Paragraph>
-            All processing happens locally. Your files never leave your Mac.
-          </Paragraph>
+          <div>
+            <h3 class="text-sm font-semibold text-text mb-1">Privacy first</h3>
+            <Paragraph size="small">
+              All processing happens locally. Your files never leave your Mac.
+            </Paragraph>
+          </div>
         </div>
       </div>
     </div>
@@ -455,3 +441,30 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
 </section>
 
 <CompressFormatsModal />
+
+<script>
+  function updateThemeVideos() {
+    const isDark = document.documentElement.classList.contains("dark");
+    document.querySelectorAll<HTMLVideoElement>(".theme-video").forEach((video) => {
+      const src = isDark ? video.dataset.darkSrc : video.dataset.lightSrc;
+      if (src && video.src !== new URL(src, window.location.origin).href) {
+        video.src = src;
+        video.load();
+        video.play().catch(() => {});
+      }
+    });
+  }
+
+  // Set initial sources
+  updateThemeVideos();
+
+  // Watch for theme changes
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.attributeName === "class") {
+        updateThemeVideos();
+      }
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true });
+</script>

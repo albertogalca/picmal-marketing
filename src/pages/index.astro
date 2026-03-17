@@ -103,25 +103,12 @@ const SITE_DESCRIPTION =
 
         <!-- Demo Video -->
         <div
-          class="max-w-5xl mx-auto mt-12 sm:mt-16 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
+          class="max-w-5xl mx-auto mt-8 sm:mt-12 rounded-lg sm:rounded-xl overflow-hidden border border-border hero-video"
         >
           <div class="aspect-[16/10]">
             <video
               src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover block dark:hidden"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover hidden dark:block"
+              class="w-full h-full object-cover"
               width="1920"
               height="1200"
               autoplay
@@ -149,16 +136,12 @@ const SITE_DESCRIPTION =
       <MasonryTestimonials />
     </section>
 
-    <SectionDivider />
-
     <section id="featured" class="relative z-10">
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20">
+    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border">
       <PricingSection />
     </section>
 

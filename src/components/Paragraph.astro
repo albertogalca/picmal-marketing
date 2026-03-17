@@ -9,8 +9,8 @@ interface Props {
 const { class: className, size = "base" } = Astro.props;
 
 const sizeClasses = {
-  base: "text-sm text-base",
-  small: "text-xs lg:text-base",
+  base: "text-base",
+  small: "text-sm",
 };
 
 const defaultClasses = `${sizeClasses[size]} leading-relaxed text-text-secondary text-pretty`;

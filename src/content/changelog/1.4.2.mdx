@@ -1,0 +1,15 @@
+---
+version: "1.4.2"
+title: "Corrupted video detection, notch progress overlay, and faster launch"
+pubDate: 2026-03-31
+---
+
+The app now detects corrupted video files — like ones missing the moov atom — and tells you clearly what went wrong instead of failing without explanation. The error interface has also been improved to make issues easier to understand at a glance.
+
+Launch time is noticeably faster. The app no longer blocks on non-essential setup before showing the first screen, so you get to work sooner.
+
+System notifications have been replaced with a more integrated progress overlay that animates from the MacBook notch or slides down on other displays. The menu bar icon now shows live progress percentages, so you can track conversions without switching back to the app.
+
+Cancelling a conversion feels smoother and no longer causes a brief UI freeze. Under the hood, several concurrency issues in ServiceHandler, SharedTempFileManager, and FFmpegConverter have been resolved.
+
+Other smaller fixes and improvements.

@@ -3,6 +3,23 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.2</title>
+            <pubDate>Tue, 31 Mar 2026 13:13:39 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>58</sparkle:version>
+            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.2/Picmal.dmg" length="116700905" type="application/octet-stream" sparkle:edSignature="6VgrEBwYitYJ4/dxseiOXOjyCXX5gqjBJkcJZoxhK31QXa9/8jUscwS7Zp4hrYs8F6Er6nwnltYCcnpKrtNqCA=="/>
+        <description><![CDATA[<div><ul><li>The app now detects corrupted video files (like ones missing the moov atom) and lets you know clearly instead of failing without explanation.</li>
+<li>Faster launch time. The app no longer blocks on non-essential setup before showing the first screen.</li>
+<li>Cancelling a conversion feels smoother and no longer causes a brief UI freeze.</li>
+<li>Fixed some concurrency issues in the background (ServiceHandler, SharedTempFileManager, and FFmpegConverter).</li>
+<li>Replaced system notifications with a more integrated progress overlay that animates from the MacBook notch or slides down on other displays.</li>
+<li>The menu bar icon now shows live progress percentages.</li>
+<li>Improved the error interface to make issues easier to understand.</li>
+<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.1</title>
             <pubDate>Wed, 11 Mar 2026 12:20:44 +0100</pubDate>
             <link>https://picmal.app/</link>

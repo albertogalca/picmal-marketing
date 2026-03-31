@@ -23,8 +23,8 @@ export function getStaticPaths() {
 
 const { compression } = Astro.props;
 
-const title = `Compress ${compression.name} Files on Mac — Free with Picmal`;
-const description = `Reduce ${compression.name.toLowerCase()} file size on your Mac without losing quality. Batch compression for multiple files. Free download.`;
+const title = `Compress ${compression.name} Files on Mac`;
+const description = `Reduce ${compression.name.toLowerCase()} file size on your Mac without losing quality. Batch compression for multiple files.`;
 
 const relatedConversions = conversions
   .filter((c) => c.from === compression.format)

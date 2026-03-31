@@ -11,7 +11,7 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import TrustBar from "../../components/TrustBar.astro";
-import { conversions, formats, getRelatedConversions } from "../../data/conversions";
+import { conversions, formats, getRelatedConversions, type FileSizeExample, type UseCase } from "../../data/conversions";
 
 export function getStaticPaths() {
   return conversions.map((c) => ({
@@ -140,6 +140,60 @@ const faqSchema = {
             </ul>
           </div>
         </section>
+
+        {/* File Size Comparison */}
+        {conversion.fileSizeExamples && conversion.fileSizeExamples.length > 0 && (
+          <section class="mb-16 sm:mb-20">
+            <H2 class="mb-8 text-center">{from.name} vs {to.name} File Sizes</H2>
+            <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">File Type</th>
+                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">{from.name}</th>
+                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">{to.name}</th>
+                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {conversion.fileSizeExamples.map((example: FileSizeExample, i: number) => (
+                    <tr class={i < conversion.fileSizeExamples!.length - 1 ? "border-b border-border/50" : ""}>
+                      <td class="px-6 py-4 text-sm text-text">{example.label}</td>
+                      <td class="px-6 py-4 text-sm text-text-secondary text-right font-mono">{example.fromSize}</td>
+                      <td class="px-6 py-4 text-sm text-text text-right font-mono font-medium">{example.toSize}</td>
+                      <td class="px-6 py-4 text-sm text-accent text-right">{example.savings}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {conversion.conversionSpeed && (
+                <div class="px-6 py-4 border-t border-border bg-background/50">
+                  <div class="flex items-center gap-2 text-sm text-text-secondary">
+                    <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span>Conversion speed: <strong class="text-text">{conversion.conversionSpeed}</strong></span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Real-World Use Cases */}
+        {conversion.useCases && conversion.useCases.length > 0 && (
+          <section class="mb-16 sm:mb-20">
+            <H2 class="mb-8 text-center">When to convert {from.name} to {to.name}</H2>
+            <div class="grid md:grid-cols-2 gap-4">
+              {conversion.useCases.map((useCase: UseCase) => (
+                <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+                  <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
+                  <Paragraph class="text-sm">{useCase.description}</Paragraph>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <!-- How To Steps -->
         <section class="mb-16 sm:mb-20">

@@ -1,0 +1,57 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Paragraph from "../components/Paragraph.astro";
+
+const title = "Thank You — Picmal";
+const description = "Thank you for downloading Picmal. Here's how to get started.";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <meta name="robots" content="noindex" />
+  </head>
+
+  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <H1 class="mb-6">Thank you!</H1>
+        <Paragraph class="max-w-xl mx-auto mb-12">
+          Your download should start automatically. If it doesn't, <a href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg" class="text-accent hover:underline">click here to download</a>.
+        </Paragraph>
+
+        <div class="text-left space-y-6 mb-12">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <H2 class="mb-2">Get started</H2>
+            <Paragraph>
+              Open the DMG, drag Picmal to Applications, and launch it. Drop your files in and start converting.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <H2 class="mb-2">Need help?</H2>
+            <Paragraph>
+              Check the <a href="/docs/getting-started" class="text-accent hover:underline">getting started guide</a> or email <a href="mailto:support@picmal.app" class="text-accent hover:underline">support@picmal.app</a>.
+            </Paragraph>
+          </div>
+
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <H2 class="mb-2">Enjoying Picmal?</H2>
+            <Paragraph>
+              A <a href="https://tally.so/r/Me18qE" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">quick review</a> helps other Mac users discover Picmal. Thank you!
+            </Paragraph>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,89 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import H1 from "../../components/H1.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import Button from "../../components/Button.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import CTASection from "../../components/CTASection.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import { compressions } from "../../data/compressions";
+
+const title = "Compress Images on Mac — Reduce File Size | Picmal";
+const description = "Compress JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF files on your Mac. Batch compression, offline processing, adjustable quality. Free download.";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+  </head>
+
+  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Compress" },
+          ]}
+        />
+
+        <div class="text-center mb-16 sm:mb-20">
+          <H1 class="mb-6 max-w-3xl mx-auto hero-title">Compress Any Image Format on Mac</H1>
+          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty hero-subtitle">
+            Reduce file sizes for JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF on your Mac. Batch processing, adjustable quality, completely offline.
+          </Paragraph>
+          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+            <Button
+              text="Get Picmal for $15.99"
+              onclick="posthog.capture('buy_clicked_compress_hub')"
+              class="apple-button-primary"
+            />
+            <a
+              href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+            >
+              Download for Mac
+            </a>
+          </div>
+          <TrustBar />
+        </div>
+
+        <!-- Format Cards -->
+        <div class="grid md:grid-cols-2 gap-4 mb-16 sm:mb-20">
+          {compressions.map((c) => (
+            <a
+              href={`/compress/${c.slug}`}
+              class="group bg-background-subtle/50 border border-border rounded-xl p-6 transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background border border-border text-xs font-mono font-medium text-text tracking-wide group-hover:border-accent/20 transition-colors">.{c.format}</span>
+                <h2 class="text-lg font-semibold text-text">Compress {c.name}</h2>
+              </div>
+              <p class="text-sm text-text-secondary leading-relaxed">{c.description}</p>
+            </a>
+          ))}
+        </div>
+
+        <CTASection
+          heading="Compress any file format with Picmal"
+          analyticsEvent="buy_clicked_compress_hub_bottom"
+        />
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import TrustBar from "../components/TrustBar.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+
+const title = "Compress Images on Mac — Reduce File Size Without Quality Loss | Picmal";
+const description = "Compress JPG, PNG, WebP, AVIF, TIFF, and more on your Mac. Batch compression, adjustable quality, offline processing. $15.99 one-time.";
+
+const faqs = [
+  {
+    question: "How much can Picmal compress my images?",
+    answer: "Depending on the format and quality setting, Picmal reduces file sizes by 30-80%. JPG photos can often be reduced by 60-80% with minimal visible quality loss.",
+  },
+  {
+    question: "Does compression lose image quality?",
+    answer: "For lossy formats like JPG and WebP, there's a trade-off between size and quality. Picmal's adjustable quality slider lets you find the sweet spot. For PNG and TIFF, compression is lossless.",
+  },
+  {
+    question: "Can I compress without converting formats?",
+    answer: "Yes. Picmal can compress images in their original format — no conversion needed. Keep your JPGs as JPGs, just smaller.",
+  },
+  {
+    question: "Can I batch compress multiple images?",
+    answer: "Yes. Drop hundreds of images or entire folders into Picmal and compress them all with the same settings in one go.",
+  },
+  {
+    question: "What formats can Picmal compress?",
+    answer: "Picmal compresses JPG, PNG, WebP, AVIF, GIF, TIFF, HEIC, SVG, and PDF files.",
+  },
+  {
+    question: "Are my images uploaded anywhere?",
+    answer: "No. All compression happens locally on your Mac. Your images never leave your device.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <link rel="preload" href="/picmal-1.2.0-demo.mp4" as="video" type="video/mp4" />
+  </head>
+
+  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16">
+      <div class="max-w-5xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Compress Images on Mac" }]} />
+
+        <div class="text-center mb-12">
+          <H1 class="mb-6 max-w-3xl mx-auto">Compress images on your Mac without losing quality</H1>
+          <Paragraph class="max-w-2xl mx-auto mb-8">
+            Reduce image file sizes by up to 80% with Picmal. Batch compression for JPG, PNG, WebP, AVIF, and more. Offline, adjustable quality, no subscription.
+          </Paragraph>
+          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+            <Button text="Get Picmal for $15.99" onclick="posthog.capture('buy_clicked_compress_images_mac')" class="apple-button-primary" />
+            <a href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg" class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto">
+              Download for Mac
+            </a>
+          </div>
+          <TrustBar />
+        </div>
+
+        <!-- Demo Video -->
+        <div class="max-w-5xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-border">
+          <div class="aspect-[16/10]">
+            <video src="/picmal-1.2.0-demo.mp4" class="w-full h-full object-cover" width="1920" height="1200" autoplay loop muted playsinline preload="auto" aria-label="Picmal compression interface"></video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- How It Works -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Compress images in 3 steps</H2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">1</div>
+            <h3 class="font-semibold text-text mb-2">Drop your images</h3>
+            <Paragraph>Drag and drop images or entire folders into Picmal.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">2</div>
+            <h3 class="font-semibold text-text mb-2">Adjust quality</h3>
+            <Paragraph>Use the quality slider to balance file size and visual quality.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">3</div>
+            <h3 class="font-semibold text-text mb-2">Compress</h3>
+            <Paragraph>Click Compress and your smaller files are ready.</Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Compression Formats -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Compress any format</H2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {["jpg", "png", "gif", "webp", "avif", "tiff", "pdf"].map((format) => (
+            <a href={`/compress/${format}`} class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30">
+              <span class="text-sm font-medium text-text">Compress {format.toUpperCase()}</span>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-6">
+          <a href="/compress" class="text-sm text-accent hover:underline">View all compression options &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+    <MasonryTestimonials />
+    <SectionDivider />
+
+    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border">
+      <PricingSection />
+    </section>
+
+    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
+        <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+    <SupportedFormatsModal />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

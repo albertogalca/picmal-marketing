@@ -1,0 +1,206 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import TrustBar from "../components/TrustBar.astro";
+import SectionDivider from "../components/SectionDivider.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+
+const title = "HEIC to JPG on Mac — Convert iPhone Photos Instantly | Picmal";
+const description = "Convert HEIC to JPG on your Mac in seconds. Batch convert hundreds of iPhone photos at once. Offline, private, no subscription. $15.99 one-time.";
+
+const faqs = [
+  {
+    question: "Why are my iPhone photos in HEIC format?",
+    answer: "Since iOS 11, iPhones save photos as HEIC by default because it produces 50% smaller files than JPG at the same quality. You can change this in Settings > Camera > Formats, but you'll need to convert existing HEIC photos.",
+  },
+  {
+    question: "How do I convert HEIC to JPG on Mac?",
+    answer: "With Picmal: drag and drop your HEIC files, select JPG as the output format, and click Convert. For a single file, you can also use Preview (File > Export), but Picmal handles batch conversion of hundreds of files.",
+  },
+  {
+    question: "Does converting HEIC to JPG reduce quality?",
+    answer: "JPG is a lossy format, so there's a slight quality reduction. At 90%+ quality in Picmal, the difference is imperceptible to the human eye.",
+  },
+  {
+    question: "Can I convert all my HEIC photos at once?",
+    answer: "Yes. Picmal handles batch conversion — drag and drop hundreds or thousands of HEIC files and convert them all to JPG in one go.",
+  },
+  {
+    question: "Is there a free way to convert HEIC to JPG on Mac?",
+    answer: "Preview can convert one file at a time (File > Export > JPEG). For batch conversion, Automator can handle it but requires setup. Picmal offers the simplest batch solution for $15.99 one-time.",
+  },
+  {
+    question: "Are my photos uploaded to a server?",
+    answer: "No. Picmal processes everything locally on your Mac. Your photos never leave your device.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Convert HEIC to JPG on Mac",
+  description: "Convert HEIC photos from your iPhone to JPG format on your Mac using Picmal.",
+  step: [
+    { "@type": "HowToStep", name: "Open Picmal", text: "Download and open Picmal on your Mac." },
+    { "@type": "HowToStep", name: "Add HEIC files", text: "Drag and drop your HEIC files into Picmal." },
+    { "@type": "HowToStep", name: "Select JPG", text: "Choose JPG as the output format and adjust quality if needed." },
+    { "@type": "HowToStep", name: "Convert", text: "Click Convert and your JPG files are ready in seconds." },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+    <link rel="preload" href="/picmal-1.2.0-demo.mp4" as="video" type="video/mp4" />
+  </head>
+
+  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16">
+      <div class="max-w-5xl mx-auto px-6">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "HEIC to JPG on Mac" }]} />
+
+        <div class="text-center mb-12">
+          <H1 class="mb-6 max-w-3xl mx-auto">Convert HEIC to JPG on Mac</H1>
+          <Paragraph class="max-w-2xl mx-auto mb-8">
+            Your iPhone saves photos as HEIC, but JPG works everywhere. Picmal batch converts hundreds of HEIC files to JPG in seconds — offline, private, no subscription.
+          </Paragraph>
+          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+            <Button text="Get Picmal for $15.99" onclick="posthog.capture('buy_clicked_heic_to_jpg_mac')" class="apple-button-primary" />
+            <a href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg" class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto">
+              Download for Mac
+            </a>
+          </div>
+          <TrustBar />
+        </div>
+
+        <!-- Demo Video -->
+        <div class="max-w-5xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-border">
+          <div class="aspect-[16/10]">
+            <video src="/picmal-1.2.0-demo.mp4" class="w-full h-full object-cover" width="1920" height="1200" autoplay loop muted playsinline preload="auto" aria-label="Picmal HEIC to JPG conversion"></video>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <SectionDivider />
+
+    <!-- Steps -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Convert HEIC to JPG in 3 steps</H2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">1</div>
+            <h3 class="font-semibold text-text mb-2">Drop HEIC files</h3>
+            <Paragraph>Drag HEIC photos from Finder or Photos into Picmal.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">2</div>
+            <h3 class="font-semibold text-text mb-2">Select JPG output</h3>
+            <Paragraph>Choose JPG and adjust the quality slider.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">3</div>
+            <h3 class="font-semibold text-text mb-2">Click Convert</h3>
+            <Paragraph>Your JPG files are ready in seconds.</Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Why -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Why convert HEIC to JPG?</H2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Universal compatibility</h3>
+            <Paragraph>JPG works on every device, every website, every app. No more "format not supported" errors.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Easy sharing</h3>
+            <Paragraph>Email, upload, or send JPG photos to anyone without worrying about format compatibility.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Windows compatibility</h3>
+            <Paragraph>Windows PCs often can't open HEIC files. Convert to JPG so anyone can view your photos.</Paragraph>
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Older app support</h3>
+            <Paragraph>Many older Mac and web apps don't support HEIC. JPG ensures your photos work everywhere.</Paragraph>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Related -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Other HEIC conversions</H2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {["heic-to-png", "heic-to-webp", "heic-to-avif", "heic-to-tiff"].map((slug) => (
+            <a href={`/convert/${slug}`} class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30">
+              <span class="text-sm font-medium text-text">{slug.replace("heic-to-", "HEIC to ").toUpperCase()}</span>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-6">
+          <a href="/heic-converter-mac" class="text-sm text-accent hover:underline">See all HEIC conversion options &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border">
+      <PricingSection />
+    </section>
+
+    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
+        <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+          <FAQ faqs={faqs} />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+    <SupportedFormatsModal />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

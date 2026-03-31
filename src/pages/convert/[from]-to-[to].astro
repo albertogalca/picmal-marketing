@@ -1,0 +1,252 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import Button from "../../components/Button.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import CTASection from "../../components/CTASection.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import TrustBar from "../../components/TrustBar.astro";
+import { conversions, formats, getRelatedConversions } from "../../data/conversions";
+
+export function getStaticPaths() {
+  return conversions.map((c) => ({
+    params: { from: c.from, to: c.to },
+    props: { conversion: c },
+  }));
+}
+
+const { conversion } = Astro.props;
+const from = formats[conversion.from];
+const to = formats[conversion.to];
+const related = getRelatedConversions(conversion.from, conversion.to, 6);
+
+const title = `Convert ${from.name} to ${to.name} on Mac — Free with Picmal`;
+const description = `Convert ${from.name.toLowerCase()} files to ${to.name.toLowerCase()} format on your Mac in seconds. Batch conversion, no quality loss. Free download.`;
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: `How to Convert ${from.name} to ${to.name} on Mac`,
+  description: description,
+  step: [
+    {
+      "@type": "HowToStep",
+      name: "Open Picmal",
+      text: "Download and open Picmal on your Mac.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Add your files",
+      text: `Drag and drop your ${from.name} files into Picmal.`,
+    },
+    {
+      "@type": "HowToStep",
+      name: "Convert",
+      text: `Select ${to.name} as the output format and click Convert.`,
+    },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: conversion.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+    <div class="fixed inset-0 -z-20 apple-gradient"></div>
+
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Convert", href: "/convert" },
+            { label: `${from.name} to ${to.name}` },
+          ]}
+        />
+
+        <!-- Hero -->
+        <div class="text-center mb-16 sm:mb-20">
+          <!-- Format badge -->
+          <div class="flex items-center justify-center gap-3 mb-8">
+            <span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-sm font-mono font-medium text-text tracking-wide">
+              .{from.extension}
+            </span>
+            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+            <span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-sm font-mono font-medium text-accent tracking-wide">
+              .{to.extension}
+            </span>
+          </div>
+
+          <H1 class="mb-6 max-w-3xl mx-auto hero-title">Convert {from.name} to {to.name} on Mac</H1>
+          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty hero-subtitle">
+            {conversion.whyConvert}
+          </Paragraph>
+          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+            <Button
+              text="Get Picmal for $15.99"
+              onclick={`posthog.capture('buy_clicked_convert_${conversion.slug}')`}
+              class="apple-button-primary"
+            />
+            <a
+              href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+            >
+              Download for Mac
+            </a>
+          </div>
+          <TrustBar />
+        </div>
+
+        <!-- Benefits -->
+        <section class="mb-16 sm:mb-20">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+            <H2 class="mb-6">Why convert {from.name} to {to.name}?</H2>
+            <ul class="space-y-4">
+              {conversion.benefits.map((benefit) => (
+                <li class="flex gap-3 items-start">
+                  <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-text">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- How To Steps -->
+        <section class="mb-16 sm:mb-20">
+          <H2 class="mb-8 text-center">How to convert {from.name} to {to.name} on Mac</H2>
+          <div class="grid md:grid-cols-3 gap-4 relative">
+            <!-- Connector lines (desktop only) -->
+            <div class="hidden md:block absolute top-[2.25rem] left-[calc(33.33%-0.5rem)] right-[calc(33.33%-0.5rem)] h-px bg-border z-0"></div>
+
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
+              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">1</div>
+              <h3 class="font-semibold text-text mb-2">Open Picmal</h3>
+              <Paragraph>Download and open Picmal on your Mac.</Paragraph>
+            </div>
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
+              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">2</div>
+              <h3 class="font-semibold text-text mb-2">Add your {from.name} files</h3>
+              <Paragraph>Drag and drop your {from.name} files or entire folders into Picmal.</Paragraph>
+            </div>
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
+              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">3</div>
+              <h3 class="font-semibold text-text mb-2">Select {to.name} and convert</h3>
+              <Paragraph>Choose {to.name} as the output format and click Convert.</Paragraph>
+            </div>
+          </div>
+        </section>
+
+        <!-- Format Comparison -->
+        <section class="mb-16 sm:mb-20">
+          <H2 class="mb-8 text-center">{from.name} vs {to.name}</H2>
+          <div class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border">
+            <div class="bg-background p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-xs font-mono font-medium text-text tracking-wide">.{from.extension}</span>
+                <h3 class="font-semibold text-text">{from.name}</h3>
+              </div>
+              <p class="text-xs text-text-secondary mb-3 uppercase tracking-wider">{from.fullName}</p>
+              <Paragraph class="mb-4">{from.description}</Paragraph>
+              <div class="pt-4 border-t border-border">
+                <p class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Best for</p>
+                <p class="text-sm text-text">{from.bestFor}</p>
+              </div>
+            </div>
+            <div class="bg-background p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-accent/10 border border-accent/20 text-xs font-mono font-medium text-accent tracking-wide">.{to.extension}</span>
+                <h3 class="font-semibold text-text">{to.name}</h3>
+              </div>
+              <p class="text-xs text-text-secondary mb-3 uppercase tracking-wider">{to.fullName}</p>
+              <Paragraph class="mb-4">{to.description}</Paragraph>
+              <div class="pt-4 border-t border-border">
+                <p class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Best for</p>
+                <p class="text-sm text-text">{to.bestFor}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="mb-16 sm:mb-20">
+          <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+            <FAQ faqs={conversion.faqs} />
+          </div>
+        </section>
+
+        <!-- Related Conversions -->
+        <section class="mb-16 sm:mb-20">
+          <H2 class="mb-8 text-center">Related Conversions</H2>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {related.map((r) => (
+              <a
+                href={`/convert/${r.slug}`}
+                class="group bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
+              >
+                <div class="flex items-center justify-center gap-2">
+                  <span class="text-xs font-mono text-text-secondary">.{formats[r.from].extension}</span>
+                  <svg class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  <span class="text-xs font-mono text-text-secondary">.{formats[r.to].extension}</span>
+                </div>
+                <span class="text-sm font-medium text-text mt-1 block">
+                  {formats[r.from].name} to {formats[r.to].name}
+                </span>
+              </a>
+            ))}
+          </div>
+          <div class="text-center mt-6">
+            <a href="/convert" class="text-sm text-text-secondary hover:text-text transition-colors">
+              View all conversions &rarr;
+            </a>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <CTASection
+          heading={`Convert ${from.name} to ${to.name} with Picmal`}
+          analyticsEvent={`buy_clicked_convert_${conversion.slug}_bottom`}
+        />
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

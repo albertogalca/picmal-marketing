@@ -1,0 +1,32 @@
+# Nonsensical / junk URLs
+/convert/png-to-png / 301
+/nofollow / 301
+
+# Blog changelog redirects
+/blog/changelog /changelog 301
+/blog/changelog-v1-0-3 /changelog 301
+/blog/changelog-v1-0-4 /changelog 301
+/blog/changelog-v1-0-5 /changelog 301
+/blog/changelog-v1-0-6 /changelog 301
+/blog/changelog-v1-0-8 /changelog 301
+
+# Docs redirects
+/docs/getting-started/quick-start /docs/getting-started 301
+/docs/getting-started/installation /docs/getting-started 301
+/docs/guides/converting-images /docs/converting-files 301
+/docs/guides/batch-conversion /batch-image-converter-mac 301
+/docs/guides/video-conversion /docs/converting-files 301
+/docs/reference/supported-formats /docs/supported-formats 301
+/docs/reference/keyboard-shortcuts /docs 301
+
+# Alternative page aliases
+/vs/xnconvert /alternative/xnconvert 301
+/vs/imazing-heic-converter /heic-converter-mac 301
+/vs/heictojpg /heic-to-jpg-mac 301
+
+# Getting started
+/getting-started /docs 301
+
+# Video pages (temporary redirect until supported)
+/video-converter-mac / 302
+/compress-video-mac / 302

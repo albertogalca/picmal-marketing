@@ -18,7 +18,7 @@ import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import TrustBar from "../components/TrustBar.astro";
 import PricingSection from "../components/PricingSection.astro";
 
-const SITE_TITLE = "Picmal - Convert and compress media on Mac";
+const SITE_TITLE = "Convert & Compress Images, Video & Audio on Mac | Picmal";
 const SITE_DESCRIPTION =
   "Batch convert images, videos, and audio on your Mac. Fast. Offline. No subscription.";
 ---
@@ -29,12 +29,6 @@ const SITE_DESCRIPTION =
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -115,7 +109,7 @@ const SITE_DESCRIPTION =
               loop
               muted
               playsinline
-              preload="auto"
+              preload="metadata"
               aria-label="Picmal app interface"
             >
             </video>

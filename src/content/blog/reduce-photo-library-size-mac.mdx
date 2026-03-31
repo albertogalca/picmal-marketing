@@ -1,0 +1,97 @@
+---
+title: "How to Reduce Your Photo Library Size on Mac"
+description: "Practical ways to free up disk space from photos on your Mac — delete duplicates, compress screenshots, convert formats, and use iCloud smartly. No scammy cleaner apps."
+pubDate: "2026-03-31"
+category: "Tutorial"
+tags: ["Storage", "Photos", "Mac", "Tutorial", "Compression"]
+---
+
+Last week my MacBook hit me with the "Storage Almost Full" notification. I checked System Settings, and Photos was eating 74GB. Seventy-four gigabytes. I've been importing from my iPhone since 2019 and never once thought about what was accumulating.
+
+If you're reading this, you're probably in the same spot. Here's what I found when I dug into it, and how I got that number down to under 30GB without losing anything I cared about.
+
+## What's actually taking up all that space
+
+Before deleting anything, it helps to understand what's in there. In my case:
+
+- **Screenshots.** Hundreds of PNG screenshots I took for work, bug reports, tweets I wanted to remember. PNGs are uncompressed. A single Retina screenshot is 3-8MB.
+- **Duplicate imports.** Every time I plugged in my iPhone or used AirDrop, some photos got imported again. Photos.app doesn't always catch this.
+- **Old RAW files.** I went through a photography phase in 2021. Those RAW files are 25-50MB each and I haven't opened them in years.
+- **Videos mixed in with photos.** A few 4K videos from vacations, each one 500MB to 2GB, sitting in the same library as everything else.
+- **Originals + edited versions.** Photos.app keeps both. If you cropped or adjusted 200 photos, you have 400 versions stored.
+
+Most people's libraries are some combination of these. The fix depends on which ones apply to you.
+
+## 1. Delete what you don't need
+
+This is always step one, and it's free.
+
+Start with duplicates. If you're on macOS Ventura or later, Photos.app has a built-in Duplicates album under Utilities in the sidebar. It finds exact and near-exact matches and lets you merge them. This alone freed up about 4GB for me.
+
+For a more thorough cleanup, <a href="https://macpaw.com/gemini" target="_blank">Gemini 2</a> is solid. It finds similar (not just identical) photos — like three shots of the same thing where you only need one.
+
+After duplicates, go through your screenshots. Sort by date, select everything older than a year, and ask yourself honestly: will I ever look at these again? I deleted about 600 screenshots and felt nothing.
+
+## 2. Compress your images
+
+This is where the biggest surprise was for me. I had over 2,000 PNG screenshots still in my library, and they were taking up almost 8GB.
+
+PNGs are lossless — great for pixel-perfect screenshots, terrible for storage. A 5MB PNG screenshot converts to a 200-300KB JPG with no visible quality loss at normal viewing sizes. Multiply that by 2,000 and you're looking at recovering 7GB+.
+
+I used <a href="https://picmal.app" target="_blank">Picmal</a> for this. I exported the screenshots from Photos, dragged the folder into Picmal, selected JPG as the output format, and hit convert. The whole batch took about 3 minutes. Everything runs locally on your Mac — nothing gets uploaded anywhere.
+
+You can do the same with any PNGs or TIFFs in your library that don't need to stay lossless. If they're photos or screenshots you're just keeping for reference, JPG or WebP at 85% quality is indistinguishable from the original.
+
+## 3. Turn on Optimize Mac Storage with iCloud Photos
+
+This is the single biggest space saver if you're willing to use iCloud.
+
+Go to **System Settings > Apple Account > iCloud > Photos** and turn on **Sync this Mac** with **Optimize Mac Storage** enabled. What this does: it keeps full-resolution originals in iCloud and replaces local copies with smaller thumbnails. When you open a photo, it downloads the full version on demand.
+
+I went from 74GB to about 12GB of local storage for Photos after enabling this.
+
+The trade-offs are real though:
+
+- **You need enough iCloud storage.** The free 5GB tier won't cut it. I'm on the 200GB plan ($2.99/month).
+- **You need internet to access full-resolution photos.** If you're on a plane or in a place with bad wifi, you'll only see thumbnails.
+- **It takes a while to sync initially.** Mine took about two days to upload everything.
+
+If those trade-offs are fine for you, this is the single most impactful thing you can do.
+
+## 4. Move old photos to an external drive
+
+Some photos you want to keep forever but don't need on your laptop. Family archives, old travel photos, that photography phase.
+
+The simplest approach: export the originals from Photos.app (File > Export > Export Unmodified Originals), save them to an external drive, then delete them from your library. Make sure the export completes and you can open the files on the drive before deleting.
+
+I moved about 15GB of pre-2020 photos to a 1TB SSD I keep in a drawer. Not elegant, but it works and there's no monthly fee.
+
+## 5. Convert RAW files you don't need anymore
+
+If you shot RAW at some point and you're not going back to edit those photos, converting them to JPG saves enormous space. A single RAW file (ARW, CR2, NEF, DNG) is 25-50MB. The JPG equivalent at high quality is 2-5MB. That's a 90% reduction.
+
+You can batch convert RAW files with <a href="https://picmal.app" target="_blank">Picmal</a> — just drag in the folder, pick JPG, set quality to 95%, and convert. Keep the quality high since these are photos you presumably care about.
+
+One caveat: once you convert to JPG, you lose the ability to do non-destructive edits on the RAW data. If there's any chance you'll want to re-edit a photo, keep the RAW. For everything else — the 300 photos from a trip where you already picked your favorites — JPG is fine.
+
+## What I actually did
+
+Here's the actual sequence, start to finish:
+
+1. Used the Duplicates album in Photos.app to merge duplicates. Recovered about 4GB.
+2. Exported 2,100+ PNG screenshots, batch converted them to JPG with Picmal. Went from 8GB to under 1GB. Took 3 minutes.
+3. Deleted ~600 old screenshots I'd never look at again.
+4. Moved pre-2020 photo archives to an external SSD. About 15GB.
+5. Turned on Optimize Mac Storage with iCloud Photos.
+
+Total time: maybe 45 minutes. Total space recovered: went from 74GB down to about 28GB locally, with everything backed up in iCloud.
+
+## What I'd avoid
+
+Don't delete your Photos library and rebuild it. I've seen this advice online and it's destructive — you'll lose albums, edits, People tags, and Memories. There's no reason to do it.
+
+Don't install "Mac cleaner" apps that promise to free up space with one click. Most of them are scamware that nag you into a subscription to delete cache files you don't need to worry about. macOS handles its own caches fine.
+
+Don't turn off iCloud Photos thinking it will free up space — it does the opposite. If you turn it off, your Mac downloads all originals locally.
+
+The boring answer is the right one: delete what you don't need, compress what you're keeping, and let iCloud handle the rest.

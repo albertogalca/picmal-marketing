@@ -1,94 +1,117 @@
 ---
-title: "How to batch convert images on Mac: Complete Guide"
-description: "Learn efficient methods for converting multiple images at once on macOS, including native tools and third-party solutions."
+title: "How to Batch Convert HEIC Photos on Mac (Without Uploading Them)"
+description: "The fastest ways to batch convert hundreds of HEIC photos on your Mac — offline, with no file size limits. Includes Picmal, Preview, Automator, and command line methods."
 pubDate: "2025-07-09"
 category: "Tutorial"
+tags: ["HEIC", "Batch Convert", "Mac", "Tutorial", "Privacy"]
 ---
 
-Whether you're a photographer processing hundreds of RAW files, a web developer optimizing images for a website, or someone who just needs to convert a folder of images to a different format, batch conversion can save you hours of manual work. For the fastest results, use a dedicated [batch image converter for Mac](https://picmal.app/batch-image-converter-mac) like Picmal.
+Last month I imported 800 photos from my iPhone to my Mac. Every single one was HEIC. I needed JPGs to upload to a client's WordPress site, and the site rejected every file.
 
-## Method 1: Using macOS Preview (Built-in)
+This is the problem most people hit. Your iPhone shoots HEIC by default since iOS 11. It's a great format — roughly half the size of JPG at the same quality. But the rest of the world hasn't caught up. WordPress, Shopify, email clients, Windows machines, older apps — they all choke on HEIC.
 
-### Step-by-Step Instructions
+So you need to convert them. And if you have more than a handful, you need to do it in batch.
 
-1. **Select your images:** In Finder, select all the images you want to convert by clicking the first image, then holding Shift and clicking the last image.
-2. **Open in Preview:** Right-click and choose "Open With" → "Preview"
-3. **Select all in Preview:** Press Cmd+A to select all images in the sidebar
-4. **Export:** Go to File → Export Selected Images...
-5. **Choose format:** In the dialog, select your desired format (JPEG, PNG, TIFF, etc.)
-6. **Set quality:** Adjust quality settings if available
-7. **Export:** Choose destination folder and click "Choose"
+I've tried every method. Here's what actually works, ranked by how much friction each one adds to your day.
 
-> **✅ Pros:** Free, built-in, no installation required
-> **❌ Cons:** Limited format support, basic options only
+## Picmal — what I built for exactly this
 
-## Method 2: Using Automator (Advanced Built-in)
+I built <a href="https://picmal.app" target="_blank">Picmal</a> because I was tired of the workflow I'm about to describe below. Drag your files in, pick a format, hit convert. That's it.
 
-### Creating a Reusable Workflow
+What makes it different from the free options:
 
-1. **Open Automator:** Find it in Applications or use Spotlight search
-2. **Create new workflow:** Choose "Workflow" when prompted
-3. **Add "Get Selected Finder Items":** Drag this action from the library
-4. **Add "Change Type of Images":** Search for this action and drag it below the first one
-5. **Configure format:** Choose your target format (JPEG, PNG, TIFF, etc.)
-6. **Save workflow:** File → Save and give it a descriptive name
-7. **Use it:** Select images in Finder, right-click → Services → Your Workflow Name
+- **Handles thousands of files at once** without slowing down or crashing
+- **Keeps your folder structure** — if you drag a nested folder of albums, the output mirrors it
+- **Preserves metadata** — GPS, camera settings, dates all survive the conversion
+- **Works offline** — nothing leaves your Mac, ever
+- **Right-click integration** — select files in Finder, right-click, "Convert with Picmal" (see [how to enable this](/blog/how-to-enable-picmal-right-click-menu))
 
-## Method 3: Using Command Line (Terminal)
+If you're doing this regularly — uploading to a CMS, sending files to clients, archiving — this is the fastest path. <a href="https://picmal.app" target="_blank">$15.99, one-time purchase, no subscription</a>.
 
-### Using ImageMagick
+For the rest of this post, here are the free alternatives and where each one breaks down.
+
+## Preview — fine for a few files
+
+Preview is already on your Mac. It can convert images.
+
+1. Select your HEIC files in Finder
+2. Right-click → Open With → Preview
+3. In Preview, press Cmd+A to select all
+4. File → Export Selected Images
+5. Pick JPEG, choose a destination folder
+
+**Where it falls apart:** Preview wasn't designed for batch work. Above ~50 files it gets sluggish. It flattens your folder structure into a single directory. And it strips some metadata silently — you won't know your GPS data is gone until you need it.
+
+Good enough for 10-20 files. Beyond that, it becomes the problem.
+
+## Quick Actions — the hidden Finder option
+
+Since macOS Monterey, there's a built-in option most people miss:
+
+1. Select your HEIC files in Finder
+2. Right-click → Quick Actions → Convert Image
+3. Pick JPEG and a size
+4. Done
+
+It's faster than Preview for small batches and creates copies (doesn't overwrite originals). But it has the same limits: no metadata preservation, no folder structure, no quality control beyond "small/medium/large/actual size."
+
+## Automator — powerful but fragile
+
+You can build a reusable workflow in Automator:
+
+1. Open Automator (it's in Applications)
+2. Create a new Workflow
+3. Add "Get Selected Finder Items"
+4. Add "Change Type of Images" and set it to JPEG
+5. Save it
+
+Then you can select files in Finder, right-click → Services → your workflow name.
+
+**The catch:** Automator replaces your originals unless you add a "Copy Finder Items" step first. I learned this the hard way. It also doesn't handle nested folders — everything gets dumped into one directory.
+
+If you're comfortable with Automator, this is a decent free option for regular use. But it's one mistake away from overwriting your originals.
+
+## Command line — for developers
+
+If you're comfortable with Terminal:
 
 ```bash
-# Install ImageMagick via Homebrew
+# Install ImageMagick
 brew install imagemagick
 
-# Convert all JPEG files to PNG
-magick *.jpg -format png -path ./converted %t.png
+# Convert all HEIC files in current directory to JPG
+for file in *.heic; do
+  magick "$file" "${file%.heic}.jpg"
+done
 
-# Resize and convert
-magick *.jpg -resize 800x600 -format webp ./converted/%t.webp
+# Recursive, preserving folder structure
+find . -name "*.heic" -exec sh -c 'magick "$1" "${1%.heic}.jpg"' _ {} \;
 ```
 
-> **⚡ Pros:** Very powerful, scriptable, supports all formats
-> **⚠️ Cons:** Command line only, steep learning curve
+Fast, scriptable, handles any volume. But it's a command line tool — there's no preview, no quality slider, and you need to know what you're doing. Most people reading this post aren't looking for a Terminal solution.
 
-## Method 4: Using Dedicated Apps
+## Which method to use
 
-### Why choose a dedicated app?
+| | Small batch (&lt;20 files) | Medium batch (20-200) | Large batch (200+) |
+|---|---|---|---|
+| **Quick Actions** | Best free option | Slow, no quality control | Don't bother |
+| **Preview** | Works fine | Gets sluggish | Crashes or hangs |
+| **Automator** | Overkill | Decent if set up | No folder structure |
+| **Command line** | Overkill | Good if you know it | Great if you know it |
+| **Picmal** | Instant | Instant | Still instant |
 
-**✅ Advantages**
+## A note on online converters
 
-- User-friendly interface
-- More format options
-- Advanced compression settings
-- Batch processing features
-- Preview capabilities
-- Metadata management
+You'll find dozens of "free HEIC to JPG" websites if you search for this. They all work the same way: you upload your photos to someone's server, they convert them, you download the results.
 
-**Popular Options**
+Think about what's in those photos. Location data. Faces. Your home. Your kids. Your clients' work. You're handing all of that to a server you know nothing about, with a privacy policy you'll never read.
 
-- **[Picmal](https://picmal.app/image-converter-mac)** - Privacy-focused [image converter for Mac](https://picmal.app/image-converter-mac) with batch processing
-- ImageOptim - Web optimization focus
-- Squash - Simple compression tool
-- BRAW Toolbox - Professional video/RAW
+Every method in this post runs entirely on your Mac. Your photos never leave your machine.
 
-## Choosing the Right Method
+## The real solution to the HEIC problem
 
-### Decision Matrix
+You can also tell your iPhone to stop shooting HEIC entirely. Go to Settings → Camera → Formats → Most Compatible. Your photos will be JPG from now on.
 
-**🆓 Occasional Use (< 50 images/month)**
-Use macOS Preview - it's free and handles basic conversions well
+The downside: your photos will be roughly twice the size. If you're running low on phone storage, that matters.
 
-**🔄 Regular Use (50-500 images/month)**
-Consider Automator workflows or a dedicated app like Picmal for better efficiency
-
-**🏢 Professional Use (500+ images/month)**
-Invest in professional tools or learn command line for maximum control and speed
-
-## Best Practices
-
-- **Always backup originals:** Keep a copy of your source files before batch converting
-- **Test with a small batch first:** Verify settings work correctly before processing hundreds of files
-- **Use descriptive naming:** Add prefixes or suffixes to distinguish converted files
-- **Consider organization:** Create separate folders for different formats or purposes
-- **Monitor quality:** Check a few converted images to ensure quality meets your needs
+The better approach is to keep shooting HEIC (it's genuinely a better format) and convert when you need to share. That's the workflow Picmal was built for — keep the originals, convert copies on demand.

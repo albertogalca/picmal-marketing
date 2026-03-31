@@ -22,10 +22,14 @@
 # Alternative page aliases
 /vs/xnconvert /alternative/xnconvert 301
 /vs/imazing-heic-converter /heic-converter-mac 301
-/vs/heictojpg /heic-to-jpg-mac 301
+/vs/heictojpg /convert/heic-to-jpg 301
 
 # Getting started
 /getting-started /docs 301
+
+# Consolidate cannibalized pages into programmatic SEO pages
+/heic-to-jpg-mac /convert/heic-to-jpg 301
+/convert-heic-to-jpg-mac /convert/heic-to-jpg 301
 
 # Video pages (temporary redirect until supported)
 /video-converter-mac / 302

@@ -70,6 +70,7 @@ export default defineConfig({
           },
         },
       ],
+      customCss: ["./src/styles/docs-layers.css"],
       disable404Route: true,
       credits: false,
       plugins: [

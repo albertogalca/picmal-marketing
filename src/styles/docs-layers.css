@@ -1,0 +1,3 @@
+/* Declare layer order so Tailwind layers resolve BEFORE Starlight layers.
+   Later layers have higher priority, so Starlight styles override Tailwind's preflight. */
+@layer properties, theme, base, components, utilities, starlight, black;

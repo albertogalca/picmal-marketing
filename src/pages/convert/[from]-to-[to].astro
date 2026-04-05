@@ -12,6 +12,7 @@ import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import { conversions, formats, getRelatedConversions, type FileSizeExample, type UseCase } from "../../data/conversions";
+import { compressions } from "../../data/compressions";
 
 export function getStaticPaths() {
   return conversions.map((c) => ({
@@ -25,8 +26,11 @@ const from = formats[conversion.from];
 const to = formats[conversion.to];
 const related = getRelatedConversions(conversion.from, conversion.to, 6);
 
-const title = `Convert ${from.name} to ${to.name} on Mac`;
-const description = `Convert ${from.name.toLowerCase()} files to ${to.name.toLowerCase()} format on your Mac in seconds. Batch conversion, no quality loss.`;
+const fromCompress = compressions.find((c) => c.format === conversion.from);
+const toCompress = compressions.find((c) => c.format === conversion.to);
+
+const title = conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac`;
+const description = conversion.metaDescription;
 
 const howToSchema = {
   "@context": "https://schema.org",
@@ -259,6 +263,73 @@ const faqSchema = {
             <FAQ faqs={conversion.faqs} />
           </div>
         </section>
+
+        <!-- Sources & Standards -->
+        {(from.standardBody || to.standardBody) && (
+          <section class="mb-16 sm:mb-20">
+            <H2 class="mb-8 text-center">Format Standards & Sources</H2>
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <ul class="space-y-3 text-sm text-text-secondary">
+                {from.standardBody && (
+                  <li class="flex gap-2 items-start">
+                    <span class="text-accent font-medium flex-shrink-0">{from.name}:</span>
+                    <span>
+                      Defined by {from.standardBody}.
+                      {from.sourceUrl && (
+                        <a href={from.sourceUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline ml-1">
+                          View specification &rarr;
+                        </a>
+                      )}
+                    </span>
+                  </li>
+                )}
+                {to.standardBody && (
+                  <li class="flex gap-2 items-start">
+                    <span class="text-accent font-medium flex-shrink-0">{to.name}:</span>
+                    <span>
+                      Defined by {to.standardBody}.
+                      {to.sourceUrl && (
+                        <a href={to.sourceUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline ml-1">
+                          View specification &rarr;
+                        </a>
+                      )}
+                    </span>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        <!-- Compress Cross-Links -->
+        {(fromCompress || toCompress) && (
+          <section class="mb-16 sm:mb-20">
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <H2 class="mb-4">Need to compress instead?</H2>
+              <Paragraph class="mb-4">If you don't need to change formats, Picmal can also compress your files to reduce size:</Paragraph>
+              <div class="flex flex-wrap gap-3">
+                {fromCompress && (
+                  <a
+                    href={`/compress/${fromCompress.slug}`}
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                  >
+                    <span class="font-mono text-xs text-text-secondary">.{fromCompress.format}</span>
+                    Compress {fromCompress.name}
+                  </a>
+                )}
+                {toCompress && (
+                  <a
+                    href={`/compress/${toCompress.slug}`}
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                  >
+                    <span class="font-mono text-xs text-text-secondary">.{toCompress.format}</span>
+                    Compress {toCompress.name}
+                  </a>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
 
         <!-- Related Conversions -->
         <section class="mb-16 sm:mb-20">

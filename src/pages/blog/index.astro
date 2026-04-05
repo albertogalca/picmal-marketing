@@ -14,12 +14,36 @@ import Paragraph from "../../components/Paragraph.astro";
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const blogListSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Image Conversion Guides & Mac Tips | Picmal Blog",
+  description: "Guides on image conversion, batch processing, format optimization, and Mac productivity tips.",
+  url: new URL("/blog", Astro.site).href,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Picmal",
+    url: Astro.site?.href,
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/blog/${post.id}`, Astro.site).href,
+      name: post.data.title,
+    })),
+  },
+};
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title="Image Conversion Guides & Mac Tips | Picmal Blog" description="Guides on image conversion, batch processing, format optimization, and Mac productivity tips." />
+    <script type="application/ld+json" set:html={JSON.stringify(blogListSchema)} />
   </head>
   <body class="bg-background overflow-x-hidden">
     <!-- Subtle gradient background - Apple style -->
@@ -32,7 +56,7 @@ const posts = (await getCollection("blog")).sort(
 
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
-          <H1 class="mb-4 blog-title">Blog</H1>
+          <H1 class="mb-4 blog-title">Image Conversion Guides & Mac Tips</H1>
           <Paragraph class="max-w-2xl mx-auto blog-subtitle">
             Updates, guides, and thoughts about building software for Mac.
           </Paragraph>

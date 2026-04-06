@@ -3,6 +3,16 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.3</title>
+            <pubDate>Mon, 06 Apr 2026 20:21:49 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>59</sparkle:version>
+            <sparkle:shortVersionString>1.4.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.3/Picmal.dmg" length="116699519" type="application/octet-stream" sparkle:edSignature="ImtAG9G7iFUx/svK3PhFhVy6BC2qfl0zByoa3zgz5i8EMzopeS2XSKsOzpe4CBmGqDdWLRoy+HcbHL4CGKUJDA=="/>
+        <description><![CDATA[<div><ul><li>Converting MP4 to GIF fixed.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.2</title>
             <pubDate>Tue, 31 Mar 2026 13:13:39 +0200</pubDate>
             <link>https://picmal.app/</link>

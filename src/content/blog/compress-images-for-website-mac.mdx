@@ -10,7 +10,7 @@ Last week I ran Google PageSpeed on a client's site and got a 34 on mobile. The 
 
 This happens more often than you'd think. You export from Figma or Lightroom, upload directly to your CMS, and everything looks fine on your fast office Wi-Fi. Then real users on real connections get a loading spinner for eight seconds and leave.
 
-The fix is straightforward, but there are three things that actually matter — and a lot of advice online that doesn't.
+The fix is straightforward. Three things actually matter, and a lot of advice online doesn't.
 
 ## What actually matters for web images
 
@@ -18,62 +18,62 @@ The fix is straightforward, but there are three things that actually matter — 
 
 This is the biggest lever. A JPG hero image at 1400px wide might be 800 KB. The same image as WebP is around 300 KB. As AVIF, closer to 200 KB.
 
-WebP has near-universal browser support now — over 97% globally. AVIF is at about 93% and climbing. Unless you're targeting very old browsers, there's no reason to serve JPG or PNG on the web anymore.
+WebP has 97%+ browser support now. AVIF is at about 93% and climbing. Unless you're supporting IE or some corporate browser trapped in 2018, there's no reason to serve JPG or PNG for photos on the web.
 
-PNG still makes sense for images that need transparency and sharp edges (logos, icons, screenshots with text). But for photos? WebP or AVIF, every time.
+PNG still makes sense for transparency and sharp edges: logos, icons, screenshots with text. For photos, WebP or AVIF. Every time.
 
 ### 2. Dimensions
 
-Nobody needs a 4000px wide image on a website. Most sites have a content area of 800-1200px. Even full-width hero images rarely need to be wider than 1600px on a standard display, or 2400px if you're serving retina.
+Nobody needs a 4000px wide image on a website. Most content areas are 800-1200px. Even full-bleed hero images rarely need more than 1600px on a standard display, or 2400px for retina.
 
-Resizing from 4000px to 1600px alone can cut file size by 75%, before you even touch compression. This is the step most people skip.
+Resizing from 4000px to 1600px cuts file size by 75% before you even touch compression. This is the step most people skip, and it's the easiest win.
 
 ### 3. Compression quality
 
-Here's the thing most guides get wrong: they tell you to find the "perfect" quality setting. In practice, 80% quality is visually indistinguishable from 100% for photos on the web. At screen resolution, viewed in a browser, side by side — you cannot tell the difference.
+Most guides tell you to find the "perfect" quality setting. In practice, 80% is visually identical to 100% for photos on the web. At screen resolution, in a browser, side by side — you cannot tell the difference.
 
 Below 70% you start to see artifacts, especially in gradients and areas with subtle color transitions. So the sweet spot is 75-85%. I default to 80% and only go higher for images where fine detail actually matters (portfolio sites, product photography).
 
 ## How I handle this with Picmal
 
-I built <a href="https://picmal.app" target="_blank">Picmal</a> to handle image conversion and compression on Mac, and this exact workflow is what I use daily.
+I built <a href="https://picmal.app" target="_blank">Picmal</a> for this exact workflow, and it's what I use daily.
 
-Drag your images in. Pick WebP (or AVIF) as the output format. Set quality to 80%. If you need to resize, set a max width. Hit convert. Done.
+Drag images in. Pick WebP (or AVIF). Set quality to 80%. Set a max width if needed. Convert. Done.
 
-A few things that matter here:
+What makes this work for real use:
 
-- **Batch processing** — drag an entire folder of product photos. Hundreds of files at once. Picmal keeps the folder structure so you can upload the output directly to your CMS.
-- **WebP and AVIF output** — most tools, especially the free ones, can't export to these formats. Picmal handles both natively.
-- **Everything stays on your Mac** — nothing gets uploaded anywhere. This matters more than people think (more on that below).
-- **One-time purchase** — <a href="https://picmal.app" target="_blank">$15.99, no subscription</a>. You buy it once and it works forever.
+- **Batch processing.** Drag an entire folder of product photos. Hundreds of files. Picmal keeps the folder structure, so the output is ready to upload straight to your CMS.
+- **WebP and AVIF output.** Most free tools can't export to either format. Picmal handles both.
+- **Nothing leaves your Mac.** No uploads, no servers. More on why this matters below.
+- **<a href="https://picmal.app" target="_blank">$15.99, once</a>.** No subscription. You buy it and it works.
 
 ## Free alternatives (honest takes)
 
-There are good free options. Whether they're good enough depends on your volume and which formats you need.
+There are genuinely good free options. Whether they're good enough depends on how many images you process and which formats you need.
 
 ### macOS Preview
 
 Built into every Mac. Open an image, File > Export, choose JPEG, drag the quality slider down. It works.
 
-The problems: no WebP or AVIF export. No batch processing unless you select multiple files in the sidebar, and even then it's clunky. No resize option during export. Fine for a one-off, painful for regular use.
+The problems: no WebP or AVIF export. Batch processing exists if you select multiple files in the sidebar, but it's clunky enough that you'll avoid it. No resize during export. Fine for one image. Painful as a habit.
 
 ### Squoosh (squoosh.app)
 
-Google's web-based compression tool. Genuinely good — it shows you a before/after comparison and supports WebP and AVIF. The compression algorithms are solid.
+Google's web-based compression tool. Genuinely good. Shows a before/after comparison, supports WebP and AVIF, and the compression algorithms are solid.
 
-The catch: one image at a time. If you have 50 product photos to compress, you'll be clicking and dragging for an hour. It also requires uploading your images to a web page, though processing happens client-side in the browser.
+The catch: one image at a time. Fifty product photos means fifty drag-and-drops. Processing happens client-side in the browser, so your files don't technically hit a server, but you still need an internet connection to load the tool.
 
 ### ImageOptim
 
 A well-made Mac app that's been around for years. Drag files in, it compresses them in place. Good for lossless and lossy optimization of JPG and PNG files.
 
-The limitation: it optimizes existing formats but doesn't convert to WebP or AVIF. So you're getting smaller JPGs, not the 60-70% size reduction you'd get from switching formats entirely.
+The limitation: it squeezes existing formats but can't convert to WebP or AVIF. You get smaller JPGs, not the 60-70% reduction you'd get from switching formats entirely.
 
 ### TinyPNG / TinyJPG
 
 Web-based, works well, supports WebP now. Free tier limits you to 20 images at a time with a 5 MB per-file limit.
 
-The trade-off: your images get uploaded to their servers. For personal projects, probably fine. For client work with unreleased product photos or confidential material, that's a different conversation.
+The trade-off: your images get uploaded to their servers. For a personal blog, probably fine. For client work with unreleased product photos or anything confidential, think twice.
 
 ## The workflow that actually works
 
@@ -91,16 +91,16 @@ In Picmal, this is one operation: set the format, quality, and max width, drag y
 
 ## Why compressing locally matters
 
-If you're building sites for clients, you're handling their product photos, unreleased designs, internal documentation screenshots, maybe photos of prototypes that haven't been announced yet.
+If you build sites for clients, you're handling their product photos, unreleased designs, screenshots of internal dashboards, maybe photos of prototypes that haven't been announced.
 
-Uploading those to TinyPNG or any web-based tool means they hit someone else's server. Even if the service says they delete files after processing, you're still transmitting them. For some clients, that's a non-starter. For regulated industries, it can be a compliance issue.
+Upload those to TinyPNG or any web tool and they hit someone else's server. Even if the service deletes files after processing, you still transmitted them. For some clients, that's a non-starter. For regulated industries, it's a compliance problem.
 
-Processing everything locally on your Mac means the files never leave your machine. There's no terms of service to read, no data processing agreement to sign, no question about where the images end up. They stay on your disk, compressed, ready to use.
+Processing locally means the files never leave your disk. No terms of service, no data processing agreement, no question about where the images end up.
 
-This isn't theoretical paranoia. I've had clients specifically ask whether their images were being processed through any third-party services. Being able to say "everything happens locally, offline" is a real advantage.
+This isn't theoretical. I've had clients ask directly whether their images pass through any third-party services. "Everything happens offline, on my machine" is a better answer than "I think they delete them after an hour."
 
 ---
 
-If you're dealing with web images regularly — whether you're a developer, designer, or someone maintaining a company site — the combination of format conversion, resizing, and compression at 80% quality will solve most of your page speed problems. The tools exist. The hard part is just making it a habit.
+If you deal with web images regularly, the combination of format conversion, resizing, and 80% quality compression will fix most of your page speed problems. The tools exist. The hard part is making it a habit instead of uploading raw exports and hoping for the best.
 
 <a href="https://picmal.app" target="_blank">Picmal</a> is what I built to make that habit as frictionless as possible.

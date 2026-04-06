@@ -12,7 +12,7 @@ After paying for the Apple Developer license and getting my first version ready,
 
 The only way around it was to skip the App Store entirely and distribute the app independently.
 
-But before that, let me tell you why I built Picmal in the first place. The idea came from a daily frustration: opening a browser, finding an online converter, uploading images, waiting for them to process in the cloud, and then downloading them again. I wanted something simple, fast, and offline.
+But before that, some context. I built Picmal because I was tired of the same ritual every time I needed to convert an image: open a browser, find an online converter, upload the file, wait for it to process on some server, download the result. I wanted something that ran locally and didn't involve a browser tab.
 
 So I decided to make it native, even though I had never built a fully native app before. That was challenge number one. Challenge number two was finding a smooth way to share it without the App Store.
 
@@ -32,9 +32,7 @@ Once your app is ready for release, do the following:
 
 ## Step 2: Create a DMG Installer
 
-To give users a better experience in order to install the app, I used <a href="https://github.com/sindresorhus/create-dmg" target="_blank">create-dmg</a>, a simple CLI tool that outputs a polished DMG file.
-
-In the terminal you need to execute this:
+Shipping a bare `.app` file feels unfinished. I used <a href="https://github.com/sindresorhus/create-dmg" target="_blank">create-dmg</a>, a CLI tool by Sindre Sorhus that produces a proper DMG with an Applications folder shortcut and a clean layout:
 
 ```bash
 # Install create-dmg if you haven't already
@@ -55,13 +53,13 @@ create-dmg \
 
 ![Terminal output showing create-dmg tool generating a DMG installer for macOS app](/images/blog/publish-your-macos-app-outside-the-app-store/create-dmg.webp)
 
-Once it's done you will have your DMG installer ready, but you need to do an extra step, which is notarize this DMG too to avoid getting an error like this:
+You'll have a DMG, but it's not ready yet. Without notarization, macOS will block it with this lovely warning:
 
 ![macOS security warning dialog showing malware detection for unsigned app](/images/blog/publish-your-macos-app-outside-the-app-store/malware.webp)
 
 ## Step 3: Notarize DMG installer
 
-First I highly recommend you to create a profile so that every time you have to notarize your new releases you don't need to remember the password:
+Save a credentials profile first, so you don't have to dig up passwords every time you release an update:
 
 ```bash
 xcrun notarytool store-credentials --apple-id "your-email@example.com" \
@@ -84,7 +82,7 @@ Now you need to staple the DMG:
 xcrun stapler staple YourApp.dmg
 ```
 
-And finally you are almost ready, just to check that this process has worked, you can check it in your terminal using:
+Verify the notarization worked:
 
 ```bash
 spctl --assess --type open --context context:primary-signature -v YourApp.dmg
@@ -94,4 +92,4 @@ spctl --assess --type open --context context:primary-signature -v YourApp.dmg
 # source=Notarized Developer ID
 ```
 
-If you see something like this message, you're done. You can upload your DMG to Gumroad (or wherever you prefer) and start selling.
+If the output says `accepted`, you're done. Upload the DMG to Gumroad (or wherever you sell) and start shipping.

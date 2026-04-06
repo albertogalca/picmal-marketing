@@ -6,7 +6,7 @@ category: "Tutorial"
 tags: ["Privacy", "Image Conversion", "Mac", "Tutorial", "Offline"]
 ---
 
-You Google "convert HEIC to JPG." The first result is a free online tool. You drag your photos in, click convert, and download the results. It works. But in the thirty seconds between upload and download, your photos sat on someone else's server, processed by software you can't inspect, governed by a privacy policy you didn't read.
+You Google "convert HEIC to JPG." The first result is a free online tool. You drag your photos in, click convert, download the results. It works. But in the thirty seconds between upload and download, your photos sat on someone else's server, processed by software you can't inspect, governed by a privacy policy you didn't read.
 
 I thought about this when I was building <a href="https://picmal.app" target="_blank">Picmal</a>. I had been using online converters for years without a second thought. Then one day I uploaded a batch of screenshots that included a client's dashboard. Full names, revenue numbers, everything. The converter worked fine. But those images went somewhere, and I had no idea where.
 
@@ -14,20 +14,20 @@ That was the moment I decided the tool I was building had to be entirely offline
 
 ## The real problem with online converters
 
-Most online converters are free because your files are the product. Not all of them are malicious, but the incentives aren't aligned with your privacy.
+Most online converters are free because your files are the product. Not all of them are malicious, but the business model doesn't reward protecting your privacy.
 
-Here's what actually happens when you upload:
+Here's what happens when you upload:
 
-- **Your files hit a server** you don't control. Most services say they delete files after an hour. Some say 24 hours. Some don't say anything at all.
-- **EXIF data goes with them.** Your photos contain metadata: GPS coordinates, device model, timestamps. That data travels with the file unless it's explicitly stripped.
-- **Terms of service are broad.** I've read a few. Some grant themselves a license to use uploaded content for "service improvement." What that means in practice is anyone's guess.
-- **GDPR makes this your problem.** If you're a freelancer or agency handling client images, uploading them to a random converter might violate your data processing obligations. Nobody thinks about this until something goes wrong.
+- **Your files land on a server** you don't control. Most services say they delete after an hour. Some say 24 hours. Some say nothing.
+- **EXIF data tags along.** GPS coordinates, device model, timestamps. All embedded in the file, all transmitted unless explicitly stripped.
+- **Terms of service are suspiciously broad.** I've read a few. Some grant themselves a licence to use uploaded content for "service improvement." Nobody defines what that means.
+- **GDPR makes this your liability.** If you're a freelancer or agency handling client images, uploading them to a random converter might violate your data processing obligations. Nobody thinks about this until a client asks.
 
-None of this matters if you're converting a meme. All of it matters if you're converting photos of someone's children, legal documents, medical scans, or anything under NDA.
+None of this matters if you're converting a meme. All of it matters if you're converting photos of someone's kids, scanned contracts, medical images, or anything under NDA.
 
 ## Every offline method on Mac
 
-Here's every way to convert images without anything leaving your machine.
+Every way to convert images without a single byte leaving your machine.
 
 ### 1. Picmal
 
@@ -43,23 +43,23 @@ I use it for my own work daily, and it handles hundreds of files without slowing
 
 Open an image in Preview. Go to File > Export. Choose a format from the dropdown. Save.
 
-This works perfectly for one file at a time. The problem is that it's one file at a time. If you have 50 images to convert, you're doing this 50 times. Preview also doesn't support exporting to AVIF or WebP, which limits it for web work.
+This works perfectly for one file. The problem is that it's one file. Fifty images means fifty trips through File > Export. Preview also can't export to AVIF or WebP, which rules it out for modern web work.
 
-For a quick one-off conversion, it's fine. For anything else, it's tedious.
+Good for a one-off. Tedious for anything else.
 
 ### 3. Quick Actions in Finder
 
 Since macOS Monterey, you can right-click images in Finder, go to Quick Actions > Convert Image, and pick a format. You can select multiple files, which makes it better than Preview for small batches.
 
-The downsides: limited format options (JPG, PNG, HEIF only), no quality control, and no AVIF or WebP support. It also tends to be slow with larger selections. But for 5-10 images in standard formats, it's genuinely useful and built right into the system.
+The downsides: limited formats (JPG, PNG, HEIF only), no quality control, no AVIF or WebP. Gets sluggish with larger selections. But for 5-10 images in standard formats, it's genuinely useful and requires installing nothing.
 
 ### 4. Automator
 
 Automator lets you build a conversion workflow that runs as a Folder Action or a Quick Action. You can set it up to automatically convert any image dropped into a specific folder.
 
-The setup isn't trivial. You need to configure the input format, output format, destination folder, and naming convention. If you get the destination wrong, Automator can overwrite your originals, which I learned the hard way during testing. There's no undo.
+The setup isn't trivial. You configure input format, output format, destination folder, naming convention. If you get the destination wrong, Automator will happily overwrite your originals. I learned this the hard way. There's no undo.
 
-Once configured, it works reliably. But it's the kind of tool where the setup cost only makes sense if you're converting images on a recurring basis. For a one-time batch, it's overkill.
+Once it's working, it keeps working. But the setup cost only pays off if you're converting images on a recurring basis. For a one-time batch, you'll spend more time configuring than converting.
 
 ### 5. ImageMagick via Terminal
 
@@ -81,23 +81,23 @@ Or batch convert every HEIC in a folder:
 magick mogrify -format jpg *.heic
 ```
 
-ImageMagick supports nearly every image format that exists. The trade-off is obvious: you need Homebrew installed, you need to be comfortable in Terminal, and there's no visual feedback. It's a professional tool for people who already live in the command line.
+ImageMagick supports nearly every image format that exists. The trade-off is obvious: you need Homebrew, you need to be comfortable in Terminal, and you get zero visual feedback. If you don't already live in the command line, this isn't where you start.
 
 ## When does offline actually matter?
 
-The honest answer: it always matters, but you'll only feel it when the stakes are high.
+Honestly? It always matters. You just don't feel it until the stakes are high.
 
-- **Client work.** If you're converting images a client sent you, those files aren't yours to upload anywhere.
-- **Legal and medical documents.** Scanned documents with embedded images can contain sensitive information that's subject to regulation.
-- **Children's photos.** Parents send HEIC photos to relatives. Those photos end up on a free converter because grandma needs JPGs. Nobody in that chain thought about where the photos went.
-- **Anything under NDA.** Screenshots, mockups, product photos before launch. An online converter technically counts as sharing with a third party.
+- **Client work.** Those files aren't yours to upload to a random server.
+- **Legal and medical documents.** Scanned pages with embedded images can contain information subject to regulation.
+- **Children's photos.** Parents send HEIC photos to relatives. Grandma needs JPGs. The photos end up on a free converter. Nobody in that chain stopped to ask where they went.
+- **Anything under NDA.** Screenshots, mockups, pre-launch product photos. An online converter technically counts as sharing with a third party.
 
-For professional work, offline conversion isn't a feature. It's a requirement that most people don't realize they have.
+For professional work, offline conversion isn't a nice-to-have. It's a requirement most people don't realize they have until someone asks.
 
 ## Why this is still a problem
 
-"Convert image online free" gets millions of searches every month. That tells you something about the state of native tools. Apple ships Quick Actions and Preview, but both are limited enough that people still reach for the browser. Most users don't know about Automator. Nobody wants to install Homebrew to convert a photo.
+"Convert image online free" gets millions of searches every month. That tells you everything about the state of native tools. Apple ships Quick Actions and Preview, but both are limited enough that people reach for the browser anyway. Most users don't know Automator exists. Nobody installs Homebrew to convert a photo.
 
-Offline should be the default, not something you have to go out of your way to find. The fact that the first instinct for most people is to upload their files to a stranger's server means that native tools have failed to meet a basic need.
+Offline should be the default, not something you hunt for. When most people's first instinct is to upload their files to a stranger's server, the native tools have failed at something basic.
 
-That's why I built Picmal. Not because the world needed another converter, but because the converters people actually use require giving up something they shouldn't have to.
+That's why I built Picmal. Not because the world needed another converter, but because the converters people actually use ask them to give up something they shouldn't have to.

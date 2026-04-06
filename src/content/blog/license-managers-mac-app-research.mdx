@@ -5,24 +5,24 @@ pubDate: "2026-02-23"
 category: "Guide"
 ---
 
-A few months ago I chose Lemon Squeezy for <a href="https://picmal.app" target="_blank">Picmal</a> because it offered two things at once: payments and license management, with affiliate support included.
+A few months ago I chose Lemon Squeezy for <a href="https://picmal.app" target="_blank">Picmal</a> because it handled payments, licences, and affiliates in one dashboard.
 
-But after using it for a few months, I ran into two real problems:
+Then I started losing sales. Two problems:
 
-- The checkout process is unreliable. I've seen developers who switched to Stripe improve their conversion rate just by making that change.
-- Each licence is linked to a customer and a purchase. That works fine for direct sales, but it breaks down with platforms like TheAppSquad, which buy a batch of licences in advance and handle their own sales.
+- The checkout would randomly fail. Other developers told me they saw conversion jump just by switching to Stripe.
+- Every licence is welded to a customer and a purchase. Fine for direct sales, useless for a reseller like TheAppSquad that buys a batch of keys upfront and sells them separately.
 
-So I looked for alternatives. I spoke to the founder of Creem, emailed Polar, and spent a few evenings going through options. Here's what I found.
+So I went looking. I talked to the founder of Creem, emailed Polar, and spent a few late nights comparing everything I could find.
 
 ## A distinction that matters first
 
 Most licence tools work in one of two ways:
 
-**Licenses that are ready to be purchased** — created after a purchase, always linked to the customer. This is how most platforms usually work.
+**Purchase-linked licences** — created after someone buys, permanently tied to that customer. This is how most platforms work by default.
 
-**Standalone licenses** are generated independently and are not linked to any specific purchase. This is a must if you want to work with resellers.
+**Standalone licences** — generated on their own, not attached to any purchase. You hand them out however you want. This is the only model that works with resellers.
 
-If you're only doing direct sales, you'll never reach this point. But if you ever want to expand how you distribute your work, this distinction becomes very important.
+If you're only selling directly, you'll never care about this difference. The moment you try to work with a distributor, it's the only thing that matters.
 
 ---
 
@@ -30,46 +30,40 @@ If you're only doing direct sales, you'll never reach this point. But if you eve
 
 ### <a href="https://lemonsqueezy.com" target="_blank">Lemon Squeezy</a>
 
-The all-in-one option is the one most indie developers go for first. Everything you need to manage payments, licences and affiliates is in one place. It deals with VAT as a Merchant of Record, which is important if you're selling worldwide.
+The default choice for indie developers. Payments, licences, affiliates, VAT handled as Merchant of Record. You sign up and you're selling in an afternoon.
 
-The problems I had were that the checkout didn't always work properly, which meant I lost sales, and I couldn't get standalone licenses without buying something. If you need licensing that is suitable for resellers, this won't work for you.
+The checkout is the weak spot. It breaks often enough that you notice it in your revenue. And licences are always purchase-linked, so resellers are out of the question.
 
-This is best for:
-
-- direct sales
-- simple products
-- getting started quickly
+Best if you want to ship fast and only sell directly.
 
 ### <a href="https://creem.io" target="_blank">Creem</a>
 
-I spoke to the person who started the company. It's reliable, and it's easy to sign up. It works in a similar way to the Lemon Squeezy, but costs less.
+I talked to the founder directly. Similar model to Lemon Squeezy, cheaper fees, and the checkout actually works. If I were starting fresh with direct sales only, I'd pick this over Lemon Squeezy without hesitating.
 
 ### <a href="https://polar.sh" target="_blank">Polar.sh</a>
 
-It is developed with the developer in mind and is open-source friendly. It was a nice, clean experience. We've got the same problem though – the licenses are linked to purchases, and they've confirmed that they're not planning to change this.
+Developer-focused, open-source friendly, clean UI. I liked it. But licences are purchase-linked, and when I asked, they confirmed they have no plans to change that. Dead end for my reseller problem.
 
 ### <a href="https://licenseseat.com" target="_blank">LicenseSeat</a>
 
-This one is different. It's just a tool for creating licenses, and it costs a monthly fee. It lets you make your own licenses, which is exactly what I needed for the reseller use case. It works with Stripe, so you can link payments without having to start from scratch.
+This one is different. It's purely a licence generator, paid monthly. You create keys whenever you want, not tied to any purchase. Exactly what the reseller case needs.
 
-This is perfect for anyone who needs to give out licenses through other companies or for those who want to separate licensing from payments.
+It plugs into Stripe, so you're not rebuilding your payment flow from scratch. If you need to hand 500 licence keys to a distributor and let them worry about selling, this is the only tool on this list that does it cleanly.
 
 ### <a href="https://amore.computer" target="_blank">Amore</a>
 
-Lucas is the developer behind Amore. I know him, and he's really serious about solving the problem of getting Mac apps that aren't from the App Store without all the usual hassle. So it's a really good choice.
+Built by Lucas, who I know personally. He's focused on the pain of distributing Mac apps outside the App Store, and it shows.
 
-It puts Sparkle (the main way to update macOS) into a simple interface. You can drag and drop your app, write release notes, and publish. It also automatically creates DMG, supports beta channels, phased rollouts, and signing — all in one place. There's even a command-line interface (CLI) if you want to automate releases or integrate with continuous integration/continuous delivery (CI/CD).
+Amore wraps Sparkle (the standard macOS update framework) in a UI that doesn't make you want to close your laptop. Drag your app in, write release notes, hit publish. It builds the DMG, handles signing, supports beta channels and phased rollouts. There's a CLI too, so you can wire it into CI/CD.
 
-Payments and licences are on the roadmap, built on Stripe. This is worth keeping an eye on if you want everything in one place for Mac distribution.
+Payments and licences are on the roadmap, built on Stripe. Not there yet, but worth watching if you want distribution and licensing under one roof.
 
 ### <a href="https://keygen.sh" target="_blank">Keygen.sh</a>
 
-It's powerful and flexible. You can use it in different ways, like with floating licenses, node-locked, offline validation and complex entitlement models. If you're creating something for businesses or teams, it's worth checking out. You can also self-host, which is a good option.
+The enterprise-grade option. Floating licences, node-locked, offline validation, complex entitlement models. If you're selling to teams or businesses with compliance requirements, this handles it. You can self-host too.
 
-For a simple indie product, it's probably more than you need.
+For a single indie app, it's like renting a warehouse to store a suitcase.
 
 ---
 
-None of these tools solve the reseller case in a single, easy-to-understand place. If you're into direct sales, Creem is definitely an upgrade from Lemon Squeezy. If you want a standalone licence, the only real option is LicenseSeat. Amore is the one to watch if you want everything to be put together for Mac distribution in the future.
-
-I hope this helps you understand the options and helps you decide which one to choose.
+Nobody solves the reseller case in one place yet. For direct sales, Creem is a clear upgrade over Lemon Squeezy. For standalone licences, LicenseSeat is your only real option. And Amore is the one I'm watching for a future where distribution, updates, and licensing live in the same tool.

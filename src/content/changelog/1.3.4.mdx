@@ -4,6 +4,6 @@ title: "Stability fix for corrupted files"
 pubDate: 2026-01-19
 ---
 
-Fixed an issue where Picmal could become unresponsive when processing complex or corrupted files. The app now handles these gracefully and moves on to the next file in the queue.
+Picmal could freeze on corrupted or unusually complex files. It now skips them and moves on to the next file in the queue.
 
-Sentry error reporting has been improved to capture more context around failures, which helps us diagnose and ship fixes faster. Other minor stability improvements are included.
+Better Sentry reporting with more context around failures, so we can diagnose issues faster. Other minor stability fixes.

@@ -23,6 +23,14 @@ Prefix: "web_"  →  web_photo.jpeg
 Suffix: "_2x"   →  photo_2x.jpeg
 ```
 
+### Same-format conversion
+
+When converting a file to the same format (e.g., FLAC → FLAC for resampling), a `_converted` suffix is added automatically:
+
+```
+song.flac → song_converted.flac
+```
+
 ### Compression
 
 Compressed files keep their original extension and add a `_compressed` suffix by default:

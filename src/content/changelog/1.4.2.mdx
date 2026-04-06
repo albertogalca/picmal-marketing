@@ -4,15 +4,15 @@ title: "Corrupted video detection, notch progress overlay, and faster launch"
 pubDate: 2026-03-31
 ---
 
-The app now detects corrupted video files — like ones missing the moov atom — and tells you clearly what went wrong instead of failing without explanation. The error interface has also been improved to make issues easier to understand at a glance.
+Corrupted video files (missing moov atom, truncated streams) now get a clear error message instead of silently failing. The error UI has been cleaned up too.
 
-Launch time is noticeably faster. The app no longer blocks on non-essential setup before showing the first screen, so you get to work sooner.
+Launch is faster. The app no longer waits on non-essential setup before showing the window.
 
-System notifications have been replaced with a more integrated progress overlay that animates from the MacBook notch or slides down on other displays. The menu bar icon now shows live progress percentages, so you can track conversions without switching back to the app.
+System notifications are gone. Instead, a progress overlay animates down from the MacBook notch (or slides in on other displays). The menu bar icon shows live progress percentages, so you can track conversions without switching back.
 
-Cancelling a conversion feels smoother and no longer causes a brief UI freeze. Under the hood, several concurrency issues in ServiceHandler, SharedTempFileManager, and FFmpegConverter have been resolved.
+Cancelling a conversion no longer causes a brief UI freeze. Fixed several concurrency bugs in ServiceHandler, SharedTempFileManager, and FFmpegConverter.
 
-Other smaller fixes and improvements.
+Plus smaller fixes.
 
 <video autoplay muted loop width="100%" style="margin-top: 1.5rem;">
   <source src="images/changelog/1.4.2/notch.mp4" type="video/mp4" />

@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.4</title>
+            <pubDate>Mon, 06 Apr 2026 21:35:41 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>60</sparkle:version>
+            <sparkle:shortVersionString>1.4.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.4/Picmal.dmg" length="116719654" type="application/octet-stream" sparkle:edSignature="U0Ic+Yd6nhZiPwedy0w7dhhS9IPMtESh4oqFdmjwLjb9NNGc0rBFcFK+4Uu55wg9JF1iKvZA7UVNFUnAlUhIBA=="/>
+        <description><![CDATA[<div><ul><li>Audio files can now be converted to the same format (e.g. FLAC → FLAC) to change sample rate without switching codec.</li>
+<li>New sample rate setting in Audio > Custom preset: resample audio to 8 kHz, 11.025 kHz, 16 kHz, 22.05 kHz, 32 kHz, 44.1 kHz (CD), 48 kHz (DVD), 88.2 kHz or 96 kHz.</li>
+<li>Same-format conversions now automatically add a "_converted" suffix to prevent overwriting the original file.</li>
+<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.3</title>
             <pubDate>Mon, 06 Apr 2026 20:21:49 +0200</pubDate>
             <link>https://picmal.app/</link>

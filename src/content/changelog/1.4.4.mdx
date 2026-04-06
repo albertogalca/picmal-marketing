@@ -1,0 +1,13 @@
+---
+version: "1.4.4"
+title: "Audio resampling and same-format conversions"
+pubDate: 2026-04-07
+---
+
+You can now convert audio files to the same format they're already in. Sounds pointless, but it's how you resample: FLAC to FLAC at a different sample rate, without touching the codec. The new sample rate picker in Audio > Custom preset offers 8 kHz through 96 kHz, including the usual suspects (44.1 kHz for CD, 48 kHz for DVD).
+
+Same-format conversions add a "_converted" suffix automatically, so your original stays untouched.
+
+Plus a handful of smaller fixes.
+
+<img src="images/changelog/1.4.4/sample_rate.png" alt="Sample rate setting in Audio Custom preset" width="100%" style="margin-top: 1.5rem;" />

@@ -8,27 +8,27 @@ tags: ["HEIC", "Batch Convert", "Mac", "Tutorial", "Privacy"]
 
 Last month I imported 800 photos from my iPhone to my Mac. Every single one was HEIC. I needed JPGs to upload to a client's WordPress site, and the site rejected every file.
 
-This is the problem most people hit. Your iPhone shoots HEIC by default since iOS 11. It's a great format — roughly half the size of JPG at the same quality. But the rest of the world hasn't caught up. WordPress, Shopify, email clients, Windows machines, older apps — they all choke on HEIC.
+Most people hit this wall the same way. Your iPhone shoots HEIC by default since iOS 11. Half the file size of JPG at the same quality, which is genuinely clever. But WordPress, Shopify, email clients, Windows machines, older apps: they don't know what to do with it. You get a red error banner and a pile of unusable files.
 
 So you need to convert them. And if you have more than a handful, you need to do it in batch.
 
-I've tried every method. Here's what actually works, ranked by how much friction each one adds to your day.
+I've tried every method. Here's what actually works, ranked by how much of your afternoon each one eats.
 
 ## Picmal — what I built for exactly this
 
-I built <a href="https://picmal.app" target="_blank">Picmal</a> because I was tired of the workflow I'm about to describe below. Drag your files in, pick a format, hit convert. That's it.
+I built <a href="https://picmal.app" target="_blank">Picmal</a> because I got tired of the workarounds I'm about to describe below. Drag your files in, pick a format, hit convert. Done.
 
 What makes it different from the free options:
 
-- **Handles thousands of files at once** without slowing down or crashing
-- **Keeps your folder structure** — if you drag a nested folder of albums, the output mirrors it
-- **Preserves metadata** — GPS, camera settings, dates all survive the conversion
+- **Handles thousands of files at once** without your fans spinning up or the app going white
+- **Keeps your folder structure** — drag a nested folder of vacation albums and the output mirrors it exactly
+- **Preserves metadata** — GPS coordinates, camera settings, dates all survive
 - **Works offline** — nothing leaves your Mac, ever
 - **Right-click integration** — select files in Finder, right-click, "Convert with Picmal" (see [how to enable this](/blog/how-to-enable-picmal-right-click-menu))
 
-If you're doing this regularly — uploading to a CMS, sending files to clients, archiving — this is the fastest path. <a href="https://picmal.app" target="_blank">$15.99, one-time purchase, no subscription</a>.
+If you do this regularly (uploading to a CMS, sending files to clients, archiving old shoots), this is the fastest path. <a href="https://picmal.app" target="_blank">$15.99, one-time purchase, no subscription</a>.
 
-For the rest of this post, here are the free alternatives and where each one breaks down.
+For the rest of this post, here are the free alternatives and where each one falls apart.
 
 ## Preview — fine for a few files
 
@@ -40,9 +40,9 @@ Preview is already on your Mac. It can convert images.
 4. File → Export Selected Images
 5. Pick JPEG, choose a destination folder
 
-**Where it falls apart:** Preview wasn't designed for batch work. Above ~50 files it gets sluggish. It flattens your folder structure into a single directory. And it strips some metadata silently — you won't know your GPS data is gone until you need it.
+**Where it falls apart:** Preview wasn't designed for batch work. Above ~50 files the progress bar starts crawling. It flattens your folder structure into a single directory. And it strips metadata silently; you won't notice your GPS data is gone until you're searching for where a photo was taken and get nothing.
 
-Good enough for 10-20 files. Beyond that, it becomes the problem.
+Good enough for 10-20 files. Beyond that, Preview becomes the bottleneck.
 
 ## Quick Actions — the hidden Finder option
 
@@ -53,7 +53,7 @@ Since macOS Monterey, there's a built-in option most people miss:
 3. Pick JPEG and a size
 4. Done
 
-It's faster than Preview for small batches and creates copies (doesn't overwrite originals). But it has the same limits: no metadata preservation, no folder structure, no quality control beyond "small/medium/large/actual size."
+Faster than Preview for small batches, and it creates copies instead of overwriting originals. But it shares the same blind spots: no metadata preservation, no folder structure, and your only quality options are "small/medium/large/actual size." That's it.
 
 ## Automator — powerful but fragile
 
@@ -67,9 +67,9 @@ You can build a reusable workflow in Automator:
 
 Then you can select files in Finder, right-click → Services → your workflow name.
 
-**The catch:** Automator replaces your originals unless you add a "Copy Finder Items" step first. I learned this the hard way. It also doesn't handle nested folders — everything gets dumped into one directory.
+**The catch:** Automator replaces your originals unless you add a "Copy Finder Items" step first. I found this out by watching 200 HEICs turn into JPGs with no way back. It also doesn't handle nested folders; everything gets dumped into one flat directory.
 
-If you're comfortable with Automator, this is a decent free option for regular use. But it's one mistake away from overwriting your originals.
+If you're comfortable with Automator, it's a decent free option for regular use. Just don't skip the copy step, or your originals are gone.
 
 ## Command line — for developers
 
@@ -88,7 +88,7 @@ done
 find . -name "*.heic" -exec sh -c 'magick "$1" "${1%.heic}.jpg"' _ {} \;
 ```
 
-Fast, scriptable, handles any volume. But it's a command line tool — there's no preview, no quality slider, and you need to know what you're doing. Most people reading this post aren't looking for a Terminal solution.
+Fast, scriptable, handles any volume. But there's no preview, no quality slider, and if you mistype the path you'll stare at an error message for ten minutes wondering what went wrong. Most people reading this post aren't looking for a Terminal solution.
 
 ## Which method to use
 
@@ -102,16 +102,16 @@ Fast, scriptable, handles any volume. But it's a command line tool — there's n
 
 ## A note on online converters
 
-You'll find dozens of "free HEIC to JPG" websites if you search for this. They all work the same way: you upload your photos to someone's server, they convert them, you download the results.
+You'll find dozens of "free HEIC to JPG" websites. They all work the same way: upload your photos to someone's server, wait, download the results.
 
-Think about what's in those photos. Location data. Faces. Your home. Your kids. Your clients' work. You're handing all of that to a server you know nothing about, with a privacy policy you'll never read.
+Think about what's in those photos. Location data. Faces. Your living room. Your kids at the park. Your clients' unreleased product shots. You're handing all of that to a server you know nothing about, run by people whose privacy policy is a wall of text nobody reads.
 
-Every method in this post runs entirely on your Mac. Your photos never leave your machine.
+Every method in this post runs entirely on your Mac. Your photos stay on your machine.
 
 ## The real solution to the HEIC problem
 
-You can also tell your iPhone to stop shooting HEIC entirely. Go to Settings → Camera → Formats → Most Compatible. Your photos will be JPG from now on.
+You can also tell your iPhone to stop shooting HEIC entirely. Go to Settings → Camera → Formats → Most Compatible. Every photo will be JPG from now on.
 
-The downside: your photos will be roughly twice the size. If you're running low on phone storage, that matters.
+The tradeoff: your photos will be roughly twice the size. If your 128GB phone is already at 90%, that's a problem.
 
-The better approach is to keep shooting HEIC (it's genuinely a better format) and convert when you need to share. That's the workflow Picmal was built for — keep the originals, convert copies on demand.
+The better approach is to keep shooting HEIC (it really is a better format for storage) and convert when you need to share. That's the workflow Picmal was built for: keep the originals on your phone, convert copies on your Mac when someone actually needs a JPG.

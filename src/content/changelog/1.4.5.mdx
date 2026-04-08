@@ -1,0 +1,15 @@
+---
+version: "1.4.5"
+title: "Batch conversion fixes and overwrite warnings"
+pubDate: 2026-04-08
+---
+
+Batch conversions could hang forever, stuck at 99% or 0%, if you threw enough files at them. Fixed. Your fans should also stop spinning after conversions finish now.
+
+You'll see a warning icon in the convert table when a same-format conversion would overwrite the original file. Same goes for the compress bottom bar when prefix/suffix are empty. The Output settings page flags these per section too, so you'll catch it before anything gets clobbered.
+
+The automatic "\_converted" suffix for same-format conversions is gone. Use prefix/suffix settings instead.
+
+JPEG compression failures now capture error output, so when something breaks you actually get to see why.
+
+<img src="images/changelog/1.4.5/warning_override.png" alt="Overwrite warning in the convert table" width="100%" style="margin-top: 1.5rem;" />

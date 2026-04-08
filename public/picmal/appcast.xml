@@ -3,6 +3,20 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.5</title>
+            <pubDate>Wed, 08 Apr 2026 12:07:30 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>61</sparkle:version>
+            <sparkle:shortVersionString>1.4.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.5/Picmal.dmg" length="116821536" type="application/octet-stream" sparkle:edSignature="9Y+uZ9xTwPWSb1on4OblySRg9p10DSv8RVizSOT8Nq1D9032LoxqN+lk7IOB0hDCQp9UX6xvjb5eCGzSm0HvBA=="/>
+        <description><![CDATA[<div><ul><li>Fixed conversions hanging indefinitely (stuck at 99% or 0%) when batch-converting many files at once.</li>
+<li>Fixed high CPU usage after conversions finish.</li>
+<li>Overwrite warnings: a warning icon now appears in the convert table when a same-format conversion would overwrite the original, and in the compress bottom bar when compression prefix/suffix are empty. The Output settings page also shows per-section warnings.</li>
+<li>Error output is now captured for JPEG compression failures to aid diagnostics.</li>
+<li>The automatic "_converted" suffix for same-format conversions has been removed; use prefix/suffix settings instead.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.4</title>
             <pubDate>Mon, 06 Apr 2026 21:35:41 +0200</pubDate>
             <link>https://picmal.app/</link>

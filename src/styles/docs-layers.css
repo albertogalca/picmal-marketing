@@ -1,3 +1,24 @@
 /* Declare layer order so Tailwind layers resolve BEFORE Starlight layers.
    Later layers have higher priority, so Starlight styles override Tailwind's preflight. */
 @layer properties, theme, base, components, utilities, starlight, black;
+
+/* Restore styles that Tailwind's preflight strips in production builds.
+   Un-layered styles always beat layered styles, and .sl-markdown-content
+   scopes these to Starlight docs pages only. */
+.sl-markdown-content ol:not(:where(.not-content *)) {
+  list-style-type: decimal;
+  padding-inline-start: 1.5rem;
+}
+.sl-markdown-content ul:not(:where(.not-content *)) {
+  list-style-type: disc;
+  padding-inline-start: 1.5rem;
+}
+.sl-markdown-content ul ul:not(:where(.not-content *)) {
+  list-style-type: circle;
+}
+.sl-markdown-content *:not(:where(.not-content *)) {
+  border-style: none;
+}
+.sl-markdown-content :is(th, td, hr, blockquote, details, pre):not(:where(.not-content *)) {
+  border-style: solid;
+}

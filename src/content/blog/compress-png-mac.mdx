@@ -4,6 +4,15 @@ description: "Compress PNG images on Mac to reduce file size while keeping trans
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["PNG", "Compression", "Mac", "Tutorial"]
+faqs:
+  - question: "Does compressing a PNG reduce quality?"
+    answer: "It depends on the method. Lossless compression doesn't change a single pixel. Lossy compression (pngquant) reduces the color palette, which can introduce subtle banding in gradients but is invisible in screenshots and UI assets."
+  - question: "What's the maximum compression I can get on a PNG?"
+    answer: "Lossless: 10-30% reduction. Lossy (pngquant): 60-80%. Converting to WebP: 70-90% compared to the original PNG."
+  - question: "Can I compress PNG files without losing transparency?"
+    answer: "Yes. All methods preserve the alpha channel. PNG compression doesn't touch transparency data."
+  - question: "How do I batch compress hundreds of PNG files?"
+    answer: "Drag the folder into Picmal or use pngquant/optipng commands with a wildcard (*.png). Picmal preserves folder structure; terminal commands modify files in place."
 ---
 
 PNGs are the right format for screenshots, logos, icons, anything with text or sharp edges. They're also enormous. A single Retina screenshot can hit 5-10MB. A folder of app icons for documentation? 50MB without trying.

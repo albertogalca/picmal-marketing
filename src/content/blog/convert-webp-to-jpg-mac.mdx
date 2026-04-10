@@ -4,6 +4,15 @@ description: "Convert WebP images to JPG on your Mac using Preview, Terminal, on
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["WebP", "JPG", "Conversion", "Mac", "Tutorial"]
+faqs:
+  - question: "Does converting WebP to JPG lose quality?"
+    answer: "Yes, slightly. WebP and JPG are both lossy formats. Converting between them re-encodes the image, introducing a small amount of additional compression. At 80-90% JPG quality, the difference is invisible for most purposes."
+  - question: "Can I convert WebP to JPG without installing anything?"
+    answer: "Yes. Preview (already on your Mac) and sips (built into Terminal) both handle it. Neither requires a download."
+  - question: "Why do websites use WebP instead of JPG?"
+    answer: "File size. A WebP photo is typically 25-35% smaller than the same JPG at similar visual quality. For sites serving millions of images, that's faster loads and lower bandwidth bills."
+  - question: "How do I batch convert a folder of WebP files to JPG?"
+    answer: "Drag the entire folder into Picmal and select JPG. It converts everything and preserves the folder structure. Alternatively, use the sips for-loop in Terminal."
 ---
 
 You right-click an image from the web, hit "Save Image As," and get a `.webp` file. Your email client won't attach it. Your client's CMS rejects it. Photoshop opens it but your coworker's older version can't.

@@ -4,6 +4,15 @@ description: "Compress JPEG images on Mac to reduce file size for email, web, or
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["JPEG", "Compression", "Mac", "Tutorial"]
+faqs:
+  - question: "Does re-compressing a JPEG degrade quality?"
+    answer: "Yes, technically. Each open-edit-save cycle adds another round of lossy compression (generation loss). A single re-compression at 80% is invisible. But repeatedly re-saving accumulates artifacts. Work in PNG or TIFF and export to JPEG at the end."
+  - question: "What's the difference between lossless and lossy JPEG compression?"
+    answer: "Lossy reduces the quality percentage and discards data for smaller files (40-80% savings). Lossless (what ImageOptim does) re-encodes more efficiently without changing pixels (10-30% savings)."
+  - question: "Should I compress JPEGs for email attachments?"
+    answer: "Yes. Most email providers limit attachments to 20-25MB. Compress to 80% quality and resize to 1600px wide — a typical 8MB photo drops to about 400KB."
+  - question: "Is WebP better than compressed JPEG?"
+    answer: "For the web, yes. WebP achieves 25-35% smaller files than JPEG at the same visual quality. Converting to WebP is a bigger win than just re-compressing the JPEG."
 ---
 
 JPEG compression is the oldest trick in the image book, and somehow still the most useful. A 5MB photo from your camera becomes a 500KB file that looks identical on screen. The format was built for exactly this tradeoff.

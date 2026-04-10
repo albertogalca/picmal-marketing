@@ -4,6 +4,15 @@ description: "Convert SVG vector files to PNG on your Mac. Covers Preview, brows
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["SVG", "PNG", "Conversion", "Mac", "Tutorial"]
+faqs:
+  - question: "Does converting SVG to PNG lose quality?"
+    answer: "Not if you convert at the right size. SVGs are vector and infinitely scalable. Converting to PNG freezes the image at a specific pixel size. As long as that size is large enough, quality is identical."
+  - question: "How do I keep the transparent background?"
+    answer: "PNG supports transparency natively. If your SVG has no background rectangle, the PNG will have a transparent background too. Make sure to choose PNG, not JPEG."
+  - question: "What size should I export the PNG at?"
+    answer: "For web: 1x or 2x the display size. For app icons: 1024x1024 for the App Store. For print: 300 DPI at the physical print size."
+  - question: "Can I batch convert SVGs to PNG at multiple sizes?"
+    answer: "With rsvg-convert, run the loop multiple times with different -w values. With Picmal, do separate conversion passes for each size."
 ---
 
 You got an SVG from a designer. You need a PNG — for a presentation, a social post, an app icon, anywhere that doesn't take vectors.

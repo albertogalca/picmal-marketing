@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import ArticleSchema from "../components/schema/ArticleSchema.astro";
+import BlogFAQSchema from "../components/schema/BlogFAQSchema.astro";
 import CTASection from "../components/CTASection.astro";
 import H1 from "../components/H1.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
@@ -15,6 +16,7 @@ type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
   slug?: string;
   tags?: string[];
+  faqs?: { question: string; answer: string }[];
 };
 
 const {
@@ -26,6 +28,7 @@ const {
   category,
   slug,
   tags,
+  faqs,
 } = Astro.props;
 ---
 
@@ -55,6 +58,7 @@ const {
         />
       )
     }
+    {faqs && faqs.length > 0 && <BlogFAQSchema faqs={faqs} />}
   </head>
 
   <body

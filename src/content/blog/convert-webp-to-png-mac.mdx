@@ -4,6 +4,15 @@ description: "Convert WebP images to PNG on your Mac using Preview, Terminal, on
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["WebP", "PNG", "Conversion", "Mac", "Tutorial"]
+faqs:
+  - question: "Does converting WebP to PNG improve quality?"
+    answer: "No. If the WebP used lossy compression, those artifacts are baked in. Converting to PNG preserves them losslessly but can't undo them."
+  - question: "Will the PNG file be larger than the WebP?"
+    answer: "Almost always, yes. PNG files are typically 2-5x larger than WebP for the same image."
+  - question: "How do I keep transparency when converting?"
+    answer: "All methods preserve transparency automatically. PNG has full alpha channel support. Just make sure you export as PNG, not JPEG."
+  - question: "Can I convert animated WebP to animated PNG (APNG)?"
+    answer: "Most tools don't handle animated WebP to APNG. You might need to convert to GIF instead or use ffmpeg. Picmal handles static WebP to PNG; for animated formats, GIF output is available."
 ---
 
 You saved an image from the web and got a `.webp` file. You need a PNG: your design tool doesn't import WebP, you need lossless quality for editing, or the image has transparency and JPEG would fill it with white.

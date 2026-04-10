@@ -4,6 +4,15 @@ description: "Resize hundreds of images at once on your Mac using Preview, Autom
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["Resize", "Batch", "Mac", "Tutorial"]
+faqs:
+  - question: "Does resizing reduce image quality?"
+    answer: "Resizing down has no visible quality impact — you're discarding pixels the display wouldn't use. Resizing up always degrades quality because the software invents pixels that weren't there."
+  - question: "What width should I use for web images?"
+    answer: "Most content areas are 800-1200px wide. For retina, double that: 1600-2400px. A safe default is 1600px. Hero images might go to 2400px; thumbnails 400-600px."
+  - question: "Can I resize images to exact dimensions (crop to fit)?"
+    answer: "Resizing preserves aspect ratio by default. If you need exact dimensions like 500x500, that requires cropping. Preview can crop manually; for batch crop-to-fit, you need a specialized tool."
+  - question: "How much does resizing reduce file size?"
+    answer: "Roughly proportional to pixel reduction. Halving width and height reduces pixel count by 75%, and file size drops similarly. A 4000px JPEG at 8MB becomes ~1.2MB at 1600px."
 ---
 
 You have 200 product photos at 4000px wide and you need them at 1200px for the website. Or 300 conference headshots that need to be 500×500 for the attendee directory. Or a folder of Retina screenshots that need to be halved for documentation.

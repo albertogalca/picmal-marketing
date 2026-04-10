@@ -4,6 +4,15 @@ description: "Convert JPEG, PNG, and other images to WebP on your Mac. Reduce fi
 pubDate: "2026-04-10"
 category: "Tutorial"
 tags: ["WebP", "Conversion", "Mac", "Tutorial", "Web Performance"]
+faqs:
+  - question: "Does WebP support transparency?"
+    answer: "Yes. WebP supports full alpha channel transparency, just like PNG. Converting a transparent PNG to WebP preserves the transparency. This makes WebP a direct replacement for transparent PNGs on the web."
+  - question: "Can all browsers display WebP?"
+    answer: "As of 2026, yes — 97%+ of browsers support WebP. Safari added it in Big Sur (Safari 14). It's safe to use WebP as your default web image format."
+  - question: "Should I keep the original files after converting to WebP?"
+    answer: "Yes. WebP is lossy (unless lossless mode), so converting back doesn't recover original quality. Keep source files as masters and generate WebP for the web."
+  - question: "What about AVIF? Should I use that instead?"
+    answer: "AVIF is 20-30% smaller than WebP but has less browser support (~93%). The best approach is to serve AVIF where supported, WebP as fallback, and JPEG as last resort."
 ---
 
 WebP is what you should be serving on the web in 2026. 25-35% smaller than JPEG for photos, supports transparency like PNG, supports animation like GIF, 97%+ browser support. The arguments against it have quietly expired.

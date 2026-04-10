@@ -12,6 +12,7 @@ import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import { conversions, formats, getRelatedConversions, type FileSizeExample, type UseCase } from "../../data/conversions";
+
 import { compressions } from "../../data/compressions";
 
 export function getStaticPaths() {
@@ -22,6 +23,19 @@ export function getStaticPaths() {
 }
 
 const { conversion } = Astro.props;
+
+// Blog post cross-links for conversion pages
+const blogGuides: Record<string, { title: string; slug: string }> = {
+  "webp-to-jpg": { title: "How to Convert WebP to JPG on Mac (4 Methods)", slug: "convert-webp-to-jpg-mac" },
+  "webp-to-png": { title: "How to Convert WebP to PNG on Mac (4 Methods)", slug: "convert-webp-to-png-mac" },
+  "tiff-to-jpg": { title: "How to Convert TIFF to JPG on Mac (4 Methods)", slug: "convert-tiff-to-jpg-mac" },
+  "svg-to-png": { title: "How to Convert SVG to PNG on Mac (4 Methods)", slug: "convert-svg-to-png-mac" },
+  "heic-to-jpg": { title: "How to Convert HEIC to JPG on Mac (2026 Guide)", slug: "how-to-convert-heic-to-jpg-mac" },
+  "heic-to-png": { title: "How to Convert HEIC to PNG on Mac (4 Methods)", slug: "convert-heic-to-png-mac" },
+  "avif-to-jpg": { title: "How to Convert AVIF to JPG on Mac (3 Methods)", slug: "convert-avif-to-jpg-mac" },
+  "png-to-jpg": { title: "How to Convert PNG to JPEG on Mac", slug: "convert-png-to-jpeg-mac" },
+};
+const blogGuide = blogGuides[conversion.slug];
 const from = formats[conversion.from];
 const to = formats[conversion.to];
 const related = getRelatedConversions(conversion.from, conversion.to, 6);
@@ -359,6 +373,22 @@ const faqSchema = {
             </a>
           </div>
         </section>
+
+        <!-- Blog Guide Cross-Link -->
+        {blogGuide && (
+          <section class="mb-16 sm:mb-20">
+            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <H2 class="mb-4">In-depth guide</H2>
+              <Paragraph class="mb-4">Want step-by-step instructions with multiple methods including Preview, Terminal, and online tools?</Paragraph>
+              <a
+                href={`/blog/${blogGuide.slug}`}
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+              >
+                Read: {blogGuide.title} &rarr;
+              </a>
+            </div>
+          </section>
+        )}
 
         <!-- CTA -->
         <CTASection

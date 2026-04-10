@@ -1,0 +1,84 @@
+---
+title: "How to Convert AVIF to JPG on Mac (3 Methods)"
+description: "Convert AVIF images to JPG on your Mac. AVIF is the next-gen web format most tools can't open yet — here's how to turn them into JPGs that work everywhere."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["AVIF", "JPG", "Conversion", "Mac", "Tutorial"]
+---
+
+AVIF is showing up everywhere. Google serves AVIF images. Netflix uses it for thumbnails. Newer websites default to it because a single AVIF photo can be 50% smaller than the same JPEG at similar quality.
+
+The problem: most desktop software still doesn't know what to do with an `.avif` file. Preview on older macOS versions won't touch it. Photoshop only added support recently. Email clients pretend it doesn't exist. If you download an AVIF from the web and need to actually *use* it somewhere, you need a JPG.
+
+## Method 1: Picmal (easiest, handles batch)
+
+[Picmal](https://picmal.app) supports AVIF as both an input and output format — which is rare among Mac apps.
+
+1. Drag your AVIF files into Picmal
+2. Select JPG as the output format
+3. Set quality (80% is a solid default)
+4. Click Convert
+
+Works with one file or a folder of hundreds. No internet connection needed.
+
+**Best for:** When you've downloaded a batch of images from a modern website and need them as JPGs. Or when a colleague sends AVIF files and you need them in a format your tools understand.
+
+## Method 2: Preview (macOS Sonoma and newer)
+
+Starting with macOS 14 (Sonoma), Preview supports AVIF natively. If you're on Sonoma or later:
+
+1. Double-click the AVIF file to open it in Preview
+2. File → Export
+3. Set Format to JPEG
+4. Adjust the quality slider
+5. Save
+
+**If you're on an older macOS:** Preview won't open AVIF at all. You'll see a generic file icon or an error. Use Picmal or the Terminal method instead.
+
+## Method 3: Terminal with ffmpeg
+
+If you have `ffmpeg` installed:
+
+```bash
+brew install ffmpeg
+```
+
+**Single file:**
+
+```bash
+ffmpeg -i input.avif -q:v 2 output.jpg
+```
+
+The `-q:v` flag sets JPEG quality (1 = best, 31 = worst). 2-5 is the range most people want.
+
+**Entire folder:**
+
+```bash
+for f in *.avif; do ffmpeg -i "$f" -q:v 2 "${f%.avif}.jpg"; done
+```
+
+`ffmpeg` is the nuclear option for simple image conversion, but if it's already on your machine for video work, it handles AVIF fine.
+
+## What about online converters?
+
+Most online converters claim AVIF support now, but results are inconsistent. Some produce muddy output, others choke on specific encodings. Convertio and CloudConvert handle it reasonably well, but you're uploading your images to their servers.
+
+For a format this new, a local tool like [Picmal](https://picmal.app) is more reliable than hoping the online converter gets your particular AVIF encoding right.
+
+## FAQ
+
+### What is AVIF?
+
+AVIF (AV1 Image File Format) is based on the AV1 video codec, developed by the Alliance for Open Media (Google, Apple, Mozilla, Netflix, and others). It compresses roughly 50% better than JPEG at the same visual quality. Browser support is at ~93% and growing.
+
+### Does converting AVIF to JPG lose quality?
+
+Some, yes. AVIF images are already compressed, and converting to JPG means re-encoding with a different compression algorithm. At 80-90% JPG quality, the additional loss is minimal and invisible for most uses. If you need lossless preservation, convert to PNG instead.
+
+### Why can't I open AVIF files on my Mac?
+
+macOS added native AVIF support in Sonoma (macOS 14). If you're on Monterey or Ventura, the system doesn't recognize AVIF files. You'll need a third-party app like [Picmal](https://picmal.app) to open and convert them.
+
+### Is AVIF better than WebP?
+
+For compression, yes — AVIF typically achieves 20-30% smaller files than WebP at the same visual quality. But WebP has broader support (97% of browsers vs. 93% for AVIF) and faster encoding. Many sites serve WebP as the default and AVIF as a progressive enhancement.

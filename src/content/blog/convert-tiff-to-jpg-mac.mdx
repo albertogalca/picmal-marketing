@@ -1,0 +1,95 @@
+---
+title: "How to Convert TIFF to JPG on Mac (4 Methods)"
+description: "Convert TIFF files to JPG on your Mac using Preview, Terminal, or a batch converter. Step-by-step instructions for single files and entire folders."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["TIFF", "JPG", "Conversion", "Mac", "Tutorial"]
+---
+
+TIFF files are everywhere in professional workflows. Scanners default to TIFF, print shops request TIFF, cameras shoot TIFF when you want uncompressed output. Great for archival quality.
+
+Terrible for everything else. A single TIFF can be 30-50MB. Email attachments bounce. Web uploads time out. Lightroom catalogs balloon. When you need to share or publish, JPG is what the rest of the world speaks.
+
+Here's how to convert TIFF to JPG on your Mac, from one file to thousands.
+
+## Method 1: Picmal (fastest for batch)
+
+If you're converting a scanner dump, a folder from a print shoot, or anything beyond a handful of files, a dedicated converter is the fastest path.
+
+1. Download [Picmal](https://picmal.app)
+2. Drag your TIFF files or folders into the window
+3. Select JPG as the output format
+4. Set quality — 85-90% is a safe default for photos, 80% if file size matters more
+5. Click Convert
+
+Picmal preserves folder structure and handles multi-page TIFFs by extracting the first page. If you need to resize at the same time (TIFFs from scanners are often 600dpi at massive pixel dimensions), you can set a max width during conversion.
+
+**Best for:** Scanning workflows. Print-to-web conversions. Any situation with more than 10 files.
+
+## Method 2: Preview (free, built-in)
+
+Preview is the simplest option for a few files.
+
+1. Double-click the TIFF to open it in Preview
+2. File → Export
+3. Change Format to JPEG
+4. Adjust the quality slider (higher = larger file, better quality)
+5. Choose where to save, then click Save
+
+**Batch:** Select multiple TIFFs in Finder → right-click → Open With → Preview. Then File → Export Selected Images → choose JPEG.
+
+## Method 3: Terminal with sips
+
+One line in Terminal, no installs needed.
+
+**Single file:**
+
+```bash
+sips -s format jpeg input.tiff --out output.jpg
+```
+
+**Entire folder:**
+
+```bash
+for f in *.tiff *.tif; do sips -s format jpeg "$f" --out "${f%.*}.jpg"; done
+```
+
+This catches both `.tiff` and `.tif` extensions. Scanners and cameras are annoyingly inconsistent about which one they use.
+
+## Method 4: Automator (set-and-forget)
+
+If this is something you do regularly, build yourself a Quick Action in Automator.
+
+1. Open Automator → New → Quick Action
+2. Set "Workflow receives" to image files in Finder
+3. Add "Change Type of Images" action → select JPEG
+4. Save with a name like "Convert to JPG"
+
+Now you can right-click any TIFF in Finder and run the conversion from the Quick Actions menu. Automator modifies files in place though, so it's worth adding a "Copy Finder Items" step first if you want to keep the originals.
+
+## Which method to choose
+
+| Situation | Method |
+|-----------|--------|
+| A few files, one time | Preview |
+| A folder of scans or print files | [Picmal](https://picmal.app) |
+| You want a command you can script | `sips` |
+| You do this every week | Automator Quick Action |
+
+## FAQ
+
+### Does TIFF to JPG lose quality?
+
+Yes. TIFF is lossless (or uncompressed), and JPG is lossy. You're going from a format that preserves every pixel to one that discards some data to shrink the file. At 85-90% JPG quality, the visual difference is negligible for photos. For line art, text, or diagrams with sharp edges, consider PNG instead — it's lossless and handles those images better than JPG.
+
+### How much smaller is a JPG than a TIFF?
+
+Dramatically. A 40MB TIFF photo typically becomes 2-4MB as a JPG at 85% quality. That's a 10-20x reduction. The exact ratio depends on image content and quality setting.
+
+### Can I convert multi-page TIFFs?
+
+Some TIFF files contain multiple pages (common with fax documents and multi-page scans). Preview can open these and export individual pages. [Picmal](https://picmal.app) extracts and converts the primary image. For full multi-page TIFF processing, you might need a PDF workflow — convert the TIFF to PDF first, then extract pages.
+
+### Should I keep the original TIFF files?
+
+If you're archiving: yes. TIFF is a lossless format, and converting to JPG is a one-way trip. You can always re-convert from TIFF later, but you can't recover the original quality from a JPG. Keep TIFFs as your master files and use JPGs for sharing and publishing.

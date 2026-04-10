@@ -1,0 +1,92 @@
+---
+title: "How to Convert WebP to PNG on Mac (4 Methods)"
+description: "Convert WebP images to PNG on your Mac using Preview, Terminal, online tools, or a batch converter. Keep transparency and sharp edges intact."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["WebP", "PNG", "Conversion", "Mac", "Tutorial"]
+---
+
+You saved an image from the web and got a `.webp` file. You need a PNG: your design tool doesn't import WebP, you need lossless quality for editing, or the image has transparency and JPEG would fill it with white.
+
+WebP to PNG is straightforward on a Mac. Four ways, depending on volume and whether you want to install anything.
+
+## Method 1: Picmal (batch, keeps transparency)
+
+When you have more than a few files or need to do this regularly:
+
+1. Drag your WebP files into [Picmal](https://picmal.app) (or drop an entire folder)
+2. Select PNG as the output format
+3. Click Convert
+
+Transparency is preserved automatically — if the WebP has an alpha channel, the PNG gets one too. Picmal preserves folder structure, so a folder with subfolders comes out organized the same way.
+
+**Best for:** Downloading a batch of assets from the web. Converting design resources. Anything where you need PNG for downstream editing.
+
+## Method 2: Preview (free, built-in)
+
+1. Right-click the `.webp` file in Finder
+2. Open With → Preview
+3. File → Export
+4. Set Format to PNG
+5. Save
+
+Preview handles WebP input well on modern macOS. Transparency carries over to the PNG. The only downside is doing this one file at a time gets tedious.
+
+**Batch workaround:** Select multiple files → right-click → Open With → Preview → File → Export Selected Images → choose PNG. It works, but Preview doesn't give you options like resizing during the export.
+
+## Method 3: Terminal with sips
+
+macOS has `sips` built in. No installs needed.
+
+**Single file:**
+
+```bash
+sips -s format png input.webp --out output.png
+```
+
+**Entire folder:**
+
+```bash
+for f in *.webp; do sips -s format png "$f" --out "${f%.webp}.png"; done
+```
+
+Fast, simple, scriptable. If you do this often, save the loop as a shell alias.
+
+## Method 4: Online converters
+
+CloudConvert and Convertio both handle WebP to PNG in the browser. Upload, convert, download.
+
+- CloudConvert: 25 free conversions/day
+- Convertio: 100MB file limit, 10 conversions/day on free tier
+
+Both upload your files to their servers. Fine for public images, not great for confidential work.
+
+## WebP vs PNG — when does this conversion make sense?
+
+Converting WebP to PNG makes the file bigger. Always. PNG is lossless, so the output will be larger than the WebP source. Worth understanding when that tradeoff makes sense:
+
+| Reason to convert | Worth it? |
+|---|---|
+| Design tool doesn't accept WebP | Yes — you need it in a format the tool reads |
+| Need to edit the image losslessly | Yes — editing a lossy format repeatedly degrades quality |
+| Archiving for long-term storage | Maybe — WebP is well-supported now, but PNG is more universal |
+| Need transparency that WebP already has | No — WebP supports transparency too, just keep the WebP |
+| "PNG is better quality" | Not exactly — if the WebP was lossy, converting to PNG doesn't recover lost data |
+
+## FAQ
+
+### Does converting WebP to PNG improve quality?
+
+No. If the WebP used lossy compression, those artifacts are baked in. Converting to PNG preserves them perfectly (losslessly), but it can't undo them. Like scanning a photocopy: the scan is faithful, but you can't recover what was lost in the copy.
+
+### Will the PNG file be larger than the WebP?
+
+Almost always, yes. PNG files are typically 2-5x larger than WebP for the same image. That's the tradeoff: you get a lossless format that every tool on earth supports, at the cost of a bigger file.
+
+### How do I keep transparency when converting?
+
+All four methods listed here preserve transparency automatically. PNG has full alpha channel support. Just make sure you're exporting as PNG, not JPEG — JPEG doesn't support transparency and will fill transparent areas with white.
+
+### Can I convert animated WebP to animated PNG (APNG)?
+
+This is a niche case. Most tools don't handle animated WebP to APNG conversion. If you have animated WebPs, you might need to convert to GIF instead, or use a specialized tool like `ffmpeg`. [Picmal](https://picmal.app) handles static WebP to PNG; for animated formats, GIF output is available.

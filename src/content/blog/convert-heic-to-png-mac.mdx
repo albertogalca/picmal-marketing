@@ -1,0 +1,101 @@
+---
+title: "How to Convert HEIC to PNG on Mac (4 Methods)"
+description: "Convert HEIC photos to PNG on your Mac when you need lossless quality or transparency. Covers Preview, Terminal, and batch conversion."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["HEIC", "PNG", "Conversion", "Mac", "Tutorial"]
+---
+
+Most people convert HEIC to JPG. But sometimes JPG isn't what you need.
+
+Maybe you're editing the image further and don't want JPEG artifacts accumulating with every save. Maybe you need transparency. Maybe you're preparing assets for Xcode or a Figma file where PNG is the standard.
+
+Here's how to convert HEIC to PNG on your Mac.
+
+## Method 1: Picmal (batch conversion)
+
+If you have more than a handful of HEIC files or want to combine the conversion with resizing:
+
+1. Drag your HEIC files or folder into [Picmal](https://picmal.app)
+2. Select PNG as the output format
+3. Optionally set a max width (iPhone photos are 4032px wide — you probably don't need all of that)
+4. Click Convert
+
+Folder structure is preserved. Metadata can be stripped if you want. Everything stays on your Mac.
+
+**Best for:** Converting an iPhone photo dump when you need PNGs. Preparing image assets for app development or design.
+
+## Method 2: Preview (free, one at a time)
+
+1. Double-click the HEIC file to open it in Preview
+2. File → Export
+3. Change Format to PNG
+4. Save
+
+No quality slider for PNG — it's lossless, so there's nothing to adjust. The file will be larger than the HEIC original (that's the tradeoff for lossless).
+
+**Batch:** Select multiple HEIC files → right-click → Open With → Preview → File → Export Selected Images → choose PNG.
+
+## Method 3: Terminal with sips
+
+Built into macOS, no installs needed.
+
+**Single file:**
+
+```bash
+sips -s format png input.heic --out output.png
+```
+
+**Entire folder:**
+
+```bash
+for f in *.heic *.HEIC; do sips -s format png "$f" --out "${f%.*}.png"; done
+```
+
+The `*.HEIC` catches uppercase extensions, which is common with files transferred from iPhones.
+
+## Method 4: Quick Actions in Finder
+
+macOS Monterey and later have a built-in "Convert Image" Quick Action.
+
+1. Right-click the HEIC file in Finder
+2. Quick Actions → Convert Image
+3. Select PNG
+4. Choose a size (Small, Medium, Large, or Actual Size)
+5. Click Convert
+
+This creates a new PNG file alongside the original. It handles multiple selected files too.
+
+**Limitation:** The size presets are vague. "Medium" doesn't tell you the actual pixel dimensions, which is unhelpful. For precise control, use Picmal or `sips`.
+
+## HEIC to PNG vs HEIC to JPG — which one?
+
+| Factor | PNG | JPG |
+|--------|-----|-----|
+| Quality | Lossless — pixel-perfect | Lossy — slight compression |
+| File size | Large (10-30MB for a phone photo) | Small (1-3MB) |
+| Transparency | Supported | Not supported |
+| Editing | Better — no generation loss | Artifacts accumulate with re-saves |
+| Sharing | Awkward — files are huge | Universal — works everywhere |
+
+**Use PNG when:** You're editing the image further, you need transparency, or you're using it as a source asset in a design tool.
+
+**Use JPG when:** You're sharing, emailing, uploading to the web, or the file size matters. For most people, [HEIC to JPG](/blog/how-to-convert-heic-to-jpg-mac) is the more common conversion.
+
+## FAQ
+
+### Are HEIC to PNG files much larger?
+
+Yes, noticeably. A 3.5MB HEIC photo becomes roughly 15-25MB as a PNG. HEIC uses lossy compression (similar to JPEG but more efficient). PNG stores every pixel without shortcuts. That's the price of lossless.
+
+### Can I convert HEIC to PNG without losing quality?
+
+Yes — that's the point of PNG. The conversion is lossless, meaning the PNG output is a pixel-perfect copy of the decoded HEIC image. No data is lost. (The HEIC was already compressed, so you can't recover that original data, but the PNG faithfully preserves everything the HEIC contained.)
+
+### Do Live Photos convert properly?
+
+HEIC files from Live Photos contain a still image plus a short video clip. When you convert to PNG, you get just the still frame. The video component is discarded. This is true for all conversion methods — the video part of a Live Photo is a separate file.
+
+### How do I convert a lot of iPhone photos to PNG?
+
+The fastest way is to drag the entire folder into [Picmal](https://picmal.app) and select PNG. For Terminal users, the `sips` for-loop above handles any number of files. Be mindful of disk space — a folder of 500 HEIC photos at ~3.5MB each (1.7GB) becomes ~10GB or more as PNGs.

@@ -1,0 +1,103 @@
+---
+title: "How to Convert SVG to PNG on Mac (4 Methods)"
+description: "Convert SVG vector files to PNG on your Mac. Covers Preview, browser tricks, command line, and batch conversion with transparent background support."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["SVG", "PNG", "Conversion", "Mac", "Tutorial"]
+---
+
+You got an SVG from a designer. You need a PNG — for a presentation, a social post, an app icon, anywhere that doesn't take vectors.
+
+SVG to PNG sounds simple, but there's a catch. SVGs have no fixed pixel dimensions. A PNG does. So the real question isn't "convert this" — it's "convert this at what size?"
+
+Four ways to handle it on your Mac.
+
+## Method 1: Picmal (batch + size control)
+
+If you need specific dimensions or have multiple SVGs to convert, [Picmal](https://picmal.app) handles both.
+
+1. Drag your SVG files into Picmal
+2. Select PNG as the output format
+3. Set a width or height if you need a specific size (e.g., 1024px for app icons)
+4. Click Convert
+
+Picmal rasterizes the SVG at the size you specify, so you get sharp output instead of a blurry upscale from a tiny default render. Transparency is preserved — the PNG gets an alpha channel.
+
+**Best for:** Exporting SVG assets at multiple sizes. Converting a folder of icons or illustrations.
+
+## Method 2: Preview
+
+Preview can open SVGs, but its SVG support is basic. It works for simple vector files but may struggle with complex SVGs that use filters, masks, or embedded fonts.
+
+1. Right-click the SVG file → Open With → Preview
+2. File → Export
+3. Set Format to PNG
+4. Adjust the resolution if needed (default is 72 DPI — bump to 144 for retina, 300 for print)
+5. Save
+
+**Limitation:** Preview renders SVGs at their default viewport size. If the SVG is defined as 100×100, you get a 100×100 PNG. There's no easy way to upscale during export without changing the resolution setting.
+
+## Method 3: Browser (surprisingly good)
+
+Your browser is quietly one of the best SVG renderers on your machine. Chrome, Safari, and Firefox all render SVGs with precision.
+
+1. Open the SVG file in your browser (drag it onto the browser window or File → Open)
+2. Right-click the image → "Save Image As" or take a screenshot
+
+For precise control:
+
+1. Open the SVG in the browser
+2. Open Developer Tools (Cmd+Option+I)
+3. Find the `<svg>` element and change its `width` and `height` attributes to the size you want
+4. Take a screenshot of the rendered image (Cmd+Shift+4, then Space, then click the window)
+
+This gives you a pixel-perfect PNG at any resolution. It's manual, but the rendering quality is excellent.
+
+## Method 4: Terminal with rsvg-convert
+
+For scripting and automation:
+
+```bash
+brew install librsvg
+```
+
+**Single file:**
+
+```bash
+rsvg-convert -w 1024 input.svg -o output.png
+```
+
+**Entire folder at 512px wide:**
+
+```bash
+for f in *.svg; do rsvg-convert -w 512 "$f" -o "${f%.svg}.png"; done
+```
+
+The `-w` flag sets the width; height scales proportionally. You can also use `-h` for height. `rsvg-convert` handles complex SVGs well, including gradients, text, and filters.
+
+## Which method to choose
+
+| Situation | Method |
+|-----------|--------|
+| Simple SVG, one file | Preview |
+| Need pixel-perfect rendering | Browser |
+| Multiple files, specific sizes | [Picmal](https://picmal.app) |
+| Scripting or CI pipeline | `rsvg-convert` |
+
+## FAQ
+
+### Does converting SVG to PNG lose quality?
+
+Not if you convert at the right size. SVGs are vector, infinitely scalable. Converting to PNG freezes the image at a specific pixel size. As long as that size is large enough for your use case, the output looks identical. If you later need it bigger, go back to the SVG and re-export rather than upscaling the PNG.
+
+### How do I keep the transparent background?
+
+PNG supports transparency natively. If your SVG has a transparent background (no background rectangle), the PNG will too. All methods listed here preserve transparency. Make sure to choose PNG, not JPEG — JPEG doesn't support transparency and will fill the background with white.
+
+### What size should I export the PNG at?
+
+It depends on where you're using it. For web images: 1x or 2x the display size (e.g., 200px displayed → export at 400px). For app icons: follow Apple's icon size requirements (1024×1024 for the App Store). For print: 300 DPI at the physical print size.
+
+### Can I batch convert SVGs to PNG at multiple sizes?
+
+With `rsvg-convert`, run the loop multiple times with different `-w` values. With [Picmal](https://picmal.app), you'd do separate conversion passes for each size. There's no single tool that exports one SVG at 5 different sizes in one click, but the process is fast either way.

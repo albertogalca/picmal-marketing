@@ -1,0 +1,128 @@
+---
+title: "How to Convert Images to WebP on Mac (3 Methods)"
+description: "Convert JPEG, PNG, and other images to WebP on your Mac. Reduce file sizes by 25-50% for faster websites without visible quality loss."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["WebP", "Conversion", "Mac", "Tutorial", "Web Performance"]
+---
+
+WebP is what you should be serving on the web in 2026. 25-35% smaller than JPEG for photos, supports transparency like PNG, supports animation like GIF, 97%+ browser support. The arguments against it have quietly expired.
+
+The problem is getting your existing images into WebP. Photoshop exports WebP. Figma exports WebP. But if you have a folder of existing JPEGs and PNGs sitting on your disk, you need a conversion workflow.
+
+Three ways to do it on your Mac.
+
+## Method 1: Picmal (batch, with compression control)
+
+The fastest way to convert an existing image library to WebP.
+
+1. Drag your images into [Picmal](https://picmal.app) — JPEGs, PNGs, TIFFs, HEIC, whatever you have
+2. Select WebP as the output format
+3. Set quality (80% is the sweet spot for photos — visually identical to the source, 25-50% smaller)
+4. Optionally set a max width if you're resizing for the web at the same time
+5. Click Convert
+
+Picmal accepts 40+ input formats, so whatever your source images are, they'll work. PSD, RAW, HEIC from your iPhone, a weird TIFF from a scanner. Everything comes out as WebP.
+
+**Best for:** Converting an existing image library for a website. Batch processing product photos, blog images, or portfolio shots. Combining conversion with resize in one pass.
+
+## Method 2: Terminal with cwebp
+
+Google's official WebP encoder is available via Homebrew.
+
+```bash
+brew install webp
+```
+
+**Single file:**
+
+```bash
+cwebp -q 80 input.jpg -o output.webp
+```
+
+The `-q` flag sets quality (0-100). 80 is a good default.
+
+**Entire folder of JPEGs:**
+
+```bash
+for f in *.jpg; do cwebp -q 80 "$f" -o "${f%.jpg}.webp"; done
+```
+
+**PNGs with transparency:**
+
+```bash
+for f in *.png; do cwebp -q 80 -alpha_q 100 "$f" -o "${f%.png}.webp"; done
+```
+
+The `-alpha_q 100` flag keeps the transparency channel at full quality. Without it, `cwebp` compresses the alpha channel too, which can create ugly edges around transparent objects.
+
+**Lossless WebP (for screenshots, text, logos):**
+
+```bash
+cwebp -lossless input.png -o output.webp
+```
+
+Lossless WebP is still 20-30% smaller than PNG for most images.
+
+## Method 3: Squoosh (single images, visual comparison)
+
+Google's [Squoosh](https://squoosh.app) has a real-time quality comparison slider. Drag the divider across to see the original next to the WebP version as you tweak quality.
+
+Best use: find the right quality setting on one representative image, then apply that setting in Picmal or `cwebp` for the whole batch.
+
+**Limitation:** One image at a time. No batch processing.
+
+## What quality setting should I use?
+
+| Content type | Quality | Why |
+|-------------|---------|-----|
+| Photos (web) | 75-80% | Invisible quality difference, major file savings |
+| Product photos | 80-85% | Slightly higher for detail that matters |
+| Screenshots, UI | Lossless | Text and sharp edges look bad with lossy compression |
+| Thumbnails | 65-75% | Small display size hides artifacts |
+| Portfolio/photography | 85-90% | When image quality is the product |
+
+## WebP file size savings (real numbers)
+
+Here's what to expect when converting from common formats:
+
+| Source | Source size (1600px photo) | WebP at 80% | Savings |
+|--------|--------------------------|-------------|---------|
+| JPEG at 100% | ~1.5MB | ~400KB | 73% |
+| JPEG at 85% | ~800KB | ~350KB | 56% |
+| PNG (photo) | ~4MB | ~400KB | 90% |
+| PNG (screenshot) | ~2MB | ~300KB (lossless) | 85% |
+| TIFF | ~14MB | ~400KB | 97% |
+
+The biggest gains come from converting PNGs and TIFFs. JPEG to WebP is still worthwhile but the savings are more modest since JPEG is already compressed.
+
+## FAQ
+
+### Does WebP support transparency?
+
+Yes. WebP supports full alpha channel transparency, just like PNG. When you convert a PNG with a transparent background to WebP, the transparency is preserved. This makes WebP a direct replacement for transparent PNGs on the web — same look, much smaller file.
+
+### Can all browsers display WebP?
+
+As of 2026, yes. 97%+ of browsers support WebP. Safari added it in Big Sur (Safari 14), so even Apple's ecosystem has been covered for years. It's safe to use WebP as your default web image format.
+
+### Should I keep the original files after converting to WebP?
+
+Yes. WebP is lossy (unless you used lossless mode), so converting back to JPEG or PNG doesn't recover the original quality. Keep your source files as masters — JPEG, PNG, TIFF, RAW, whatever they are — and generate WebP for the web.
+
+### How do I serve WebP on my website?
+
+Most modern frameworks handle this automatically. If you're doing it manually, use the `<picture>` element:
+
+```html
+<picture>
+  <source srcset="image.webp" type="image/webp">
+  <img src="image.jpg" alt="Description">
+</picture>
+```
+
+Browsers that support WebP load the WebP; others fall back to JPEG. CDNs like Cloudflare and Vercel can also auto-convert and serve WebP based on the browser's `Accept` header.
+
+### What about AVIF? Should I use that instead?
+
+AVIF is even smaller than WebP (20-30% more compression) but has less browser support (~93%). The best approach for maximum performance is to serve AVIF where supported, WebP as a fallback, and JPEG as a last resort. [Picmal](https://picmal.app) converts to both AVIF and WebP, so you can generate both versions from the same source.

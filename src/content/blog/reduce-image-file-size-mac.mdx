@@ -1,0 +1,137 @@
+---
+title: "How to Reduce Image File Size on Mac (Without Losing Quality)"
+description: "5 practical methods to reduce image file sizes on your Mac — resize, compress, convert to modern formats, or strip metadata. With actual numbers."
+pubDate: "2026-04-10"
+category: "Tutorial"
+tags: ["Compression", "Mac", "Tutorial", "File Size"]
+---
+
+Your image is too big. An email is bouncing, a website is rejecting the upload, or your portfolio site loads like it's 2003.
+
+The question is always the same: how do I shrink this without it looking terrible?
+
+Four levers. Most guides bury them in 2,000 words of preamble, so here they are up front:
+
+1. **Resize** — fewer pixels = smaller file
+2. **Compress** — same pixels, less data per pixel
+3. **Convert** — some formats are just more efficient than others
+4. **Strip metadata** — EXIF data, color profiles, thumbnails add up
+
+Here's how to pull each lever on your Mac, with actual numbers so you know what to expect.
+
+## 1. Resize the image (biggest impact)
+
+The step most people skip, and the easiest win.
+
+A 4000×3000 photo from your iPhone is 12 million pixels. If it's going on a website where the content area is 800px wide, those extra pixels are pure waste. Resizing to 1600px wide (for retina) cuts the pixel count by 83%.
+
+**In Preview:**
+
+1. Open the image in Preview
+2. Tools → Adjust Size
+3. Set the width to what you actually need (1200-1600px for web, 800px for email)
+4. Make sure "Scale proportionally" is checked
+5. File → Export
+
+**With Picmal:**
+
+Drag files in, set a max width in the resize options, and convert. [Picmal](https://picmal.app) applies the resize during conversion, so you can resize and change format in one step.
+
+**Typical savings:** A 4000×3000 JPEG at 8MB → 1600×1200 JPEG at ~1.2MB. That's an 85% reduction just from resizing.
+
+## 2. Compress the image
+
+If the dimensions are already right, compression is the next lever.
+
+For photos, 75-85% quality is the sweet spot. Below that, artifacts show up in gradients and skin tones. Above that, you're storing quality differences nobody can see on a screen.
+
+**In Preview:**
+
+1. File → Export
+2. Drag the quality slider to the left
+3. Watch the estimated file size change
+4. Save when you're happy with the tradeoff
+
+**With Picmal:**
+
+Drag files in, choose your output format, adjust the quality slider, convert. You see the output file size immediately.
+
+**Typical savings:** JPEG at 100% quality → 80% quality reduces file size by 40-60% with no visible difference in most photos.
+
+## 3. Convert to a modern format
+
+The most underused lever. Format choice matters more than most people realize.
+
+| Format | Typical photo (1600px) | Best for |
+|--------|----------------------|----------|
+| PNG | 3-5MB | Screenshots, text, transparency |
+| JPEG | 800KB-1.5MB | Photos (the default for a reason) |
+| WebP | 300-600KB | Web — 25-35% smaller than JPEG |
+| AVIF | 200-400KB | Web — 50% smaller than JPEG |
+
+If you're serving images on the web and still using JPEG, switching to WebP cuts file sizes by a third with no visible quality loss. AVIF goes further but has slightly less browser support (~93%).
+
+**With Picmal:**
+
+Drag in your images, pick WebP or AVIF as the output format, set quality to 80%, convert. That's it. [Picmal](https://picmal.app) supports both formats plus 40 others.
+
+**With Preview:**
+
+Preview can't export to WebP or AVIF. You'll need a third-party tool for modern formats.
+
+## 4. Strip metadata
+
+Photos carry hidden baggage: GPS coordinates, camera model, lens info, exposure settings, color profiles, embedded thumbnails. A single iPhone photo can have 50-100KB of metadata.
+
+For a few images, that's noise. For a folder of 200 images, that's 10-20MB of data nobody ever looks at.
+
+**In Preview:**
+
+Preview doesn't have a one-click metadata strip. You'd need to export and choose a format that drops it.
+
+**With Picmal:**
+
+Enable "Remove metadata" in the settings. Picmal strips EXIF data during conversion automatically.
+
+**In Terminal:**
+
+If you have `exiftool` installed (via Homebrew):
+
+```bash
+exiftool -all= *.jpg
+```
+
+This strips all metadata from every JPEG in the current folder. Destructive — make copies first.
+
+## 5. Combine everything for maximum reduction
+
+The biggest savings come from stacking these. Real example:
+
+**Starting point:** iPhone photo, 4032×3024, HEIC, 3.8MB
+
+| Step | Action | Result |
+|------|--------|--------|
+| 1 | Resize to 1600px wide | ~1.4MB |
+| 2 | Convert to WebP at 80% quality | ~320KB |
+| 3 | Strip metadata | ~305KB |
+| **Total** | | **92% smaller** |
+
+In Picmal, this is one operation: drag in, set max width to 1600, pick WebP, set quality to 80%, enable strip metadata, convert.
+
+## FAQ
+
+### How small can I make an image without it looking bad?
+
+For photos: 80% JPEG quality is visually indistinguishable from 100% on screens. WebP and AVIF look good even at 70-75%. For the web, aim for under 200KB per image. For email attachments, under 500KB.
+
+### Does resizing reduce quality?
+
+Resizing down (making smaller) doesn't degrade quality in any visible way — you're just using fewer pixels. Resizing up (making larger) is where quality degrades because the software has to invent pixels that weren't there.
+
+### What's the best format for reducing file size?
+
+AVIF gives the smallest files for photos. WebP is close behind with broader compatibility. JPEG is the safe default that works everywhere. PNG is only smaller for flat colors, text, or transparency. For photos, PNG is almost always the largest option.
+
+### Can I reduce file size without changing the image at all?
+
+Lossless optimization tools like ImageOptim can squeeze out 10-30% by optimizing the compression algorithm without changing a single pixel. For bigger reductions, you'll need to resize, re-compress, or change format.

@@ -3,6 +3,18 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.6</title>
+            <pubDate>Tue, 14 Apr 2026 16:36:14 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>62</sparkle:version>
+            <sparkle:shortVersionString>1.4.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.6/Picmal.dmg" length="116980246" type="application/octet-stream" sparkle:edSignature="RAc/yuifaLGMpON0kUMjdgIRrrMym8p7wfQ8oHF5NCEGpbq1ZkRU5y11hrBdImv2FdwjYy7iQu5UdNmp33LiAg=="/>
+        <description><![CDATA[<div><ul><li>Redesigned the Settings window.</li>
+<li>License activation errors now include guidance and a link to the deactivation docs when a license is already active on another device.</li>
+<li>Clipboard optimization now lets you choose what happens when you copy an image: compress, convert to a different format (JPEG, PNG, WebP, HEIC, AVIF, TIFF or GIF), or both.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.5</title>
             <pubDate>Wed, 08 Apr 2026 12:07:30 +0200</pubDate>
             <link>https://picmal.app/</link>

@@ -54,7 +54,7 @@ body {
   font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
 }
 
-pre {
+pre:not(.sl-markdown-content pre) {
   background: #1e293b !important;
   border-radius: 12px !important;
   border: 1px solid #334155 !important;
@@ -70,7 +70,7 @@ pre {
     0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
-pre code {
+pre:not(.sl-markdown-content pre) code {
   background: none !important;
   padding: 0 !important;
   font-size: inherit !important;
@@ -79,7 +79,7 @@ pre code {
 }
 
 /* Inline code styling */
-code:not(pre code) {
+code:not(pre code):not(.sl-markdown-content code) {
   background: #f1f5f9 !important;
   color: #1b5bff !important;
   padding: 0.25rem 0.5rem !important;
@@ -92,7 +92,7 @@ code:not(pre code) {
 }
 
 /* Copy button styling for code blocks */
-pre:hover::after {
+pre:not(.sl-markdown-content pre):hover::after {
   content: "Copy";
   position: absolute;
   top: 0.75rem;
@@ -106,7 +106,7 @@ pre:hover::after {
   transition: all 0.2s;
 }
 
-pre {
+pre:not(.sl-markdown-content pre) {
   position: relative;
 }
 

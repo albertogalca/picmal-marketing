@@ -155,7 +155,7 @@ The site serves app updates for Picmal using Sparkle framework:
 - **Appcast**: `public/picmal/appcast.xml`
 - **Binaries**: Stored in `public/apps/picmal/updates/[version]/Picmal.dmg`
 
-### Current Version: 1.1.4
+### Current Version: 1.4.7
 
 Recent versions are tracked in the update manifests. Old DMG files (versions < 1.1.4) have been removed from the repository to reduce size.
 

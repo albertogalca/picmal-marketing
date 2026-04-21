@@ -23,11 +23,11 @@ title: Audio and video
 
 ### Force mono
 
-Enable **force mono** to mix stereo audio down to a single channel. Useful for voice recordings and podcasts where stereo isn't needed — cuts file size roughly in half.
+Turn on **force mono** to collapse stereo audio down to a single channel. Useful for voice recordings and podcasts, where nobody notices the missing stereo field and the file comes out roughly half the size.
 
 ### Sample rate
 
-The **Custom** audio preset includes a sample rate picker. Available rates range from 8 kHz to 96 kHz:
+The **Custom** audio preset has a sample rate picker, from 8 kHz all the way up to 96 kHz:
 
 | Rate      | Typical Use                  |
 | --------- | ---------------------------- |
@@ -38,7 +38,7 @@ The **Custom** audio preset includes a sample rate picker. Available rates range
 | 48 kHz    | DVD, video production        |
 | 96 kHz    | High-resolution audio        |
 
-To resample without changing the codec, convert a file to the same format (e.g., FLAC → FLAC) and pick your target sample rate. See [converting files](/docs/converting-files#same-format-conversions) for details.
+Want to resample without touching the codec? Convert a file to its own format (FLAC → FLAC, for example) and pick your target sample rate. See [converting files](/docs/converting-files#same-format-conversions) for the details.
 
 ### Audio presets
 
@@ -65,7 +65,7 @@ See [compressing files](/docs/compressing-files#audio-presets) for the full pres
 | Slow      | Slow        | Smaller   | Better  |
 | Slower    | Slowest     | Smallest  | Best    |
 
-Slower speeds give the encoder more time to find efficient compression. For most uses, **Medium** is a good default.
+Slower speeds give the encoder more time to sniff out efficient compression. **Medium** is the sensible default for most jobs.
 
 ### CRF (Constant Rate Factor)
 
@@ -81,14 +81,52 @@ CRF controls quality on a 0–51 scale. **Lower = better quality, larger file.**
 
 ### Frame rate
 
-You can reduce the frame rate of a video (e.g. 60 fps → 30 fps) to shrink file size further. This is especially useful for screen recordings or footage where high frame rates aren't needed. Set the target frame rate in the video compression settings.
+Drop the frame rate (say 60 fps → 30 fps) to squeeze the file down further. Great for screen recordings, tutorial clips, and anything that doesn't need cinema-grade motion. Set the target frame rate in the video compression settings.
 
 ### Output format
 
-You can change the output container format during video compression. For example, convert a MOV file to MP4, MKV, WebM, or AVI while compressing. Picmal handles codec compatibility automatically — if your chosen codec isn't supported by the target container, Picmal selects a compatible one.
+You can swap the container format while you compress. Take a MOV and come out the other side with MP4, MKV, WebM or AVI. Picmal handles codec compatibility for you; if the codec you picked won't fit in the container you chose, it quietly picks one that will.
 
-Set the output format in the video compression settings. Leave it on the default to keep the original container.
+Set the output format in the video compression settings. Leave it alone if you want to keep the original container.
 
 ### Video presets
 
 See [compressing files](/docs/compressing-files#video-presets) for the full presets table.
+
+## Subtitle burn-in
+
+Attach an SRT or VTT file to any video and the subtitles get rendered straight into the frames. Because the text is literally painted onto the pixels, it plays on any device with zero guessing about subtitle tracks.
+
+![Subtitle settings in Picmal](/images/docs/subtitles.png)
+
+### How to use
+
+1. Click the **film icon** next to a video in the file list
+2. Pick your `.srt` or `.vtt` file
+3. Convert as usual. The subtitles come out baked into the output
+
+### Styling
+
+Open **Settings → Video** to control how subtitles look:
+
+| Setting  | Options                                                      |
+| -------- | ------------------------------------------------------------ |
+| Size     | Small, medium, large, or a custom point size                 |
+| Color    | Any color (text and optional outline)                        |
+| Position | Top, center, or bottom of the frame                          |
+
+Styling is global. Whatever you pick in Settings applies to every video with a subtitle file attached.
+
+## Playback speed
+
+Speed a video up or slow it down without wrecking the audio pitch. Useful for trimming down meeting recordings, rolling tutorials into time-lapses, or stretching a golf swing out for review.
+
+![Per-video playback speed and SRT options in Picmal](/images/docs/video_options_speed_and_srt.png)
+
+### How to use
+
+1. Click the **film icon** next to a video in the file list
+2. Pick a preset (0.25×, 0.5×, 2×, 4×) or enter a custom percentage from 10% to 800%
+3. Optionally click **Apply speed to all videos** to reuse the setting across the whole batch
+
+Audio pitch is preserved, so 2× speeds up a narration without turning your voiceover into a chipmunk.

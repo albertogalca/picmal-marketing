@@ -4,7 +4,7 @@ title: Resize and color space
 
 ## Image resize
 
-Enable resizing in the conversion settings to change image dimensions. Five modes are available:
+Turn on resizing to change image dimensions. The same settings apply in both **Convert** and **Compress**, so you can drop pixel dimensions while shaving file size in either mode. Five modes to choose from:
 
 | Mode             | What It Does                                                                                 | Default        |
 | ---------------- | -------------------------------------------------------------------------------------------- | -------------- |
@@ -16,13 +16,13 @@ Enable resizing in the conversion settings to change image dimensions. Five mode
 
 ### Aspect ratio
 
-By default, Picmal preserves the original aspect ratio. In **Exact Dimensions** mode you can choose to stretch the image to fill the exact size instead.
+By default Picmal keeps the original aspect ratio. In **Exact Dimensions** mode you can override that and stretch the image to fit, if you really want squashed faces.
 
 ## DPI / Resolution
 
-Set the DPI (dots per inch) metadata on output images. This controls how large the image appears when printed or placed in a design tool — it does not change the pixel dimensions.
+Set the DPI (dots per inch) metadata on output images. This changes how big the image lands when printed or dropped into InDesign or Figma. The pixel dimensions stay exactly the same.
 
-Enable **Set DPI** in the output settings and pick a preset or enter a custom value.
+Turn on **Set DPI** in the output settings and pick a preset, or type your own number.
 
 | Preset       | DPI    | Best For                        |
 | ------------ | ------ | ------------------------------- |
@@ -34,11 +34,11 @@ Enable **Set DPI** in the output settings and pick a preset or enter a custom va
 | High-Quality | 600    | Professional / fine art print   |
 | Custom       | 1–9999 | Any value you need              |
 
-DPI is applied to both converted and compressed images. Audio and video files are not affected.
+DPI applies to both converted and compressed images. Audio and video files ignore it (as they should).
 
 ## Color space
 
-Convert images between color spaces during processing. Useful when preparing images for different output targets.
+Convert images between color spaces during processing. Useful when the same photo has to go to a browser, a print shop, and your phone without looking like three different images.
 
 | Color Space      | Best For                                      |
 | ---------------- | --------------------------------------------- |
@@ -49,7 +49,7 @@ Convert images between color spaces during processing. Useful when preparing ima
 | Rec. 709         | HD video and broadcast                        |
 | Rec. 2020        | 4K / HDR video                                |
 
-Leave this off if you're unsure — sRGB is the safe default for most uses.
+If you're not sure, leave it off. sRGB is the safe bet for almost everything.
 
 ## Orientation
 
@@ -58,4 +58,4 @@ Leave this off if you're unsure — sRGB is the safe default for most uses.
 | Auto-fix | Physically rotates pixels and removes the orientation tag. The image looks correct everywhere |
 | Keep tag | Preserves the original orientation tag in metadata. Some apps may not read it correctly       |
 
-**Auto-fix** is recommended if you're sharing images on the web or with apps that might ignore EXIF orientation.
+Pick **Auto-fix** if your photos are heading to the web or into apps that habitually forget EXIF orientation exists.

@@ -8,9 +8,19 @@ Picmal is designed for Mac users who need to convert media files quickly without
 - 100% offline processing (no data leaves your Mac)
 - Finder integration via Services menu (right-click to convert/compress)
 - Support for 20+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF
-- Video and audio conversion capabilities
-- Adjustable quality and compression settings
-- Metadata preservation during conversion
+- Video and audio conversion and compression
+- Burn-in subtitles for video (SRT or VTT) with configurable size, color and position
+- Per-video playback speed (0.25×–4× presets or custom 10–800%) with pitch-preserved audio
+- Image and video watermarks (PNG overlay, 9-anchor positioning, margins, opacity, multiple presets)
+- Clipboard image optimization (compress or convert images copied to the clipboard)
+- Watched folders and hot folder monitoring with per-folder resize and "compress after convert"
+- Shortcuts app integration and menu bar background operation
+- Batch resize with 5 modes (percentage, fixed width/height, max dimensions, exact) — applies to both Convert and Compress
+- Color space conversion (sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, Rec. 2020)
+- DPI metadata control (72–600 or custom)
+- Before/after preview slider on processed files
+- Adjustable quality and compression settings with six presets plus Custom
+- Metadata preservation modes (strip all, keep essential, keep all)
 
 ## Pricing
 
@@ -23,18 +33,36 @@ One-time purchase with lifetime license. No subscription required.
 
 ## Supported Formats
 
-**Images:** HEIC, HEIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, PDF
-**Video:** MP4, MOV, AVI, MKV, WebM
-**Audio:** MP3, WAV, AAC, FLAC, OGG
+**Images:** HEIC, HEIF, HIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, PDF, JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM, PCX, XBM, XPM, QOI, PSD, EPS, AI, DNG/RAW
+**Video:** MP4, MOV, AVI, MKV, WebM, FLV, WMV, M4V, MPG, MPEG, 3GP, M2TS, MTS, VOB, ASF, OGV, WTV, TS, MJPEG, M2V, HEVC, F4V, MXF
+**Audio:** MP3, WAV, AAC, M4A, FLAC, OGG, OGA, OPUS, M4R, AC3, WV, AU, CAF, SPX, IRCAM, SND, VOC, DTS, TTA, W64, SLN, HCOM, PAF, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, PVF
 
 ## Pages
 
 - [Home](https://picmal.app): Main landing page with features, pricing, and download
+- [Docs](https://picmal.app/docs): Official documentation
 - [Blog](https://picmal.app/blog): Tutorials and guides for image conversion
 - [Changelog](https://picmal.app/changelog): Version history and release notes
 - [Affiliate Program](https://picmal.app/affiliate): 25% commission affiliate program
 - [Privacy Policy](https://picmal.app/privacy): Privacy policy
 - [Terms of Service](https://picmal.app/terms): Terms of service
+
+## Documentation
+
+- [Getting started](https://picmal.app/docs/getting-started): Install, first conversion, first compression
+- [Converting files](https://picmal.app/docs/converting-files): Change file formats
+- [Compressing files](https://picmal.app/docs/compressing-files): Reduce file sizes with presets
+- [Supported formats](https://picmal.app/docs/supported-formats): Full list of input and output formats
+- [Image compression](https://picmal.app/docs/image-compression): Per-format quality settings
+- [Audio and video](https://picmal.app/docs/audio-and-video): Codecs, bitrates, subtitle burn-in, playback speed
+- [Resize and color space](https://picmal.app/docs/resize-and-color-space): Resize modes (Convert and Compress), DPI, color profiles
+- [Watermarks](https://picmal.app/docs/watermarks): PNG overlays for images and videos
+- [Output and naming](https://picmal.app/docs/output-and-naming): File destinations and naming rules
+- [Watched folders](https://picmal.app/docs/watched-folders): Automatic folder processing
+- [Clipboard optimization](https://picmal.app/docs/clipboard-optimization): Auto-compress or convert clipboard images
+- [Integrations](https://picmal.app/docs/integrations): Drag & drop, Finder Services, Shortcuts, menu bar
+- [License](https://picmal.app/docs/license): Activation and deactivation
+- [FAQ](https://picmal.app/docs/faq): Common questions and fixes
 
 ## Conversion Guides
 

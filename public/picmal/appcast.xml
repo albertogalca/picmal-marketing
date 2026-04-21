@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.7</title>
+            <pubDate>Tue, 21 Apr 2026 08:03:43 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>63</sparkle:version>
+            <sparkle:shortVersionString>1.4.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.7/Picmal.dmg" length="118987322" type="application/octet-stream" sparkle:edSignature="8AoihFsItxRqJwDUsnIC8D4NqpFQFFM8dp4FbMbZf8x12Y6O4p4+zw+2s3faTGGxAkt3RlZiPy1eiDAPYegbCw=="/>
+        <description><![CDATA[<div><ul><li>Burn-in subtitles for video. Attach an SRT or VTT file to any video from the new film icon next to its name and the text is burned directly into the output. Style it in Settings → Video (size, color, top/center/bottom).</li>
+<li>Playback speed per video. Same film icon now lets you pick 0.25×, 0.5×, 2×, 4× or a custom percentage (10–800%). Audio keeps its natural pitch. "Apply speed to all videos" copies the setting to every video in your batch.</li>
+<li>Image and video watermarks. Add a logo or PNG overlay to any image or video conversion, save multiple watermark presets, and pick position (9 anchors), margins and opacity from Settings → Watermark.</li>
+<li>Fixed resize settings being ignored in the Compress procedure. Max Dimensions, Max Width/Height and other resize modes now apply to compressed images, matching the Convert procedure.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.6</title>
             <pubDate>Tue, 14 Apr 2026 16:36:14 +0200</pubDate>
             <link>https://picmal.app/</link>

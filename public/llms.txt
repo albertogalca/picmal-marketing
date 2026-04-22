@@ -31,6 +31,8 @@ One-time purchase with lifetime license. No subscription required.
 
 14-day money-back guarantee.
 
+Machine-readable pricing: https://picmal.app/pricing.md
+
 ## Supported Formats
 
 **Images:** HEIC, HEIF, HIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, PDF, JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM, PCX, XBM, XPM, QOI, PSD, EPS, AI, DNG/RAW

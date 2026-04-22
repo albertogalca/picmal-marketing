@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Affordable Compresto Alternative for Mac";
 const SITE_DESCRIPTION =
@@ -169,6 +171,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="Compresto"
+      summary="Compresto is a dedicated compression app focused on file size reduction with Raycast integration and PDF support. Picmal ($15.99 one-time) is broader — it converts and compresses images, video, and audio, and costs roughly a third as much."
+      picmalFor="You need format conversion plus compression across images, video, and audio, and prefer a one-time purchase."
+      competitorFor="Your primary need is maximum compression (including PDFs), and you use Raycast heavily."
+    />
 
     <SectionDivider />
 
@@ -505,6 +514,14 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "Compresto official site", href: "https://compresto.app/" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

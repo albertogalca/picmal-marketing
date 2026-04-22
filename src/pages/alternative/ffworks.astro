@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Simple ffWorks Alternative for Mac";
 const SITE_DESCRIPTION =
@@ -170,6 +172,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="ffWorks"
+      summary="ffWorks is a professional FFmpeg frontend exposing 450+ encoding options and 60+ video filters for advanced video workflows. Picmal ($15.99 one-time) is a simpler native macOS app that converts images, video, and audio without configuring codecs."
+      picmalFor="You want drag-and-drop conversion with sensible defaults, and also need to convert images."
+      competitorFor="You need full FFmpeg control, VMAF quality metrics, or pro 4K/8K encoding workflows."
+    />
 
     <SectionDivider />
 
@@ -510,6 +519,14 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "ffWorks official site", href: "https://www.ffworks.net/" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

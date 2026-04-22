@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Native Mac HandBrake Alternative";
 const SITE_DESCRIPTION =
@@ -169,6 +171,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="HandBrake"
+      summary="HandBrake is a free, open-source, cross-platform video transcoder with deep encoding controls. Picmal ($15.99 one-time) is a native macOS app that converts images, video, and audio with a simpler UI and Shortcuts automation. Neither uploads your files."
+      picmalFor="You're on macOS, convert images alongside video, want native UI, Shortcuts, and folder monitoring."
+      competitorFor="You need advanced video encoding (CRF tuning, filters, device presets), DVD/Blu-ray ripping, or cross-platform support (Windows/Linux)."
+    />
 
     <SectionDivider />
 
@@ -509,6 +518,15 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "HandBrake official site", href: "https://handbrake.fr/" },
+        { label: "HandBrake documentation", href: "https://handbrake.fr/docs/" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

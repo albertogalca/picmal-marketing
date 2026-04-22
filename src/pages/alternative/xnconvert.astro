@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Native Mac XnConvert Alternative";
 const SITE_DESCRIPTION =
@@ -170,6 +172,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="XnConvert"
+      summary="XnConvert is free for personal use, cross-platform (Windows, macOS, Linux), and supports 500+ input formats with 80+ editing actions like watermarks and metadata editing. Picmal ($15.99 one-time) is a native macOS app that adds video and audio conversion and focuses on a simpler drag-and-drop flow."
+      picmalFor="You want a Mac-native UI, convert video and audio alongside images, and need Shortcuts or folder monitoring."
+      competitorFor="You need 500+ formats, watermarking, metadata editing, scripting, or cross-platform support."
+    />
 
     <SectionDivider />
 
@@ -512,6 +521,15 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "XnConvert official site", href: "https://www.xnview.com/en/xnconvert/" },
+        { label: "XnConvert downloads", href: "https://www.xnview.com/en/xnconvert/#downloads" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

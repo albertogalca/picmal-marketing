@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Kompressor Alternative for Video and Audio";
 const SITE_DESCRIPTION =
@@ -164,6 +166,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="Kompressor"
+      summary="Kompressor is a free Mac image compressor with real-time quality preview. Picmal ($15.99 one-time) is broader: it converts and compresses images, video, and audio, and adds Shortcuts, folder monitoring, and Finder right-click actions."
+      picmalFor="You convert or compress video and audio (not just images), or need automation across Shortcuts and watched folders."
+      competitorFor="You only compress images and want a free tool with a live quality preview."
+    />
 
     <SectionDivider />
 
@@ -496,6 +505,14 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "Kompressor on the Mac App Store", href: "https://apps.apple.com/app/kompressor-image-compressor/id1526047227" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: The Simple Permute Alternative for Mac";
 const SITE_DESCRIPTION =
@@ -164,6 +166,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="Permute"
+      summary="Picmal ($15.99 one-time) and Permute (~$14.99 one-time, also on Setapp) are both offline media converters for macOS. Picmal handles images, video, and audio in a single drag-and-drop window with Shortcuts and folder monitoring. Permute adds video editing (trim, crop, merge) and audio processing."
+      picmalFor="You want a minimal interface, convert images regularly, and need automation via Shortcuts, watched folders, or Finder right-click."
+      competitorFor="You need light video editing, audio normalization, or already pay for Setapp."
+    />
 
     <SectionDivider />
 
@@ -496,6 +505,15 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "Permute official site", href: "https://software.charliemonroe.net/permute/" },
+        { label: "Permute on Setapp", href: "https://setapp.com/apps/permute" },
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+      ]}
+    />
 
     <Footer />
 

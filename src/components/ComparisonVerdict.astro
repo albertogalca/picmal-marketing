@@ -1,0 +1,32 @@
+---
+interface Props {
+  competitor: string;
+  summary: string;
+  picmalFor: string;
+  competitorFor: string;
+}
+
+const { competitor, summary, picmalFor, competitorFor } = Astro.props;
+---
+
+<section class="relative z-10 px-6 pt-8 pb-4" aria-label={`Picmal vs ${competitor} quick answer`}>
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+      <div class="flex items-baseline gap-2 mb-4">
+        <span class="text-xs font-mono font-medium text-accent uppercase tracking-wider">TL;DR</span>
+        <span class="text-xs text-text-secondary">Picmal vs {competitor}</span>
+      </div>
+      <p class="text-base md:text-lg leading-relaxed text-text text-pretty mb-4">{summary}</p>
+      <dl class="grid sm:grid-cols-2 gap-4 pt-4 border-t border-border">
+        <div>
+          <dt class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">Pick Picmal if</dt>
+          <dd class="text-sm text-text">{picmalFor}</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-1">Pick {competitor} if</dt>
+          <dd class="text-sm text-text">{competitorFor}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

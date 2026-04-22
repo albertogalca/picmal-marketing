@@ -17,6 +17,8 @@ import BentoFeatures from "../../components/BentoFeatures.astro";
 import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonMeta from "../../components/ComparisonMeta.astro";
 
 const SITE_TITLE = "Picmal: A Native Mac Alternative to How To Convert";
 const SITE_DESCRIPTION =
@@ -164,6 +166,13 @@ const faqs = [
         </div>
       </div>
     </main>
+
+    <ComparisonVerdict
+      competitor="How To Convert"
+      summary="How To Convert is a cross-platform converter covering documents, media, and emails. Picmal ($15.99 one-time) is a macOS-native media converter for images, video, and audio — with Shortcuts, folder monitoring, and Finder right-click."
+      picmalFor="You're on Mac and convert media only (images, video, audio), and want a polished native UI with automation."
+      competitorFor="You need to convert documents or emails, or need Windows/Linux support."
+    />
 
     <SectionDivider />
 
@@ -536,6 +545,14 @@ const faqs = [
         </div>
       </div>
     </section>
+
+    <ComparisonMeta
+      lastUpdated="2026-04-22"
+      sources={[
+        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
+        { label: "Picmal documentation", href: "https://picmal.app/docs" },
+      ]}
+    />
 
     <Footer />
 

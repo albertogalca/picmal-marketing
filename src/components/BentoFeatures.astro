@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
-import CompressFormatsModal from "./CompressFormatsModal.astro";
 ---
 
 <section id="features" class="relative z-10 px-6 py-20">
@@ -21,34 +20,32 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
         <div
           class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
         >
-          <div class="flex items-start gap-4 mb-6">
-            <div>
-              <H3 class="mb-2"
-                >Convert between multiple formats <button
-                  id="open-formats-modal-bento"
-                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
-                  type="button"
-                  aria-label="View supported formats"
-                  ><svg
-                    class="w-3.5 h-3.5 text-text-secondary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg></button
-                ></H3
-              >
-              <Paragraph>
-                Turn a PSD into a PNG, an AI file into SVG, a MOV into MP4.
-                Pick the output format and go.
-              </Paragraph>
-            </div>
+          <div class="mb-6">
+            <H3 class="mb-2"
+              >Convert between multiple formats <button
+                id="open-formats-modal-bento"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
+                type="button"
+                aria-label="View supported formats"
+                ><svg
+                  class="w-3.5 h-3.5 text-text-secondary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg></button
+              ></H3
+            >
+            <Paragraph>
+              Turn a PSD into a PNG, an AI file into SVG, a MOV into MP4. Pick
+              the output format and go.
+            </Paragraph>
           </div>
           <div class="rounded-lg overflow-hidden opacity-90">
             <video
@@ -74,34 +71,6 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
         <div
           class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden"
         >
-          <!-- <div
-            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
-          >
-            <svg
-              class="w-7 h-7"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip_batch_main)">
-                <path
-                  d="M19.4587 4.875V15.0833H28.2087L16.542 31.125V20.9167H7.79199L19.4587 4.875Z"
-                  class="stroke-text"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip_batch_main">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div> -->
           <H3 class="mb-2">Batch processing</H3>
           <Paragraph>
             Drop hundreds of files at once. Drag them in, use File > Open, or
@@ -129,71 +98,6 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
         <div
           class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden order-last lg:order-first"
         >
-          <!-- <div
-            class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 border border-border"
-          >
-            <svg
-              class="w-7 h-7"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.875 9.25H10.708"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M14.625 9.25H31.125"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M4.875 18H21.375"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M25.292 18H31.125"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M4.875 26.75H14.625"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <path
-                d="M18.542 26.75H31.125"
-                class="stroke-text"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-              <circle
-                cx="12.667"
-                cy="9.25"
-                r="2.917"
-                class="stroke-text"
-                stroke-width="2.5"></circle>
-              <circle
-                cx="23.333"
-                cy="18"
-                r="2.917"
-                class="stroke-text"
-                stroke-width="2.5"></circle>
-              <circle
-                cx="16.583"
-                cy="26.75"
-                r="2.917"
-                class="stroke-text"
-                stroke-width="2.5"></circle>
-            </svg>
-          </div> -->
           <H3 class="mb-2"
             >Presets for the usual stuff. Full control for the rest.</H3
           >
@@ -227,10 +131,9 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
         <div
           class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
         >
-          <div class="flex items-start gap-4 mb-6">
-            <div>
-              <H3 class="mb-2"
-                >Shrink file sizes without visible quality loss <button
+          <div class="mb-6">
+            <H3 class="mb-2"
+              >Shrink file sizes without visible quality loss <button
                   id="open-compress-formats-modal-bento"
                   class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
                   type="button"
@@ -254,7 +157,6 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
                 Same format, smaller file. Shrink photos before uploading or
                 get a video under the email attachment limit.
               </Paragraph>
-            </div>
           </div>
           <div class="rounded-lg overflow-hidden">
             <video
@@ -436,8 +338,6 @@ import CompressFormatsModal from "./CompressFormatsModal.astro";
     </div>
   </div>
 </section>
-
-<CompressFormatsModal />
 
 <script>
   function updateThemeVideos() {

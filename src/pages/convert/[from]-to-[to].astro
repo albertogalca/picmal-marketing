@@ -93,7 +93,6 @@ const faqSchema = {
   </head>
 
   <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
-    <div class="fixed inset-0 -z-20 apple-gradient"></div>
 
     <Header />
 
@@ -122,16 +121,15 @@ const faqSchema = {
             </span>
           </div>
 
-          <H1 class="mb-6 max-w-3xl mx-auto hero-title">Convert {from.name} to {to.name} on Mac</H1>
-          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty hero-subtitle">
+          <H1 class="mb-6 max-w-3xl mx-auto">Convert {from.name} to {to.name} on Mac</H1>
+          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty">
             {conversion.whyConvert}
           </Paragraph>
           <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
             <Button
               text="Get Picmal for $15.99"
               onclick={`posthog.capture('buy_clicked_convert_${conversion.slug}')`}
-              class="apple-button-primary"
-            />
+                          />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
               class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"

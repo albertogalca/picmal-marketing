@@ -55,7 +55,7 @@ const isIconOnly = icon && !text;
 const paddingClasses = isIconOnly
   ? iconOnlyClasses[size]
   : `px-6 ${sizeClasses[size]}`;
-const baseClasses = `block rounded-lg transition-colors text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
+const baseClasses = `block rounded-lg transition-[colors,scale] duration-200 active:scale-[0.96] text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
 ---
 
 {

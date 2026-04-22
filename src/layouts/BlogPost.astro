@@ -64,9 +64,6 @@ const {
   <body
     class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
-    <!-- Subtle gradient background - Apple style -->
-    <div class="fixed inset-0 -z-20 apple-gradient"></div>
-
     <Header />
 
     <!-- Hero with gradient -->
@@ -137,9 +134,8 @@ const {
           class="prose max-w-none article-content
               prose-headings:text-text prose-headings:font-semibold
               prose-p:text-text/65 prose-p:leading-relaxed
-              prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
+              prose-a:text-accent hover:prose-a:text-accent-dark prose-a:underline prose-a:underline-offset-4 prose-a:decoration-accent/30 hover:prose-a:decoration-accent prose-a:transition-colors prose-a:duration-200
               prose-strong:text-text
-              prose-code:text-accent prose-code:bg-gray-100
               prose-pre:bg-black
               prose-blockquote:border-l-accent prose-blockquote:text-text-secondary prose-blockquote:bg-background-subtle
               prose-th:text-text

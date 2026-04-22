@@ -80,27 +80,15 @@ const postsToShow =
               href={`/blog/${post.id}`}
               class="block rounded-lg border border-border bg-background-subtle hover:border-accent/50 transition-all duration-200 overflow-hidden h-full"
             >
-              {post.data.heroImage ? (
-                <div class="aspect-video overflow-hidden bg-background-subtle">
-                  <Image
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    width={400}
-                    height={225}
-                    class="w-full h-full object-cover transition-transform duration-200"
-                  />
-                </div>
-              ) : (
-                <div class="aspect-video overflow-hidden bg-background-subtle">
-                  <Image
-                    src={ogImage}
-                    alt={post.data.title}
-                    width={400}
-                    height={225}
-                    class="w-full h-full object-cover transition-transform duration-200"
-                  />
-                </div>
-              )}
+              <div class="aspect-video overflow-hidden bg-background-subtle">
+                <Image
+                  src={post.data.heroImage || ogImage}
+                  alt={post.data.title}
+                  width={400}
+                  height={225}
+                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
+              </div>
 
               <div class="p-5">
                 {post.data.category && (
@@ -132,11 +120,3 @@ const postsToShow =
   )
 }
 
-<style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>

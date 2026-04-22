@@ -62,7 +62,6 @@ const faqSchema = {
   </head>
 
   <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
-    <div class="fixed inset-0 -z-20 apple-gradient"></div>
 
     <Header />
 
@@ -98,8 +97,7 @@ const faqSchema = {
             <Button
               text="Get Picmal for $15.99"
               onclick={`posthog.capture('buy_clicked_compress_${compression.slug}')`}
-              class="apple-button-primary"
-            />
+                          />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
               class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"

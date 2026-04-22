@@ -55,10 +55,11 @@ body {
 }
 
 pre:not(.sl-markdown-content pre) {
+  position: relative;
   background: #1e293b !important;
   border-radius: 12px !important;
   border: 1px solid #334155 !important;
-  padding: 1.5rem !important;
+  padding: 1.25rem 1.5rem !important;
   margin: 1.5rem 0 !important;
   font-family:
     "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace !important;
@@ -80,34 +81,15 @@ pre:not(.sl-markdown-content pre) code {
 
 /* Inline code styling */
 code:not(pre code):not(.sl-markdown-content code) {
-  background: #f1f5f9 !important;
-  color: #1b5bff !important;
-  padding: 0.25rem 0.5rem !important;
+  background: light-dark(#f1f5f9, rgba(255, 255, 255, 0.08)) !important;
+  color: light-dark(#1b5bff, #60a5fa) !important;
+  padding: 0.125rem 0.4rem !important;
   border-radius: 0.375rem !important;
   font-family:
     "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace !important;
   font-size: 0.875em !important;
   font-weight: 500 !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-/* Copy button styling for code blocks */
-pre:not(.sl-markdown-content pre):hover::after {
-  content: "Copy";
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background: #374151;
-  color: #d1d5db;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-pre:not(.sl-markdown-content pre) {
-  position: relative;
+  border: 1px solid light-dark(#e2e8f0, rgba(255, 255, 255, 0.1)) !important;
 }
 
 blockquote {

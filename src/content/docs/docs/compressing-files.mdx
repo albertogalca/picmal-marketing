@@ -11,7 +11,9 @@ Compress mode reduces file size without changing the format. A JPEG stays a JPEG
 3. Pick a preset or configure custom settings
 4. Click **Compress**
 
-Compressed files are saved with a `_compressed` suffix by default (configurable in settings).
+Compressed files are saved with a `_compressed` suffix by default. You can change this to any pattern — including EXIF-based names like `{date}_{original}` — in **Settings → Output**. See [output and naming](/docs/output-and-naming).
+
+If the compressed output isn't smaller than the original, Picmal discards it and leaves the original untouched.
 
 ## Image presets
 
@@ -51,7 +53,7 @@ Compressed files are saved with a `_compressed` suffix by default (configurable 
 
 ## Before/after preview
 
-After compressing an image, click the screen icon on any processed file to open an interactive before/after slider. This lets you compare the original and compressed versions side by side so you can dial in your quality settings with confidence.
+After compressing an image, click the screen icon on any processed file to open a before/after slider. Drag it around to compare the original and compressed versions side by side — useful for dialing in quality when you're not sure how far you can push it.
 
 <video src="/images/changelog/1.4.0/preview-demo.mp4" autoplay loop muted playsinline />
 

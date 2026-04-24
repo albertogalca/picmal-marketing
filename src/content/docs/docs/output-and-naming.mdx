@@ -8,44 +8,50 @@ By default, converted and compressed files are saved in the same folder as the o
 
 ## File naming
 
-### Conversion
+Picmal names output files using patterns. You write a pattern — literal text plus tokens — and that becomes the output file's base name. The extension comes from the output format.
 
-Converted files use the original filename with the new extension:
+Configure patterns in **Settings → Output**. There are two independent patterns:
 
-```
-photo.heic → photo.jpeg
-```
+- **Convert pattern** — used when converting to a different format. Default: `{original}_converted`
+- **Compress pattern** — used in Compress mode. Default: `{original}_compressed`
 
-You can add a prefix or suffix to the filename in settings:
+### Tokens
 
-```
-Prefix: "web_"  →  web_photo.jpeg
-Suffix: "_2x"   →  photo_2x.jpeg
-```
+| Token         | Replaced with                              | Example                  |
+| ------------- | ------------------------------------------ | ------------------------ |
+| `{original}`  | Original filename (no extension)           | `IMG_0042`               |
+| `{date}`      | Capture date from EXIF                     | `2026-03-15`             |
+| `{datetime}`  | Capture date and time from EXIF            | `2026-03-15_14-22-08`    |
+| `{year}`      | Capture year from EXIF                     | `2026`                   |
+| `{month}`     | Capture month from EXIF                    | `03`                     |
+| `{day}`       | Capture day from EXIF                      | `15`                     |
+| `{camera}`    | Camera make and model from EXIF            | `FUJIFILM_X-T20`         |
+| `{iso}`       | ISO value from EXIF                        | `400`                    |
 
-### Same-format conversion
+Click any token in the settings panel to insert it into the focused pattern field. A live preview shows what the output filename will look like.
 
-When converting a file to the same format (e.g., FLAC → FLAC for resampling), a `_converted` suffix is added automatically:
-
-```
-song.flac → song_converted.flac
-```
-
-### Compression
-
-Compressed files keep their original extension and add a `_compressed` suffix by default:
+### Examples
 
 ```
-photo.jpeg → photo_compressed.jpeg
+{original}_web              →  IMG_0042_web.jpeg
+{date}_{original}           →  2026-03-15_IMG_0042.jpeg
+{camera}_{iso}_{original}   →  FUJIFILM_X-T20_400_IMG_0042.jpeg
+{year}/{month}/{original}   →  (slashes are sanitized to underscores)
 ```
 
-The compression suffix is configurable in settings. You can also set a prefix.
+### Missing metadata
 
-## Overwrite warning
+If a pattern uses an EXIF token but the source file has no matching metadata (e.g. `{camera}` on a screenshot), Picmal falls back to the original filename for that file. This avoids broken names like `_400_IMG_0042`.
 
-Picmal does not overwrite original files. If a file with the same name already exists, the new file is created alongside it with the appropriate suffix.
+Unknown tokens (anything inside `{...}` that isn't recognized) are dropped silently.
 
-If you remove the default suffix and a file with the same name exists, be careful — check your naming settings to avoid conflicts.
+## Overwriting originals
+
+If your pattern produces the same name as the source file (for example, using just `{original}`), Picmal writes to a temporary file and replaces the original only after the operation succeeds. This is safe even on case-insensitive APFS volumes, where `.JPG` and `.jpg` collide.
+
+In Compress mode, if the result isn't smaller than the original, the original is left untouched.
+
+The settings panel warns you when your pattern would overwrite originals.
 
 ## Default format mapping
 
@@ -54,5 +60,3 @@ You can configure default output formats per input type. For example, you can se
 Configure default mappings in **Settings → Output**.
 
 ![Default format conversion settings](/images/docs/default_format.png)
-
-

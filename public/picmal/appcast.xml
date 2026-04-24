@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.4.9</title>
+            <pubDate>Fri, 24 Apr 2026 15:37:04 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>65</sparkle:version>
+            <sparkle:shortVersionString>1.4.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.9/Picmal.dmg" length="119057052" type="application/octet-stream" sparkle:edSignature="Ig3kv/DuRJHzw5M7U1Pq4PPeuTGMsJEbF3lSBF/1HoYd/Fqwtl6tlB9+L6v8GNXkQnbFB8vyht2td5iyfK6rDw=="/>
+        <description><![CDATA[<div><ul><li>Rename output files using EXIF metadata with a filename pattern. Supported tokens: {original}, {date}, {datetime}, {year}, {month}, {day}, {camera}, {iso}.</li>
+<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.8</title>
             <pubDate>Wed, 22 Apr 2026 16:57:13 +0200</pubDate>
             <link>https://picmal.app/</link>

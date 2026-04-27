@@ -3,6 +3,16 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.0</title>
+            <pubDate>Mon, 27 Apr 2026 14:21:28 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>66</sparkle:version>
+            <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.0/Picmal.dmg" length="118833498" type="application/octet-stream" sparkle:edSignature="wjNCp3MrLkdmeTv3EQcJ90kmkOMFSfnRj+WSwYIv1OmZdjHclwH+a6BXNHw20OhIv6ofXQWGURaY0t5uFYqmBw=="/>
+        <description><![CDATA[<div><ul><li>Redesigned the Settings window from the ground up for a cleaner, more native macOS feel.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.4.9</title>
             <pubDate>Fri, 24 Apr 2026 15:37:04 +0200</pubDate>
             <link>https://picmal.app/</link>

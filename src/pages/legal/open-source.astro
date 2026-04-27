@@ -1,0 +1,133 @@
+---
+import StaticPageLayout from "../../components/StaticPageLayout.astro";
+import H2 from "../../components/H2.astro";
+import H3 from "../../components/H3.astro";
+import { ossBundled } from "../../data/oss-bundled";
+
+const meta = {
+  title: "Open source acknowledgements",
+  description:
+    "Open source software bundled with Picmal, with licenses and source code links.",
+  date: "Last updated: April 27, 2026",
+};
+---
+
+<StaticPageLayout meta={meta}>
+  <p>
+    Picmal wouldn't exist without a lot of other people's open-source work.
+    Here's what the app bundles, where to find each project's source, and
+    which license it ships under.
+  </p>
+
+  <p>
+    Most of the source links below point straight at the upstream project. If
+    one rots, email{" "}
+    <a href="mailto:support@picmal.app">support@picmal.app</a> and I'll send
+    the source tarball directly — free, for at least three years after each
+    release that includes the component.
+  </p>
+
+  <H2>Bundled software</H2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Version</th>
+        <th>License</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        ossBundled.map((entry) => (
+          <tr>
+            <td>
+              <a href={entry.upstream} target="_blank" rel="noopener noreferrer">
+                {entry.name}
+              </a>
+            </td>
+            <td>{entry.version}</td>
+            <td>
+              <a
+                href={entry.licenseUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {entry.license}
+              </a>
+            </td>
+            <td>
+              <a
+                href={entry.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <H2>Details</H2>
+
+  {
+    ossBundled.map((entry) => (
+      <section>
+        <H3>{entry.name}</H3>
+        <ul>
+          <li>
+            <strong>Version:</strong> {entry.version}
+          </li>
+          <li>
+            <strong>License:</strong>{" "}
+            <a
+              href={entry.licenseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {entry.license}
+            </a>
+          </li>
+          <li>
+            <strong>Bundled as:</strong> <code>{entry.binaries.join(", ")}</code>
+          </li>
+          <li>
+            <strong>Upstream:</strong>{" "}
+            <a href={entry.upstream} target="_blank" rel="noopener noreferrer">
+              {entry.upstream}
+            </a>
+          </li>
+          <li>
+            <strong>Source:</strong>{" "}
+            <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {entry.sourceUrl}
+            </a>
+          </li>
+        </ul>
+        {entry.notes && <p>{entry.notes}</p>}
+      </section>
+    ))
+  }
+
+  <H2>Written offer for source</H2>
+
+  <p>
+    Want the corresponding source for any of the GPL, LGPL, or AGPL components
+    above? Email <a href="mailto:support@picmal.app">support@picmal.app</a>{" "}
+    and I'll send it. This offer stands for at least three years from the
+    release of the Picmal version that bundled the component, per GPL-2.0 §
+    3(b), GPL-3.0 § 6(b), and LGPL-2.1 § 6.
+  </p>
+
+  <H2>Spotted something wrong?</H2>
+
+  <p>
+    If you think Picmal isn't meeting one of these obligations, email{" "}
+    <a href="mailto:support@picmal.app">support@picmal.app</a> and I'll fix
+    it.
+  </p>
+</StaticPageLayout>

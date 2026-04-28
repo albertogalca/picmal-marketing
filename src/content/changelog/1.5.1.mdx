@@ -1,0 +1,11 @@
+---
+version: "1.5.1"
+title: "Menu bar quick controls and clipboard fixes"
+pubDate: 2026-04-28
+---
+
+The menu bar now includes quick controls: open a file picker with ⇧⌘O, and adjust clipboard behavior inline. On Copy mode (Compress / Convert / Compress & Convert), Target Format, and Auto-Copy Result are nested under the Optimize Clipboard toggle and stay in sync with Settings.
+
+Fixed an infinite loop where Auto-Copy would re-process the file Picmal had just placed on the clipboard, stacking overlay entries and re-running compression.
+
+Fixed `.jpeg` files producing a sibling `.jpg` instead of overwriting (or preserving the source extension) on both compress and convert. Same-format operations now keep the input's on-disk extension, so `.jpeg`, `.tif`, and similar aliases stay consistent.

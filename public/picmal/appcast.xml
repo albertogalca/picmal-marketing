@@ -3,6 +3,18 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.1</title>
+            <pubDate>Tue, 28 Apr 2026 15:52:53 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>67</sparkle:version>
+            <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.1/Picmal.dmg" length="118838932" type="application/octet-stream" sparkle:edSignature="tHzV+n/76QCJFvJU00cayiR9t7Z2QXhCfIDYLTjldHWooB4ZOAilqZZsQeEl/UfNZf2DOzGFZS4Ej3mVX38BBw=="/>
+        <description><![CDATA[<div><ul><li>Menu bar quick controls: open a file picker with ⇧⌘O, and adjust clipboard behavior inline — On Copy mode (Compress / Convert / Compress & Convert), Target Format, and Auto-Copy Result are now nested under the Optimize Clipboard toggle and stay in sync with Settings.</li>
+<li>Fixed an infinite loop where Auto-Copy would re-process the file Picmal had just placed on the clipboard, stacking overlay entries and re-running compression.</li>
+<li>Fixed `.jpeg` files producing a sibling `.jpg` instead of overwriting (or preserving the source extension) on both compress and convert. Same-format operations now keep the input's on-disk extension, so `.jpeg`, `.tif`, and similar aliases stay consistent.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.0</title>
             <pubDate>Mon, 27 Apr 2026 14:21:28 +0200</pubDate>
             <link>https://picmal.app/</link>

@@ -29,10 +29,10 @@ const licenseFaqs = [
 ---
 
 <div class="max-w-5xl mx-auto">
-  <!-- Pricing Header -->
-  <div class="text-center md:text-left mb-12 md:mb-0">
-    <H2 class="mb-4 md:hidden">Pay once, own forever</H2>
-    <Paragraph class="max-w-md mx-auto md:hidden">
+  <!-- Mobile-only Pricing Header -->
+  <div class="md:hidden text-center mb-12">
+    <H2 class="mb-4">Pay once, own forever</H2>
+    <Paragraph class="max-w-md mx-auto">
       One purchase, all updates included. No subscriptions sneaking up on you.
       14-day money-back guarantee.
     </Paragraph>
@@ -49,20 +49,15 @@ const licenseFaqs = [
     </div>
 
     <!-- Benefits & FAQ -->
-    <div class="w-full md:max-w-md space-y-6 text-left order-2 md:order-1">
-      <div class="hidden md:block space-y-6">
-        <div>
-          <H2 class="mb-4">Pay once, <br />own forever</H2>
-          <Paragraph>
-            One purchase, all updates included. No subscriptions sneaking up on you.
-            14-day money-back guarantee.
-          </Paragraph>
-        </div>
-        <FAQ faqs={licenseFaqs} />
+    <div class="w-full md:max-w-md text-left order-2 md:order-1 space-y-6">
+      <div class="hidden md:block">
+        <H2 class="mb-4">Pay once, <br />own forever</H2>
+        <Paragraph>
+          One purchase, all updates included. No subscriptions sneaking up on you.
+          14-day money-back guarantee.
+        </Paragraph>
       </div>
-      <div class="md:hidden">
-        <FAQ faqs={licenseFaqs} />
-      </div>
+      <FAQ faqs={licenseFaqs} />
     </div>
   </div>
 </div>

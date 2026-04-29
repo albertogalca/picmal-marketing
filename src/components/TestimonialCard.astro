@@ -27,16 +27,16 @@ function getGravatarUrl(email: string, size: number = 80): string {
 >
   <!-- Quote -->
   <Paragraph class="mb-6 text-center">
-    "{content}"
+    &ldquo;{content}&rdquo;
   </Paragraph>
 
   <!-- Author info -->
   <div class="flex items-center gap-4 justify-center">
     <Image
-      src={image || getGravatarUrl(email || "", 64)}
-      alt={name}
-      width={64}
-      height={64}
+      src={image || getGravatarUrl(email || "", 80)}
+      alt={`Photo of ${name}`}
+      width={80}
+      height={80}
       class="w-10 h-10 rounded-full flex-shrink-0"
       loading="lazy"
     />
@@ -47,13 +47,14 @@ function getGravatarUrl(email: string, size: number = 80): string {
           <a
             href={link}
             target="_blank"
-            rel="nofollow noreferer"
-            class="cursor-pointer inline-flex"
-            aria-label="View source"
+            rel="nofollow noreferrer"
+            class="inline-flex p-1 -m-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current"
+            aria-label={`View ${name}'s testimonial source`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4 opacity-60 hover:opacity-100 transition-opacity"
+              aria-hidden="true"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -1,0 +1,599 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+import SegmentedControl from "../components/SegmentedControl.astro";
+
+const SITE_TITLE = "Picmal Press Kit";
+const SITE_DESCRIPTION =
+  "Logos, screenshots, demo videos, and copy you can use to write about Picmal.";
+
+const shortDescription =
+  "Images, videos, audio. Batch process hundreds at once, right on your Mac. Works offline, no account, nothing to subscribe to.";
+
+const mediumDescription =
+  "Picmal converts and compresses images, videos, and audio on your Mac. Drop files in, and that's it. No setup, no uploads, no need to know what a codec is. If you want more control, there's an advanced mode — but the defaults are already sensible, so most people won't need it. It feels native because it is. Picmal lives wherever your other Mac apps live, and everything runs locally. Your files never leave your machine.";
+
+const longDescription = `Picmal is a Mac app for converting and compressing images, videos, and audio. Simple by default. Drop your files in and go. No setup, no need to know what a bitrate is.
+
+If you want more control, there's an advanced mode. The defaults are already sensible, so most people won't touch it.
+
+It feels native because it is. Picmal lives wherever your other Mac apps live. Everything runs locally, so your files never leave your machine.`;
+
+const principles = [
+  {
+    title: "Simple by default",
+    description:
+      "No setup, no technical knowledge required. You open it and start converting. That's it.",
+  },
+  {
+    title: "Opinionated advanced mode",
+    description:
+      "The options that matter are already configured. The goal was never to expose every knob — it was to make the right choice for you by default.",
+  },
+  {
+    title: "Native to macOS",
+    description:
+      "It looks and feels like an Apple app because it was built to. It lives where your other apps live and works the same way.",
+  },
+  {
+    title: "Local and private",
+    description: "Your files stay on your machine. Always.",
+  },
+];
+
+const screenshots = [
+  { src: "/press/picmal_empty.png", title: "Empty state", caption: "Drop files anywhere to get started." },
+  { src: "/press/picmal_with_files.png", title: "With files", caption: "Files loaded and ready to convert." },
+  { src: "/press/picmal_working.png", title: "Working", caption: "Mid-conversion." },
+  { src: "/press/picmal_settings.png", title: "Settings", caption: "Advanced options for people who want them." },
+  { src: "/press/picmal_settings_2.png", title: "More settings", caption: "Format-specific configuration." },
+];
+
+const storeAssets = [
+  { src: "/press/mac_store_a.png", title: "Hero — convert", caption: "Brand hero, conversion side." },
+  { src: "/press/mac_store_b.png", title: "Hero — compress", caption: "Brand hero, compression side." },
+  { src: "/press/mac_store_c.png", title: "Feature highlight", caption: "Marketing visual, third panel." },
+  { src: "/press/mac_store_d.png", title: "Feature highlight", caption: "Marketing visual, fourth panel." },
+  { src: "/press/lemon_squeezy_version.png", title: "Lemon Squeezy listing", caption: "Storefront preview used on Lemon Squeezy." },
+];
+
+const videos = [
+  { title: "Full demo", description: "About a minute, covers everything.", src: "/picmal-demo.mp4" },
+  { title: "Convert", description: "Just the conversion flow.", src: "/convert.mp4" },
+  { title: "Compress", description: "Compressing a batch of images.", src: "/compress.mp4" },
+];
+
+const facts = [
+  { label: "Pricing", value: "Pay once. Updates included. Sold on picmal.app via Lemon Squeezy. Not on the App Store." },
+  { label: "Who uses it", value: "Mostly photographers, designers, developers, and teachers. Also a lot of people who just want HEIC files to be JPGs." },
+  { label: "Requirements", value: "macOS 13 or later. Runs natively on Apple Silicon and Intel." },
+];
+
+const ICON_EYE =
+  "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z";
+const ICON_DOWNLOAD =
+  "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+
+  <body class="bg-background overflow-x-hidden">
+    <Header />
+
+    <main class="relative z-10 pt-28 lg:pt-32 pb-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <!-- MOBILE BRAND HEADER (centered, compact) -->
+        <div class="lg:hidden text-center mb-8">
+          <img
+            src="/Icon-macOS-Default-1024x1024@1x.png"
+            alt="Picmal icon"
+            class="w-12 h-12 rounded-lg mb-3 mx-auto"
+          />
+          <p class="font-semibold mb-1">Picmal</p>
+          <Paragraph size="small" class="max-w-xs mx-auto">
+            Convert and compress images, videos and audio on your Mac.
+          </Paragraph>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
+          <!-- DESKTOP SIDEBAR -->
+          <aside class="hidden lg:block lg:sticky lg:top-32 lg:self-start space-y-8">
+            <div>
+              <img
+                src="/Icon-macOS-Default-1024x1024@1x.png"
+                alt="Picmal icon"
+                class="w-12 h-12 rounded-lg mb-4"
+              />
+              <p class="font-semibold mb-2">Picmal</p>
+              <Paragraph size="small">
+                Convert and compress images, videos and audio on your Mac.
+              </Paragraph>
+            </div>
+
+            <div>
+              <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-3">
+                Quick links
+              </p>
+              <ul class="space-y-2">
+                <li><a href="https://picmal.app" class="text-sm text-text hover:text-accent transition-colors">Website</a></li>
+                <li><a href="https://picmal.app/docs" class="text-sm text-text hover:text-accent transition-colors">Documentation</a></li>
+                <li><a href="https://affiliates.lemonsqueezy.com/programs/picmal" target="_blank" rel="noopener noreferrer" class="text-sm text-text hover:text-accent transition-colors">Affiliate program</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-3">
+                Contact
+              </p>
+              <a href="mailto:hello@albertogalca.com" class="text-sm text-text hover:text-accent transition-colors break-all">
+                hello@albertogalca.com
+              </a>
+            </div>
+          </aside>
+
+          <!-- RIGHT CONTENT -->
+          <div>
+            <!-- Tabs -->
+            <div class="mb-8 lg:mb-10">
+              <SegmentedControl
+                mode="tabs"
+                ariaLabel="Press kit sections"
+                activeId="about"
+                segmentClass="press-tab"
+                segments={[
+                  { id: "about", label: "About" },
+                  { id: "media", label: "Media" },
+                  { id: "contact", label: "Contact" },
+                ]}
+              />
+            </div>
+
+            <!-- ABOUT TAB -->
+            <section data-panel="about" class="press-panel space-y-12">
+              <div>
+                <H2 class="mb-4">Convert and compress any media on your Mac</H2>
+                <blockquote class="text-text-secondary leading-relaxed">
+                  {shortDescription}
+                </blockquote>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Why I built this</H3>
+                <div class="space-y-4">
+                  <Paragraph>I built Picmal because I couldn't find a file converter I actually liked.</Paragraph>
+                  <Paragraph>
+                    Every option I tried had the same problems: outdated, clunky interfaces. Terminal-only tools when I just wanted something I could see and click. Online services that expected me to upload private media files to some external server. And no batch conversion anywhere.
+                  </Paragraph>
+                  <Paragraph class="text-text font-semibold">So I built the thing I wanted to use.</Paragraph>
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Four principles</H3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {
+                    principles.map((p) => (
+                      <div class="bg-background-subtle rounded-lg border border-border p-4">
+                        <p class="font-semibold mb-1">{p.title}</p>
+                        <Paragraph size="small">{p.description}</Paragraph>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Descriptions</H3>
+                <div class="space-y-4">
+                  {[
+                    { label: "Short", text: shortDescription },
+                    { label: "Medium", text: mediumDescription },
+                    { label: "Long", text: longDescription },
+                  ].map((d) => (
+                    <div class="bg-background-subtle rounded-lg border border-border p-4">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium text-xs">{d.label}</span>
+                        <button class="copy-btn text-sm text-text-secondary hover:text-accent transition-colors cursor-pointer" data-copy={d.text}>Copy</button>
+                      </div>
+                      <Paragraph size="small" class="whitespace-pre-line">{d.text}</Paragraph>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">About me</H3>
+                <div class="bg-background-subtle rounded-lg border border-border p-4 flex flex-col sm:flex-row gap-4">
+                  <img
+                    src="/alberto.webp"
+                    alt="Alberto, creator of Picmal"
+                    class="w-24 h-24 rounded-lg object-cover flex-shrink-0 mx-auto sm:mx-0"
+                  />
+                  <div class="space-y-3">
+                    <Paragraph size="small">
+                      I'm Alberto, an independent software developer. I build tools that try to respect the people using them — small, private, and deliberate. Nothing overdesigned or cluttered. Just software that works and doesn't feel like it was made by a committee.
+                    </Paragraph>
+                    <Paragraph size="small">
+                      Outside of building, I take photos, travel, read, and walk a lot. That stuff probably matters more than it sounds like it should. It's where most of my ideas about what good software feels like come from.
+                    </Paragraph>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Quick facts</H3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {
+                    facts.map((f) => (
+                      <div class="bg-background-subtle rounded-lg border border-border p-4">
+                        <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">{f.label}</p>
+                        <Paragraph size="small">{f.value}</Paragraph>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </section>
+
+            <!-- MEDIA TAB -->
+            <section data-panel="media" class="press-panel space-y-12 hidden">
+              <div>
+                <H2 class="mb-2">Media</H2>
+                <Paragraph size="small">Use any of this freely. Need higher-res versions or something specific? Email me.</Paragraph>
+              </div>
+
+              <div>
+                <H3 class="mb-4">App icon</H3>
+                <div class="bg-background-subtle rounded-lg border border-border p-4 flex items-center gap-4">
+                  <img src="/Icon-macOS-Default-1024x1024@1x.png" alt="Picmal icon" class="w-16 h-16 rounded-lg" />
+                  <div class="flex-1">
+                    <p class="font-semibold">App icon</p>
+                    <Paragraph size="small">PNG · 1024×1024</Paragraph>
+                  </div>
+                  <Button href="/Icon-macOS-Default-1024x1024@1x.png" text="Download" size="small" variant="secondary" target="_self" download="picmal-icon.png" />
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">macOS screenshots</H3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {
+                    screenshots.map((s) => (
+                      <div class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border" data-image-src={s.src} data-image-title={s.title}>
+                        <img src={s.src} alt={s.title} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy" />
+                        <div class="image-card-overlay">
+                          <Button type="button" variant="overlay" size="small" text="View" icon={ICON_EYE} class="view-btn" />
+                          <Button href={s.src} variant="overlay" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Store assets</H3>
+                <Paragraph size="small" class="mb-4">
+                  Marketing visuals from the Mac App Store and Lemon Squeezy listing.
+                </Paragraph>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {
+                    storeAssets.map((s) => (
+                      <div class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border" data-image-src={s.src} data-image-title={s.title}>
+                        <img src={s.src} alt={s.title} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy" />
+                        <div class="image-card-overlay">
+                          <Button type="button" variant="overlay" size="small" text="View" icon={ICON_EYE} class="view-btn" />
+                          <Button href={s.src} variant="overlay" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div>
+                <H3 class="mb-4">Videos</H3>
+                <div class="space-y-4">
+                  {
+                    videos.map((v) => (
+                      <div class="bg-background-subtle rounded-lg border border-border overflow-hidden">
+                        <div class="p-4 flex items-center justify-between gap-4">
+                          <div class="flex-1 min-w-0">
+                            <p class="font-semibold">{v.title}</p>
+                            <Paragraph size="small">{v.description}</Paragraph>
+                          </div>
+                          <Button href={v.src} text="Download" size="small" variant="secondary" target="_self" download={true} />
+                        </div>
+                        <video src={v.src} class="w-full h-auto border-t border-border" controls muted playsinline preload="metadata"></video>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </section>
+
+            <!-- CONTACT TAB -->
+            <section data-panel="contact" class="press-panel space-y-8 hidden">
+              <div>
+                <H2 class="mb-2">Get in touch</H2>
+                <Paragraph size="small">Writing about Picmal, want to partner, or just have a question? Email me.</Paragraph>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="mailto:hello@albertogalca.com" class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
+                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Email</p>
+                  <p class="font-semibold truncate">hello@albertogalca.com</p>
+                </a>
+
+                <a href="https://picmal.app" class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
+                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Website</p>
+                  <p class="font-semibold truncate">picmal.app</p>
+                </a>
+
+                <a href="https://affiliates.lemonsqueezy.com/programs/picmal" target="_blank" rel="noopener noreferrer" class="sm:col-span-2 bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
+                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Become an affiliate</p>
+                  <p class="font-semibold">Earn 25% on every sale you refer</p>
+                </a>
+              </div>
+
+              <div class="bg-accent/5 border border-accent/20 rounded-lg p-4">
+                <Paragraph size="small">
+                  <strong class="text-text">Press note:</strong> use any of these assets freely. If you need a different format or higher resolution, email me and I'll send it over.
+                </Paragraph>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+      <div class="lightbox-controls">
+        <Button id="lightbox-download" href="#" variant="primary" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
+        <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <img id="lightbox-image" src="" alt="" />
+      <p id="lightbox-title" class="lightbox-caption"></p>
+    </div>
+
+    <style>
+      /* Copy button — fixed width avoids layout shift on "Copied ✓",
+         min-height + relative pseudo extends hit area to ≥40px without
+         visually growing the control. */
+      .copy-btn {
+        position: relative;
+        min-width: 4rem;
+        min-height: 1.5rem;
+        text-align: right;
+      }
+      .copy-btn::before {
+        content: "";
+        position: absolute;
+        inset: -10px -8px;
+      }
+
+      /* Image card overlay — View / Download Buttons revealed on hover */
+      .image-card-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        transition: opacity 0.2s ease-out;
+        pointer-events: none;
+      }
+      .image-card:hover .image-card-overlay,
+      .image-card:focus-within .image-card-overlay {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* LIGHTBOX */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 4rem 1.5rem 2rem;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        animation: lightbox-fade 0.18s ease-out;
+      }
+      .lightbox[hidden] {
+        display: none;
+      }
+      .lightbox-controls {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .lightbox-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.15s ease-out, transform 0.15s ease-out;
+      }
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .lightbox-close:active {
+        transform: scale(0.94);
+      }
+      .lightbox-close:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: calc(100vh - 8rem);
+        width: auto;
+        height: auto;
+        border-radius: 0.5rem;
+        object-fit: contain;
+      }
+      .lightbox-caption {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.875rem;
+        text-align: center;
+      }
+      @keyframes lightbox-fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .image-card-overlay {
+          transition: none;
+        }
+        .image-card img {
+          transition: none !important;
+        }
+        .image-card:hover img {
+          transform: none !important;
+        }
+        .lightbox {
+          animation: none;
+        }
+        .lightbox-close {
+          transition: none;
+        }
+      }
+    </style>
+
+    <script>
+      const tabs = document.querySelectorAll<HTMLButtonElement>(".press-tab");
+      const panels = document.querySelectorAll<HTMLElement>(".press-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.segment;
+          tabs.forEach((t) => {
+            const isActive = t === tab;
+            t.setAttribute("aria-selected", isActive ? "true" : "false");
+            t.classList.toggle("active", isActive);
+          });
+          panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== target));
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+
+      document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const text = btn.dataset.copy ?? "";
+          try {
+            await navigator.clipboard.writeText(text);
+            const original = btn.textContent;
+            btn.textContent = "Copied ✓";
+            setTimeout(() => { btn.textContent = original; }, 1500);
+          } catch (err) {
+            console.error("Copy failed", err);
+          }
+        });
+      });
+
+      // Lightbox
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement | null;
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxDownload = document.getElementById("lightbox-download") as HTMLAnchorElement | null;
+      const lightboxClose = document.getElementById("lightbox-close") as HTMLButtonElement | null;
+
+      let lastTrigger: HTMLElement | null = null;
+
+      function openLightbox(src: string, title: string, trigger: HTMLElement) {
+        if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxDownload) return;
+        lastTrigger = trigger;
+        lightboxImage.src = src;
+        lightboxImage.alt = title;
+        lightboxTitle.textContent = title;
+        lightboxDownload.href = src;
+        lightbox.hidden = false;
+        document.body.style.overflow = "hidden";
+        // Move focus into the dialog for keyboard users.
+        lightboxClose?.focus();
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.hidden = true;
+        document.body.style.overflow = "";
+        if (lightboxImage) lightboxImage.src = "";
+        // Restore focus to the element that opened the dialog.
+        lastTrigger?.focus();
+        lastTrigger = null;
+      }
+
+      document.querySelectorAll<HTMLAnchorElement | HTMLButtonElement>(".view-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const card = btn.closest<HTMLElement>(".image-card");
+          if (!card) return;
+          const src = card.dataset.imageSrc;
+          const title = card.dataset.imageTitle ?? "";
+          if (src) openLightbox(src, title, btn);
+        });
+      });
+
+      lightboxClose?.addEventListener("click", closeLightbox);
+      lightbox?.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox || lightbox.hidden) return;
+        if (e.key === "Escape") {
+          closeLightbox();
+          return;
+        }
+        // Minimal focus trap — wrap Tab navigation inside the dialog.
+        if (e.key === "Tab") {
+          const focusables = lightbox.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          );
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          const active = document.activeElement;
+          if (e.shiftKey && active === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && active === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

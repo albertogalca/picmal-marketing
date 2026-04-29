@@ -6,7 +6,7 @@ const today = new Date();
 
 <footer class="py-16 bg-background transition-colors">
   <div class="max-w-8xl mx-auto px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 mb-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
       <div class="col-span-2">
         <div class="flex items-center gap-3 mb-4">
           <Image
@@ -19,19 +19,18 @@ const today = new Date();
           />
           <span class="font-semibold text-base text-text">Picmal</span>
         </div>
-        <p class="text-sm text-text-secondary max-w-xs mb-6">
+        <p class="text-sm text-text-secondary max-w-xs mb-6 text-pretty">
           Convert and compress images, videos, and audio in bulk. Works offline, no account needed, nothing to subscribe to.
         </p>
         <p class="text-xs text-text-secondary">
           &copy; {today.getFullYear()} - All rights reserved.
         </p>
-        <div
-          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 text-xs text-text-secondary"
-        >
+        <div class="pt-8 text-xs text-text-secondary">
           <button
             onclick="toggleTheme()"
-            class="flex items-center gap-2 hover:text-text transition-colors"
+            class="flex items-center gap-2 py-2 -my-2 rounded-md hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             type="button"
+            aria-label="Toggle color theme"
           >
             <svg
               class="w-4 h-4 hidden dark:block"
@@ -92,75 +91,9 @@ const today = new Date();
           <li>
             <a href="/blog" class="transition-colors hover:text-text">Blog</a>
           </li>
-          <li>
-            <a href="/affiliate" class="transition-colors hover:text-text"
-              >Earn 25% as affiliate</a
-            >
-          </li>
         </ul>
       </div>
 
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
-          Company
-        </p>
-        <ul class="space-y-3 text-sm text-text-secondary">
-          <li>
-            <a
-              href="mailto:support@picmal.app"
-              class="transition-colors hover:text-text">Get in touch</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://x.com/picmalapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">Follow on X</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://albertogalca.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">About the author</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://tally.so/r/Me18qE"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">Leave a review</a
-            >
-          </li>
-          <li>
-            <a
-              href="/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">Terms of use</a
-            >
-          </li>
-          <li>
-            <a
-              href="/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">Privacy policy</a
-            >
-          </li>
-          <li>
-            <a
-              href="/legal/open-source"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="transition-colors hover:text-text">Open source</a
-            >
-          </li>
-        </ul>
-      </div>
       <div>
         <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
           Convert & Compress
@@ -267,19 +200,82 @@ const today = new Date();
           </li>
         </ul>
       </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-text mb-4">
+          Company
+        </p>
+        <ul class="space-y-3 text-sm text-text-secondary">
+          <li>
+            <a
+              href="mailto:support@picmal.app"
+              class="transition-colors hover:text-text">Get in touch</a
+            >
+          </li>
+          <li>
+            <a href="/press" class="transition-colors hover:text-text"
+              >Press kit</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://x.com/picmalapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Follow on X</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://albertogalca.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">About the author</a
+            >
+          </li>
+          <li>
+            <a href="/affiliate" class="transition-colors hover:text-text"
+              >Earn 25% as affiliate</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://tally.so/r/Me18qE"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Leave a review</a
+            >
+          </li>
+          <li>
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Terms of use</a
+            >
+          </li>
+          <li>
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Privacy policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="/legal/open-source"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-text">Open source</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // Handle newsletter form submission
-  const form = document.querySelector('form[action*="buttondown.com"]');
-  if (form) {
-    form.addEventListener("submit", function () {
-      window.open("https://buttondown.com/picmal", "popupwindow");
-    });
-  }
-
   const html = document.documentElement;
 
   function setTheme(theme) {

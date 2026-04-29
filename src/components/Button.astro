@@ -1,19 +1,23 @@
 ---
+import { twMerge } from "tailwind-merge";
+
 export interface Props {
   class?: string;
   href?: string;
   text?: string;
   size?: "small" | "normal";
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "overlay";
   type?: "link" | "submit" | "button";
   disabled?: boolean;
   icon?: string;
   iconType?: "stroke" | "fill";
   id?: string;
   title?: string;
+  ariaLabel?: string;
   target?: string;
   rel?: string;
   onclick?: string;
+  download?: boolean | string;
 }
 
 const {
@@ -28,88 +32,61 @@ const {
   iconType = "stroke",
   id,
   title,
+  ariaLabel,
   target = "_blank",
   rel = "noopener noreferrer",
   onclick,
+  download,
 } = Astro.props;
 
+const isIconOnly = !!icon && !text;
+
 const sizeClasses = {
-  small: "text-sm py-2",
-  normal: "text-base py-3",
+  small: "text-sm py-2 px-4 gap-1.5",
+  normal: "text-base py-3 px-6 gap-2",
 };
 
-// For icon-only buttons, use square padding and fixed dimensions
-const iconOnlyClasses = {
-  small: "p-0 w-8 h-8 flex items-center justify-center",
-  normal: "p-0 w-12 h-12 flex items-center justify-center",
+// Icon-only buttons: square, sized to meet/approach a 44px touch target.
+const iconOnlySizeClasses = {
+  small: "p-0 w-10 h-10",
+  normal: "p-0 w-12 h-12",
+};
+
+const iconSizeClasses = {
+  small: "w-4 h-4",
+  normal: "w-5 h-5",
 };
 
 const variantClasses = {
   primary: "bg-accent text-white hover:bg-accent-dark",
   secondary:
     "bg-transparent text-text hover:bg-background-subtle border border-border",
+  overlay: "bg-white text-black hover:bg-white/90",
 };
 
-// Use icon-only classes if no text, otherwise use regular classes
-const isIconOnly = icon && !text;
-const paddingClasses = isIconOnly
-  ? iconOnlyClasses[size]
-  : `px-6 ${sizeClasses[size]}`;
-const baseClasses = `block rounded-lg transition-[colors,scale] duration-200 active:scale-[0.96] text-center cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 font-semibold ${paddingClasses} ${variantClasses[variant]} ${className}`;
+const layoutClasses = isIconOnly
+  ? iconOnlySizeClasses[size]
+  : sizeClasses[size];
+
+const baseClasses = twMerge(
+  "inline-flex items-center justify-center rounded-lg font-semibold cursor-pointer",
+  "transition-[colors,scale] duration-200 motion-reduce:transition-none",
+  "active:scale-[0.96] motion-reduce:active:scale-100",
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+  "disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100",
+  layoutClasses,
+  variantClasses[variant],
+  className,
+);
+
+// Icon-only buttons need an accessible name; fall back to title if no aria-label.
+const accessibleLabel = ariaLabel ?? (isIconOnly ? title : undefined);
+
+const isStroke = iconType === "stroke";
 ---
 
 {
-  type === "submit" ? (
-    <button
-      disabled={disabled}
-      type="submit"
-      class={baseClasses}
-      id={id}
-      title={title}
-    >
-      {icon && (
-        <svg
-          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill={iconType === "fill" ? "currentColor" : "none"}
-          stroke={iconType === "stroke" ? "currentColor" : "none"}
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap={iconType === "stroke" ? "round" : undefined}
-            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
-            stroke-width={iconType === "stroke" ? 2 : undefined}
-            d={icon}
-          />
-        </svg>
-      )}
-      {text}
-    </button>
-  ) : type === "button" ? (
-    <button
-      disabled={disabled}
-      type="button"
-      class={baseClasses}
-      id={id}
-      title={title}
-    >
-      {icon && (
-        <svg
-          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill={iconType === "fill" ? "currentColor" : "none"}
-          stroke={iconType === "stroke" ? "currentColor" : "none"}
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap={iconType === "stroke" ? "round" : undefined}
-            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
-            stroke-width={iconType === "stroke" ? 2 : undefined}
-            d={icon}
-          />
-        </svg>
-      )}
-      {text}
-    </button>
-  ) : (
+  type === "link" ? (
     <a
       href={disabled ? undefined : href}
       target={target}
@@ -117,24 +94,56 @@ const baseClasses = `block rounded-lg transition-[colors,scale] duration-200 act
       class={baseClasses}
       id={id}
       title={title}
+      aria-label={accessibleLabel}
+      aria-disabled={disabled || undefined}
+      tabindex={disabled ? -1 : undefined}
       onclick={onclick}
+      download={download}
     >
       {icon && (
         <svg
-          class={`w-4 h-4 inline-block ${text ? "mr-2" : ""}`}
-          fill={iconType === "fill" ? "currentColor" : "none"}
-          stroke={iconType === "stroke" ? "currentColor" : "none"}
+          class={iconSizeClasses[size]}
+          fill={isStroke ? "none" : "currentColor"}
+          stroke={isStroke ? "currentColor" : "none"}
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
-            stroke-linecap={iconType === "stroke" ? "round" : undefined}
-            stroke-linejoin={iconType === "stroke" ? "round" : undefined}
-            stroke-width={iconType === "stroke" ? 2 : undefined}
+            stroke-linecap={isStroke ? "round" : undefined}
+            stroke-linejoin={isStroke ? "round" : undefined}
+            stroke-width={isStroke ? 2 : undefined}
             d={icon}
           />
         </svg>
       )}
       {text}
     </a>
+  ) : (
+    <button
+      disabled={disabled}
+      type={type === "submit" ? "submit" : "button"}
+      class={baseClasses}
+      id={id}
+      title={title}
+      aria-label={accessibleLabel}
+    >
+      {icon && (
+        <svg
+          class={iconSizeClasses[size]}
+          fill={isStroke ? "none" : "currentColor"}
+          stroke={isStroke ? "currentColor" : "none"}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap={isStroke ? "round" : undefined}
+            stroke-linejoin={isStroke ? "round" : undefined}
+            stroke-width={isStroke ? 2 : undefined}
+            d={icon}
+          />
+        </svg>
+      )}
+      {text}
+    </button>
   )
 }

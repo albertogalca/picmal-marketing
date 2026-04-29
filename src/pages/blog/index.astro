@@ -6,7 +6,6 @@ import BlogNavigation from "../../components/BlogNavigation.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
-import { SITE_TITLE } from "../../consts";
 import "../../styles/global.css";
 import H1 from "../../components/H1.astro";
 import Paragraph from "../../components/Paragraph.astro";
@@ -53,25 +52,25 @@ const blogListSchema = {
 
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
-          <H1 class="mb-4 blog-title">Image Conversion Guides & Mac Tips</H1>
-          <Paragraph class="max-w-2xl mx-auto blog-subtitle">
+          <H1 class="mb-4">Image Conversion Guides & Mac Tips</H1>
+          <Paragraph class="max-w-2xl mx-auto">
             Updates, guides, and thoughts about building software for Mac.
           </Paragraph>
         </div>
 
         <!-- Category Navigation -->
-        <div class="blog-nav">
+        <div class="mb-16">
           <BlogNavigation currentCategory="All" />
         </div>
 
         <!-- Blog Posts Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 blog-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {
             posts.map((post) => (
-              <article class="group h-full blog-card">
+              <article class="group h-full">
                 <a
                   href={`/blog/${post.id}`}
-                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 transition-all duration-200 apple-card"
+                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
                 >
                   <div class="relative aspect-video overflow-hidden bg-background">
                     <Image
@@ -79,7 +78,7 @@ const blogListSchema = {
                       alt={post.data.title}
                       width={400}
                       height={225}
-                      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100"
                     />
                   </div>
                   <div class="p-4 flex flex-col flex-1">
@@ -96,9 +95,9 @@ const blogListSchema = {
                         <FormattedDate date={post.data.pubDate} />
                       </time>
                     </div>
-                    <h3 class="text-base font-semibold text-text group-hover:text-accent transition-colors duration-200 mb-2 leading-snug">
+                    <h2 class="text-base font-semibold text-text text-balance group-hover:text-accent transition-colors duration-200 mb-2 leading-snug">
                       {post.data.title}
-                    </h3>
+                    </h2>
                     {post.data.description && (
                       <p class="text-sm text-text-secondary leading-relaxed line-clamp-3">
                         {post.data.description}

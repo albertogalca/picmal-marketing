@@ -67,7 +67,7 @@ entries.sort((a, b) => {
             href="https://tally.so/r/Me18qE"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-xs rounded-lg transition-all duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-xs rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
           >
             Leave a Review
             <svg
@@ -97,7 +97,7 @@ entries.sort((a, b) => {
             const hasDownload = entry.data.version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0;
 
             return (
-              <article class="flex flex-col md:flex-row gap-6 md:gap-10 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0">
+              <article id={`v${entry.data.version}`} class="scroll-mt-28 flex flex-col md:flex-row gap-6 md:gap-10 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0">
                 {/* Left: sticky metadata */}
                 <div class="md:w-[220px] lg:w-[260px] shrink-0 md:sticky md:top-28 md:self-start">
                   {entry.data.pubDate && (

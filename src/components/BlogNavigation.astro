@@ -1,138 +1,22 @@
 ---
+import SegmentedControl from "./SegmentedControl.astro";
+
 interface Props {
   currentCategory?: "All" | "Guide" | "Tutorial";
 }
 
 const { currentCategory = "All" } = Astro.props;
 
-const categories = [
-  { name: "All", href: "/blog" },
-  { name: "Guide", href: "/blog/guide" },
-  { name: "Tutorial", href: "/blog/tutorial" },
+const segments = [
+  { id: "All", label: "All", href: "/blog" },
+  { id: "Guide", label: "Guide", href: "/blog/guide" },
+  { id: "Tutorial", label: "Tutorial", href: "/blog/tutorial" },
 ];
 ---
 
-<nav class="segmented-control-wrapper" aria-label="Blog categories">
-  <div class="segmented-control">
-    {
-      categories.map((category) => (
-        <a
-          href={category.href}
-          class={`segment ${
-            currentCategory === category.name
-              ? "active"
-              : ""
-          }`}
-          aria-current={currentCategory === category.name ? "page" : undefined}
-        >
-          {category.name}
-        </a>
-      ))
-    }
-  </div>
-</nav>
-
-<style>
-  /* ==========================================
-     APPLE SEGMENTED CONTROL (iOS-STYLE)
-     ========================================== */
-
-  .segmented-control-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4rem;
-  }
-
-  .segmented-control {
-    display: inline-flex;
-    background: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.15));
-    border-radius: 0.625rem;
-    padding: 0.25rem;
-    gap: 0.25rem;
-    box-shadow: light-dark(
-      inset 0 1px 2px rgba(0, 0, 0, 0.06),
-      inset 0 1px 2px rgba(0, 0, 0, 0.3)
-    );
-  }
-
-  /* ==========================================
-     SEGMENT (TAB BUTTON)
-     ========================================== */
-
-  .segment {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 5rem;
-    padding: 0.5rem 1.25rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: light-dark(rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.75));
-    background: transparent;
-    border: none;
-    transition: all 0.25s cubic-bezier(0.28, 0, 0.2, 1);
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  /* ==========================================
-     HOVER STATE
-     ========================================== */
-
-  .segment:hover:not(.active) {
-    color: light-dark(rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.95));
-    background: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08));
-  }
-
-  /* ==========================================
-     ACTIVE STATE (SELECTED TAB)
-     ========================================== */
-
-  .segment.active {
-    color: light-dark(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9));
-    background: light-dark(white, rgba(255, 255, 255, 0.9));
-    box-shadow: light-dark(
-      0 1px 3px rgba(0, 0, 0, 0.1),
-      0 2px 8px rgba(0, 0, 0, 0.4)
-    );
-  }
-
-  /* Active state doesn't lift on hover */
-  .segment.active:hover {
-    transform: none;
-  }
-
-  /* ==========================================
-     FOCUS STATES (ACCESSIBILITY)
-     ========================================== */
-
-  .segment:focus {
-    outline: none;
-  }
-
-  .segment:focus-visible {
-    outline: 2px solid rgba(0, 122, 255, 0.6);
-    outline-offset: 2px;
-  }
-
-  /* ==========================================
-     RESPONSIVE
-     ========================================== */
-
-  @media (max-width: 640px) {
-    .segmented-control {
-      width: 100%;
-      max-width: 24rem;
-    }
-
-    .segment {
-      flex: 1;
-      min-width: auto;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.8125rem;
-    }
-  }
-</style>
+<SegmentedControl
+  segments={segments}
+  activeId={currentCategory}
+  ariaLabel="Blog categories"
+  mode="links"
+/>

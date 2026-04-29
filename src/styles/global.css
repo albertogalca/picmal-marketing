@@ -17,11 +17,18 @@
     rgba(42, 42, 42, 0.85)
   );
   --color-border: light-dark(rgba(237, 237, 237, 0.85), rgba(48, 48, 48, 1));
+
+  /* Type tokens */
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Monaco",
+    "Consolas", monospace;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.dark {
@@ -29,29 +36,42 @@ html.dark {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  font-weight: 400;
+  font-feature-settings: "kern", "liga", "calt", "ss01";
+  font-kerning: normal;
   margin: 0;
   padding: 0;
-  font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tabular figures — for prices, stats, numerical data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Fluid type scale — smooth scaling, no breakpoint jumps
-   H1: 36px → 60px (2.25rem → 3.75rem)
-   H2: 28px → 48px (1.75rem → 3rem)
-   H3: 18px → 22px (1.125rem → 1.375rem) */
+   H1: 36px → 56px (display, tight tracking applied via component)
+   H2: 28px → 40px
+   H3: 20px → 24px (clearly distinct from 16px body) */
 .text-fluid-h1 {
-  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  letter-spacing: -0.025em;
 }
 
 .text-fluid-h2 {
-  font-size: clamp(1.75rem, 1.1rem + 2.5vw, 3rem);
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  letter-spacing: -0.02em;
 }
 
 .text-fluid-h3 {
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  letter-spacing: -0.015em;
 }
 
 pre:not(.sl-markdown-content pre) {
@@ -93,10 +113,11 @@ code:not(pre code):not(.sl-markdown-content code) {
 }
 
 blockquote {
-  background: light-dark(#f8fafc, rgba(255, 255, 255, 0.05)) !important;
-  padding: 1rem 1.5rem !important;
+  background: transparent !important;
+  padding: 0 0 0 1rem !important;
   margin: 1.5rem 0 !important;
-  border-radius: 0.5rem !important;
+  border-left: 2px solid var(--color-accent) !important;
+  border-radius: 0 !important;
   font-style: normal !important;
 }
 
@@ -165,12 +186,30 @@ blockquote p:last-child {
   margin-top: 2.5rem !important;
   margin-bottom: 1rem !important;
   font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
   scroll-margin-top: 2rem !important;
+  text-wrap: balance;
 }
 
 .prose h3 {
   margin-top: 2rem !important;
   margin-bottom: 0.75rem !important;
   font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
   scroll-margin-top: 2rem !important;
+  text-wrap: balance;
+}
+
+.prose p {
+  text-wrap: pretty;
+}
+
+/* Comfortable reading measure inside long-form prose */
+.prose > p,
+.prose > ul,
+.prose > ol,
+.prose > blockquote {
+  max-width: 68ch;
 }

@@ -24,7 +24,7 @@ import Paragraph from "./Paragraph.astro";
             <H3 class="mb-2"
               >Convert between multiple formats <button
                 id="open-formats-modal-bento"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle"
                 type="button"
                 aria-label="View supported formats"
                 ><svg
@@ -33,6 +33,7 @@ import Paragraph from "./Paragraph.astro";
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   stroke-width="2"
+                  aria-hidden="true"
                 >
                   <path
                     stroke-linecap="round"
@@ -122,7 +123,7 @@ import Paragraph from "./Paragraph.astro";
               src="/preferences_dark.png"
               width={400}
               height={300}
-              alt="Custom presets interface"
+              alt=""
             />
           </div>
         </div>
@@ -134,31 +135,32 @@ import Paragraph from "./Paragraph.astro";
           <div class="mb-6">
             <H3 class="mb-2"
               >Shrink file sizes without visible quality loss <button
-                  id="open-compress-formats-modal-bento"
-                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-all align-middle"
-                  type="button"
-                  aria-label="View supported compression formats"
-                  ><svg
-                    class="w-3.5 h-3.5 text-text-secondary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg></button
-                ></H3
-              >
-              <Paragraph>
-                Same format, smaller file. Shrink photos before uploading or
-                get a video under the email attachment limit.
-              </Paragraph>
+                id="open-compress-formats-modal-bento"
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle"
+                type="button"
+                aria-label="View supported compression formats"
+                ><svg
+                  class="w-3.5 h-3.5 text-text-secondary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg></button
+              ></H3
+            >
+            <Paragraph>
+              Same format, smaller file. Shrink photos before uploading or get
+              a video under the email attachment limit.
+            </Paragraph>
           </div>
-          <div class="rounded-lg overflow-hidden">
+          <div class="rounded-lg overflow-hidden opacity-90">
             <video
               class="w-full h-auto theme-video"
               data-light-src="/compress.mp4"
@@ -186,6 +188,7 @@ import Paragraph from "./Paragraph.astro";
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <g clip-path="url(#clip_mac_bottom)">
                 <path
@@ -248,6 +251,7 @@ import Paragraph from "./Paragraph.astro";
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <g clip-path="url(#clip_offline_bottom)">
                 <path
@@ -292,6 +296,7 @@ import Paragraph from "./Paragraph.astro";
               viewBox="0 0 36 36"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <g clip-path="url(#clip_privacy_bottom)">
                 <path

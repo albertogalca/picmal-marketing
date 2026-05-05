@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.2</title>
+            <pubDate>Tue, 05 May 2026 16:46:23 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>68</sparkle:version>
+            <sparkle:shortVersionString>1.5.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.2/Picmal.dmg" length="118951646" type="application/octet-stream" sparkle:edSignature="6XMCafMuNe8QPTvYhrv2I/LaJnn5UifmYX6JlSIqcbahBWYbkGm4E0d2QK2e/G31Em3OoJLqTLzRePqo0A+zAQ=="/>
+        <description><![CDATA[<div><ul><li>Fixed larger WebP files failing to convert to GIF. Animated and high-resolution WebPs now get a 5-minute conversion ceiling instead of being killed at 2 minutes, and the error message is clearer when a source is genuinely too large or has too many frames.</li>
+<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.1</title>
             <pubDate>Tue, 28 Apr 2026 15:52:53 +0200</pubDate>
             <link>https://picmal.app/</link>

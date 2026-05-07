@@ -50,7 +50,8 @@ const SITE_DESCRIPTION =
             <p
               class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
             >
-              Images, videos, audio. Batch process hundreds at once, right on your Mac. Works offline, no account, nothing to subscribe to.
+              Images, videos, audio. Batch process hundreds at once, right on
+              your Mac. Works offline, no account, nothing to subscribe to.
             </p>
           </div>
 
@@ -133,7 +134,10 @@ const SITE_DESCRIPTION =
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border">
+    <section
+      id="pricing"
+      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
+    >
       <PricingSection />
     </section>
 
@@ -172,14 +176,19 @@ const SITE_DESCRIPTION =
     <!-- PostHog Analytics with keyboard accessibility -->
     <script>
       // Track buy button clicks (both mouse and keyboard)
-      document.getElementById("buy-cta-button")?.addEventListener("click", () => {
-        if (typeof posthog !== "undefined") posthog.capture("buy_clicked");
-      });
+      document
+        .getElementById("buy-cta-button")
+        ?.addEventListener("click", () => {
+          if (typeof posthog !== "undefined") posthog.capture("buy_clicked");
+        });
 
       // Track download button clicks
-      document.getElementById("download-cta-button")?.addEventListener("click", () => {
-        if (typeof posthog !== "undefined") posthog.capture("download_clicked");
-      });
+      document
+        .getElementById("download-cta-button")
+        ?.addEventListener("click", () => {
+          if (typeof posthog !== "undefined")
+            posthog.capture("download_clicked");
+        });
     </script>
   </body>
 </html>

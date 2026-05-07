@@ -3,6 +3,16 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.3</title>
+            <pubDate>Thu, 07 May 2026 12:56:49 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>69</sparkle:version>
+            <sparkle:shortVersionString>1.5.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.6</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.3/Picmal.dmg" length="117178211" type="application/octet-stream" sparkle:edSignature="UER3KmjjQ5eJGD9RpKXbRnayHttmheKNHZ8hMrTXKseRnTfkdxmBcRvyORbLOequI0uhsP15tJkDSkFeogmbBQ=="/>
+        <description><![CDATA[<div><ul><li>Replaced the notch progress overlay with standard macOS notifications. Watched-folder activity now shows up as native banners — queued, per-file progress, and final result — that collapse into a single entry in Notification Center instead of a floating panel.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.2</title>
             <pubDate>Tue, 05 May 2026 16:46:23 +0200</pubDate>
             <link>https://picmal.app/</link>

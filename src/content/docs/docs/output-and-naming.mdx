@@ -6,9 +6,20 @@ title: Output and naming
 
 By default, converted and compressed files are saved in the same folder as the originals.
 
+### Save to a subfolder
+
+If you'd rather keep outputs out of the source folder, turn on **Output location → Save to subfolder** in **Settings → Output** and type a folder name (for example `picmal`). Every conversion or compression then writes to `<sourceFolder>/<name>/` instead of next to the source file.
+
+- Files dropped from different folders each get their own subfolder, created beside the source.
+- The subfolder is created automatically the first time it's needed.
+- Leaving the name empty is the same as turning the toggle off — outputs go next to the source as before.
+- Watched folders ignore this setting; configure their output location per folder under **Settings → Watched Folders**.
+
+![Output location subfolder setting](/images/changelog/1.5.4/output_subfolder.png)
+
 ## File naming
 
-Picmal names output files using patterns. You write a pattern — literal text plus tokens — and that becomes the output file's base name. The extension comes from the output format.
+Picmal names output files using patterns. You write a pattern (literal text plus tokens) and that becomes the output file's base name. The extension comes from the output format.
 
 Configure patterns in **Settings → Output**. There are two independent patterns:
 

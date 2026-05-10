@@ -1,0 +1,15 @@
+---
+version: "1.5.4"
+title: "Save outputs in a subfolder beside each source file"
+pubDate: 2026-05-10
+---
+
+Save outputs in a subfolder beside each source file. Turn it on in Settings → Output, type a name (e.g. "compressed"), and every conversion or compression for that file is written to `<sourceFolder>/<name>/`. Files dropped from different folders each get their own subfolder, so originals stay untouched. Works for images, audio, and video, in both Convert and Compress.
+
+![Output location subfolder setting](/images/changelog/1.5.4/output_subfolder.png)
+
+Fixed AVIF compression failing silently. AVIF files now compress like any other image.
+
+RAW photos (DNG, CR2, NEF, ARW, RAF) now show a clear message when you drop them into Compress, so you know to use Convert instead. Before, clicking Compress did nothing and there was no feedback.
+
+Other smaller fixes and improvements.

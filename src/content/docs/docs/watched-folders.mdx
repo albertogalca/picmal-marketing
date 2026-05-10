@@ -2,7 +2,7 @@
 title: Watched folders
 ---
 
-Watched folders let Picmal automatically process files as they appear in specific folders. Drop a file into a watched folder, and Picmal converts or compresses it without any manual steps.
+Watched folders process files as soon as they show up. Drop something in, and Picmal converts or compresses it — you don't have to open the app.
 
 ## Setup
 
@@ -66,10 +66,14 @@ Set a prefix and/or suffix for output files.
 | Remove metadata        | Strip metadata from processed files                 |
 | Compress after convert | When in Convert mode, compress the output file afterward |
 
+## Notifications
+
+When a watched folder finishes processing, Picmal posts a native macOS notification with the file count and total savings. Manage delivery — banners, sounds, summaries — under **System Settings → Notifications → Picmal**.
+
 ## Requirements
 
 - **Keep in menu bar** must be enabled in Settings for watched folders to work in the background
-- Pair with **Start at login** for always-on automatic processing
+- Pair it with **Start at login** if you want processing to resume after a reboot without you opening the app
 
 ## Tips
 

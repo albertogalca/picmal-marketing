@@ -68,14 +68,23 @@ Two ready-made shortcuts to get you started. Click either link to add it to your
 
 Enable **keep in menu bar** in Settings to add a Picmal icon to your menu bar. The app stays running in the background even when the main window is closed.
 
-Menu bar keyboard shortcuts:
+Click the icon to open the menu, or drop files directly onto it to process them.
 
-| Key | Action             |
-| --- | ------------------ |
-| O   | Open Picmal window |
-| ,   | Open Settings      |
-| Q   | Quit Picmal        |
+### Quick actions
+
+| Item                | Shortcut | Action                                                        |
+| ------------------- | -------- | ------------------------------------------------------------- |
+| Optimize File…      | ⇧⌘O      | Pick a file with the system file picker and run it through the clipboard pipeline |
+| Optimize Clipboard  | —        | Toggle [clipboard optimization](/docs/clipboard-optimization) on or off |
+| On Copy             | —        | Choose what happens when you copy: Compress, Convert, or both. Greyed out when monitoring is off |
+| Target Format       | —        | When the action involves conversion, pick the output format. Hidden in Compress-only mode |
+| Auto-Copy Result    | —        | Toggle [auto-copy](/docs/clipboard-optimization#auto-copy) without opening Settings |
+| Open Picmal         | O        | Open the main window                                          |
+| Settings…           | ,        | Open Settings                                                 |
+| Quit Picmal         | Q        | Quit Picmal                                                   |
+
+The clipboard quick controls bind to the same values as **Settings → Images**, so the menu and Preferences always stay in sync.
 
 ## Start at login
 
-Enable **start at login** in Settings so Picmal launches automatically when you log in. Combined with menu bar mode and watched folders, this gives you always-on automatic file processing.
+Enable **start at login** in Settings so Picmal launches when you log in. Together with menu bar mode and watched folders, that means processing keeps running after a reboot without you having to open the app.

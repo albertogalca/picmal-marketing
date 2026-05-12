@@ -385,7 +385,7 @@ function generateMetaDescription(from: FormatInfo, to: FormatInfo): string {
       tiff: "Convert WebP to TIFF on Mac for print-ready output. Professional quality for publishing workflows. Batch processing.",
       heic: "Convert WebP to HEIC on Mac for efficient Apple device storage. Excellent quality at smaller file sizes.",
       gif: "Convert WebP to GIF on Mac — animations preserved for universal sharing on Slack, Discord, and email. Batch ready.",
-      dng: "Convert WebP to DNG on Mac for raw editing flexibility in professional photo software.",
+      dng: "Convert WebP to DNG on Mac for raw editing flexibility in Lightroom, Photoshop, and Capture One. Batch process entire folders offline, private and fast.",
     },
     gif: {
       jpg: "Convert GIF to JPG (JPEG) on Mac for full-color photos. Escape the 256-color limit with universal JPG compatibility. Batch processing.",

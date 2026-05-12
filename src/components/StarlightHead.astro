@@ -1,0 +1,27 @@
+---
+const route = Astro.locals.starlightRoute;
+
+function stripHtml(url: string) {
+  return url.replace(/\.html(\?|#|$)/, "$1");
+}
+
+const head = route.head.map((entry) => {
+  if (
+    entry.tag === "link" &&
+    entry.attrs?.rel === "canonical" &&
+    typeof entry.attrs.href === "string"
+  ) {
+    return { ...entry, attrs: { ...entry.attrs, href: stripHtml(entry.attrs.href) } };
+  }
+  if (
+    entry.tag === "meta" &&
+    entry.attrs?.property === "og:url" &&
+    typeof entry.attrs.content === "string"
+  ) {
+    return { ...entry, attrs: { ...entry.attrs, content: stripHtml(entry.attrs.content) } };
+  }
+  return entry;
+});
+---
+
+{head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}

@@ -72,6 +72,9 @@ export default defineConfig({
           },
         },
       ],
+      components: {
+        Head: "./src/components/StarlightHead.astro",
+      },
       customCss: ["./src/styles/docs-layers.css"],
       disable404Route: true,
       credits: false,

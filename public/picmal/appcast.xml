@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.5</title>
+            <pubDate>Tue, 12 May 2026 18:39:05 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>71</sparkle:version>
+            <sparkle:shortVersionString>1.5.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.5/Picmal.dmg" length="117145815" type="application/octet-stream" sparkle:edSignature="fptHxrrfdwU2nRnjW1TlcTcAqROaEnEG00FBXM9lfDnCb38p6PXuDIKaTMpC5GDdgmzZkpfBLrcCf2GNpXtaBA=="/>
+        <description><![CDATA[<div><ul><li>Save your own custom compression presets for images, audio, and video. Tweak the settings you like, hit "Save as preset", give it a name, and it shows up alongside the built-in presets next time.</li>
+<li>ALAC (Apple Lossless) is now an output format. Convert FLAC, WAV, or AIFF to a lossless `.m4a` that imports straight into Apple Music.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.4</title>
             <pubDate>Sun, 10 May 2026 11:20:14 +0200</pubDate>
             <link>https://picmal.app/</link>

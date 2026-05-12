@@ -14,8 +14,12 @@ interface Props {
   modifiedTime?: string;
 }
 
-// Remove trailing slashes and query parameters for consistent canonical URLs
-const cleanPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+// Remove .html extension, trailing slashes, and query parameters for consistent canonical URLs
+const cleanPath =
+  Astro.url.pathname
+    .replace(/\/index\.html$/, "/")
+    .replace(/\.html$/, "")
+    .replace(/\/$/, "") || "/";
 const canonicalURL = new URL(cleanPath, Astro.site);
 
 const { title, description, image = FallbackImage, ogType = "website", publishedTime, modifiedTime } = Astro.props;

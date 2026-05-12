@@ -10,6 +10,7 @@ import starlightThemeBlack from "starlight-theme-black";
 export default defineConfig({
   site: "https://picmal.app",
   trailingSlash: "never",
+  build: { format: "file" },
   integrations: [
     starlight({
       title: "Picmal Docs",

@@ -2,14 +2,14 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
         <title>Picmal</title>
-        <item>
+         <item>
             <title>1.5.6</title>
-            <pubDate>Wed, 13 May 2026 09:38:05 +0200</pubDate>
+            <pubDate>Wed, 13 May 2026 10:33:16 +0200</pubDate>
             <link>https://picmal.app/</link>
             <sparkle:version>72</sparkle:version>
             <sparkle:shortVersionString>1.5.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.6/Picmal.dmg" length="117148064" type="application/octet-stream" sparkle:edSignature="p+ARw8XuyPl/Iu0ciFnnfIm66kx+ckqMkPDA1NO9e6/FO+tW5p+ZAoXQRz8iQZ+irvwBxffQj8scWTFP5eaNBQ=="/>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.6/Picmal.dmg" length="117151186" type="application/octet-stream" sparkle:edSignature="FEHcBgwOGmO6d/4Mkr1TnWRLWaVvla+OaK8UjFrWYX/awMQv7V5lPlN2909VgyLtg7AWKYK+i/6x2u5Z27+HAg=="/>
         <description><![CDATA[<div><ul><li>Fix the crash issue on Intel Macs.</li></ul></div>]]></description>
         </item>
         <item>

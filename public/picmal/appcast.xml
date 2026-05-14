@@ -2,6 +2,16 @@
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
         <title>Picmal</title>
+        <item>
+            <title>1.5.7</title>
+            <pubDate>Thu, 14 May 2026 08:19:40 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>73</sparkle:version>
+            <sparkle:shortVersionString>1.5.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.7/Picmal.dmg" length="117161188" type="application/octet-stream" sparkle:edSignature="rTRPc4NfiZ1kJAh4FV/FeSjnss/SZIBR07cN1vcigrGCImAMDfuLPkPkWO2dXNkOEpFbBfWA2XM2DMmWk058Bg=="/>
+        <description><![CDATA[<div><ul><li>Added support for converting MOD camcorder videos (JVC, Canon, Panasonic) to MP4, MOV, AVI, MKV, MPG, and GIF.</li></ul></div>]]></description>
+        </item>
          <item>
             <title>1.5.6</title>
             <pubDate>Wed, 13 May 2026 10:33:16 +0200</pubDate>

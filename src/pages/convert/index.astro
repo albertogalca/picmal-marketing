@@ -13,7 +13,8 @@ import TrustBar from "../../components/TrustBar.astro";
 import { formats, conversions } from "../../data/conversions";
 
 const title = "Convert Images on Mac — All Formats Supported | Picmal";
-const description = "Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG on your Mac. Batch conversion, offline processing.";
+const description =
+  "Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG on your Mac. Batch conversion, offline processing.";
 
 const formatKeys = Object.keys(formats);
 const groupedBySource = formatKeys.map((key) => ({
@@ -29,25 +30,30 @@ const groupedBySource = formatKeys.map((key) => ({
     <ProductSchema url={Astro.site!.href} />
   </head>
 
-  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
-
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
     <Header />
 
     <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
         <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Convert" },
-          ]}
+          items={[{ label: "Home", href: "/" }, { label: "Convert" }]}
         />
 
         <div class="text-center mb-16 sm:mb-20">
-          <H1 class="mb-6 max-w-3xl mx-auto">Convert Any Image Format on Mac</H1>
-          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty">
-            Picmal converts between all major image formats — HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss.
+          <H1 class="mb-6 max-w-3xl mx-auto">Convert Any Image Format on Mac</H1
+          >
+          <Paragraph
+            class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
+          >
+            Picmal converts between all major image formats — HEIC, JPG, PNG,
+            WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no
+            quality loss.
           </Paragraph>
-          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+          <div
+            class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6"
+          >
             <Button
               text="Get Picmal for $15.99"
               onclick="posthog.capture('buy_clicked_convert_hub')"
@@ -56,7 +62,16 @@ const groupedBySource = formatKeys.map((key) => ({
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
               class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg font-semibold text-base py-3 px-6 bg-transparent text-text border border-border hover:bg-background-subtle transition-[colors,scale] duration-200 motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              <svg class="size-4" fill="currentColor" stroke="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"></path></svg>
+              <svg
+                class="size-4"
+                fill="currentColor"
+                stroke="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+                ></path></svg
+              >
               Download
             </a>
           </div>
@@ -65,34 +80,56 @@ const groupedBySource = formatKeys.map((key) => ({
 
         <!-- All Conversions Grid -->
         <div class="space-y-12 sm:space-y-16">
-          {groupedBySource.map((group) => (
-            <section>
-              <div class="flex items-center gap-3 mb-2">
-                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-xs font-mono font-medium text-text">.{group.format.extension}</span>
-                <H2 class="!text-xl sm:!text-2xl">Convert from {group.format.name}</H2>
-              </div>
-              <Paragraph class="mb-6 max-w-2xl">{group.format.description}</Paragraph>
-              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {group.conversions.map((c) => (
-                  <a
-                    href={`/convert/${c.slug}`}
-                    class="group bg-background-subtle/50 border border-border rounded-lg p-4 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                  >
-                    <div class="flex items-center gap-2 mb-1">
-                      <span class="text-xs font-mono text-text-secondary">.{formats[c.from].extension}</span>
-                      <svg class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                      <span class="text-xs font-mono text-text-secondary">.{formats[c.to].extension}</span>
-                    </div>
-                    <span class="text-sm font-medium text-text">
-                      {formats[c.from].name} to {formats[c.to].name}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ))}
+          {
+            groupedBySource.map((group) => (
+              <section>
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-xs font-mono font-medium text-text">
+                    .{group.format.extension}
+                  </span>
+                  <H2 class="!text-xl sm:!text-2xl">
+                    Convert from {group.format.name}
+                  </H2>
+                </div>
+                <Paragraph class="mb-6 max-w-2xl">
+                  {group.format.description}
+                </Paragraph>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                  {group.conversions.map((c) => (
+                    <a
+                      href={`/convert/${c.slug}`}
+                      class="group bg-background-subtle/50 border border-border rounded-lg p-4 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs font-mono text-text-secondary">
+                          .{formats[c.from].extension}
+                        </span>
+                        <svg
+                          class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                        <span class="text-xs font-mono text-text-secondary">
+                          .{formats[c.to].extension}
+                        </span>
+                      </div>
+                      <span class="text-sm font-medium text-text">
+                        {formats[c.from].name} to {formats[c.to].name}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
         </div>
 
         <div class="mt-16 sm:mt-20">
@@ -107,7 +144,7 @@ const groupedBySource = formatKeys.map((key) => ({
     <Footer />
 
     <script>
-      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+      window.lemonSqueezyAffiliateConfig = { store: "cantimplorastudio" };
     </script>
     <script src="https://lmsqueezy.com/affiliate.js" defer></script>
   </body>

@@ -11,7 +11,13 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import TrustBar from "../../components/TrustBar.astro";
-import { conversions, formats, getRelatedConversions, type FileSizeExample, type UseCase } from "../../data/conversions";
+import {
+  conversions,
+  formats,
+  getRelatedConversions,
+  type FileSizeExample,
+  type UseCase,
+} from "../../data/conversions";
 
 import { compressions } from "../../data/compressions";
 
@@ -26,14 +32,38 @@ const { conversion } = Astro.props;
 
 // Blog post cross-links for conversion pages
 const blogGuides: Record<string, { title: string; slug: string }> = {
-  "webp-to-jpg": { title: "How to Convert WebP to JPG on Mac (4 Methods)", slug: "convert-webp-to-jpg-mac" },
-  "webp-to-png": { title: "How to Convert WebP to PNG on Mac (4 Methods)", slug: "convert-webp-to-png-mac" },
-  "tiff-to-jpg": { title: "How to Convert TIFF to JPG on Mac (4 Methods)", slug: "convert-tiff-to-jpg-mac" },
-  "svg-to-png": { title: "How to Convert SVG to PNG on Mac (4 Methods)", slug: "convert-svg-to-png-mac" },
-  "heic-to-jpg": { title: "How to Convert HEIC to JPG on Mac (2026 Guide)", slug: "how-to-convert-heic-to-jpg-mac" },
-  "heic-to-png": { title: "How to Convert HEIC to PNG on Mac (4 Methods)", slug: "convert-heic-to-png-mac" },
-  "avif-to-jpg": { title: "How to Convert AVIF to JPG on Mac (3 Methods)", slug: "convert-avif-to-jpg-mac" },
-  "png-to-jpg": { title: "How to Convert PNG to JPEG on Mac", slug: "convert-png-to-jpeg-mac" },
+  "webp-to-jpg": {
+    title: "How to Convert WebP to JPG on Mac (4 Methods)",
+    slug: "convert-webp-to-jpg-mac",
+  },
+  "webp-to-png": {
+    title: "How to Convert WebP to PNG on Mac (4 Methods)",
+    slug: "convert-webp-to-png-mac",
+  },
+  "tiff-to-jpg": {
+    title: "How to Convert TIFF to JPG on Mac (4 Methods)",
+    slug: "convert-tiff-to-jpg-mac",
+  },
+  "svg-to-png": {
+    title: "How to Convert SVG to PNG on Mac (4 Methods)",
+    slug: "convert-svg-to-png-mac",
+  },
+  "heic-to-jpg": {
+    title: "How to Convert HEIC to JPG on Mac (2026 Guide)",
+    slug: "how-to-convert-heic-to-jpg-mac",
+  },
+  "heic-to-png": {
+    title: "How to Convert HEIC to PNG on Mac (4 Methods)",
+    slug: "convert-heic-to-png-mac",
+  },
+  "avif-to-jpg": {
+    title: "How to Convert AVIF to JPG on Mac (3 Methods)",
+    slug: "convert-avif-to-jpg-mac",
+  },
+  "png-to-jpg": {
+    title: "How to Convert PNG to JPEG on Mac",
+    slug: "convert-png-to-jpeg-mac",
+  },
 };
 const blogGuide = blogGuides[conversion.slug];
 const from = formats[conversion.from];
@@ -43,7 +73,8 @@ const related = getRelatedConversions(conversion.from, conversion.to, 6);
 const fromCompress = compressions.find((c) => c.format === conversion.from);
 const toCompress = compressions.find((c) => c.format === conversion.to);
 
-const title = conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac`;
+const title =
+  conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac`;
 const description = conversion.metaDescription;
 
 const howToSchema = {
@@ -92,8 +123,9 @@ const faqSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
 
-  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
-
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
     <Header />
 
     <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
@@ -110,31 +142,59 @@ const faqSchema = {
         <div class="text-center mb-16 sm:mb-20">
           <!-- Format badge -->
           <div class="flex items-center justify-center gap-3 mb-8">
-            <span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-sm font-mono font-medium text-text tracking-wide">
+            <span
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-sm font-mono font-medium text-text tracking-wide"
+            >
               .{from.extension}
             </span>
-            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <svg
+              class="w-5 h-5 text-text-secondary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
-            <span class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-sm font-mono font-medium text-accent tracking-wide">
+            <span
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-sm font-mono font-medium text-accent tracking-wide"
+            >
               .{to.extension}
             </span>
           </div>
 
-          <H1 class="mb-6 max-w-3xl mx-auto">Convert {from.name} to {to.name} on Mac</H1>
-          <Paragraph class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty">
+          <H1 class="mb-6 max-w-3xl mx-auto"
+            >Convert {from.name} to {to.name} on Mac</H1
+          >
+          <Paragraph
+            class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
+          >
             {conversion.whyConvert}
           </Paragraph>
-          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
+          <div
+            class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6"
+          >
             <Button
               text="Get Picmal for $15.99"
               onclick={`posthog.capture('buy_clicked_convert_${conversion.slug}')`}
-                          />
+            />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
               class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
             >
-              <svg class="size-4 inline-block mr-2" fill="currentColor" stroke="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"></path></svg>
+              <svg
+                class="size-4 inline-block mr-2"
+                fill="currentColor"
+                stroke="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+                ></path></svg
+              >
               Download
             </a>
           </div>
@@ -143,96 +203,191 @@ const faqSchema = {
 
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+          <div
+            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          >
             <H2 class="mb-6">Why convert {from.name} to {to.name}?</H2>
             <ul class="space-y-4">
-              {conversion.benefits.map((benefit) => (
-                <li class="flex gap-3 items-start">
-                  <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span class="text-text">{benefit}</span>
-                </li>
-              ))}
+              {
+                conversion.benefits.map((benefit) => (
+                  <li class="flex gap-3 items-start">
+                    <svg
+                      class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span class="text-text">{benefit}</span>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </section>
 
         {/* File Size Comparison */}
-        {conversion.fileSizeExamples && conversion.fileSizeExamples.length > 0 && (
-          <section class="mb-16 sm:mb-20">
-            <H2 class="mb-8 text-center">{from.name} vs {to.name} File Sizes</H2>
-            <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
-              <table class="w-full">
-                <thead>
-                  <tr class="border-b border-border">
-                    <th class="text-left text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">File Type</th>
-                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">{from.name}</th>
-                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">{to.name}</th>
-                    <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">Note</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {conversion.fileSizeExamples.map((example: FileSizeExample, i: number) => (
-                    <tr class={i < conversion.fileSizeExamples!.length - 1 ? "border-b border-border/50" : ""}>
-                      <td class="px-6 py-4 text-sm text-text">{example.label}</td>
-                      <td class="px-6 py-4 text-sm text-text-secondary text-right font-mono">{example.fromSize}</td>
-                      <td class="px-6 py-4 text-sm text-text text-right font-mono font-medium">{example.toSize}</td>
-                      <td class="px-6 py-4 text-sm text-accent text-right">{example.savings}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {conversion.conversionSpeed && (
-                <div class="px-6 py-4 border-t border-border bg-background/50">
-                  <div class="flex items-center gap-2 text-sm text-text-secondary">
-                    <svg class="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    <span>Conversion speed: <strong class="text-text">{conversion.conversionSpeed}</strong></span>
-                  </div>
+        {
+          conversion.fileSizeExamples &&
+            conversion.fileSizeExamples.length > 0 && (
+              <section class="mb-16 sm:mb-20">
+                <H2 class="mb-8 text-center">
+                  {from.name} vs {to.name} File Sizes
+                </H2>
+                <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
+                  <table class="w-full">
+                    <thead>
+                      <tr class="border-b border-border">
+                        <th class="text-left text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">
+                          File Type
+                        </th>
+                        <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">
+                          {from.name}
+                        </th>
+                        <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">
+                          {to.name}
+                        </th>
+                        <th class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4">
+                          Note
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversion.fileSizeExamples.map(
+                        (example: FileSizeExample, i: number) => (
+                          <tr
+                            class={
+                              i < conversion.fileSizeExamples!.length - 1
+                                ? "border-b border-border/50"
+                                : ""
+                            }
+                          >
+                            <td class="px-6 py-4 text-sm text-text">
+                              {example.label}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-text-secondary text-right font-mono">
+                              {example.fromSize}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-text text-right font-mono font-medium">
+                              {example.toSize}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-accent text-right">
+                              {example.savings}
+                            </td>
+                          </tr>
+                        ),
+                      )}
+                    </tbody>
+                  </table>
+                  {conversion.conversionSpeed && (
+                    <div class="px-6 py-4 border-t border-border bg-background/50">
+                      <div class="flex items-center gap-2 text-sm text-text-secondary">
+                        <svg
+                          class="w-4 h-4 text-accent flex-shrink-0"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          />
+                        </svg>
+                        <span>
+                          Conversion speed:{" "}
+                          <strong class="text-text">
+                            {conversion.conversionSpeed}
+                          </strong>
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </section>
-        )}
+              </section>
+            )
+        }
 
         {/* Real-World Use Cases */}
-        {conversion.useCases && conversion.useCases.length > 0 && (
-          <section class="mb-16 sm:mb-20">
-            <H2 class="mb-8 text-center">When to convert {from.name} to {to.name}</H2>
-            <div class="grid md:grid-cols-2 gap-4">
-              {conversion.useCases.map((useCase: UseCase) => (
-                <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
-                  <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
-                  <Paragraph class="text-sm">{useCase.description}</Paragraph>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {
+          conversion.useCases && conversion.useCases.length > 0 && (
+            <section class="mb-16 sm:mb-20">
+              <H2 class="mb-8 text-center">
+                When to convert {from.name} to {to.name}
+              </H2>
+              <div class="grid md:grid-cols-2 gap-4">
+                {conversion.useCases.map((useCase: UseCase) => (
+                  <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+                    <h3 class="font-semibold text-text mb-2">
+                      {useCase.title}
+                    </h3>
+                    <Paragraph class="text-sm">{useCase.description}</Paragraph>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )
+        }
 
         <!-- How To Steps -->
         <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">How to convert {from.name} to {to.name} on Mac</H2>
+          <H2 class="mb-8 text-center"
+            >How to convert {from.name} to {to.name} on Mac</H2
+          >
           <div class="grid md:grid-cols-3 gap-4 relative">
             <!-- Connector lines (desktop only) -->
-            <div class="hidden md:block absolute top-[2.25rem] left-[calc(33.33%_-_0.5rem)] right-[calc(33.33%_-_0.5rem)] h-px bg-border z-0"></div>
+            <div
+              class="hidden md:block absolute top-[2.25rem] left-[calc(33.33%_-_0.5rem)] right-[calc(33.33%_-_0.5rem)] h-px bg-border z-0"
+            >
+            </div>
 
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
-              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">1</div>
+            <div
+              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+            >
+              <div
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+              >
+                1
+              </div>
               <h3 class="font-semibold text-text mb-2">Open Picmal</h3>
               <Paragraph>Download and open Picmal on your Mac.</Paragraph>
             </div>
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
-              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">2</div>
-              <h3 class="font-semibold text-text mb-2">Add your {from.name} files</h3>
-              <Paragraph>Drag and drop your {from.name} files or entire folders into Picmal.</Paragraph>
+            <div
+              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+            >
+              <div
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+              >
+                2
+              </div>
+              <h3 class="font-semibold text-text mb-2">
+                Add your {from.name} files
+              </h3>
+              <Paragraph
+                >Drag and drop your {from.name} files or entire folders into Picmal.</Paragraph
+              >
             </div>
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10">
-              <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm">3</div>
-              <h3 class="font-semibold text-text mb-2">Select {to.name} and convert</h3>
-              <Paragraph>Choose {to.name} as the output format and click Convert.</Paragraph>
+            <div
+              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+            >
+              <div
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+              >
+                3
+              </div>
+              <h3 class="font-semibold text-text mb-2">
+                Select {to.name} and convert
+              </h3>
+              <Paragraph
+                >Choose {to.name} as the output format and click Convert.</Paragraph
+              >
             </div>
           </div>
         </section>
@@ -240,28 +395,52 @@ const faqSchema = {
         <!-- Format Comparison -->
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">{from.name} vs {to.name}</H2>
-          <div class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border">
+          <div
+            class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border"
+          >
             <div class="bg-background p-6 md:p-8">
               <div class="flex items-center gap-3 mb-4">
-                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-xs font-mono font-medium text-text tracking-wide">.{from.extension}</span>
+                <span
+                  class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-xs font-mono font-medium text-text tracking-wide"
+                  >.{from.extension}</span
+                >
                 <h3 class="font-semibold text-text">{from.name}</h3>
               </div>
-              <p class="text-xs text-text-secondary mb-3 uppercase tracking-wider">{from.fullName}</p>
+              <p
+                class="text-xs text-text-secondary mb-3 uppercase tracking-wider"
+              >
+                {from.fullName}
+              </p>
               <Paragraph class="mb-4">{from.description}</Paragraph>
               <div class="pt-4 border-t border-border">
-                <p class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Best for</p>
+                <p
+                  class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2"
+                >
+                  Best for
+                </p>
                 <p class="text-sm text-text">{from.bestFor}</p>
               </div>
             </div>
             <div class="bg-background p-6 md:p-8">
               <div class="flex items-center gap-3 mb-4">
-                <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-accent/10 border border-accent/20 text-xs font-mono font-medium text-accent tracking-wide">.{to.extension}</span>
+                <span
+                  class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-accent/10 border border-accent/20 text-xs font-mono font-medium text-accent tracking-wide"
+                  >.{to.extension}</span
+                >
                 <h3 class="font-semibold text-text">{to.name}</h3>
               </div>
-              <p class="text-xs text-text-secondary mb-3 uppercase tracking-wider">{to.fullName}</p>
+              <p
+                class="text-xs text-text-secondary mb-3 uppercase tracking-wider"
+              >
+                {to.fullName}
+              </p>
               <Paragraph class="mb-4">{to.description}</Paragraph>
               <div class="pt-4 border-t border-border">
-                <p class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2">Best for</p>
+                <p
+                  class="text-xs font-medium text-text-secondary uppercase tracking-wider mb-2"
+                >
+                  Best for
+                </p>
                 <p class="text-sm text-text">{to.bestFor}</p>
               </div>
             </div>
@@ -271,122 +450,173 @@ const faqSchema = {
         <!-- FAQ -->
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+          <div
+            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          >
             <FAQ faqs={conversion.faqs} />
           </div>
         </section>
 
         <!-- Sources & Standards -->
-        {(from.standardBody || to.standardBody) && (
-          <section class="mb-16 sm:mb-20">
-            <H2 class="mb-8 text-center">Format Standards & Sources</H2>
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
-              <ul class="space-y-3 text-sm text-text-secondary">
-                {from.standardBody && (
-                  <li class="flex gap-2 items-start">
-                    <span class="text-accent font-medium flex-shrink-0">{from.name}:</span>
-                    <span>
-                      Defined by {from.standardBody}.
-                      {from.sourceUrl && (
-                        <a href={from.sourceUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline ml-1">
-                          View specification &rarr;
-                        </a>
-                      )}
-                    </span>
-                  </li>
-                )}
-                {to.standardBody && (
-                  <li class="flex gap-2 items-start">
-                    <span class="text-accent font-medium flex-shrink-0">{to.name}:</span>
-                    <span>
-                      Defined by {to.standardBody}.
-                      {to.sourceUrl && (
-                        <a href={to.sourceUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline ml-1">
-                          View specification &rarr;
-                        </a>
-                      )}
-                    </span>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </section>
-        )}
+        {
+          (from.standardBody || to.standardBody) && (
+            <section class="mb-16 sm:mb-20">
+              <H2 class="mb-8 text-center">Format Standards & Sources</H2>
+              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+                <ul class="space-y-3 text-sm text-text-secondary">
+                  {from.standardBody && (
+                    <li class="flex gap-2 items-start">
+                      <span class="text-accent font-medium flex-shrink-0">
+                        {from.name}:
+                      </span>
+                      <span>
+                        Defined by {from.standardBody}.
+                        {from.sourceUrl && (
+                          <a
+                            href={from.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-accent hover:underline ml-1"
+                          >
+                            View specification &rarr;
+                          </a>
+                        )}
+                      </span>
+                    </li>
+                  )}
+                  {to.standardBody && (
+                    <li class="flex gap-2 items-start">
+                      <span class="text-accent font-medium flex-shrink-0">
+                        {to.name}:
+                      </span>
+                      <span>
+                        Defined by {to.standardBody}.
+                        {to.sourceUrl && (
+                          <a
+                            href={to.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-accent hover:underline ml-1"
+                          >
+                            View specification &rarr;
+                          </a>
+                        )}
+                      </span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </section>
+          )
+        }
 
         <!-- Compress Cross-Links -->
-        {(fromCompress || toCompress) && (
-          <section class="mb-16 sm:mb-20">
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
-              <H2 class="mb-4">Need to compress instead?</H2>
-              <Paragraph class="mb-4">If you don't need to change formats, Picmal can also compress your files to reduce size:</Paragraph>
-              <div class="flex flex-wrap gap-3">
-                {fromCompress && (
-                  <a
-                    href={`/compress/${fromCompress.slug}`}
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-                  >
-                    <span class="font-mono text-xs text-text-secondary">.{fromCompress.format}</span>
-                    Compress {fromCompress.name}
-                  </a>
-                )}
-                {toCompress && (
-                  <a
-                    href={`/compress/${toCompress.slug}`}
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-                  >
-                    <span class="font-mono text-xs text-text-secondary">.{toCompress.format}</span>
-                    Compress {toCompress.name}
-                  </a>
-                )}
+        {
+          (fromCompress || toCompress) && (
+            <section class="mb-16 sm:mb-20">
+              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+                <H2 class="mb-4">Need to compress instead?</H2>
+                <Paragraph class="mb-4">
+                  If you don't need to change formats, Picmal can also compress
+                  your files to reduce size:
+                </Paragraph>
+                <div class="flex flex-wrap gap-3">
+                  {fromCompress && (
+                    <a
+                      href={`/compress/${fromCompress.slug}`}
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                    >
+                      <span class="font-mono text-xs text-text-secondary">
+                        .{fromCompress.format}
+                      </span>
+                      Compress {fromCompress.name}
+                    </a>
+                  )}
+                  {toCompress && (
+                    <a
+                      href={`/compress/${toCompress.slug}`}
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                    >
+                      <span class="font-mono text-xs text-text-secondary">
+                        .{toCompress.format}
+                      </span>
+                      Compress {toCompress.name}
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          )
+        }
 
         <!-- Related Conversions -->
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">Related Conversions</H2>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {related.map((r) => (
-              <a
-                href={`/convert/${r.slug}`}
-                class="group bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
-              >
-                <div class="flex items-center justify-center gap-2">
-                  <span class="text-xs font-mono text-text-secondary">.{formats[r.from].extension}</span>
-                  <svg class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                  <span class="text-xs font-mono text-text-secondary">.{formats[r.to].extension}</span>
-                </div>
-                <span class="text-sm font-medium text-text mt-1 block">
-                  {formats[r.from].name} to {formats[r.to].name}
-                </span>
-              </a>
-            ))}
+            {
+              related.map((r) => (
+                <a
+                  href={`/convert/${r.slug}`}
+                  class="group bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
+                >
+                  <div class="flex items-center justify-center gap-2">
+                    <span class="text-xs font-mono text-text-secondary">
+                      .{formats[r.from].extension}
+                    </span>
+                    <svg
+                      class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                    <span class="text-xs font-mono text-text-secondary">
+                      .{formats[r.to].extension}
+                    </span>
+                  </div>
+                  <span class="text-sm font-medium text-text mt-1 block">
+                    {formats[r.from].name} to {formats[r.to].name}
+                  </span>
+                </a>
+              ))
+            }
           </div>
           <div class="text-center mt-6">
-            <a href="/convert" class="text-sm text-text-secondary hover:text-text transition-colors">
+            <a
+              href="/convert"
+              class="text-sm text-text-secondary hover:text-text transition-colors"
+            >
               View all conversions &rarr;
             </a>
           </div>
         </section>
 
         <!-- Blog Guide Cross-Link -->
-        {blogGuide && (
-          <section class="mb-16 sm:mb-20">
-            <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
-              <H2 class="mb-4">In-depth guide</H2>
-              <Paragraph class="mb-4">Want step-by-step instructions with multiple methods including Preview, Terminal, and online tools?</Paragraph>
-              <a
-                href={`/blog/${blogGuide.slug}`}
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-              >
-                Read: {blogGuide.title} &rarr;
-              </a>
-            </div>
-          </section>
-        )}
+        {
+          blogGuide && (
+            <section class="mb-16 sm:mb-20">
+              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+                <H2 class="mb-4">In-depth guide</H2>
+                <Paragraph class="mb-4">
+                  Want step-by-step instructions with multiple methods including
+                  Preview, Terminal, and online tools?
+                </Paragraph>
+                <a
+                  href={`/blog/${blogGuide.slug}`}
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                >
+                  Read: {blogGuide.title} &rarr;
+                </a>
+              </div>
+            </section>
+          )
+        }
 
         <!-- CTA -->
         <CTASection
@@ -399,7 +629,7 @@ const faqSchema = {
     <Footer />
 
     <script>
-      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+      window.lemonSqueezyAffiliateConfig = { store: "cantimplorastudio" };
     </script>
     <script src="https://lmsqueezy.com/affiliate.js" defer></script>
   </body>

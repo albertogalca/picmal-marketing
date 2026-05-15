@@ -16,33 +16,41 @@ import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 
-const title = "HEIC Converter for Mac — Convert HEIC to JPG, PNG, WebP | Picmal";
-const description = "Convert HEIC files from your iPhone to JPG, PNG, WebP, or any format on your Mac. Batch conversion, offline, no quality loss. $15.99 one-time.";
+const title =
+  "HEIC Converter for Mac — Convert HEIC to JPG, PNG, WebP | Picmal";
+const description =
+  "Convert HEIC files from your iPhone to JPG, PNG, WebP, or any format on your Mac. Batch conversion, offline, no quality loss. $15.99 one-time.";
 
 const faqs = [
   {
     question: "What is HEIC and why do I need to convert it?",
-    answer: "HEIC is Apple's image format used by iPhones since iOS 11. While it offers better compression than JPG, many websites, Windows PCs, and older apps can't open HEIC files. Converting to JPG or PNG makes them universally compatible.",
+    answer:
+      "HEIC is Apple's image format used by iPhones since iOS 11. While it offers better compression than JPG, many websites, Windows PCs, and older apps can't open HEIC files. Converting to JPG or PNG makes them universally compatible.",
   },
   {
     question: "What formats can I convert HEIC to?",
-    answer: "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF, DNG, and more — any image format you need.",
+    answer:
+      "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF, DNG, and more — any image format you need.",
   },
   {
     question: "Can I batch convert all my iPhone photos at once?",
-    answer: "Yes. Drag and drop hundreds or thousands of HEIC files from your Photos library or any folder. Picmal converts them all at once.",
+    answer:
+      "Yes. Drag and drop hundreds or thousands of HEIC files from your Photos library or any folder. Picmal converts them all at once.",
   },
   {
     question: "Does converting HEIC to JPG lose quality?",
-    answer: "JPG uses lossy compression, so there's a slight quality reduction. Picmal lets you adjust the quality slider — at 90%+ quality, the difference is imperceptible.",
+    answer:
+      "JPG uses lossy compression, so there's a slight quality reduction. Picmal lets you adjust the quality slider — at 90%+ quality, the difference is imperceptible.",
   },
   {
     question: "Is this different from Preview's export feature?",
-    answer: "Preview can convert one file at a time. Picmal handles batch conversion of hundreds of files, offers more output formats, and lets you fine-tune quality settings.",
+    answer:
+      "Preview can convert one file at a time. Picmal handles batch conversion of hundreds of files, offers more output formats, and lets you fine-tune quality settings.",
   },
   {
     question: "Do my photos leave my Mac?",
-    answer: "No. All conversion happens locally on your Mac. Picmal works completely offline — your photos never touch any server.",
+    answer:
+      "No. All conversion happens locally on your Mac. Picmal works completely offline — your photos never touch any server.",
   },
 ];
 
@@ -62,25 +70,58 @@ const faqSchema = {
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    <link rel="preload" href="/picmal-1.2.0-demo.mp4" as="video" type="video/mp4" />
+    <link
+      rel="preload"
+      href="/picmal-1.2.0-demo.mp4"
+      as="video"
+      type="video/mp4"
+    />
   </head>
 
-  <body class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden">
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
     <Header />
 
     <main id="main-content" class="relative z-10 pt-32 pb-16">
       <div class="max-w-5xl mx-auto px-6">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "HEIC Converter for Mac" }]} />
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "HEIC Converter for Mac" },
+          ]}
+        />
 
         <div class="text-center mb-12">
-          <H1 class="mb-6 max-w-3xl mx-auto">Convert HEIC photos on your Mac in seconds</H1>
+          <H1 class="mb-6 max-w-3xl mx-auto"
+            >Convert HEIC photos on your Mac in seconds</H1
+          >
           <Paragraph class="max-w-2xl mx-auto mb-8">
-            Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch converts your HEIC files to JPG, PNG, WebP, or any format — fast, offline, and private.
+            Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch
+            converts your HEIC files to JPG, PNG, WebP, or any format — fast,
+            offline, and private.
           </Paragraph>
-          <div class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6">
-            <Button text="Get Picmal for $15.99" onclick="posthog.capture('buy_clicked_heic_converter_mac')" />
-            <a href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg" class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto">
-              <svg class="size-4 inline-block mr-2" fill="currentColor" stroke="none" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"></path></svg>
+          <div
+            class="flex flex-col sm:flex-row gap-3 items-center justify-center mb-6"
+          >
+            <Button
+              text="Get Picmal for $15.99"
+              onclick="posthog.capture('buy_clicked_heic_converter_mac')"
+            />
+            <a
+              href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+            >
+              <svg
+                class="size-4 inline-block mr-2"
+                fill="currentColor"
+                stroke="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                ><path
+                  d="M14.94 5.19A4.38 4.38 0 0 0 16 2a4.44 4.44 0 0 0-3 1.52 4.17 4.17 0 0 0-1 3.09 3.69 3.69 0 0 0 2.94-1.42zm2.52 7.44a4.51 4.51 0 0 1 2.16-3.81 4.66 4.66 0 0 0-3.66-2c-1.56-.16-3 .91-3.83.91s-2-.89-3.3-.87A4.92 4.92 0 0 0 4.69 9.39c-1.77 3-0.46 7.42 1.27 9.85 0.84 1.18 1.85 2.5 3.16 2.45s1.73-0.79 3.25-0.79 2 0.79 3.3 0.76 2.21-1.2 3-2.4a10.5 10.5 0 0 0 1.38-2.8 4.35 4.35 0 0 1-2.59-4.03z"
+                ></path></svg
+              >
               Download
             </a>
           </div>
@@ -88,9 +129,21 @@ const faqSchema = {
         </div>
 
         <!-- Demo Video -->
-        <div class="max-w-5xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-border">
+        <div
+          class="max-w-5xl mx-auto rounded-lg sm:rounded-xl overflow-hidden border border-border"
+        >
           <div class="aspect-[16/10]">
-            <video src="/picmal-1.2.0-demo.mp4" class="w-full h-full object-cover" width="1920" height="1200" autoplay loop muted playsinline preload="auto" aria-label="Picmal HEIC conversion interface"></video>
+            <video
+              src="/picmal-1.2.0-demo.mp4"
+              class="w-full h-full object-cover"
+              width="1920"
+              height="1200"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              aria-label="Picmal HEIC conversion interface"></video>
           </div>
         </div>
       </div>
@@ -103,20 +156,42 @@ const faqSchema = {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-8 text-center">Convert HEIC in 3 steps</H2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
-            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">1</div>
+          <div
+            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+          >
+            <div
+              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
+            >
+              1
+            </div>
             <h3 class="font-semibold text-text mb-2">Drop your HEIC files</h3>
-            <Paragraph>Drag and drop HEIC files from Finder, Photos, or any folder.</Paragraph>
+            <Paragraph
+              >Drag and drop HEIC files from Finder, Photos, or any folder.</Paragraph
+            >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
-            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">2</div>
+          <div
+            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+          >
+            <div
+              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
+            >
+              2
+            </div>
             <h3 class="font-semibold text-text mb-2">Choose output format</h3>
             <Paragraph>Select JPG, PNG, WebP, or any other format.</Paragraph>
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
-            <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">3</div>
+          <div
+            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+          >
+            <div
+              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
+            >
+              3
+            </div>
             <h3 class="font-semibold text-text mb-2">Convert</h3>
-            <Paragraph>Click Convert and your files are ready in seconds.</Paragraph>
+            <Paragraph
+              >Click Convert and your files are ready in seconds.</Paragraph
+            >
           </div>
         </div>
       </div>
@@ -129,11 +204,26 @@ const faqSchema = {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-8 text-center">Convert HEIC to any format</H2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {["heic-to-jpg", "heic-to-png", "heic-to-webp", "heic-to-avif", "heic-to-tiff", "heic-to-gif", "heic-to-dng"].map((slug) => (
-            <a href={`/convert/${slug}`} class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30">
-              <span class="text-sm font-medium text-text">{slug.replace("heic-to-", "HEIC to ").toUpperCase()}</span>
-            </a>
-          ))}
+          {
+            [
+              "heic-to-jpg",
+              "heic-to-png",
+              "heic-to-webp",
+              "heic-to-avif",
+              "heic-to-tiff",
+              "heic-to-gif",
+              "heic-to-dng",
+            ].map((slug) => (
+              <a
+                href={`/convert/${slug}`}
+                class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
+              >
+                <span class="text-sm font-medium text-text">
+                  {slug.replace("heic-to-", "HEIC to ").toUpperCase()}
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -142,14 +232,19 @@ const faqSchema = {
     <MasonryTestimonials />
     <SectionDivider />
 
-    <section id="pricing" class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border">
+    <section
+      id="pricing"
+      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
+    >
       <PricingSection />
     </section>
 
     <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
-        <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+        <div
+          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+        >
           <FAQ faqs={faqs} />
         </div>
       </div>
@@ -159,7 +254,7 @@ const faqSchema = {
     <SupportedFormatsModal />
 
     <script>
-      window.lemonSqueezyAffiliateConfig = { store: "picmal" };
+      window.lemonSqueezyAffiliateConfig = { store: "cantimplorastudio" };
     </script>
     <script src="https://lmsqueezy.com/affiliate.js" defer></script>
   </body>

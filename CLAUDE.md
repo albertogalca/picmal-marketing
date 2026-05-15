@@ -165,7 +165,7 @@ Integrated with Lemon Squeezy:
 
 - **Commission**: 25% per sale
 - **Page**: `/affiliate`
-- **Signup URL**: `https://affiliates.lemonsqueezy.com/programs/picmal`
+- **Signup URL**: `https://affiliates.lemonsqueezy.com/programs/cantimplorastudio`
 
 ## SEO & Performance
 

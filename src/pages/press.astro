@@ -47,32 +47,100 @@ const principles = [
 ];
 
 const screenshots = [
-  { src: "/press/picmal_empty.png", title: "Empty state", caption: "Drop files anywhere to get started." },
-  { src: "/press/picmal_with_files.png", title: "With files", caption: "Files loaded and ready to convert." },
-  { src: "/press/picmal_working.png", title: "Working", caption: "Mid-conversion." },
-  { src: "/press/picmal_settings.png", title: "Settings", caption: "Advanced options for people who want them." },
-  { src: "/press/picmal_settings_2.png", title: "More settings", caption: "Format-specific configuration." },
+  {
+    src: "/press/picmal_empty.png",
+    title: "Empty state",
+    caption: "Drop files anywhere to get started.",
+  },
+  {
+    src: "/press/picmal_with_files.png",
+    title: "With files",
+    caption: "Files loaded and ready to convert.",
+  },
+  {
+    src: "/press/picmal_working.png",
+    title: "Working",
+    caption: "Mid-conversion.",
+  },
+  {
+    src: "/press/picmal_settings.png",
+    title: "Settings",
+    caption: "Advanced options for people who want them.",
+  },
+  {
+    src: "/press/picmal_settings_2.png",
+    title: "More settings",
+    caption: "Format-specific configuration.",
+  },
 ];
 
 const storeAssets = [
-  { src: "/press/mac_store_a.png", title: "Hero — convert", caption: "Brand hero, conversion side." },
-  { src: "/press/mac_store_b.png", title: "Hero — compress", caption: "Brand hero, compression side." },
-  { src: "/press/mac_store_c.png", title: "Feature highlight", caption: "Marketing visual, third panel." },
-  { src: "/press/mac_store_d.png", title: "Feature highlight", caption: "Marketing visual, fourth panel." },
-  { src: "/press/lemon_squeezy_version.png", title: "Lemon Squeezy listing", caption: "Storefront preview used on Lemon Squeezy." },
+  {
+    src: "/press/mac_store_a.png",
+    title: "Hero — convert",
+    caption: "Brand hero, conversion side.",
+  },
+  {
+    src: "/press/mac_store_b.png",
+    title: "Hero — compress",
+    caption: "Brand hero, compression side.",
+  },
+  {
+    src: "/press/mac_store_c.png",
+    title: "Feature highlight",
+    caption: "Marketing visual, third panel.",
+  },
+  {
+    src: "/press/mac_store_d.png",
+    title: "Feature highlight",
+    caption: "Marketing visual, fourth panel.",
+  },
+  {
+    src: "/press/lemon_squeezy_version.png",
+    title: "Lemon Squeezy listing",
+    caption: "Storefront preview used on Lemon Squeezy.",
+  },
 ];
 
 const videos = [
-  { title: "Full demo", description: "About a minute, covers conversion process.", src: "/picmal-1.2.0-demo.mp4" },
-  { title: "Clipboard support", description: "Copy and paste files directly into Picmal.", src: "/images/changelog/1.3.8/clipboard_demo.mp4" },
-  { title: "Drop a folder", description: "Drop entire folders to convert everything inside.", src: "/images/changelog/1.2.7/drop_folder.mp4" },
-  { title: "Notch progress overlay", description: "Live progress shown in the MacBook notch.", src: "/images/changelog/1.4.2/notch.mp4" },
+  {
+    title: "Full demo",
+    description: "About a minute, covers conversion process.",
+    src: "/picmal-1.2.0-demo.mp4",
+  },
+  {
+    title: "Clipboard support",
+    description: "Copy and paste files directly into Picmal.",
+    src: "/images/changelog/1.3.8/clipboard_demo.mp4",
+  },
+  {
+    title: "Drop a folder",
+    description: "Drop entire folders to convert everything inside.",
+    src: "/images/changelog/1.2.7/drop_folder.mp4",
+  },
+  {
+    title: "Notch progress overlay",
+    description: "Live progress shown in the MacBook notch.",
+    src: "/images/changelog/1.4.2/notch.mp4",
+  },
 ];
 
 const facts = [
-  { label: "Pricing", value: "Pay once. Updates included. Sold on picmal.app via Lemon Squeezy. Not on the App Store." },
-  { label: "Who uses it", value: "Mostly photographers, designers, developers, and teachers. Also a lot of people who just want HEIC files to be JPGs." },
-  { label: "Requirements", value: "macOS 15.6 (Sequoia) or later. Runs natively on Apple Silicon and Intel." },
+  {
+    label: "Pricing",
+    value:
+      "Pay once. Updates included. Sold on picmal.app via Lemon Squeezy. Not on the App Store.",
+  },
+  {
+    label: "Who uses it",
+    value:
+      "Mostly photographers, designers, developers, and teachers. Also a lot of people who just want HEIC files to be JPGs.",
+  },
+  {
+    label: "Requirements",
+    value:
+      "macOS 15.6 (Sequoia) or later. Runs natively on Apple Silicon and Intel.",
+  },
 ];
 
 const ICON_EYE =
@@ -107,7 +175,9 @@ const ICON_DOWNLOAD =
 
         <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
           <!-- DESKTOP SIDEBAR -->
-          <aside class="hidden lg:block lg:sticky lg:top-32 lg:self-start space-y-8">
+          <aside
+            class="hidden lg:block lg:sticky lg:top-32 lg:self-start space-y-8"
+          >
             <div>
               <img
                 src="/Icon-macOS-Default-1024x1024@1x.png"
@@ -121,21 +191,45 @@ const ICON_DOWNLOAD =
             </div>
 
             <div>
-              <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-3">
+              <p
+                class="text-xs font-semibold text-accent uppercase tracking-wider mb-3"
+              >
                 Quick links
               </p>
               <ul class="space-y-2">
-                <li><a href="https://picmal.app" class="text-sm text-text hover:text-accent transition-colors">Website</a></li>
-                <li><a href="https://picmal.app/docs" class="text-sm text-text hover:text-accent transition-colors">Documentation</a></li>
-                <li><a href="https://affiliates.lemonsqueezy.com/programs/picmal" target="_blank" rel="noopener noreferrer" class="text-sm text-text hover:text-accent transition-colors">Affiliate program</a></li>
+                <li>
+                  <a
+                    href="https://picmal.app"
+                    class="text-sm text-text hover:text-accent transition-colors"
+                    >Website</a>
+                </li>
+                <li>
+                  <a
+                    href="https://picmal.app/docs"
+                    class="text-sm text-text hover:text-accent transition-colors"
+                    >Documentation</a>
+                </li>
+                <li>
+                  <a
+                    href="https://affiliates.lemonsqueezy.com/programs/cantimplorastudio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-text hover:text-accent transition-colors"
+                    >Affiliate program</a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-3">
+              <p
+                class="text-xs font-semibold text-accent uppercase tracking-wider mb-3"
+              >
                 Contact
               </p>
-              <a href="mailto:support@picmal.app" class="text-sm text-text hover:text-accent transition-colors break-all">
+              <a
+                href="mailto:support@picmal.app"
+                class="text-sm text-text hover:text-accent transition-colors break-all"
+              >
                 support@picmal.app
               </a>
             </div>
@@ -170,11 +264,20 @@ const ICON_DOWNLOAD =
               <div>
                 <H3 class="mb-4">Why I built this</H3>
                 <div class="space-y-4">
-                  <Paragraph>I built Picmal because I couldn't find a file converter I actually liked.</Paragraph>
+                  <Paragraph
+                    >I built Picmal because I couldn't find a file converter I
+                    actually liked.</Paragraph
+                  >
                   <Paragraph>
-                    Every option I tried had the same problems: outdated, clunky interfaces. Terminal-only tools when I just wanted something I could see and click. Online services that expected me to upload private media files to some external server. And no batch conversion anywhere.
+                    Every option I tried had the same problems: outdated, clunky
+                    interfaces. Terminal-only tools when I just wanted something
+                    I could see and click. Online services that expected me to
+                    upload private media files to some external server. And no
+                    batch conversion anywhere.
                   </Paragraph>
-                  <Paragraph class="text-text font-semibold">So I built the thing I wanted to use.</Paragraph>
+                  <Paragraph class="text-text font-semibold"
+                    >So I built the thing I wanted to use.</Paragraph
+                  >
                 </div>
               </div>
 
@@ -195,25 +298,38 @@ const ICON_DOWNLOAD =
               <div>
                 <H3 class="mb-4">Descriptions</H3>
                 <div class="space-y-4">
-                  {[
-                    { label: "Short", text: shortDescription },
-                    { label: "Medium", text: mediumDescription },
-                    { label: "Long", text: longDescription },
-                  ].map((d) => (
-                    <div class="bg-background-subtle rounded-lg border border-border p-4">
-                      <div class="flex items-center justify-between mb-2">
-                        <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium text-xs">{d.label}</span>
-                        <button class="copy-btn text-sm text-text-secondary hover:text-accent transition-colors cursor-pointer" data-copy={d.text}>Copy</button>
+                  {
+                    [
+                      { label: "Short", text: shortDescription },
+                      { label: "Medium", text: mediumDescription },
+                      { label: "Long", text: longDescription },
+                    ].map((d) => (
+                      <div class="bg-background-subtle rounded-lg border border-border p-4">
+                        <div class="flex items-center justify-between mb-2">
+                          <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium text-xs">
+                            {d.label}
+                          </span>
+                          <button
+                            class="copy-btn text-sm text-text-secondary hover:text-accent transition-colors cursor-pointer"
+                            data-copy={d.text}
+                          >
+                            Copy
+                          </button>
+                        </div>
+                        <Paragraph size="small" class="whitespace-pre-line">
+                          {d.text}
+                        </Paragraph>
                       </div>
-                      <Paragraph size="small" class="whitespace-pre-line">{d.text}</Paragraph>
-                    </div>
-                  ))}
+                    ))
+                  }
                 </div>
               </div>
 
               <div>
                 <H3 class="mb-4">About me</H3>
-                <div class="bg-background-subtle rounded-lg border border-border p-4 flex flex-col sm:flex-row gap-4">
+                <div
+                  class="bg-background-subtle rounded-lg border border-border p-4 flex flex-col sm:flex-row gap-4"
+                >
                   <img
                     src="/alberto.webp"
                     alt="Alberto, creator of Picmal"
@@ -221,10 +337,17 @@ const ICON_DOWNLOAD =
                   />
                   <div class="space-y-3">
                     <Paragraph size="small">
-                      I'm Alberto, an independent software developer. I build tools that try to respect the people using them — small, private, and deliberate. Nothing overdesigned or cluttered. Just software that works and doesn't feel like it was made by a committee.
+                      I'm Alberto, an independent software developer. I build
+                      tools that try to respect the people using them — small,
+                      private, and deliberate. Nothing overdesigned or
+                      cluttered. Just software that works and doesn't feel like
+                      it was made by a committee.
                     </Paragraph>
                     <Paragraph size="small">
-                      Outside of building, I take photos, travel, read, and walk a lot. That stuff probably matters more than it sounds like it should. It's where most of my ideas about what good software feels like come from.
+                      Outside of building, I take photos, travel, read, and walk
+                      a lot. That stuff probably matters more than it sounds
+                      like it should. It's where most of my ideas about what
+                      good software feels like come from.
                     </Paragraph>
                   </div>
                 </div>
@@ -236,7 +359,9 @@ const ICON_DOWNLOAD =
                   {
                     facts.map((f) => (
                       <div class="bg-background-subtle rounded-lg border border-border p-4">
-                        <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">{f.label}</p>
+                        <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">
+                          {f.label}
+                        </p>
                         <Paragraph size="small">{f.value}</Paragraph>
                       </div>
                     ))
@@ -249,18 +374,34 @@ const ICON_DOWNLOAD =
             <section data-panel="media" class="press-panel space-y-12 hidden">
               <div>
                 <H2 class="mb-2">Media</H2>
-                <Paragraph size="small">Use any of this freely. Need higher-res versions or something specific? Email me.</Paragraph>
+                <Paragraph size="small"
+                  >Use any of this freely. Need higher-res versions or something
+                  specific? Email me.</Paragraph
+                >
               </div>
 
               <div>
                 <H3 class="mb-4">App icon</H3>
-                <div class="bg-background-subtle rounded-lg border border-border p-4 flex items-center gap-4">
-                  <img src="/Icon-macOS-Default-1024x1024@1x.png" alt="Picmal icon" class="w-16 h-16 rounded-lg" />
+                <div
+                  class="bg-background-subtle rounded-lg border border-border p-4 flex items-center gap-4"
+                >
+                  <img
+                    src="/Icon-macOS-Default-1024x1024@1x.png"
+                    alt="Picmal icon"
+                    class="w-16 h-16 rounded-lg"
+                  />
                   <div class="flex-1">
                     <p class="font-semibold">App icon</p>
                     <Paragraph size="small">PNG · 1024×1024</Paragraph>
                   </div>
-                  <Button href="/Icon-macOS-Default-1024x1024@1x.png" text="Download" size="small" variant="secondary" target="_self" download="picmal-icon.png" />
+                  <Button
+                    href="/Icon-macOS-Default-1024x1024@1x.png"
+                    text="Download"
+                    size="small"
+                    variant="secondary"
+                    target="_self"
+                    download="picmal-icon.png"
+                  />
                 </div>
               </div>
 
@@ -269,11 +410,35 @@ const ICON_DOWNLOAD =
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {
                     screenshots.map((s) => (
-                      <div class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border" data-image-src={s.src} data-image-title={s.title}>
-                        <img src={s.src} alt={s.title} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy" />
+                      <div
+                        class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border"
+                        data-image-src={s.src}
+                        data-image-title={s.title}
+                      >
+                        <img
+                          src={s.src}
+                          alt={s.title}
+                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
                         <div class="image-card-overlay">
-                          <Button type="button" variant="overlay" size="small" text="View" icon={ICON_EYE} class="view-btn" />
-                          <Button href={s.src} variant="overlay" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
+                          <Button
+                            type="button"
+                            variant="overlay"
+                            size="small"
+                            text="View"
+                            icon={ICON_EYE}
+                            class="view-btn"
+                          />
+                          <Button
+                            href={s.src}
+                            variant="overlay"
+                            size="small"
+                            text="Download"
+                            icon={ICON_DOWNLOAD}
+                            target="_self"
+                            download={true}
+                          />
                         </div>
                       </div>
                     ))
@@ -284,16 +449,41 @@ const ICON_DOWNLOAD =
               <div>
                 <H3 class="mb-4">Store assets</H3>
                 <Paragraph size="small" class="mb-4">
-                  Marketing visuals from the Mac App Store and Lemon Squeezy listing.
+                  Marketing visuals from the Mac App Store and Lemon Squeezy
+                  listing.
                 </Paragraph>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {
                     storeAssets.map((s) => (
-                      <div class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border" data-image-src={s.src} data-image-title={s.title}>
-                        <img src={s.src} alt={s.title} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy" />
+                      <div
+                        class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-lg border border-border"
+                        data-image-src={s.src}
+                        data-image-title={s.title}
+                      >
+                        <img
+                          src={s.src}
+                          alt={s.title}
+                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          loading="lazy"
+                        />
                         <div class="image-card-overlay">
-                          <Button type="button" variant="overlay" size="small" text="View" icon={ICON_EYE} class="view-btn" />
-                          <Button href={s.src} variant="overlay" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
+                          <Button
+                            type="button"
+                            variant="overlay"
+                            size="small"
+                            text="View"
+                            icon={ICON_EYE}
+                            class="view-btn"
+                          />
+                          <Button
+                            href={s.src}
+                            variant="overlay"
+                            size="small"
+                            text="Download"
+                            icon={ICON_DOWNLOAD}
+                            target="_self"
+                            download={true}
+                          />
                         </div>
                       </div>
                     ))
@@ -312,9 +502,23 @@ const ICON_DOWNLOAD =
                             <p class="font-semibold">{v.title}</p>
                             <Paragraph size="small">{v.description}</Paragraph>
                           </div>
-                          <Button href={v.src} text="Download" size="small" variant="secondary" target="_self" download={true} />
+                          <Button
+                            href={v.src}
+                            text="Download"
+                            size="small"
+                            variant="secondary"
+                            target="_self"
+                            download={true}
+                          />
                         </div>
-                        <video src={v.src} class="w-full h-auto border-t border-border" controls muted playsinline preload="metadata"></video>
+                        <video
+                          src={v.src}
+                          class="w-full h-auto border-t border-border"
+                          controls
+                          muted
+                          playsinline
+                          preload="metadata"
+                        />
                       </div>
                     ))
                   }
@@ -326,29 +530,57 @@ const ICON_DOWNLOAD =
             <section data-panel="contact" class="press-panel space-y-8 hidden">
               <div>
                 <H2 class="mb-2">Get in touch</H2>
-                <Paragraph size="small">Writing about Picmal, want to partner, or just have a question? Email me.</Paragraph>
+                <Paragraph size="small"
+                  >Writing about Picmal, want to partner, or just have a
+                  question? Email me.</Paragraph
+                >
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="mailto:support@picmal.app" class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
-                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Email</p>
+                <a
+                  href="mailto:support@picmal.app"
+                  class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
+                >
+                  <p
+                    class="text-xs font-semibold text-accent uppercase tracking-wider mb-2"
+                  >
+                    Email
+                  </p>
                   <p class="font-semibold truncate">support@picmal.app</p>
                 </a>
 
-                <a href="https://picmal.app" class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
-                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Website</p>
+                <a
+                  href="https://picmal.app"
+                  class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
+                >
+                  <p
+                    class="text-xs font-semibold text-accent uppercase tracking-wider mb-2"
+                  >
+                    Website
+                  </p>
                   <p class="font-semibold truncate">picmal.app</p>
                 </a>
 
-                <a href="https://affiliates.lemonsqueezy.com/programs/picmal" target="_blank" rel="noopener noreferrer" class="sm:col-span-2 bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200">
-                  <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-2">Become an affiliate</p>
+                <a
+                  href="https://affiliates.lemonsqueezy.com/programs/cantimplorastudio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sm:col-span-2 bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
+                >
+                  <p
+                    class="text-xs font-semibold text-accent uppercase tracking-wider mb-2"
+                  >
+                    Become an affiliate
+                  </p>
                   <p class="font-semibold">Earn 25% on every sale you refer</p>
                 </a>
               </div>
 
               <div class="bg-accent/5 border border-accent/20 rounded-lg p-4">
                 <Paragraph size="small">
-                  <strong class="text-text">Press note:</strong> use any of these assets freely. If you need a different format or higher resolution, email me and I'll send it over.
+                  <strong class="text-text">Press note:</strong> use any of these
+                  assets freely. If you need a different format or higher resolution,
+                  email me and I'll send it over.
                 </Paragraph>
               </div>
             </section>
@@ -360,11 +592,42 @@ const ICON_DOWNLOAD =
     <Footer />
 
     <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <div
+      id="lightbox"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      hidden
+    >
       <div class="lightbox-controls">
-        <Button id="lightbox-download" href="#" variant="primary" size="small" text="Download" icon={ICON_DOWNLOAD} target="_self" download={true} />
-        <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <Button
+          id="lightbox-download"
+          href="#"
+          variant="primary"
+          size="small"
+          text="Download"
+          icon={ICON_DOWNLOAD}
+          target="_self"
+          download={true}
+        />
+        <button
+          type="button"
+          id="lightbox-close"
+          class="lightbox-close"
+          aria-label="Close"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path></svg
+          >
         </button>
       </div>
       <img id="lightbox-image" src="" alt="" />
@@ -443,7 +706,9 @@ const ICON_DOWNLOAD =
         color: white;
         border: none;
         cursor: pointer;
-        transition: background-color 0.15s ease-out, transform 0.15s ease-out;
+        transition:
+          background-color 0.15s ease-out,
+          transform 0.15s ease-out;
       }
       .lightbox-close:hover {
         background: rgba(255, 255, 255, 0.2);
@@ -469,8 +734,12 @@ const ICON_DOWNLOAD =
         text-align: center;
       }
       @keyframes lightbox-fade {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -504,36 +773,49 @@ const ICON_DOWNLOAD =
             t.setAttribute("aria-selected", isActive ? "true" : "false");
             t.classList.toggle("active", isActive);
           });
-          panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== target));
+          panels.forEach((p) =>
+            p.classList.toggle("hidden", p.dataset.panel !== target),
+          );
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
 
-      document.querySelectorAll<HTMLButtonElement>(".copy-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const text = btn.dataset.copy ?? "";
-          try {
-            await navigator.clipboard.writeText(text);
-            const original = btn.textContent;
-            btn.textContent = "Copied ✓";
-            setTimeout(() => { btn.textContent = original; }, 1500);
-          } catch (err) {
-            console.error("Copy failed", err);
-          }
+      document
+        .querySelectorAll<HTMLButtonElement>(".copy-btn")
+        .forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const text = btn.dataset.copy ?? "";
+            try {
+              await navigator.clipboard.writeText(text);
+              const original = btn.textContent;
+              btn.textContent = "Copied ✓";
+              setTimeout(() => {
+                btn.textContent = original;
+              }, 1500);
+            } catch (err) {
+              console.error("Copy failed", err);
+            }
+          });
         });
-      });
 
       // Lightbox
       const lightbox = document.getElementById("lightbox");
-      const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement | null;
+      const lightboxImage = document.getElementById(
+        "lightbox-image",
+      ) as HTMLImageElement | null;
       const lightboxTitle = document.getElementById("lightbox-title");
-      const lightboxDownload = document.getElementById("lightbox-download") as HTMLAnchorElement | null;
-      const lightboxClose = document.getElementById("lightbox-close") as HTMLButtonElement | null;
+      const lightboxDownload = document.getElementById(
+        "lightbox-download",
+      ) as HTMLAnchorElement | null;
+      const lightboxClose = document.getElementById(
+        "lightbox-close",
+      ) as HTMLButtonElement | null;
 
       let lastTrigger: HTMLElement | null = null;
 
       function openLightbox(src: string, title: string, trigger: HTMLElement) {
-        if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxDownload) return;
+        if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxDownload)
+          return;
         lastTrigger = trigger;
         lightboxImage.src = src;
         lightboxImage.alt = title;
@@ -555,16 +837,18 @@ const ICON_DOWNLOAD =
         lastTrigger = null;
       }
 
-      document.querySelectorAll<HTMLAnchorElement | HTMLButtonElement>(".view-btn").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          const card = btn.closest<HTMLElement>(".image-card");
-          if (!card) return;
-          const src = card.dataset.imageSrc;
-          const title = card.dataset.imageTitle ?? "";
-          if (src) openLightbox(src, title, btn);
+      document
+        .querySelectorAll<HTMLAnchorElement | HTMLButtonElement>(".view-btn")
+        .forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const card = btn.closest<HTMLElement>(".image-card");
+            if (!card) return;
+            const src = card.dataset.imageSrc;
+            const title = card.dataset.imageTitle ?? "";
+            if (src) openLightbox(src, title, btn);
+          });
         });
-      });
 
       lightboxClose?.addEventListener("click", closeLightbox);
       lightbox?.addEventListener("click", (e) => {

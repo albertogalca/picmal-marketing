@@ -55,16 +55,19 @@ const affiliateFaqs = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: "Picmal Affiliate Program",
-      description: SITE_DESCRIPTION,
-      speakable: {
-        "@type": "SpeakableSpecification",
-        cssSelector: ["#main-content h1", "#main-content p"],
-      },
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Picmal Affiliate Program",
+        description: SITE_DESCRIPTION,
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: ["#main-content h1", "#main-content p"],
+        },
+      })}
+    />
   </head>
 
   <body
@@ -83,14 +86,14 @@ const affiliateFaqs = [
           <p
             class="mb-8 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary"
           >
-            You get $4 to $16 per sale, depending on which plan they buy.
-            The cookie lasts 60 days, so people who click your link have
-            two months to come back and purchase.
+            You get $4 to $16 per sale, depending on which plan they buy. The
+            cookie lasts 60 days, so people who click your link have two months
+            to come back and purchase.
           </p>
 
           <div class="flex flex-col items-center gap-3">
             <Button
-              href="https://affiliates.lemonsqueezy.com/programs/picmal"
+              href="https://affiliates.lemonsqueezy.com/programs/cantimplorastudio"
               text="Become an Affiliate"
               target="_blank"
               rel="noopener noreferrer"
@@ -161,9 +164,21 @@ const affiliateFaqs = [
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            <div
+              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                ></path>
               </svg>
             </div>
             <h3 class="text-lg font-semibold text-text mb-2">Sign up</h3>
@@ -173,24 +188,52 @@ const affiliateFaqs = [
           </div>
 
           <div>
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            <div
+              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-text mb-2">Share your link</h3>
+            <h3 class="text-lg font-semibold text-text mb-2">
+              Share your link
+            </h3>
             <p class="text-text-secondary leading-relaxed">
               Share Picmal on your website, blog, or social media.
             </p>
           </div>
 
           <div>
-            <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div
+              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-text mb-2">Earn commission</h3>
+            <h3 class="text-lg font-semibold text-text mb-2">
+              Earn commission
+            </h3>
             <p class="text-text-secondary leading-relaxed">
               Get 25% on every sale. Tracked live, paid out monthly.
             </p>
@@ -215,7 +258,7 @@ const affiliateFaqs = [
           Sign up takes two minutes. You get your link right after.
         </Paragraph>
         <Button
-          href="https://affiliates.lemonsqueezy.com/programs/picmal"
+          href="https://affiliates.lemonsqueezy.com/programs/cantimplorastudio"
           text="Become an Affiliate"
           target="_blank"
           rel="noopener noreferrer"

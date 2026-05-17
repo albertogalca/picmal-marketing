@@ -41,6 +41,21 @@ These formats use a compression level where **higher = more compression, smaller
 | GIF    | 1–9   | 7       | Higher levels mean more aggressive optimization          |
 | SVG    | 1–9   | 7       | Optimization level for SVG cleanup                       |
 
+## PDF rasterization DPI
+
+When converting PDFs to JPG or PNG, Picmal rasterizes each page at a chosen DPI. Higher DPI means sharper output and larger files. Pick the resolution in **Settings → Images**:
+
+| DPI | Best For                          |
+| --- | --------------------------------- |
+| 72  | Quick thumbnails, screen previews |
+| 150 | General web use (default)         |
+| 300 | Print-ready output                |
+| 600 | High-quality print, fine detail   |
+
+The default is 150, which keeps output crisp without bloating file sizes on multi-page documents.
+
+![PDF rasterization DPI setting in Picmal](/images/docs/pdf-resolution.png)
+
 ## Quick Guide: What preset should I use?
 
 | Use Case                             | Recommended Preset  |

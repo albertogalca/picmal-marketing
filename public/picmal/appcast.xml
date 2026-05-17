@@ -3,6 +3,22 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.5.8</title>
+            <pubDate>Sun, 17 May 2026 14:28:51 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>74</sparkle:version>
+            <sparkle:shortVersionString>1.5.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.8/Picmal.dmg" length="117218403" type="application/octet-stream" sparkle:edSignature="aS9ikTOMgtIYlymLBKDU4mpSrntUPCjGBLN05Gk7kKOXtVV52GKfhPfJrarfTlyOxy3+xlS3qLnVZxPd5VNZCA=="/>
+        <description><![CDATA[<div><ul><li>Watermarks were sometimes skipped on a few files in a batch. Fixed — every image gets the watermark now.</li>
+<li>Watermarks can scale to a percentage of each image's height, so one preset looks right across photos of any size. Turn on "Scale to image" in the watermark editor and drag the slider.</li>
+<li>"Keep all metadata" was quietly dropping some tags. It actually keeps everything now.</li>
+<li>PDF to JPG/PNG no longer dumps huge files on you. Pick the rasterization DPI in Settings → Images (72, 150, 300 or 600). Default is 150.</li>
+<li>Drag-and-drop used to silently cap at 100 files. You can now drop up to 10,000 in one go and they all land in the list.</li>
+<li>Audio conversions now let you pick a bit depth (16, 24 or 32 bit) on top of the sample rate. The new "CD quality" preset is 16 bit + 44.1 kHz FLAC.</li>
+<li>Picking Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020 as the output color space used to fail outright — only sRGB worked. Fixed.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.7</title>
             <pubDate>Thu, 14 May 2026 08:19:40 +0200</pubDate>
             <link>https://picmal.app/</link>

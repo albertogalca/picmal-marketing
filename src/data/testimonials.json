@@ -130,5 +130,12 @@
     "email": "abadizoom@gmail.com",
     "content": "The program is very simple and practical, and its options are clear.",
     "date": "Apr 16, 2026"
+  },
+  {
+    "id": 19,
+    "name": "Marie-Theres",
+    "email": "mthtschiersch@t-online.de",
+    "content": "I use Picmal to convert images. It works perfectly. I can just leave the Picmal window open on my desktop. Whenever I want to convert an image, I drag the file onto the window and click “convert”—and seconds later, the converted file is in the appropriate folder with the suffix “converted.” It couldn't be easier or more hassle-free!",
+    "date": "May 21, 2026"
   }
 ]

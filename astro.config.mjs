@@ -33,6 +33,7 @@ export default defineConfig({
           items: [
             { label: "Converting files", link: "/docs/converting-files" },
             { label: "Compressing files", link: "/docs/compressing-files" },
+            { label: "Managing the queue", link: "/docs/managing-the-queue" },
             { label: "Watched folders", link: "/docs/watched-folders" },
             {
               label: "Clipboard optimization",

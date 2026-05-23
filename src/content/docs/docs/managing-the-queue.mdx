@@ -1,0 +1,36 @@
+---
+title: Managing the queue
+description: Control a batch while it runs in Picmal — set per-file priority, pause and resume, cancel, and use the right-click menu to show files in Finder or remove them.
+---
+
+Picmal processes files as a queue. You can drop up to 10,000 files at once and manage the batch while it runs: reorder by priority, pause, resume, or cancel without losing your place.
+
+## Right-click menu
+
+Right-click any file in the list to:
+
+- **Show in Finder** — reveal the source file (or its output) in Finder
+- **Set priority** — High, Normal, or Low (see below)
+- **Remove from list** — drop the file from the queue
+
+Show in Finder lives in this menu now, so there's no separate "File" column taking up space in the table.
+
+![Right-click menu showing Show in Finder, Priority, and Remove options in Picmal](/images/docs/priority_right_click.png)
+
+## File priority
+
+Give an urgent file a head start. Right-click it and pick **High**, **Normal**, or **Low** priority. High-priority files jump to the front and get processed first — even mid-batch, so a file you bump up while a large queue is already running will be picked up next rather than waiting for everything ahead of it.
+
+## Pause and resume
+
+Click **Pause** to halt the batch, and **Resume** to pick up where you left off. Pause stops files that are mid-conversion too, not just the ones still waiting — so it takes effect immediately rather than finishing the current file first.
+
+![Pause and Cancel controls while a batch is compressing in Picmal](/images/docs/pause_mode.png)
+
+## Cancel
+
+Click **Cancel** to stop the batch. Picmal stops quickly and tidies up after itself: any file that was interrupted returns to **Waiting** instead of looking stuck, so you can restart the batch cleanly.
+
+## Watching progress
+
+While a batch runs, the file list scrolls smoothly and each file shows its own progress. The "X of Y files" counter at the bottom tracks the whole batch and updates all the way to the total. For audio and video, Picmal also shows the conversion speed and an estimated time remaining.

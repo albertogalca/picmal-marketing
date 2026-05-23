@@ -13,6 +13,11 @@ description: Audio and video conversion settings in Picmal — codecs, bitrates,
 | MP3   | Lossy    | Legacy compatibility                           |
 | Opus  | Lossy    | Speech, podcasts, low-bitrate audio            |
 | FLAC  | Lossless | Archival, music production                     |
+| ALAC  | Lossless | Apple Lossless — imports straight into Apple Music |
+
+### ALAC (Apple Lossless)
+
+Pick **ALAC** as the output format to get a lossless `.m4a` from FLAC, WAV, or AIFF — the format Apple Music expects for lossless libraries. ALAC conversions are bit-for-bit lossless; they preserve every sample of the source.
 
 ### Bitrate modes
 
@@ -103,6 +108,12 @@ Drop the frame rate (say 60 fps → 30 fps) to squeeze the file down further. Gr
 You can swap the container format while you compress. Take a MOV and come out the other side with MP4, MKV, WebM or AVI. Picmal handles codec compatibility for you; if the codec you picked won't fit in the container you chose, it quietly picks one that will.
 
 Set the output format in the video compression settings. Leave it alone if you want to keep the original container.
+
+### Estimated size
+
+Before you run a video compression, Picmal shows an estimate of the output size based on your current codec, CRF, and frame-rate settings — so you know roughly how much space you'll save without having to encode first. Change a setting and the estimate updates.
+
+![Estimated saving shown in the Saving column before compressing a video in Picmal](/images/docs/size_estimate.png)
 
 ### Video presets
 

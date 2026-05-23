@@ -1,0 +1,35 @@
+---
+version: "1.5.9"
+title: "Video size estimates, file priority, and pause/resume"
+pubDate: 2026-05-22
+---
+
+See an estimate of a video's compressed size before you run it, so you know roughly how much space you'll save.
+
+![Estimated saving shown before compressing a video in Picmal](/images/docs/size_estimate.png)
+
+Set a priority on any file. Right-click and pick High, Normal or Low, and high-priority files get processed first, even mid-batch.
+
+![Right-click menu showing Show in Finder, Priority, and Remove options in Picmal](/images/docs/priority_right_click.png)
+
+Pause and resume a running batch. Pause now stops files mid-conversion too, not just the ones still waiting.
+
+![Pause and Cancel controls while a batch is compressing in Picmal](/images/docs/pause_mode.png)
+
+Right-click any file to show it in Finder, set its priority, or remove it from the list. The old "File" column is gone, since Show in Finder now lives in the menu.
+
+ALAC (Apple Lossless) conversions are now truly lossless. Converting FLAC to ALAC used to produce a smaller, lossy AAC file by mistake.
+
+Fixed Adobe RGB conversions failing on macOS 26 with an "UnrecognizedColorspace" error. Picmal now resolves ICC profiles across macOS versions and skips color conversion cleanly when a profile is genuinely missing, instead of failing the whole batch.
+
+Old FLV videos with mono Speex audio now convert instead of failing at the end with an encoder error.
+
+Big batches no longer stall on the last file or two. If an image encoder gets stuck, Picmal kills it and retries within about 15 seconds.
+
+The file list scrolls smoothly while processing, and the "X of Y files compressed" count no longer freezes just short of the total.
+
+PDF compression never hands you a file bigger than the original. If it wouldn't save space, Picmal keeps your original.
+
+Cancelling a batch now stops quickly and tidies up, so interrupted files return to "Waiting" instead of looking stuck.
+
+Other smaller fixes and improvements.

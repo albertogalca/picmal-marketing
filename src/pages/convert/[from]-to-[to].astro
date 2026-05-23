@@ -15,6 +15,7 @@ import {
   conversions,
   formats,
   getRelatedConversions,
+  isConversionIndexed,
   type FileSizeExample,
   type UseCase,
 } from "../../data/conversions";
@@ -77,6 +78,9 @@ const title =
   conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac`;
 const description = conversion.metaDescription;
 
+// Low-demand templated pairs are de-indexed to concentrate site quality on winners.
+const noindex = !isConversionIndexed(conversion.slug);
+
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -117,7 +121,7 @@ const faqSchema = {
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} noindex={noindex} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -238,7 +242,7 @@ const faqSchema = {
             conversion.fileSizeExamples.length > 0 && (
               <section class="mb-16 sm:mb-20">
                 <H2 class="mb-8 text-center">
-                  {from.name} vs {to.name} File Sizes
+                  {from.name} vs {to.name} file sizes
                 </H2>
                 <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
                   <table class="w-full">
@@ -449,7 +453,7 @@ const faqSchema = {
 
         <!-- FAQ -->
         <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
+          <H2 class="mb-8 text-center">Frequently asked questions</H2>
           <div
             class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
           >
@@ -461,7 +465,7 @@ const faqSchema = {
         {
           (from.standardBody || to.standardBody) && (
             <section class="mb-16 sm:mb-20">
-              <H2 class="mb-8 text-center">Format Standards & Sources</H2>
+              <H2 class="mb-8 text-center">Format standards & sources</H2>
               <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
                 <ul class="space-y-3 text-sm text-text-secondary">
                   {from.standardBody && (
@@ -551,7 +555,7 @@ const faqSchema = {
 
         <!-- Related Conversions -->
         <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Related Conversions</H2>
+          <H2 class="mb-8 text-center">Related conversions</H2>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
             {
               related.map((r) => (

@@ -6,6 +6,14 @@ import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import starlightThemeBlack from "starlight-theme-black";
+import { conversions, isConversionIndexed } from "./src/data/conversions.ts";
+
+// Convert pages that are noindexed should also be kept out of the sitemap.
+const noindexConvertUrls = new Set(
+  conversions
+    .filter((c) => !isConversionIndexed(c.slug))
+    .map((c) => `https://picmal.app/convert/${c.slug}`),
+);
 
 export default defineConfig({
   site: "https://picmal.app",
@@ -95,7 +103,9 @@ export default defineConfig({
       ],
     }),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !noindexConvertUrls.has(page),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],

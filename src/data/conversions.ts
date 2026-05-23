@@ -11,6 +11,10 @@ export interface FormatInfo {
   bestFor: string;
   standardBody?: string;
   sourceUrl?: string;
+  // Camera RAW formats: input-only (Picmal decodes them but cannot output RAW).
+  raw?: boolean;
+  brand?: string;
+  notableCameras?: string;
 }
 
 export interface FileSizeExample {
@@ -199,6 +203,174 @@ export const formats: Record<string, FormatInfo> = {
     bestFor: "Raw photo archival and professional editing",
     standardBody: "Adobe DNG Specification 1.7",
     sourceUrl: "https://helpx.adobe.com/camera-raw/digital-negative.html",
+  },
+  cr2: {
+    name: "CR2",
+    extension: "cr2",
+    fullName: "Canon Raw Version 2",
+    description:
+      "Canon's raw image format used by EOS DSLRs, storing unprocessed 14-bit sensor data in a TIFF-based container for maximum editing latitude.",
+    pros: [
+      "Full sensor data for maximum editing flexibility",
+      "14-bit color depth preserves highlight and shadow detail",
+      "Lossless capture straight from the camera",
+    ],
+    cons: [
+      "Very large files (20–40 MB each)",
+      "Not viewable in most apps or browsers without conversion",
+      "Can't be uploaded, emailed, or shared directly",
+    ],
+    bestFor: "Editing and archiving Canon DSLR captures",
+    raw: true,
+    brand: "Canon",
+    notableCameras: "EOS 5D Mark III/IV, 7D, and Rebel series",
+  },
+  cr3: {
+    name: "CR3",
+    extension: "cr3",
+    fullName: "Canon Raw Version 3",
+    description:
+      "Canon's newer raw format introduced with its mirrorless EOS R and recent EOS cameras, using the CR3 container with improved compression options.",
+    pros: [
+      "Full raw sensor data with modern compression",
+      "Smaller than CR2 at the same quality",
+      "Supports Canon's C-RAW lossy mode",
+    ],
+    cons: [
+      "Large files unreadable in most apps",
+      "Newer format with narrower software support",
+      "Not suitable for sharing or web use",
+    ],
+    bestFor: "Editing and archiving Canon mirrorless captures",
+    raw: true,
+    brand: "Canon",
+    notableCameras: "EOS R5, R6, and the RF mirrorless lineup",
+  },
+  nef: {
+    name: "NEF",
+    extension: "nef",
+    fullName: "Nikon Electronic Format",
+    description:
+      "Nikon's raw image format, storing the full unprocessed output of the camera sensor along with shooting metadata for maximum post-processing control.",
+    pros: [
+      "Complete sensor data for deep edits",
+      "12- or 14-bit color depth",
+      "Preserves Nikon Picture Control metadata",
+    ],
+    cons: [
+      "Large files that fill cards quickly",
+      "Requires conversion to view or share",
+      "Not supported by most websites or apps",
+    ],
+    bestFor: "Editing and archiving Nikon captures",
+    raw: true,
+    brand: "Nikon",
+    notableCameras: "D850, Z6, and Z9",
+  },
+  arw: {
+    name: "ARW",
+    extension: "arw",
+    fullName: "Sony Alpha Raw",
+    description:
+      "Sony's raw format used across its Alpha mirrorless and Cyber-shot cameras, capturing unprocessed sensor data for maximum dynamic range and editing latitude.",
+    pros: [
+      "Full 14-bit raw sensor data",
+      "Excellent dynamic range for recovery",
+      "Preserves all in-camera shooting settings",
+    ],
+    cons: [
+      "Large files unreadable without conversion",
+      "Not accepted by websites, email, or most apps",
+      "Multiple ARW versions complicate compatibility",
+    ],
+    bestFor: "Editing and archiving Sony Alpha captures",
+    raw: true,
+    brand: "Sony",
+    notableCameras: "α7 IV, α7R V, and α6700",
+  },
+  raf: {
+    name: "RAF",
+    extension: "raf",
+    fullName: "Fujifilm Raw",
+    description:
+      "Fujifilm's raw format, storing the unique output of its X-Trans and Bayer sensors with full color and tonal data for editing.",
+    pros: [
+      "Captures Fujifilm's distinctive color science",
+      "Full sensor data for maximum latitude",
+      "Preserves film simulation metadata",
+    ],
+    cons: [
+      "X-Trans demosaicing needs capable software",
+      "Large files unsuitable for sharing",
+      "Limited app support without conversion",
+    ],
+    bestFor: "Editing and archiving Fujifilm captures",
+    raw: true,
+    brand: "Fujifilm",
+    notableCameras: "X-T5, X100VI, and the GFX series",
+  },
+  rw2: {
+    name: "RW2",
+    extension: "rw2",
+    fullName: "Panasonic Raw",
+    description:
+      "Panasonic's raw format used by Lumix cameras, storing unprocessed sensor data for full editing control in post-production.",
+    pros: [
+      "Full raw sensor data",
+      "Strong detail for Micro Four Thirds and full-frame Lumix",
+      "Preserves in-camera profiles",
+    ],
+    cons: [
+      "Large files not viewable in most apps",
+      "Cannot be shared or uploaded directly",
+      "Narrower software support than JPG",
+    ],
+    bestFor: "Editing and archiving Panasonic Lumix captures",
+    raw: true,
+    brand: "Panasonic",
+    notableCameras: "Lumix S5 II and GH6",
+  },
+  orf: {
+    name: "ORF",
+    extension: "orf",
+    fullName: "Olympus Raw Format",
+    description:
+      "The raw format used by Olympus and OM System cameras, storing unprocessed sensor data for maximum editing flexibility.",
+    pros: [
+      "Full raw data from Micro Four Thirds sensors",
+      "Preserves Olympus color and art-filter metadata",
+      "Lossless in-camera capture",
+    ],
+    cons: [
+      "Large files relative to JPG",
+      "Requires conversion to view or share",
+      "Limited support outside dedicated editors",
+    ],
+    bestFor: "Editing and archiving Olympus / OM System captures",
+    raw: true,
+    brand: "Olympus",
+    notableCameras: "OM-1 and E-M1 series",
+  },
+  pef: {
+    name: "PEF",
+    extension: "pef",
+    fullName: "Pentax Electronic Format",
+    description:
+      "Pentax's raw image format, storing the full unprocessed sensor output from Pentax DSLRs for maximum post-processing latitude.",
+    pros: [
+      "Complete raw sensor data",
+      "Preserves Pentax custom image settings",
+      "Lossless capture quality",
+    ],
+    cons: [
+      "Large files not suitable for sharing",
+      "Limited software support without conversion",
+      "Not viewable on websites or most apps",
+    ],
+    bestFor: "Editing and archiving Pentax captures",
+    raw: true,
+    brand: "Pentax",
+    notableCameras: "K-3 III and K-1 II",
   },
 };
 
@@ -428,6 +600,101 @@ function generateMetaDescription(from: FormatInfo, to: FormatInfo): string {
     descriptions[from.extension]?.[to.extension] ||
     `Convert ${from.name} to ${to.name} on Mac — fast batch conversion, offline processing, no quality loss. One-time purchase, no subscription.`
   );
+}
+
+// ---- Camera RAW → JPG content (input-only; Picmal decodes RAW, never outputs it) ----
+
+function rawMetaDescription(from: FormatInfo): string {
+  return `Convert ${from.name} (${from.brand} RAW) to JPG on Mac. Picmal decodes raw sensor data with camera white balance and batch-processes entire shoots offline — no Lightroom subscription, one-time purchase.`;
+}
+
+function rawWhyConvert(from: FormatInfo): string {
+  return `${from.name} is ${from.brand}'s camera raw format — large files packed with unprocessed sensor data from cameras like the ${from.notableCameras}. Most apps, websites, and clients can't open them. Converting ${from.name} to JPG turns your raw captures into shareable, universally compatible photos. Picmal decodes the raw data with proper white balance, gamma, and demosaicing right on your Mac — clean JPGs from an entire shoot without opening Lightroom or paying a monthly subscription.`;
+}
+
+function rawBenefits(from: FormatInfo): string[] {
+  return [
+    `Decode ${from.brand} ${from.name} files with correct camera white balance and color`,
+    "Batch convert an entire shoot — hundreds of raw files to JPG in one pass",
+    "Control JPG quality to balance file size against detail",
+    "No Lightroom, no Photoshop, no subscription — a one-time-purchase Mac app",
+    "Everything runs locally on your Mac — your raw files never leave your device",
+    "Drag and drop straight from your memory card or Finder",
+  ];
+}
+
+function rawFaqs(from: FormatInfo): { question: string; answer: string }[] {
+  return [
+    {
+      question: `How do I convert ${from.name} to JPG on Mac?`,
+      answer: `Open Picmal, drag your ${from.name} files (or a whole folder from your memory card) into the window, select JPG as the output, set your quality, and click Convert. Picmal decodes the ${from.brand} raw data locally on your Mac.`,
+    },
+    {
+      question: `Will the colors look right when converting ${from.name} to JPG?`,
+      answer: `Yes. Picmal reads the camera white balance embedded in your ${from.name} files and applies proper demosaicing and gamma, so converted JPGs reflect what your ${from.brand} camera intended — not the flat, washed-out look of an unprocessed raw preview.`,
+    },
+    {
+      question: `Does converting ${from.name} to JPG lose quality?`,
+      answer: `Raw-to-JPG is a one-way render: JPG is an 8-bit compressed format, so you give up the raw file's editing latitude. At 90–100% quality the visible result is excellent — but keep your ${from.name} originals if you plan to edit further.`,
+    },
+    {
+      question: `Can I batch convert a whole ${from.brand} shoot at once?`,
+      answer: `Yes. Drag hundreds of ${from.name} files or an entire folder into Picmal and convert them all to JPG in a single pass — ideal for culling and delivering shoots quickly.`,
+    },
+    {
+      question: `Do I need Lightroom or Photoshop to open ${from.name} files?`,
+      answer: `No. Picmal decodes ${from.name} raw files directly on your Mac. It's a one-time purchase of $15.99 — no Adobe subscription required just to get shareable JPGs.`,
+    },
+    {
+      question: `Can Picmal convert JPG back to ${from.name}?`,
+      answer: `No. ${from.name} is a raw capture format that only your camera's sensor produces — no software can rebuild a true raw file from a JPG. Picmal converts ${from.name} to standard formats like JPG, PNG, and TIFF, not the other way around.`,
+    },
+  ];
+}
+
+function rawFileSizeExamples(from: FormatInfo): FileSizeExample[] {
+  return [
+    {
+      label: `${from.brand} raw photo (24MP)`,
+      fromSize: "28 MB",
+      toSize: "6.5 MB",
+      savings: "95% quality",
+    },
+    {
+      label: `${from.brand} raw photo (45MP)`,
+      fromSize: "55 MB",
+      toSize: "12 MB",
+      savings: "95% quality",
+    },
+    {
+      label: "Quick web/email export",
+      fromSize: "28 MB",
+      toSize: "2.1 MB",
+      savings: "85% quality",
+    },
+  ];
+}
+
+function rawUseCases(from: FormatInfo): UseCase[] {
+  return [
+    {
+      title: "Delivering JPGs to clients",
+      description: `Shoot ${from.name} raw, then batch-export web- and print-ready JPGs for clients without round-tripping through Lightroom.`,
+    },
+    {
+      title: "Culling and sharing a shoot fast",
+      description: `Convert a full card of ${from.brand} raw files to JPG so you can quickly review, share, or upload them anywhere.`,
+    },
+    {
+      title: "Escaping the Lightroom subscription",
+      description:
+        "If you just need shareable JPGs from your raw files, a one-time-purchase converter beats paying monthly for Adobe.",
+    },
+    {
+      title: "Archiving lightweight copies",
+      description: `Keep your ${from.name} originals for editing and generate small JPG copies for everyday browsing and backup.`,
+    },
+  ];
 }
 
 // Manual overrides for priority conversion pages with enriched, unique content
@@ -1738,37 +2005,657 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       },
     ],
   },
+  "jpg-to-heic": {
+    metaTitle: "Convert JPG to HEIC on Mac — Save 50% Storage",
+    whyConvert:
+      "A large JPG photo library quietly eats gigabytes of disk space. HEIC — Apple's High Efficiency Image format — stores the same photo at roughly half the size with no visible quality loss. Converting JPG to HEIC on your Mac reclaims storage across thousands of photos while keeping everything native to Photos, Preview, and the rest of the Apple ecosystem.",
+    benefits: [
+      "Cut photo storage roughly in half with no visible quality loss",
+      "Native to Apple Photos, Preview, and iCloud — no compatibility friction on Mac or iPhone",
+      "Batch convert an entire JPG library in a single pass",
+      "Preserves EXIF metadata: date, GPS location, and camera settings",
+      "All processing happens locally on your Mac — nothing uploaded",
+      "Drag and drop folders straight from Finder",
+    ],
+    faqs: [
+      {
+        question: "How do I convert JPG to HEIC on Mac?",
+        answer:
+          "Open Picmal, drag your JPG files or folders into the window, select HEIC as the output format, adjust quality if needed, and click Convert. Everything is processed locally on your Mac.",
+      },
+      {
+        question: "How much storage does converting JPG to HEIC save?",
+        answer:
+          "Typically 40–50%. A 3.5MB JPG photo usually becomes about 1.8MB as HEIC at equivalent quality. Across a library of thousands of photos, that adds up to gigabytes reclaimed.",
+      },
+      {
+        question: "Does converting JPG to HEIC lose quality?",
+        answer:
+          "HEIC uses more efficient compression than JPG, so at matched quality settings the difference is not visible to the eye. Note that converting an already-compressed JPG won't recover detail JPG previously discarded — but it won't add visible loss either.",
+      },
+      {
+        question: "Will HEIC files open everywhere?",
+        answer:
+          "HEIC opens natively on macOS (High Sierra and later), iOS, and iPadOS. Windows needs a free codec, and some non-Apple apps don't support it — so keep HEIC for storage on Apple devices and convert to JPG when sharing externally.",
+      },
+      {
+        question: "Can I batch convert my whole photo library to HEIC?",
+        answer:
+          "Yes. Drag entire folders into Picmal and convert thousands of JPG files to HEIC in one batch — the fastest way to shrink a large library on your Mac.",
+      },
+      {
+        question: "Is Picmal free to convert JPG to HEIC?",
+        answer:
+          "Picmal is a one-time purchase of $15.99 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "iPhone photo saved as JPG (12MP)",
+        fromSize: "3.5 MB",
+        toSize: "1.8 MB",
+        savings: "49% smaller",
+      },
+      {
+        label: "DSLR JPG export (24MP)",
+        fromSize: "8.2 MB",
+        toSize: "4.1 MB",
+        savings: "50% smaller",
+      },
+      {
+        label: "Scanned/edited JPG",
+        fromSize: "5.0 MB",
+        toSize: "2.6 MB",
+        savings: "48% smaller",
+      },
+    ],
+    conversionSpeed: "1,000 JPG photos in ~3 minutes on Apple Silicon",
+    useCases: [
+      {
+        title: "Reclaiming storage on your Mac",
+        description:
+          "A large JPG library can take twice the disk space it needs. Batch convert to HEIC to free up gigabytes without deleting a single photo.",
+      },
+      {
+        title: "Standardizing on the Apple ecosystem",
+        description:
+          "If your photos live in Apple Photos and iCloud, HEIC is the efficient native format. Convert older JPG imports to match the rest of your library.",
+      },
+      {
+        title: "Fitting more photos on iCloud",
+        description:
+          "Smaller files mean more photos within your iCloud storage tier. Convert JPG to HEIC before syncing to stretch your plan further.",
+      },
+      {
+        title: "Archiving efficiently",
+        description:
+          "For long-term storage on a Mac or NAS, HEIC keeps quality while halving the footprint compared to JPG.",
+      },
+    ],
+  },
+  "webp-to-png": {
+    metaTitle: "Convert WebP to PNG on Mac — Lossless & Editable",
+    whyConvert:
+      "WebP is built for the web, but many desktop editors, print tools, and older apps still won't open it — and when you need guaranteed lossless quality or a clean alpha channel for editing, PNG is the safe choice. Converting WebP to PNG gives you a universally editable, lossless file with transparency intact.",
+    benefits: [
+      "Lossless PNG output — no further compression artifacts introduced",
+      "Preserves transparency (alpha channel) from WebP",
+      "Opens in every editor: Photoshop, Figma, Affinity, Preview, and more",
+      "Batch convert entire folders of WebP files at once",
+      "Runs entirely on your Mac — no uploading to online converters",
+      "Drag and drop from Finder with zero configuration",
+    ],
+    faqs: [
+      {
+        question: "How do I convert WebP to PNG on Mac?",
+        answer:
+          "Open Picmal, drag your WebP files into the window, select PNG as the output format, and click Convert. The output is lossless and preserves any transparency.",
+      },
+      {
+        question: "Does converting WebP to PNG improve quality?",
+        answer:
+          "It won't recover detail a lossy WebP already discarded, but PNG is lossless — so from that point on there's no further quality degradation, which matters when you'll edit or re-export the image.",
+      },
+      {
+        question: "Is transparency preserved when converting WebP to PNG?",
+        answer:
+          "Yes. Both WebP and PNG support alpha-channel transparency, so transparent areas in your WebP files carry over cleanly to PNG.",
+      },
+      {
+        question: "Will PNG files be larger than the original WebP?",
+        answer:
+          "Usually yes. PNG is lossless while WebP is highly compressed, so a 200KB WebP might become 600KB–1MB as PNG. The tradeoff is universal editability and zero further loss.",
+      },
+      {
+        question: "Why convert WebP to PNG instead of JPG?",
+        answer:
+          "Choose PNG when you need lossless quality, transparency, or sharp edges for graphics and screenshots. Choose JPG when you want the smallest file for sharing photos and don't need transparency.",
+      },
+      {
+        question: "Is Picmal free to convert WebP to PNG?",
+        answer:
+          "Picmal is a one-time purchase of $15.99 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "Web graphic with transparency",
+        fromSize: "180 KB",
+        toSize: "640 KB",
+        savings: "Larger — lossless & editable",
+      },
+      {
+        label: "Downloaded WebP photo (1920×1080)",
+        fromSize: "320 KB",
+        toSize: "1.4 MB",
+        savings: "Larger — no further loss",
+      },
+      {
+        label: "Icon / logo (transparent)",
+        fromSize: "28 KB",
+        toSize: "74 KB",
+        savings: "Larger — transparency intact",
+      },
+    ],
+    conversionSpeed: "500 WebP images in ~1 minute on Apple Silicon",
+    useCases: [
+      {
+        title: "Editing web images in Photoshop or Figma",
+        description:
+          "Many design tools won't import WebP. Convert to PNG first so you can edit downloaded or exported web images without compatibility errors.",
+      },
+      {
+        title: "Preparing images for print",
+        description:
+          "Print workflows expect PNG or TIFF, not WebP. Convert WebP to PNG to hand off lossless files to a print service.",
+      },
+      {
+        title: "Keeping transparency for layered work",
+        description:
+          "When you need a clean alpha channel for compositing, PNG is the reliable, widely supported choice.",
+      },
+      {
+        title: "Archiving web assets losslessly",
+        description:
+          "For assets you'll re-edit later, PNG avoids the generation loss that comes from repeatedly re-saving lossy WebP.",
+      },
+    ],
+  },
+  "avif-to-png": {
+    metaTitle: "Convert AVIF to PNG on Mac — Lossless & Editable",
+    whyConvert:
+      "AVIF delivers tiny, high-quality web images, but support outside browsers is still catching up — many editors, office apps, and print tools can't open it. Converting AVIF to PNG gives you a lossless, universally editable file with transparency preserved, ready for any workflow.",
+    benefits: [
+      "Lossless PNG output you can edit anywhere",
+      "Preserves transparency (alpha channel) from AVIF",
+      "Opens in apps that can't read AVIF — Photoshop, Office, Preview, and more",
+      "Batch convert folders of AVIF files in one pass",
+      "100% local processing — your images never leave your Mac",
+      "Drag and drop from Finder, no setup required",
+    ],
+    faqs: [
+      {
+        question: "How do I convert AVIF to PNG on Mac?",
+        answer:
+          "Open Picmal, drag your AVIF files into the window, select PNG as the output format, and click Convert. The PNG output is lossless and keeps any transparency.",
+      },
+      {
+        question: "Why can't I open AVIF files in some apps?",
+        answer:
+          "AVIF is a newer format. Modern browsers support it, but many desktop editors, Office apps, and older software don't yet. PNG opens virtually everywhere, which is why converting helps.",
+      },
+      {
+        question: "Is transparency preserved converting AVIF to PNG?",
+        answer:
+          "Yes. AVIF and PNG both support alpha transparency, so transparent regions carry over without a white background being introduced.",
+      },
+      {
+        question: "Will PNG files be much larger than AVIF?",
+        answer:
+          "Yes — often several times larger, because AVIF is one of the most efficient formats and PNG is lossless. You trade file size for universal compatibility and lossless editing.",
+      },
+      {
+        question: "Should I convert AVIF to PNG or JPG?",
+        answer:
+          "Use PNG for lossless quality, transparency, or images you'll edit. Use JPG when you just need a small, shareable photo and don't need transparency.",
+      },
+      {
+        question: "Is Picmal free to convert AVIF to PNG?",
+        answer:
+          "Picmal is a one-time purchase of $15.99 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "AVIF web photo (1920×1080)",
+        fromSize: "140 KB",
+        toSize: "1.5 MB",
+        savings: "Larger — lossless & editable",
+      },
+      {
+        label: "AVIF graphic with transparency",
+        fromSize: "60 KB",
+        toSize: "520 KB",
+        savings: "Larger — transparency intact",
+      },
+      {
+        label: "AVIF illustration",
+        fromSize: "95 KB",
+        toSize: "880 KB",
+        savings: "Larger — no further loss",
+      },
+    ],
+    conversionSpeed: "500 AVIF images in ~2 minutes on Apple Silicon",
+    useCases: [
+      {
+        title: "Opening AVIF downloads in older software",
+        description:
+          "Saved an AVIF image and your editor won't open it? Convert to PNG to work with it in any app.",
+      },
+      {
+        title: "Using web images in documents and slides",
+        description:
+          "PowerPoint, Keynote, and Word don't reliably support AVIF. Convert to PNG to embed images safely.",
+      },
+      {
+        title: "Editing with transparency intact",
+        description:
+          "When you need a clean alpha channel for compositing or design, PNG is the dependable, widely supported format.",
+      },
+      {
+        title: "Lossless archival of web assets",
+        description:
+          "For assets you may re-edit, PNG preserves quality without the loss of repeatedly re-saving a lossy format.",
+      },
+    ],
+  },
+  "gif-to-jpg": {
+    metaTitle: "Convert GIF to JPG on Mac — Full-Color Photos",
+    whyConvert:
+      "GIF is capped at 256 colors per frame, which makes photographs look banded and blotchy — and ironically inflates the file size of detailed images. Converting a GIF (or a single frame of an animated one) to JPG gives you full-color, smaller, universally compatible images that look right everywhere.",
+    benefits: [
+      "Escape GIF's 256-color limit for smooth, full-color images",
+      "Smaller files than GIF for photographic content",
+      "Universal compatibility — JPG opens on every device and app",
+      "Batch convert many GIFs to JPG at once",
+      "Adjustable quality slider to balance size and detail",
+      "All processing happens locally on your Mac",
+    ],
+    faqs: [
+      {
+        question: "How do I convert GIF to JPG on Mac?",
+        answer:
+          "Open Picmal, drag your GIF files into the window, select JPG as the output format, set your quality, and click Convert. Picmal processes everything locally.",
+      },
+      {
+        question: "What happens to an animated GIF when I convert it to JPG?",
+        answer:
+          "JPG doesn't support animation, so Picmal exports a still image from the GIF's first frame. If you need to keep the animation, convert to WebP instead.",
+      },
+      {
+        question: "Does converting GIF to JPG improve quality?",
+        answer:
+          "It can look better for photographic content because JPG supports millions of colors versus GIF's 256 — removing visible banding. It won't add detail that was never captured, but it avoids GIF's color limitation.",
+      },
+      {
+        question: "Will the JPG be smaller than the GIF?",
+        answer:
+          "For detailed or photographic images, usually yes — JPG compresses photos far more efficiently than GIF. For simple flat graphics, the difference is smaller.",
+      },
+      {
+        question: "Can I batch convert many GIFs to JPG?",
+        answer:
+          "Yes. Drag a folder of GIF files into Picmal and convert them all to JPG in one pass.",
+      },
+      {
+        question: "Is Picmal free to convert GIF to JPG?",
+        answer:
+          "Picmal is a one-time purchase of $15.99 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "Photographic GIF (banded)",
+        fromSize: "1.8 MB",
+        toSize: "320 KB",
+        savings: "82% smaller",
+      },
+      {
+        label: "Screenshot saved as GIF",
+        fromSize: "640 KB",
+        toSize: "180 KB",
+        savings: "72% smaller",
+      },
+      {
+        label: "Flat graphic",
+        fromSize: "120 KB",
+        toSize: "70 KB",
+        savings: "42% smaller",
+      },
+    ],
+    conversionSpeed: "500 GIFs in ~1 minute on Apple Silicon",
+    useCases: [
+      {
+        title: "Fixing banded photos saved as GIF",
+        description:
+          "Photos exported as GIF look blotchy from the 256-color limit. Convert to JPG to restore smooth full-color gradients.",
+      },
+      {
+        title: "Shrinking detailed GIF images",
+        description:
+          "Detailed GIFs are often larger than they need to be. Convert to JPG to dramatically reduce file size for sharing.",
+      },
+      {
+        title: "Grabbing a still from an animation",
+        description:
+          "Need a single frame from an animated GIF as a shareable image? Convert to JPG to capture it as a still.",
+      },
+      {
+        title: "Universal sharing",
+        description:
+          "When you need an image that opens anywhere with no surprises, JPG is the safe, universal choice.",
+      },
+    ],
+  },
+  "dng-to-jpg": {
+    metaTitle: "Convert DNG to JPG on Mac — RAW to Shareable",
+    whyConvert:
+      "DNG is Adobe's open raw negative — large files full of unprocessed sensor data that most apps, websites, and clients can't open. Converting DNG to JPG turns your raw captures into shareable, universally compatible photos. Picmal decodes the raw data with proper white balance and demosaicing on your Mac, so you get clean JPGs from a whole shoot without opening Lightroom or paying a subscription.",
+    benefits: [
+      "Decode DNG raw data with correct camera white balance and color",
+      "Batch convert an entire shoot — hundreds of DNG files to JPG at once",
+      "Control JPG quality to balance file size against detail",
+      "No Lightroom, no Photoshop, no subscription — a one-time-purchase Mac app",
+      "Everything runs locally on your Mac — your raw files never leave your device",
+      "Drag and drop straight from your memory card or Finder",
+    ],
+    faqs: [
+      {
+        question: "How do I convert DNG to JPG on Mac?",
+        answer:
+          "Open Picmal, drag your DNG files or a whole folder into the window, select JPG as the output, set your quality, and click Convert. Picmal decodes the raw data locally on your Mac.",
+      },
+      {
+        question: "Will the colors look right when converting DNG to JPG?",
+        answer:
+          "Yes. Picmal reads the white balance embedded in your DNG files and applies proper demosaicing and gamma, so the JPGs look as intended — not flat like an unprocessed raw preview.",
+      },
+      {
+        question: "Does converting DNG to JPG lose quality?",
+        answer:
+          "Raw-to-JPG is a one-way render: JPG is 8-bit and compressed, so you give up the raw file's editing latitude. At 90–100% quality the result looks excellent — keep your DNG originals if you'll edit further.",
+      },
+      {
+        question: "Can I batch convert a whole shoot of DNG files?",
+        answer:
+          "Yes. Drag hundreds of DNG files or an entire folder into Picmal and convert them all to JPG in one pass — ideal for culling and delivering shoots.",
+      },
+      {
+        question: "Do I need Lightroom to convert DNG to JPG?",
+        answer:
+          "No. Picmal decodes DNG directly on your Mac. It's a one-time purchase of $15.99 — no Adobe subscription required just to get shareable JPGs.",
+      },
+      {
+        question: "Can Picmal convert JPG back to DNG?",
+        answer:
+          "No. DNG is a raw format — no software can rebuild true raw sensor data from a JPG. Picmal converts DNG to standard formats like JPG, PNG, and TIFF, not the other way around.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "DNG raw photo (24MP)",
+        fromSize: "25 MB",
+        toSize: "5.8 MB",
+        savings: "95% quality",
+      },
+      {
+        label: "DNG raw photo (45MP)",
+        fromSize: "48 MB",
+        toSize: "11 MB",
+        savings: "95% quality",
+      },
+      {
+        label: "Quick web/email export",
+        fromSize: "25 MB",
+        toSize: "1.9 MB",
+        savings: "85% quality",
+      },
+    ],
+    conversionSpeed: "200 DNG files in ~3 minutes on Apple Silicon",
+    useCases: [
+      {
+        title: "Delivering JPGs to clients",
+        description:
+          "Shoot raw to DNG, then batch-export web- and print-ready JPGs for clients without round-tripping through Lightroom.",
+      },
+      {
+        title: "Culling and sharing a shoot fast",
+        description:
+          "Convert a full card of DNG files to JPG so you can quickly review, share, or upload them anywhere.",
+      },
+      {
+        title: "Escaping the Lightroom subscription",
+        description:
+          "If you just need shareable JPGs from your raw files, a one-time-purchase converter beats paying monthly for Adobe.",
+      },
+      {
+        title: "Archiving lightweight copies",
+        description:
+          "Keep your DNG originals for editing and generate small JPG copies for everyday browsing and backup.",
+      },
+    ],
+  },
+  "dng-to-png": {
+    metaTitle: "Convert DNG to PNG on Mac — Lossless RAW Export",
+    whyConvert:
+      "When you need a lossless, editable image from a raw DNG — for retouching, compositing, or print — PNG preserves every pixel after the raw is decoded. Picmal demosaics the DNG sensor data with proper white balance and exports a lossless PNG, all locally on your Mac with no subscription.",
+    benefits: [
+      "Lossless PNG output decoded from raw DNG sensor data",
+      "Correct camera white balance and demosaicing applied",
+      "Opens in every editor for retouching and compositing",
+      "Batch convert folders of DNG files in one pass",
+      "100% local processing — raw files never leave your Mac",
+      "No Lightroom or Adobe subscription required",
+    ],
+    faqs: [
+      {
+        question: "How do I convert DNG to PNG on Mac?",
+        answer:
+          "Open Picmal, drag your DNG files into the window, select PNG as the output, and click Convert. Picmal decodes the raw data and exports a lossless PNG locally.",
+      },
+      {
+        question: "Why convert DNG to PNG instead of JPG?",
+        answer:
+          "Choose PNG when you need lossless quality for editing, compositing, or print, or when you want a clean image with no JPG compression artifacts. Choose JPG for small, shareable files.",
+      },
+      {
+        question: "Will the colors be correct?",
+        answer:
+          "Yes. Picmal applies the camera white balance and demosaicing stored in the DNG, so the PNG reflects the intended look rather than a flat raw preview.",
+      },
+      {
+        question: "Will PNG files be large?",
+        answer:
+          "Yes — PNG is lossless, so files from a high-resolution DNG can be sizable. The benefit is zero compression loss for further editing.",
+      },
+      {
+        question: "Can I batch convert DNG files to PNG?",
+        answer:
+          "Yes. Drag a folder of DNG files into Picmal and convert them all to lossless PNG in a single pass.",
+      },
+      {
+        question: "Can Picmal convert PNG back to DNG?",
+        answer:
+          "No. DNG is a raw format that can't be reconstructed from a processed PNG. Picmal converts DNG to standard formats like PNG, JPG, and TIFF, not the reverse.",
+      },
+    ],
+    fileSizeExamples: [
+      {
+        label: "DNG raw photo (24MP)",
+        fromSize: "25 MB",
+        toSize: "42 MB",
+        savings: "Larger — lossless",
+      },
+      {
+        label: "DNG raw photo (45MP)",
+        fromSize: "48 MB",
+        toSize: "78 MB",
+        savings: "Larger — lossless",
+      },
+      {
+        label: "Cropped export",
+        fromSize: "25 MB",
+        toSize: "12 MB",
+        savings: "Lossless, cropped",
+      },
+    ],
+    conversionSpeed: "150 DNG files in ~3 minutes on Apple Silicon",
+    useCases: [
+      {
+        title: "Lossless edits and retouching",
+        description:
+          "Export raw DNG captures to PNG when you need a pristine, lossless base for retouching in Photoshop or Affinity.",
+      },
+      {
+        title: "Compositing with transparency",
+        description:
+          "PNG's alpha support makes it ideal for cutouts and composites built from raw captures.",
+      },
+      {
+        title: "Print-quality output",
+        description:
+          "When a print workflow expects lossless input, PNG from your DNG preserves full quality.",
+      },
+      {
+        title: "Archiving a lossless master",
+        description:
+          "Keep a lossless PNG render alongside your DNG original for editing-ready copies that open anywhere.",
+      },
+    ],
+  },
 };
 
 // Generate all conversion pairs
 const formatKeys = Object.keys(formats);
 export const conversions: ConversionPair[] = [];
 
+// Camera RAW formats are input-only — Picmal decodes them but never outputs RAW.
+// Each gets a single -to-jpg page (the dominant search intent for raw conversion).
+export const RAW_INPUT_FORMATS = new Set<string>([
+  "cr2",
+  "cr3",
+  "nef",
+  "arw",
+  "raf",
+  "rw2",
+  "orf",
+  "pef",
+]);
+
 for (const fromKey of formatKeys) {
   for (const toKey of formatKeys) {
     if (fromKey === toKey) continue;
+    // Picmal cannot OUTPUT a RAW/DNG file — skip impossible target formats.
+    if (toKey === "dng" || RAW_INPUT_FORMATS.has(toKey)) continue;
+    // Camera RAW formats only generate a -to-jpg page.
+    if (RAW_INPUT_FORMATS.has(fromKey) && toKey !== "jpg") continue;
+
     const from = formats[fromKey];
     const to = formats[toKey];
     const slug = `${fromKey}-to-${toKey}`;
     const override = manualOverrides[slug];
-    conversions.push({
+    const isRaw = from.raw === true;
+
+    const entry: ConversionPair = {
       from: fromKey,
       to: toKey,
       slug,
-      ...(override?.metaTitle && { metaTitle: override.metaTitle }),
-      metaDescription: generateMetaDescription(from, to),
-      whyConvert: override?.whyConvert || generateWhyConvert(from, to),
-      benefits: override?.benefits || generateBenefits(from, to),
-      faqs: override?.faqs || generateFAQs(from, to),
-      ...(override?.fileSizeExamples && {
-        fileSizeExamples: override.fileSizeExamples,
-      }),
-      ...(override?.conversionSpeed && {
-        conversionSpeed: override.conversionSpeed,
-      }),
-      ...(override?.useCases && { useCases: override.useCases }),
-    });
+      metaDescription: isRaw
+        ? rawMetaDescription(from)
+        : generateMetaDescription(from, to),
+      whyConvert:
+        override?.whyConvert ||
+        (isRaw ? rawWhyConvert(from) : generateWhyConvert(from, to)),
+      benefits:
+        override?.benefits ||
+        (isRaw ? rawBenefits(from) : generateBenefits(from, to)),
+      faqs: override?.faqs || (isRaw ? rawFaqs(from) : generateFAQs(from, to)),
+    };
+
+    const metaTitle =
+      override?.metaTitle ||
+      (isRaw
+        ? `Convert ${from.name} to JPG on Mac — ${from.brand} RAW Converter`
+        : undefined);
+    if (metaTitle) entry.metaTitle = metaTitle;
+
+    const fileSizeExamples =
+      override?.fileSizeExamples ||
+      (isRaw ? rawFileSizeExamples(from) : undefined);
+    if (fileSizeExamples) entry.fileSizeExamples = fileSizeExamples;
+
+    const conversionSpeed =
+      override?.conversionSpeed ||
+      (isRaw
+        ? `200 ${from.brand} raw files in ~3 minutes on Apple Silicon`
+        : undefined);
+    if (conversionSpeed) entry.conversionSpeed = conversionSpeed;
+
+    const useCases =
+      override?.useCases || (isRaw ? rawUseCases(from) : undefined);
+    if (useCases) entry.useCases = useCases;
+
+    conversions.push(entry);
   }
+}
+
+// SEO allowlist: only these high-demand conversion pages are indexed.
+// Every other generated /convert page emits <meta robots="noindex"> and is
+// excluded from the sitemap, so the thin long-tail stops dragging site quality.
+// Edit this list to change which pages Google indexes. (*-to-dng pairs are not
+// generated at all — Picmal cannot output RAW.)
+export const INDEXED_CONVERSIONS = new Set<string>([
+  // iPhone / HEIC
+  "heic-to-jpg",
+  "heic-to-png",
+  "heic-to-webp",
+  // PNG <-> JPG
+  "png-to-jpg",
+  "jpg-to-png",
+  // WebP
+  "webp-to-jpg",
+  "jpg-to-webp",
+  "png-to-webp",
+  "webp-to-png",
+  // AVIF
+  "avif-to-jpg",
+  "jpg-to-avif",
+  "png-to-avif",
+  "avif-to-png",
+  // TIFF
+  "tiff-to-jpg",
+  // GIF
+  "gif-to-webp",
+  "webp-to-gif",
+  "gif-to-jpg",
+  // HEIC output (Apple storage)
+  "jpg-to-heic",
+  // RAW decode (photographers — green-lit, real demand)
+  "dng-to-jpg",
+  "dng-to-png",
+  // Camera RAW → JPG cluster
+  "cr2-to-jpg",
+  "cr3-to-jpg",
+  "nef-to-jpg",
+  "arw-to-jpg",
+  "raf-to-jpg",
+  "rw2-to-jpg",
+  "orf-to-jpg",
+  "pef-to-jpg",
+]);
+
+export function isConversionIndexed(slug: string): boolean {
+  return INDEXED_CONVERSIONS.has(slug);
 }
 
 // Get related conversions for internal linking

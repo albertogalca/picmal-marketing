@@ -1,17 +1,30 @@
 ---
 title: "How to Convert HEIC to JPG on Mac (2026 Guide)"
-description: "Learn 5 methods to convert HEIC files to JPG on Mac, from built-in tools to professional apps. Complete guide with step-by-step instructions."
+description: "Learn 6 methods to convert HEIC files to JPG on Mac, from built-in tools to professional apps. Complete guide with step-by-step instructions."
 pubDate: "Sep 30 2025"
 updatedDate: "2026-05-23"
 category: "Tutorials"
 tags: ["HEIC", "JPG", "Conversion", "Mac", "Tutorial"]
+faqs:
+  - question: "Do I lose quality when converting HEIC to JPG on Mac?"
+    answer: "Technically yes — HEIC and JPG compress differently, so any conversion introduces some loss. In practice, at 90% quality or above you'd need to pixel-peep to spot it."
+  - question: "Can I keep the metadata (location, camera info) when converting HEIC to JPG?"
+    answer: "Picmal and the Photos app preserve EXIF metadata. Preview is unreliable and may strip some of it. ImageMagick preserves it by default but can drop it if you tell it to."
+  - question: "What's the fastest way to convert thousands of HEIC files to JPG on Mac?"
+    answer: "Picmal or ImageMagick. The built-in tools (Preview, Photos, Quick Actions) start to groan past a few hundred images, while Picmal batch-converts thousands while keeping folder structure intact."
+  - question: "Can I convert HEIC to JPG on Mac for free?"
+    answer: "Yes. Preview, the Photos app, Quick Actions in Finder, and ImageMagick are all free and built into or installable on macOS. Dedicated apps like Picmal add batch speed and quality control for $15.99."
+  - question: "How do I convert HEIC to JPG without any download?"
+    answer: "Select the files in Finder, right-click → Quick Actions → Convert Image, and choose JPEG. This is built into macOS Monterey and later and creates JPG copies without touching your originals."
+  - question: "Should I keep the original HEIC files after converting?"
+    answer: "Yes. They're smaller than the JPGs you're creating, so they cost almost nothing to keep, and format support only improves over time."
 ---
 
 You took 400 photos on vacation. You get home, try to upload them to a website, and nothing works. The culprit: HEIC files. Apple switched to this format with iOS 11 because it cuts file sizes in half without visible quality loss. The rest of the internet hasn't entirely caught up.
 
-Here are five ways to convert HEIC to JPG on your Mac, from the free tools already on your computer to apps built for the job. If you need a dedicated [HEIC converter for Mac](https://picmal.app/heic-converter-mac), Picmal is the fastest option for batch processing.
+Here are six ways to convert HEIC to JPG on your Mac, from the free tools already on your computer to apps built for the job. If you need a dedicated [HEIC converter for Mac](https://picmal.app/heic-converter-mac), Picmal is the fastest option for batch processing.
 
-**Quick answer:** To convert HEIC to JPG on a Mac, select your files in Finder, right-click → **Quick Actions → Convert Image**, and choose JPEG — no download needed. For more than a few dozen photos, a dedicated [HEIC to JPG converter](/convert/heic-to-jpg) like [Picmal](https://picmal.app) batch-converts hundreds of files at once while preserving EXIF metadata (location, camera, timestamps). The five methods below cover every situation, free and paid.
+**Quick answer:** To convert HEIC to JPG on a Mac, select your files in Finder, right-click → **Quick Actions → Convert Image**, and choose JPEG — no download needed. For more than a few dozen photos, a dedicated [HEIC to JPG converter](/convert/heic-to-jpg) like [Picmal](https://picmal.app) batch-converts hundreds of files at once while preserving EXIF metadata (location, camera, timestamps). The six methods below cover every situation, free and paid.
 
 ## What is HEIC, and why does it cause headaches?
 
@@ -109,7 +122,26 @@ On macOS Monterey or later, Apple buried a surprisingly useful conversion tool i
 
 It creates copies rather than replacing your originals. Perfect for converting a handful of files when you don't want to open anything.
 
-## Method 5: the command line (ImageMagick)
+## Method 5: a saved Automator Quick Action (one-click, reusable)
+
+If you convert HEIC files all the time, set this up once and forget about it. Automator ships with macOS, so there's nothing to download or buy.
+
+### Steps:
+
+1. Open **Automator** (Applications, or Spotlight)
+2. Choose **New → Quick Action**
+3. Set "Workflow receives current" to **image files** in **Finder**
+4. Search the actions list for **Change Type of Images** and drag it in
+5. Set "To Type" to **JPEG** (click **Don't Add** if it offers to copy first, or **Add** to keep originals)
+6. Save it as something like "Convert to JPEG"
+
+Now right-click any HEIC file in Finder → **Quick Actions → Convert to JPEG**, and it converts in place with a single click.
+
+### Best for:
+
+People who do this every week. The built-in Quick Action (Method 4) is fine for one-offs, but here you decide what happens. Chain a few steps together — resize, drop into a folder, convert — and it all runs from one right-click.
+
+## Method 6: the command line (ImageMagick)
 
 If you already have a terminal open, ImageMagick converts images without a GUI.
 
@@ -149,6 +181,7 @@ If "shell alias" means nothing to you, this isn't your method.
 | Preview       | Moderate  | Limited          | Basic           | Easy        | Free   |
 | Photos App    | Slow      | Good             | Basic           | Easy        | Free   |
 | Quick Actions | Fast      | Good             | Limited         | Very Easy   | Free   |
+| Automator     | Fast      | Good             | Basic           | Easy        | Free   |
 | ImageMagick   | Fast      | Excellent        | Advanced        | Technical   | Free   |
 
 ## Tips for better results

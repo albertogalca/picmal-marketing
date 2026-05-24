@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import NewsletterSignup from "./NewsletterSignup.astro";
 
 const today = new Date();
 ---
@@ -22,7 +23,8 @@ const today = new Date();
         <p class="text-sm text-text-secondary max-w-xs mb-6 text-pretty">
           Convert and compress images, videos, and audio in bulk. Works offline, no account needed, nothing to subscribe to.
         </p>
-        <p class="text-xs text-text-secondary">
+        <NewsletterSignup />
+        <p class="text-xs text-text-secondary mt-8">
           &copy; {today.getFullYear()} - All rights reserved.
         </p>
         <div class="pt-8 text-xs text-text-secondary">

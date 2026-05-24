@@ -1,0 +1,94 @@
+---
+// Email capture for non-buyers → Loops (source: Newsletter), via the picmal-loops-worker
+// /subscribe route. Builds an audience we can segment for cross-promo (e.g. Cozy).
+//
+// NOTE: set SUBSCRIBE_ENDPOINT to the deployed worker URL (same host as the Lemon
+// Squeezy webhook, with /subscribe instead of /lemonsqueezy).
+const SUBSCRIBE_ENDPOINT = "https://picmal-loops-worker.albertogallego.workers.dev/subscribe";
+---
+
+<form
+  id="newsletter-form"
+  class="mt-6 max-w-xs"
+  data-endpoint={SUBSCRIBE_ENDPOINT}
+  novalidate
+>
+  <label for="newsletter-email" class="block text-sm font-medium text-text mb-2">
+    Get occasional updates on Picmal & new apps
+  </label>
+  <div class="flex gap-2">
+    <input
+      id="newsletter-email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      placeholder="you@example.com"
+      class="min-w-0 flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    />
+    <button
+      type="submit"
+      class="inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-[colors,scale] duration-200 hover:bg-accent-dark active:scale-[0.96] disabled:opacity-60 disabled:active:scale-100"
+    >
+      Subscribe
+    </button>
+  </div>
+  <!-- Honeypot: hidden from users, bots fill it. -->
+  <input
+    type="text"
+    name="website"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    class="hidden"
+  />
+  <p id="newsletter-msg" class="mt-2 text-xs text-text-secondary" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  function initNewsletter() {
+    const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = "true";
+
+    const msg = document.getElementById("newsletter-msg") as HTMLElement;
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get("email") || "").trim();
+      const website = String(data.get("website") || "");
+
+      if (!email) {
+        msg.textContent = "Please enter your email.";
+        return;
+      }
+
+      button.disabled = true;
+      msg.textContent = "Subscribing…";
+
+      try {
+        const res = await fetch(form.dataset.endpoint!, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, website }),
+        });
+        const out = await res.json().catch(() => ({}));
+        if (res.ok && out.ok) {
+          form.reset();
+          msg.textContent = "Thanks — you're on the list.";
+        } else {
+          msg.textContent = out.error || "Something went wrong. Try again.";
+          button.disabled = false;
+        }
+      } catch {
+        msg.textContent = "Network error. Try again.";
+        button.disabled = false;
+      }
+    });
+  }
+
+  initNewsletter();
+  document.addEventListener("astro:page-load", initNewsletter);
+</script>

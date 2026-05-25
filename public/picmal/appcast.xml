@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.0</title>
+            <pubDate>Mon, 25 May 2026 13:42:28 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>76</sparkle:version>
+            <sparkle:shortVersionString>1.6.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.0/Picmal.dmg" length="119882867" type="application/octet-stream" sparkle:edSignature="jslv/XeYcUBLRnDiHo61sesYztOzo68UYiFH372jgdv/QlXyjznqe3MslyNyZ6fGFoEa+mBdnYUeS73PARGPBg=="/>
+        <description><![CDATA[<div><ul><li>Embed album art into audio automatically. Turn on "Embed cover art from the source folder" in Settings → Audio and Picmal looks for a cover image (cover.jpg, folder.jpg, front.jpg — editable) next to each track and adds it to MP3, M4A, ALAC and FLAC output. "Skip files that already have artwork" keeps any existing cover instead of replacing it.</li>
+<li>See how much space you saved after compressing. When a batch finishes, the bottom bar and the completion notification show the total freed space with a playful comparison, like "Freed up 9.66 GB · about a 4K movie 🎬".</li>
+<li>Schedule a batch for later. Tap the clock button next to Convert (or Compress) to pick a start time, handy for running big jobs overnight. The bottom bar shows what's queued, you get a notification when it finishes, and schedules survive quitting and reopening Picmal.</li>
+<li>Converting RAW photos (NEF, CR2, ARW, RAF, DNG) now keeps your camera metadata. With "Keep all metadata" the output JPEG carries the make, model, lens, exposure, date and GPS. "Keep essential" keeps the basics while dropping location and serial numbers. The metadata indicator now reads RAW files too, so it no longer shows them as empty.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.5.9</title>
             <pubDate>Sat, 23 May 2026 12:50:46 +0200</pubDate>
             <link>https://picmal.app/</link>

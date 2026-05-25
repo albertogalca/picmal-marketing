@@ -17,7 +17,7 @@ description: Audio and video conversion settings in Picmal — codecs, bitrates,
 
 ### ALAC (Apple Lossless)
 
-Pick **ALAC** as the output format to get a lossless `.m4a` from FLAC, WAV, or AIFF — the format Apple Music expects for lossless libraries. ALAC conversions are bit-for-bit lossless; they preserve every sample of the source.
+Pick **ALAC** as the output format to get a lossless `.m4a` from FLAC, WAV, or AIFF. It's the format Apple Music expects for lossless libraries. ALAC conversions are bit-for-bit lossless; they preserve every sample of the source.
 
 ### Bitrate modes
 
@@ -59,6 +59,16 @@ The **Custom** audio preset also lets you pick a bit depth on top of the sample 
 Pair 16 bit with 44.1 kHz for CD-quality FLAC, or jump to 24 bit + 48 kHz for studio work. The dedicated **CD quality** preset is 16 bit + 44.1 kHz FLAC in one click.
 
 ![CD quality preset and bit depth setting in Picmal](/images/docs/bit-depth.png)
+
+### Cover art
+
+Picmal can embed album art into your audio output automatically. Turn on **Embed cover art from the source folder** in **Settings → Audio**, and for each track it looks for a cover image in the same folder and writes it into the file. Works for MP3, M4A, ALAC, and FLAC.
+
+By default it looks for `cover.jpg`, `folder.jpg`, and `front.jpg`, but you can edit that list of filenames to match how your library is organized.
+
+Turn on **Skip files that already have artwork** to leave existing covers alone. Picmal only adds art to tracks that don't have any.
+
+![Cover art settings in Picmal, with the source-folder filename list and skip-existing toggle](/images/docs/cover_art.png)
 
 ### Audio presets
 
@@ -111,7 +121,7 @@ Set the output format in the video compression settings. Leave it alone if you w
 
 ### Estimated size
 
-Before you run a video compression, Picmal shows an estimate of the output size based on your current codec, CRF, and frame-rate settings — so you know roughly how much space you'll save without having to encode first. Change a setting and the estimate updates.
+Before you run a video compression, Picmal shows an estimate of the output size based on your current codec, CRF, and frame-rate settings, so you know roughly how much space you'll save without having to encode first. Change a setting and the estimate updates.
 
 ![Estimated saving shown in the Saving column before compressing a video in Picmal](/images/docs/size_estimate.png)
 

@@ -1,0 +1,21 @@
+---
+version: "1.6.0"
+title: "Embedded cover art, space saved, and scheduled batches"
+pubDate: 2026-05-24
+---
+
+Embed album art into audio automatically. Turn on "Embed cover art from the source folder" in Settings → Audio and Picmal looks for a cover image next to each track (cover.jpg, folder.jpg, front.jpg, all editable) and adds it to MP3, M4A, ALAC and FLAC output. "Skip files that already have artwork" keeps any existing cover instead of replacing it.
+
+![Cover art settings in Picmal, with the source-folder filename list and skip-existing toggle](/images/docs/cover_art.png)
+
+See how much space you saved after compressing. When a batch finishes, the bottom bar and the completion notification show the total freed space with a playful comparison, like "Freed up 9.66 GB · about a 4K movie 🎬".
+
+![Picmal notification reading "Freed up 731 KB · about 14624 emoji"](/images/docs/space_saved.png)
+
+Schedule a batch for later. Tap the clock button next to Convert (or Compress) to pick a start time, handy for running big jobs overnight. The bottom bar shows what's queued, you get a notification when it finishes, and schedules survive quitting and reopening Picmal.
+
+![Schedule convert dialog in Picmal with a date and time picker](/images/docs/schedule.png)
+
+Converting RAW photos (NEF, CR2, ARW, RAF, DNG) now keeps your camera metadata. With "Keep all metadata" the output JPEG carries the make, model, lens, exposure, date and GPS. "Keep essential" keeps the basics while dropping location and serial numbers. The metadata indicator now reads RAW files too, so it no longer shows them as empty.
+
+![Metadata popover for a RAW file in Picmal showing camera make, model, aperture, and capture date](/images/docs/raw_metadata.png)

@@ -20,11 +20,11 @@ You can apply compression as part of the conversion. Enable **Compress output in
 
 ## Smart format memory
 
-Picmal remembers the last output format you selected for each input type. Drop a new file and it automatically picks the same format you used last time — no need to reselect every time. For example, if you always convert HEIC to JPG, Picmal will default to JPG whenever you drop a HEIC file.
+Picmal remembers the last output format you selected for each input type. Drop a new file and it automatically picks the same format you used last time, no need to reselect. For example, if you always convert HEIC to JPG, Picmal will default to JPG whenever you drop a HEIC file.
 
 ## Before/after preview
 
-After converting a file, click the screen icon on any processed file to open an interactive before/after slider. This lets you compare the original and converted versions side by side — useful for checking how a format change affects visual quality.
+After converting a file, click the screen icon on any processed file to open an interactive before/after slider. This lets you compare the original and converted versions side by side, useful for checking how a format change affects visual quality.
 
 ## Same-format conversions
 
@@ -49,5 +49,11 @@ Choose how metadata is handled during conversion:
 | Strip all      | Removes all metadata for smallest file size         |
 | Keep essential | Preserves orientation, color profile, and copyright |
 | Keep all       | Preserves all original metadata                     |
+
+### RAW photos
+
+Converting RAW photos (NEF, CR2, ARW, RAF, DNG) keeps your camera metadata. With **Keep all**, the output JPEG carries the make, model, lens, exposure, capture date, and GPS. **Keep essential** keeps the basics while dropping location and serial numbers. The metadata indicator reads RAW files too, so it shows what's actually there instead of appearing empty.
+
+![Metadata popover for a RAW file in Picmal showing camera make, model, aperture, and capture date](/images/docs/raw_metadata.png)
 
 See [Supported formats](/docs/supported-formats) for the full list of input and output formats.

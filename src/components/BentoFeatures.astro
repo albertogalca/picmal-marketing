@@ -3,340 +3,538 @@ import { Image } from "astro:assets";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
+
+// Shared styles
+const card =
+  "relative bg-background-subtle rounded-2xl border border-border overflow-hidden";
+const eyebrow =
+  "text-xs font-semibold uppercase tracking-wider text-blue-500 mb-2";
+const blockTitle =
+  "text-2xl sm:text-3xl font-semibold tracking-tight text-text leading-tight";
+// Screenshot that bleeds into a corner on desktop, stacks below text on mobile
+const cornerImg =
+  "rounded-xl lg:rounded-tl-2xl border border-border shadow-2xl w-full h-auto";
 ---
 
-<section id="features" class="relative z-10 px-6 py-20">
+<section id="features" class="relative z-10 px-6 py-24">
   <div class="max-w-6xl mx-auto">
-    <H2 class="mb-4 text-center">What Picmal actually does</H2>
-    <Paragraph class="text-center mb-16 max-w-xl mx-auto">
-      Convert, compress, and resize media files. Everything runs on your Mac,
-      nothing touches a server.
-    </Paragraph>
+    <!-- Intro -->
+    <div class="text-center mb-20">
+      <H2 class="mb-4">What Picmal actually does</H2>
+      <Paragraph class="max-w-xl mx-auto">
+        Convert, compress, and resize images, video, and audio. All on your Mac,
+        nothing touches a server.
+      </Paragraph>
+    </div>
 
-    <div class="flex flex-col gap-4">
-      <!-- Row 1: Convert + Batch Processing -->
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
-        <!-- Convert Card - Large (spans 3 columns on lg) -->
-        <div
-          class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
-        >
-          <div class="mb-6">
-            <H3 class="mb-2"
-              >Convert between multiple formats <button
-                id="open-formats-modal-bento"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle"
-                type="button"
-                aria-label="View supported formats"
-                ><svg
-                  class="w-3.5 h-3.5 text-text-secondary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg></button
-              ></H3
-            >
-            <Paragraph>
-              Turn a PSD into a PNG, an AI file into SVG, a MOV into MP4. Pick
-              the output format and go.
-            </Paragraph>
-          </div>
-          <div class="rounded-lg overflow-hidden opacity-90">
-            <video
-              class="w-full h-auto theme-video"
-              data-light-src="/convert.mp4"
-              data-dark-src="/convert_dark.mp4"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Picmal conversion interface"
-            >
-            </video>
-          </div>
-          <div class="mt-4">
-            <Paragraph
-              >You can also convert and compress in one go.</Paragraph
-            >
-          </div>
+    <!-- Blocks, generously spaced -->
+    <div class="space-y-28">
+      <!-- ===============================================================
+           Block 1 — Convert & compress
+      ================================================================ -->
+      <div>
+        <div class="mb-10 max-w-2xl">
+          <p class={eyebrow}>Convert &amp; compress</p>
+          <h3 class={blockTitle}>Anything in, anything out</h3>
         </div>
 
-        <!-- Batch Processing Card (spans 2 columns on lg) -->
-        <div
-          class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden"
-        >
-          <H3 class="mb-2">Batch processing</H3>
-          <Paragraph>
-            Drop hundreds of files at once. Drag them in, use File > Open, or
-            right-click in Finder. No need to feed them one by one.
-          </Paragraph>
-          <div class="mt-6 relative">
-            <div
-              class="absolute -inset-x-4 -bottom-4 h-24 bg-text/[0.03] blur-2xl rounded-full pointer-events-none"
-            >
+        <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
+          <!-- Convert — wide, video bleeding bottom-right -->
+          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
+            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+              <H3 class="mb-2"
+                >Any format, in or out <button
+                  id="open-formats-modal-bento"
+                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  type="button"
+                  aria-label="View supported formats"
+                  ><svg
+                    class="w-3.5 h-3.5 text-text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg></button
+                ></H3
+              >
+              <Paragraph>
+                Images, video, audio, RAW, PDF — over 100 formats. PSD to PNG,
+                MOV to MP4, FLAC to ALAC. Pick the output and go.
+              </Paragraph>
             </div>
-            <Image
-              class="w-full relative"
-              src="/right-click.png"
-              width={400}
-              height={300}
-              alt="Right click menu integration"
-            />
+            <div
+              class="px-6 pb-6 lg:p-0 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[55%] lg:w-[70%]"
+            >
+              <video
+                class={`theme-video ${cornerImg}`}
+                data-light-src="/convert.mp4"
+                data-dark-src="/convert_dark.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label="Picmal conversion interface"></video>
+            </div>
+          </div>
+
+          <!-- Size estimate — placeholder close-up -->
+          <div class={`${card} lg:col-span-2 min-h-[360px] flex flex-col`}>
+            <div class="p-6 md:p-8">
+              <H3 class="mb-2">No surprises</H3>
+              <Paragraph>
+                See the projected output size before you encode.
+              </Paragraph>
+            </div>
+            <div class="mt-auto px-6 pb-0">
+              <div
+                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-32 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+              >
+                close-up: size estimate
+              </div>
+            </div>
+          </div>
+
+          <!-- Space saved — placeholder close-up -->
+          <div class={`${card} lg:col-span-2 min-h-[300px] flex flex-col`}>
+            <div class="p-6 md:p-8">
+              <H3 class="mb-2">Know what you saved</H3>
+              <Paragraph> "Freed up 9.66 GB — about a 4K movie." </Paragraph>
+            </div>
+            <div class="mt-auto px-6 pb-0">
+              <div
+                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+              >
+                close-up: completion toast
+              </div>
+            </div>
+          </div>
+
+          <!-- Compress — wide, video bleeding bottom-left -->
+          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
+            <div class="p-6 md:p-8 relative z-10 lg:ml-[50%] lg:max-w-[60%]">
+              <H3 class="mb-2"
+                >Smaller files, same quality <button
+                  id="open-compress-formats-modal-bento"
+                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  type="button"
+                  aria-label="View supported compression formats"
+                  ><svg
+                    class="w-3.5 h-3.5 text-text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg></button
+                ></H3
+              >
+              <Paragraph>
+                Fit an email limit or a slow upload without the quality drop
+                you'd actually notice. Convert and compress in one pass.
+              </Paragraph>
+            </div>
+            <div
+              class="px-6 pb-6 lg:p-0 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[55%] lg:w-[70%]"
+            >
+              <video
+                class={`theme-video ${cornerImg} lg:rounded-tr-2xl lg:rounded-tl-none`}
+                data-light-src="/compress.mp4"
+                data-dark-src="/compress_dark.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label="Picmal compression interface"></video>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Row 2: Custom Presets + Compress -->
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
-        <!-- Custom Presets Card (spans 2 columns on lg) -->
-        <div
-          class="lg:col-span-2 bg-background-subtle rounded-xl p-6 border border-border flex flex-col overflow-hidden order-last lg:order-first"
-        >
-          <H3 class="mb-2"
-            >Presets for the usual stuff. Full control for the rest.</H3
-          >
-          <Paragraph>
-            Built-in presets for web, social media, archival. If you want to
-            get specific, tweak color space, resize, codecs, bitrates.
-          </Paragraph>
-          <div class="mt-6 relative">
-            <div
-              class="absolute -inset-x-4 -bottom-2 h-20 bg-text/5 blur-2xl pointer-events-none"
-            >
-            </div>
-            <Image
-              class="w-full relative -bottom-14 block dark:hidden"
-              src="/preferences.png"
-              width={400}
-              height={300}
-              alt="Custom presets interface"
-            />
-            <Image
-              class="w-full relative -bottom-14 hidden dark:block"
-              src="/preferences_dark.png"
-              width={400}
-              height={300}
-              alt=""
-            />
-          </div>
+      <!-- ===============================================================
+           Block 2 — Batch & automate
+      ================================================================ -->
+      <div>
+        <div class="mb-10 max-w-2xl">
+          <p class={eyebrow}>Batch &amp; automate</p>
+          <h3 class={blockTitle}>Built for hundreds of files</h3>
         </div>
 
-        <!-- Compress Card - Large (spans 3 columns on lg) -->
-        <div
-          class="lg:col-span-3 bg-background-subtle rounded-xl p-6 md:p-8 border border-border"
-        >
-          <div class="mb-6">
-            <H3 class="mb-2"
-              >Shrink file sizes without visible quality loss <button
-                id="open-compress-formats-modal-bento"
-                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle"
-                type="button"
-                aria-label="View supported compression formats"
-                ><svg
-                  class="w-3.5 h-3.5 text-text-secondary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg></button
-              ></H3
+        <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
+          <!-- Lead — main app screenshot bleeding bottom-right -->
+          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
+            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+              <H3 class="mb-2">Drop a folder, walk away</H3>
+              <Paragraph>
+                Thousands of files at once, whole folders, mixed formats. Picmal
+                sorts out each file type and works through them all.
+              </Paragraph>
+            </div>
+            <div
+              class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[54%] lg:translate-x-8 lg:translate-y-10"
             >
+              <Image
+                class={`${cornerImg} block dark:hidden`}
+                src="/main.png"
+                width={800}
+                height={500}
+                alt="Picmal batch processing a list of files"
+              />
+              <Image
+                class={`${cornerImg} hidden dark:block`}
+                src="/main_dark.png"
+                width={800}
+                height={500}
+                alt=""
+              />
+            </div>
+          </div>
+
+          <!-- Run overnight -->
+          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
+            <H3 class="mb-2">Run it overnight</H3>
             <Paragraph>
-              Same format, smaller file. Shrink photos before uploading or get
-              a video under the email attachment limit.
+              Schedule big jobs for later. They survive quitting the app.
             </Paragraph>
           </div>
-          <div class="rounded-lg overflow-hidden opacity-90">
-            <video
-              class="w-full h-auto theme-video"
-              data-light-src="/compress.mp4"
-              data-dark-src="/compress_dark.mp4"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Picmal compression interface"
-            >
-            </video>
+
+          <!-- Watched folders -->
+          <div class={`${card} lg:col-span-3 min-h-[220px] flex flex-col`}>
+            <div class="p-6 md:p-8">
+              <H3 class="mb-2">Watched folders</H3>
+              <Paragraph>
+                Drop a file in, it converts itself. Set it once, forget it.
+              </Paragraph>
+            </div>
+            <div class="mt-auto px-6 pb-0">
+              <div
+                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+              >
+                close-up: watched folder rule
+              </div>
+            </div>
+          </div>
+
+          <!-- Pause & resume -->
+          <div class={`${card} lg:col-span-3 p-6 md:p-8`}>
+            <H3 class="mb-2">Pause &amp; resume</H3>
+            <Paragraph>
+              Stop a long job and pick it back up. Bump files to the front when
+              you're in a hurry.
+            </Paragraph>
           </div>
         </div>
       </div>
 
-      <!-- Row 3: Three differentiator cards — horizontal layout -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Designed for Mac Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-blue-500/10"
-          >
-            <svg
-              class="w-5 h-5 text-blue-500"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <g clip-path="url(#clip_mac_bottom)">
-                <path
-                  d="M4.875 7.79134C4.875 7.40457 5.02865 7.03363 5.30214 6.76014C5.57563 6.48665 5.94656 6.33301 6.33333 6.33301H29.6667C30.0534 6.33301 30.4244 6.48665 30.6979 6.76014C30.9714 7.03363 31.125 7.40457 31.125 7.79134V28.208C31.125 28.5948 30.9714 28.9657 30.6979 29.2392C30.4244 29.5127 30.0534 29.6663 29.6667 29.6663H6.33333C5.94656 29.6663 5.57563 29.5127 5.30214 29.2392C5.02865 28.9657 4.875 28.5948 4.875 28.208V7.79134Z"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 12.167V13.6253"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M25.292 12.167V13.6253"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M18.7295 6.33301C17.7757 8.50009 16.892 11.354 16.542 19.458H20.1878C19.9107 23.6391 20.3249 26.7847 20.917 29.6663"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M10.708 23.1045C16.0557 26.0212 19.9436 26.0212 25.2913 23.1045"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip_mac_bottom">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-sm font-semibold text-text mb-1">Designed for Mac</h3>
-            <Paragraph size="small">
-              Lightweight, plays nice with Finder, Quick Actions, and Shortcuts.
-            </Paragraph>
-          </div>
+      <!-- ===============================================================
+           Block 3 — Controls
+      ================================================================ -->
+      <div>
+        <div class="mb-10 max-w-2xl">
+          <p class={eyebrow}>Presets &amp; controls</p>
+          <h3 class={blockTitle}>Simple by default, deep when you need it</h3>
         </div>
 
-        <!-- Works Offline Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-amber-500/10"
-          >
-            <svg
-              class="w-5 h-5 text-amber-500"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <g clip-path="url(#clip_offline_bottom)">
-                <path
-                  d="M14.4712 8.59099C14.8212 8.43057 15.1887 8.28912 15.5678 8.17391C18.3095 7.33974 21.337 7.89245 23.507 9.63224C25.677 11.3677 26.6599 14.0174 26.0882 16.587H27.532C30.3218 16.587 32.5837 18.862 32.5837 21.6708C32.5837 23.0664 32.0251 24.3308 31.1209 25.2495M26.7503 26.756H10.2085C6.45762 26.7502 3.41699 23.8233 3.41699 20.2124C3.41699 16.6031 6.45762 13.6762 10.2085 13.6762C10.398 12.8274 10.748 12.0312 11.2293 11.3137"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M4.875 4.875L31.125 31.125"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip_offline_bottom">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-sm font-semibold text-text mb-1">Works offline</h3>
-            <Paragraph size="small">
-              Works on a plane, at a café with terrible Wi-Fi, or when your connection just dies.
+        <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
+          <!-- Color & codecs -->
+          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
+            <H3 class="mb-2">Color &amp; codecs</H3>
+            <Paragraph>
+              Real color spaces and modern codecs, not just the basics.
             </Paragraph>
+          </div>
+
+          <!-- Presets lead — preferences bleeding bottom-right -->
+          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
+            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+              <H3 class="mb-2"
+                >Presets for the usual stuff. Full control for the rest.</H3
+              >
+              <Paragraph>
+                One-click presets for web, social, and archival. Or go deeper
+                and save your own.
+              </Paragraph>
+            </div>
+            <div
+              class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[52%] lg:translate-x-8 lg:translate-y-10"
+            >
+              <Image
+                class={`${cornerImg} block dark:hidden`}
+                src="/preferences.png"
+                width={800}
+                height={500}
+                alt="Picmal presets and settings"
+              />
+              <Image
+                class={`${cornerImg} hidden dark:block`}
+                src="/preferences_dark.png"
+                width={800}
+                height={500}
+                alt=""
+              />
+            </div>
+          </div>
+
+          <!-- Watermarks -->
+          <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
+            <div class="p-6 md:p-8">
+              <H3 class="mb-2">Watermarks</H3>
+              <Paragraph>
+                Stamp every file in a batch, scaled to fit any size.
+              </Paragraph>
+            </div>
+            <div class="mt-auto px-6 pb-0">
+              <div
+                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+              >
+                close-up: watermark editor
+              </div>
+            </div>
+          </div>
+
+          <!-- Metadata -->
+          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
+            <H3 class="mb-2">Your metadata stays</H3>
+            <Paragraph>
+              Keep camera info, dates, and GPS — or strip what you don't want
+              shared.
+            </Paragraph>
+          </div>
+
+          <!-- Integrations — app icons docked at the bottom, lift on hover -->
+          <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
+            <div class="p-6 md:p-8">
+              <H3 class="mb-2">Fits your workflow</H3>
+              <Paragraph>
+                Finder, Shortcuts, and Raycast — plus a CLI for scripts and
+                agents.
+              </Paragraph>
+            </div>
+            <!-- App icons dock at the bottom edge and lift individually on hover -->
+            <div
+              class="mt-auto flex items-end justify-center gap-4 px-6 translate-y-4"
+            >
+              <Image
+                class="w-16 h-16 rounded-[22%] shadow-lg transition-transform duration-200 ease-out hover:-translate-y-3"
+                src="/finder.png"
+                width={128}
+                height={128}
+                alt="Finder"
+                title="Finder"
+              />
+              <Image
+                class="w-16 h-16 rounded-[22%] shadow-lg transition-transform duration-200 ease-out hover:-translate-y-3"
+                src="/shortcuts.png"
+                width={128}
+                height={128}
+                alt="Shortcuts"
+                title="Shortcuts"
+              />
+              <div
+                class="relative transition-transform duration-200 ease-out hover:-translate-y-3"
+              >
+                <Image
+                  class="w-16 h-16 rounded-[22%] shadow-lg"
+                  src="/raycast.png"
+                  width={128}
+                  height={128}
+                  alt="Raycast"
+                  title="Raycast — coming soon"
+                />
+                <span
+                  class="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-blue-500 ring-2 ring-background-subtle"
+                  aria-hidden="true"></span>
+                <span class="sr-only">Coming soon</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Privacy First Card -->
-        <div class="bg-background-subtle rounded-xl p-6 border border-border flex items-start gap-4">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-green-500/10"
-          >
-            <svg
-              class="w-5 h-5 text-green-500"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <g clip-path="url(#clip_privacy_bottom)">
-                <path
-                  d="M18 3.41699L29.6667 7.79199V16.542C29.6667 24.0628 24.8333 30.6462 18 32.5837C11.1667 30.6462 6.33334 24.0628 6.33334 16.542V7.79199L18 3.41699Z"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M12.167 18L16.542 22.375L24.5628 14.3542"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip_privacy_bottom">
-                  <rect
-                    width="35"
-                    height="35"
-                    fill="white"
-                    transform="translate(0.5 0.5)"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-sm font-semibold text-text mb-1">Privacy first</h3>
-            <Paragraph size="small">
-              Your files stay on your Mac. Nothing gets uploaded anywhere.
-            </Paragraph>
+      <!-- ===============================================================
+           Block 4 — Trust
+      ================================================================ -->
+      <div>
+        <div class="mb-10 max-w-2xl">
+          <p class={eyebrow}>Why Picmal</p>
+          <h3 class={blockTitle}>Private, offline, and yours</h3>
+        </div>
+
+        <div class={`${card} p-8 md:p-10`}>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <!-- Designed for Mac -->
+            <div>
+              <svg
+                class="w-8 h-8 text-accent mb-5"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <g clip-path="url(#clip_mac_trust)">
+                  <path
+                    d="M4.875 7.79134C4.875 7.40457 5.02865 7.03363 5.30214 6.76014C5.57563 6.48665 5.94656 6.33301 6.33333 6.33301H29.6667C30.0534 6.33301 30.4244 6.48665 30.6979 6.76014C30.9714 7.03363 31.125 7.40457 31.125 7.79134V28.208C31.125 28.5948 30.9714 28.9657 30.6979 29.2392C30.4244 29.5127 30.0534 29.6663 29.6667 29.6663H6.33333C5.94656 29.6663 5.57563 29.5127 5.30214 29.2392C5.02865 28.9657 4.875 28.5948 4.875 28.208V7.79134Z"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M10.708 12.167V13.6253"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M25.292 12.167V13.6253"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M18.7295 6.33301C17.7757 8.50009 16.892 11.354 16.542 19.458H20.1878C19.9107 23.6391 20.3249 26.7847 20.917 29.6663"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M10.708 23.1045C16.0557 26.0212 19.9436 26.0212 25.2913 23.1045"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip_mac_trust">
+                    <rect
+                      width="35"
+                      height="35"
+                      fill="white"
+                      transform="translate(0.5 0.5)"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+              <h3
+                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
+              >
+                Designed for Mac
+              </h3>
+              <Paragraph>
+                Built in Swift for Apple Silicon and designed around macOS. It
+                plugs into Finder, Quick Actions, and Shortcuts, and feels like
+                it came with your system — not an Electron wrapper.
+              </Paragraph>
+            </div>
+
+            <!-- Works offline -->
+            <div>
+              <svg
+                class="w-8 h-8 text-accent mb-5"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <g clip-path="url(#clip_offline_trust)">
+                  <path
+                    d="M14.4712 8.59099C14.8212 8.43057 15.1887 8.28912 15.5678 8.17391C18.3095 7.33974 21.337 7.89245 23.507 9.63224C25.677 11.3677 26.6599 14.0174 26.0882 16.587H27.532C30.3218 16.587 32.5837 18.862 32.5837 21.6708C32.5837 23.0664 32.0251 24.3308 31.1209 25.2495M26.7503 26.756H10.2085C6.45762 26.7502 3.41699 23.8233 3.41699 20.2124C3.41699 16.6031 6.45762 13.6762 10.2085 13.6762C10.398 12.8274 10.748 12.0312 11.2293 11.3137"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M4.875 4.875L31.125 31.125"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip_offline_trust">
+                    <rect
+                      width="35"
+                      height="35"
+                      fill="white"
+                      transform="translate(0.5 0.5)"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+              <h3
+                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
+              >
+                Works offline
+              </h3>
+              <Paragraph>
+                No internet required, ever. Convert on a plane, at a café with
+                terrible Wi-Fi, or with the network off completely. Nothing
+                queues and nothing waits on a server.
+              </Paragraph>
+            </div>
+
+            <!-- Privacy first -->
+            <div>
+              <svg
+                class="w-8 h-8 text-accent mb-5"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <g clip-path="url(#clip_privacy_trust)">
+                  <path
+                    d="M18 3.41699L29.6667 7.79199V16.542C29.6667 24.0628 24.8333 30.6462 18 32.5837C11.1667 30.6462 6.33334 24.0628 6.33334 16.542V7.79199L18 3.41699Z"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M12.167 18L16.542 22.375L24.5628 14.3542"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </g>
+                <defs>
+                  <clipPath id="clip_privacy_trust">
+                    <rect
+                      width="35"
+                      height="35"
+                      fill="white"
+                      transform="translate(0.5 0.5)"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+              <h3
+                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
+              >
+                Privacy first
+              </h3>
+              <Paragraph>
+                Your files never leave your Mac. Nothing is uploaded, there's no
+                account, and nobody tracks what you convert. What's on your
+                machine stays on your machine.
+              </Paragraph>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-12">
+    <div class="text-center mt-20">
       <a
         href="/docs"
-        class="text-sm text-text-secondary hover:text-text transition-colors"
+        class="text-sm text-text-secondary hover:text-text transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         Learn more in the docs &rarr;
       </a>
@@ -347,20 +545,20 @@ import Paragraph from "./Paragraph.astro";
 <script>
   function updateThemeVideos() {
     const isDark = document.documentElement.classList.contains("dark");
-    document.querySelectorAll<HTMLVideoElement>(".theme-video").forEach((video) => {
-      const src = isDark ? video.dataset.darkSrc : video.dataset.lightSrc;
-      if (src && video.src !== new URL(src, window.location.origin).href) {
-        video.src = src;
-        video.load();
-        video.play().catch(() => {});
-      }
-    });
+    document
+      .querySelectorAll<HTMLVideoElement>(".theme-video")
+      .forEach((video) => {
+        const src = isDark ? video.dataset.darkSrc : video.dataset.lightSrc;
+        if (src && video.src !== new URL(src, window.location.origin).href) {
+          video.src = src;
+          video.load();
+          video.play().catch(() => {});
+        }
+      });
   }
 
-  // Set initial sources
   updateThemeVideos();
 
-  // Watch for theme changes
   const observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
       if (mutation.attributeName === "class") {
@@ -370,3 +568,15 @@ import Paragraph from "./Paragraph.astro";
   });
   observer.observe(document.documentElement, { attributes: true });
 </script>
+
+<style is:global>
+  /* No hover-lift motion for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #features [class*="hover:-translate-y"] {
+      transition: none;
+    }
+    #features [class*="hover:-translate-y"]:hover {
+      transform: none !important;
+    }
+  }
+</style>

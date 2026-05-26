@@ -16,6 +16,11 @@ interface LemonSqueezyResponse {
  * Rounds down to nearest 10 for privacy (e.g., 194 -> 190, 186 -> 180)
  */
 export async function getCustomerCount(): Promise<number> {
+  // Skip the (slow) Lemon Squeezy call during local dev — use a placeholder.
+  if (import.meta.env.DEV) {
+    return 150;
+  }
+
   const apiKey = import.meta.env.LEMON_SQUEEZY_API_KEY;
 
   if (!apiKey) {

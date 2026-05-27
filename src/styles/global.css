@@ -23,6 +23,64 @@
     "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Monaco",
     "Consolas", monospace;
+
+  /* ==========================================================================
+     Semantic type scale — SINGLE SOURCE OF TRUTH
+     Each `--text-{role}` generates a `text-{role}` utility that carries its own
+     font-size, line-height, letter-spacing and (where set) font-weight.
+     Tokens are color- and transform-agnostic on purpose: `uppercase` and color
+     live on the consuming component, not here. Tune typography from this block.
+     Headings use clamp() for smooth fluid scaling with no breakpoint jumps.
+     ========================================================================== */
+
+  /* Display / H1: 36px → 56px */
+  --text-display: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 600;
+
+  /* H1 alias — interchangeable with display */
+  --text-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h1--font-weight: 600;
+
+  /* H2: 28px → 40px */
+  --text-h2: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 600;
+
+  /* H3: 20px → 24px */
+  --text-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.015em;
+  --text-h3--font-weight: 600;
+
+  /* Lead / large body (hero subheads): 18px → 20px */
+  --text-body-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--letter-spacing: -0.011em;
+
+  /* Body: 16px */
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-body--letter-spacing: -0.011em;
+
+  /* Small body / secondary UI: 14px */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.55;
+  --text-body-sm--letter-spacing: -0.006em;
+
+  /* Eyebrow / label (uppercase applied by component): 12px */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.06em;
+  --text-eyebrow--font-weight: 600;
+
+  /* Caption / small label / metadata: 12px */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
 }
 
 html {
@@ -53,25 +111,6 @@ body {
 /* Tabular figures — for prices, stats, numerical data */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
-}
-
-/* Fluid type scale — smooth scaling, no breakpoint jumps
-   H1: 36px → 56px (display, tight tracking applied via component)
-   H2: 28px → 40px
-   H3: 20px → 24px (clearly distinct from 16px body) */
-.text-fluid-h1 {
-  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
-  letter-spacing: -0.025em;
-}
-
-.text-fluid-h2 {
-  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
-  letter-spacing: -0.02em;
-}
-
-.text-fluid-h3 {
-  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
-  letter-spacing: -0.015em;
 }
 
 pre:not(.sl-markdown-content pre) {

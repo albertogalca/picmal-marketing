@@ -96,7 +96,7 @@ const faqSchema = {
         <div class="text-center mb-16 sm:mb-20">
           <div class="flex items-center justify-center gap-3 mb-8">
             <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-sm font-mono font-medium text-text tracking-wide"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-body-sm font-mono font-medium text-text tracking-wide"
             >
               .{compression.format}
             </span>
@@ -114,7 +114,7 @@ const faqSchema = {
                 d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
             <span
-              class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-accent/10 border border-accent/20 text-xs font-medium text-accent tracking-wide"
+              class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-accent/10 border border-accent/20 text-caption font-medium text-accent tracking-wide"
             >
               Smaller
             </span>
@@ -133,7 +133,7 @@ const faqSchema = {
             />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
             >
               <svg
                 class="size-4 inline-block mr-2"
@@ -198,7 +198,7 @@ const faqSchema = {
               class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
             >
               <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-body-sm"
               >
                 1
               </div>
@@ -209,7 +209,7 @@ const faqSchema = {
               class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
             >
               <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-body-sm"
               >
                 2
               </div>
@@ -225,7 +225,7 @@ const faqSchema = {
               class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
             >
               <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-sm"
+                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-body-sm"
               >
                 3
               </div>
@@ -252,19 +252,19 @@ const faqSchema = {
               <thead>
                 <tr class="border-b border-border">
                   <th
-                    class="text-left text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
+                    class="text-left text-eyebrow font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
                     >File Type</th
                   >
                   <th
-                    class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
+                    class="text-right text-eyebrow font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
                     >Original</th
                   >
                   <th
-                    class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
+                    class="text-right text-eyebrow font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
                     >Compressed</th
                   >
                   <th
-                    class="text-right text-xs font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
+                    class="text-right text-eyebrow font-medium text-text-secondary uppercase tracking-wider px-6 py-4"
                     >Savings</th
                   >
                 </tr>
@@ -280,16 +280,16 @@ const faqSchema = {
                             : ""
                         }
                       >
-                        <td class="px-6 py-4 text-sm text-text">
+                        <td class="px-6 py-4 text-body-sm text-text">
                           {example.label}
                         </td>
-                        <td class="px-6 py-4 text-sm text-text-secondary text-right font-mono">
+                        <td class="px-6 py-4 text-body-sm text-text-secondary text-right font-mono">
                           {example.originalSize}
                         </td>
-                        <td class="px-6 py-4 text-sm text-text text-right font-mono font-medium">
+                        <td class="px-6 py-4 text-body-sm text-text text-right font-mono font-medium">
                           {example.compressedSize}
                         </td>
-                        <td class="px-6 py-4 text-sm text-accent text-right">
+                        <td class="px-6 py-4 text-body-sm text-accent text-right">
                           {example.savings}
                         </td>
                       </tr>
@@ -299,7 +299,7 @@ const faqSchema = {
               </tbody>
             </table>
             <div class="px-6 py-4 border-t border-border bg-background/50">
-              <div class="flex items-center gap-2 text-sm text-text-secondary">
+              <div class="flex items-center gap-2 text-body-sm text-text-secondary">
                 <svg
                   class="w-4 h-4 text-accent flex-shrink-0"
                   fill="none"
@@ -333,7 +333,7 @@ const faqSchema = {
               compression.useCases.map((useCase: CompressionUseCase) => (
                 <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
                   <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
-                  <Paragraph class="text-sm">{useCase.description}</Paragraph>
+                  <Paragraph class="text-body-sm">{useCase.description}</Paragraph>
                 </div>
               ))
             }
@@ -364,7 +364,7 @@ const faqSchema = {
                     class="group bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
                   >
                     <div class="flex items-center justify-center gap-2 mb-1">
-                      <span class="text-xs font-mono text-text-secondary">
+                      <span class="text-caption font-mono text-text-secondary">
                         .{formats[c.from].extension}
                       </span>
                       <svg
@@ -381,11 +381,11 @@ const faqSchema = {
                           d="M13 7l5 5m0 0l-5 5m5-5H6"
                         />
                       </svg>
-                      <span class="text-xs font-mono text-text-secondary">
+                      <span class="text-caption font-mono text-text-secondary">
                         .{formats[c.to].extension}
                       </span>
                     </div>
-                    <span class="text-sm font-medium text-text">
+                    <span class="text-body-sm font-medium text-text">
                       {formats[c.from].name} to {formats[c.to].name}
                     </span>
                   </a>

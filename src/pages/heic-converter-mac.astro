@@ -96,7 +96,7 @@ const faqSchema = {
           <H1 class="mb-6 max-w-3xl mx-auto"
             >Convert HEIC photos on your Mac in seconds</H1
           >
-          <Paragraph class="max-w-2xl mx-auto mb-8">
+          <Paragraph size="lead" class="max-w-2xl mx-auto mb-8">
             Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch
             converts your HEIC files to JPG, PNG, WebP, or any format — fast,
             offline, and private.
@@ -110,7 +110,7 @@ const faqSchema = {
             />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
             >
               <svg
                 class="size-4 inline-block mr-2"
@@ -212,13 +212,12 @@ const faqSchema = {
               "heic-to-avif",
               "heic-to-tiff",
               "heic-to-gif",
-              "heic-to-dng",
             ].map((slug) => (
               <a
                 href={`/convert/${slug}`}
                 class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
               >
-                <span class="text-sm font-medium text-text">
+                <span class="text-body-sm font-medium text-text">
                   {slug.replace("heic-to-", "HEIC to ").toUpperCase()}
                 </span>
               </a>

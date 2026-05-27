@@ -18,6 +18,8 @@ import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import CompressFormatsModal from "../components/CompressFormatsModal.astro";
 import TrustBar from "../components/TrustBar.astro";
 import PricingSection from "../components/PricingSection.astro";
+import FeaturedReview from "../components/FeaturedReview.astro";
+import Lead from "../components/Lead.astro";
 
 const SITE_TITLE = "Convert & Compress Images, Video & Audio on Mac | Picmal";
 const SITE_DESCRIPTION =
@@ -47,12 +49,10 @@ const SITE_DESCRIPTION =
             <H1 class="mb-6 max-w-3xl mx-auto"
               >Convert and compress any media on your Mac</H1
             >
-            <p
-              class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
-            >
+            <Lead class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
               Images, videos, audio. Batch process hundreds at once, right on
               your Mac. Works offline, no account, nothing to subscribe to.
-            </p>
+            </Lead>
           </div>
 
           <!-- CTA Buttons -->
@@ -67,7 +67,7 @@ const SITE_DESCRIPTION =
               />
               <a
                 href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-                class="block rounded-lg transition-[colors,scale] duration-200 active:scale-[0.96] text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+                class="block rounded-lg transition-[colors,scale] duration-200 active:scale-[0.96] text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
                 id="download-cta-button"
               >
                 <svg
@@ -87,7 +87,7 @@ const SITE_DESCRIPTION =
             <!-- Social Proof & Guarantee -->
             <div class="flex flex-col items-center gap-3">
               <TrustBar />
-              <p class="text-xs sm:text-sm text-text-secondary text-pretty">
+              <p class="text-body-sm text-text-secondary text-pretty">
                 One payment, yours for good • 14-day money back
               </p>
             </div>
@@ -115,6 +115,7 @@ const SITE_DESCRIPTION =
           </div>
         </div>
       </div>
+      <FeaturedReview />
     </main>
 
     <SectionDivider />

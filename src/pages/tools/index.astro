@@ -69,20 +69,25 @@ const tools = [
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: SITE_TITLE,
-      description: SITE_DESCRIPTION,
-      mainEntity: tools.filter((t) => t.available).map((t) => ({
-        "@type": "WebApplication",
-        name: t.title,
-        description: t.description,
-        url: `https://picmal.app${t.href}`,
-        applicationCategory: "UtilityApplication",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      })),
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: SITE_TITLE,
+        description: SITE_DESCRIPTION,
+        mainEntity: tools
+          .filter((t) => t.available)
+          .map((t) => ({
+            "@type": "WebApplication",
+            name: t.title,
+            description: t.description,
+            url: `https://picmal.app${t.href}`,
+            applicationCategory: "UtilityApplication",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          })),
+      })}
+    />
   </head>
   <body
     class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
@@ -94,9 +99,7 @@ const tools = [
         <!-- Hero Section -->
         <div class="text-center mb-12 sm:mb-16">
           <H1 class="mb-4 sm:mb-6">Free image tools</H1>
-          <Paragraph
-            class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl"
-          >
+          <Paragraph class="max-w-2xl mx-auto text-body-lg">
             Simple, free utilities to help you make better decisions about image
             formats and optimization.
           </Paragraph>
@@ -113,13 +116,15 @@ const tools = [
                     class="tool-card-link bg-background-subtle border border-border rounded-lg p-6 transition-all duration-200 flex flex-col h-full"
                   >
                     <div class="mb-4">
-                      <h3 class="text-lg font-semibold mb-2">{tool.title}</h3>
-                      <p class="text-text-secondary text-sm leading-relaxed">
+                      <h3 class="text-body-lg font-semibold mb-2">
+                        {tool.title}
+                      </h3>
+                      <p class="text-text-secondary text-body leading-relaxed">
                         {tool.description}
                       </p>
                     </div>
                     <div class="mt-auto pt-4">
-                      <span class="text-accent font-semibold text-sm inline-flex items-center gap-2">
+                      <span class="text-accent font-semibold text-body inline-flex items-center gap-2">
                         Use tool
                         <svg
                           class="w-4 h-4 transition-transform duration-200"
@@ -141,12 +146,12 @@ const tools = [
                   <div class="bg-background-subtle border border-border rounded-lg p-6 flex flex-col h-full opacity-60">
                     <div class="mb-4">
                       <div class="flex items-center gap-2 mb-2">
-                        <h3 class="text-lg font-semibold">{tool.title}</h3>
-                        <span class="text-xs px-2 py-1 bg-background border border-border rounded text-text-secondary">
+                        <h3 class="text-body-lg font-semibold">{tool.title}</h3>
+                        <span class="text-caption px-2 py-1 bg-background border border-border rounded text-text-secondary">
                           Coming soon
                         </span>
                       </div>
-                      <p class="text-text-secondary text-sm leading-relaxed">
+                      <p class="text-text-secondary text-body-sm leading-relaxed">
                         {tool.description}
                       </p>
                     </div>
@@ -170,6 +175,5 @@ const tools = [
     </section>
 
     <Footer />
-
   </body>
 </html>

@@ -64,23 +64,18 @@ const isActive = (item: NavItem) =>
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const desktopLinkBase = `text-sm transition-colors cursor-pointer rounded-sm ${focusRing}`;
-const desktopLinkIdle = "text-text-secondary hover:text-text focus-visible:text-text";
-const mobileLinkBase = `flex items-center gap-3 p-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle transition-colors ${focusRing}`;
+const desktopLinkBase = `text-body transition-colors cursor-pointer rounded-sm ${focusRing}`;
+const desktopLinkIdle =
+  "text-text-secondary hover:text-text focus-visible:text-text";
+const mobileLinkBase = `flex text-body-sm items-center gap-3 p-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle transition-colors ${focusRing}`;
 ---
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-30 text-sm transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
+  class="fixed top-0 left-0 right-0 z-30 text-body transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
 >
-  <a
-    href="#main-content"
-    class={`sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2`}
-  >
-    Skip to main content
-  </a>
   <div class="px-6 xl:px-0 py-4">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center">
         <a href="/" class="flex items-center gap-3 cursor-pointer">
           <Image
@@ -91,7 +86,8 @@ const mobileLinkBase = `flex items-center gap-3 p-3 rounded-lg hover:bg-backgrou
             class="rounded-lg w-8 h-8 sm:w-10 sm:h-10 object-cover"
             loading="eager"
           />
-          <Paragraph class="text-text font-semibold text-sm sm:text-base">Picmal</Paragraph>
+          <Paragraph class="text-text font-semibold text-body">Picmal</Paragraph
+          >
         </a>
       </div>
 
@@ -178,7 +174,7 @@ const mobileLinkBase = `flex items-center gap-3 p-3 rounded-lg hover:bg-backgrou
                       d={item.iconPath}
                     />
                   </svg>
-                  <span class={`text-sm ${accent}`}>{item.label}</span>
+                  <span class={`text-body ${accent}`}>{item.label}</span>
                 </a>
               );
             })
@@ -192,8 +188,12 @@ const mobileLinkBase = `flex items-center gap-3 p-3 rounded-lg hover:bg-backgrou
     document.addEventListener("DOMContentLoaded", () => {
       const mobileMenuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
-      const openIcon = mobileMenuButton?.querySelector(".mobile-menu-open-icon");
-      const closeIcon = mobileMenuButton?.querySelector(".mobile-menu-close-icon");
+      const openIcon = mobileMenuButton?.querySelector(
+        ".mobile-menu-open-icon",
+      );
+      const closeIcon = mobileMenuButton?.querySelector(
+        ".mobile-menu-close-icon",
+      );
 
       function closeMenu() {
         mobileMenu?.classList.add("hidden");
@@ -226,7 +226,10 @@ const mobileLinkBase = `flex items-center gap-3 p-3 rounded-lg hover:bg-backgrou
         });
 
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && mobileMenuButton.getAttribute("aria-expanded") === "true") {
+          if (
+            e.key === "Escape" &&
+            mobileMenuButton.getAttribute("aria-expanded") === "true"
+          ) {
             closeMenu();
           }
         });

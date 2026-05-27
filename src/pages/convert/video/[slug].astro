@@ -93,7 +93,7 @@ const faqSchema = {
         <div class="text-center mb-16 sm:mb-20">
           <div class="flex items-center justify-center gap-3 mb-8">
             <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-sm font-mono font-medium text-text tracking-wide"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-body-sm font-mono font-medium text-text tracking-wide"
             >
               .{from.extension}
             </span>
@@ -110,7 +110,7 @@ const faqSchema = {
                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
             <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-sm font-mono font-medium text-accent tracking-wide"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-body-sm font-mono font-medium text-accent tracking-wide"
             >
               .{to.extension}
             </span>
@@ -120,7 +120,7 @@ const faqSchema = {
             >Convert {from.name} to {to.name} on Mac</H1
           >
           <Paragraph
-            class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
+            class="mb-6 sm:mb-8 max-w-xl mx-auto text-body-lg leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
           >
             {conversion.whyConvert}
           </Paragraph>
@@ -133,7 +133,7 @@ const faqSchema = {
             />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-base py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
+              class="block rounded-lg transition-all duration-200 text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/20 w-full sm:w-auto"
             >
               <svg
                 class="size-4 inline-block mr-2"
@@ -236,7 +236,7 @@ const faqSchema = {
                   href={`/convert/video/${c.slug}`}
                   class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
                 >
-                  <span class="text-sm font-medium text-text">
+                  <span class="text-body-sm font-medium text-text">
                     {videoFormats[c.from].name} to {videoFormats[c.to].name}
                   </span>
                 </a>
@@ -246,7 +246,7 @@ const faqSchema = {
           <div class="text-center mt-6">
             <a
               href="/video-converter-mac"
-              class="text-sm text-accent hover:underline"
+              class="text-body-sm text-accent hover:underline"
               >All video conversions &rarr;</a
             >
           </div>

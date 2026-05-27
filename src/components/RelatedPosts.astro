@@ -63,7 +63,7 @@ const postsToShow =
   postsToShow.length > 0 && (
     <section class="mt-16 pt-12 border-t border-border">
       <div class="mb-8">
-        <h2 class="text-2xl font-bold text-text mb-2">
+        <h2 class="text-h3 text-text mb-2">
           {relatedPosts.length > 0 ? "Related articles" : "Recent articles"}
         </h2>
         <p class="text-text-secondary">
@@ -92,22 +92,22 @@ const postsToShow =
 
               <div class="p-5">
                 {post.data.category && (
-                  <span class="inline-block px-2 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-3">
+                  <span class="inline-block px-2 py-1 text-caption font-medium bg-accent/10 text-accent rounded-full mb-3">
                     {post.data.category}
                   </span>
                 )}
 
-                <h3 class="text-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                <h3 class="text-body-lg font-semibold text-text mb-2 group-hover:text-accent transition-colors line-clamp-2">
                   {post.data.title}
                 </h3>
 
-                <p class="text-sm text-text-secondary mb-3 line-clamp-2">
+                <p class="text-body-sm text-text-secondary mb-3 line-clamp-2">
                   {post.data.description}
                 </p>
 
                 <time
                   datetime={post.data.pubDate.toISOString()}
-                  class="text-xs text-text-secondary"
+                  class="text-caption text-text-secondary"
                 >
                   <FormattedDate date={post.data.pubDate} />
                 </time>

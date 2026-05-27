@@ -37,7 +37,7 @@ const SITE_DESCRIPTION =
         <div class="text-center mb-16">
           <H1 class="mb-6 text-balance">Which image format should I use?</H1>
           <Paragraph
-            class="max-w-2xl mx-auto text-base sm:text-lg text-text-secondary text-pretty"
+            class="max-w-2xl mx-auto text-body sm:text-body-lg text-text-secondary text-pretty"
           >
             Tell us about your project and we'll recommend the perfect format
             for your specific needs.
@@ -165,40 +165,40 @@ const SITE_DESCRIPTION =
               class="bg-background-subtle/50 border border-border p-6 rounded-lg"
             >
               <div class="font-semibold text-text mb-5">Quick cheat sheet</div>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-body-sm">
                 <div>
                   <div class="font-semibold text-text">JPEG/JPG</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Photos, small files
                   </p>
                 </div>
                 <div>
                   <div class="font-semibold text-text">PNG</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Logos, transparency
                   </p>
                 </div>
                 <div>
                   <div class="font-semibold text-text">WebP</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Modern, efficient
                   </p>
                 </div>
                 <div>
                   <div class="font-semibold text-text">TIFF</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Professional printing
                   </p>
                 </div>
                 <div>
                   <div class="font-semibold text-text">SVG</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Vector, scalable
                   </p>
                 </div>
                 <div>
                   <div class="font-semibold text-text">HEIC</div>
-                  <p class="text-text-secondary text-xs mt-0.5">
+                  <p class="text-text-secondary text-caption mt-0.5">
                     Apple, space-saving
                   </p>
                 </div>
@@ -397,10 +397,10 @@ const SITE_DESCRIPTION =
               return `
                 <div class="border-2 border-accent bg-accent/5 rounded-xl p-6 relative">
                   <div class="absolute top-4 right-4">
-                    <span class="inline-block px-3 py-1.5 rounded-full text-xs font-semibold bg-accent text-white">Best choice</span>
+                    <span class="inline-block px-3 py-1.5 rounded-full text-caption font-semibold bg-accent text-white">Best choice</span>
                   </div>
                   <div class="pr-24">
-                    <h3 class="text-2xl font-bold text-text mb-2">${format}</h3>
+                    <h3 class="text-h3 text-text mb-2">${format}</h3>
                     <p class="text-text-secondary leading-relaxed">${formatData.descriptions[format]}</p>
                   </div>
                 </div>
@@ -409,8 +409,8 @@ const SITE_DESCRIPTION =
 
             return `
               <div class="border border-border rounded-lg p-5">
-                <h3 class="text-lg font-semibold text-text mb-2">${format}</h3>
-                <p class="text-text-secondary text-sm leading-relaxed">${formatData.descriptions[format]}</p>
+                <h3 class="text-body-lg font-semibold text-text mb-2">${format}</h3>
+                <p class="text-text-secondary text-body-sm leading-relaxed">${formatData.descriptions[format]}</p>
               </div>
             `;
           })

@@ -22,11 +22,11 @@ Compress to fit an email limit or a slow upload, without the quality drop you'd
 actually notice. Convert and compress in one pass.
 Visual: compress.mp4 / compress_dark.mp4.
 
-Card [small]: **No surprises**
-See the projected size before you encode.
+Card [small]: **See it before you commit**
+Slide between the original and the compressed version, then dial in the quality.
 
-Card [small]: **Know what you saved**
-"Freed up 9.66 GB · about a 4K movie."
+Card [small]: **RAW and PDF, too**
+Camera RAW in, JPEG out. Rasterize a PDF to PNG at the DPI you pick.
 
 ---
 
@@ -43,8 +43,9 @@ Schedule big jobs for later. They survive quitting the app.
 Card [small]: **Watched folders**
 Drop a file in, it converts itself. Set it once, forget it.
 
-Card [small]: **Pause & resume**
-Stop a long job and pick it back up. Bump files to the front when you're in a hurry.
+Card [small]: **Optimize from the clipboard**
+Copy a screenshot, paste it back smaller. Picmal compresses what's on your
+clipboard automatically.
 
 ---
 
@@ -53,9 +54,6 @@ Stop a long job and pick it back up. Bump files to the front when you're in a hu
 Lead [medium]: **Presets for the usual stuff. Full control for the rest.**
 One-click presets for web, social, and archival. Or go deeper and save your own.
 Visual: preferences.png / preferences_dark.png.
-
-Card [small]: **Color & codecs**
-Real color spaces and modern codecs, not just the basics.
 
 Card [small]: **Watermarks**
 Stamp every file in a batch, scaled to fit any size.
@@ -67,17 +65,13 @@ Keep camera info, dates, and GPS — or strip what you don't want shared.
 
 ## Block 4 — Fits the way you work
 
-Lead [medium]: **Right where you already are**
-Picmal lives in Finder, Quick Actions, and the Shortcuts app. A conversion is a
-right-click away, no window needed.
+Lead [medium]: **Fits your workflow**
+A conversion is a right-click away — Finder, Shortcuts, and Raycast (soon).
 Visual: Finder right-click + Shortcuts.
 
-Card [medium]: **A command line for scripts and agents**
-Convert and compress from the terminal, a cron job, or a coding agent. Same
-engine as the app, fully scriptable.
-
-Card [small]: **Raycast**
-Coming soon.
+Card [medium]: **A command line for scripts and agents** [coming soon]
+Convert and compress from the terminal, a cron job, or a coding agent — the same
+engine as the app. Visual: terminal close-up running `picmal --help`, "Soon" badge.
 
 ---
 

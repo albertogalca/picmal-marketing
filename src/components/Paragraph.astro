@@ -1,20 +1,21 @@
 ---
-import { twMerge } from "tailwind-merge";
+import { cn } from "../utils/cn";
 
 interface Props {
   class?: string;
-  size?: "base" | "small";
+  size?: "base" | "small" | "lead";
 }
 
 const { class: className, size = "base" } = Astro.props;
 
 const sizeClasses = {
-  base: "text-base",
-  small: "text-sm",
+  base: "text-body",
+  small: "text-body-sm",
+  lead: "text-body-lg",
 };
 
-const defaultClasses = `${sizeClasses[size]} leading-relaxed text-text-secondary text-pretty`;
-const mergedClasses = twMerge(defaultClasses, className);
+const defaultClasses = `${sizeClasses[size]} text-text-secondary text-pretty`;
+const mergedClasses = cn(defaultClasses, className);
 ---
 
 <p class={mergedClasses}>

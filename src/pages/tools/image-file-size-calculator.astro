@@ -36,7 +36,7 @@ const SITE_DESCRIPTION =
         <div class="text-center mb-12 sm:mb-16">
           <H1 class="mb-6 text-balance">Image file size calculator</H1>
           <p
-            class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-text-secondary text-pretty"
+            class="max-w-2xl mx-auto text-body-lg text-text-secondary text-pretty"
           >
             Calculate estimated file sizes for different image formats and see
             potential compression savings.
@@ -55,7 +55,7 @@ const SITE_DESCRIPTION =
                 <div>
                   <label
                     for="width"
-                    class="block text-sm font-medium mb-2 text-text"
+                    class="block text-body-sm font-medium mb-2 text-text"
                     >Width (pixels)</label
                   >
                   <input
@@ -72,7 +72,7 @@ const SITE_DESCRIPTION =
                 <div>
                   <label
                     for="height"
-                    class="block text-sm font-medium mb-2 text-text"
+                    class="block text-body-sm font-medium mb-2 text-text"
                     >Height (pixels)</label
                   >
                   <input
@@ -90,31 +90,31 @@ const SITE_DESCRIPTION =
 
               <!-- Common Presets -->
               <div>
-                <label class="block text-sm font-medium mb-2 text-text"
+                <label class="block text-body-sm font-medium mb-2 text-text"
                   >Common sizes</label
                 >
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <button
                     type="button"
-                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    class="preset-btn px-3 py-2 text-body-sm bg-background border border-border rounded-lg hover:border-accent"
                     data-width="1920"
                     data-height="1080">1080p</button
                   >
                   <button
                     type="button"
-                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    class="preset-btn px-3 py-2 text-body-sm bg-background border border-border rounded-lg hover:border-accent"
                     data-width="3840"
                     data-height="2160">4K</button
                   >
                   <button
                     type="button"
-                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    class="preset-btn px-3 py-2 text-body-sm bg-background border border-border rounded-lg hover:border-accent"
                     data-width="1200"
                     data-height="630">Social</button
                   >
                   <button
                     type="button"
-                    class="preset-btn px-3 py-2 text-sm bg-background border border-border rounded-lg hover:border-accent"
+                    class="preset-btn px-3 py-2 text-body-sm bg-background border border-border rounded-lg hover:border-accent"
                     data-width="1000"
                     data-height="1000">Square</button
                   >
@@ -123,7 +123,7 @@ const SITE_DESCRIPTION =
 
               <!-- Image Type -->
               <div>
-                <label class="block text-sm font-medium mb-2 text-text"
+                <label class="block text-body-sm font-medium mb-2 text-text"
                   >Image type</label
                 >
                 <select
@@ -153,7 +153,7 @@ const SITE_DESCRIPTION =
         <div id="results" class="max-w-4xl mx-auto" style="display: none;">
           <div class="mb-8">
             <H2 class="mb-2 text-center text-balance">Estimated file sizes</H2>
-            <p class="text-center text-text-secondary text-sm">
+            <p class="text-center text-text-secondary text-body-sm">
               Based on <span id="result-dimensions" class="font-semibold tabular-nums"
               ></span> image
             </p>
@@ -189,8 +189,8 @@ const SITE_DESCRIPTION =
                 </svg>
               </div>
               <div>
-                <div class="font-semibold text-text text-sm mb-2">Compression savings</div>
-                <p class="text-text-secondary text-sm leading-relaxed" id="compression-text">
+                <div class="font-semibold text-text text-body-sm mb-2">Compression savings</div>
+                <p class="text-text-secondary text-body-sm leading-relaxed" id="compression-text">
                 </p>
               </div>
             </div>
@@ -201,7 +201,7 @@ const SITE_DESCRIPTION =
             class="border border-border rounded-lg p-5"
           >
             <div class="font-semibold text-text mb-4">Quick format comparison</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-body-sm">
               <div>
                 <div class="font-semibold text-text mb-0.5">HEIC/HEIF</div>
                 <p class="text-text-secondary">Best compression for photos, Apple devices</p>

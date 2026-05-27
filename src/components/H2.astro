@@ -1,14 +1,13 @@
 ---
-import { twMerge } from "tailwind-merge";
+import { cn } from "../utils/cn";
 
 export interface Props {
   class?: string;
 }
 
 const { class: className = "" } = Astro.props;
-const defaultClasses =
-  "font-semibold tracking-tight text-text leading-[1.1] text-balance text-fluid-h2";
-const mergedClasses = twMerge(defaultClasses, className);
+const defaultClasses = "text-h2 text-text text-balance";
+const mergedClasses = cn(defaultClasses, className);
 ---
 
 <h2 class={mergedClasses}>

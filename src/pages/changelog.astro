@@ -59,7 +59,7 @@ entries.sort((a, b) => {
         <div
           class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
         >
-          <Paragraph class="mb-0 flex-1 text-sm">
+          <Paragraph class="mb-0 flex-1 text-body-sm">
             As an indie developer, Picmal grows through word of mouth. A review
             only takes a minute and makes a huge difference.
           </Paragraph>
@@ -67,7 +67,7 @@ entries.sort((a, b) => {
             href="https://tally.so/r/Me18qE"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-xs rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-caption rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
           >
             Leave a Review
             <svg
@@ -101,17 +101,17 @@ entries.sort((a, b) => {
                 {/* Left: sticky metadata */}
                 <div class="md:w-[220px] lg:w-[260px] shrink-0 md:sticky md:top-28 md:self-start">
                   {entry.data.pubDate && (
-                    <div class="text-sm text-text-secondary mb-2">
+                    <div class="text-body-sm text-text-secondary mb-2">
                       <FormattedDate date={entry.data.pubDate} />
                     </div>
                   )}
-                  <span class="inline-block text-xs font-mono px-2 py-1 rounded-md bg-accent/10 text-accent">
+                  <span class="inline-block text-caption font-mono px-2 py-1 rounded-md bg-accent/10 text-accent">
                     v{entry.data.version}
                   </span>
                   {hasDownload && (
                     <a
                       href={downloadUrl}
-                      class="flex items-center gap-1.5 text-sm text-text-secondary mt-3 transition-colors duration-150 hover:text-text"
+                      class="flex items-center gap-1.5 text-body-sm text-text-secondary mt-3 transition-colors duration-150 hover:text-text"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +137,7 @@ entries.sort((a, b) => {
                 {/* Right: title + MDX content */}
                 <div class="flex-1">
                   {entry.data.title && (
-                    <h2 class="text-xl font-semibold text-text mb-4">{entry.data.title}</h2>
+                    <h2 class="text-h3 text-text mb-4">{entry.data.title}</h2>
                   )}
                   <div class="prose max-w-none
                     prose-headings:text-text prose-headings:font-semibold

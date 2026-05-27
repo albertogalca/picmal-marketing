@@ -188,7 +188,7 @@ const formatSupport = [
             >Image format support matrix</H1
           >
           <p
-            class="mb-6 sm:mb-8 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
+            class="mb-6 sm:mb-8 max-w-2xl mx-auto text-body-lg leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
           >
             Complete browser and operating system compatibility guide for all
             major image formats.
@@ -226,7 +226,7 @@ const formatSupport = [
           >
             <!-- Desktop Table View -->
             <div class="hidden lg:block overflow-x-auto">
-              <table class="w-full text-sm">
+              <table class="w-full text-body-sm">
                 <thead class="bg-background-subtle/50 border-b border-border">
                   <tr>
                     <th
@@ -271,10 +271,10 @@ const formatSupport = [
                       >
                         <td class="px-6 py-5 sticky left-0 bg-background-subtle/30 backdrop-blur-sm">
                           <div>
-                            <div class="font-semibold text-text text-base">
+                            <div class="font-semibold text-text text-body">
                               {format.format}
                             </div>
-                            <div class="text-xs text-text-secondary/80 mt-0.5">
+                            <div class="text-caption text-text-secondary/80 mt-0.5">
                               {format.extension}
                             </div>
                           </div>
@@ -298,7 +298,7 @@ const formatSupport = [
                               : format.chrome.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.chrome.note}
                             </span>
                           </span>
@@ -322,7 +322,7 @@ const formatSupport = [
                               : format.firefox.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.firefox.note}
                             </span>
                           </span>
@@ -346,7 +346,7 @@ const formatSupport = [
                               : format.safari.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.safari.note}
                             </span>
                           </span>
@@ -370,7 +370,7 @@ const formatSupport = [
                               : format.edge.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.edge.note}
                             </span>
                           </span>
@@ -394,7 +394,7 @@ const formatSupport = [
                               : format.ios.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.ios.note}
                             </span>
                           </span>
@@ -418,7 +418,7 @@ const formatSupport = [
                               : format.android.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.android.note}
                             </span>
                           </span>
@@ -442,7 +442,7 @@ const formatSupport = [
                               : format.macos.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.macos.note}
                             </span>
                           </span>
@@ -466,7 +466,7 @@ const formatSupport = [
                               : format.windows.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.windows.note}
                             </span>
                           </span>
@@ -490,7 +490,7 @@ const formatSupport = [
                               : format.linux.support === "partial"
                                 ? "◐"
                                 : "✗"}
-                            <span class="ml-1 text-xs text-text-secondary hidden xl:inline">
+                            <span class="ml-1 text-caption text-text-secondary hidden xl:inline">
                               {format.linux.note}
                             </span>
                           </span>
@@ -511,18 +511,18 @@ const formatSupport = [
                     data-format={format.format.toLowerCase()}
                   >
                     <div>
-                      <h3 class="text-xl font-semibold text-text mb-1.5">
+                      <h3 class="text-h3 text-text mb-1.5">
                         {format.format}
                       </h3>
-                      <p class="text-sm text-text-secondary/80 mb-3">
+                      <p class="text-body-sm text-text-secondary/80 mb-3">
                         {format.extension}
                       </p>
-                      <p class="text-sm text-text-secondary leading-relaxed">
+                      <p class="text-body-sm text-text-secondary leading-relaxed">
                         {format.description}
                       </p>
                     </div>
 
-                    <div class="space-y-3 text-sm">
+                    <div class="space-y-3 text-body-sm">
                       <div class="flex justify-between items-center py-1">
                         <span class="text-text-secondary font-medium">
                           Browsers:
@@ -530,7 +530,7 @@ const formatSupport = [
                         <div class="flex gap-2">
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.chrome.support === "yes",
@@ -545,7 +545,7 @@ const formatSupport = [
                           </span>
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.safari.support === "yes",
@@ -567,7 +567,7 @@ const formatSupport = [
                         <div class="flex gap-2">
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.ios.support === "yes",
@@ -582,7 +582,7 @@ const formatSupport = [
                           </span>
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.android.support === "yes",
@@ -604,7 +604,7 @@ const formatSupport = [
                         <div class="flex gap-2">
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.macos.support === "yes",
@@ -619,7 +619,7 @@ const formatSupport = [
                           </span>
                           <span
                             class:list={[
-                              "px-2.5 py-1.5 rounded-lg text-xs font-medium",
+                              "px-2.5 py-1.5 rounded-lg text-caption font-medium",
                               {
                                 "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-400":
                                   format.windows.support === "yes",
@@ -643,24 +643,24 @@ const formatSupport = [
 
           <!-- Legend -->
           <div
-            class="mt-6 hidden lg:flex flex-wrap gap-6 text-sm text-text-secondary px-2"
+            class="mt-6 hidden lg:flex flex-wrap gap-6 text-body-sm text-text-secondary px-2"
           >
             <div class="flex items-center gap-2.5">
               <span
-                class="text-green-600 dark:text-green-400 text-lg font-semibold"
+                class="text-green-600 dark:text-green-400 text-body-lg font-semibold"
                 >✓</span
               >
               <span class="font-medium">Full support</span>
             </div>
             <div class="flex items-center gap-2.5">
               <span
-                class="text-yellow-600 dark:text-yellow-400 text-lg font-semibold"
+                class="text-yellow-600 dark:text-yellow-400 text-body-lg font-semibold"
                 >◐</span
               >
               <span class="font-medium">Partial support</span>
             </div>
             <div class="flex items-center gap-2.5">
-              <span class="text-red-600 dark:text-red-400 text-lg font-semibold"
+              <span class="text-red-600 dark:text-red-400 text-body-lg font-semibold"
                 >✗</span
               >
               <span class="font-medium">Not supported</span>
@@ -680,14 +680,14 @@ const formatSupport = [
                 >
                   <div class="mb-4">
                     <div class="flex items-baseline gap-3 mb-2">
-                      <h3 class="text-2xl font-semibold text-text">
+                      <h3 class="text-h3 text-text">
                         {format.format}
                       </h3>
-                      <span class="text-sm text-text-secondary font-mono">
+                      <span class="text-body-sm text-text-secondary font-mono">
                         {format.extension}
                       </span>
                     </div>
-                    <p class="text-xs font-medium text-text-secondary uppercase tracking-wide">
+                    <p class="text-eyebrow font-medium text-text-secondary uppercase tracking-wide">
                       {format.useCase}
                     </p>
                   </div>
@@ -706,7 +706,7 @@ const formatSupport = [
           class="text-center py-16 sm:py-20"
           style="display: none;"
         >
-          <p class="text-text-secondary text-lg">
+          <p class="text-text-secondary text-body-lg">
             No formats found. Try a different search term.
           </p>
         </div>

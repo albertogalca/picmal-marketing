@@ -37,9 +37,7 @@ const description =
           <H1 class="mb-6 max-w-3xl mx-auto"
             >Compress Any Image Format on Mac</H1
           >
-          <Paragraph
-            class="mb-6 sm:mb-8 max-w-xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
-          >
+          <Paragraph size="lead" class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
             Reduce file sizes for JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF on
             your Mac. Batch processing, adjustable quality, completely offline.
           </Paragraph>
@@ -52,7 +50,7 @@ const description =
             />
             <a
               href="https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg"
-              class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg font-semibold text-base py-3 px-6 bg-transparent text-text border border-border hover:bg-background-subtle transition-[colors,scale] duration-200 motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-lg font-semibold text-body py-3 px-6 bg-transparent text-text border border-border hover:bg-background-subtle transition-[colors,scale] duration-200 motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               <svg
                 class="size-4"
@@ -79,14 +77,14 @@ const description =
                 class="group bg-background-subtle/50 border border-border rounded-xl p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <div class="flex items-center gap-3 mb-3">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background border border-border text-xs font-mono font-medium text-text group-hover:border-accent/20 transition-colors">
+                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background border border-border text-caption font-mono font-medium text-text group-hover:border-accent/20 transition-colors">
                     .{c.format}
                   </span>
-                  <h2 class="text-lg font-semibold text-text">
+                  <h2 class="text-h3 text-text">
                     Compress {c.name}
                   </h2>
                 </div>
-                <p class="text-sm text-text-secondary leading-relaxed">
+                <p class="text-body-sm text-text-secondary">
                   {c.description}
                 </p>
               </a>

@@ -3,17 +3,28 @@ import { Image } from "astro:assets";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
+import rawSampleTree from "../assets/raw-sample-tree.jpg";
+import rawSampleBeach from "../assets/raw-sample-beach.jpg";
 
 // Shared styles
 const card =
   "relative bg-background-subtle rounded-2xl border border-border overflow-hidden";
-const eyebrow =
-  "text-xs font-semibold uppercase tracking-wider text-blue-500 mb-2";
-const blockTitle =
-  "text-2xl sm:text-3xl font-semibold tracking-tight text-text leading-tight";
+const eyebrow = "text-eyebrow uppercase text-accent mb-2";
+const blockTitle = "text-h3 text-text text-balance";
 // Screenshot that bleeds into a corner on desktop, stacks below text on mobile
-const cornerImg =
-  "rounded-xl lg:rounded-tl-2xl border border-border shadow-2xl w-full h-auto";
+const cornerImg = "rounded-lg lg:rounded-tl-lg shadow-sm w-full h-auto";
+
+// Sample EXIF fields shown in the Metadata close-up panel
+const metadataRows: [string, string][] = [
+  ["Make", "FUJIFILM"],
+  ["Model", "X-T5"],
+  ["Lens", "XF33mmF1.4 R LM WR"],
+  ["Focal Length", "33.0 mm"],
+  ["Aperture", "ƒ/1.4"],
+  ["Shutter Speed", "1/250 s"],
+  ["ISO", "160"],
+  ["Film Simulation", "Classic Chrome"],
+];
 ---
 
 <section id="features" class="relative z-10 px-6 py-24">
@@ -40,12 +51,12 @@ const cornerImg =
 
         <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
           <!-- Convert — wide, video bleeding bottom-right -->
-          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
-            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+          <div class={`${card} lg:col-span-4 min-h-[315px]`}>
+            <div class="p-6 relative z-10 lg:max-w-[45%]">
               <H3 class="mb-2"
                 >Any format, in or out <button
                   id="open-formats-modal-bento"
-                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  class="relative inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-[background-color,transform] active:scale-[0.96] align-middle before:absolute before:-inset-2 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                   type="button"
                   aria-label="View supported formats"
                   ><svg
@@ -70,10 +81,10 @@ const cornerImg =
               </Paragraph>
             </div>
             <div
-              class="px-6 pb-6 lg:p-0 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[55%] lg:w-[70%]"
+              class="-mb-10 lg:mb-0 lg:p-0 lg:absolute lg:top-1/2 lg:right-0 lg:w-[65%] lg:translate-x-30 lg:-translate-y-1/2"
             >
               <video
-                class={`theme-video ${cornerImg}`}
+                class={`theme-video ${cornerImg} aspect-[1848/1080] ring-1 ring-inset ring-black/10 dark:ring-white/10`}
                 data-light-src="/convert.mp4"
                 data-dark-src="/convert_dark.mp4"
                 autoplay
@@ -84,45 +95,114 @@ const cornerImg =
             </div>
           </div>
 
-          <!-- Size estimate — placeholder close-up -->
-          <div class={`${card} lg:col-span-2 min-h-[360px] flex flex-col`}>
-            <div class="p-6 md:p-8">
-              <H3 class="mb-2">No surprises</H3>
+          <!-- Before/after preview — slider close-up docked at the bottom -->
+          <div class={`${card} lg:col-span-2 min-h-[315px] flex flex-col`}>
+            <div class="p-6">
+              <H3 class="mb-2">See it before you commit</H3>
               <Paragraph>
-                See the projected output size before you encode.
+                Slide between the original and the compressed version, then dial
+                in the quality.
               </Paragraph>
             </div>
-            <div class="mt-auto px-6 pb-0">
+            <div class="mt-auto">
               <div
-                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-32 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+                class="h-44 overflow-hidden rounded-t-xl ring-1 ring-inset ring-black/10 dark:ring-white/10 flex items-center justify-center translate-y-px"
               >
-                close-up: size estimate
+                <Image
+                  class="w-full max-w-none h-auto"
+                  src="/before_after.png"
+                  width={1352}
+                  height={1060}
+                  alt="Before/after slider comparing the original 1.6 MB photo with the 145 KB compressed version"
+                />
               </div>
             </div>
           </div>
 
-          <!-- Space saved — placeholder close-up -->
-          <div class={`${card} lg:col-span-2 min-h-[300px] flex flex-col`}>
-            <div class="p-6 md:p-8">
-              <H3 class="mb-2">Know what you saved</H3>
-              <Paragraph> "Freed up 9.66 GB — about a 4K movie." </Paragraph>
+          <!-- RAW & PDF — photo + PDF close-up, fans out on hover -->
+          <div
+            class={`group ${card} lg:col-span-2 min-h-[315px] flex flex-col`}
+          >
+            <div class="p-6">
+              <H3 class="mb-2">RAW and PDF, too</H3>
+              <Paragraph>
+                Camera RAW in, JPEG out. Rasterize a PDF to PNG at the DPI you
+                pick.
+              </Paragraph>
             </div>
-            <div class="mt-auto px-6 pb-0">
-              <div
-                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
-              >
-                close-up: completion toast
+            <!-- PDF page (center) flanked by two RAW photos, fanned at rest.
+                 Stack is pushed down (translate-y-5) so the rotated bottoms
+                 bleed off and the card clips them — no gap shows at rest or on hover. -->
+            <div
+              class="mt-auto flex items-end justify-center overflow-hidden px-6"
+            >
+              <div class="relative h-40 w-64 translate-y-5" aria-hidden="true">
+                <!-- RAW photo — tree (left) -->
+                <div
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[86%] -rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-x-[96%] motion-safe:group-hover:-rotate-[13deg]"
+                >
+                  <Image
+                    class="h-28 w-full object-cover"
+                    src={rawSampleTree}
+                    alt=""
+                    widths={[144, 288]}
+                    sizes="144px"
+                  />
+                  <span
+                    class="absolute left-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-caption font-semibold leading-none text-white backdrop-blur-sm"
+                    >RAW</span
+                  >
+                </div>
+                <!-- RAW photo — beach (right) -->
+                <div
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[14%] rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-x-[4%] motion-safe:group-hover:rotate-[13deg]"
+                >
+                  <Image
+                    class="h-28 w-full object-cover"
+                    src={rawSampleBeach}
+                    alt=""
+                    widths={[144, 288]}
+                    sizes="144px"
+                  />
+                  <span
+                    class="absolute right-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-caption font-semibold leading-none text-white backdrop-blur-sm"
+                    >RAW</span
+                  >
+                </div>
+                <!-- PDF page (center, on top, lifted to crown the fan) -->
+                <div
+                  class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-y-9"
+                >
+                  <span
+                    class="absolute top-4 left-3.5 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Compress — wide, video bleeding bottom-left -->
-          <div class={`${card} lg:col-span-4 min-h-[360px]`}>
-            <div class="p-6 md:p-8 relative z-10 lg:ml-[50%] lg:max-w-[60%]">
+          <div class={`${card} lg:col-span-4 min-h-[315px]`}>
+            <div class="p-6 relative z-10 lg:ml-[50%] lg:max-w-[60%]">
               <H3 class="mb-2"
                 >Smaller files, same quality <button
                   id="open-compress-formats-modal-bento"
-                  class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-colors align-middle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  class="relative inline-flex items-center justify-center w-6 h-6 rounded-full bg-text/5 hover:bg-text/10 cursor-pointer transition-[background-color,transform] active:scale-[0.96] align-middle before:absolute before:-inset-2 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                   type="button"
                   aria-label="View supported compression formats"
                   ><svg
@@ -147,10 +227,10 @@ const cornerImg =
               </Paragraph>
             </div>
             <div
-              class="px-6 pb-6 lg:p-0 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[55%] lg:w-[70%]"
+              class="-mb-10 lg:mb-0 lg:p-0 lg:absolute lg:top-1/2 lg:left-0 lg:w-[65%] lg:-translate-x-30 lg:-translate-y-1/2"
             >
               <video
-                class={`theme-video ${cornerImg} lg:rounded-tr-2xl lg:rounded-tl-none`}
+                class={`theme-video ${cornerImg} aspect-[1848/1080] ring-1 ring-inset ring-black/10 dark:ring-white/10 lg:rounded-tr-2xl lg:rounded-tl-none`}
                 data-light-src="/compress.mp4"
                 data-dark-src="/compress_dark.mp4"
                 autoplay
@@ -175,7 +255,7 @@ const cornerImg =
         <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
           <!-- Lead — main app screenshot bleeding bottom-right -->
           <div class={`${card} lg:col-span-4 min-h-[360px]`}>
-            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+            <div class="p-6 relative z-10 lg:max-w-[45%]">
               <H3 class="mb-2">Drop a folder, walk away</H3>
               <Paragraph>
                 Thousands of files at once, whole folders, mixed formats. Picmal
@@ -183,7 +263,7 @@ const cornerImg =
               </Paragraph>
             </div>
             <div
-              class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[54%] lg:translate-x-8 lg:translate-y-10"
+              class="relative px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[75%] lg:translate-x-40 lg:translate-y-1"
             >
               <Image
                 class={`${cornerImg} block dark:hidden`}
@@ -199,41 +279,101 @@ const cornerImg =
                 height={500}
                 alt=""
               />
+
+              <!-- Folder being dropped onto the drop zone -->
+              <div
+                class="pointer-events-none absolute left-[16%] lg:left-[2%] top-[74%] -translate-x-1/2 -translate-y-1/2 -rotate-6 drop-shadow-md"
+                aria-hidden="true"
+              >
+                <Image
+                  class="w-12 h-auto sm:w-14"
+                  src="/folder-blue.png"
+                  width={1004}
+                  height={841}
+                  alt=""
+                />
+                <!-- macOS-style count badge -->
+                <span
+                  class="absolute -top-1.5 -right-2 px-1.5 py-px rounded-full bg-red-500 text-white text-caption font-semibold leading-tight tracking-tight ring-[1.5px] ring-white tabular-nums"
+                  >1,248</span
+                >
+              </div>
             </div>
           </div>
 
-          <!-- Run overnight -->
-          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
-            <H3 class="mb-2">Run it overnight</H3>
-            <Paragraph>
-              Schedule big jobs for later. They survive quitting the app.
-            </Paragraph>
+          <!-- Run overnight — schedule dialog docked at the bottom -->
+          <div class={`${card} lg:col-span-2 lg:min-h-[360px] flex flex-col`}>
+            <div class="p-6">
+              <H3 class="mb-2">Run it overnight</H3>
+              <Paragraph>
+                Schedule big jobs for later. They survive quitting the app.
+              </Paragraph>
+            </div>
+            <div
+              class="schedule-stack group flex-1 flex items-end justify-center px-6 pb-6 pt-10 lg:pt-0"
+            >
+              <div class="relative w-full max-w-[300px] -translate-x-2">
+                <!-- Back card — compress, peeks above and rises further on hover -->
+                <Image
+                  class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-lg shadow-lg transition-transform duration-300 ease-out group-hover:-translate-y-12"
+                  src="/schedule_compress.png"
+                  width={733}
+                  height={314}
+                  alt=""
+                />
+                <!-- Front card — convert -->
+                <Image
+                  class="relative w-full h-auto rounded-lg shadow-xl transition-transform duration-300 ease-out group-hover:translate-y-1"
+                  src="/schedule_convert.png"
+                  width={751}
+                  height={332}
+                  alt="Picmal schedule dialog set to run a job at a chosen time"
+                />
+              </div>
+            </div>
           </div>
 
           <!-- Watched folders -->
           <div class={`${card} lg:col-span-3 min-h-[220px] flex flex-col`}>
-            <div class="p-6 md:p-8">
+            <div class="p-6">
               <H3 class="mb-2">Watched folders</H3>
               <Paragraph>
                 Drop a file in, it converts itself. Set it once, forget it.
               </Paragraph>
             </div>
-            <div class="mt-auto px-6 pb-0">
-              <div
-                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
-              >
-                close-up: watched folder rule
-              </div>
+            <div class="mt-auto pb-0 lg:px-6">
+              <video
+                class="rounded-t-xl border border-b-0 border-black/10 dark:border-white/10 w-full h-auto aspect-[1628/1080] translate-y-px"
+                src="/watched_folders.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label="Picmal watching a folder and converting files dropped into it"
+              ></video>
             </div>
           </div>
 
-          <!-- Pause & resume -->
-          <div class={`${card} lg:col-span-3 p-6 md:p-8`}>
-            <H3 class="mb-2">Pause &amp; resume</H3>
-            <Paragraph>
-              Stop a long job and pick it back up. Bump files to the front when
-              you're in a hurry.
-            </Paragraph>
+          <!-- Clipboard optimization -->
+          <div class={`${card} lg:col-span-3 min-h-[220px] flex flex-col`}>
+            <div class="p-6">
+              <H3 class="mb-2">Optimize from the clipboard</H3>
+              <Paragraph>
+                Copy a screenshot, paste it back smaller. Picmal compresses
+                what's on your clipboard automatically.
+              </Paragraph>
+            </div>
+            <div class="mt-auto pb-0 lg:px-6">
+              <video
+                class="rounded-t-xl border border-b-0 border-black/10 dark:border-white/10 w-full h-auto aspect-[1712/1080] translate-y-px"
+                src="/images/changelog/1.3.8/clipboard_demo.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label="Picmal compressing an image copied to the clipboard"
+              ></video>
+            </div>
           </div>
         </div>
       </div>
@@ -248,17 +388,9 @@ const cornerImg =
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
-          <!-- Color & codecs -->
-          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
-            <H3 class="mb-2">Color &amp; codecs</H3>
-            <Paragraph>
-              Real color spaces and modern codecs, not just the basics.
-            </Paragraph>
-          </div>
-
           <!-- Presets lead — preferences bleeding bottom-right -->
           <div class={`${card} lg:col-span-4 min-h-[360px]`}>
-            <div class="p-6 md:p-8 relative z-10 lg:max-w-[50%]">
+            <div class="p-6 relative z-10 lg:max-w-[45%]">
               <H3 class="mb-2"
                 >Presets for the usual stuff. Full control for the rest.</H3
               >
@@ -268,17 +400,17 @@ const cornerImg =
               </Paragraph>
             </div>
             <div
-              class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[52%] lg:translate-x-8 lg:translate-y-10"
+              class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[60%] lg:translate-x-8 lg:translate-y-10"
             >
               <Image
-                class={`${cornerImg} block dark:hidden`}
+                class="rounded-lg lg:rounded-tl-lg w-full h-auto block dark:hidden"
                 src="/preferences.png"
                 width={800}
                 height={500}
                 alt="Picmal presets and settings"
               />
               <Image
-                class={`${cornerImg} hidden dark:block`}
+                class="rounded-lg lg:rounded-tl-lg w-full h-auto hidden dark:block"
                 src="/preferences_dark.png"
                 width={800}
                 height={500}
@@ -289,62 +421,117 @@ const cornerImg =
 
           <!-- Watermarks -->
           <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
-            <div class="p-6 md:p-8">
+            <div class="p-6">
               <H3 class="mb-2">Watermarks</H3>
               <Paragraph>
                 Stamp every file in a batch, scaled to fit any size.
               </Paragraph>
             </div>
-            <div class="mt-auto px-6 pb-0">
+            <div class="flex-1 flex flex-col px-6 pb-0">
               <div
-                class="rounded-t-xl border border-b-0 border-dashed border-border/60 h-24 flex items-center justify-center text-xs text-text-secondary translate-y-px"
+                class="relative flex-1 min-h-[8rem] overflow-hidden rounded-t-xl border border-b-0 border-black/10 dark:border-white/10 translate-y-px bg-[linear-gradient(160deg,#7fb3ff_0%,#cfe3ff_36%,#ffd7a0_64%,#7cc08a_100%)]"
               >
-                close-up: watermark editor
+                <!-- PICMAL watermark, stamped bottom-right -->
+                <span
+                  class="absolute bottom-2.5 right-3 text-caption font-semibold uppercase tracking-[0.18em] text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+                  aria-hidden="true">Picmal</span
+                >
+                <!-- Position selector — bottom-right anchor active -->
+                <div
+                  class="absolute top-2.5 left-2.5 grid grid-cols-3 gap-[3px] rounded-md bg-black/35 p-1.5 ring-1 ring-white/15 backdrop-blur-sm"
+                  aria-hidden="true"
+                >
+                  {
+                    Array.from({ length: 9 }).map((_, i) => (
+                      <span
+                        class:list={[
+                          "w-1.5 h-1.5 rounded-full",
+                          i === 8 ? "bg-accent" : "bg-white/40",
+                        ]}
+                      />
+                    ))
+                  }
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Metadata -->
-          <div class={`${card} lg:col-span-2 p-6 md:p-8`}>
-            <H3 class="mb-2">Your metadata stays</H3>
-            <Paragraph>
-              Keep camera info, dates, and GPS — or strip what you don't want
-              shared.
-            </Paragraph>
+          <!-- Metadata — EXIF/XMP close-up docked at the bottom -->
+          <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
+            <div class="p-6">
+              <H3 class="mb-2">Your metadata stays</H3>
+              <Paragraph>
+                Keep camera info, dates, and GPS — or strip what you don't want
+                shared.
+              </Paragraph>
+            </div>
+            <div class="mt-auto px-6 pb-0">
+              <div
+                class="rounded-t-xl border border-b-0 border-white/10 bg-[#242424] overflow-hidden translate-y-px"
+              >
+                <div class="px-3.5 py-2.5 border-b border-white/10">
+                  <span class="text-caption font-semibold text-white"
+                    >Metadata</span
+                  >
+                </div>
+                <dl class="divide-y divide-white/5">
+                  {
+                    metadataRows.map(([key, value]) => (
+                      <div class="flex items-center justify-between gap-3 px-3.5 py-1.5">
+                        <dt class="text-caption text-neutral-400 truncate">
+                          {key}
+                        </dt>
+                        <dd class="text-caption font-medium text-neutral-100 tabular-nums shrink-0">
+                          {value}
+                        </dd>
+                      </div>
+                    ))
+                  }
+                </dl>
+              </div>
+            </div>
           </div>
 
           <!-- Integrations — app icons docked at the bottom, lift on hover -->
           <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
-            <div class="p-6 md:p-8">
+            <div class="p-6">
               <H3 class="mb-2">Fits your workflow</H3>
               <Paragraph>
-                Finder, Shortcuts, and Raycast — plus a CLI for scripts and
-                agents.
+                A conversion is a right-click away — Finder, Shortcuts, and
+                Raycast.
               </Paragraph>
             </div>
-            <!-- App icons dock at the bottom edge and lift individually on hover -->
+            <!-- App icons centered in the remaining space, lift individually on hover -->
             <div
-              class="mt-auto flex items-end justify-center gap-4 px-6 translate-y-4"
+              class="flex-1 flex items-center justify-center gap-4 px-6 pb-6"
             >
-              <Image
-                class="w-16 h-16 rounded-[22%] shadow-lg transition-transform duration-200 ease-out hover:-translate-y-3"
-                src="/finder.png"
-                width={128}
-                height={128}
-                alt="Finder"
-                title="Finder"
-              />
-              <Image
-                class="w-16 h-16 rounded-[22%] shadow-lg transition-transform duration-200 ease-out hover:-translate-y-3"
-                src="/shortcuts.png"
-                width={128}
-                height={128}
-                alt="Shortcuts"
-                title="Shortcuts"
-              />
-              <div
-                class="relative transition-transform duration-200 ease-out hover:-translate-y-3"
+              <a
+                href="/docs/integrations#finder-services-right-click-menu"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-3 hover:shadow-xl active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                title="Finder — read the docs"
               >
+                <Image
+                  class="w-16 h-16 rounded-[22%]"
+                  src="/finder.png"
+                  width={128}
+                  height={128}
+                  alt="Finder integration"
+                />
+              </a>
+              <a
+                href="/docs/integrations#shortcuts-app"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-3 hover:shadow-xl active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                title="Shortcuts — read the docs"
+              >
+                <Image
+                  class="w-16 h-16 rounded-[22%]"
+                  src="/shortcuts.png"
+                  width={128}
+                  height={128}
+                  alt="Shortcuts integration"
+                />
+              </a>
+              <div class="relative">
                 <Image
                   class="w-16 h-16 rounded-[22%] shadow-lg"
                   src="/raycast.png"
@@ -354,9 +541,67 @@ const cornerImg =
                   title="Raycast — coming soon"
                 />
                 <span
-                  class="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-blue-500 ring-2 ring-background-subtle"
-                  aria-hidden="true"></span>
+                  class="absolute -top-2 -right-2 px-1.5 py-0.5 text-caption font-semibold leading-none rounded-full bg-accent text-white ring-2 ring-background-subtle"
+                  >Soon</span
+                >
                 <span class="sr-only">Coming soon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CLI — terminal close-up, coming soon -->
+          <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
+            <span
+              class="absolute top-4 right-4 px-2.5 py-1 text-caption font-semibold leading-none rounded-full bg-text/5 text-text-secondary"
+              >Coming soon</span
+            >
+            <div class="p-6">
+              <H3 class="mb-2">Picmal CLI</H3>
+              <Paragraph>
+                Convert and compress from the terminal, a cron job, or a coding
+                agent — the same engine as the app.
+              </Paragraph>
+            </div>
+            <div class="flex-1 flex items-center justify-center px-6 pb-6">
+              <div
+                class="w-full rounded-xl border border-white/10 bg-[#242424] overflow-hidden"
+              >
+                <!-- macOS window chrome -->
+                <div
+                  class="flex items-center gap-2 px-3.5 py-2.5 border-b border-white/10"
+                >
+                  <span class="flex gap-1.5" aria-hidden="true">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                  </span>
+                  <span class="text-caption font-medium text-neutral-400"
+                    >picmal</span
+                  >
+                </div>
+                <!-- prompt + help output -->
+                <div
+                  class="px-3.5 py-4 min-h-[180px] font-mono text-caption leading-relaxed text-neutral-400"
+                >
+                  <div class="text-neutral-100">
+                    <span class="text-[#28c840]">$</span> picmal --help
+                  </div>
+                  <div class="mt-1.5">
+                    picmal convert <span class="text-neutral-500"
+                      >&lt;in&gt; &lt;out&gt;</span
+                    >
+                  </div>
+                  <div>
+                    picmal compress <span class="text-neutral-500"
+                      >&lt;files&gt; --preset web</span
+                    >
+                  </div>
+                  <div>
+                    picmal watch <span class="text-neutral-500"
+                      >&lt;folder&gt;</span
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -425,9 +670,7 @@ const cornerImg =
                   </clipPath>
                 </defs>
               </svg>
-              <h3
-                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
-              >
+              <h3 class="text-h3 text-text mb-2 text-balance">
                 Designed for Mac
               </h3>
               <Paragraph>
@@ -470,11 +713,7 @@ const cornerImg =
                   </clipPath>
                 </defs>
               </svg>
-              <h3
-                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
-              >
-                Works offline
-              </h3>
+              <h3 class="text-h3 text-text mb-2 text-balance">Works offline</h3>
               <Paragraph>
                 No internet required, ever. Convert on a plane, at a café with
                 terrible Wi-Fi, or with the network off completely. Nothing
@@ -515,11 +754,7 @@ const cornerImg =
                   </clipPath>
                 </defs>
               </svg>
-              <h3
-                class="text-fluid-h3 font-semibold tracking-tight text-text mb-2"
-              >
-                Privacy first
-              </h3>
+              <h3 class="text-h3 text-text mb-2 text-balance">Privacy first</h3>
               <Paragraph>
                 Your files never leave your Mac. Nothing is uploaded, there's no
                 account, and nobody tracks what you convert. What's on your
@@ -534,9 +769,13 @@ const cornerImg =
     <div class="text-center mt-20">
       <a
         href="/docs"
-        class="text-sm text-text-secondary hover:text-text transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        class="group inline-flex items-center gap-1 text-body text-text-secondary hover:text-text transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
-        Learn more in the docs &rarr;
+        Learn more in the docs
+        <span
+          class="transition-transform duration-200 ease-out motion-safe:group-hover:translate-x-1"
+          aria-hidden="true">&rarr;</span
+        >
       </a>
     </div>
   </div>
@@ -576,6 +815,16 @@ const cornerImg =
       transition: none;
     }
     #features [class*="hover:-translate-y"]:hover {
+      transform: none !important;
+    }
+    /* Keep the schedule cards still for reduced-motion users */
+    #features .schedule-stack img {
+      transition: none !important;
+    }
+    #features .schedule-stack:hover img:first-child {
+      transform: translate(calc(-50% + 1rem), -1.75rem) !important;
+    }
+    #features .schedule-stack:hover img:last-child {
       transform: none !important;
     }
   }

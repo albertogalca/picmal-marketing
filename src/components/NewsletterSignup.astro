@@ -4,7 +4,8 @@
 //
 // NOTE: set SUBSCRIBE_ENDPOINT to the deployed worker URL (same host as the Lemon
 // Squeezy webhook, with /subscribe instead of /lemonsqueezy).
-const SUBSCRIBE_ENDPOINT = "https://picmal-loops-worker.albertogallego.workers.dev/subscribe";
+const SUBSCRIBE_ENDPOINT =
+  "https://picmal-loops-worker.albertogallego.workers.dev/subscribe";
 ---
 
 <form
@@ -13,7 +14,10 @@ const SUBSCRIBE_ENDPOINT = "https://picmal-loops-worker.albertogallego.workers.d
   data-endpoint={SUBSCRIBE_ENDPOINT}
   novalidate
 >
-  <label for="newsletter-email" class="block text-sm font-medium text-text mb-2">
+  <label
+    for="newsletter-email"
+    class="block text-body font-medium text-text mb-2"
+  >
     Get occasional updates on Picmal & new apps
   </label>
   <div class="flex gap-2">
@@ -24,11 +28,11 @@ const SUBSCRIBE_ENDPOINT = "https://picmal-loops-worker.albertogallego.workers.d
       required
       autocomplete="email"
       placeholder="you@example.com"
-      class="min-w-0 flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      class="min-w-0 flex-1 rounded-lg border border-border bg-background px-3 py-2 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     />
     <button
       type="submit"
-      class="inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-[colors,scale] duration-200 hover:bg-accent-dark active:scale-[0.96] disabled:opacity-60 disabled:active:scale-100"
+      class="inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-body font-semibold text-white transition-[colors,scale] duration-200 hover:bg-accent-dark active:scale-[0.96] disabled:opacity-60 disabled:active:scale-100"
     >
       Subscribe
     </button>
@@ -42,17 +46,27 @@ const SUBSCRIBE_ENDPOINT = "https://picmal-loops-worker.albertogallego.workers.d
     aria-hidden="true"
     class="hidden"
   />
-  <p id="newsletter-msg" class="mt-2 text-xs text-text-secondary" role="status" aria-live="polite"></p>
+  <p
+    id="newsletter-msg"
+    class="mt-2 text-body-sm text-text-secondary"
+    role="status"
+    aria-live="polite"
+  >
+  </p>
 </form>
 
 <script>
   function initNewsletter() {
-    const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
+    const form = document.getElementById(
+      "newsletter-form",
+    ) as HTMLFormElement | null;
     if (!form || form.dataset.bound) return;
     form.dataset.bound = "true";
 
     const msg = document.getElementById("newsletter-msg") as HTMLElement;
-    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const button = form.querySelector(
+      'button[type="submit"]',
+    ) as HTMLButtonElement;
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();

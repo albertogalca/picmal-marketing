@@ -11,7 +11,7 @@ const { title, items } = Astro.props;
 ---
 
 <div class="bg-background-subtle rounded-lg border border-border p-8">
-  <h3 class="text-xl font-semibold mb-6 text-text">{title}</h3>
+  <h3 class="text-h3 mb-6 text-text">{title}</h3>
   <div class="space-y-4">
     {
       items.map((item, index) => (
@@ -35,7 +35,7 @@ const { title, items } = Astro.props;
           </div>
           <div class="flex-grow">
             <p class="font-semibold text-text mb-1">{item.label}</p>
-            <p class="text-sm text-text-secondary leading-relaxed">
+            <p class="text-body-sm text-text-secondary leading-relaxed">
               {item.description}
             </p>
           </div>

@@ -37,8 +37,4 @@
 /heic-to-jpg-mac /convert/heic-to-jpg 301
 /convert-heic-to-jpg-mac /convert/heic-to-jpg 301
 
-# Video pages (temporary redirect until supported)
-
-/video-converter-mac / 302
-/compress-video-mac / 302
 /media-converter-mac /image-converter-mac 301

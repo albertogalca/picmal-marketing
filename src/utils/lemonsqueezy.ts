@@ -49,7 +49,8 @@ async function fetchCustomerCount(): Promise<number> {
 
   try {
     const uniqueCustomers = new Set<string>();
-    let nextUrl: string | null = "https://api.lemonsqueezy.com/v1/orders?page[size]=100";
+    let nextUrl: string | null =
+      "https://api.lemonsqueezy.com/v1/orders?page[size]=100";
 
     // Fetch all pages of orders
     while (nextUrl) {
@@ -84,7 +85,7 @@ async function fetchCustomerCount(): Promise<number> {
     const roundedCount = Math.floor(exactCount / 10) * 10;
 
     console.log(
-      `Lemon Squeezy: ${exactCount} unique customers (displaying ${roundedCount})`
+      `Lemon Squeezy: ${exactCount} unique customers (displaying ${roundedCount})`,
     );
 
     return roundedCount;

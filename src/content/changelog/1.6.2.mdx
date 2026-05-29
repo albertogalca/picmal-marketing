@@ -1,0 +1,13 @@
+---
+version: "1.6.2"
+title: "CLI media fixes and more reliable video encoding"
+pubDate: 2026-05-29
+---
+
+Fixed audio and video conversion in the `picmal-cli` command line tool. It used to hang forever when run directly in a Terminal; now those jobs run and finish like any other.
+
+Fixed HEVC (H.265) video conversion failing on Macs with lots of CPU cores, like the iMac Pro and Mac Pro. The software encoder was asking for more threads than it allows and refused to start.
+
+When the hardware video encoder chokes on a tricky clip — for example 10-bit footage with a timecode track — Picmal now automatically retries in software instead of giving up, so the conversion still finishes.
+
+Fixed a crash when a scheduled batch started while you had files selected in the list.

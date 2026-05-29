@@ -3,6 +3,15 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.1</title>
+            <pubDate>Fri, 29 May 2026 15:28:02 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>78</sparkle:version>
+            <sparkle:shortVersionString>1.6.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.1/Picmal.dmg" length="121088458" type="application/octet-stream" sparkle:edSignature="qeIXle0O8GAKQ8nnY56bq1Tzxw5XKA7Pjhl3k/z4hH5XMo3Bp5ACFEcZioxWVqhqeJCPOt855XKkTWcT5gelDw=="/>
+        </item>
+        <item>
             <title>1.6.0</title>
             <pubDate>Mon, 25 May 2026 13:42:28 +0200</pubDate>
             <link>https://picmal.app/</link>

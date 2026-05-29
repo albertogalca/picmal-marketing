@@ -11,7 +11,8 @@ Picmal is designed for Mac users who need to convert media files quickly without
 - Video and audio conversion and compression
 - Burn-in subtitles for video (SRT or VTT) with configurable size, color and position
 - Per-video playback speed (0.25×–4× presets or custom 10–800%) with pitch-preserved audio
-- Image and video watermarks (PNG overlay, 9-anchor positioning, margins, opacity, multiple presets)
+- Video watermarks (PNG overlay, 9-anchor positioning, margins, opacity, multiple presets)
+- Command-line tool (`picmal-cli`) for scripting batch conversions, compression, and watched folders with NDJSON output
 - Clipboard image optimization (compress or convert images copied to the clipboard)
 - Watched folders and hot folder monitoring with per-folder resize and "compress after convert"
 - Shortcuts app integration and menu bar background operation
@@ -54,15 +55,17 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Getting started](https://picmal.app/docs/getting-started): Install, first conversion, first compression
 - [Converting files](https://picmal.app/docs/converting-files): Change file formats
 - [Compressing files](https://picmal.app/docs/compressing-files): Reduce file sizes with presets
+- [Managing the queue](https://picmal.app/docs/managing-the-queue): Priority, pause/resume, and the right-click menu
 - [Supported formats](https://picmal.app/docs/supported-formats): Full list of input and output formats
-- [Image compression](https://picmal.app/docs/image-compression): Per-format quality settings
+- [Image compression](https://picmal.app/docs/image-compression): Per-format quality settings and presets
 - [Audio and video](https://picmal.app/docs/audio-and-video): Codecs, bitrates, subtitle burn-in, playback speed
 - [Resize and color space](https://picmal.app/docs/resize-and-color-space): Resize modes (Convert and Compress), DPI, color profiles
-- [Watermarks](https://picmal.app/docs/watermarks): PNG overlays for images and videos
+- [Watermarks](https://picmal.app/docs/watermarks): PNG overlays for videos
 - [Output and naming](https://picmal.app/docs/output-and-naming): File destinations and naming rules
 - [Watched folders](https://picmal.app/docs/watched-folders): Automatic folder processing
 - [Clipboard optimization](https://picmal.app/docs/clipboard-optimization): Auto-compress or convert clipboard images
 - [Integrations](https://picmal.app/docs/integrations): Drag & drop, Finder Services, Shortcuts, menu bar
+- [Command line (picmal-cli)](https://picmal.app/docs/cli): Terminal companion for convert, compress, watched folders, and presets with NDJSON output
 - [License](https://picmal.app/docs/license): Activation and deactivation
 - [FAQ](https://picmal.app/docs/faq): Common questions and fixes
 

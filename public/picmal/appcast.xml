@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.1</title>
+            <pubDate>Fri, 29 May 2026 15:03:25 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>77</sparkle:version>
+            <sparkle:shortVersionString>1.6.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.1/Picmal.dmg" length="121147258" type="application/octet-stream" sparkle:edSignature="Iq/xYjPmTxbDjmcXgvuyCbzin1QLG1KKgQKU4HfPaslfBm4CetfdlqX+Hwd3zYj07sik+zs+jp5nilrbFC8dDw=="/>
+        <description><![CDATA[<div><ul><li>Fixed batch conversions failing with a temporary-file error when "Save to subfolder" was on. The output subfolder is now created up front, and if a destination really can't be written to, only those files are marked failed instead of crashing the whole batch.</li>
+<li>Fixed the Finder right-click "Convert with Picmal" and "Compress with Picmal" options doing nothing. The window now comes to the front and the files land in the list, whether Picmal was closed, already running, or hidden in the menu bar.</li>
+<li>Zoom in and out in the Before/After window to inspect fine compression detail. Pinch on the trackpad, use the new + / − / 100% controls in the corner, or press ⌘+, ⌘−, ⌘0. Drag to pan while zoomed; the slider handle still moves the divider at any zoom level. Double-click to reset.</li>
+<li>Picmal now has a command line tool. Convert and compress images, audio, and video straight from the Terminal, using the same engines as the app. Run `picmal-cli convert -i photo.heic -f jpg`, `picmal-cli compress -i big.png --quality 70`, or `picmal-cli watch` to monitor a folder. It supports presets, resizing, metadata stripping, colour space and DPI options, and watermarks, and outputs NDJSON when you pipe it into other tools. It uses your existing Picmal licence.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.0</title>
             <pubDate>Mon, 25 May 2026 13:42:28 +0200</pubDate>
             <link>https://picmal.app/</link>

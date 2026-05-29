@@ -48,6 +48,7 @@ export default defineConfig({
               link: "/docs/clipboard-optimization",
             },
             { label: "Integrations", link: "/docs/integrations" },
+            { label: "Command line (CLI)", link: "/docs/cli" },
           ],
         },
         {

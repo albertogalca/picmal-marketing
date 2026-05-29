@@ -31,18 +31,21 @@ entries.sort((a, b) => {
       title={`Changelog - ${SITE_TITLE}`}
       description="Full changelog and release notes for Picmal, the macOS image converter. See every new feature, format addition, performance boost and bug fix shipped across versions."
     />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "Picmal Changelog",
-      description: "Version history and release notes for Picmal",
-      itemListElement: entries.map((entry, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: `Picmal v${entry.data.version}${entry.data.title ? ` - ${entry.data.title}` : ""}`,
-        url: `https://picmal.app/changelog#v${entry.data.version}`,
-      })),
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Picmal Changelog",
+        description: "Version history and release notes for Picmal",
+        itemListElement: entries.map((entry, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: `Picmal v${entry.data.version}${entry.data.title ? ` - ${entry.data.title}` : ""}`,
+          url: `https://picmal.app/changelog#v${entry.data.version}`,
+        })),
+      })}
+    />
   </head>
   <body class="bg-background text-text min-h-dvh">
     <Header />
@@ -59,7 +62,7 @@ entries.sort((a, b) => {
         <div
           class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
         >
-          <Paragraph class="mb-0 flex-1 text-body-sm">
+          <Paragraph class="mb-0 flex-1 text-body">
             As an indie developer, Picmal grows through word of mouth. A review
             only takes a minute and makes a huge difference.
           </Paragraph>
@@ -67,7 +70,7 @@ entries.sort((a, b) => {
             href="https://tally.so/r/Me18qE"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-caption rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-body-sm rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
           >
             Leave a Review
             <svg
@@ -89,15 +92,21 @@ entries.sort((a, b) => {
         </div>
       </div>
 
-      <div class="max-w-4xl mx-auto px-6 pb-20">
+      <div class="max-w-5xl mx-auto px-6 pb-20">
         {
           entries.map(async (entry) => {
             const { Content } = await render(entry);
             const downloadUrl = `https://github.com/albertogalca/picmal-releases/releases/download/v${entry.data.version}/Picmal.dmg`;
-            const hasDownload = entry.data.version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0;
+            const hasDownload =
+              entry.data.version.localeCompare("1.2.7", undefined, {
+                numeric: true,
+              }) >= 0;
 
             return (
-              <article id={`v${entry.data.version}`} class="scroll-mt-28 flex flex-col md:flex-row gap-6 md:gap-10 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0">
+              <article
+                id={`v${entry.data.version}`}
+                class="scroll-mt-28 flex flex-col md:flex-row gap-6 md:gap-12 border-t border-border pt-10 mt-10 first:border-t-0 first:pt-0 first:mt-0"
+              >
                 {/* Left: sticky metadata */}
                 <div class="md:w-[220px] lg:w-[260px] shrink-0 md:sticky md:top-28 md:self-start">
                   {entry.data.pubDate && (
@@ -139,14 +148,16 @@ entries.sort((a, b) => {
                   {entry.data.title && (
                     <h2 class="text-h3 text-text mb-4">{entry.data.title}</h2>
                   )}
-                  <div class="prose max-w-none
+                  <div
+                    class="prose max-w-none
                     prose-headings:text-text prose-headings:font-semibold
                     prose-p:text-text/65 prose-p:leading-relaxed
                     prose-a:text-text/65 hover:prose-a:text-text prose-a:underline prose-a:underline-offset-4 prose-a:transition-colors prose-a:duration-200
                     prose-strong:text-text
                     prose-ul:text-text/65
                     prose-ol:text-text/65
-                    prose-li:text-text/65">
+                    prose-li:text-text/65"
+                  >
                     <Content />
                   </div>
                 </div>

@@ -549,18 +549,24 @@ const metadataRows: [string, string][] = [
             </div>
           </div>
 
-          <!-- CLI — terminal close-up, coming soon -->
+          <!-- CLI — terminal close-up -->
           <div class={`${card} lg:col-span-2 min-h-[260px] flex flex-col`}>
-            <span
-              class="absolute top-4 right-4 px-2.5 py-1 text-caption font-semibold leading-none rounded-full bg-text/5 text-text-secondary"
-              >Coming soon</span
-            >
             <div class="p-6">
               <H3 class="mb-2">Picmal CLI</H3>
               <Paragraph>
                 Convert and compress from the terminal, a cron job, or a coding
                 agent — the same engine as the app.
               </Paragraph>
+              <a
+                href="/docs/cli"
+                class="group/cli mt-4 inline-flex items-center gap-1 text-body font-medium text-accent hover:text-accent/80 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              >
+                Read the docs
+                <span
+                  class="transition-transform duration-200 ease-out motion-safe:group-hover/cli:translate-x-1"
+                  aria-hidden="true">&rarr;</span
+                >
+              </a>
             </div>
             <div class="flex-1 flex items-center justify-center px-6 pb-6">
               <div
@@ -576,29 +582,26 @@ const metadataRows: [string, string][] = [
                     <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
                   </span>
                   <span class="text-caption font-medium text-neutral-400"
-                    >picmal</span
+                    >picmal-cli</span
                   >
                 </div>
-                <!-- prompt + help output -->
+                <!-- prompt + sample commands -->
                 <div
                   class="px-3.5 py-4 min-h-[180px] font-mono text-caption leading-relaxed text-neutral-400"
                 >
                   <div class="text-neutral-100">
-                    <span class="text-[#28c840]">$</span> picmal --help
-                  </div>
-                  <div class="mt-1.5">
-                    picmal convert <span class="text-neutral-500"
-                      >&lt;in&gt; &lt;out&gt;</span
+                    <span class="text-[#28c840]">$</span> picmal-cli convert <span
+                      class="text-neutral-500">-i photo.heic -f jpg</span
                     >
                   </div>
-                  <div>
-                    picmal compress <span class="text-neutral-500"
-                      >&lt;files&gt; --preset web</span
+                  <div class="mt-1.5 text-neutral-100">
+                    <span class="text-[#28c840]">$</span> picmal-cli compress <span
+                      class="text-neutral-500">-i big.jpg --quality 70</span
                     >
                   </div>
-                  <div>
-                    picmal watch <span class="text-neutral-500"
-                      >&lt;folder&gt;</span
+                  <div class="mt-1.5 text-neutral-100">
+                    <span class="text-[#28c840]">$</span> picmal-cli watch add <span
+                      class="text-neutral-500">~/Screenshots -f webp</span
                     >
                   </div>
                 </div>

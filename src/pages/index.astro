@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -24,6 +25,14 @@ import Lead from "../components/Lead.astro";
 const SITE_TITLE = "Convert & Compress Images, Video & Audio on Mac | Picmal";
 const SITE_DESCRIPTION =
   "Drag in your files, pick a format, done. Batch convert images, videos, and audio on your Mac. No internet needed, no subscription.";
+
+const changelogEntries = await getCollection("changelog");
+const latestRelease = changelogEntries.sort((a, b) =>
+  b.data.version.localeCompare(a.data.version, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  })
+)[0];
 ---
 
 <html lang="en">
@@ -46,6 +55,23 @@ const SITE_DESCRIPTION =
           <div
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
+            <a
+              href={`/changelog#v${latestRelease.data.version}`}
+              class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-caption text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+            >
+              <span
+                class="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-caption font-semibold leading-none text-accent"
+                >v{latestRelease.data.version}</span
+              >
+              <span class="hidden sm:inline truncate"
+                >{latestRelease.data.title}</span
+              >
+              <span class="sm:hidden">What's new</span>
+              <span
+                class="shrink-0 transition-transform duration-200 ease-out motion-safe:group-hover/release:translate-x-0.5"
+                aria-hidden="true">&rarr;</span
+              >
+            </a>
             <H1 class="mb-6 max-w-3xl mx-auto"
               >Convert and compress any media on your Mac</H1
             >

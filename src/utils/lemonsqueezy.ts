@@ -12,10 +12,29 @@ interface LemonSqueezyResponse {
 }
 
 /**
+ * Build-time memoization. Astro's static build runs in a single Node process,
+ * so caching the promise here means the (slow, paginated) Lemon Squeezy fetch
+ * runs exactly once per build and is reused across every page that renders
+ * TrustBar — instead of once per page (~130×).
+ */
+let cachedCountPromise: Promise<number> | null = null;
+
+/**
+ * Returns the unique customer count, fetching from Lemon Squeezy at most once
+ * per build. Safe to call from any page's frontmatter.
+ */
+export function getCustomerCount(): Promise<number> {
+  if (!cachedCountPromise) {
+    cachedCountPromise = fetchCustomerCount();
+  }
+  return cachedCountPromise;
+}
+
+/**
  * Fetches unique customer count from Lemon Squeezy API
  * Rounds down to nearest 10 for privacy (e.g., 194 -> 190, 186 -> 180)
  */
-export async function getCustomerCount(): Promise<number> {
+async function fetchCustomerCount(): Promise<number> {
   // Skip the (slow) Lemon Squeezy call during local dev — use a placeholder.
   if (import.meta.env.DEV) {
     return 150;

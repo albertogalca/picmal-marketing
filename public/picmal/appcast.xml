@@ -3,6 +3,21 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.3</title>
+            <pubDate>Sun, 31 May 2026 13:27:00 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>83</sparkle:version>
+            <sparkle:shortVersionString>1.6.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.3/Picmal.dmg" length="121095931" type="application/octet-stream" sparkle:edSignature="3MO+MU/SuSGL7HReu4nHNWbUGa+0wdfrB+3eGl5a7S/HY5bvfLL+x143Clh2VH4Qrjv1oQfk9fkUHITmXUoJBQ=="/>
+        <description><![CDATA[<div><ul><li>Big and animated WebPs convert and compress much faster again, and large animated WebPs no longer fail with an out-of-memory error or stall for minutes. A single large file now uses all your CPU cores and gets the memory it needs, while big batches still run many files side by side.</li>
+<li>A big batch of new image formats you can convert to: HDR (Radiance), DPX and Cineon (film), FITS (astronomy), Photoshop Large (PSB), Pyramid TIFF, PAM, PFM, PHM, MIFF, VIPS, AVS, multi-page PCX (DCX), MATLAB (MAT), VICAR, Animated PNG (APNG), MNG, JNG, Farbfeld, Sun Raster, Palm Pixmap and Database, Wireless Bitmap (WBMP), Group 3 FAX, Sixel, Khoros VIFF and WordPerfect Graphics (WPG).</li>
+<li>Open many more camera RAW files: Olympus (ORF), Panasonic (RW2), Pentax (PEF), Samsung (SRW), newer Canon (CR3, CRW), Hasselblad (3FR, FFF), Phase One (IIQ), Sigma (X3F), Leica (RWL), Sony (SR2, SRF), Kodak (DCR, KDC, K25), Epson (ERF), Mamiya (MEF), Minolta (MRW, MDC) and Nikon (NRW) — with your camera metadata kept.</li>
+<li>Open GIMP (XCF), OpenRaster (ORA), DICOM, Kodak Photo CD and Ultra HDR files too.</li>
+<li>The output format picker is now grouped (Common, Raster, RAW, Scientific, Legacy) and searchable, so the longer list stays easy to navigate. All the new formats are available in the Shortcuts app as well.</li>
+<li>The Finder right-click "Convert with Picmal" and "Compress with Picmal" options now run the conversion or compression straight away, instead of just adding the files to the window. A new "Add to Picmal" option keeps the old behaviour for when you just want to drop files in without processing them.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.2</title>
             <pubDate>Fri, 29 May 2026 19:29:19 +0200</pubDate>
             <link>https://picmal.app/</link>

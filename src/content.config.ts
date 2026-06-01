@@ -31,6 +31,9 @@ const changelog = defineCollection({
     version: z.string(),
     title: z.string().optional(),
     pubDate: z.coerce.date().optional(),
+    slug: z.string().optional(),
+    description: z.string().optional(),
+    standalone: z.boolean().optional(),
   }),
 });
 

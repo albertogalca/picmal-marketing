@@ -120,6 +120,33 @@ export const audioFormats: Record<string, AudioFormatInfo> = {
       "Apple's ringtone format — an AAC audio file that iOS recognizes as a custom ringtone.",
     lossless: false,
   },
+  eac3: {
+    name: "EAC3",
+    extension: "eac3",
+    fullName: "Enhanced AC-3 (Dolby Digital Plus)",
+    description:
+      "Dolby Digital Plus surround audio used by streaming and Blu-ray — great quality, but many players and editors can't open it directly.",
+    note: "EAC3 (Dolby Digital Plus) tracks pulled from streams or discs won't play in most everyday audio apps",
+    lossless: false,
+  },
+  mka: {
+    name: "MKA",
+    extension: "mka",
+    fullName: "Matroska Audio",
+    description:
+      "The audio-only Matroska container — flexible and open, but unsupported by most mainstream players and phones.",
+    note: "MKA files are an open Matroska container that iPhones and most music apps won't recognize",
+    lossless: false,
+  },
+  ape: {
+    name: "APE",
+    extension: "ape",
+    fullName: "Monkey's Audio",
+    description:
+      "A lossless format with very high compression, popular for archiving CDs — but supported by almost nothing outside niche players.",
+    note: "Monkey's Audio (APE) is lossless but barely supported, so libraries usually need converting to FLAC or ALAC",
+    lossless: true,
+  },
 };
 
 // Curated, high-demand pairs only.
@@ -144,6 +171,12 @@ const PAIRS: [string, string][] = [
   ["m4a", "flac"],
   // iPhone ringtone
   ["mp3", "m4r"],
+  // Newer formats — Dolby Digital Plus, Matroska audio, Monkey's Audio
+  ["eac3", "aac"],
+  ["eac3", "mp3"],
+  ["mka", "mp3"],
+  ["ape", "mp3"],
+  ["ape", "flac"],
 ];
 
 function buildWhyConvert(from: AudioFormatInfo, to: AudioFormatInfo): string {

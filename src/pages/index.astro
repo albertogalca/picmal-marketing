@@ -21,6 +21,7 @@ import TrustBar from "../components/TrustBar.astro";
 import PricingSection from "../components/PricingSection.astro";
 import FeaturedReview from "../components/FeaturedReview.astro";
 import Lead from "../components/Lead.astro";
+import { getEntryUrl, isStandalone } from "../utils/changelog";
 
 const SITE_TITLE = "Convert & Compress Images, Video & Audio on Mac | Picmal";
 const SITE_DESCRIPTION =
@@ -33,6 +34,9 @@ const latestRelease = changelogEntries.sort((a, b) =>
     sensitivity: "base",
   })
 )[0];
+const latestReleaseHref = isStandalone(latestRelease)
+  ? getEntryUrl(latestRelease)
+  : `/changelog#v${latestRelease.data.version}`;
 ---
 
 <html lang="en">
@@ -56,7 +60,7 @@ const latestRelease = changelogEntries.sort((a, b) =>
             class="max-w-4xl mx-auto flex justify-center items-center flex-col"
           >
             <a
-              href={`/changelog#v${latestRelease.data.version}`}
+              href={latestReleaseHref}
               class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-caption text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <span

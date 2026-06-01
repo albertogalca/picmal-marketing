@@ -3,6 +3,21 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.4</title>
+            <pubDate>Mon, 01 Jun 2026 15:15:30 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>84</sparkle:version>
+            <sparkle:shortVersionString>1.6.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.4/Picmal.dmg" length="121084686" type="application/octet-stream" sparkle:edSignature="KpCYmpWqe1h2dpzfApYnmidizMAL5rryZNjzbQVxuroiMoh6uA4TRvwGwzrPGr8uBMwfiLkJByUlhXYXiGXXCA=="/>
+        <description><![CDATA[<div><ul><li>Two new audio formats you can convert to and compress: EAC3 (Dolby Digital Plus) and MKA (Matroska audio).</li>
+<li>Open more audio files to convert from: Monkey's Audio (APE), Musepack (MPC), TAK, DSD (DSF), Shorten (SHN), AMR and GSM. These are read-only, so you can convert them to any other format but Picmal won't write them back out.</li>
+<li>A new video format you can convert to and compress: 3G2 (3GPP2 mobile video).</li>
+<li>Open more video files to convert from: RealMedia (RM, RMVB), Bink (BIK), FLIC animation (FLI, FLC), Nullsoft Streaming Video (NSV) and Dahua CCTV (DAV). These are read-only, so you can convert them to any other format but Picmal won't write them back out.</li>
+<li>Fixed reopening Picmal sometimes bringing up the Settings window instead of the main window.</li>
+<li>Fixed conversions started from the Finder right-click menu stalling when Picmal launched in the background. They now run straight away, and a licence check no longer fires twice on launch.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.3</title>
             <pubDate>Sun, 31 May 2026 13:27:00 +0200</pubDate>
             <link>https://picmal.app/</link>

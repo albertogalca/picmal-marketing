@@ -122,6 +122,34 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     description:
       "Highly efficient H.265 video — about 50% smaller than H.264 at the same quality — but not playable everywhere. Re-wrapping to MP4/H.264 maximizes compatibility.",
   },
+  "3g2": {
+    name: "3G2",
+    extension: "3g2",
+    fullName: "3GPP2 Multimedia",
+    description:
+      "The CDMA-era mobile video container (a sibling of 3GP) used by older phones. Re-wrapping to MP4 makes it play on any modern device.",
+  },
+  rm: {
+    name: "RM",
+    extension: "rm",
+    fullName: "RealMedia",
+    description:
+      "RealNetworks' legacy streaming format from the early internet. Almost nothing plays RM today, so converting to MP4 is usually the only way to watch these old files.",
+  },
+  rmvb: {
+    name: "RMVB",
+    extension: "rmvb",
+    fullName: "RealMedia Variable Bitrate",
+    description:
+      "A variable-bitrate RealMedia variant once popular for downloaded movies and anime. Modern players can't open it — convert to MP4 to play it anywhere.",
+  },
+  bik: {
+    name: "BIK",
+    extension: "bik",
+    fullName: "Bink Video",
+    description:
+      "A game-engine video format used for cutscenes and intros. Extracting it to MP4 lets you play or edit the footage outside the game.",
+  },
   gif: {
     name: "GIF",
     extension: "gif",
@@ -157,6 +185,11 @@ const PAIRS: [string, string][] = [
   // MP4 → other
   ["mp4", "mov"],
   ["mp4", "webm"],
+  ["mp4", "3g2"],
+  // Legacy/game formats → MP4 (read-only sources)
+  ["rm", "mp4"],
+  ["rmvb", "mp4"],
+  ["bik", "mp4"],
   // Video → GIF
   ["mp4", "gif"],
   ["mov", "gif"],

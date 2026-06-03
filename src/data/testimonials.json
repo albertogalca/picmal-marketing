@@ -165,5 +165,12 @@
     "email": "gtotero@gmail.com",
     "content": "Picmal is complete. The quality is good, and it does exactly what I need.",
     "date": "May 31, 2026"
+  },
+  {
+    "id": 24,
+    "name": "Sem",
+    "email": "semih@gnidoc.com",
+    "content": "Easy to use, automation & batch processing. AVIF & Webp support",
+    "date": "Jun 3, 2026"
   }
 ]

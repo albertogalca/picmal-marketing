@@ -17,22 +17,37 @@ You can drop individual files or entire folders.
 
 Picmal adds three services to Finder's right-click menu:
 
-1. **Convert with Picmal** — Converts the selected files right away, using your current Convert settings
-2. **Compress with Picmal** — Compresses the selected files right away, using your current Compress settings
-3. **Add to Picmal** — Adds the selected files to the Picmal window without processing them, so you can tweak settings first
+1. **Picmal — Compress** — Compresses the selected files right away
+2. **Picmal — Convert** — Converts the selected files right away
+3. **Picmal — Add Files** — Adds the selected files to the Picmal window without processing them, so you can tweak settings first
 
 To enable these services:
 
 1. Open **System Settings** (or System Preferences)
 2. Go to **Keyboard → Keyboard Shortcuts → Services**
 3. Scroll to the **Files and Folders** section
-4. Check **Add to Picmal**, **Convert with Picmal**, and **Compress with Picmal**
+4. Check **Picmal — Add Files**, **Picmal — Convert**, and **Picmal — Compress**
 
 ![Enabling Picmal services in Keyboard Shortcuts settings](/images/docs/finder_quick_actions.png)
 
 Once enabled, select files in Finder, right-click, and find them under **Services** (or **Quick Actions**).
 
 ![Picmal services in the Finder right-click menu](/images/docs/quick_actions.png)
+
+### Services use your current settings
+
+Compress and Convert from Finder use whatever you've already set up in the app. There's no separate dialog. Your quality preset, output format, resize and color-space options, metadata handling, the file-naming pattern, and where files get saved all apply.
+
+So set things up the way you want them in Picmal before you lean on the services:
+
+- **Where files go.** By default, outputs sit next to the originals. To send them to a subfolder instead, turn on **Settings → Output → Save outputs in a subfolder** and give it a name. The services respect this the same way the app does; with it off, files land beside the source. See [Output and naming](/docs/output-and-naming).
+- **File names, the quality preset, and the output format** come from your current settings too, so adjust them under **Settings** first.
+
+Want to check or change settings for a specific batch first? Use **Picmal — Add Files** instead. It drops the files into the window so you can pick your options and hit Compress or Convert yourself.
+
+### Running with the app closed
+
+You don't need Picmal open. **Picmal — Compress** and **Picmal — Convert** run in the background without opening the window, post a notification when they're done, and quit on their own. If the app is already open, they run there and it stays open. **Picmal — Add Files** always opens the window so you can see what's queued.
 
 ## Shortcuts app
 

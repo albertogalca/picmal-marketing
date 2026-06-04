@@ -33,7 +33,7 @@ const latestRelease = changelogEntries.sort((a, b) =>
   b.data.version.localeCompare(a.data.version, undefined, {
     numeric: true,
     sensitivity: "base",
-  })
+  }),
 )[0];
 const latestReleaseHref = isStandalone(latestRelease)
   ? getEntryUrl(latestRelease)
@@ -63,7 +63,7 @@ const latestReleaseHref = isStandalone(latestRelease)
           >
             <a
               href={latestReleaseHref}
-              class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-caption text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-body-sm text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <span
                 class="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-caption font-semibold leading-none text-accent"

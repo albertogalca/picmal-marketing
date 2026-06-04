@@ -5,6 +5,8 @@ import Footer from "../components/Footer.astro";
 import H2 from "../components/H2.astro";
 import H3 from "../components/H3.astro";
 import Paragraph from "../components/Paragraph.astro";
+import Lead from "../components/Lead.astro";
+import Eyebrow from "../components/Eyebrow.astro";
 import Button from "../components/Button.astro";
 import SegmentedControl from "../components/SegmentedControl.astro";
 
@@ -196,23 +198,19 @@ const ICON_DOWNLOAD =
             </div>
 
             <div>
-              <p
-                class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-3"
-              >
-                Quick links
-              </p>
+              <Eyebrow class="mb-3 text-text-secondary">Quick links</Eyebrow>
               <ul class="space-y-2">
                 <li>
                   <a
                     href="https://picmal.app"
-                    class="text-body-sm text-text hover:text-accent transition-colors"
+                    class="link text-body-sm"
                     >Website</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://picmal.app/docs"
-                    class="text-body-sm text-text hover:text-accent transition-colors"
+                    class="link text-body-sm"
                     >Documentation</a
                   >
                 </li>
@@ -221,7 +219,7 @@ const ICON_DOWNLOAD =
                     href="https://cantimplorastudio.lemonsqueezy.com/affiliates"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-body-sm text-text hover:text-accent transition-colors"
+                    class="link text-body-sm"
                     >Affiliate program</a
                   >
                 </li>
@@ -229,14 +227,10 @@ const ICON_DOWNLOAD =
             </div>
 
             <div>
-              <p
-                class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-3"
-              >
-                Contact
-              </p>
+              <Eyebrow class="mb-3 text-text-secondary">Contact</Eyebrow>
               <a
                 href="mailto:support@picmal.app"
-                class="text-body-sm text-text hover:text-accent transition-colors break-all"
+                class="link text-body-sm break-all"
               >
                 support@picmal.app
               </a>
@@ -261,17 +255,17 @@ const ICON_DOWNLOAD =
             </div>
 
             <!-- ABOUT TAB -->
-            <section data-panel="about" class="press-panel space-y-12">
+            <section data-panel="about" class="press-panel space-y-14 sm:space-y-16">
               <div>
-                <H2 class="mb-4">Convert and compress any media on your Mac</H2>
-                <blockquote class="text-text-secondary leading-relaxed">
-                  {shortDescription}
-                </blockquote>
+                <H2 class="mb-4 max-w-2xl"
+                  >Convert and compress any media on your Mac</H2
+                >
+                <Lead class="max-w-2xl">{shortDescription}</Lead>
               </div>
 
-              <div>
+              <div class="border-t border-border pt-10 sm:pt-12">
                 <H3 class="mb-4">Why I built this</H3>
-                <div class="space-y-4">
+                <div class="space-y-4 max-w-2xl">
                   <Paragraph
                     >I built Picmal because I couldn't find a file converter I
                     actually liked.</Paragraph
@@ -283,40 +277,49 @@ const ICON_DOWNLOAD =
                     upload private media files to some external server. And no
                     batch conversion anywhere.
                   </Paragraph>
-                  <Paragraph class="text-text font-semibold"
-                    >So I built the thing I wanted to use.</Paragraph
-                  >
                 </div>
+                <p class="text-balance mt-7 font-bold">
+                  So I built the thing I wanted to use.
+                </p>
               </div>
 
-              <div>
-                <H3 class="mb-4">Four principles</H3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="border-t border-border pt-10 sm:pt-12">
+                <H3 class="mb-6">Four principles</H3>
+                <ol class="border-t border-border">
                   {
-                    principles.map((p) => (
-                      <div class="bg-background-subtle rounded-lg border border-border p-4">
-                        <p class="font-semibold mb-1">{p.title}</p>
-                        <Paragraph size="small">{p.description}</Paragraph>
-                      </div>
+                    principles.map((p, i) => (
+                      <li class="grid grid-cols-[2.25rem_1fr] sm:grid-cols-[3rem_1fr] gap-x-4 sm:gap-x-6 border-b border-border py-5">
+                        <span
+                          class="text-h2 leading-none font-semibold text-accent/30 tabular-nums select-none"
+                          aria-hidden="true"
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div class="max-w-xl">
+                          <p class="text-h4 text-text mb-1">{p.title}</p>
+                          <Paragraph size="small">{p.description}</Paragraph>
+                        </div>
+                      </li>
                     ))
                   }
-                </div>
+                </ol>
               </div>
 
-              <div>
-                <H3 class="mb-4">Descriptions</H3>
-                <div class="space-y-4">
+              <div class="border-t border-border pt-10 sm:pt-12">
+                <H3 class="mb-2">Descriptions</H3>
+                <Paragraph size="small" class="mb-5 max-w-2xl">
+                  Copy-paste ready, in three lengths.
+                </Paragraph>
+                <div class="space-y-3">
                   {
                     [
                       { label: "Short", text: shortDescription },
                       { label: "Medium", text: mediumDescription },
                       { label: "Long", text: longDescription },
                     ].map((d) => (
-                      <div class="bg-background-subtle rounded-lg border border-border p-4">
-                        <div class="flex items-center justify-between mb-2">
-                          <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium text-caption">
-                            {d.label}
-                          </span>
+                      <div class="bg-background-subtle rounded-xl border border-border p-5">
+                        <div class="flex items-center justify-between mb-2.5">
+                          <Eyebrow>{d.label}</Eyebrow>
                           <button
                             class="copy-btn text-body-sm text-text-secondary hover:text-accent transition-colors cursor-pointer"
                             data-copy={d.text}
@@ -333,21 +336,41 @@ const ICON_DOWNLOAD =
                 </div>
               </div>
 
-              <div>
-                <H3 class="mb-4">About me</H3>
-                <div
-                  class="bg-background-subtle rounded-lg border border-border p-4 flex flex-col sm:flex-row gap-4"
-                >
-                  <img
-                    src="/alberto.webp"
-                    alt="Alberto, creator of Picmal"
-                    class="w-24 h-24 rounded-lg object-cover flex-shrink-0 mx-auto sm:mx-0"
-                  />
-                  <div class="space-y-3">
+              <div class="border-t border-border pt-10 sm:pt-12">
+                <H3 class="mb-6">About me</H3>
+                <div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
+                  <div class="shrink-0">
+                    <img
+                      src="/alberto.webp"
+                      alt="Alberto Gallego, creator of Picmal"
+                      width="112"
+                      height="112"
+                      class="w-28 h-28 object-cover ring-1 ring-border shadow-sm"
+                      loading="lazy"
+                    />
+                    <p class="mt-4 text-h4 text-text">Alberto Gallego</p>
+                    <p class="text-body-sm text-text-secondary">
+                      Independent developer
+                    </p>
+                    <div class="mt-3 flex items-center gap-4 text-body-sm">
+                      <a
+                        href="https://albertogalca.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="link">Website ↗</a
+                      >
+                      <a
+                        href="https://github.com/albertogalca"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="link">GitHub ↗</a
+                      >
+                    </div>
+                  </div>
+                  <div class="space-y-4 max-w-xl">
                     <Paragraph size="small">
-                      I'm Alberto, an independent software developer. I build
-                      tools that try to respect the people using them — small,
-                      private, and deliberate. Nothing overdesigned or
+                      I build tools that try to respect the people using them —
+                      small, private, and deliberate. Nothing overdesigned or
                       cluttered. Just software that works and doesn't feel like
                       it was made by a committee.
                     </Paragraph>
@@ -361,20 +384,20 @@ const ICON_DOWNLOAD =
                 </div>
               </div>
 
-              <div>
-                <H3 class="mb-4">Quick facts</H3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="border-t border-border pt-10 sm:pt-12">
+                <H3 class="mb-6">Quick facts</H3>
+                <dl class="grid sm:grid-cols-3 gap-x-8 gap-y-6">
                   {
                     facts.map((f) => (
-                      <div class="bg-background-subtle rounded-lg border border-border p-4">
-                        <p class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-2">
+                      <div>
+                        <dt class="text-eyebrow uppercase text-text-secondary mb-1.5">
                           {f.label}
-                        </p>
-                        <Paragraph size="small">{f.value}</Paragraph>
+                        </dt>
+                        <dd class="text-body-sm text-text">{f.value}</dd>
                       </div>
                     ))
                   }
-                </div>
+                </dl>
               </div>
             </section>
 
@@ -549,11 +572,7 @@ const ICON_DOWNLOAD =
                   href="mailto:support@picmal.app"
                   class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
                 >
-                  <p
-                    class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-2"
-                  >
-                    Email
-                  </p>
+                  <Eyebrow class="mb-2">Email</Eyebrow>
                   <p class="font-semibold truncate">support@picmal.app</p>
                 </a>
 
@@ -561,11 +580,7 @@ const ICON_DOWNLOAD =
                   href="https://picmal.app"
                   class="bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
                 >
-                  <p
-                    class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-2"
-                  >
-                    Website
-                  </p>
+                  <Eyebrow class="mb-2">Website</Eyebrow>
                   <p class="font-semibold truncate">picmal.app</p>
                 </a>
 
@@ -575,11 +590,7 @@ const ICON_DOWNLOAD =
                   rel="noopener noreferrer"
                   class="sm:col-span-2 bg-background-subtle rounded-lg border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
                 >
-                  <p
-                    class="text-eyebrow font-semibold text-accent uppercase tracking-wider mb-2"
-                  >
-                    Become an affiliate
-                  </p>
+                  <Eyebrow class="mb-2">Become an affiliate</Eyebrow>
                   <p class="font-semibold">Earn 25% on every sale you refer</p>
                 </a>
               </div>

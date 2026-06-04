@@ -7,7 +7,8 @@ import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Lead from "../components/Lead.astro";
-import H4 from "../components/H4.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import CTASection from "../components/CTASection.astro";
 
 const SITE_TITLE = "About Picmal & Alberto Gallego";
 const SITE_DESCRIPTION =
@@ -33,6 +34,12 @@ const principles = [
     title: "Local and private",
     description: "Your files stay on your machine. Always.",
   },
+];
+
+const facts = [
+  { label: "Price", value: "$15.99, once. Updates included." },
+  { label: "Runs on", value: "Apple Silicon & Intel Macs" },
+  { label: "Sold via", value: "Lemon Squeezy, here on picmal.app" },
 ];
 
 // AboutPage + Person schema gives crawlers an explicit "who is responsible for
@@ -69,111 +76,166 @@ const aboutSchema = {
   <body class="bg-background text-text overflow-x-hidden">
     <Header />
 
-    <main class="relative z-10 pt-28 lg:pt-32 pb-20 px-6">
+    <main class="relative z-10 pt-28 lg:pt-32 pb-4 px-6">
       <div class="max-w-3xl mx-auto">
-        <header class="mb-12">
-          <H1 class="mb-4">About Picmal</H1>
-          <Lead>
+        <!-- ============================================================
+             Intro — editorial opening, voice-forward
+        ============================================================= -->
+        <header class="mb-20 sm:mb-28">
+          <Eyebrow class="mb-5">About</Eyebrow>
+          <H1 class="mb-6 max-w-[19ch]">
+            A file converter, built by one person who got tired of the bad ones.
+          </H1>
+          <Lead class="max-w-2xl">
             Picmal is a native Mac app for converting and compressing images,
             videos, and audio in bulk. It works offline, needs no account, and
-            never uploads your files anywhere. It's built and maintained by one
-            person.
+            never uploads your files anywhere.
           </Lead>
         </header>
 
-        <section class="space-y-12">
-          <div>
-            <H2 class="mb-4">Why I built this</H2>
-            <div class="space-y-4">
-              <Paragraph
-                >I built Picmal because I couldn't find a file converter I
-                actually liked.</Paragraph
-              >
-              <Paragraph>
-                Every option I tried had the same problems: outdated, clunky
-                interfaces. Terminal-only tools when I just wanted something I
-                could see and click. Online services that expected me to upload
-                private media files to some external server. And no batch
-                conversion anywhere.
-              </Paragraph>
-              <Paragraph class="text-text font-semibold"
-                >So I built the thing I wanted to use.</Paragraph
-              >
-            </div>
+        <!-- ============================================================
+             Why I built this — prose + pull quote
+        ============================================================= -->
+        <section class="border-t border-border pt-12 sm:pt-16 mb-20 sm:mb-28">
+          <H2 class="mb-6 max-w-md">Why I built this</H2>
+          <div class="space-y-5 max-w-2xl">
+            <Paragraph>
+              I built Picmal because I couldn't find a file converter I actually
+              liked.
+            </Paragraph>
+            <Paragraph>
+              Every option I tried had the same problems: outdated, clunky
+              interfaces. Terminal-only tools when I just wanted something I
+              could see and click. Online services that expected me to upload
+              private media files to some external server. And no batch
+              conversion anywhere.
+            </Paragraph>
           </div>
 
-          <div>
-            <H2 class="mb-4">About me</H2>
-            <div
-              class="bg-background-subtle rounded-lg border border-border p-5 flex flex-col sm:flex-row gap-5"
-            >
+          <p class="text-balance mt-8 font-bold">
+            So I built the thing I wanted to use.
+          </p>
+        </section>
+
+        <!-- ============================================================
+             Who's behind it — asymmetric identity + bio
+        ============================================================= -->
+        <section class="border-t border-border pt-12 sm:pt-16 mb-20 sm:mb-28">
+          <H2 class="mb-8">Who's behind it</H2>
+          <div class="flex flex-col sm:flex-row gap-8 sm:gap-10">
+            <div class="shrink-0">
               <img
                 src="/alberto.webp"
                 alt="Alberto Gallego, creator of Picmal"
-                width="96"
-                height="96"
-                class="w-24 h-24 rounded-lg object-cover flex-shrink-0 mx-auto sm:mx-0"
+                width="144"
+                height="144"
+                class="w-32 h-32 sm:w-36 sm:h-36 object-cover ring-1 ring-border shadow-sm"
                 loading="lazy"
               />
-              <div class="space-y-3">
-                <Paragraph size="small">
-                  I'm <a
-                    href="https://albertogalca.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
-                    >Alberto Gallego</a
-                  >, an independent software developer. I build tools that try
-                  to respect the people using them — small, private, and
-                  deliberate. Nothing overdesigned or cluttered. Just software
-                  that works and doesn't feel like it was made by a committee.
-                </Paragraph>
-                <Paragraph size="small">
-                  Outside of building, I take photos, travel, read, and walk a
-                  lot. That stuff probably matters more than it sounds like it
-                  should. It's where most of my ideas about what good software
-                  feels like come from. I also write the guides on this site
-                  about media formats and Mac workflows.
-                </Paragraph>
+              <p class="mt-4 text-h4 text-text">Alberto Gallego</p>
+              <p class="text-body-sm text-text-secondary">
+                Independent developer
+              </p>
+              <div class="mt-3 flex items-center gap-4 text-body-sm">
+                <a
+                  href="https://albertogalca.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link">Website ↗</a
+                >
+                <a
+                  href="https://github.com/albertogalca"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link">GitHub ↗</a
+                >
               </div>
             </div>
-          </div>
 
-          <div>
-            <H2 class="mb-4">Four principles</H2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {
-                principles.map((p) => (
-                  <div class="bg-background-subtle rounded-lg border border-border p-4">
-                    <H4 class="font-semibold mb-1">{p.title}</H4>
-                    <Paragraph>{p.description}</Paragraph>
-                  </div>
-                ))
-              }
+            <div class="space-y-5 max-w-xl">
+              <Paragraph>
+                I build tools that try to respect the people using them — small,
+                private, and deliberate. Nothing overdesigned or cluttered. Just
+                software that works and doesn't feel like it was made by a
+                committee.
+              </Paragraph>
+              <Paragraph>
+                Outside of building, I take photos, travel, read, and walk a
+                lot. That stuff probably matters more than it sounds like it
+                should. It's where most of my ideas about what good software
+                feels like come from. I also write the guides on this site about
+                media formats and Mac workflows.
+              </Paragraph>
             </div>
           </div>
+        </section>
 
-          <div>
-            <H2 class="mb-4">The details</H2>
-            <Paragraph>
-              Picmal is a one-time purchase — pay once, updates included. It's
-              sold here on picmal.app through Lemon Squeezy and runs natively on
-              Apple Silicon and Intel Macs. For logos, screenshots, and brand
-              assets, see the <a
-                href="/press"
-                class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
-                >press kit</a
-              >. For anything else, email
-              <a
-                href="mailto:support@picmal.app"
-                class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
-                >support@picmal.app</a
-              >.
-            </Paragraph>
-          </div>
+        <!-- ============================================================
+             Principles — editorial numbered list, not a card grid
+        ============================================================= -->
+        <section class="border-t border-border pt-12 sm:pt-16 mb-20 sm:mb-28">
+          <H2 class="mb-8">Four principles</H2>
+          <ol class="border-t border-border">
+            {
+              principles.map((p, i) => (
+                <li class="grid grid-cols-[2.5rem_1fr] sm:grid-cols-[3.5rem_1fr] gap-x-4 sm:gap-x-8 border-b border-border py-6">
+                  <span
+                    class="text-h2 leading-none font-semibold text-accent/30 tabular-nums select-none"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div class="max-w-xl">
+                    <h3 class="text-h4 text-text mb-1">{p.title}</h3>
+                    <Paragraph>{p.description}</Paragraph>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <!-- ============================================================
+             The details — colophon-style facts
+        ============================================================= -->
+        <section class="border-t border-border pt-12 sm:pt-16">
+          <H2 class="mb-8">The details</H2>
+          <dl class="grid sm:grid-cols-2 gap-x-10 gap-y-6 max-w-2xl">
+            {
+              facts.map((f) => (
+                <div>
+                  <dt class="text-eyebrow uppercase text-text-secondary mb-1">
+                    {f.label}
+                  </dt>
+                  <dd class="text-body text-text">{f.value}</dd>
+                </div>
+              ))
+            }
+            <div>
+              <dt class="text-eyebrow uppercase text-text-secondary mb-1">
+                Contact
+              </dt>
+              <dd class="text-body text-text">
+                <a href="mailto:support@picmal.app" class="link"
+                  >support@picmal.app</a
+                >
+              </dd>
+            </div>
+          </dl>
+          <Paragraph class="mt-8 max-w-2xl">
+            For logos, screenshots, and brand assets, see the <a
+              href="/press"
+              class="link">press kit</a
+            >.
+          </Paragraph>
         </section>
       </div>
     </main>
+
+    <CTASection
+      heading="Try the thing I wanted to use"
+      analyticsEvent="about_cta_clicked"
+    />
 
     <Footer />
   </body>

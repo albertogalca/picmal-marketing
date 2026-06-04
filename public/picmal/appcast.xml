@@ -3,6 +3,17 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.5</title>
+            <pubDate>Thu, 04 Jun 2026 15:13:52 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>85</sparkle:version>
+            <sparkle:shortVersionString>1.6.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.5/Picmal.dmg" length="121032358" type="application/octet-stream" sparkle:edSignature="zK3fQLe1FJmYMPos93JA6Ej0OTN5O1IAD24IjOqW9Fho8C4dV5Rwt/L1A/jBcwq3pKO5+LDsxGIXSmnhGhMeDw=="/>
+        <description><![CDATA[<div><ul><li>Faster video conversion and compression, especially on powerful Macs with lots of cores. Picmal now runs a few video encodes side by side instead of starving them all, gives each one a proper share of the CPU, and AV1 output is 20–40× quicker. Watched-folder and clipboard jobs run quietly in the background so they don't slow down whatever you're doing.</li>
+<li>The Finder right-click Convert and Compress options now run reliably even when Picmal is closed. They process quietly in the background without pulling focus from Finder, with a notification showing what Picmal is working on and the progress as it goes (so a long file doesn't look stuck), honour your "Save to subfolder" setting, and let you know when a selection has nothing Picmal can convert instead of just flashing open and closing. The Services menu items are now grouped together as "Picmal — Add Files", "Picmal — Convert" and "Picmal — Compress".</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.4</title>
             <pubDate>Mon, 01 Jun 2026 15:15:30 +0200</pubDate>
             <link>https://picmal.app/</link>

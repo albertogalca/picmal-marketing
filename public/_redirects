@@ -38,3 +38,8 @@
 /convert-heic-to-jpg-mac /convert/heic-to-jpg 301
 
 /media-converter-mac /image-converter-mac 301
+
+# Normalize trailing slashes to the canonical no-slash URL (trailingSlash: "never").
+# Cloudflare's default normalization is a 307; force a 301 so link equity passes.
+
+/*/ /:splat 301

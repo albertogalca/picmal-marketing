@@ -1,0 +1,45 @@
+---
+import { conversions, formats, isConversionIndexed } from "../data/conversions";
+
+interface Props {
+  tags?: string[];
+  limit?: number;
+}
+
+const { tags = [], limit = 4 } = Astro.props;
+
+// Blog tags use display names ("HEIC", "WebP"); conversion from/to use lowercase
+// format keys ("heic", "webp"). Match indexed conversions whose source or target
+// format appears in the post's tags, so the widget only shows when it's relevant.
+const tagKeys = new Set(tags.map((t) => t.toLowerCase()));
+
+const related = conversions
+  .filter((c) => isConversionIndexed(c.slug))
+  .filter((c) => tagKeys.has(c.from) || tagKeys.has(c.to))
+  .slice(0, limit);
+---
+
+{
+  related.length > 0 && (
+    <section class="mt-12 rounded-lg border border-border bg-background-subtle p-6">
+      <h2 class="text-h3 text-text font-semibold mb-1">
+        Do this in one click with Picmal
+      </h2>
+      <p class="text-body-sm text-text-secondary mb-4">
+        Batch-convert your files on your Mac — offline, no uploads.
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {related.map((c) => (
+          <li>
+            <a
+              href={`/convert/${c.slug}`}
+              class="text-body text-accent underline underline-offset-4 decoration-accent/30 transition-colors duration-200 hover:decoration-accent"
+            >
+              Convert {formats[c.from].name} to {formats[c.to].name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

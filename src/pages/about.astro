@@ -1,0 +1,180 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Lead from "../components/Lead.astro";
+import H4 from "../components/H4.astro";
+
+const SITE_TITLE = "About Picmal & Alberto Gallego";
+const SITE_DESCRIPTION =
+  "Picmal is a native Mac app for converting and compressing images, videos, and audio, built by independent developer Alberto Gallego. Here's who's behind it and why it exists.";
+
+const principles = [
+  {
+    title: "Simple by default",
+    description:
+      "No setup, no technical knowledge required. You open it and start converting. That's it.",
+  },
+  {
+    title: "Opinionated advanced mode",
+    description:
+      "The options that matter are already configured. The goal was never to expose every knob — it was to make the right choice for you by default.",
+  },
+  {
+    title: "Native to macOS",
+    description:
+      "It looks and feels like an Apple app because it was built to. It lives where your other apps live and works the same way.",
+  },
+  {
+    title: "Local and private",
+    description: "Your files stay on your machine. Always.",
+  },
+];
+
+// AboutPage + Person schema gives crawlers an explicit "who is responsible for
+// this site" answer, the canonical E-E-A-T signal a press kit alone doesn't carry.
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: SITE_TITLE,
+  url: new URL("/about", Astro.site).href,
+  mainEntity: {
+    "@type": "Person",
+    name: "Alberto Gallego",
+    url: "https://albertogalca.com/",
+    image: new URL("/alberto.webp", Astro.site).href,
+    jobTitle: "Independent software developer",
+    sameAs: ["https://albertogalca.com/", "https://github.com/albertogalca"],
+    worksFor: {
+      "@type": "Organization",
+      name: "Picmal",
+      url: new URL("/", Astro.site).href,
+    },
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <OrganizationSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(aboutSchema)} />
+  </head>
+
+  <body class="bg-background text-text overflow-x-hidden">
+    <Header />
+
+    <main class="relative z-10 pt-28 lg:pt-32 pb-20 px-6">
+      <div class="max-w-3xl mx-auto">
+        <header class="mb-12">
+          <H1 class="mb-4">About Picmal</H1>
+          <Lead>
+            Picmal is a native Mac app for converting and compressing images,
+            videos, and audio in bulk. It works offline, needs no account, and
+            never uploads your files anywhere. It's built and maintained by one
+            person.
+          </Lead>
+        </header>
+
+        <section class="space-y-12">
+          <div>
+            <H2 class="mb-4">Why I built this</H2>
+            <div class="space-y-4">
+              <Paragraph
+                >I built Picmal because I couldn't find a file converter I
+                actually liked.</Paragraph
+              >
+              <Paragraph>
+                Every option I tried had the same problems: outdated, clunky
+                interfaces. Terminal-only tools when I just wanted something I
+                could see and click. Online services that expected me to upload
+                private media files to some external server. And no batch
+                conversion anywhere.
+              </Paragraph>
+              <Paragraph class="text-text font-semibold"
+                >So I built the thing I wanted to use.</Paragraph
+              >
+            </div>
+          </div>
+
+          <div>
+            <H2 class="mb-4">About me</H2>
+            <div
+              class="bg-background-subtle rounded-lg border border-border p-5 flex flex-col sm:flex-row gap-5"
+            >
+              <img
+                src="/alberto.webp"
+                alt="Alberto Gallego, creator of Picmal"
+                width="96"
+                height="96"
+                class="w-24 h-24 rounded-lg object-cover flex-shrink-0 mx-auto sm:mx-0"
+                loading="lazy"
+              />
+              <div class="space-y-3">
+                <Paragraph size="small">
+                  I'm <a
+                    href="https://albertogalca.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
+                    >Alberto Gallego</a
+                  >, an independent software developer. I build tools that try
+                  to respect the people using them — small, private, and
+                  deliberate. Nothing overdesigned or cluttered. Just software
+                  that works and doesn't feel like it was made by a committee.
+                </Paragraph>
+                <Paragraph size="small">
+                  Outside of building, I take photos, travel, read, and walk a
+                  lot. That stuff probably matters more than it sounds like it
+                  should. It's where most of my ideas about what good software
+                  feels like come from. I also write the guides on this site
+                  about media formats and Mac workflows.
+                </Paragraph>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <H2 class="mb-4">Four principles</H2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {
+                principles.map((p) => (
+                  <div class="bg-background-subtle rounded-lg border border-border p-4">
+                    <H4 class="font-semibold mb-1">{p.title}</H4>
+                    <Paragraph>{p.description}</Paragraph>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div>
+            <H2 class="mb-4">The details</H2>
+            <Paragraph>
+              Picmal is a one-time purchase — pay once, updates included. It's
+              sold here on picmal.app through Lemon Squeezy and runs natively on
+              Apple Silicon and Intel Macs. For logos, screenshots, and brand
+              assets, see the <a
+                href="/press"
+                class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
+                >press kit</a
+              >. For anything else, email
+              <a
+                href="mailto:support@picmal.app"
+                class="text-accent underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors duration-200"
+                >support@picmal.app</a
+              >.
+            </Paragraph>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

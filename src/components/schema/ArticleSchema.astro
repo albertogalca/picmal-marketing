@@ -11,7 +11,7 @@ const { post, url, slug } = Astro.props;
 
 const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   headline: post.title,
   description: post.description,
   image: post.heroImage
@@ -19,8 +19,8 @@ const articleSchema = {
     : new URL("/og.png", url).href,
   author: {
     "@type": "Person",
-    name: "Alberto",
-    url: "https://albertogalca.com/",
+    name: "Alberto Gallego",
+    url: new URL("/about", url).href,
   },
   publisher: {
     "@type": "Organization",
@@ -40,11 +40,6 @@ const articleSchema = {
     "@id": new URL(`/blog/${slug}`, url).href,
   },
   articleSection: post.category || "Guide",
-  keywords: post.title
-    .toLowerCase()
-    .split(" ")
-    .filter((word) => word.length > 3)
-    .join(", "),
 };
 ---
 

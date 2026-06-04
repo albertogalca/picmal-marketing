@@ -1,0 +1,15 @@
+---
+import { cn } from "../utils/cn";
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+const defaultClasses = "text-h4 text-text text-balance";
+const mergedClasses = cn(defaultClasses, className);
+---
+
+<h4 class={mergedClasses}>
+  <slot />
+</h4>

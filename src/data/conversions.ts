@@ -15,6 +15,9 @@ export interface FormatInfo {
   raw?: boolean;
   brand?: string;
   notableCameras?: string;
+  // Camera RAW formats: one brand-specific sentence appended to the page body
+  // so each RAW→JPG page carries unique, non-templated content.
+  workflowNote?: string;
 }
 
 export interface FileSizeExample {
@@ -224,6 +227,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Canon",
     notableCameras: "EOS 5D Mark III/IV, 7D, and Rebel series",
+    workflowNote:
+      "Canon's free Digital Photo Professional opens CR2, but it's slow for bulk exports — Picmal turns a full card of CR2 captures into JPGs in a single pass.",
   },
   cr3: {
     name: "CR3",
@@ -245,6 +250,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Canon",
     notableCameras: "EOS R5, R6, and the RF mirrorless lineup",
+    workflowNote:
+      "CR3 adds Canon's space-saving C-RAW mode, and Picmal decodes both standard and C-RAW captures from R-series bodies straight to JPG.",
   },
   nef: {
     name: "NEF",
@@ -266,6 +273,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Nikon",
     notableCameras: "D850, Z6, and Z9",
+    workflowNote:
+      "Nikon's free NX Studio reads NEF but processes one image at a time — Picmal batch-renders an entire NEF folder to JPG without the wait.",
   },
   arw: {
     name: "ARW",
@@ -287,6 +296,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Sony",
     notableCameras: "α7 IV, α7R V, and α6700",
+    workflowNote:
+      "Sony has shipped several ARW revisions across Alpha generations; Picmal decodes them all to JPG without hunting for the right Imaging Edge version.",
   },
   raf: {
     name: "RAF",
@@ -308,6 +319,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Fujifilm",
     notableCameras: "X-T5, X100VI, and the GFX series",
+    workflowNote:
+      "Picmal demosaics Fujifilm's X-Trans sensor data and preserves the film-simulation look these files are known for when exporting to JPG.",
   },
   rw2: {
     name: "RW2",
@@ -329,6 +342,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Panasonic",
     notableCameras: "Lumix S5 II and GH6",
+    workflowNote:
+      "Whether from a Micro Four Thirds or full-frame Lumix body, Picmal decodes RW2 sensor data to clean JPGs without Panasonic's SILKYPIX software.",
   },
   orf: {
     name: "ORF",
@@ -350,6 +365,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Olympus",
     notableCameras: "OM-1 and E-M1 series",
+    workflowNote:
+      "Picmal handles ORF from both Olympus and OM System bodies, including high-res shot captures, exporting them straight to shareable JPG.",
   },
   pef: {
     name: "PEF",
@@ -371,6 +388,8 @@ export const formats: Record<string, FormatInfo> = {
     raw: true,
     brand: "Pentax",
     notableCameras: "K-3 III and K-1 II",
+    workflowNote:
+      "Pentax bodies can shoot PEF or DNG; Picmal decodes PEF files to JPG so you're not tied to Pentax's Digital Camera Utility.",
   },
 };
 
@@ -609,7 +628,8 @@ function rawMetaDescription(from: FormatInfo): string {
 }
 
 function rawWhyConvert(from: FormatInfo): string {
-  return `${from.name} is ${from.brand}'s camera raw format — large files packed with unprocessed sensor data from cameras like the ${from.notableCameras}. Most apps, websites, and clients can't open them. Converting ${from.name} to JPG turns your raw captures into shareable, universally compatible photos. Picmal decodes the raw data with proper white balance, gamma, and demosaicing right on your Mac — clean JPGs from an entire shoot without opening Lightroom or paying a monthly subscription.`;
+  const base = `${from.name} is ${from.brand}'s camera raw format — large files packed with unprocessed sensor data from cameras like the ${from.notableCameras}. Most apps, websites, and clients can't open them. Converting ${from.name} to JPG turns your raw captures into shareable, universally compatible photos. Picmal decodes the raw data with proper white balance, gamma, and demosaicing right on your Mac — clean JPGs from an entire shoot without opening Lightroom or paying a monthly subscription.`;
+  return from.workflowNote ? `${base} ${from.workflowNote}` : base;
 }
 
 function rawBenefits(from: FormatInfo): string[] {
@@ -2672,5 +2692,6 @@ export function getRelatedConversions(
     .filter(
       (c) => c.from === from || c.to === to, // same source or same target
     )
+    .filter((c) => isConversionIndexed(c.slug)) // don't link to noindex pages
     .slice(0, limit);
 }

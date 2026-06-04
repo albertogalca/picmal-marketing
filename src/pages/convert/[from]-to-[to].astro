@@ -81,30 +81,6 @@ const description = conversion.metaDescription;
 // Low-demand templated pairs are de-indexed to concentrate site quality on winners.
 const noindex = !isConversionIndexed(conversion.slug);
 
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: `How to Convert ${from.name} to ${to.name} on Mac`,
-  description: description,
-  step: [
-    {
-      "@type": "HowToStep",
-      name: "Open Picmal",
-      text: "Download and open Picmal on your Mac.",
-    },
-    {
-      "@type": "HowToStep",
-      name: "Add your files",
-      text: `Drag and drop your ${from.name} files into Picmal.`,
-    },
-    {
-      "@type": "HowToStep",
-      name: "Convert",
-      text: `Select ${to.name} as the output format and click Convert.`,
-    },
-  ],
-};
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -123,7 +99,6 @@ const faqSchema = {
   <head>
     <BaseHead title={title} description={description} noindex={noindex} />
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
 

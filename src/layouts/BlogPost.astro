@@ -11,6 +11,7 @@ import CTASection from "../components/CTASection.astro";
 import H1 from "../components/H1.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
+import RelatedConversions from "../components/RelatedConversions.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -97,6 +98,13 @@ const {
             )
           }
           <div class="flex items-center gap-3 mb-8 text-body-sm">
+            <a
+              href="/about"
+              rel="author"
+              class="text-text-secondary transition-colors hover:text-text"
+              >By Alberto Gallego</a
+            >
+            <span class="text-text-secondary">•</span>
             {
               category && (
                 <>
@@ -147,6 +155,9 @@ const {
         >
           <slot />
         </div>
+
+        <!-- Related conversion tools (tag-matched, indexed pages only) -->
+        <RelatedConversions tags={tags} />
 
         <!-- Download CTA -->
         <div class="mt-12 article-cta">

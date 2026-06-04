@@ -1,0 +1,25 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+// WebSite entity helps search engines and LLMs disambiguate the "Picmal" brand.
+// No SearchAction: the site has no on-site search endpoint, and declaring a fake
+// one is worse than omitting it.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Picmal",
+  url: new URL("/", url).href,
+  description:
+    "Convert and compress images, videos, and audio on your Mac. Works offline, no account, one-time purchase.",
+  publisher: {
+    "@type": "Organization",
+    name: "Picmal",
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

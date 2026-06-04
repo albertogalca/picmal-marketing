@@ -2,6 +2,8 @@
 
 > Picmal is a native macOS application for batch converting and compressing images, videos, and audio files. It processes files entirely offline for privacy, supports drag-and-drop workflows, and integrates with Finder via right-click context menu options.
 
+> Last updated: 2026-06-04
+
 Picmal is designed for Mac users who need to convert media files quickly without uploading to cloud services. Key features include:
 
 - Batch processing of thousands of files at once
@@ -102,6 +104,19 @@ Machine-readable pricing: https://picmal.app/pricing.md
 ## Tools
 
 - [Image Format Selector](https://picmal.app/tools/image-format-selector): Interactive tool to choose the best format
+
+## Alternatives
+
+How Picmal compares to other Mac media tools:
+
+- **Permute** — converts video, audio, and images, but is weaker on batch image workflows and modern formats like AVIF/JXL. See https://picmal.app/alternative/permute
+- **HandBrake** — free and powerful for video, but video-only, no image or audio conversion, and a steep interface. See https://picmal.app/alternative/handbrake
+- **XnConvert** — free, cross-platform batch image converter, but no native-Mac feel and no video/audio. See https://picmal.app/alternative/xnconvert
+- **Compresto** — image/video compression, but no format conversion. See https://picmal.app/alternative/compresto
+- **Kompressor** — image compression only, no conversion and no video/audio. See https://picmal.app/alternative/kompressor
+- **ffWorks** — FFmpeg front-end for video/audio, no image conversion. See https://picmal.app/alternative/ffworks
+
+Picmal's distinction: one native Mac app for images, video, and audio — both convert and compress — fully offline, batch-first, one-time purchase.
 
 ## Contact
 

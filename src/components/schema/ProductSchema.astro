@@ -1,14 +1,32 @@
 ---
+import { getCollection } from "astro:content";
+
 interface Props {
   url: string;
 }
 
 const { url } = Astro.props;
 
+// Derive the current version + release date from the changelog collection so
+// the schema never goes stale. Sorted the same way as the homepage release badge.
+const changelogEntries = await getCollection("changelog");
+const latestRelease = changelogEntries.sort((a, b) =>
+  b.data.version.localeCompare(a.data.version, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  })
+)[0];
+
+const softwareVersion = latestRelease?.data.version ?? "1.0.0";
+const dateModified = (latestRelease?.data.pubDate ?? new Date("2024-01-15"))
+  .toISOString()
+  .split("T")[0];
+
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Picmal",
+  url: new URL("/", url).href,
   description:
     "All-in-one media converter for Mac. Batch convert and compress images, videos, and audio files offline on your Mac.",
   applicationCategory: "MultimediaApplication",
@@ -20,13 +38,6 @@ const productSchema = {
     availability: "https://schema.org/InStock",
     url: new URL("/", url).href,
     priceValidUntil: "2026-12-31",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "150",
-    bestRating: "5",
-    worstRating: "1",
   },
   author: {
     "@type": "Person",
@@ -41,9 +52,9 @@ const productSchema = {
       url: new URL("/logo.webp", url).href,
     },
   },
-  softwareVersion: "1.4.1",
+  softwareVersion,
   datePublished: "2024-01-15",
-  dateModified: "2026-03-15",
+  dateModified,
   screenshot: new URL("/og.png", url).href,
   downloadUrl:
     "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg",

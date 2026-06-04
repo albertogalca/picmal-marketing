@@ -34,30 +34,6 @@ const relatedConversions = conversions
   .filter((c) => c.from === compression.format)
   .slice(0, 4);
 
-const howToSchema = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: `How to Compress ${compression.name} Files on Mac`,
-  description: description,
-  step: [
-    {
-      "@type": "HowToStep",
-      name: "Open Picmal",
-      text: "Download and open Picmal on your Mac.",
-    },
-    {
-      "@type": "HowToStep",
-      name: "Add your files",
-      text: `Drag and drop your ${compression.name} files into Picmal.`,
-    },
-    {
-      "@type": "HowToStep",
-      name: "Compress",
-      text: "Adjust the quality slider and click Compress to reduce file sizes.",
-    },
-  ],
-};
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -73,7 +49,6 @@ const faqSchema = {
   <head>
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
 

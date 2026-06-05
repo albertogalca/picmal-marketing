@@ -172,5 +172,12 @@
     "email": "semih@gnidoc.com",
     "content": "Easy to use, automation & batch processing. AVIF & Webp support",
     "date": "Jun 3, 2026"
+  },
+  {
+    "id": 25,
+    "name": "Rubens Nook",
+    "email": "rubensnook.biz@gmail.com",
+    "content": "I convert MP4s to MP3s almost every day. Picmal makes it stupidly simple, and I haven't touched a sketchy online converter since.",
+    "date": "Jun 5, 2026"
   }
 ]

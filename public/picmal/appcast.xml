@@ -3,6 +3,23 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.6</title>
+            <pubDate>Sun, 07 Jun 2026 14:19:53 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>86</sparkle:version>
+            <sparkle:shortVersionString>1.6.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.6/Picmal.dmg" length="121362633" type="application/octet-stream" sparkle:edSignature="pwJy/Dgp0wH5Y9PtUD5CHU0JuqpBTcgjpup6+djNKrWTVkFr7go+6B+Xk8PBmIT25n9wtJ/1kiVi0M6xjaU7Dw=="/>
+        <description><![CDATA[<div><ul><li>Compress images to a target file size. Pick "Max File Size" in the resize settings, type a size (100 KB, 2 MB, whatever you need), and Picmal scales each image down just enough to fit. Works in Convert, Compress, watched folders, and the command line (`picmal-cli convert -i photo.jpg -f jpg --resize 100kB`).</li>
+<li>Better image compression all round. JPEGs come out sharper (optimised Huffman coding, a higher-precision transform, and full colour kept at the top quality settings), AVIF and JPEG XL are tighter, GIF frame optimisation is smarter, and for still images WebP keeps whichever of two encodings is smaller.</li>
+<li>Picmal never hands you a file bigger than the original when compressing. If a pass wouldn't save space, your original is kept untouched — now everywhere, including when you compress straight after converting.</li>
+<li>Add your own copyright to every image. Fill in the new Copyright & ownership fields in Settings (copyright notice, artist, credit, contact) and Picmal stamps them into each exported photo across EXIF, IPTC, and XMP. It works even when you're stripping metadata: the camera and location data come off, your copyright stays on. You only type it once — it's saved and reused on every export, with a switch to turn it on or off without clearing the fields. There are matching flags for the command line too (`picmal-cli convert -i photo.jpg -f jpg --copyright "(c) 2026 You" --artist "Your Name"`).</li>
+<li>Check what actually made it into a file. The ⓘ button on a finished file now has an Original / Result switch and opens on Result, so you can see at a glance that your copyright landed and the camera and location data came off. It turns up even when the original had no metadata, so copyright you added is easy to confirm too.</li>
+<li>The metadata setting now spells out the trade-off as you pick it. Choose "Strip all" and it tells you straight: smallest files, but the original's camera, date, and copyright info go with them.</li>
+<li>Fixed Compress ignoring the Metadata setting. It used to strip everything no matter what, so "Keep essential" and "Keep all" did nothing when compressing. Now it keeps exactly what you pick (and adds your copyright), and photos keep their orientation.</li>
+<li>Fixed the metadata popover that collapsed to a single line — it now sizes itself to the metadata and scrolls when there's a lot. It also shows the latest output every time, instead of occasionally serving up a stale earlier reading.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.5</title>
             <pubDate>Thu, 04 Jun 2026 15:13:52 +0200</pubDate>
             <link>https://picmal.app/</link>

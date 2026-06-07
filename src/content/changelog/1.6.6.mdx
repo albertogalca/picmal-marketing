@@ -1,0 +1,15 @@
+---
+version: "1.6.6"
+title: "Target-size compression, copyright on every export, and metadata you can verify"
+pubDate: 2026-06-07
+---
+
+Compress images to a target file size. Pick "Max File Size" in the resize settings, type a size (say 100 KB or 2 MB), and Picmal scales each image down just enough to fit. It works in Convert, Compress, watched folders, and the command line — `picmal-cli convert -i photo.jpg -f jpg --resize 100kB`.
+
+Image compression is better across the board. JPEGs use optimised Huffman coding and a higher-precision transform, with full colour detail kept at the top quality settings. AVIF and JPEG XL come out tighter, GIF frame optimisation is smarter, and WebP now keeps the smaller of two encodings for still images.
+
+Picmal never hands you a file bigger than the original when compressing. If a compression pass wouldn't save space, your original is kept untouched — now everywhere, including when you compress straight after converting.
+
+Add your own copyright and ownership to every image. Fill in the new Copyright & ownership fields in **Settings → General** — copyright notice, artist, credit, and contact — and Picmal stamps them into each exported photo across EXIF, IPTC, and XMP. You only enter them once: they're saved as your default and reused on every export, with a switch to turn them on or off without clearing the fields. It even works when you're stripping metadata — your camera and location data come off, but your copyright stays on. There are matching `--copyright`, `--artist`, `--credit`, and `--contact` flags for `picmal-cli convert` and `compress` too.
+
+Check what metadata actually made it into a file. The ⓘ button next to a finished file now has an **Original / Result** switch and opens on Result, so you can confirm at a glance that your copyright landed and your camera and location data came off. It shows up even when the original had no metadata, so copyright you added is always verifiable. The metadata setting also spells out its trade-off as you pick it, so stripping never surprises you.

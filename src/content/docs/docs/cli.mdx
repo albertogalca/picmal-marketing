@@ -57,6 +57,8 @@ picmal-cli convert -i photo.heic -f jpg
 picmal-cli convert -i ~/Pics -f webp -o ~/out --quality 80
 picmal-cli convert -i a.png b.png -f avif --strip-metadata
 picmal-cli convert -i clip.mov -f mp4 --quality 70
+picmal-cli convert -i photo.jpg -f jpg --resize 100kB
+picmal-cli convert -i photo.jpg -f jpg --copyright "© 2026 Jane Doe" --artist "Jane Doe"
 cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 ```
 
@@ -68,13 +70,19 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `-w`, `--overwrite`       | Overwrite existing outputs.                                                  |
 | `--quality <n>`           | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`.    |
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
-| `--resize <geometry>`     | Resize geometry, e.g. `1920x1080`, `1920x`, `x1080`, `50%`.                  |
+| `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
 | `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`.                                     |
 | `-s`, `--strip-metadata`  | Strip EXIF/IPTC/XMP from output.                                             |
+| `--copyright <text>`      | Copyright notice to embed (EXIF, IPTC, and XMP). Written even with `--strip-metadata`. |
+| `--artist <text>`         | Artist / creator name to embed (EXIF Artist, IPTC byline, XMP creator).     |
+| `--credit <text>`         | Credit line to embed (IPTC credit, XMP credit).                             |
+| `--contact <text>`        | Contact or URL to embed (XMP rights web statement, IPTC contact).          |
 | `--pdf-dpi <n>`           | DPI for PDF rasterization (also tags output density on raster outputs).      |
 | `--watermark <path>`      | Watermark image path.                                                        |
 | `--watermark-opacity <n>` | 0.0–1.0. Default `0.5`.                                                      |
 | `--watermark-position`    | `tl`, `tr`, `bl`, `br`, or `center`. Default `br`.                           |
+
+The copyright flags are independent of `--strip-metadata`: pass both to strip a photo's camera/GPS data while still stamping your own ownership tags onto the output. Empty flags are skipped; values you pass always overwrite any existing tag.
 
 ## compress
 
@@ -84,6 +92,7 @@ Compress one or more files keeping the same format. Output defaults to `<basenam
 picmal-cli compress -i big.jpg --quality 70
 picmal-cli compress -i ~/Pics -o ~/out --strip-metadata
 picmal-cli compress -i clip.mp4 --quality 60 -o clip-small.mp4
+picmal-cli compress -i portfolio.jpg --copyright "© 2026 My Studio" --contact "hello@example.com"
 picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 ```
 
@@ -94,7 +103,11 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `--quality <n>`          | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`. |
 | `--preset <name>`        | Apply a saved preset by name (see [Presets](#presets)).                   |
 | `-s`, `--strip-metadata` | Strip EXIF/IPTC/XMP from output.                                          |
-| `-w`, `--overwrite`      | Overwrite existing outputs.                                               |
+| `--copyright <text>`     | Copyright notice to embed (EXIF, IPTC, and XMP). Written even with `--strip-metadata`. |
+| `--artist <text>`        | Artist / creator name to embed.                                          |
+| `--credit <text>`        | Credit line to embed.                                                    |
+| `--contact <text>`       | Contact or URL to embed.                                                 |
+| `-w`, `--overwrite`      | Overwrite existing outputs.                                              |
 
 If your `--preset` is an audio or video preset and you don't pass `--output`, `picmal-cli` picks the right container for you (Opus → `.opus`, AAC → `.m4a`, FLAC → `.flac`, VP9 → `.webm`). Pass `--output` if you want a specific path.
 

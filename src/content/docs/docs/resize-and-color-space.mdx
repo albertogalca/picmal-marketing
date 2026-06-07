@@ -1,11 +1,11 @@
 ---
 title: Resize and color space
-description: Resize images and adjust color space during conversion or compression in Picmal — five resize modes plus sRGB, Display P3, and Rec. 2020 control.
+description: Resize images and adjust color space during conversion or compression in Picmal — six resize modes plus sRGB, Display P3, and Rec. 2020 control.
 ---
 
 ## Image resize
 
-Turn on resizing to change image dimensions. The same settings apply in both **Convert** and **Compress**, so you can drop pixel dimensions while shaving file size in either mode. Five modes to choose from:
+Turn on resizing to change image dimensions. The same settings apply in both **Convert** and **Compress**, so you can drop pixel dimensions while shaving file size in either mode. Six modes to choose from:
 
 | Mode             | What It Does                                                                                 | Default        |
 | ---------------- | -------------------------------------------------------------------------------------------- | -------------- |
@@ -14,6 +14,11 @@ Turn on resizing to change image dimensions. The same settings apply in both **C
 | Fixed Height     | Set a specific height; width adjusts to maintain aspect ratio                                | 1080 px        |
 | Max Dimensions   | Constrain to maximum width and height — image is scaled down only if it exceeds either limit | 1920 x 1080 px |
 | Exact Dimensions | Resize to an exact width and height                                                          | 1920 x 1080 px |
+| Max File Size    | Scale the image down just enough to fit a target file size                                   | 500 KB         |
+
+### Max File Size
+
+Type a target size (in KB or MB) and Picmal scales each image down until it fits. It searches for the largest size that still lands under your budget, so you keep as much detail as possible. Images already under the target are left at full size. This mode is for images only — it isn't available for audio or video.
 
 ### Aspect ratio
 

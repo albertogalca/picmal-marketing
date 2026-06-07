@@ -46,9 +46,30 @@ Choose how metadata is handled during conversion:
 
 | Mode           | What It Does                                        |
 | -------------- | --------------------------------------------------- |
-| Strip all      | Removes all metadata for smallest file size         |
-| Keep essential | Preserves orientation, color profile, and copyright |
+| Strip all      | Smallest files, but removes the original's camera, date, and copyright info |
+| Keep essential | Keeps orientation, color profile, and copyright; drops location and serial numbers |
 | Keep all       | Preserves all original metadata                     |
+
+Picmal spells out this trade-off under the picker as you choose, so stripping never surprises you.
+
+### Copyright and ownership
+
+Add your own ownership details to every image you export. Open **Settings → General → Copyright & ownership** and fill in any of these fields:
+
+- **Copyright notice** — e.g. `© 2026 Jane Doe`
+- **Artist / Creator** — the photographer or author
+- **Credit** — attribution or photo credit
+- **Contact / URL** — a website, email, or phone number
+
+Picmal writes them into the standard EXIF, IPTC, and XMP fields, so other apps (Photos, Lightroom, Finder's Get Info, stock libraries) read them back. Values you enter always overwrite whatever was on the original.
+
+You only enter this once — Picmal saves it as your default profile and reuses it on every export. Use the **Add my copyright to exported images** switch to turn it on or off without clearing the fields.
+
+This works in every metadata mode — including **Strip all**. Strip removes the camera, GPS, and other identifying data, then Picmal stamps your copyright back on, so the output carries only your ownership info and nothing else. To embed copyright on the command line, see the [`--copyright`/`--artist` flags](/docs/cli#convert).
+
+### Inspecting metadata
+
+Click the ⓘ button next to a file to see its metadata. Before converting it shows the original. Once a file finishes, the popover gains an **Original / Result** switch and opens on **Result** — the metadata actually written to the output — so you can confirm at a glance that your copyright landed and that camera and location data came off. The button appears even when the original had no metadata, so copyright you added is always verifiable.
 
 ### RAW photos
 

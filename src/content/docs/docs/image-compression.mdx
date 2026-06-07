@@ -31,6 +31,14 @@ These formats use a quality percentage where **higher = better quality, larger f
 | SGI    | 0–100 | 85      | Silicon Graphics                             |
 | QOI    | 0–100 | 85      | Quite OK Image                               |
 
+## Never larger than the original
+
+When you compress a file, Picmal compares the result against the source and keeps whichever is smaller. If a compression pass wouldn't actually save space, your original is left untouched — so you never end up with a file bigger than the one you started with.
+
+## Compress to a target file size
+
+Need an image under a specific size? Turn on resizing and pick **Max File Size**, then type a budget like 100 KB or 2 MB. Picmal scales the image down just enough to fit. See [resize](/docs/resize-and-color-space#max-file-size) for details.
+
 ## Level-based formats (1–9)
 
 These formats use a compression level where **higher = more compression, smaller file** (but processing takes longer).

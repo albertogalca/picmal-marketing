@@ -18,6 +18,18 @@ import "../styles/global.css";
 
 const entries = sortEntries(await getCollection("changelog"));
 
+const latestVersion = entries[0]?.data.version ?? "1.0.0";
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE_TITLE,
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "macOS",
+  softwareVersion: latestVersion,
+  url: "https://picmal.app/changelog",
+};
+
 const rows = entries.map((entry) => {
   const standalone = isStandalone(entry);
   const version = entry.data.version;
@@ -57,6 +69,10 @@ const rows = entries.map((entry) => {
           url: `https://picmal.app${row.url}`,
         })),
       })}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(softwareSchema)}
     />
   </head>
   <body class="bg-background text-text min-h-dvh">

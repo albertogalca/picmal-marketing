@@ -15,23 +15,32 @@ interface NavLink {
   url: string;
 }
 
+interface RelatedLink {
+  label: string;
+  href: string;
+}
+
 interface Props {
   version: string;
   title: string;
   pubDate?: Date;
   description: string;
   slug: string;
+  related?: RelatedLink[];
   prev?: NavLink; // newer release
   next?: NavLink; // older release
 }
 
-const { version, title, pubDate, description, slug, prev, next } = Astro.props;
+const { version, title, pubDate, description, slug, related, prev, next } =
+  Astro.props;
 
 const downloadUrl = `https://github.com/albertogalca/picmal-releases/releases/download/v${version}/Picmal.dmg`;
 const hasDownload =
   version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0;
 
-const pageTitle = `${title} – ${SITE_TITLE} ${version}`;
+const relatedLinks = related ?? [];
+
+const pageTitle = `${title} – ${SITE_TITLE} ${version} Changelog`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -156,6 +165,48 @@ const articleSchema = {
         >
           <slot />
         </div>
+
+        <!-- Related pages -->
+        {
+          relatedLinks.length > 0 && (
+            <nav
+              class="mt-12 pt-8 border-t border-border"
+              aria-label="Related pages"
+            >
+              <h2 class="text-body-sm font-semibold text-text-secondary uppercase tracking-wide mb-4">
+                Related
+              </h2>
+              <ul class="flex flex-wrap gap-3">
+                {relatedLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="group inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-border text-body-sm text-text transition-colors duration-200 hover:bg-background-subtle hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      {link.label}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        class="text-text-secondary transition-transform duration-200 motion-safe:group-hover:translate-x-0.5"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
 
         <!-- Prev / Next releases -->
         {

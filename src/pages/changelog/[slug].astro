@@ -5,6 +5,7 @@ import {
   getEntrySlug,
   getEntryUrl,
   getEntryDescription,
+  getRelatedLinks,
   isStandalone,
   sortEntries,
 } from "../../utils/changelog";
@@ -44,6 +45,7 @@ const { Content } = await render(entry);
   pubDate={entry.data.pubDate}
   description={getEntryDescription(entry)}
   slug={getEntrySlug(entry)}
+  related={getRelatedLinks(entry)}
   prev={prev}
   next={next}
 >

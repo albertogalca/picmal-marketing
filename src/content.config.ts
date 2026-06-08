@@ -34,6 +34,9 @@ const changelog = defineCollection({
     slug: z.string().optional(),
     description: z.string().optional(),
     standalone: z.boolean().optional(),
+    related: z
+      .array(z.object({ label: z.string(), href: z.string() }))
+      .optional(),
   }),
 });
 

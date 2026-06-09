@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.7</title>
+            <pubDate>Tue, 09 Jun 2026 18:36:54 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>87</sparkle:version>
+            <sparkle:shortVersionString>1.6.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.7/Picmal.dmg" length="121364942" type="application/octet-stream" sparkle:edSignature="x4XD/FzqkKbBjKF0SnknMM3XxGaGEEOwaZc3/xBq2X9Lk4tugHJ7Xg5AbPMHkfP7afU5QMmJVxkQadDK/JpsAw=="/>
+        <description><![CDATA[<div><ul><li>Fixed a crash that could strike mid-run when the file list was busy reshuffling itself. Rows now hold their place while they process and only move when a file finishes or you change its priority, so a big batch stays steady instead of jumping around.</li>
+<li>Fixed a rare crash inside Picmal's own crash-reporting, where tidying up an error report could itself bring the app down instead of just quietly logging it.</li>
+<li>Updated the crash-reporting library and brought the command line tool in line with the app, so both report problems the same way under the hood.</li>
+<li>Fixed the video speed control. Custom speed now takes a clear multiplier (type 5 for 5×, up to 8×) instead of a confusing percentage, and the Delete key edits the field properly instead of removing the file from the list.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.6</title>
             <pubDate>Sun, 07 Jun 2026 14:19:53 +0200</pubDate>
             <link>https://picmal.app/</link>

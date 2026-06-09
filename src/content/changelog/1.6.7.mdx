@@ -1,0 +1,16 @@
+---
+version: "1.6.7"
+title: "A steadier file list and a clearer video speed control"
+pubDate: 2026-06-08
+related:
+  - label: "Convert video on Mac"
+    href: "/video-converter-mac"
+  - label: "Compress video on Mac"
+    href: "/compress-video-mac"
+---
+
+Fixed a crash that could strike mid-run when the file list was busy reshuffling itself. Rows now hold their place while they process and only move when a file finishes or you change its priority, so a big batch stays steady on screen instead of jumping around underneath you.
+
+The video speed control is clearer too. Custom speed now takes a plain multiplier (type 5 for 5×, up to 8×) instead of a confusing percentage. And the Delete key now edits the speed field properly rather than removing the file from the list.
+
+We also fixed a rare crash inside Picmal's own crash reporting, where tidying up an error report could itself bring the app down instead of just quietly logging it. Alongside that, we updated the crash-reporting library and brought the command line tool in line with the app, so both report problems the same way under the hood.

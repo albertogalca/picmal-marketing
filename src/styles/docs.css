@@ -1,0 +1,103 @@
+/* Picmal theme for Starlight.
+   Maps Starlight's CSS variables onto Picmal's neutral + blue palette so the
+   docs feel like the rest of the site — clean neutral grays, the Picmal blue
+   accent, restrained typography. Modeled on the Cozy docs theme; everything
+   else stays close to the Starlight default. */
+
+/* Dark theme (Starlight's :root is dark-first) — neutral dark, blue accent.
+   Accent values are the site's own (src/styles/global.css). */
+:root {
+  --sl-color-accent-low: oklch(0.32 0.09 262);
+  --sl-color-accent: #3b82f6; /* site --color-accent (dark) */
+  --sl-color-accent-high: #60a5fa;
+  /* Starlight derives link/title text from accent-high in dark mode, which ran
+     too pale — pin it to the site accent so links match the site exactly. */
+  --sl-color-text-accent: #3b82f6;
+
+  --sl-color-white: oklch(0.97 0 0);
+  --sl-color-gray-1: oklch(0.9 0 0);
+  --sl-color-gray-2: oklch(0.82 0 0);
+  --sl-color-gray-3: oklch(0.7 0 0);
+  --sl-color-gray-4: oklch(0.5 0 0);
+  --sl-color-gray-5: oklch(0.42 0 0);
+  --sl-color-gray-6: oklch(0.31 0 0);
+  --sl-color-black: oklch(0.27 0 0); /* site dark --color-background */
+
+  /* One family, matching the site. */
+  --sl-font:
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+
+  /* A calmer, more restrained heading scale than Starlight's default — which
+     jumps to 5xl/4xl on wide screens. Closer to the site's quiet typography. */
+  --sl-text-h1: 1.85rem;
+  --sl-text-h2: 1.4rem;
+  --sl-text-h3: 1.15rem;
+  --sl-text-h4: 1rem;
+  --sl-text-h5: 0.9rem;
+}
+
+/* Light theme — neutral near-white surfaces, Picmal blue accent. */
+:root[data-theme="light"] {
+  --sl-color-accent-low: oklch(0.92 0.04 262);
+  --sl-color-accent: #1b5bff; /* site --color-accent (light) */
+  --sl-color-accent-high: #1450e0; /* site --color-accent-dark (hover) */
+  --sl-color-text-accent: #1b5bff;
+
+  --sl-color-white: oklch(0.2 0 0);
+  --sl-color-gray-1: oklch(0.28 0 0);
+  --sl-color-gray-2: oklch(0.4 0 0);
+  --sl-color-gray-3: oklch(0.55 0 0);
+  --sl-color-gray-4: oklch(0.7 0 0);
+  --sl-color-gray-5: oklch(0.85 0 0);
+  --sl-color-gray-6: oklch(0.93 0 0);
+  --sl-color-gray-7: oklch(0.96 0 0);
+  --sl-color-black: oklch(0.985 0 0); /* site light --color-background */
+}
+
+/* Site title reads as plain foreground, not the accent (Starlight's default). */
+.site-title {
+  color: var(--sl-color-white);
+}
+
+/* Prev/next pagination title — Starlight sets this to 2xl; bring it down to the
+   same restrained scale as everything else. */
+.link-title {
+  font-size: var(--sl-text-h4);
+}
+
+/* Soft 6px radius and a quieter top nav border, matching the site's restraint. */
+:root {
+  --sl-content-pad-x: 1.5rem;
+}
+
+.sl-markdown-content :is(img, pre, .expressive-code) {
+  border-radius: 6px;
+}
+
+/* Asides (:::note / :::tip) — simpler and calmer. Drop Starlight's saturated
+   blue/purple washes for a quiet panel with a thin accent edge, identical in
+   light and dark. Accent stays sparing: just the left border and the title. */
+.starlight-aside {
+  border-radius: 6px;
+  border-inline-start-width: 3px;
+}
+.starlight-aside--note,
+.starlight-aside--tip {
+  --sl-color-asides-border: var(--sl-color-accent);
+  --sl-color-asides-text-accent: var(--sl-color-text-accent);
+  background-color: var(--sl-color-gray-6);
+}
+
+/* Plain Markdown blockquotes — quiet neutral edge, never a loud color. */
+.sl-markdown-content blockquote:not(:where(.not-content *)) {
+  border-inline-start: 3px solid var(--sl-color-gray-5);
+  color: var(--sl-color-gray-2);
+}
+
+/* Gentle, ease-out motion to match the site; respect reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .sl-markdown-content a {
+    transition: color 150ms ease-out;
+  }
+}

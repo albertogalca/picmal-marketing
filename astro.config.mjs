@@ -5,7 +5,6 @@ import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
-import starlightThemeBlack from "starlight-theme-black";
 import { conversions, isConversionIndexed } from "./src/data/conversions.ts";
 
 // Convert pages that are noindexed should also be kept out of the sitemap.
@@ -41,6 +40,7 @@ export default defineConfig({
           items: [
             { label: "Converting files", link: "/docs/converting-files" },
             { label: "Compressing files", link: "/docs/compressing-files" },
+            { label: "PDF tools", link: "/docs/pdf-tools" },
             { label: "Managing the queue", link: "/docs/managing-the-queue" },
             { label: "Watched folders", link: "/docs/watched-folders" },
             {
@@ -85,23 +85,12 @@ export default defineConfig({
       components: {
         Head: "./src/components/StarlightHead.astro",
       },
-      customCss: ["./src/styles/docs-layers.css"],
+      customCss: ["./src/styles/docs-layers.css", "./src/styles/docs.css"],
       disable404Route: true,
       credits: false,
       expressiveCode: {
         defaultProps: { frame: "none" },
       },
-      plugins: [
-        starlightThemeBlack({
-          footerText: "",
-          navLinks: [
-            {
-              label: "Docs",
-              link: "/docs",
-            },
-          ],
-        }),
-      ],
     }),
     mdx(),
     sitemap({

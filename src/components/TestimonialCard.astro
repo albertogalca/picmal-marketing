@@ -1,6 +1,4 @@
 ---
-import crypto from "crypto";
-import { Image } from "astro:assets";
 import Paragraph from "./Paragraph.astro";
 
 interface Props {
@@ -11,33 +9,39 @@ interface Props {
   link?: string;
 }
 
-const { name, email, content, image, link } = Astro.props;
+const { name, content, image, link } = Astro.props;
 
-function getGravatarUrl(email: string, size: number = 80): string {
-  const hash = crypto
-    .createHash("md5")
-    .update(email.toLowerCase().trim())
-    .digest("hex");
-  return `https://gravatar.com/avatar/${hash}?s=${size}&d=mp&r=g`;
+function getInitialsAvatar(name: string): string {
+  const words = name.replace(/^@/, "").split(/\s+/);
+  const initials = words
+    .slice(0, 2)
+    .map((w) => w[0] ?? "")
+    .join("")
+    .toUpperCase();
+  const palette = ["#4F46E5", "#7C3AED", "#0891B2", "#059669", "#D97706", "#DC2626", "#DB2777"];
+  const bg = palette[name.charCodeAt(0) % palette.length];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" rx="40" fill="${bg}"/><text x="40" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="30" font-weight="600" fill="white">${initials}</text></svg>`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
+
+const avatarSrc = image ?? getInitialsAvatar(name);
+const isInitials = !image;
 ---
 
 <div
   class="rounded-lg p-6 md:p-8 min-w-[280px] max-w-[280px] md:min-w-[380px] md:max-w-[380px]"
 >
-  <!-- Quote -->
   <Paragraph class="mb-6 text-center">
     &ldquo;{content}&rdquo;
   </Paragraph>
 
-  <!-- Author info -->
   <div class="flex items-center gap-4 justify-center">
-    <Image
-      src={image || getGravatarUrl(email || "", 80)}
-      alt={`Photo of ${name}`}
-      width={80}
-      height={80}
-      class="w-10 h-10 rounded-full flex-shrink-0"
+    <img
+      src={avatarSrc}
+      alt={isInitials ? `Avatar of ${name}` : `Photo of ${name}`}
+      width={40}
+      height={40}
+      class="w-10 h-10 rounded-full flex-shrink-0 object-cover"
       loading="lazy"
     />
     <div class="flex items-center gap-2">

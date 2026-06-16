@@ -3,7 +3,15 @@ import { Image } from "astro:assets";
 import testimonials from "../data/testimonials.json";
 import H2 from "./H2.astro";
 import Paragraph from "./Paragraph.astro";
-import { getGravatarUrl } from "../utils/gravatar";
+
+function getInitialsAvatar(name: string): string {
+  const words = name.replace(/^@/, "").split(/\s+/);
+  const initials = words.slice(0, 2).map((w) => w[0] ?? "").join("").toUpperCase();
+  const palette = ["#4F46E5", "#7C3AED", "#0891B2", "#059669", "#D97706", "#DC2626", "#DB2777"];
+  const bg = palette[name.charCodeAt(0) % palette.length];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" rx="40" fill="${bg}"/><text x="40" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="30" font-weight="600" fill="white">${initials}</text></svg>`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+}
 
 const userTestimonials = testimonials.filter((t) => t.type !== "press");
 
@@ -90,17 +98,13 @@ const aggregateRatingSchema = {
                     />
                   ) : (
                     <>
-                      <Image
-                        src={
-                          testimonial.image ||
-                          getGravatarUrl(testimonial.email || "", 64)
-                        }
+                      <img
+                        src={testimonial.image || getInitialsAvatar(testimonial.name)}
                         alt={`${testimonial.name}, Picmal user`}
-                        width={64}
-                        height={64}
-                        class="w-10 h-10 rounded-full flex-shrink-0 testimonial-avatar"
+                        width={40}
+                        height={40}
+                        class="w-10 h-10 rounded-full flex-shrink-0 object-cover"
                         loading="lazy"
-                        data-initials={testimonial.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)}
                       />
                       <div class="flex flex-col">
                         <span class="font-semibold text-text">
@@ -148,13 +152,3 @@ const aggregateRatingSchema = {
   }
 </style>
 
-<script>
-  document.querySelectorAll('.testimonial-avatar').forEach((img) => {
-    img.addEventListener('error', function () {
-      const initials = this.getAttribute('data-initials') || '?';
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="%23e5e7eb"/><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="%236b7280">${initials}</text></svg>`;
-      this.src = `data:image/svg+xml,${svg}`;
-      this.onerror = null;
-    });
-  });
-</script>

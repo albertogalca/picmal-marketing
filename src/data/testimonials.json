@@ -2,24 +2,24 @@
   {
     "id": 1,
     "name": "Marynes",
-    "image": "/marynes-testimonial.jpeg",
+    "image": "/avatars/marynes.jpg",
     "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
     "date": "Sep 16, 2025"
   },
   {
     "id": 2,
     "name": "Anthony Nguyen",
-    "email": "a.van.nguyen@gmail.com",
     "content": "Everything works as expected - great app!",
-    "date": "Sep 15, 2025"
+    "date": "Sep 15, 2025",
+    "image": "/avatars/a_van_nguyen_gmail_com.jpg"
   },
   {
     "id": 4,
     "name": "Beckett R",
-    "email": "beckettreynolds32@icloud.com",
     "content": "Great app! Simple and easy to use.",
     "date": "Sep 7, 2025",
-    "link": "https://albertogalca.gumroad.com/l/picmal"
+    "link": "https://albertogalca.gumroad.com/l/picmal",
+    "image": "/avatars/beckettreynolds32_icloud_com.jpg"
   },
   {
     "id": 5,
@@ -32,9 +32,9 @@
   {
     "id": 6,
     "name": "River Sloane",
-    "email": "river@helpdocs.io",
     "content": "Wonderfully simple app! I struggled with converting my images from one format to another constantly with online free tools. Picmal makes it effortless. Worth the money to avoid the hassle for sure!",
-    "date": "Nov 24, 2025"
+    "date": "Nov 24, 2025",
+    "image": "/avatars/river_helpdocs_io.jpg"
   },
   {
     "id": 7,
@@ -47,16 +47,16 @@
   {
     "id": 8,
     "name": "Gianluca Savini",
-    "email": "gianlucasavini@gmail.com",
     "content": "You did a great job here! I like how easy Picmal is to use, and the frequent upgrades show that you are very committed to improving this beautiful software.",
-    "date": "Dec 1, 2025"
+    "date": "Dec 1, 2025",
+    "image": "/avatars/gianlucasavini_gmail_com.jpg"
   },
   {
     "id": 9,
     "name": "Rob H",
-    "email": "rmjh@me.com",
     "content": "It's a Mac-assed Mac App. Focused, customizable, flexible, well designed and super fast. 10+ times a day I need to convert a file for use on a website. Picmal makes that process a joy. My favorite conversion is taking a multipage PDF and converting each page to an individual image with one click (something even Preview can't do). ",
-    "date": "Jan 9, 2026"
+    "date": "Jan 9, 2026",
+    "image": "/avatars/rmjh_me_com.jpg"
   },
   {
     "id": 10,
@@ -69,7 +69,7 @@
   {
     "id": 11,
     "name": "@imnogeekAJ",
-    "image": "https://pbs.twimg.com/profile_images/2031537642052169728/GT8FbEvp_400x400.jpg",
+    "image": "/avatars/imnogeekaj.jpg",
     "content": "Been enjoying the app! Thanks for the very handy utility.",
     "link": "https://x.com/imnogeekAJ/status/2024192689349308780",
     "date": "Feb 18, 2026"
@@ -77,9 +77,9 @@
   {
     "id": 12,
     "name": "Alessandro Bonini",
-    "email": "boniz.ale@gmail.com",
     "content": "I f* love this app. Just so you know. Keep building!",
-    "date": "Feb 18, 2026"
+    "date": "Feb 18, 2026",
+    "image": "/avatars/boniz_ale_gmail_com.jpg"
   },
   {
     "id": 13,
@@ -91,9 +91,9 @@
   {
     "id": 14,
     "name": "Yiannis",
-    "email": "porcupine@porcupine.gr",
     "content": "I like the quality of the image processing. It also supports all the important image files. But it still needs some work regarding both the UI and the UX design of it.",
-    "date": "Feb 21, 2026"
+    "date": "Feb 21, 2026",
+    "image": "/avatars/porcupine_porcupine_gr.jpg"
   },
   {
     "id": 15,
@@ -105,9 +105,9 @@
   {
     "id": 16,
     "name": "Adam L",
-    "email": "adamjlea@gmail.com",
     "content": "It's simple to use and does everything I need it to do. Hell, it does much more than I need and the developer keeps adding features :) ",
-    "date": "Mar 4, 2026"
+    "date": "Mar 4, 2026",
+    "image": "/avatars/adamjlea_gmail_com.jpg"
   },
   {
     "id": 17,
@@ -127,7 +127,7 @@
     "id": 19,
     "name": "Marie-Theres",
     "email": "mthtschiersch@t-online.de",
-    "content": "I use Picmal to convert images. It works perfectly. I can just leave the Picmal window open on my desktop. Whenever I want to convert an image, I drag the file onto the window and click “convert”—and seconds later, the converted file is in the appropriate folder with the suffix “converted.” It couldn't be easier or more hassle-free!",
+    "content": "I use Picmal to convert images. It works perfectly. I can just leave the Picmal window open on my desktop. Whenever I want to convert an image, I drag the file onto the window and click “convert”—and seconds later, the converted file is in the appropriate folder with the suffix “converted.” It couldn’t be easier or more hassle-free!",
     "date": "May 21, 2026"
   },
   {
@@ -140,9 +140,9 @@
   {
     "id": 21,
     "name": "Joel",
-    "email": "joeljuliusk22@gmail.com",
     "content": "I feel Picmal is one of the apps that I would categorize as essential. There are many features that distinguish the app from other web converters such as Folder Watching and Clipboard Optimization.",
-    "date": "May 28, 2026"
+    "date": "May 28, 2026",
+    "image": "/avatars/joeljuliusk22_gmail_com.jpg"
   },
   {
     "id": 22,
@@ -169,7 +169,7 @@
     "id": 25,
     "name": "Rubens Nook",
     "description": "YouTube Creator",
-    "image": "https://yt3.googleusercontent.com/5WlNRu2ecplDVBJgHH_PlbcpU0rNzOyTRANfeq3WNVGyQRqHPrbO-VDi-tb_kYrtMyWgkWdu=s160-c-k-c0x00ffffff-no-rj",
+    "image": "/avatars/rubens_nook.jpg",
     "link": "https://www.youtube.com/@RubensNook",
     "content": "I convert MP4s to MP3s almost every day. Picmal makes it stupidly simple, and I haven't touched a sketchy online converter since.",
     "date": "Jun 5, 2026"
@@ -183,9 +183,9 @@
   },
   {
     "id": 27,
-    "name": "Henry",
-    "image": "https://www.fastmailcdn.com/avatar/glassnotes.com",
-    "content": "Watched Folders alone is worth the price. It has solved a problem I have had for many years: image conversion. I will now look into all the other things Picmal can do. Thanks again!",
-    "date": "Jun 12, 2026"
+    "name": "Henry Halem",
+    "email": "hhalem@glassnotes.com",
+    "content": "Working on a presentation and had to convert and resize a lot of images. Picmal did them all in a flash.",
+    "date": "Jun 16, 2026"
   }
 ]

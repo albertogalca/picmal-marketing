@@ -15,18 +15,20 @@ You can drop individual files or entire folders.
 
 ## Finder services (right-click menu)
 
-Picmal adds three services to Finder's right-click menu:
+Picmal adds five services to Finder's right-click menu:
 
 1. **Picmal — Compress** — Compresses the selected files right away
 2. **Picmal — Convert** — Converts the selected files right away
 3. **Picmal — Add Files** — Adds the selected files to the Picmal window without processing them, so you can tweak settings first
+4. **Picmal — Combine PDFs** — Merges the selected PDFs into one, in selection order. Only appears when every selected file is a PDF
+5. **Picmal — Images to PDF** — Turns the selected images into a multi-page PDF. Only appears when every selected file is an image
 
 To enable these services:
 
 1. Open **System Settings** (or System Preferences)
 2. Go to **Keyboard → Keyboard Shortcuts → Services**
 3. Scroll to the **Files and Folders** section
-4. Check **Picmal — Add Files**, **Picmal — Convert**, and **Picmal — Compress**
+4. Check the Picmal entries you want
 
 ![Enabling Picmal services in Keyboard Shortcuts settings](/images/docs/finder_quick_actions.png)
 
@@ -42,16 +44,17 @@ So set things up the way you want them in Picmal before you lean on the services
 
 - **Where files go.** By default, outputs sit next to the originals. To send them to a subfolder instead, turn on **Settings → Output → Save outputs in a subfolder** and give it a name. The services respect this the same way the app does; with it off, files land beside the source. See [Output and naming](/docs/output-and-naming).
 - **File names, the quality preset, and the output format** come from your current settings too, so adjust them under **Settings** first.
+- **Combine PDFs** merges in Finder's selection order and saves `<first name> (combined).pdf` next to the originals. **Images to PDF** uses your saved page size and quality from the [PDF tools](/docs/pdf-tools) options (passwords never apply to service runs) and saves `<first name>.pdf`. Want to reorder pages first? Open the tool in the app instead.
 
 Want to check or change settings for a specific batch first? Use **Picmal — Add Files** instead. It drops the files into the window so you can pick your options and hit Compress or Convert yourself.
 
 ### Running with the app closed
 
-You don't need Picmal open. **Picmal — Compress** and **Picmal — Convert** run in the background without opening the window, post a notification when they're done, and quit on their own. If the app is already open, they run there and it stays open. **Picmal — Add Files** always opens the window so you can see what's queued.
+You don't need Picmal open. **Picmal — Compress**, **Picmal — Convert**, **Picmal — Combine PDFs**, and **Picmal — Images to PDF** run in the background without opening the window, post a notification when they're done, and quit on their own. If the app is already open, they run there and it stays open. **Picmal — Add Files** always opens the window so you can see what's queued.
 
 ## Shortcuts app
 
-Picmal provides two actions for Apple's Shortcuts app, so you can build automated workflows.
+Picmal provides four actions for Apple's Shortcuts app, so you can build automated workflows.
 
 ![Picmal actions in the Shortcuts app](/images/docs/shortcuts.png)
 
@@ -72,14 +75,35 @@ Picmal provides two actions for Apple's Shortcuts app, so you can build automate
 | Custom quality  | Quality value (1–100) when using Custom preset |
 | Remove metadata | Strip metadata from output                     |
 
-Use these to build automations like "compress every screenshot I take" or "convert HEIC photos to JPEG when added to a folder."
+### Combine PDFs
+
+| Parameter | Description                                  |
+| --------- | -------------------------------------------- |
+| PDFs      | The PDFs to merge, in page order (two or more) |
+
+Returns the merged PDF, ready for a "Save File" action or the next step in your shortcut.
+
+### Make PDF from Images
+
+| Parameter | Description                                                    |
+| --------- | --------------------------------------------------------------- |
+| Images    | The images to place on pages, in order                          |
+| Page size | Fit to Image, A4, or US Letter                                  |
+| Quality   | JPEG quality for embedded images (40–100)                       |
+| Password  | Optional password required to open the PDF                      |
+
+Returns the finished PDF.
+
+Use these to build automations like "compress every screenshot I take," "convert HEIC photos to JPEG when added to a folder," or "merge this month's invoices into one PDF."
 
 ### Ready-made shortcuts
 
-Two ready-made shortcuts to get you started. Click either link to add it to your Shortcuts app:
+Ready-made shortcuts to get you started. Click any link to add it to your Shortcuts app:
 
 - [Convert file (with Picmal)](https://www.icloud.com/shortcuts/00bf8518dd414c20b0ce31d9da8415e3)
 - [Compress file (with Picmal)](https://www.icloud.com/shortcuts/16566c74e2554dd7aacd2078b4c864c6)
+- [Combine PDFs (with Picmal)](https://www.icloud.com/shortcuts/c43669db2eb446619afb33e47efda649)
+- [Make PDF from Images (with Picmal)](https://www.icloud.com/shortcuts/ec32a8c7305c44c89f37a39785c46b23)
 
 ## Menu bar mode
 

@@ -3,9 +3,7 @@ import { getCollection, render } from "astro:content";
 import ChangelogEntry from "../../layouts/ChangelogEntry.astro";
 import {
   getEntrySlug,
-  getEntryUrl,
   getEntryDescription,
-  getRelatedLinks,
   isStandalone,
   sortEntries,
 } from "../../utils/changelog";
@@ -16,26 +14,13 @@ export async function getStaticPaths() {
   // Only releases with substantial notes get their own page.
   const standalone = all.filter(isStandalone);
 
-  return standalone.map((entry, i) => {
-    const prev = standalone[i - 1]; // newer release
-    const next = standalone[i + 1]; // older release
-    const toNav = (e?: (typeof standalone)[number]) =>
-      e
-        ? {
-            title: e.data.title ?? `Version ${e.data.version}`,
-            version: e.data.version,
-            url: getEntryUrl(e),
-          }
-        : undefined;
-
-    return {
-      params: { slug: getEntrySlug(entry) },
-      props: { entry, prev: toNav(prev), next: toNav(next) },
-    };
-  });
+  return standalone.map((entry) => ({
+    params: { slug: getEntrySlug(entry) },
+    props: { entry },
+  }));
 }
 
-const { entry, prev, next } = Astro.props;
+const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -45,9 +30,6 @@ const { Content } = await render(entry);
   pubDate={entry.data.pubDate}
   description={getEntryDescription(entry)}
   slug={getEntrySlug(entry)}
-  related={getRelatedLinks(entry)}
-  prev={prev}
-  next={next}
 >
   <Content />
 </ChangelogEntry>

@@ -1,6 +1,6 @@
 ---
 title: Command line (picmal-cli)
-description: Run Picmal from the terminal — convert, compress, watch folders, and apply saved presets without opening the app.
+description: Run Picmal from the terminal — convert, compress, combine PDFs, make PDFs from images, watch folders, and apply saved presets without opening the app.
 ---
 
 Picmal ships with a command-line companion, `picmal-cli`, bundled inside the app. Same conversion engine as the UI, so the output is identical — you just get flags, JSON, and exit codes you can drop into a script.
@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `images-to-pdf`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -31,6 +31,8 @@ picmal-cli <subcommand> [options]
 | ---------------- | ------------------------------------------------- |
 | `convert`        | Convert files to a target format                  |
 | `compress`       | Compress files keeping the same format            |
+| `combine`        | Combine two or more PDFs into one                 |
+| `images-to-pdf`  | Create a multi-page PDF from images               |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
 | `watch`          | Add, list, and remove watched folders             |
@@ -110,6 +112,42 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `-w`, `--overwrite`      | Overwrite existing outputs.                                              |
 
 If your `--preset` is an audio or video preset and you don't pass `--output`, `picmal-cli` picks the right container for you (Opus → `.opus`, AAC → `.m4a`, FLAC → `.flac`, VP9 → `.webm`). Pass `--output` if you want a specific path.
+
+## combine
+
+Combine two or more PDFs into a single document. Inputs are merged in the order you pass them.
+
+```bash
+picmal-cli combine a.pdf b.pdf
+picmal-cli combine chapter*.pdf -o book.pdf
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | PDF files to combine, in page order (positional, at least two).                    |
+| `-o`, `--output <path>` | Output file or directory. Default: `<first basename> (combined).pdf` next to the first input. |
+| `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
+
+Password-protected inputs are refused (exit `11`) — unlock them first. Uses PDFKit, macOS's native PDF engine, so pages are copied losslessly.
+
+## images-to-pdf
+
+Create a multi-page PDF from images, one image per page, in the order you pass them. Accepts the formats macOS decodes natively (jpg, png, heic, tiff, gif, bmp, webp, avif, jp2, jxl). EXIF orientation is applied, so sideways phone photos come out upright.
+
+```bash
+picmal-cli images-to-pdf scan1.jpg scan2.jpg
+picmal-cli images-to-pdf *.png --page-size a4 --quality 70 -o album.pdf
+picmal-cli images-to-pdf report.png --password secret
+```
+
+| Flag                    | Description                                                                  |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| `<inputs...>`           | Image files, in page order (positional, at least one).                        |
+| `--page-size <size>`    | `fit` (page wraps each image, default), `a4`, `letter`, or `<W>x<H>mm` (e.g. `210x297mm`). Fixed sizes auto-rotate to each image's orientation. |
+| `--quality <n>`         | JPEG quality for embedded images, 40–100. Default `85`.                      |
+| `--password <text>`     | Password required to open the PDF.                                            |
+| `-o`, `--output <path>` | Output file or directory. Default: `<first basename>.pdf` next to the first input. |
+| `-w`, `--overwrite`     | Overwrite an existing output file.                                            |
 
 ## presets
 

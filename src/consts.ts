@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Picmal";
 export const SITE_DESCRIPTION =
-  "Convert images, videos, and audio on your Mac with Picmal. A fast, privacy-first media converter that works entirely offline with batch support.";
+  "Convert, compress, and create media on your Mac with Picmal. A fast, privacy-first tool for images, videos, audio, and PDFs that works entirely offline with batch support.";

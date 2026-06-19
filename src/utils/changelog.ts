@@ -1,13 +1,6 @@
 import type { CollectionEntry } from "astro:content";
-import { INDEXED_CONVERSIONS } from "../data/conversions";
-import { compressions } from "../data/compressions";
 
 type ChangelogEntry = CollectionEntry<"changelog">;
-
-export interface RelatedLink {
-  label: string;
-  href: string;
-}
 
 // Releases with at least this many words of release notes get their own
 // SEO-friendly page. Shorter patch notes stay inline on the index.
@@ -88,56 +81,6 @@ export function getFirstImage(
   const md = body.match(/!\[([^\]]*)\]\(([^)\s]+)/);
   if (md) return { src: md[2], alt: md[1] };
   return null;
-}
-
-/** Format codes that appear in conversion slugs (uppercased for display). */
-function formatLabel(code: string): string {
-  return code.toUpperCase();
-}
-
-/**
- * Internal links to surface out of a standalone release page, so entries link
- * to product pages instead of becoming SEO orphans. Curated `related`
- * frontmatter comes first; the rest is auto-detected from the body and points
- * ONLY to real, indexed pages (`INDEXED_CONVERSIONS` + the compress formats).
- */
-export function getRelatedLinks(
-  entry: ChangelogEntry,
-  max = 4,
-): RelatedLink[] {
-  const links: RelatedLink[] = [...(entry.data.related ?? [])];
-  const seen = new Set(links.map((l) => l.href));
-  const text = ` ${stripBody(entry.body ?? "").toLowerCase()} `;
-
-  const add = (link: RelatedLink) => {
-    if (seen.has(link.href)) return;
-    seen.add(link.href);
-    links.push(link);
-  };
-
-  // Conversions: detect "<from> to <to>" phrasing for indexed slugs only.
-  for (const slug of INDEXED_CONVERSIONS) {
-    if (links.length >= max) break;
-    const [from, to] = slug.split("-to-");
-    if (!from || !to) continue;
-    if (text.includes(` ${from} to ${to} `)) {
-      add({
-        label: `Convert ${formatLabel(from)} to ${formatLabel(to)}`,
-        href: `/convert/${slug}`,
-      });
-    }
-  }
-
-  // Compression: detect a format name as a whole word.
-  for (const c of compressions) {
-    if (links.length >= max) break;
-    const re = new RegExp(`\\b${c.slug}\\b`, "i");
-    if (re.test(text)) {
-      add({ label: `Compress ${c.name}`, href: `/compress/${c.slug}` });
-    }
-  }
-
-  return links.slice(0, max);
 }
 
 /** Sort releases newest-first (by pubDate, falling back to version). */

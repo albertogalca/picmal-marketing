@@ -75,6 +75,35 @@
   border-radius: 6px;
 }
 
+/* Tables — Starlight's default is heavy: thick cell borders and a loud column
+   divider. Quiet it down to a single hairline grid, a subtle header row, and
+   roomier cells, matching the site's restraint. */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: var(--sl-text-sm);
+}
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+  border: none;
+  border-bottom: 1px solid var(--sl-color-gray-6);
+  padding: 0.6rem 0.9rem;
+  text-align: start;
+  vertical-align: top;
+}
+.sl-markdown-content thead th:not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-6);
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+.sl-markdown-content tbody tr:last-child :is(th, td):not(:where(.not-content *)) {
+  border-bottom: none;
+}
+
 /* Asides (:::note / :::tip) — simpler and calmer. Drop Starlight's saturated
    blue/purple washes for a quiet panel with a thin accent edge, identical in
    light and dark. Accent stays sparing: just the left border and the title. */

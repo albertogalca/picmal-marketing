@@ -24,9 +24,9 @@ import FeaturedReview from "../components/FeaturedReview.astro";
 import Lead from "../components/Lead.astro";
 import { getEntryUrl, isStandalone } from "../utils/changelog";
 
-const SITE_TITLE = "Convert & Compress Images, Video & Audio on Mac | Picmal";
+const SITE_TITLE = "Convert, Compress & Create Media on Mac | Picmal";
 const SITE_DESCRIPTION =
-  "Drag in your files, pick a format, done. Batch convert images, videos, and audio on your Mac. No internet needed, no subscription.";
+  "Drag in your files, pick a format, done. Batch convert images, videos, audio, and PDFs on your Mac, or generate PDFs from your files. No internet needed, no subscription.";
 
 const changelogEntries = await getCollection("changelog");
 const latestRelease = changelogEntries.sort((a, b) =>
@@ -78,12 +78,11 @@ const latestReleaseHref = isStandalone(latestRelease)
                 aria-hidden="true">&rarr;</span
               >
             </a>
-            <H1 class="mb-6 max-w-3xl mx-auto"
-              >Convert and compress any media on your Mac</H1
-            >
+            <H1 class="mb-6 max-w-2xl mx-auto">Your Mac's media toolkit</H1>
             <Lead class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
-              Images, videos, audio. Batch process hundreds at once, right on
-              your Mac. Works offline, no account, nothing to subscribe to.
+              Convert, compress, and create multiple files from different types
+              of media, like images, videos, and audio. Everything works offline
+              and respects your privacy.
             </Lead>
           </div>
 

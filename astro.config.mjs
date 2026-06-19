@@ -22,7 +22,7 @@ export default defineConfig({
     starlight({
       title: "Picmal Docs",
       description:
-        "These are the docs for Picmal, a macOS app for converting and compressing images, audio and video files.",
+        "These are the docs for Picmal, a macOS app for converting, compressing, and creating images, audio, video, and PDF files.",
       logo: {
         src: "./public/logo.webp",
         alt: "Picmal",

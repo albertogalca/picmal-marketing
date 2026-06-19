@@ -3,6 +3,30 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.8</title>
+            <pubDate>Fri, 19 Jun 2026 11:26:10 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>88</sparkle:version>
+            <sparkle:shortVersionString>1.6.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.8/Picmal.dmg" length="121800125" type="application/octet-stream" sparkle:edSignature="ZQteZNsz+Ky+XHM8gOQFlGvx7rcb4JzmbwhEfV97pcWLuEStBJCC/zWhrR/2oDoaonX8/YX4kUNGFp/c8ANmAA=="/>
+        <description><![CDATA[<div><ul>### New Features</li>
+<li>Two new PDF tools, in a redesigned sidebar. Picmal's tools now live down the side, grouped into Media (Convert, Compress) and PDF (Combine PDFs, Images to PDF), so there's room to grow beyond converting and compressing.</li>
+<li>Combine PDFs. Drop in several PDFs, drag to reorder them, and merge everything into one document. Name the output file in PDF Options, or leave it blank for an automatic name. The combined PDF is saved next to the first file.</li>
+<li>Images to PDF. Turn a batch of images into a single PDF, one image per page. Drag to set the page order, pick a page size (fit to image, A4, Letter or a custom size in mm), set the image quality, add an optional password, and name the output file.</li>
+<li>Both PDF tools also work from the Finder right-click menu, the Shortcuts app, and the command line (`picmal-cli combine` and `picmal-cli images-to-pdf`). You get a notification when the PDF is ready, just like Convert and Compress.</li>
+<li>Custom metadata control. On top of strip-all, keep-essential and keep-all, a new Custom mode lets you choose exactly which categories to keep — location (GPS), camera & exposure, date & time, copyright & author, colour profile, orientation, serial & owner IDs, and the embedded thumbnail — each on its own. The command line gains matching `--keep` and `--strip` flags.</li>
+### Improvements</li>
+<li>A fresh coat of Liquid Glass. The bottom bar, the clipboard overlay, and the licence banner now use macOS's Liquid Glass look, so they sit more naturally over whatever's behind them.</li>
+<li>Combining PDFs now reports a clear error if a page can't be read, instead of quietly leaving it out of the merged file.</li>
+### Bug Fixes</li>
+<li>Fixed resizing and compressing in one go producing bloated files. When an image was both resized and compressed — in Compress mode or a watched folder — the resize step quietly undid the optimisation, leaving files much larger than doing the two steps separately. The output is now optimised properly, so combined resize and compress matches a resize-then-optimise pass.</li>
+<li>Fixed converted photos coming out sideways. Portrait shots from your iPhone (and any photo that relies on a rotation tag) were being flipped to landscape on convert. Picmal now rotates the pixels upright so the output looks exactly like the original. The Orientation setting (Auto-fix / Keep tag) in Settings → Images now does what it says, and the command line rotates correctly too.</li>
+<li>Fixed conversions and compressions that could freeze or stall. A quick one-off job (like a single photo) could hang right as it finished, and big batches could get stuck partway. The heavy PDF, SVG, and image work now runs to the side, so the app stays responsive and files keep moving.</li>
+<li>Fixed some audio failing to convert to OGG. Converting to OGG (Vorbis) could fail with an "encoder setup failed" error, most often on lower-sample-rate files like 22 kHz MP3s. Picmal now sets the Vorbis quality directly instead of a target bitrate, which the encoder handles reliably, so these conversions go through.</li>
+<li>Fixed a crash when removing files with the Delete key. Deleting selected rows from the keyboard while the list was updating could bring the app down. Deletions now wait for the list to settle, the same way the right-click Remove already did.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.7</title>
             <pubDate>Tue, 09 Jun 2026 18:36:54 +0200</pubDate>
             <link>https://picmal.app/</link>

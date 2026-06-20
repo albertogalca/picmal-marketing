@@ -9,13 +9,18 @@ Picmal is a native macOS app for batch converting and compressing images, videos
 - Devices: 1 Mac
 - Includes: All features, lifetime updates, email support
 
+### 2-Device License
+- Price: $28.78 (one-time, lifetime)
+- Devices: 2 Macs
+- Includes: All features, lifetime updates, email support
+
 ### 3-Device License
-- Price: $41.97 (one-time, lifetime)
+- Price: $40.77 (one-time, lifetime)
 - Devices: 3 Macs
 - Includes: All features, lifetime updates, email support
 
 ### 5-Device License
-- Price: $65.95 (one-time, lifetime)
+- Price: $63.95 (one-time, lifetime)
 - Devices: 5 Macs
 - Includes: All features, lifetime updates, email support
 

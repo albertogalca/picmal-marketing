@@ -256,7 +256,7 @@ const metadataRows: [string, string][] = [
               <!-- Source stack — fans wider, then gathers on hover (staggered) -->
               <div class="relative h-44 w-36">
                 <div
-                  class="absolute inset-0 m-auto h-36 w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
@@ -274,7 +274,7 @@ const metadataRows: [string, string][] = [
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-36 w-28 rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
@@ -292,7 +292,7 @@ const metadataRows: [string, string][] = [
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-36 w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
@@ -312,7 +312,7 @@ const metadataRows: [string, string][] = [
               </div>
               <!-- Arrow -->
               <svg
-                class="h-6 w-6 shrink-0 text-text-secondary"
+                class="h-4 md:h-6 w-4 md:w-6 shrink-0 text-text-secondary"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1.8"
@@ -326,7 +326,7 @@ const metadataRows: [string, string][] = [
               <!-- Result — one merged PDF, settles in on hover -->
               <div class="relative h-44 w-32">
                 <div
-                  class="absolute inset-0 m-auto h-36 w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-2 ring-red-500/25"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-2 ring-red-500/25"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
@@ -362,9 +362,9 @@ const metadataRows: [string, string][] = [
               aria-hidden="true"
             >
               <!-- Source — photo thumbs, fan in and gather on hover (staggered) -->
-              <div class="relative h-44 w-36">
+              <div class="relative h-24 md:h-44 w-36">
                 <div
-                  class="absolute inset-0 m-auto h-28 w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-16 md:h-28 w-20 md:w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-full w-full object-cover"
@@ -375,11 +375,11 @@ const metadataRows: [string, string][] = [
                   />
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-28 w-36 rotate-[4deg] overflow-hidden rounded-lg bg-gradient-to-br from-sky-300 to-indigo-400 shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-16 md:h-28 w-20 md:w-36 rotate-[4deg] overflow-hidden rounded-lg bg-gradient-to-br from-sky-300 to-indigo-400 shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-28 w-36 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-16 md:h-28 w-20 md:w-36 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-full w-full object-cover"
@@ -392,7 +392,7 @@ const metadataRows: [string, string][] = [
               </div>
               <!-- Arrow -->
               <svg
-                class="h-6 w-6 shrink-0 text-text-secondary"
+                class="h-4 md:h-6 w-4 md:w-6 shrink-0 text-text-secondary"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="1.8"
@@ -404,9 +404,9 @@ const metadataRows: [string, string][] = [
                   d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
               </svg>
               <!-- Result — multi-page PDF, pages fan out on hover -->
-              <div class="relative h-44 w-32">
+              <div class="relative h-24 md:h-44 w-32">
                 <div
-                  class="absolute inset-0 m-auto h-36 w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <div class="space-y-2 px-3.5 pt-8 pb-4">
                     <span class="block h-1 w-full rounded-full bg-neutral-200"
@@ -418,7 +418,7 @@ const metadataRows: [string, string][] = [
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-36 w-28 -translate-x-[10%] -rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[10%] -rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <div class="space-y-2 px-3.5 pt-8 pb-4">
                     <span class="block h-1 w-full rounded-full bg-neutral-200"
@@ -430,7 +430,7 @@ const metadataRows: [string, string][] = [
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-36 w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"

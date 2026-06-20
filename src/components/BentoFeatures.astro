@@ -33,8 +33,8 @@ const metadataRows: [string, string][] = [
     <div class="text-center mb-20">
       <H2 class="mb-4">What Picmal actually does</H2>
       <Paragraph class="max-w-xl mx-auto">
-        Convert, compress, and resize images, video, and audio. All on your Mac,
-        nothing touches a server.
+        Convert, compress, and resize images, video, audio, and PDFs. All on
+        your Mac, nothing touches a server.
       </Paragraph>
     </div>
 
@@ -45,7 +45,7 @@ const metadataRows: [string, string][] = [
       ================================================================ -->
       <div>
         <div class="mb-10 max-w-2xl">
-          <p class={eyebrow}>Convert &amp; compress</p>
+          <p class={eyebrow}>Convert, compress &amp; PDF</p>
           <h3 class={blockTitle}>Anything in, anything out</h3>
         </div>
 
@@ -139,7 +139,7 @@ const metadataRows: [string, string][] = [
               <div class="relative h-40 w-64 translate-y-5" aria-hidden="true">
                 <!-- RAW photo — tree (left) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[86%] -rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-x-[96%] motion-safe:group-hover:-rotate-[13deg]"
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[86%] -rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-28 w-full object-cover"
@@ -155,7 +155,7 @@ const metadataRows: [string, string][] = [
                 </div>
                 <!-- RAW photo — beach (right) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[14%] rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-x-[4%] motion-safe:group-hover:rotate-[13deg]"
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[14%] rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-28 w-full object-cover"
@@ -171,7 +171,7 @@ const metadataRows: [string, string][] = [
                 </div>
                 <!-- PDF page (center, on top, lifted to crown the fan) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10 transition-transform duration-300 ease-out motion-safe:group-hover:-translate-y-9"
+                  class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute top-4 left-3.5 text-caption font-bold leading-none tracking-wide text-red-500"
@@ -240,6 +240,216 @@ const metadataRows: [string, string][] = [
                 aria-label="Picmal compression interface"></video>
             </div>
           </div>
+
+          <!-- Combine PDFs — separate card, diagram-led -->
+          <div class={`group ${card} lg:col-span-3 p-8 sm:p-10`}>
+            <H3 class="mb-2">Combine PDFs</H3>
+            <Paragraph>
+              Merge a stack of PDFs into one. Drag to reorder pages, pick the
+              page size, save it out.
+            </Paragraph>
+            <!-- Diagram: three PDFs fan apart, then merge into one on hover -->
+            <div
+              class="mt-10 flex items-center justify-center gap-6 sm:gap-8"
+              aria-hidden="true"
+            >
+              <!-- Source stack — fans wider, then gathers on hover (staggered) -->
+              <div class="relative h-44 w-36">
+                <div
+                  class="absolute inset-0 m-auto h-36 w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <span
+                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 z-10 m-auto h-36 w-28 rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <span
+                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 z-20 m-auto h-36 w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <span
+                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <svg
+                class="h-6 w-6 shrink-0 text-text-secondary"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+              </svg>
+              <!-- Result — one merged PDF, settles in on hover -->
+              <div class="relative h-44 w-32">
+                <div
+                  class="absolute inset-0 m-auto h-36 w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-2 ring-red-500/25"
+                >
+                  <span
+                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Images to PDF — separate card, diagram-led -->
+          <div class={`group ${card} lg:col-span-3 p-8 sm:p-10`}>
+            <H3 class="mb-2">Images to PDF</H3>
+            <Paragraph>
+              Turn a batch of photos into a multi-page PDF. A4, Letter, or
+              custom — with an optional password.
+            </Paragraph>
+            <!-- Diagram: photo thumbs collate into a multi-page PDF -->
+            <div
+              class="mt-10 flex items-center justify-center gap-6 sm:gap-8"
+              aria-hidden="true"
+            >
+              <!-- Source — photo thumbs, fan in and gather on hover (staggered) -->
+              <div class="relative h-44 w-36">
+                <div
+                  class="absolute inset-0 m-auto h-28 w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <Image
+                    class="h-full w-full object-cover"
+                    src={rawSampleBeach}
+                    alt=""
+                    widths={[144, 288]}
+                    sizes="144px"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 z-10 m-auto h-28 w-36 rotate-[4deg] overflow-hidden rounded-lg bg-gradient-to-br from-sky-300 to-indigo-400 shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                </div>
+                <div
+                  class="absolute inset-0 z-20 m-auto h-28 w-36 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <Image
+                    class="h-full w-full object-cover"
+                    src={rawSampleTree}
+                    alt=""
+                    widths={[144, 288]}
+                    sizes="144px"
+                  />
+                </div>
+              </div>
+              <!-- Arrow -->
+              <svg
+                class="h-6 w-6 shrink-0 text-text-secondary"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+              </svg>
+              <!-- Result — multi-page PDF, pages fan out on hover -->
+              <div class="relative h-44 w-32">
+                <div
+                  class="absolute inset-0 m-auto h-36 w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <div class="space-y-2 px-3.5 pt-8 pb-4">
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 z-10 m-auto h-36 w-28 -translate-x-[10%] -rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <div class="space-y-2 px-3.5 pt-8 pb-4">
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 z-20 m-auto h-36 w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
+                >
+                  <span
+                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    >PDF</span
+                  >
+                  <div class="space-y-2 px-3.5 pt-12 pb-4">
+                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    ></span>
+                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -263,7 +473,7 @@ const metadataRows: [string, string][] = [
               </Paragraph>
             </div>
             <div
-              class="relative px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[75%] lg:translate-x-40 lg:translate-y-1"
+              class="relative px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[70%] lg:translate-x-40 lg:translate-y-1"
             >
               <Image
                 class={`${cornerImg} block dark:hidden`}
@@ -315,7 +525,7 @@ const metadataRows: [string, string][] = [
               <div class="relative w-full max-w-[300px] -translate-x-2">
                 <!-- Back card — compress, peeks above and rises further on hover -->
                 <Image
-                  class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-lg shadow-lg transition-transform duration-300 ease-out group-hover:-translate-y-12"
+                  class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-lg shadow-lg"
                   src="/schedule_compress.png"
                   width={733}
                   height={314}
@@ -323,7 +533,7 @@ const metadataRows: [string, string][] = [
                 />
                 <!-- Front card — convert -->
                 <Image
-                  class="relative w-full h-auto rounded-lg shadow-xl transition-transform duration-300 ease-out group-hover:translate-y-1"
+                  class="relative w-full h-auto rounded-lg shadow-xl"
                   src="/schedule_convert.png"
                   width={751}
                   height={332}
@@ -395,8 +605,8 @@ const metadataRows: [string, string][] = [
                 >Presets for the usual stuff. Full control for the rest.</H3
               >
               <Paragraph>
-                One-click presets for web, social, and archival. Or go deeper
-                and save your own.
+                One-click presets for web, social media, and archiving. Save
+                your own when none of them quite fit.
               </Paragraph>
             </div>
             <div
@@ -497,8 +707,8 @@ const metadataRows: [string, string][] = [
             <div class="p-6">
               <H3 class="mb-2">Fits your workflow</H3>
               <Paragraph>
-                A conversion is a right-click away — Finder, Shortcuts, and
-                Raycast.
+                Finder, Shortcuts, and Raycast. A conversion is never more than
+                a right-click away.
               </Paragraph>
             </div>
             <!-- App icons centered in the remaining space, lift individually on hover -->
@@ -507,7 +717,7 @@ const metadataRows: [string, string][] = [
             >
               <a
                 href="/docs/integrations#finder-services-right-click-menu"
-                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-3 hover:shadow-xl active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                 title="Finder — read the docs"
               >
                 <Image
@@ -520,7 +730,7 @@ const metadataRows: [string, string][] = [
               </a>
               <a
                 href="/docs/integrations#shortcuts-app"
-                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-3 hover:shadow-xl active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                 title="Shortcuts — read the docs"
               >
                 <Image
@@ -562,10 +772,7 @@ const metadataRows: [string, string][] = [
                 class="group/cli mt-4 inline-flex items-center gap-1 text-body font-medium text-accent hover:text-accent/80 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
               >
                 Read the docs
-                <span
-                  class="transition-transform duration-200 ease-out motion-safe:group-hover/cli:translate-x-1"
-                  aria-hidden="true">&rarr;</span
-                >
+                <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
             <div class="flex-1 flex items-center justify-center px-6 pb-6">
@@ -775,10 +982,7 @@ const metadataRows: [string, string][] = [
         class="group inline-flex items-center gap-1 text-body text-text-secondary hover:text-text transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         Learn more in the docs
-        <span
-          class="transition-transform duration-200 ease-out motion-safe:group-hover:translate-x-1"
-          aria-hidden="true">&rarr;</span
-        >
+        <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </div>
@@ -810,25 +1014,3 @@ const metadataRows: [string, string][] = [
   });
   observer.observe(document.documentElement, { attributes: true });
 </script>
-
-<style is:global>
-  /* No hover-lift motion for users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    #features [class*="hover:-translate-y"] {
-      transition: none;
-    }
-    #features [class*="hover:-translate-y"]:hover {
-      transform: none !important;
-    }
-    /* Keep the schedule cards still for reduced-motion users */
-    #features .schedule-stack img {
-      transition: none !important;
-    }
-    #features .schedule-stack:hover img:first-child {
-      transform: translate(calc(-50% + 1rem), -1.75rem) !important;
-    }
-    #features .schedule-stack:hover img:last-child {
-      transform: none !important;
-    }
-  }
-</style>

@@ -1,0 +1,18 @@
+---
+version: "1.6.9"
+title: "Clearer statuses and light-mode fixes"
+pubDate: 2026-06-20
+---
+
+A handful of fixes to make Picmal's status labels honest and to clean up some light-mode rough edges on macOS 26.
+
+### Improvements
+
+- **Unsupported formats now say "Not supported."** Files that can't be compressed — like RAW or DNG — used to land in the same red "Failed" state as a real error, complete with an error popover. Now they show a plain "Not supported," so it's clear this is a format limitation, not something that went wrong.
+- **Re-added output files now say "Skipped."** Drop in a folder that already holds compressed files from an earlier run and those files get picked up as inputs. They used to sit on "Waiting" doing nothing, with no explanation. Now they show "Skipped," with a tooltip telling you another file in the batch is already writing to that name.
+- **A roomier schedule sheet.** It's a little wider with more breathing room, so the text wraps less awkwardly.
+
+### Bug fixes
+
+- Fixed the bottom-bar buttons disappearing in light mode on macOS 26. Clear, Again, Cancel, and Convert/Compress all vanished against the light toolbar — a tint override was rendering the Liquid Glass look invisible on light backgrounds.
+- Fixed the format picker vanishing when you selected a row. Clicking a file in the list turned the format picker into a blank white box, because the text was rendering white-on-white over the blue selection. The label now stays legible whether the row is selected or not.

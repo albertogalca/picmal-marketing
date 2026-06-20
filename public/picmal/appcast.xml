@@ -3,6 +3,22 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.6.9</title>
+            <pubDate>Sat, 20 Jun 2026 13:14:46 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>89</sparkle:version>
+            <sparkle:shortVersionString>1.6.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.9/Picmal.dmg" length="121806575" type="application/octet-stream" sparkle:edSignature="g6T63JTMcm42Tfc8TIT2pFPhtOrPsLG9GWwj5yuyKeL2SEg80VWHNJnfJQEZ03qQ0gBCEt82HH8jJVnAPPIXCg=="/>
+        <description><![CDATA[<div><ul>### Improvements</li>
+<li>Unsupported formats now say "Not supported" instead of "Failed". Formats that can't be compressed (like RAW or DNG) used to land in the same red Failed state as a real processing error, complete with an error-info popover. They now show a plain red "Not supported" directly, so it's clear this is a format limitation, not something that went wrong.</li>
+<li>Re-added output files now say "Skipped". If you dropped in a folder that already held compressed files from a previous run, those files got picked up as inputs and then quietly did nothing during compression, showing "Waiting" with no explanation. They now show "Skipped" with a tooltip explaining that another file in the batch is already writing to that name.</li>
+<li>Schedule sheet is a little roomier. Wider and with more breathing room, so the subtitle text wraps less awkwardly.</li>
+### Bug Fixes</li>
+<li>Fixed bottom-bar buttons invisible in light mode on macOS 26. The Clear, Again, Cancel, and Convert/Compress buttons all disappeared against the light toolbar. A transparent tint override was making the Liquid Glass rendering invisible on light backgrounds.</li>
+<li>Fixed the format picker vanishing when a row is selected. Clicking a row in the file list turned the format picker into a blank white box — the text was rendering white-on-white because it used colours that invert to white on a blue selected row. The label now stays legible in both selected and unselected states.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.8</title>
             <pubDate>Fri, 19 Jun 2026 11:26:10 +0200</pubDate>
             <link>https://picmal.app/</link>

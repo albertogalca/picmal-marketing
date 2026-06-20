@@ -54,7 +54,7 @@
   --text-h2--font-weight: 600;
 
   /* H3: 20px → 24px */
-  --text-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.25rem);
   --text-h3--line-height: 1.2;
   --text-h3--letter-spacing: -0.015em;
   --text-h3--font-weight: 600;
@@ -131,7 +131,11 @@ body {
   color: var(--color-accent);
   text-decoration-line: underline;
   text-underline-offset: 4px;
-  text-decoration-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  text-decoration-color: color-mix(
+    in oklab,
+    var(--color-accent) 30%,
+    transparent
+  );
   transition:
     color 0.2s ease,
     text-decoration-color 0.2s ease;
@@ -156,7 +160,11 @@ body {
   color: var(--color-accent);
   text-decoration-line: underline;
   text-underline-offset: 4px;
-  text-decoration-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  text-decoration-color: color-mix(
+    in oklab,
+    var(--color-accent) 30%,
+    transparent
+  );
   transition:
     color 0.2s ease,
     text-decoration-color 0.2s ease;

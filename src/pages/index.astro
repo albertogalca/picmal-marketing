@@ -128,35 +128,31 @@ const latestReleaseHref = isStandalone(latestRelease)
 
         <!-- Demo Video + filter -->
         <div class="max-w-5xl mx-auto mt-8 sm:mt-12">
-          <!-- ponytail: convert/compress/pdf demo hidden for now; restore when pdf videos ready -->
-          <div class="hidden">
-            <SegmentedControl
-              ariaLabel="Filter demo by action"
-              mode="tabs"
-              segmentClass="hero-demo-tab"
-              activeId="convert"
-              segments={[
-                { id: "convert", label: "Convert" },
-                { id: "compress", label: "Compress" },
-                { id: "pdf", label: "PDF" },
-              ]}
-            />
-          </div>
+          <SegmentedControl
+            ariaLabel="Filter demo by action"
+            mode="tabs"
+            segmentClass="hero-demo-tab"
+            activeId="convert"
+            segments={[
+              { id: "convert", label: "Convert" },
+              { id: "compress", label: "Compress" },
+              { id: "pdf", label: "PDF" },
+            ]}
+          />
           <div
             class="mt-6 rounded-lg sm:rounded-xl overflow-hidden border border-border"
           >
-            <div class="aspect-[16/10] bg-background-subtle">
+            <div class="aspect-video bg-background-subtle">
               <video
                 id="hero-demo-video"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover opacity-0 motion-safe:transition-opacity motion-safe:duration-300 ease-out"
                 width="1920"
-                height="1200"
+                height="1080"
                 autoplay
                 loop
                 muted
                 playsinline
                 preload="metadata"
-                src="/picmal-1.2.0-demo.mp4"
                 aria-label="Picmal demo"
               >
               </video>
@@ -214,30 +210,16 @@ const latestReleaseHref = isStandalone(latestRelease)
     <SupportedFormatsModal />
     <CompressFormatsModal />
 
-    <!-- Hero demo filter: swap video by action + theme. ponytail: disabled while tabs hidden -->
+    <!-- Hero demo filter: swap video by action -->
     <script>
-      const heroTabs = document.querySelector(".hero-demo-tab");
       const heroVideo = document.getElementById(
         "hero-demo-video",
       ) as HTMLVideoElement | null;
-      // Only run the swap logic when the tabs are actually visible.
-      if (heroVideo && heroTabs && (heroTabs as HTMLElement).offsetParent) {
-        const sources: Record<
-          string,
-          { label: string; light: string; dark: string }
-        > = {
-          convert: {
-            label: "Convert",
-            light: "/convert.mp4",
-            dark: "/convert_dark.mp4",
-          },
-          compress: {
-            label: "Compress",
-            light: "/compress.mp4",
-            dark: "/compress_dark.mp4",
-          },
-          // ponytail: pdf demo videos to be added by user
-          pdf: { label: "PDF", light: "/pdf.mp4", dark: "/pdf_dark.mp4" },
+      if (heroVideo) {
+        const sources: Record<string, { label: string; src: string }> = {
+          convert: { label: "Convert", src: "/convert.mp4" },
+          compress: { label: "Compress", src: "/compress.mp4" },
+          pdf: { label: "PDF", src: "/pdf.mp4" },
         };
         let currentId = "convert";
 
@@ -248,14 +230,13 @@ const latestReleaseHref = isStandalone(latestRelease)
         function setVideo(id: string) {
           const pair = sources[id];
           if (!pair) return;
-          const isDark =
-            document.documentElement.classList.contains("dark");
-          const src = isDark ? pair.dark : pair.light;
           heroVideo!.setAttribute("aria-label", `Picmal ${pair.label} demo`);
-          if (heroVideo!.src === new URL(src, window.location.origin).href)
+          if (
+            heroVideo!.src === new URL(pair.src, window.location.origin).href
+          )
             return;
           heroVideo!.classList.add("opacity-0");
-          heroVideo!.src = src;
+          heroVideo!.src = pair.src;
           heroVideo!.load();
           heroVideo!.play().catch(() => {});
         }
@@ -275,11 +256,6 @@ const latestReleaseHref = isStandalone(latestRelease)
             setVideo(id);
           });
         });
-
-        new MutationObserver(() => setVideo(currentId)).observe(
-          document.documentElement,
-          { attributes: true, attributeFilter: ["class"] },
-        );
       }
     </script>
 

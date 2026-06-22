@@ -1,0 +1,20 @@
+---
+version: "1.7.0"
+title: "Faster video, tighter compression"
+pubDate: 2026-06-20
+---
+
+Changing a video's container is now near-instant, mixed batches move faster, and PNG, WebP, and AVIF all squeeze out a few extra percent.
+
+### Improvements
+
+- **Container swaps are near-instant.** Switching a video's container while keeping the same codec — MOV to MP4, MP4 to MKV, and so on — now copies the stream straight across instead of re-encoding it. Even with a video preset active, a 5-second clip finishes in well under a second instead of 20-plus.
+- **Mixed image and video batches are faster.** When images and videos run side by side, image jobs now leave a couple of CPU cores free for video. Before, the image pool grabbed everything and video conversions slowed to a crawl.
+- **Tighter PNG compression at Max Compression.** Level 9 now runs Zopfli on smaller files — a slower but stronger compressor that finds a few extra percent without touching quality.
+- **WebP works harder on bigger files.** Picmal runs two encodes and keeps whichever comes out smaller. That now covers files up to 10 MB, up from 4 MB.
+- **Smaller AVIF at aggressive quality settings.** Pick a low quality preset and the encoder digs in a little harder, shaving a few percent off without any visible change.
+
+### Bug fixes
+
+- Fixed a target frame rate above the source inflating the file. Picmal was duplicating frames to hit the target, which made files bigger and encodes slower for no visual gain. The target now only kicks in when it actually lowers the rate — set 48 fps on a 25 fps clip and the output stays at 25.
+- Fixed the "Saving" estimate showing in plain Convert mode. It was sample-encoding video behind the scenes even when nothing would be compressed, then showing a misleading saving percentage in the file list. It now only runs in Compress mode or when "Compress after convert" is on.

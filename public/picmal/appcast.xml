@@ -3,6 +3,24 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.0</title>
+            <pubDate>Mon, 22 Jun 2026 15:35:03 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>90</sparkle:version>
+            <sparkle:shortVersionString>1.7.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.0/Picmal.dmg" length="121812679" type="application/octet-stream" sparkle:edSignature="VP+yUj+LEN4DkvXuWGAT5UdYh06fpedZlYEvaUDXxhaUoxhQtyfzkfRYRnBy4x7OF6zVS6VMQOvCwy+JA7ebBw=="/>
+        <description><![CDATA[<div><ul>### Improvements</li>
+<li>**Container swaps are now near-instant.** Changing a video's container while keeping the same codec (MOV to MP4, MP4 to MKV, and so on) now copies the stream directly instead of re-encoding it. Even with a video preset active, a 5-second clip finishes in well under a second instead of taking 20+.</li>
+<li>**Mixed image and video batches are faster.** When images and videos process side by side, image jobs now leave a couple of CPU cores free for video encodes. Before, the image pool took everything and video conversions crawled.</li>
+<li>**Tighter PNG compression at Max Compression level.** Level 9 now uses Zopfli on smaller files — a slower but stronger compressor that squeezes a few extra percent out without touching quality.</li>
+<li>**WebP tries harder on bigger files.** Picmal already runs two encodings and keeps whichever comes out smaller. That now applies to files up to 10 MB, up from 4 MB.</li>
+<li>**AVIF is smaller at aggressive quality settings.** Pick a low quality preset and the encoder now works a bit harder, producing files a few percent smaller for the same result.</li>
+### Bug Fixes</li>
+<li>**Setting a target frame rate above the source no longer inflates the file.** Picmal was duplicating frames to hit the target, making files bigger and encodes slower for no visual gain. The target now only applies when it actually lowers the rate — set 48 fps on a 25 fps clip and the output stays at 25.</li>
+<li>**The "Saving" estimate no longer shows in plain Convert mode.** It was sample-encoding video behind the scenes even when no compression would happen, and showing a misleading saving percentage in the file list. It only runs in Compress mode or when "Compress after convert" is on.</li></ul></div>]]></description>
+        </item>
+        <item>
             <title>1.6.9</title>
             <pubDate>Sat, 20 Jun 2026 13:14:46 +0200</pubDate>
             <link>https://picmal.app/</link>

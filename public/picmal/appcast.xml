@@ -10,15 +10,19 @@
             <sparkle:shortVersionString>1.7.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.0/Picmal.dmg" length="121812679" type="application/octet-stream" sparkle:edSignature="VP+yUj+LEN4DkvXuWGAT5UdYh06fpedZlYEvaUDXxhaUoxhQtyfzkfRYRnBy4x7OF6zVS6VMQOvCwy+JA7ebBw=="/>
-        <description><![CDATA[<div><ul>### Improvements</li>
-<li>**Container swaps are now near-instant.** Changing a video's container while keeping the same codec (MOV to MP4, MP4 to MKV, and so on) now copies the stream directly instead of re-encoding it. Even with a video preset active, a 5-second clip finishes in well under a second instead of taking 20+.</li>
-<li>**Mixed image and video batches are faster.** When images and videos process side by side, image jobs now leave a couple of CPU cores free for video encodes. Before, the image pool took everything and video conversions crawled.</li>
-<li>**Tighter PNG compression at Max Compression level.** Level 9 now uses Zopfli on smaller files — a slower but stronger compressor that squeezes a few extra percent out without touching quality.</li>
-<li>**WebP tries harder on bigger files.** Picmal already runs two encodings and keeps whichever comes out smaller. That now applies to files up to 10 MB, up from 4 MB.</li>
-<li>**AVIF is smaller at aggressive quality settings.** Pick a low quality preset and the encoder now works a bit harder, producing files a few percent smaller for the same result.</li>
-### Bug Fixes</li>
-<li>**Setting a target frame rate above the source no longer inflates the file.** Picmal was duplicating frames to hit the target, making files bigger and encodes slower for no visual gain. The target now only applies when it actually lowers the rate — set 48 fps on a 25 fps clip and the output stays at 25.</li>
-<li>**The "Saving" estimate no longer shows in plain Convert mode.** It was sample-encoding video behind the scenes even when no compression would happen, and showing a misleading saving percentage in the file list. It only runs in Compress mode or when "Compress after convert" is on.</li></ul></div>]]></description>
+        <description><![CDATA[<div><h3>Improvements</h3>
+<ul>
+<li><strong>Container swaps are now near-instant.</strong> Changing a video's container while keeping the same codec (MOV to MP4, MP4 to MKV, and so on) now copies the stream directly instead of re-encoding it. Even with a video preset active, a 5-second clip finishes in well under a second instead of taking 20+.</li>
+<li><strong>Mixed image and video batches are faster.</strong> When images and videos process side by side, image jobs now leave a couple of CPU cores free for video encodes. Before, the image pool took everything and video conversions crawled.</li>
+<li><strong>Tighter PNG compression at Max Compression level.</strong> Level 9 now uses Zopfli on smaller files — a slower but stronger compressor that squeezes a few extra percent out without touching quality.</li>
+<li><strong>WebP tries harder on bigger files.</strong> Picmal already runs two encodes and keeps whichever comes out smaller. That now applies to files up to 10 MB, up from 4 MB.</li>
+<li><strong>AVIF is smaller at aggressive quality settings.</strong> Pick a low quality preset and the encoder works a bit harder, shaving a few percent off without touching quality.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Setting a target frame rate above the source no longer inflates the file.</strong> Picmal was duplicating frames to hit the target, making files bigger and encodes slower for no visual gain. The target now only applies when it actually lowers the rate — set 48 fps on a 25 fps clip and the output stays at 25.</li>
+<li><strong>The "Saving" estimate no longer shows in plain Convert mode.</strong> It was sample-encoding video behind the scenes even when no compression would happen, and showing a misleading saving percentage in the file list. It only runs in Compress mode or when "Compress after convert" is on.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.9</title>
@@ -28,13 +32,17 @@
             <sparkle:shortVersionString>1.6.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.9/Picmal.dmg" length="121806575" type="application/octet-stream" sparkle:edSignature="g6T63JTMcm42Tfc8TIT2pFPhtOrPsLG9GWwj5yuyKeL2SEg80VWHNJnfJQEZ03qQ0gBCEt82HH8jJVnAPPIXCg=="/>
-        <description><![CDATA[<div><ul>### Improvements</li>
+        <description><![CDATA[<div><h3>Improvements</h3>
+<ul>
 <li>Unsupported formats now say "Not supported" instead of "Failed". Formats that can't be compressed (like RAW or DNG) used to land in the same red Failed state as a real processing error, complete with an error-info popover. They now show a plain red "Not supported" directly, so it's clear this is a format limitation, not something that went wrong.</li>
 <li>Re-added output files now say "Skipped". If you dropped in a folder that already held compressed files from a previous run, those files got picked up as inputs and then quietly did nothing during compression, showing "Waiting" with no explanation. They now show "Skipped" with a tooltip explaining that another file in the batch is already writing to that name.</li>
 <li>Schedule sheet is a little roomier. Wider and with more breathing room, so the subtitle text wraps less awkwardly.</li>
-### Bug Fixes</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
 <li>Fixed bottom-bar buttons invisible in light mode on macOS 26. The Clear, Again, Cancel, and Convert/Compress buttons all disappeared against the light toolbar. A transparent tint override was making the Liquid Glass rendering invisible on light backgrounds.</li>
-<li>Fixed the format picker vanishing when a row is selected. Clicking a row in the file list turned the format picker into a blank white box — the text was rendering white-on-white because it used colours that invert to white on a blue selected row. The label now stays legible in both selected and unselected states.</li></ul></div>]]></description>
+<li>Fixed the format picker vanishing when a row is selected. Clicking a row in the file list turned the format picker into a blank white box — the text was rendering white-on-white because it used colours that invert to white on a blue selected row. The label now stays legible in both selected and unselected states.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.8</title>
@@ -44,21 +52,27 @@
             <sparkle:shortVersionString>1.6.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.8/Picmal.dmg" length="121800125" type="application/octet-stream" sparkle:edSignature="ZQteZNsz+Ky+XHM8gOQFlGvx7rcb4JzmbwhEfV97pcWLuEStBJCC/zWhrR/2oDoaonX8/YX4kUNGFp/c8ANmAA=="/>
-        <description><![CDATA[<div><ul>### New Features</li>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
 <li>Two new PDF tools, in a redesigned sidebar. Picmal's tools now live down the side, grouped into Media (Convert, Compress) and PDF (Combine PDFs, Images to PDF), so there's room to grow beyond converting and compressing.</li>
 <li>Combine PDFs. Drop in several PDFs, drag to reorder them, and merge everything into one document. Name the output file in PDF Options, or leave it blank for an automatic name. The combined PDF is saved next to the first file.</li>
 <li>Images to PDF. Turn a batch of images into a single PDF, one image per page. Drag to set the page order, pick a page size (fit to image, A4, Letter or a custom size in mm), set the image quality, add an optional password, and name the output file.</li>
 <li>Both PDF tools also work from the Finder right-click menu, the Shortcuts app, and the command line (`picmal-cli combine` and `picmal-cli images-to-pdf`). You get a notification when the PDF is ready, just like Convert and Compress.</li>
 <li>Custom metadata control. On top of strip-all, keep-essential and keep-all, a new Custom mode lets you choose exactly which categories to keep — location (GPS), camera & exposure, date & time, copyright & author, colour profile, orientation, serial & owner IDs, and the embedded thumbnail — each on its own. The command line gains matching `--keep` and `--strip` flags.</li>
-### Improvements</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
 <li>A fresh coat of Liquid Glass. The bottom bar, the clipboard overlay, and the licence banner now use macOS's Liquid Glass look, so they sit more naturally over whatever's behind them.</li>
 <li>Combining PDFs now reports a clear error if a page can't be read, instead of quietly leaving it out of the merged file.</li>
-### Bug Fixes</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
 <li>Fixed resizing and compressing in one go producing bloated files. When an image was both resized and compressed — in Compress mode or a watched folder — the resize step quietly undid the optimisation, leaving files much larger than doing the two steps separately. The output is now optimised properly, so combined resize and compress matches a resize-then-optimise pass.</li>
 <li>Fixed converted photos coming out sideways. Portrait shots from your iPhone (and any photo that relies on a rotation tag) were being flipped to landscape on convert. Picmal now rotates the pixels upright so the output looks exactly like the original. The Orientation setting (Auto-fix / Keep tag) in Settings → Images now does what it says, and the command line rotates correctly too.</li>
 <li>Fixed conversions and compressions that could freeze or stall. A quick one-off job (like a single photo) could hang right as it finished, and big batches could get stuck partway. The heavy PDF, SVG, and image work now runs to the side, so the app stays responsive and files keep moving.</li>
 <li>Fixed some audio failing to convert to OGG. Converting to OGG (Vorbis) could fail with an "encoder setup failed" error, most often on lower-sample-rate files like 22 kHz MP3s. Picmal now sets the Vorbis quality directly instead of a target bitrate, which the encoder handles reliably, so these conversions go through.</li>
-<li>Fixed a crash when removing files with the Delete key. Deleting selected rows from the keyboard while the list was updating could bring the app down. Deletions now wait for the list to settle, the same way the right-click Remove already did.</li></ul></div>]]></description>
+<li>Fixed a crash when removing files with the Delete key. Deleting selected rows from the keyboard while the list was updating could bring the app down. Deletions now wait for the list to settle, the same way the right-click Remove already did.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.7</title>
@@ -68,10 +82,12 @@
             <sparkle:shortVersionString>1.6.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.7/Picmal.dmg" length="121364942" type="application/octet-stream" sparkle:edSignature="x4XD/FzqkKbBjKF0SnknMM3XxGaGEEOwaZc3/xBq2X9Lk4tugHJ7Xg5AbPMHkfP7afU5QMmJVxkQadDK/JpsAw=="/>
-        <description><![CDATA[<div><ul><li>Fixed a crash that could strike mid-run when the file list was busy reshuffling itself. Rows now hold their place while they process and only move when a file finishes or you change its priority, so a big batch stays steady instead of jumping around.</li>
+        <description><![CDATA[<div><ul>
+<li>Fixed a crash that could strike mid-run when the file list was busy reshuffling itself. Rows now hold their place while they process and only move when a file finishes or you change its priority, so a big batch stays steady instead of jumping around.</li>
 <li>Fixed a rare crash inside Picmal's own crash-reporting, where tidying up an error report could itself bring the app down instead of just quietly logging it.</li>
 <li>Updated the crash-reporting library and brought the command line tool in line with the app, so both report problems the same way under the hood.</li>
-<li>Fixed the video speed control. Custom speed now takes a clear multiplier (type 5 for 5×, up to 8×) instead of a confusing percentage, and the Delete key edits the field properly instead of removing the file from the list.</li></ul></div>]]></description>
+<li>Fixed the video speed control. Custom speed now takes a clear multiplier (type 5 for 5×, up to 8×) instead of a confusing percentage, and the Delete key edits the field properly instead of removing the file from the list.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.6</title>
@@ -81,14 +97,16 @@
             <sparkle:shortVersionString>1.6.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.6/Picmal.dmg" length="121362633" type="application/octet-stream" sparkle:edSignature="pwJy/Dgp0wH5Y9PtUD5CHU0JuqpBTcgjpup6+djNKrWTVkFr7go+6B+Xk8PBmIT25n9wtJ/1kiVi0M6xjaU7Dw=="/>
-        <description><![CDATA[<div><ul><li>Compress images to a target file size. Pick "Max File Size" in the resize settings, type a size (100 KB, 2 MB, whatever you need), and Picmal scales each image down just enough to fit. Works in Convert, Compress, watched folders, and the command line (`picmal-cli convert -i photo.jpg -f jpg --resize 100kB`).</li>
+        <description><![CDATA[<div><ul>
+<li>Compress images to a target file size. Pick "Max File Size" in the resize settings, type a size (100 KB, 2 MB, whatever you need), and Picmal scales each image down just enough to fit. Works in Convert, Compress, watched folders, and the command line (`picmal-cli convert -i photo.jpg -f jpg --resize 100kB`).</li>
 <li>Better image compression all round. JPEGs come out sharper (optimised Huffman coding, a higher-precision transform, and full colour kept at the top quality settings), AVIF and JPEG XL are tighter, GIF frame optimisation is smarter, and for still images WebP keeps whichever of two encodings is smaller.</li>
 <li>Picmal never hands you a file bigger than the original when compressing. If a pass wouldn't save space, your original is kept untouched — now everywhere, including when you compress straight after converting.</li>
 <li>Add your own copyright to every image. Fill in the new Copyright & ownership fields in Settings (copyright notice, artist, credit, contact) and Picmal stamps them into each exported photo across EXIF, IPTC, and XMP. It works even when you're stripping metadata: the camera and location data come off, your copyright stays on. You only type it once — it's saved and reused on every export, with a switch to turn it on or off without clearing the fields. There are matching flags for the command line too (`picmal-cli convert -i photo.jpg -f jpg --copyright "(c) 2026 You" --artist "Your Name"`).</li>
 <li>Check what actually made it into a file. The ⓘ button on a finished file now has an Original / Result switch and opens on Result, so you can see at a glance that your copyright landed and the camera and location data came off. It turns up even when the original had no metadata, so copyright you added is easy to confirm too.</li>
 <li>The metadata setting now spells out the trade-off as you pick it. Choose "Strip all" and it tells you straight: smallest files, but the original's camera, date, and copyright info go with them.</li>
 <li>Fixed Compress ignoring the Metadata setting. It used to strip everything no matter what, so "Keep essential" and "Keep all" did nothing when compressing. Now it keeps exactly what you pick (and adds your copyright), and photos keep their orientation.</li>
-<li>Fixed the metadata popover that collapsed to a single line — it now sizes itself to the metadata and scrolls when there's a lot. It also shows the latest output every time, instead of occasionally serving up a stale earlier reading.</li></ul></div>]]></description>
+<li>Fixed the metadata popover that collapsed to a single line — it now sizes itself to the metadata and scrolls when there's a lot. It also shows the latest output every time, instead of occasionally serving up a stale earlier reading.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.5</title>
@@ -98,8 +116,10 @@
             <sparkle:shortVersionString>1.6.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.5/Picmal.dmg" length="121032358" type="application/octet-stream" sparkle:edSignature="zK3fQLe1FJmYMPos93JA6Ej0OTN5O1IAD24IjOqW9Fho8C4dV5Rwt/L1A/jBcwq3pKO5+LDsxGIXSmnhGhMeDw=="/>
-        <description><![CDATA[<div><ul><li>Faster video conversion and compression, especially on powerful Macs with lots of cores. Picmal now runs a few video encodes side by side instead of starving them all, gives each one a proper share of the CPU, and AV1 output is 20–40× quicker. Watched-folder and clipboard jobs run quietly in the background so they don't slow down whatever you're doing.</li>
-<li>The Finder right-click Convert and Compress options now run reliably even when Picmal is closed. They process quietly in the background without pulling focus from Finder, with a notification showing what Picmal is working on and the progress as it goes (so a long file doesn't look stuck), honour your "Save to subfolder" setting, and let you know when a selection has nothing Picmal can convert instead of just flashing open and closing. The Services menu items are now grouped together as "Picmal — Add Files", "Picmal — Convert" and "Picmal — Compress".</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Faster video conversion and compression, especially on powerful Macs with lots of cores. Picmal now runs a few video encodes side by side instead of starving them all, gives each one a proper share of the CPU, and AV1 output is 20–40× quicker. Watched-folder and clipboard jobs run quietly in the background so they don't slow down whatever you're doing.</li>
+<li>The Finder right-click Convert and Compress options now run reliably even when Picmal is closed. They process quietly in the background without pulling focus from Finder, with a notification showing what Picmal is working on and the progress as it goes (so a long file doesn't look stuck), honour your "Save to subfolder" setting, and let you know when a selection has nothing Picmal can convert instead of just flashing open and closing. The Services menu items are now grouped together as "Picmal — Add Files", "Picmal — Convert" and "Picmal — Compress".</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.4</title>
@@ -109,12 +129,14 @@
             <sparkle:shortVersionString>1.6.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.4/Picmal.dmg" length="121084686" type="application/octet-stream" sparkle:edSignature="KpCYmpWqe1h2dpzfApYnmidizMAL5rryZNjzbQVxuroiMoh6uA4TRvwGwzrPGr8uBMwfiLkJByUlhXYXiGXXCA=="/>
-        <description><![CDATA[<div><ul><li>Two new audio formats you can convert to and compress: EAC3 (Dolby Digital Plus) and MKA (Matroska audio).</li>
+        <description><![CDATA[<div><ul>
+<li>Two new audio formats you can convert to and compress: EAC3 (Dolby Digital Plus) and MKA (Matroska audio).</li>
 <li>Open more audio files to convert from: Monkey's Audio (APE), Musepack (MPC), TAK, DSD (DSF), Shorten (SHN), AMR and GSM. These are read-only, so you can convert them to any other format but Picmal won't write them back out.</li>
 <li>A new video format you can convert to and compress: 3G2 (3GPP2 mobile video).</li>
 <li>Open more video files to convert from: RealMedia (RM, RMVB), Bink (BIK), FLIC animation (FLI, FLC), Nullsoft Streaming Video (NSV) and Dahua CCTV (DAV). These are read-only, so you can convert them to any other format but Picmal won't write them back out.</li>
 <li>Fixed reopening Picmal sometimes bringing up the Settings window instead of the main window.</li>
-<li>Fixed conversions started from the Finder right-click menu stalling when Picmal launched in the background. They now run straight away, and a licence check no longer fires twice on launch.</li></ul></div>]]></description>
+<li>Fixed conversions started from the Finder right-click menu stalling when Picmal launched in the background. They now run straight away, and a licence check no longer fires twice on launch.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.3</title>
@@ -124,12 +146,14 @@
             <sparkle:shortVersionString>1.6.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.3/Picmal.dmg" length="121095931" type="application/octet-stream" sparkle:edSignature="3MO+MU/SuSGL7HReu4nHNWbUGa+0wdfrB+3eGl5a7S/HY5bvfLL+x143Clh2VH4Qrjv1oQfk9fkUHITmXUoJBQ=="/>
-        <description><![CDATA[<div><ul><li>Big and animated WebPs convert and compress much faster again, and large animated WebPs no longer fail with an out-of-memory error or stall for minutes. A single large file now uses all your CPU cores and gets the memory it needs, while big batches still run many files side by side.</li>
+        <description><![CDATA[<div><ul>
+<li>Big and animated WebPs convert and compress much faster again, and large animated WebPs no longer fail with an out-of-memory error or stall for minutes. A single large file now uses all your CPU cores and gets the memory it needs, while big batches still run many files side by side.</li>
 <li>A big batch of new image formats you can convert to: HDR (Radiance), DPX and Cineon (film), FITS (astronomy), Photoshop Large (PSB), Pyramid TIFF, PAM, PFM, PHM, MIFF, VIPS, AVS, multi-page PCX (DCX), MATLAB (MAT), VICAR, Animated PNG (APNG), MNG, JNG, Farbfeld, Sun Raster, Palm Pixmap and Database, Wireless Bitmap (WBMP), Group 3 FAX, Sixel, Khoros VIFF and WordPerfect Graphics (WPG).</li>
 <li>Open many more camera RAW files: Olympus (ORF), Panasonic (RW2), Pentax (PEF), Samsung (SRW), newer Canon (CR3, CRW), Hasselblad (3FR, FFF), Phase One (IIQ), Sigma (X3F), Leica (RWL), Sony (SR2, SRF), Kodak (DCR, KDC, K25), Epson (ERF), Mamiya (MEF), Minolta (MRW, MDC) and Nikon (NRW) — with your camera metadata kept.</li>
 <li>Open GIMP (XCF), OpenRaster (ORA), DICOM, Kodak Photo CD and Ultra HDR files too.</li>
 <li>The output format picker is now grouped (Common, Raster, RAW, Scientific, Legacy) and searchable, so the longer list stays easy to navigate. All the new formats are available in the Shortcuts app as well.</li>
-<li>The Finder right-click "Convert with Picmal" and "Compress with Picmal" options now run the conversion or compression straight away, instead of just adding the files to the window. A new "Add to Picmal" option keeps the old behaviour for when you just want to drop files in without processing them.</li></ul></div>]]></description>
+<li>The Finder right-click "Convert with Picmal" and "Compress with Picmal" options now run the conversion or compression straight away, instead of just adding the files to the window. A new "Add to Picmal" option keeps the old behaviour for when you just want to drop files in without processing them.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.2</title>
@@ -139,10 +163,12 @@
             <sparkle:shortVersionString>1.6.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.2/Picmal.dmg" length="121091414" type="application/octet-stream" sparkle:edSignature="LHfIs60/CJ0Avvpns05E5VuJpIgM0eFubfYrHQMGWIjEVFS7KIO9PvyMH008O9aBUVtYHaLdehyrRgjLSbiBCg=="/>
-        <description><![CDATA[<div><ul><li>Fixed audio and video conversion in the `picmal-cli` command line tool. It used to hang forever when run directly in a Terminal.</li>
+        <description><![CDATA[<div><ul>
+<li>Fixed audio and video conversion in the `picmal-cli` command line tool. It used to hang forever when run directly in a Terminal.</li>
 <li>Fixed HEVC (H.265) video conversion failing on Macs with lots of CPU cores (like the iMac Pro and Mac Pro). The software encoder was asking for more threads than it allows and refused to start.</li>
 <li>When the hardware video encoder chokes on a tricky clip (for example 10-bit footage with a timecode track), Picmal now automatically retries in software instead of giving up, so the conversion still finishes.</li>
-<li>Fixed a crash when a scheduled batch started while you had files selected in the list.</li></ul></div>]]></description>
+<li>Fixed a crash when a scheduled batch started while you had files selected in the list.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.1</title>
@@ -152,10 +178,12 @@
             <sparkle:shortVersionString>1.6.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.1/Picmal.dmg" length="121086611" type="application/octet-stream" sparkle:edSignature="920mRyVA9NF8tHwMsfEfK3JEl1XNnzqhaUpbOg6pHa3a6a3ZJ5/Mb0qc6ihVBduZbe1U/bwvYdmAs5ww8VPyDw=="/>
-        <description><![CDATA[<div><ul><li>Fixed batch conversions failing with a temporary-file error when "Save to subfolder" was on. The output subfolder is now created up front, and if a destination really can't be written to, only those files are marked failed instead of crashing the whole batch.</li>
+        <description><![CDATA[<div><ul>
+<li>Fixed batch conversions failing with a temporary-file error when "Save to subfolder" was on. The output subfolder is now created up front, and if a destination really can't be written to, only those files are marked failed instead of crashing the whole batch.</li>
 <li>Fixed the Finder right-click "Convert with Picmal" and "Compress with Picmal" options doing nothing. The window now comes to the front and the files land in the list, whether Picmal was closed, already running, or hidden in the menu bar.</li>
 <li>Zoom in and out in the Before/After window to inspect fine compression detail. Pinch on the trackpad, use the new + / − / 100% controls in the corner, or press ⌘+, ⌘−, ⌘0. Drag to pan while zoomed; the slider handle still moves the divider at any zoom level. Double-click to reset.</li>
-<li>Picmal now has a command line tool. Convert and compress images, audio, and video straight from the Terminal, using the same engines as the app. Run `picmal-cli convert -i photo.heic -f jpg`, `picmal-cli compress -i big.png --quality 70`, or `picmal-cli watch` to monitor a folder. It supports presets, resizing, metadata stripping, colour space and DPI options, and watermarks, and outputs NDJSON when you pipe it into other tools. It uses your existing Picmal licence.</li></ul></div>]]></description>
+<li>Picmal now has a command line tool. Convert and compress images, audio, and video straight from the Terminal, using the same engines as the app. Run `picmal-cli convert -i photo.heic -f jpg`, `picmal-cli compress -i big.png --quality 70`, or `picmal-cli watch` to monitor a folder. It supports presets, resizing, metadata stripping, colour space and DPI options, and watermarks, and outputs NDJSON when you pipe it into other tools. It uses your existing Picmal licence.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.6.0</title>
@@ -165,10 +193,12 @@
             <sparkle:shortVersionString>1.6.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.6.0/Picmal.dmg" length="119882867" type="application/octet-stream" sparkle:edSignature="jslv/XeYcUBLRnDiHo61sesYztOzo68UYiFH372jgdv/QlXyjznqe3MslyNyZ6fGFoEa+mBdnYUeS73PARGPBg=="/>
-        <description><![CDATA[<div><ul><li>Embed album art into audio automatically. Turn on "Embed cover art from the source folder" in Settings → Audio and Picmal looks for a cover image (cover.jpg, folder.jpg, front.jpg — editable) next to each track and adds it to MP3, M4A, ALAC and FLAC output. "Skip files that already have artwork" keeps any existing cover instead of replacing it.</li>
+        <description><![CDATA[<div><ul>
+<li>Embed album art into audio automatically. Turn on "Embed cover art from the source folder" in Settings → Audio and Picmal looks for a cover image (cover.jpg, folder.jpg, front.jpg — editable) next to each track and adds it to MP3, M4A, ALAC and FLAC output. "Skip files that already have artwork" keeps any existing cover instead of replacing it.</li>
 <li>See how much space you saved after compressing. When a batch finishes, the bottom bar and the completion notification show the total freed space with a playful comparison, like "Freed up 9.66 GB · about a 4K movie 🎬".</li>
 <li>Schedule a batch for later. Tap the clock button next to Convert (or Compress) to pick a start time, handy for running big jobs overnight. The bottom bar shows what's queued, you get a notification when it finishes, and schedules survive quitting and reopening Picmal.</li>
-<li>Converting RAW photos (NEF, CR2, ARW, RAF, DNG) now keeps your camera metadata. With "Keep all metadata" the output JPEG carries the make, model, lens, exposure, date and GPS. "Keep essential" keeps the basics while dropping location and serial numbers. The metadata indicator now reads RAW files too, so it no longer shows them as empty.</li></ul></div>]]></description>
+<li>Converting RAW photos (NEF, CR2, ARW, RAF, DNG) now keeps your camera metadata. With "Keep all metadata" the output JPEG carries the make, model, lens, exposure, date and GPS. "Keep essential" keeps the basics while dropping location and serial numbers. The metadata indicator now reads RAW files too, so it no longer shows them as empty.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.9</title>
@@ -178,18 +208,20 @@
             <sparkle:shortVersionString>1.5.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.9/Picmal.dmg" length="117532929" type="application/octet-stream" sparkle:edSignature="hokdmdXwH2Thn7MqcFegr2QD8M3KOdkIhmLDQUZW0MzcHh2duTS1A6UAnV372yXC6H17C3JQH9BOO7cX5UadDA=="/>
-        <description><![CDATA[<div><ul><li>See an estimate of a video's compressed size before you run it, so you know roughly how much space you'll save.</li>
+        <description><![CDATA[<div><ul>
+<li>See an estimate of a video's compressed size before you run it, so you know roughly how much space you'll save.</li>
 <li>Set a priority on any file. Right-click and pick High, Normal or Low, and high-priority files get processed first, even mid-batch.</li>
 <li>Pause and resume a running batch. Pause now stops files mid-conversion too, not just the ones still waiting.</li>
 <li>Right-click any file to show it in Finder, set its priority, or remove it from the list. (The old "File" column is gone, since Show in Finder now lives in the menu.)</li>
 <li>ALAC (Apple Lossless) conversions are now truly lossless. Converting FLAC to ALAC used to produce a smaller, lossy AAC file by mistake.</li>
-<li>Fixed Adobe RGB conversions failing on macOS 26 with an "UnrecognizedColorspace" error. Picmal now resolves ICC profiles across macOS versions and skips color conversion cleanly when a profile is genuinely missing, instead of failing the whole batch.</li>
+<li>Fixed Adobe RGB conversions failing on macOS 26 with an "UnrecognizedColorspace" error. Picmal now resolves ICC profiles across macOS versions and skips colour conversion cleanly when a profile is genuinely missing, instead of failing the whole batch.</li>
 <li>Old FLV videos with mono Speex audio now convert instead of failing at the end with an encoder error.</li>
 <li>Big batches no longer stall on the last file or two. If an image encoder gets stuck, Picmal kills it and retries within about 15 seconds.</li>
 <li>The file list scrolls smoothly while processing, and the "X of Y files compressed" count no longer freezes just short of the total.</li>
-<li>PDF compression never hands you a file bigger than the original — if it wouldn't save space, Picmal keeps your original.</li>
-<li>Cancelling a batch now stops quickly and tidies up, so interrupted files return to "Waiting" instead of looking stuck.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+<li>PDF compression never hands you a file bigger than the original. If it wouldn't save space, Picmal keeps your original.</li>
+<li>Cancelling a batch now stops quickly and tidies up, so interrupted files go back to "Waiting" instead of looking stuck.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.8</title>
@@ -199,13 +231,15 @@
             <sparkle:shortVersionString>1.5.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.8/Picmal.dmg" length="117218403" type="application/octet-stream" sparkle:edSignature="aS9ikTOMgtIYlymLBKDU4mpSrntUPCjGBLN05Gk7kKOXtVV52GKfhPfJrarfTlyOxy3+xlS3qLnVZxPd5VNZCA=="/>
-        <description><![CDATA[<div><ul><li>Watermarks were sometimes skipped on a few files in a batch. Fixed — every image gets the watermark now.</li>
-<li>Watermarks can scale to a percentage of each image's height, so one preset looks right across photos of any size. Turn on "Scale to image" in the watermark editor and drag the slider.</li>
-<li>"Keep all metadata" was quietly dropping some tags. It actually keeps everything now.</li>
-<li>PDF to JPG/PNG no longer dumps huge files on you. Pick the rasterization DPI in Settings → Images (72, 150, 300 or 600). Default is 150.</li>
-<li>Drag-and-drop used to silently cap at 100 files. You can now drop up to 10,000 in one go and they all land in the list.</li>
+        <description><![CDATA[<div><ul>
+<li>Watermarks were sometimes skipped on a few files in a batch. Fixed: every image gets one now.</li>
+<li>Watermarks can scale to a percentage of each image's height, so one preset looks right on photos of any size. Turn on "Scale to image" in the watermark editor and drag the slider.</li>
+<li>"Keep all metadata" was quietly dropping some tags. It really keeps everything now.</li>
+<li>PDF to JPG/PNG no longer dumps huge files on you. Pick the rasterisation DPI in Settings → Images (72, 150, 300 or 600). Default is 150.</li>
+<li>Drag-and-drop used to silently cap at 100 files. You can now drop up to 10,000 at once and they all land in the list.</li>
 <li>Audio conversions now let you pick a bit depth (16, 24 or 32 bit) on top of the sample rate. The new "CD quality" preset is 16 bit + 44.1 kHz FLAC.</li>
-<li>Picking Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020 as the output color space used to fail outright — only sRGB worked. Fixed.</li></ul></div>]]></description>
+<li>Picking Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020 as the output colour space used to fail outright; only sRGB worked. Fixed.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.7</title>
@@ -215,7 +249,9 @@
             <sparkle:shortVersionString>1.5.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.7/Picmal.dmg" length="117161188" type="application/octet-stream" sparkle:edSignature="rTRPc4NfiZ1kJAh4FV/FeSjnss/SZIBR07cN1vcigrGCImAMDfuLPkPkWO2dXNkOEpFbBfWA2XM2DMmWk058Bg=="/>
-        <description><![CDATA[<div><ul><li>Added support for converting MOD camcorder videos (JVC, Canon, Panasonic) to MP4, MOV, AVI, MKV, MPG, and GIF.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now convert MOD camcorder videos (JVC, Canon, Panasonic) to MP4, MOV, AVI, MKV, MPG, and GIF.</li>
+</ul></div>]]></description>
         </item>
          <item>
             <title>1.5.6</title>
@@ -225,7 +261,9 @@
             <sparkle:shortVersionString>1.5.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.6/Picmal.dmg" length="117151186" type="application/octet-stream" sparkle:edSignature="FEHcBgwOGmO6d/4Mkr1TnWRLWaVvla+OaK8UjFrWYX/awMQv7V5lPlN2909VgyLtg7AWKYK+i/6x2u5Z27+HAg=="/>
-        <description><![CDATA[<div><ul><li>Fix the crash issue on Intel Macs.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed a crash on Intel Macs.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.5</title>
@@ -235,8 +273,10 @@
             <sparkle:shortVersionString>1.5.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.5/Picmal.dmg" length="117145815" type="application/octet-stream" sparkle:edSignature="fptHxrrfdwU2nRnjW1TlcTcAqROaEnEG00FBXM9lfDnCb38p6PXuDIKaTMpC5GDdgmzZkpfBLrcCf2GNpXtaBA=="/>
-        <description><![CDATA[<div><ul><li>Save your own custom compression presets for images, audio, and video. Tweak the settings you like, hit "Save as preset", give it a name, and it shows up alongside the built-in presets next time.</li>
-<li>ALAC (Apple Lossless) is now an output format. Convert FLAC, WAV, or AIFF to a lossless `.m4a` that imports straight into Apple Music.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Save your own compression presets for images, audio, and video. Tweak the settings you like, hit "Save as preset", name it, and it shows up next to the built-in ones.</li>
+<li>ALAC (Apple Lossless) is now an output format. Convert FLAC, WAV, or AIFF to a lossless `.m4a` that imports straight into Apple Music.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.4</title>
@@ -255,7 +295,9 @@
             <sparkle:shortVersionString>1.5.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.3/Picmal.dmg" length="117178211" type="application/octet-stream" sparkle:edSignature="UER3KmjjQ5eJGD9RpKXbRnayHttmheKNHZ8hMrTXKseRnTfkdxmBcRvyORbLOequI0uhsP15tJkDSkFeogmbBQ=="/>
-        <description><![CDATA[<div><ul><li>Replaced the notch progress overlay with standard macOS notifications. Watched-folder activity now shows up as native banners — queued, per-file progress, and final result — that collapse into a single entry in Notification Center instead of a floating panel.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Replaced the notch progress overlay with standard macOS notifications. Watched-folder activity now shows up as native banners (queued, per-file progress, and final result) that collapse into a single entry in Notification Center instead of a floating panel.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.2</title>
@@ -265,8 +307,10 @@
             <sparkle:shortVersionString>1.5.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.2/Picmal.dmg" length="118951646" type="application/octet-stream" sparkle:edSignature="6XMCafMuNe8QPTvYhrv2I/LaJnn5UifmYX6JlSIqcbahBWYbkGm4E0d2QK2e/G31Em3OoJLqTLzRePqo0A+zAQ=="/>
-        <description><![CDATA[<div><ul><li>Fixed larger WebP files failing to convert to GIF. Animated and high-resolution WebPs now get a 5-minute conversion ceiling instead of being killed at 2 minutes, and the error message is clearer when a source is genuinely too large or has too many frames.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed larger WebP files failing to convert to GIF. Animated and high-resolution WebPs now get a 5-minute ceiling instead of being killed at 2, and the error is clearer when a source really is too large or has too many frames.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.1</title>
@@ -276,9 +320,11 @@
             <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.1/Picmal.dmg" length="118838932" type="application/octet-stream" sparkle:edSignature="tHzV+n/76QCJFvJU00cayiR9t7Z2QXhCfIDYLTjldHWooB4ZOAilqZZsQeEl/UfNZf2DOzGFZS4Ej3mVX38BBw=="/>
-        <description><![CDATA[<div><ul><li>Menu bar quick controls: open a file picker with ⇧⌘O, and adjust clipboard behavior inline — On Copy mode (Compress / Convert / Compress & Convert), Target Format, and Auto-Copy Result are now nested under the Optimize Clipboard toggle and stay in sync with Settings.</li>
-<li>Fixed an infinite loop where Auto-Copy would re-process the file Picmal had just placed on the clipboard, stacking overlay entries and re-running compression.</li>
-<li>Fixed `.jpeg` files producing a sibling `.jpg` instead of overwriting (or preserving the source extension) on both compress and convert. Same-format operations now keep the input's on-disk extension, so `.jpeg`, `.tif`, and similar aliases stay consistent.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Menu bar quick controls: open a file picker with ⇧⌘O, and adjust clipboard behaviour inline. On Copy mode (Compress / Convert / Compress & Convert), Target Format, and Auto-Copy Result now sit under the Optimize Clipboard toggle and stay in sync with Settings.</li>
+<li>Fixed an infinite loop where Auto-Copy reprocessed the file Picmal had just put on the clipboard, stacking overlay entries and re-running compression.</li>
+<li>Fixed `.jpeg` files producing a sibling `.jpg` instead of overwriting (or keeping the source extension) on both compress and convert. Same-format operations now keep the input's extension, so `.jpeg`, `.tif`, and similar aliases stay consistent.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.5.0</title>
@@ -288,7 +334,9 @@
             <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.5.0/Picmal.dmg" length="118833498" type="application/octet-stream" sparkle:edSignature="wjNCp3MrLkdmeTv3EQcJ90kmkOMFSfnRj+WSwYIv1OmZdjHclwH+a6BXNHw20OhIv6ofXQWGURaY0t5uFYqmBw=="/>
-        <description><![CDATA[<div><ul><li>Redesigned the Settings window from the ground up for a cleaner, more native macOS feel.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Rebuilt the Settings window from scratch for a cleaner, more native feel.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.9</title>
@@ -298,8 +346,10 @@
             <sparkle:shortVersionString>1.4.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.9/Picmal.dmg" length="119057052" type="application/octet-stream" sparkle:edSignature="Ig3kv/DuRJHzw5M7U1Pq4PPeuTGMsJEbF3lSBF/1HoYd/Fqwtl6tlB9+L6v8GNXkQnbFB8vyht2td5iyfK6rDw=="/>
-        <description><![CDATA[<div><ul><li>Rename output files using EXIF metadata with a filename pattern. Supported tokens: {original}, {date}, {datetime}, {year}, {month}, {day}, {camera}, {iso}.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Rename output files from their EXIF metadata with a filename pattern. Tokens: {original}, {date}, {datetime}, {year}, {month}, {day}, {camera}, {iso}.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.8</title>
@@ -309,9 +359,11 @@
             <sparkle:shortVersionString>1.4.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.8/Picmal.dmg" length="118954830" type="application/octet-stream" sparkle:edSignature="GCSJQqb1P35yfJS/ThhPp8fTrfWeicDBknA028buqpcoZep2wqvZhGl7FeSGm76FY/vMLM6q+KgGUq2nH1U5BA=="/>
-        <description><![CDATA[<div><ul><li>Polish the watermark section and resolve some visual issues.</li>
-<li>Increase the speed of image conversion.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Polished the watermark section and fixed some visual glitches.</li>
+<li>Faster image conversion.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.7</title>
@@ -321,10 +373,12 @@
             <sparkle:shortVersionString>1.4.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.7/Picmal.dmg" length="118987322" type="application/octet-stream" sparkle:edSignature="8AoihFsItxRqJwDUsnIC8D4NqpFQFFM8dp4FbMbZf8x12Y6O4p4+zw+2s3faTGGxAkt3RlZiPy1eiDAPYegbCw=="/>
-        <description><![CDATA[<div><ul><li>Burn-in subtitles for video. Attach an SRT or VTT file to any video from the new film icon next to its name and the text is burned directly into the output. Style it in Settings → Video (size, color, top/center/bottom).</li>
-<li>Playback speed per video. Same film icon now lets you pick 0.25×, 0.5×, 2×, 4× or a custom percentage (10–800%). Audio keeps its natural pitch. "Apply speed to all videos" copies the setting to every video in your batch.</li>
-<li>Image and video watermarks. Add a logo or PNG overlay to any image or video conversion, save multiple watermark presets, and pick position (9 anchors), margins and opacity from Settings → Watermark.</li>
-<li>Fixed resize settings being ignored in the Compress procedure. Max Dimensions, Max Width/Height and other resize modes now apply to compressed images, matching the Convert procedure.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Burn-in subtitles for video. Attach an SRT or VTT file to any video from the new film icon next to its name, and the text is burned into the output. Style it in Settings → Video (size, colour, top/center/bottom).</li>
+<li>Per-video playback speed. The same film icon lets you pick 0.25×, 0.5×, 2×, 4× or a custom percentage (10–800%). Audio keeps its natural pitch. "Apply speed to all videos" copies it across the batch.</li>
+<li>Image and video watermarks. Add a logo or PNG overlay to any image or video, save multiple presets, and set position (9 anchors), margins, and opacity in Settings → Watermark.</li>
+<li>Fixed resize settings being ignored when compressing. Max Dimensions, Max Width/Height, and the other modes now apply to compressed images, just like Convert.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.6</title>
@@ -334,9 +388,11 @@
             <sparkle:shortVersionString>1.4.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.6/Picmal.dmg" length="116980246" type="application/octet-stream" sparkle:edSignature="RAc/yuifaLGMpON0kUMjdgIRrrMym8p7wfQ8oHF5NCEGpbq1ZkRU5y11hrBdImv2FdwjYy7iQu5UdNmp33LiAg=="/>
-        <description><![CDATA[<div><ul><li>Redesigned the Settings window.</li>
-<li>License activation errors now include guidance and a link to the deactivation docs when a license is already active on another device.</li>
-<li>Clipboard optimization now lets you choose what happens when you copy an image: compress, convert to a different format (JPEG, PNG, WebP, HEIC, AVIF, TIFF or GIF), or both.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Redesigned the Settings window.</li>
+<li>Licence activation errors now include guidance and a link to the deactivation docs when a licence is already active on another device.</li>
+<li>Clipboard optimisation now lets you choose what happens when you copy an image: compress, convert to another format (JPEG, PNG, WebP, HEIC, AVIF, TIFF or GIF), or both.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.5</title>
@@ -346,11 +402,13 @@
             <sparkle:shortVersionString>1.4.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.5/Picmal.dmg" length="116821536" type="application/octet-stream" sparkle:edSignature="9Y+uZ9xTwPWSb1on4OblySRg9p10DSv8RVizSOT8Nq1D9032LoxqN+lk7IOB0hDCQp9UX6xvjb5eCGzSm0HvBA=="/>
-        <description><![CDATA[<div><ul><li>Fixed conversions hanging indefinitely (stuck at 99% or 0%) when batch-converting many files at once.</li>
-<li>Fixed high CPU usage after conversions finish.</li>
-<li>Overwrite warnings: a warning icon now appears in the convert table when a same-format conversion would overwrite the original, and in the compress bottom bar when compression prefix/suffix are empty. The Output settings page also shows per-section warnings.</li>
-<li>Error output is now captured for JPEG compression failures to aid diagnostics.</li>
-<li>The automatic "_converted" suffix for same-format conversions has been removed; use prefix/suffix settings instead.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed conversions hanging forever (stuck at 99% or 0%) when batch-converting lots of files at once.</li>
+<li>Fixed high CPU use after conversions finish.</li>
+<li>Overwrite warnings: a warning icon now shows in the convert table when a same-format conversion would overwrite the original, and in the compress bottom bar when the prefix/suffix are empty. The Output settings page shows per-section warnings too.</li>
+<li>JPEG compression failures now capture error output for diagnostics.</li>
+<li>Removed the automatic "\_converted" suffix for same-format conversions. Use the prefix/suffix settings instead.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.4</title>
@@ -360,10 +418,12 @@
             <sparkle:shortVersionString>1.4.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.4/Picmal.dmg" length="116719654" type="application/octet-stream" sparkle:edSignature="U0Ic+Yd6nhZiPwedy0w7dhhS9IPMtESh4oqFdmjwLjb9NNGc0rBFcFK+4Uu55wg9JF1iKvZA7UVNFUnAlUhIBA=="/>
-        <description><![CDATA[<div><ul><li>Audio files can now be converted to the same format (e.g. FLAC → FLAC) to change sample rate without switching codec.</li>
-<li>New sample rate setting in Audio > Custom preset: resample audio to 8 kHz, 11.025 kHz, 16 kHz, 22.05 kHz, 32 kHz, 44.1 kHz (CD), 48 kHz (DVD), 88.2 kHz or 96 kHz.</li>
-<li>Same-format conversions now automatically add a "_converted" suffix to prevent overwriting the original file.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now convert audio to the same format (e.g. FLAC to FLAC) to change the sample rate without switching codec.</li>
+<li>New sample rate setting in Audio > Custom: resample to 8, 11.025, 16, 22.05, 32, 44.1 (CD), 48 (DVD), 88.2 or 96 kHz.</li>
+<li>Same-format conversions now add a "\_converted" suffix so they don't overwrite the original.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.3</title>
@@ -373,7 +433,9 @@
             <sparkle:shortVersionString>1.4.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.3/Picmal.dmg" length="116699519" type="application/octet-stream" sparkle:edSignature="ImtAG9G7iFUx/svK3PhFhVy6BC2qfl0zByoa3zgz5i8EMzopeS2XSKsOzpe4CBmGqDdWLRoy+HcbHL4CGKUJDA=="/>
-        <description><![CDATA[<div><ul><li>Converting MP4 to GIF fixed.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed MP4 to GIF conversion.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.2</title>
@@ -383,14 +445,16 @@
             <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.2/Picmal.dmg" length="116700905" type="application/octet-stream" sparkle:edSignature="6VgrEBwYitYJ4/dxseiOXOjyCXX5gqjBJkcJZoxhK31QXa9/8jUscwS7Zp4hrYs8F6Er6nwnltYCcnpKrtNqCA=="/>
-        <description><![CDATA[<div><ul><li>The app now detects corrupted video files (like ones missing the moov atom) and lets you know clearly instead of failing without explanation.</li>
-<li>Faster launch time. The app no longer blocks on non-essential setup before showing the first screen.</li>
-<li>Cancelling a conversion feels smoother and no longer causes a brief UI freeze.</li>
-<li>Fixed some concurrency issues in the background (ServiceHandler, SharedTempFileManager, and FFmpegConverter).</li>
-<li>Replaced system notifications with a more integrated progress overlay that animates from the MacBook notch or slides down on other displays.</li>
-<li>The menu bar icon now shows live progress percentages.</li>
-<li>Improved the error interface to make issues easier to understand.</li>
-<li>Other smaller fixes and improvements.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Picmal now detects corrupted video files (like ones missing the moov atom) and tells you clearly instead of failing without explanation.</li>
+<li>Faster launch. The app no longer waits on non-essential setup before showing the first screen.</li>
+<li>Cancelling a conversion is smoother and no longer briefly freezes the UI.</li>
+<li>Fixed concurrency issues in ServiceHandler, SharedTempFileManager, and FFmpegConverter.</li>
+<li>Replaced system notifications with a progress overlay that animates from the notch or slides down on other displays.</li>
+<li>The menu bar icon now shows live progress.</li>
+<li>Clearer error messages.</li>
+<li>Other smaller fixes and improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.1</title>
@@ -400,11 +464,13 @@
             <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.1/Picmal.dmg" length="116537679" type="application/octet-stream" sparkle:edSignature="K0gEv6xrsmj8HjPlmB7J+ot+I70J/1gjLrG3hqMgG/TXAHbTsHT5ULcrtIXMdKydp8SlVeSGnPYY9QZniU5BAA=="/>
-        <description><![CDATA[<div><ul><li>Fixed JPEG compression silently producing corrupted (truncated) output.</li>
-<li>Fixed high CPU usage when idle caused by aggressive clipboard polling, always-on cache timers, broad UserDefaults observation, and unbatched FSEvents handling.</li>
+        <description><![CDATA[<div><ul>
+<li>Fixed JPEG compression silently producing truncated, corrupted files.</li>
+<li>Fixed high CPU use when idle, caused by aggressive clipboard polling, always-on cache timers, broad UserDefaults observation, and unbatched FSEvents.</li>
 <li>Watched folders now support per-folder resize settings and a "compress after convert" option.</li>
-<li>New auto-copy option for clipboard optimization: compressed images are automatically copied back to the clipboard, skipping the manual "Copy" button click. Off by default.</li>
-<li>Video compression now lets you change the output container format (e.g. MOV → MP4, MKV, WebM, AVI) with automatic codec compatibility handling.</li></ul></div>]]></description>
+<li>New auto-copy for clipboard optimisation: compressed images go straight back to the clipboard, skipping the Copy button. Off by default.</li>
+<li>Video compression now lets you change the container (MOV to MP4, MKV, WebM, AVI) and handles codec compatibility for you.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.4.0</title>
@@ -414,8 +480,10 @@
             <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.4.0/Picmal.dmg" length="116648833" type="application/octet-stream" sparkle:edSignature="IKy0+H1KoHKf+LXr6Yh1VOFEsZ5iZb821AfnjR6X2JYqEFNtGjyAk1cj921fHauofhrC8wD5NiXL6lpijwTqAw=="/>
-        <description><![CDATA[<div><ul><li>Before / After Preview — Click the eye icon on any processed file to compare original and output images with an interactive slider.</li>
-<li>Video compression now offers an expanded CRF range (0–51) for finer quality control, and a new frame rate setting lets you reduce fps (e.g. 60→30) to shrink file sizes further.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Before / After preview. Click the eye icon on any processed file to compare the original and the output with a slider.</li>
+<li>Video compression now has a wider CRF range (0–51) for finer control, plus a frame rate setting to drop fps (say 60 to 30) and shrink files further.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.9</title>
@@ -425,8 +493,10 @@
             <sparkle:shortVersionString>1.3.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.9/Picmal.dmg" length="116552488" type="application/octet-stream" sparkle:edSignature="OoP5sj+uOgM5HO/H3OK+ubt5O3x2/zKSLbosnbEolSoAVUwq/HtZWNF7jQ88fkaCNd+ZWeSnAJXPKeB2RyeNBw=="/>
-        <description><![CDATA[<div><ul><li>The app now remembers your last selected output format for each input type, so when you drop a new file it automatically uses the format you chose before.</li>
-<li>The clipboard overlay now disappears automatically after a configurable timeout, set to 5 seconds by default, and it is no longer included in macOS screenshots.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Picmal remembers the last output format you picked for each input type, so dropping a new file reuses your choice.</li>
+<li>The clipboard overlay now disappears after a timeout (5 seconds by default) and stays out of screenshots.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.8</title>
@@ -436,9 +506,11 @@
             <sparkle:shortVersionString>1.3.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.8/Picmal.dmg" length="116587582" type="application/octet-stream" sparkle:edSignature="0xyZ+rbIx96lsk+5uJ4HxUNu/drkCqD8men7iGm+5rS0AaTyqQToOBMY29J0qB+tCT+8PdWGIGw8AUt6rB+nCA=="/>
-        <description><![CDATA[<div><ul><li>Improved WebP to GIF conversion. Animated WebP files now preserve all animation frames, and static WebP files convert reliably without errors.</li>
-<li>New clipboard image optimization feature. Images copied to your clipboard are automatically compressed, and a compact overlay lets you quickly copy the optimized version.</li>
-<li>You can now set the DPI resolution metadata on output images (72, 96, 144, 150, 300, 600 or custom) for print and display workflows — no resizing, just the metadata tag.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Better WebP to GIF conversion. Animated WebPs keep all their frames, and static ones convert without errors.</li>
+<li>New clipboard image optimisation. Images you copy get compressed automatically, and a small overlay lets you grab the optimised version.</li>
+<li>Set the DPI metadata on output images (72, 96, 144, 150, 300, 600 or custom) for print and display work. It just sets the tag, no resizing.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.7</title>
@@ -448,8 +520,10 @@
             <sparkle:shortVersionString>1.3.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.7/Picmal.dmg" length="115888353" type="application/octet-stream" sparkle:edSignature="zTv1klzr9oXwAZjaKXG+6M/tL903MkW++gESbDrLHgbig88ip8l/eeD9DEIabfeR3QYfkeIPInJe4yHIt3v/Ag=="/>
-        <description><![CDATA[<div><ul><li>Minor fixes.</li>
-<li>Improved licence handling.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Minor fixes.</li>
+<li>Better licence handling.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.6</title>
@@ -459,10 +533,12 @@
             <sparkle:shortVersionString>1.3.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.6/Picmal.1.3.6.dmg" length="116879236" type="application/octet-stream" sparkle:edSignature="nVl5z0TEOuQWhAUPWWN/gvzAwoNHohev3vPK2YxZBuhBNRXedxQhRCGlk3xLeZDVCd5btX2IvlP/amiqnoDEDw=="/>
-        <description><![CDATA[<div><ul><li>New settings have been added for controlling image orientation handling and metadata preservation, with three modes: 'strip all', 'keep essential' (orientation, colour profile and copyright) or 'keep all metadata'.</li>
-<li>File conversion now works reliably on iCloud Drive, network shares and read-only locations.</li>
-<li>HEVC videos with unusual frame rates now convert correctly to MOV format and play properly in QuickTime.</li>
-<li>Other minor improvements have been made.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>New settings for orientation and metadata, with three modes: strip all, keep essential (orientation, colour profile, copyright), or keep everything.</li>
+<li>Conversion now works reliably on iCloud Drive, network shares, and read-only locations.</li>
+<li>HEVC videos with unusual frame rates now convert correctly to MOV and play in QuickTime.</li>
+<li>Other minor improvements.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.5</title>
@@ -472,9 +548,11 @@
             <sparkle:shortVersionString>1.3.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.5/Picmal.dmg" length="116818695" type="application/octet-stream" sparkle:edSignature="Nvj/CRRVYom6arDfOky46IMSjIz6XIGYa+HX88TpFisx0RvFeBxTAplY1mKwup9v5mwQfx9EmE0aGrLxUeisCA=="/>
-        <description><![CDATA[<div><ul><li>You can now drop files and folders directly into the menu tray area.</li>
-<li>Fixed an issue where dragging files onto the Picmal dock icon did not work.</li>
-<li>Added a few small improvements and fixes under the hood.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now drop files and folders straight into the menu tray.</li>
+<li>Fixed dragging files onto the dock icon not working.</li>
+<li>A few small fixes under the hood.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.4</title>
@@ -484,9 +562,11 @@
             <sparkle:shortVersionString>1.3.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.4/Picmal.dmg" length="116776895" type="application/octet-stream" sparkle:edSignature="kF9moEdOZDI90VVzWBHDfCtKkjA0jrzgUE2+5XIxqSlTgFLYviAAiINndT+AYFNgl/69Bq1DRzKeNZ9jINMIBw=="/>
-        <description><![CDATA[<div><ul><li>Fixed an issue where the app could become unresponsive when processing complex or corrupted files.</li>
-<li>Sentry error handling has been improved.</li>
-<li>Made other minor fixes.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed the app freezing on complex or corrupted files.</li>
+<li>Better Sentry error handling.</li>
+<li>Other minor fixes.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.3</title>
@@ -496,7 +576,9 @@
             <sparkle:shortVersionString>1.3.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.3/Picmal.dmg" length="116885972" type="application/octet-stream" sparkle:edSignature="TwSjd7WepKoM0Cbrdq2c+WgF8a9DmKiXkUhTm1Pnn98pOVsoUKwt6lSy+HamtvqIkLy3JXMv1DsUm8e21BJtAQ=="/>
-        <description><![CDATA[<div><ul><li>Integrated Sentry to detect possible crashes and errors.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Added Sentry to catch crashes and errors.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.2</title>
@@ -506,9 +588,11 @@
             <sparkle:shortVersionString>1.3.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.2/Picmal.dmg" length="115477359" type="application/octet-stream" sparkle:edSignature="WIMGS81vNxnUwyYmBPHlU9EdZiUJwA3WZGFQ5q+2I0sMRLsUALacyQh6/QCVDp1kzXYEf+8bhOIzzZ/2TeiUCw=="/>
-        <description><![CDATA[<div><ul><li>The compression quality of PNG and SVG files has been improved.</li>
-<li>Some crashes in macOS 14 have been fixed, especially for new users.</li>
-<li>Other minor fixes.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Better PNG and SVG compression quality.</li>
+<li>Fixed some crashes on macOS 14, especially for new users.</li>
+<li>Other minor fixes.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.1</title>
@@ -518,10 +602,12 @@
             <sparkle:shortVersionString>1.3.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.1/Picmal.dmg" length="129205794" type="application/octet-stream" sparkle:edSignature="vZzxFIVbRFBqXKqfuapOM9SBL/aCQHOo9fhFlFAfw6lzd9f5772PYQ+qI8+JAxav9KIybvM8oLtwwPZ+gliBBQ=="/>
-        <description><![CDATA[<div><ul><li>Clear error messages when switching between compress/convert modes.</li>
+        <description><![CDATA[<div><ul>
+<li>Clearer error messages when switching between Compress and Convert.</li>
 <li>The app now starts in the background when launched at login with "Keep in Menu Bar" enabled.</li>
-<li>Improve images compression.</li>
-<li>Fixed video compression not reducing file sizes and improved encoding performance.</li></ul></div>]]></description>
+<li>Better image compression.</li>
+<li>Fixed video compression not reducing file sizes, and improved encoding speed.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.3.0</title>
@@ -531,10 +617,12 @@
             <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.3.0/Picmal.dmg" length="126737694" type="application/octet-stream" sparkle:edSignature="M+4Dj6L8jr4Du7yRIdkH9p8XKIG1GVvkxFiy8xPtDqJN5pmHrsUemq+6dPOAweIk32ox+CChqoyL9zSJgIWwAg=="/>
-        <description><![CDATA[<div><ul><li>I watched folders and added hot folder monitoring.</li>
-<li>You can now use Picmal with the Shortcuts app.</li>
-<li>Picmal runs in the background when you log in.</li>
-<li>Compress output it's available for images, audios and videos.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Added watched folders with hot folder monitoring.</li>
+<li>You can now use Picmal from the Shortcuts app.</li>
+<li>Picmal can run in the background when you log in.</li>
+<li>Compress on output now works for images, audio, and video.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.9</title>
@@ -544,11 +632,13 @@
             <sparkle:shortVersionString>1.2.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.9/Picmal.dmg" length="126311876" type="application/octet-stream" sparkle:edSignature="IbngIXyfAA4SyTMS6k93yhfeQjvnz91fjCoTkDLXBzWzpJMZ9vb9Vf/Wz7jphexn+BdTRki/0K93BUNdyHm8Ag=="/>
-        <description><![CDATA[<div><ul><li>Persist files when switching between the 'Convert' and 'Compress' tabs.</li>
-<li>Add support for dragging and dropping files onto the dock icon.</li>
-<li>Fixed an issue with SVG compression that was failing because it could not interpret some CSS classes correctly.</li>
-<li>HIF format support (Canon HEIF) was added.</li>
-<li>Fixed DNG/RAW rotation issue.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Files now stick around when you switch between the Convert and Compress tabs.</li>
+<li>You can now drag and drop files onto the dock icon.</li>
+<li>Fixed SVG compression failing on some CSS classes it couldn't read.</li>
+<li>Added HIF support (Canon HEIF).</li>
+<li>Fixed a DNG/RAW rotation issue.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.8</title>
@@ -558,13 +648,15 @@
             <sparkle:shortVersionString>1.2.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.8/Picmal.dmg" length="126311701" type="application/octet-stream" sparkle:edSignature="a5mYGLGldUsPuMB2ZLg9Ip/oJuA0lk1QWH2uuzmCyUjrYYoWdz+gKbQCcjAf3sqn9Iy3Nmg/GQTALvYeZJrgCA=="/>
-        <description><![CDATA[<div><ul><li>Presets for audio and video conversion.</li>
-<li>Support for converting HEIC to WebP.</li>
-<li>You can now strip the metadata from audio, video and image files.</li>
-<li>Output file displays the settings used.</li>
-<li>Parts of the code have been rewritten to improve stability and reliability.</li>
-<li>The Preferences menu has been reorganised for better usability.</li>
-<li>Issues resulting in unusable files during MKV to MP4 conversions when certain codecs were used have been resolved.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Presets for audio and video conversion.</li>
+<li>You can now convert HEIC to WebP.</li>
+<li>Strip metadata from audio, video, and image files.</li>
+<li>Output files now show the settings used.</li>
+<li>Rewrote parts of the code for better stability.</li>
+<li>Reorganised the Preferences menu so it's easier to navigate.</li>
+<li>Fixed unusable files from MKV to MP4 conversions with certain codecs.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.7</title>
@@ -574,10 +666,12 @@
             <sparkle:shortVersionString>1.2.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.7/Picmal.dmg" length="126160016" type="application/octet-stream" sparkle:edSignature="xUnOp5cv2MCdA/eGjd7DW9Rjk82p+ru0IL8siiKmgc1R8XRpfpVkdDslORq/2FpenZV2d2C+MmoGmW9ZxOWpAg=="/>
-        <description><![CDATA[<div><ul><li>PDF results look clearer and sharper.</li>
-<li>You can now open files from the top menu using File > Open or with the shortcut Command O.</li>
-<li>Picmal now understands folders. Drop a folder and it will gather everything inside, including subfolders, ready to convert.</li>
-<li>On the Finder context menu you will now see new options to convert or compress images with Picmal.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>PDFs come out clearer and sharper.</li>
+<li>Open files from the menu with File > Open, or press Command O.</li>
+<li>Picmal now understands folders. Drop one in and it gathers everything inside, including subfolders.</li>
+<li>New Finder right-click options to convert or compress images with Picmal.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.6</title>
@@ -587,13 +681,16 @@
             <sparkle:shortVersionString>1.2.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.7/Picmal.1.2.7.dmg" length="104840361" type="application/octet-stream" sparkle:edSignature="+pjgTCfM47GwlHvp+5kwxpnrpnL9hyUYi3jxsn/4yCfKKObgNje8qfeusqwQYgQcVO807YyL5ijQqCk6FPKbBA=="/>
-            <description><![CDATA[<div><ul><li>Color space conversion: Convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, or Rec. 2020 with proper ICC profile embedding.</li>
-<li>View color space info for converted images via a new clickable icon in the Size column.</li>
-<li>Fixed FLAC to AAC audio conversion issues in optimized advanced mode.</li></ul></div>]]></description>
-        <description><![CDATA[<div><ul><li>PDF results look clearer and sharper.</li>
-<li>You can now open files from the top menu using File > Open or with the shortcut Command O.</li>
-<li>Picmal now understands folders. Drop a folder and it will gather everything inside, including subfolders, ready to convert.</li>
-<li>On the Finder context menu you will now see new options to convert or compress images with Picmal.</li></ul></div>]]></description>
+            <description><![CDATA[<div><ul>
+<li>Color space conversion: convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020, with the right ICC profile embedded.</li>
+<li>Check a converted image's color space from a new clickable icon in the Size column.</li>
+<li>Fixed FLAC to AAC conversion in optimised Advanced mode.</li>
+</ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Color space conversion: convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020, with the right ICC profile embedded.</li>
+<li>Check a converted image's color space from a new clickable icon in the Size column.</li>
+<li>Fixed FLAC to AAC conversion in optimised Advanced mode.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.5</title>
@@ -603,12 +700,14 @@
             <sparkle:shortVersionString>1.2.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.2.7/Picmal.1.2.7.dmg" length="104823324" type="application/octet-stream" sparkle:edSignature="JhnML7Fvx991qPO7Cimuc6CXwDkBONNnBkI4AySRDaPat3XlXVXiqRNuSCWr9p6W+EwmQ3N80pz1KAmrGneTDA=="/>
-            <description><![CDATA[<div><ul><li>Conversion from EPS to SVG has been added.</li>
-<li>Conversion from AI to SVG added.</li></ul></div>]]></description>
-        <description><![CDATA[<div><ul><li>PDF results look clearer and sharper.</li>
-<li>You can now open files from the top menu using File > Open or with the shortcut Command O.</li>
-<li>Picmal now understands folders. Drop a folder and it will gather everything inside, including subfolders, ready to convert.</li>
-<li>On the Finder context menu you will now see new options to convert or compress images with Picmal.</li></ul></div>]]></description>
+            <description><![CDATA[<div><ul>
+<li>You can now convert EPS to SVG.</li>
+<li>You can now convert AI to SVG.</li>
+</ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now convert EPS to SVG.</li>
+<li>You can now convert AI to SVG.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.6</title>
@@ -618,9 +717,11 @@
             <sparkle:shortVersionString>1.2.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.6/Picmal.dmg" length="104840361" type="application/octet-stream" sparkle:edSignature="+pjgTCfM47GwlHvp+5kwxpnrpnL9hyUYi3jxsn/4yCfKKObgNje8qfeusqwQYgQcVO807YyL5ijQqCk6FPKbBA=="/>
-        <description><![CDATA[<div><ul><li>Color space conversion: Convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, or Rec. 2020 with proper ICC profile embedding.</li>
-<li>View color space info for converted images via a new clickable icon in the Size column.</li>
-<li>Fixed FLAC to AAC audio conversion issues in optimized advanced mode.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Color space conversion: convert images to sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709 or Rec. 2020, with the right ICC profile embedded.</li>
+<li>Check a converted image's color space from a new clickable icon in the Size column.</li>
+<li>Fixed FLAC to AAC conversion in optimised Advanced mode.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.5</title>
@@ -630,8 +731,10 @@
             <sparkle:shortVersionString>1.2.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.5/Picmal.dmg" length="104823324" type="application/octet-stream" sparkle:edSignature="JhnML7Fvx991qPO7Cimuc6CXwDkBONNnBkI4AySRDaPat3XlXVXiqRNuSCWr9p6W+EwmQ3N80pz1KAmrGneTDA=="/>
-        <description><![CDATA[<div><ul><li>Conversion from EPS to SVG has been added.</li>
-<li>Conversion from AI to SVG added.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now convert EPS to SVG.</li>
+<li>You can now convert AI to SVG.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.5</title>
@@ -641,8 +744,10 @@
             <sparkle:shortVersionString>1.2.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.5/Picmal.dmg" length="104834329" type="application/octet-stream" sparkle:edSignature="ozQ64Y9DZCakTOlN5CQZiiPsaOn54STwfxWAi5VP6Um/+ryx7Y4OBGq/mubSyTgcOfu1ZZDjsK+QnfudWw/dAQ=="/>
-        <description><![CDATA[<div><ul><li>Conversion from EPS to SVG has been added.</li>
-<li>Conversion from AI to SVG added.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>You can now convert EPS to SVG.</li>
+<li>You can now convert AI to SVG.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.4</title>
@@ -652,7 +757,9 @@
             <sparkle:shortVersionString>1.2.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.4/Picmal.dmg" length="102258483" type="application/octet-stream" sparkle:edSignature="rb8CCW3KKne07KLASSM1C0CXdPPDQr2joNwpRfpmKBXaD+N2EQElynSrbsgMO2nbQf3zOjPGLWUwN7dIAnJPCg=="/>
-        <description><![CDATA[<div><ul><li>Display a banner when the licence is not active to make it clear that Picmal cannot be used without a licence.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Added a banner when no licence is active, so it's clear Picmal needs one to run.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.4</title>
@@ -662,12 +769,14 @@
             <sparkle:shortVersionString>1.2.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.4/Picmal.dmg" length="102254989" type="application/octet-stream" sparkle:edSignature="MggmfBDYSxRDG//cPVWgMoTkRQv5CeWvguynxU0FrS4ZOlBAd3cDSKGUnYo1O1TAcvkzQOc1ddWnvPgpVgjeAg=="/>
-        <description><![CDATA[<div><ul><li>You can now see the conversion speed percentage, along with an estimated time remaining, for videos and audio files.</li>
-<li>You can now experience significant performance improvements: Video conversions are much faster and use less memory, especially for long files. Instant conversion (no re-encoding) works for 50+ format combinations including WebM, MKV, MP4, FLV, 3GP, and more.</li>
-<li>You can now use VideoToolbox's H.264 hardware encoding for over 12 video formats on Apple Silicon, offering a speed boost of 10–50x for FLV, WMV, MPEG, 3GP, WTV, F4V and MXF.</li>
-<li>WebM codec compatibility in Advanced mode has been fixed (now properly enforces VP8/VP9/AV1 codecs).</li>
-<li>The issue where buttons (metadata, progress info, Show in Finder) were not clickable during conversion has been fixed.</li>
-<li>PDF compression is now faster and more accurate.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Audio and video now show conversion speed and an estimated time remaining.</li>
+<li>Video conversions are much faster and use less memory, especially for long files. Instant conversion (no re-encoding) now works for 50+ format combinations, including WebM, MKV, MP4, FLV, and 3GP.</li>
+<li>VideoToolbox H.264 hardware encoding now covers 12+ video formats on Apple Silicon, making FLV, WMV, MPEG, 3GP, WTV, F4V and MXF 10–50× faster.</li>
+<li>Fixed WebM codec handling in Advanced mode (it now enforces VP8/VP9/AV1 properly).</li>
+<li>Fixed the metadata, progress, and Show in Finder buttons being unclickable during conversion.</li>
+<li>PDF compression is faster and more accurate.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.3</title>
@@ -677,8 +786,10 @@
             <sparkle:shortVersionString>1.2.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.3/Picmal.dmg" length="102176903" type="application/octet-stream" sparkle:edSignature="1ItYQvS0PVaXCHjiiyjDY+8hbRCf7ZSlc/RnNN4iGsdPS+SpZDRgGhVENEkbpvoc1t4HwgctIoAIF08P0hiXCg=="/>
-        <description><![CDATA[<div><ul><li>Fixed bug where multi-select functionality was broken for audio and video files. Format dropdown now properly populates when selecting media files via checkbox.</li>
-<li>Fixed compression savings showing incorrect percentages when converting between formats.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed multi-select for audio and video files. The format dropdown now populates correctly when you select media files with the checkbox.</li>
+<li>Fixed wrong savings percentages when converting between formats.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.2</title>
@@ -688,12 +799,14 @@
             <sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.2/Picmal.dmg" length="102095702" type="application/octet-stream" sparkle:edSignature="FuvrDVAuwh2me4q+0G9GFt0NCVp67E/6F1VSd69GLc3oL1qaEI8TiWo56ALpdCZGRpPiuHXSyzQejAd3O0ALCw=="/>
-        <description><![CDATA[<div><ul><li>Fixed the non-clickable checkbox in Advanced mode.</li>
-<li>Added Advanced mode to both Conversion and Compression modes.</li>
-<li>Fixed the bottom tab bar so that it now truncates text when there is too much.</li>
-<li>Some PDF compression errors that were not working well have been fixed.</li>
-<li>Progress has been added to the compression and conversion of files to improve the user experience. Sometimes, compressing long files can take more than 2–3 minutes, and users thought it was stuck.</li>
-<li>A “Cancel” button has been added while converting/compressing to allow you to stop the process.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed the non-clickable checkbox in Advanced mode.</li>
+<li>Added Advanced mode to both Convert and Compress.</li>
+<li>The bottom tab bar now truncates text when there's too much of it.</li>
+<li>Fixed several PDF compression errors.</li>
+<li>Added a progress indicator while converting and compressing. Long files can take a few minutes, and it used to look like Picmal had frozen.</li>
+<li>Added a Cancel button so you can stop a conversion or compression mid-way.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.1</title>
@@ -703,15 +816,14 @@
             <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.1/Picmal.dmg" length="97752882" type="application/octet-stream" sparkle:edSignature="RhBZwS/0q2oTXBzy5US6Gi68dd1DCFVW9bVSFq8l9kgQfMXwifXfXupI+Siy4CyVCKcKXUKVxu11VieF1qADCg=="/>
-        <description><![CDATA[<div><ul><li>Batch resize images with 5 flexible modes (percentage, fixed, max</li>
-  dimensions, width/height-only).</li>
-<li>Display metadata for audio and video files (duration, bitrate, codec,</li>
-  sample rate).</li>
-<li>Advanced mode for audio and video with enhanced FFmpeg controls.</li>
-<li>Fixed PDF compression corrupting colors in Keynote/PowerPoint</li>
-  presentations.</li>
-<li>Compressed files now automatically include "_compressed" suffix.</li>
-<li>Improved format support (31 audio, 25 video formats).</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Batch resize images with 5 modes: percentage, fixed, max dimensions, width-only, and height-only.</li>
+<li>Audio and video files now show their metadata (duration, bitrate, codec, sample rate).</li>
+<li>Advanced mode for audio and video with extra FFmpeg controls.</li>
+<li>Fixed PDF compression corrupting colors in Keynote and PowerPoint presentations. It now uses ImageMagick with LZW compression to preserve Display P3 colors.</li>
+<li>Compressed files now get a "\_compressed" suffix automatically.</li>
+<li>Wider format support: 31 audio and 25 video formats.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.2.0</title>
@@ -721,8 +833,10 @@
             <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.2.0/Picmal.dmg" length="97478855" type="application/octet-stream" sparkle:edSignature="ptE+z65Vbh2QXP1KV0PfF0syFtqjKgAkK7Am8IPx0MIE8S+vOdS3jlziwTJxljDMEVGbmrr2souKt21hSEv9Bw=="/>
-        <description><![CDATA[<div><ul><li>Support audio formats: MP3, WAV, AAC, M4A, FLAC, OGG, OGA, WMA, OPUS, M4R, AC3, WV, FSSD, AU, SPH, GSRT, CVS, CVSD, CAF, SPX, IRCAM, SND, CVU, VOC, VMS, PRC, AMB, DTS, TTA, 8SVX, DVMS, SNDR, VOX, SD2, HTK, SOU, W64, SLN, TXW, SMP, RA, SNDT, HCOM, FAP, CDDA, PAF, MAUD, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, IMA, PVF.</li>
-<li>Support video formats: MP4, MOV, AVI, MKV, WEBM, FLV, WMV, M4V, MPG, MPEG, 3GP, M2TS, MTS, VOB, ASF, OGV, WTV, TS, MJPEG, M2V, HEVC, F4V, MXF.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Audio formats: MP3, WAV, AAC, M4A, FLAC, OGG, OGA, OPUS, M4R, AC3, WV, AU, CAF, SPX, IRCAM, SND, VOC, DTS, TTA, W64, SLN, HCOM, PAF, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, PVF.</li>
+<li>Video formats: MP4, MOV, AVI, MKV, WEBM, FLV, WMV, M4V, MPG, MPEG, 3GP, M2TS, MTS, VOB, ASF, OGV, WTV, TS, MJPEG, M2V, HEVC, F4V, MXF.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.9</title>
@@ -732,8 +846,10 @@
             <sparkle:shortVersionString>1.1.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.9/Picmal.dmg" length="70320655" type="application/octet-stream" sparkle:edSignature="afn3Xb1cnpX8DqGdRNC+Cods9RfdGeVo6psB05BoS5TK1L7+e84PpjahBY+FpTXXASd3DrJf2/E86jQ1WOiQCw=="/>
-        <description><![CDATA[<div><ul><li>18 new formats now support conversion: JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM,PCX, XBM, XPM, QOI, PSD.</li>
-<li>10 new formats now support compression: BMP, JP2, TGA, JXL, DDS, EXR, PCX, SGI, QOI.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>18 new formats you can convert: JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM, PCX, XBM, XPM, QOI, PSD.</li>
+<li>10 new formats you can compress: BMP, JP2, TGA, JXL, DDS, EXR, PCX, SGI, QOI.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.8</title>
@@ -743,7 +859,9 @@
             <sparkle:shortVersionString>1.1.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.8/Picmal.dmg" length="70490780" type="application/octet-stream" sparkle:edSignature="kYiy9kfWPaRuMhnlGc29d+0Gyuh5/ciMM3PvaWe6LNbO+FMLO84jusAxLrpJKsbRjNi02/43hpd2VtdWgYTPBQ=="/>
-        <description><![CDATA[<div><ul><li>Small fixes</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Small fixes.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.7</title>
@@ -753,7 +871,9 @@
             <sparkle:shortVersionString>1.1.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.7/Picmal.dmg" length="71330283" type="application/octet-stream" sparkle:edSignature="eHEC75kudTJN3PuAcpg2ktePgy19Yc/gELFu0mNEYdGeg434uAVX8BC8Tn7lzacvpa3xmOuqI/uRwxy2M1SwCQ=="/>
-        <description><![CDATA[<div><ul><li>Small fixes</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Small fixes.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.6</title>
@@ -763,7 +883,9 @@
             <sparkle:shortVersionString>1.1.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.6/Picmal.dmg" length="71332812" type="application/octet-stream" sparkle:edSignature="EwNbXP1N9P4B7dp7wltMml8wG2vAewnsvo/4p+067+pVSe1Fbr4CmLot6IUHDEdcukxV4fDpvBDC3P/z8Qw9CQ=="/>
-        <description><![CDATA[<div><ul><li>Fixed a crash that occurred when using the drag-and-drop view.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Fixed a crash in the drag-and-drop view.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.5</title>
@@ -773,11 +895,13 @@
             <sparkle:shortVersionString>1.1.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.5/Picmal.dmg" length="71311629" type="application/octet-stream" sparkle:edSignature="KqhaVJocBVSKPQnkx0KaFYMaKjxnuQ+1zk8Fi6sEBNGjzHYN+ieFBdBoWustpBNhZi6+4OibzbHcqNk+s0MABQ=="/>
-        <description><![CDATA[<div><ul><li>Performance has been improved.</li>
+        <description><![CDATA[<div><ul>
+<li>Faster all around.</li>
 <li>PDFs now convert every page, not just the first one.</li>
-<li>SVG compression is now available.</li>
-<li>I fixed a crash that happened when you dragged and dropped something.</li>
-<li>Compression presets: You can choose from six different compression settings (maximum quality, high quality, balanced, web optimised, social media, maximum compression) or make your own custom settings.</li></ul></div>]]></description>
+<li>You can now compress SVGs.</li>
+<li>Fixed a crash when dragging and dropping files.</li>
+<li>Six compression presets to pick from: maximum quality, high quality, balanced, web optimised, social media, and maximum compression. Or build your own.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.4</title>
@@ -787,7 +911,9 @@
             <sparkle:shortVersionString>1.1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <enclosure url="https://picmal.app/apps/picmal/updates/1.1.4/Picmal.dmg" length="70535416" type="application/octet-stream" sparkle:edSignature="haof3qu4MXsHXYLVFcQ6wVcqBgKkaLHb4JbyWM82JFZp/urQK2UcbS46HmaahRATLmxAq4KRIKw4kbMaR02ADA=="/>
-        <description><![CDATA[<div><ul><li>Enhanced conversion and compression performance.</li></ul></div>]]></description>
+        <description><![CDATA[<div><ul>
+<li>Faster conversion and compression.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.1.3</title>

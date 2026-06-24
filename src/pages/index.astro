@@ -25,9 +25,9 @@ import FeaturedReview from "../components/FeaturedReview.astro";
 import Lead from "../components/Lead.astro";
 import { getEntryUrl, isStandalone } from "../utils/changelog";
 
-const SITE_TITLE = "Convert, Compress & Create Media on Mac | Picmal";
+const SITE_TITLE = "Convert, Compress & Create Media on Your Mac | Picmal";
 const SITE_DESCRIPTION =
-  "Your Mac's media toolkit. Batch convert and compress images, video, and audio, combine PDFs, and turn images into PDFs — all on your Mac. No internet needed, no subscription.";
+  "Your Mac's media toolkit. Batch convert and compress images, video, and audio, combine PDFs, and turn images into PDFs — all offline, no subscription.";
 
 const changelogEntries = await getCollection("changelog");
 const latestRelease = changelogEntries.sort((a, b) =>

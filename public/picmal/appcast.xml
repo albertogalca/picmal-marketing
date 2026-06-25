@@ -3,6 +3,21 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.1</title>
+            <pubDate>Thu, 25 Jun 2026 09:59:06 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>91</sparkle:version>
+            <sparkle:shortVersionString>1.7.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.1/Picmal.dmg" length="121810995" type="application/octet-stream" sparkle:edSignature="1OEvI+/31NUAhqh25k2v6WgcF1BMvY0Dq9Xs7/tN4vJKB9NUv/yjXCewRtVtNzbDbzc4JvRHajZbt9r9DQD8BQ=="/>
+        <description><![CDATA[<div><h3>Bug Fixes</h3>
+<ul>
+<li><strong>The error detail popover no longer balloons to full screen.</strong> On wide displays, it could stretch to fill the window. It now wraps at 280 px.</li>
+<li><strong>Intel tool-launch failures no longer show as a misleading "path issue".</strong> An `` dynamic library error (common on Intel or under Rosetta) was being caught by an overly broad check and turned into a generic "path issue" message. The real error comes through now.</li>
+<li><strong>The file list no longer bleeds into the title bar.</strong> On macOS 15, rows could scroll up behind the traffic-light buttons. The title bar area now stays clean and matches the list.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.0</title>
             <pubDate>Mon, 22 Jun 2026 15:35:03 +0200</pubDate>
             <link>https://picmal.app/</link>

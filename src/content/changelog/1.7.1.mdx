@@ -1,0 +1,14 @@
+---
+version: "1.7.1"
+title: "Small fixes for popovers, Intel, and the title bar"
+description: "The error detail popover stays a sensible size, Intel tool-launch errors report what actually went wrong, and the file list no longer slips behind the traffic-light buttons."
+pubDate: 2026-06-25
+---
+
+A few rough edges smoothed over: a runaway popover, a misleading Intel error message, and a file list that crept into the title bar.
+
+### Bug fixes
+
+- Fixed the error detail popover ballooning to full screen. On wide displays it could stretch to fill the window — it now wraps at a comfortable width.
+- Fixed Intel tool-launch failures showing up as a misleading "path issue". A dynamic library error, common on Intel or under Rosetta, was getting swept into a generic message. You now see the real error instead.
+- Fixed the file list bleeding into the title bar on macOS 15. Rows could scroll up behind the traffic-light buttons — the title bar area now stays clean and matches the list.

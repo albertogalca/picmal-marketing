@@ -1,0 +1,105 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import Lead from "../components/Lead.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+import TrustBar from "../components/TrustBar.astro";
+
+const DMG_URL =
+  "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
+
+const steps = [
+  {
+    title: "Open the disk image",
+    body: "Double-click the downloaded Picmal.dmg and drag Picmal into your Applications folder.",
+  },
+  {
+    title: "Launch Picmal",
+    body: "Open Picmal from Applications. You can look around the whole app for free.",
+  },
+  {
+    title: "Add your license to start converting",
+    body: "The app needs a license to process files. Buy one, paste the key, and you're running in about ten seconds.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Download Picmal for Mac"
+      description="Download Picmal for Mac. Free to install, one payment of $15.99 to unlock. Batch convert and compress images, video, audio, and PDFs, all offline."
+      noindex={true}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <H1 class="mb-6">Download Picmal for Mac</H1>
+        <Lead class="mb-8 max-w-xl mx-auto">
+          The download is free. Install it, look around, see if it fits. Buy a
+          license once for $15.99 and the whole thing is yours. No subscription.
+        </Lead>
+
+        <div class="flex flex-col items-center gap-3">
+          <Button
+            href={DMG_URL}
+            text="Download Picmal (.dmg)"
+            class="w-full sm:w-auto"
+            onclick="posthog.capture('download_dmg')"
+          />
+          <a
+            href="/#pricing"
+            class="inline-flex items-center gap-1.5 text-body-sm text-text-secondary hover:text-text transition-colors rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            or get a license for $15.99
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="mt-6">
+          <TrustBar />
+        </div>
+
+        <p class="mt-6 text-body-sm text-text-secondary">
+          Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel ·
+          14-day money-back guarantee
+        </p>
+      </div>
+
+      <!-- Install steps -->
+      <div class="max-w-6xl mx-auto px-6 mt-16 sm:mt-20">
+        <H2 class="mb-8 text-center">Installing Picmal</H2>
+        <div class="grid md:grid-cols-3 gap-4">
+          {
+            steps.map((step, i) => (
+              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+                <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-body-sm">
+                  {i + 1}
+                </div>
+                <h3 class="font-semibold text-text mb-2">{step.title}</h3>
+                <Paragraph>{step.body}</Paragraph>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      window.lemonSqueezyAffiliateConfig = { store: "cantimplorastudio" };
+    </script>
+    <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+  </body>
+</html>

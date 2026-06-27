@@ -1,0 +1,37 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  label?: string;
+  class?: string;
+}
+
+const {
+  src,
+  poster,
+  label = "Picmal demo",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "rounded-lg sm:rounded-xl overflow-hidden border border-border",
+    className,
+  ]}
+>
+  <div class="aspect-video bg-background-subtle">
+    <video
+      class="w-full h-full object-cover"
+      width="1920"
+      height="1080"
+      poster={poster}
+      src={src}
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      aria-label={label}></video>
+  </div>
+</div>

@@ -14,7 +14,7 @@ const latestRelease = changelogEntries.sort((a, b) =>
   b.data.version.localeCompare(a.data.version, undefined, {
     numeric: true,
     sensitivity: "base",
-  })
+  }),
 )[0];
 
 const softwareVersion = latestRelease?.data.version ?? "1.0.0";
@@ -30,7 +30,7 @@ const productSchema = {
   description:
     "All-in-one media tool for Mac. Batch convert, compress, and create images, videos, audio, and PDF files offline on your Mac.",
   applicationCategory: "MultimediaApplication",
-  operatingSystem: "macOS 15.6 or later",
+  operatingSystem: "macOS 15.0 or later",
   offers: {
     "@type": "Offer",
     price: "15.99",
@@ -61,7 +61,7 @@ const productSchema = {
   fileSize: "25MB",
   installUrl:
     "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg",
-  softwareRequirements: "macOS 15.6 or later",
+  softwareRequirements: "macOS 15.0 or later",
   featureList: [
     "Batch convert images, videos, and audio files",
     "Compress media files without quality loss",

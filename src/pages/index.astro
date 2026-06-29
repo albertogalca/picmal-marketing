@@ -23,7 +23,7 @@ import TrustBar from "../components/TrustBar.astro";
 import PricingSection from "../components/PricingSection.astro";
 import FeaturedReview from "../components/FeaturedReview.astro";
 import Lead from "../components/Lead.astro";
-import { getEntryUrl, isStandalone } from "../utils/changelog";
+import { getEntrySlug } from "../utils/changelog";
 
 const SITE_TITLE = "Convert, Compress & Create Media on Your Mac | Picmal";
 const SITE_DESCRIPTION =
@@ -36,9 +36,7 @@ const latestRelease = changelogEntries.sort((a, b) =>
     sensitivity: "base",
   }),
 )[0];
-const latestReleaseHref = isStandalone(latestRelease)
-  ? getEntryUrl(latestRelease)
-  : `/changelog#v${latestRelease.data.version}`;
+const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
 ---
 
 <html lang="en">

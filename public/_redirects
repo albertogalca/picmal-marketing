@@ -3,6 +3,12 @@
 /convert/png-to-png / 301
 /nofollow / 301
 
+# Changelog consolidation: old per-release pages now live as anchors on /changelog.
+# Placeholder forwards the slug to its in-page anchor; falls back to /changelog
+# if the fragment is dropped, so nothing 404s either way.
+
+/changelog/:slug /changelog#:slug 301
+
 # Blog changelog redirects
 
 /blog/changelog /changelog 301
@@ -10,6 +16,7 @@
 /blog/changelog-v1-0-4 /changelog 301
 /blog/changelog-v1-0-5 /changelog 301
 /blog/changelog-v1-0-6 /changelog 301
+/blog/changelog-v1-0-7 /changelog 301
 /blog/changelog-v1-0-8 /changelog 301
 
 # Docs redirects
@@ -38,6 +45,13 @@
 /convert-heic-to-jpg-mac /convert/heic-to-jpg 301
 
 /media-converter-mac /image-converter-mac 301
+
+# Free tools section removed — forward to the closest converter/compressor page.
+
+/tools/image-format-support-matrix /image-converter-mac 301
+/tools/image-file-size-calculator /compress-images-mac 301
+/tools/image-format-selector /image-converter-mac 301
+/tools / 301
 
 # Normalize trailing slashes to the canonical no-slash URL (trailingSlash: "never").
 # Cloudflare's default normalization is a 307; force a 301 so link equity passes.

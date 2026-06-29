@@ -6,17 +6,30 @@ import FormattedDate from "../components/FormattedDate.astro";
 import H1 from "../components/H1.astro";
 import Paragraph from "../components/Paragraph.astro";
 import { SITE_TITLE } from "../consts";
-import { getCollection } from "astro:content";
-import {
-  getEntryUrl,
-  getEntryDescription,
-  getFirstImage,
-  isStandalone,
-  sortEntries,
-} from "../utils/changelog";
+import { getCollection, render } from "astro:content";
+import { getEntrySlug, sortEntries } from "../utils/changelog";
 import "../styles/global.css";
 
 const entries = sortEntries(await getCollection("changelog"));
+
+// Render every release's full notes inline so /changelog is the single
+// scrollable source of truth (CleanShot/Linear style).
+const rows = await Promise.all(
+  entries.map(async (entry) => {
+    const { Content } = await render(entry);
+    const version = entry.data.version;
+    return {
+      version,
+      slug: getEntrySlug(entry),
+      title: entry.data.title ?? `Version ${version}`,
+      pubDate: entry.data.pubDate,
+      Content,
+      downloadUrl: `https://github.com/albertogalca/picmal-releases/releases/download/v${version}/Picmal.dmg`,
+      hasDownload:
+        version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0,
+    };
+  }),
+);
 
 const latestVersion = entries[0]?.data.version ?? "1.0.0";
 
@@ -29,23 +42,6 @@ const softwareSchema = {
   softwareVersion: latestVersion,
   url: "https://picmal.app/changelog",
 };
-
-const rows = entries.map((entry) => {
-  const standalone = isStandalone(entry);
-  const version = entry.data.version;
-  return {
-    version,
-    title: entry.data.title ?? `Version ${version}`,
-    pubDate: entry.data.pubDate,
-    summary: getEntryDescription(entry),
-    standalone,
-    url: standalone ? getEntryUrl(entry) : `/changelog#v${version}`,
-    image: getFirstImage(entry),
-    downloadUrl: `https://github.com/albertogalca/picmal-releases/releases/download/v${version}/Picmal.dmg`,
-    hasDownload:
-      version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0,
-  };
-});
 ---
 
 <!doctype html>
@@ -66,7 +62,7 @@ const rows = entries.map((entry) => {
           "@type": "ListItem",
           position: i + 1,
           name: `Picmal v${row.version} - ${row.title}`,
-          url: `https://picmal.app${row.url}`,
+          url: `https://picmal.app/changelog#${row.slug}`,
         })),
       })}
     />
@@ -121,125 +117,79 @@ const rows = entries.map((entry) => {
       </div>
 
       <div class="max-w-3xl mx-auto px-6 pb-20">
-        <ul class="flex flex-col">
-          {
-            rows.map((row) => (
-              <li
-                id={`v${row.version}`}
-                class="scroll-mt-28 border-t border-border first:border-t-0"
-              >
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 py-6">
-                  {/* Left: metadata */}
-                  <div class="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:w-[140px] sm:shrink-0 sm:pt-0.5">
-                    {row.pubDate && (
-                      <span class="text-body-sm text-text-secondary order-2 sm:order-1">
-                        <FormattedDate date={row.pubDate} />
-                      </span>
-                    )}
-                    <span class="inline-block text-caption font-mono px-2 py-1 rounded-md bg-accent/10 text-accent order-1 sm:order-2">
-                      v{row.version}
-                    </span>
-                    {row.hasDownload && (
-                      <a
-                        href={row.downloadUrl}
-                        class="flex items-center gap-1.5 text-body-sm text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent order-3"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                          <polyline points="7 10 12 15 17 10" />
-                          <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
-                        Download
-                      </a>
-                    )}
-                  </div>
+        {
+          rows.map((row) => (
+            <article
+              id={row.slug}
+              class="scroll-mt-28 border-t border-border first:border-t-0 py-10 first:pt-0"
+            >
+              {/* version anchor preserved for legacy #v<version> deep links */}
+              <span id={`v${row.version}`} class="block scroll-mt-28" />
 
-                  {/* Right: image + title + summary */}
-                  <div class="flex-1">
-                    {row.image &&
-                      (row.standalone ? (
-                        <a
-                          href={row.url}
-                          aria-hidden="true"
-                          tabindex="-1"
-                          class="group/img block mb-4"
-                        >
-                          <img
-                            src={row.image.src}
-                            alt={row.image.alt}
-                            loading="lazy"
-                            decoding="async"
-                            class="w-full max-h-72 object-cover object-top border border-border transition-opacity duration-200 group-hover/img:opacity-90"
-                          />
-                        </a>
-                      ) : (
-                        <img
-                          src={row.image.src}
-                          alt={row.image.alt}
-                          loading="lazy"
-                          decoding="async"
-                          class="w-full max-h-72 object-cover object-top border border-border mb-4"
-                        />
-                      ))}
-                    {row.standalone ? (
-                      <a
-                        href={row.url}
-                        class="group inline-block rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-8">
+                {/* Left: metadata */}
+                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:w-[140px] sm:shrink-0 sm:pt-1">
+                  {row.pubDate && (
+                    <span class="text-body-sm text-text-secondary order-2 sm:order-1">
+                      <FormattedDate date={row.pubDate} />
+                    </span>
+                  )}
+                  <span class="inline-block text-caption font-mono px-2 py-1 rounded-md bg-accent/10 text-accent order-1 sm:order-2">
+                    v{row.version}
+                  </span>
+                  {row.hasDownload && (
+                    <a
+                      href={row.downloadUrl}
+                      class="flex items-center gap-1.5 text-body-sm text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent order-3"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
                       >
-                        <h2 class="text-body-lg font-semibold text-text mb-1.5 transition-colors duration-200 group-hover:text-accent">
-                          {row.title}
-                        </h2>
-                      </a>
-                    ) : (
-                      <h2 class="text-body-lg font-semibold text-text mb-1.5">
-                        {row.title}
-                      </h2>
-                    )}
-                    <p class="text-body-sm text-text/65 leading-relaxed">
-                      {row.summary}
-                    </p>
-                    {row.standalone && (
-                      <a
-                        href={row.url}
-                        aria-label={`Read more about ${row.title}`}
-                        class="group inline-flex items-center gap-1 text-body-sm text-accent mt-2 font-medium rounded-sm hover:text-accent-dark transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                      >
-                        Read more
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                          class="transition-transform duration-200 motion-safe:group-hover:translate-x-0.5"
-                        >
-                          <path d="M5 12h14" />
-                          <path d="m12 5 7 7-7 7" />
-                        </svg>
-                      </a>
-                    )}
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Download
+                    </a>
+                  )}
+                </div>
+
+                {/* Right: title + full release notes */}
+                <div class="flex-1 min-w-0">
+                  <h2 class="text-body-lg font-semibold text-text text-balance mb-3">
+                    <a
+                      href={`#${row.slug}`}
+                      class="rounded-sm hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      {row.title}
+                    </a>
+                  </h2>
+                  <div
+                    class="prose max-w-none
+                      prose-headings:text-text prose-headings:font-semibold
+                      prose-p:text-text/65 prose-p:leading-relaxed
+                      prose-strong:text-text
+                      prose-ul:text-text/65
+                      prose-ol:text-text/65
+                      prose-li:text-text/65
+                      prose-img:rounded-none prose-img:border prose-img:border-border"
+                  >
+                    <row.Content />
                   </div>
                 </div>
-              </li>
-            ))
-          }
-        </ul>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </main>
 

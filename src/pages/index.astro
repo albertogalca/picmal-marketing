@@ -165,7 +165,13 @@ const latestReleaseHref = isStandalone(latestRelease)
       <MasonryTestimonials />
     </section>
 
-    <section id="featured" class="relative z-10">
+    {/* ponytail: visually hidden but kept in DOM so reciprocal badge links stay crawlable. Don't use `hidden`/display:none — that drops the links. */}
+    <section
+      id="featured"
+      class="absolute w-px h-px overflow-hidden -m-px p-0 border-0"
+      style="clip:rect(0 0 0 0); clip-path:inset(50%)"
+      aria-hidden="true"
+    >
       <FeaturedOn />
     </section>
 

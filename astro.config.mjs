@@ -14,11 +14,12 @@ const noindexConvertUrls = new Set(
     .map((c) => `https://picmal.app/convert/${c.slug}`),
 );
 
-// Legal pages are noindexed (see meta.noindex in each); keep them out of the sitemap too.
+// Noindexed standalone pages (see meta.noindex in each); keep them out of the sitemap too.
 const noindexLegalUrls = new Set([
   "https://picmal.app/terms",
   "https://picmal.app/privacy",
   "https://picmal.app/legal/open-source",
+  "https://picmal.app/download",
 ]);
 
 export default defineConfig({

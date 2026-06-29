@@ -182,11 +182,19 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
 
     <SectionDivider />
 
-    <section id="testimonials" class="relative z-10">
-      <MasonryTestimonials />
+    <!-- Pricing -->
+    <section
+      id="pricing"
+      class="relative z-10 px-6 py-20 bg-background-subtle/50 border-y border-border"
+    >
+      <PricingSection />
     </section>
 
     <SectionDivider />
+
+    <section id="testimonials" class="relative z-10">
+      <MasonryTestimonials />
+    </section>
 
     <section
       id="featured"
@@ -195,14 +203,6 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
       aria-hidden="true"
     >
       <FeaturedOn />
-    </section>
-
-    <!-- Pricing -->
-    <section
-      id="pricing"
-      class="relative z-10 px-6 py-20 bg-background-subtle/50 border-y border-border"
-    >
-      <PricingSection />
     </section>
 
     <!-- FAQ Section -->

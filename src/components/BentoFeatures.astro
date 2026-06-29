@@ -8,11 +8,11 @@ import rawSampleBeach from "../assets/raw-sample-beach.jpg";
 
 // Shared styles
 const card =
-  "relative bg-background-subtle rounded-2xl border border-border overflow-hidden";
+  "relative bg-background-subtle rounded-xl border border-border overflow-hidden";
 const eyebrow = "text-small text-text-secondary mb-2";
 const blockTitle = "text-h3 text-text text-balance";
 // Screenshot that bleeds into a corner on desktop, stacks below text on mobile
-const cornerImg = "rounded-lg lg:rounded-tl-lg shadow-sm w-full h-auto";
+const cornerImg = "rounded-xl lg:rounded-tl-xl shadow-sm w-full h-auto";
 
 // Sample EXIF fields shown in the Metadata close-up panel
 const metadataRows: [string, string][] = [
@@ -27,8 +27,8 @@ const metadataRows: [string, string][] = [
 ];
 ---
 
-<section id="features" class="relative z-10 px-6 py-24">
-  <div class="max-w-6xl mx-auto">
+<section id="features" class="relative z-10 px-6 xl:px-0 py-24">
+  <div class="max-w-7xl mx-auto">
     <!-- Intro -->
     <div class="text-center mb-20">
       <H2 class="mb-4">What Picmal actually does</H2>
@@ -139,7 +139,7 @@ const metadataRows: [string, string][] = [
               <div class="relative h-40 w-64 translate-y-5" aria-hidden="true">
                 <!-- RAW photo — tree (left) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[86%] -rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[86%] -rotate-[8deg] overflow-hidden rounded-xl shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-28 w-full object-cover"
@@ -149,13 +149,13 @@ const metadataRows: [string, string][] = [
                     sizes="144px"
                   />
                   <span
-                    class="absolute left-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
+                    class="absolute left-2 top-2 rounded-xl bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
                     >RAW</span
                   >
                 </div>
                 <!-- RAW photo — beach (right) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[14%] rotate-[8deg] overflow-hidden rounded-lg shadow-lg ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute bottom-0 left-1/2 z-10 w-36 origin-bottom -translate-x-[14%] rotate-[8deg] overflow-hidden rounded-xl shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-28 w-full object-cover"
@@ -165,30 +165,30 @@ const metadataRows: [string, string][] = [
                     sizes="144px"
                   />
                   <span
-                    class="absolute right-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
+                    class="absolute right-2 top-2 rounded-xl bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
                     >RAW</span
                   >
                 </div>
                 <!-- PDF page (center, on top, lifted to crown the fan) -->
                 <div
-                  class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-xl bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute top-4 left-3.5 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ const metadataRows: [string, string][] = [
               class="-mb-10 lg:mb-0 lg:p-0 lg:absolute lg:top-1/2 lg:left-0 lg:w-[65%] lg:-translate-x-30 lg:-translate-y-1/2"
             >
               <video
-                class={`theme-video ${cornerImg} aspect-video ring-1 ring-inset ring-black/10 dark:ring-white/10 lg:rounded-tr-2xl lg:rounded-tl-none`}
+                class={`theme-video ${cornerImg} aspect-video ring-1 ring-inset ring-black/10 dark:ring-white/10 lg:rounded-tr-xl lg:rounded-tl-none`}
                 data-light-src="/compress.mp4"
                 data-dark-src="/compress_dark.mp4"
                 autoplay
@@ -256,56 +256,56 @@ const metadataRows: [string, string][] = [
               <!-- Source stack — fans wider, then gathers on hover (staggered) -->
               <div class="relative h-44 w-36">
                 <div
-                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 rotate-[4deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
@@ -326,22 +326,22 @@ const metadataRows: [string, string][] = [
               <!-- Result — one merged PDF, settles in on hover -->
               <div class="relative h-44 w-32">
                 <div
-                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-2 ring-red-500/25"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-xl bg-white shadow-lg ring-2 ring-red-500/25"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
@@ -364,7 +364,7 @@ const metadataRows: [string, string][] = [
               <!-- Source — photo thumbs, fan in and gather on hover (staggered) -->
               <div class="relative h-24 md:h-44 w-36">
                 <div
-                  class="absolute inset-0 m-auto h-16 md:h-28 w-20 md:w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-16 md:h-28 w-20 md:w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-xl shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-full w-full object-cover"
@@ -375,11 +375,11 @@ const metadataRows: [string, string][] = [
                   />
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-16 md:h-28 w-20 md:w-36 rotate-[4deg] overflow-hidden rounded-lg bg-gradient-to-br from-sky-300 to-indigo-400 shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-16 md:h-28 w-20 md:w-36 rotate-[4deg] overflow-hidden rounded-xl bg-gradient-to-br from-sky-300 to-indigo-400 shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-16 md:h-28 w-20 md:w-36 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-16 md:h-28 w-20 md:w-36 translate-x-5 rotate-[14deg] overflow-hidden rounded-xl shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <Image
                     class="h-full w-full object-cover"
@@ -406,44 +406,44 @@ const metadataRows: [string, string][] = [
               <!-- Result — multi-page PDF, pages fan out on hover -->
               <div class="relative h-24 md:h-44 w-32">
                 <div
-                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <div class="space-y-2 px-3.5 pt-8 pb-4">
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[10%] -rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[10%] -rotate-[4deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <div class="space-y-2 px-3.5 pt-8 pb-4">
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
                 <div
-                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
+                  class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
                     class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
-                    <span class="block h-1.5 w-10 rounded-full bg-red-500/80"
+                    <span class="block h-1.5 w-10 rounded-xl bg-red-500/80"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-full rounded-full bg-neutral-200"
+                    <span class="block h-1 w-full rounded-xl bg-neutral-200"
                     ></span>
-                    <span class="block h-1 w-3/4 rounded-full bg-neutral-200"
+                    <span class="block h-1 w-3/4 rounded-xl bg-neutral-200"
                     ></span>
                   </div>
                 </div>
@@ -504,7 +504,7 @@ const metadataRows: [string, string][] = [
                 />
                 <!-- macOS-style count badge -->
                 <span
-                  class="absolute -top-1.5 -right-2 px-1.5 py-px rounded-full bg-red-500 text-white text-small font-semibold leading-tight tracking-tight ring-[1.5px] ring-white tabular-nums"
+                  class="absolute -top-1.5 -right-2 px-1.5 py-px rounded-xl bg-red-500 text-white text-small font-semibold leading-tight tracking-tight ring-[1.5px] ring-white tabular-nums"
                   >1,248</span
                 >
               </div>
@@ -525,7 +525,7 @@ const metadataRows: [string, string][] = [
               <div class="relative w-full max-w-[300px] -translate-x-2">
                 <!-- Back card — compress, peeks above and rises further on hover -->
                 <Image
-                  class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-lg shadow-lg"
+                  class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-xl shadow-lg"
                   src="/schedule_compress.png"
                   width={733}
                   height={314}
@@ -533,7 +533,7 @@ const metadataRows: [string, string][] = [
                 />
                 <!-- Front card — convert -->
                 <Image
-                  class="relative w-full h-auto rounded-lg shadow-xl"
+                  class="relative w-full h-auto rounded-xl shadow-xl"
                   src="/schedule_convert.png"
                   width={751}
                   height={332}
@@ -613,14 +613,14 @@ const metadataRows: [string, string][] = [
               class="px-6 pb-6 lg:p-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[60%] lg:translate-x-8 lg:translate-y-10"
             >
               <Image
-                class="rounded-lg lg:rounded-tl-lg w-full h-auto block dark:hidden"
+                class="rounded-xl lg:rounded-tl-xl w-full h-auto block dark:hidden"
                 src="/preferences.png"
                 width={800}
                 height={500}
                 alt="Picmal presets and settings"
               />
               <Image
-                class="rounded-lg lg:rounded-tl-lg w-full h-auto hidden dark:block"
+                class="rounded-xl lg:rounded-tl-xl w-full h-auto hidden dark:block"
                 src="/preferences_dark.png"
                 width={800}
                 height={500}
@@ -648,7 +648,7 @@ const metadataRows: [string, string][] = [
                 >
                 <!-- Position selector — bottom-right anchor active -->
                 <div
-                  class="absolute top-2.5 left-2.5 grid grid-cols-3 gap-[3px] rounded-md bg-black/35 p-1.5 ring-1 ring-white/15 backdrop-blur-sm"
+                  class="absolute top-2.5 left-2.5 grid grid-cols-3 gap-[3px] rounded-xl bg-black/35 p-1.5 ring-1 ring-white/15 backdrop-blur-sm"
                   aria-hidden="true"
                 >
                   {
@@ -751,7 +751,7 @@ const metadataRows: [string, string][] = [
                   title="Raycast — coming soon"
                 />
                 <span
-                  class="absolute -top-2 -right-2 px-1.5 py-0.5 text-small font-semibold leading-none rounded-full bg-accent text-white ring-2 ring-background-subtle"
+                  class="absolute -top-2 -right-2 px-1.5 py-0.5 text-small font-semibold leading-none rounded-xl bg-accent text-white ring-2 ring-background-subtle"
                   >Soon</span
                 >
                 <span class="sr-only">Coming soon</span>
@@ -769,7 +769,7 @@ const metadataRows: [string, string][] = [
               </Paragraph>
               <a
                 href="/docs/cli"
-                class="group/cli mt-4 inline-flex items-center gap-1 text-body font-medium text-accent hover:text-accent/80 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                class="group/cli mt-4 inline-flex items-center gap-1 text-body font-medium text-accent hover:text-accent/80 transition-colors rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
               >
                 Read the docs
                 <span aria-hidden="true">&rarr;</span>
@@ -979,7 +979,7 @@ const metadataRows: [string, string][] = [
     <div class="text-center mt-20">
       <a
         href="/docs"
-        class="group inline-flex items-center gap-1 text-body text-text-secondary hover:text-text transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        class="group inline-flex items-center gap-1 text-body text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         Learn more in the docs
         <span aria-hidden="true">&rarr;</span>

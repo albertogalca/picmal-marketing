@@ -4,12 +4,14 @@
     "name": "Marynes",
     "image": "/avatars/marynes.jpg",
     "content": "Clean and easy to use. Perfect for quickly converting images without unnecessary extras.",
+    "highlight": "Clean and easy to use",
     "date": "Sep 16, 2025"
   },
   {
     "id": 2,
     "name": "Anthony Nguyen",
     "content": "Everything works as expected - great app!",
+    "highlight": "great app!",
     "date": "Sep 15, 2025",
     "image": "/avatars/a_van_nguyen_gmail_com.jpg"
   },
@@ -17,6 +19,7 @@
     "id": 4,
     "name": "Beckett R",
     "content": "Great app! Simple and easy to use.",
+    "highlight": "Simple and easy to use",
     "date": "Sep 7, 2025",
     "link": "https://albertogalca.gumroad.com/l/picmal",
     "image": "/avatars/beckettreynolds32_icloud_com.jpg"
@@ -26,6 +29,7 @@
     "name": "7107Labs",
     "image": "https://styles.redditmedia.com/t5_egkh2/styles/profileIcon_r7riy8yyehzb1.jpg?width=64&height=64&frame=1&auto=webp&crop=64%3A64%2Csmart&s=b9a49293569935c45551cdcff2cb1b16fdf950c9",
     "content": "It works perfectly now! Thanks and good work. It's really the kind of utility that I find very useful. I know that there are tons of free online tools doing the same thing but it's so much faster that way.",
+    "highlight": "so much faster",
     "date": "Jun 29, 2025",
     "link": "https://www.reddit.com/r/macapps/comments/1lyjr1i/comment/n301vlk/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button"
   },
@@ -33,6 +37,7 @@
     "id": 6,
     "name": "River Sloane",
     "content": "Wonderfully simple app! I struggled with converting my images from one format to another constantly with online free tools. Picmal makes it effortless. Worth the money to avoid the hassle for sure!",
+    "highlight": "Picmal makes it effortless",
     "date": "Nov 24, 2025",
     "image": "/avatars/river_helpdocs_io.jpg"
   },
@@ -42,12 +47,14 @@
     "publication": "MacStories",
     "logo": "/macstories_proof.webp",
     "content": "Picmal is an excellent way to manage file conversion and compression jobs of any size. There are other apps that accomplish something similar, but the simplicity and speed with which you can manage batch conversion and compression with Picmal sets it apart and makes it worth checking out.",
+    "highlight": "the simplicity and speed",
     "link": "https://www.macstories.net/reviews/picmal-streamlines-batch-conversion-and-compression-on-the-mac/"
   },
   {
     "id": 8,
     "name": "Gianluca Savini",
     "content": "You did a great job here! I like how easy Picmal is to use, and the frequent upgrades show that you are very committed to improving this beautiful software.",
+    "highlight": "easy Picmal is to use",
     "date": "Dec 1, 2025",
     "image": "/avatars/gianlucasavini_gmail_com.jpg"
   },
@@ -55,6 +62,7 @@
     "id": 9,
     "name": "Rob H",
     "content": "It's a Mac-assed Mac App. Focused, customizable, flexible, well designed and super fast. 10+ times a day I need to convert a file for use on a website. Picmal makes that process a joy. My favorite conversion is taking a multipage PDF and converting each page to an individual image with one click (something even Preview can't do). ",
+    "highlight": "Picmal makes that process a joy",
     "date": "Jan 9, 2026",
     "image": "/avatars/rmjh_me_com.jpg"
   },
@@ -63,6 +71,7 @@
     "name": "limboy",
     "image": "/limboy-testimonial.png",
     "content": "I really like these kinds of tools: simple interface, focused functions, one-time purchase, and continuous updates.",
+    "highlight": "simple interface, focused functions",
     "link": "https://35mm.coffee/tweets/vfoq182b71777v4",
     "date": "Jan 10, 2026"
   },
@@ -71,6 +80,7 @@
     "name": "@imnogeekAJ",
     "image": "/avatars/imnogeekaj.jpg",
     "content": "Been enjoying the app! Thanks for the very handy utility.",
+    "highlight": "very handy utility",
     "link": "https://x.com/imnogeekAJ/status/2024192689349308780",
     "date": "Feb 18, 2026"
   },
@@ -78,6 +88,7 @@
     "id": 12,
     "name": "Alessandro Bonini",
     "content": "I f* love this app. Just so you know. Keep building!",
+    "highlight": "love this app",
     "date": "Feb 18, 2026",
     "image": "/avatars/boniz_ale_gmail_com.jpg"
   },
@@ -86,12 +97,14 @@
     "name": "Charles Willson",
     "email": "charles.willson@gmail.com",
     "content": "I like the interface. I like the batch processing. I like the fact in the I can set default conversions. I like your program a lot.",
+    "highlight": "batch processing",
     "date": "Feb 21, 2026"
   },
   {
     "id": 14,
     "name": "Yiannis",
     "content": "I like the quality of the image processing. It also supports all the important image files. But it still needs some work regarding both the UI and the UX design of it.",
+    "highlight": "quality of the image processing",
     "date": "Feb 21, 2026",
     "image": "/avatars/porcupine_porcupine_gr.jpg"
   },
@@ -100,12 +113,14 @@
     "name": "George",
     "email": "gzagas@gmail.com",
     "content": "I love how Picmal's made compressing videos a frictionless, easy and straightforward.",
+    "highlight": "frictionless, easy and straightforward",
     "date": "Feb 22, 2026"
   },
   {
     "id": 16,
     "name": "Adam L",
     "content": "It's simple to use and does everything I need it to do. Hell, it does much more than I need and the developer keeps adding features :) ",
+    "highlight": "does everything I need it to do",
     "date": "Mar 4, 2026",
     "image": "/avatars/adamjlea_gmail_com.jpg"
   },
@@ -114,6 +129,7 @@
     "name": "Trevor",
     "email": "trevor_arnold@me.com",
     "content": "I love the app! I use it 4-5 days a week for audio and image conversion as I tag and add missing album artwork to my library of 70,000 songs. After that is done, I would like to try it out with my Blu-ray collection on Plex. I truly appreciate the hard work that goes into creating and frequently updating an app such as this. All the best!",
+    "highlight": "I love the app!",
     "date": "Mar 14, 2026"
   },
   {
@@ -121,6 +137,7 @@
     "name": "Abadi",
     "email": "abadizoom@gmail.com",
     "content": "The program is very simple and practical, and its options are clear.",
+    "highlight": "very simple and practical",
     "date": "Apr 16, 2026"
   },
   {
@@ -128,6 +145,7 @@
     "name": "Marie-Theres",
     "email": "mthtschiersch@t-online.de",
     "content": "I use Picmal to convert images. It works perfectly. I can just leave the Picmal window open on my desktop. Whenever I want to convert an image, I drag the file onto the window and click “convert”—and seconds later, the converted file is in the appropriate folder with the suffix “converted.” It couldn’t be easier or more hassle-free!",
+    "highlight": "It works perfectly",
     "date": "May 21, 2026"
   },
   {
@@ -135,12 +153,14 @@
     "name": "Daniel Hewitt",
     "email": "dan.hew@me.com",
     "content": "Thoughtful, polished, and constantly improving. Alberto genuinely listens to feedback, and it shows in Picmal. Easy 5 stars.",
+    "highlight": "Thoughtful, polished, and constantly improving",
     "date": "May 26, 2026"
   },
   {
     "id": 21,
     "name": "Joel",
     "content": "I feel Picmal is one of the apps that I would categorize as essential. There are many features that distinguish the app from other web converters such as Folder Watching and Clipboard Optimization.",
+    "highlight": "categorize as essential",
     "date": "May 28, 2026",
     "image": "/avatars/joeljuliusk22_gmail_com.jpg"
   },
@@ -149,6 +169,7 @@
     "name": "Aj",
     "email": "k78hywg@gmail.com",
     "content": "Picmal is simple and fast but also integrates complex workloads if needed.",
+    "highlight": "simple and fast",
     "date": "May 28, 2026"
   },
   {
@@ -156,6 +177,7 @@
     "name": "Gianfri",
     "email": "gtotero@gmail.com",
     "content": "Picmal is complete. The quality is good, and it does exactly what I need.",
+    "highlight": "exactly what I need",
     "date": "May 31, 2026"
   },
   {
@@ -163,6 +185,7 @@
     "name": "Sem",
     "email": "semih@gnidoc.com",
     "content": "Easy to use, automation & batch processing. AVIF & Webp support",
+    "highlight": "automation & batch processing",
     "date": "Jun 3, 2026"
   },
   {
@@ -172,6 +195,7 @@
     "image": "/avatars/rubens_nook.jpg",
     "link": "https://www.youtube.com/@RubensNook",
     "content": "I convert MP4s to MP3s almost every day. Picmal makes it stupidly simple, and I haven't touched a sketchy online converter since.",
+    "highlight": "stupidly simple",
     "date": "Jun 5, 2026"
   },
   {
@@ -179,6 +203,7 @@
     "name": "J Koh",
     "email": "wingedsealion@gmail.com",
     "content": "keep up the great work!  Very cool tool you've built here.",
+    "highlight": "Very cool tool",
     "date": "Jun 5, 2026"
   },
   {
@@ -186,6 +211,7 @@
     "name": "Henry Halem",
     "email": "hhalem@glassnotes.com",
     "content": "Working on a presentation and had to convert and resize a lot of images. Picmal did them all in a flash.",
+    "highlight": "in a flash",
     "date": "Jun 16, 2026"
   },
   {
@@ -193,6 +219,7 @@
     "name": "Ian",
     "email": "ian@henghes.com",
     "content": "Simple and powerful is a combination that is hard to get right. Picmal nails it! I find image presets particularly useful. Set it up and then just drag and drop to resize and convert.",
+    "highlight": "Simple and powerful",
     "date": "Jun 28, 2026"
   },
   {
@@ -200,6 +227,7 @@
     "name": "Carlos",
     "email": "crlosada@gmail.com",
     "content": "Me ha sosprendido la compresion que realiza el programa y si apreciar la calidad.",
+    "highlight": "la compresion que realiza",
     "date": "Jun 29, 2026"
   }
 ]

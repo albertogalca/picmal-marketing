@@ -46,7 +46,7 @@ const {
   href={href}
   target={external ? "_blank" : undefined}
   rel={external ? "noopener noreferrer" : undefined}
-  class="inline-flex items-center gap-2 rounded-full py-1.5 pl-2 pr-4 border transition-all no-underline"
+  class="inline-flex items-center gap-2 rounded-xl py-1.5 pl-2 pr-4 border transition-all no-underline"
   style={`border-color: ${color}4d; background-color: ${color}1a;`}
   onmouseover={`this.style.backgroundColor='${color}33'; this.style.borderColor='${color}80';`}
   onmouseout={`this.style.backgroundColor='${color}1a'; this.style.borderColor='${color}4d';`}
@@ -54,7 +54,7 @@ const {
   {
     badge && (
       <span
-        class="px-2.5 py-0.5 rounded-full text-white text-small font-semibold uppercase tracking-wide whitespace-nowrap"
+        class="px-2.5 py-0.5 rounded-xl text-white text-small font-semibold uppercase tracking-wide whitespace-nowrap"
         style={`background-color: ${color};`}
       >
         {badge}
@@ -85,7 +85,7 @@ const {
   {
     promoCode && (
       <span
-        class="px-2 py-0.5 rounded text-small font-semibold font-mono tracking-wider bg-background-subtle border border-dashed"
+        class="px-2 py-0.5 rounded-xl text-small font-semibold font-mono tracking-wider bg-background-subtle border border-dashed"
         style={`border-color: ${color}80; color: ${color};`}
       >
         {promoCode}

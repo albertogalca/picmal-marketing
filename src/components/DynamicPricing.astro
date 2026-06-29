@@ -28,7 +28,7 @@ const pricingTiers = [
 ];
 ---
 
-<div class="bg-background-subtle rounded-lg p-4 md:p-8 border border-border">
+<div class="bg-background-subtle rounded-xl p-4 md:p-8 border border-border">
   <div class="mb-8">
     <!-- Title -->
     <H3 class="mb-6">Select number of devices</H3>
@@ -49,7 +49,7 @@ const pricingTiers = [
           <div class="flex items-center gap-2">
             <button
               id="decrease-devices"
-              class="w-7 h-7 rounded bg-background hover:bg-background-subtle border border-border hover:border-border/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              class="w-7 h-7 rounded-xl bg-background hover:bg-background-subtle border border-border hover:border-border/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Decrease number of devices"
             >
               <svg
@@ -67,17 +67,18 @@ const pricingTiers = [
             </button>
 
             <div
-              class="flex items-center justify-center min-w-[85px] h-7 rounded border border-border bg-background px-2.5"
+              class="flex items-center justify-center min-w-[85px] h-7 rounded-xl border border-border bg-background px-2.5"
             >
               <span id="device-count" class="text-body font-semibold">1</span>
-              <span class="ml-1.5 text-small text-text-secondary" id="device-label"
-                >device</span
+              <span
+                class="ml-1.5 text-small text-text-secondary"
+                id="device-label">device</span
               >
             </div>
 
             <button
               id="increase-devices"
-              class="w-7 h-7 rounded bg-background hover:bg-background-subtle border border-border hover:border-border/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              class="w-7 h-7 rounded-xl bg-background hover:bg-background-subtle border border-border hover:border-border/20 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Increase number of devices"
             >
               <svg
@@ -184,7 +185,12 @@ const pricingTiers = [
     </ul>
 
     <!-- CTA Button -->
-    <Button id="buy-button" text="Buy for Mac" class="w-full mt-6" onclick="posthog.capture('buy_clicked')" />
+    <Button
+      id="buy-button"
+      text="Purchase for Mac"
+      class="w-full mt-6"
+      onclick="posthog.capture('buy_clicked')"
+    />
 
     <script define:vars={{ pricingTiers }}>
       // Initialize state

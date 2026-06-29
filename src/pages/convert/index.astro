@@ -59,7 +59,7 @@ const groupedBySource = formatKeys.map((key) => ({
             groupedBySource.map((group) => (
               <section>
                 <div class="flex items-center gap-3 mb-2">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-small font-mono font-medium text-text">
+                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text">
                     .{group.format.extension}
                   </span>
                   <H2 class="text-h3">
@@ -73,7 +73,7 @@ const groupedBySource = formatKeys.map((key) => ({
                   {group.conversions.map((c) => (
                     <a
                       href={`/convert/${c.slug}`}
-                      class="group bg-background-subtle/50 border border-border rounded-lg p-4 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      class="group bg-background-subtle/50 border border-border rounded-xl p-4 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                     >
                       <div class="flex items-center gap-2 mb-1">
                         <span class="text-small font-mono text-text-secondary">

@@ -51,7 +51,7 @@ const posts = (await getCollection("blog"))
               <article class="group h-full">
                 <a
                   href={`/blog/${post.id}`}
-                  class="flex flex-col h-full bg-background-subtle rounded-lg border border-border overflow-hidden hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
+                  class="flex flex-col h-full bg-background-subtle rounded-xl border border-border overflow-hidden hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
                 >
                   <div class="relative aspect-video overflow-hidden bg-background">
                     <Image
@@ -64,7 +64,7 @@ const posts = (await getCollection("blog"))
                   </div>
                   <div class="p-4 flex flex-col flex-1">
                     <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
-                      <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+                      <span class="px-2 py-1 bg-accent/10 text-accent rounded-xl font-medium">
                         Guide
                       </span>
                       <span>•</span>

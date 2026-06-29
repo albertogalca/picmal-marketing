@@ -124,7 +124,7 @@ const faqSchema = {
           <!-- Format badge -->
           <div class="flex items-center justify-center gap-3 mb-8">
             <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
             >
               .{from.extension}
             </span>
@@ -141,7 +141,7 @@ const faqSchema = {
                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
             <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
             >
               .{to.extension}
             </span>
@@ -381,7 +381,7 @@ const faqSchema = {
             <div class="bg-background p-6 md:p-8">
               <div class="flex items-center gap-3 mb-4">
                 <span
-                  class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
+                  class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
                   >.{from.extension}</span
                 >
                 <h3 class="font-semibold text-text">{from.name}</h3>
@@ -404,7 +404,7 @@ const faqSchema = {
             <div class="bg-background p-6 md:p-8">
               <div class="flex items-center gap-3 mb-4">
                 <span
-                  class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
+                  class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
                   >.{to.extension}</span
                 >
                 <h3 class="font-semibold text-text">{to.name}</h3>
@@ -504,7 +504,7 @@ const faqSchema = {
                   {fromCompress && (
                     <a
                       href={`/compress/${fromCompress.slug}`}
-                      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
                     >
                       <span class="font-mono text-small text-text-secondary">
                         .{fromCompress.format}
@@ -515,7 +515,7 @@ const faqSchema = {
                   {toCompress && (
                     <a
                       href={`/compress/${toCompress.slug}`}
-                      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                      class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
                     >
                       <span class="font-mono text-small text-text-secondary">
                         .{toCompress.format}
@@ -537,7 +537,7 @@ const faqSchema = {
               related.map((r) => (
                 <a
                   href={`/convert/${r.slug}`}
-                  class="group bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
+                  class="group bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
                 >
                   <div class="flex items-center justify-center gap-2">
                     <span class="text-small font-mono text-text-secondary">
@@ -589,7 +589,7 @@ const faqSchema = {
                 </Paragraph>
                 <a
                   href={`/blog/${blogGuide.slug}`}
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
                 >
                   Read: {blogGuide.title} &rarr;
                 </a>

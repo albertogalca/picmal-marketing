@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 // Email capture for non-buyers → Loops (source: Newsletter), via the picmal-loops-worker
 // /subscribe route. Builds an audience we can segment for cross-promo (e.g. Cozy).
 //
@@ -28,14 +30,9 @@ const SUBSCRIBE_ENDPOINT =
       required
       autocomplete="email"
       placeholder="you@example.com"
-      class="min-w-0 flex-1 rounded-lg border border-border bg-background px-3 py-2 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      class="min-w-0 flex-1 rounded-xl border border-border bg-background px-3 py-2 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     />
-    <button
-      type="submit"
-      class="inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-body font-semibold text-white transition-[colors,scale] duration-200 hover:bg-accent-dark active:scale-[0.96] disabled:opacity-60 disabled:active:scale-100"
-    >
-      Subscribe
-    </button>
+    <Button type="submit" text="Subscribe" size="small" class="shrink-0" />
   </div>
   <!-- Honeypot: hidden from users, bots fill it. -->
   <input

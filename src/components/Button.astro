@@ -58,10 +58,11 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
-  primary: "bg-accent text-white hover:bg-accent-dark",
+  primary:
+    "bg-accent text-white shadow-sm shadow-accent/25 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30",
   secondary:
-    "bg-transparent text-text hover:bg-background-subtle border border-border",
-  overlay: "bg-white text-black hover:bg-white/90",
+    "bg-background text-text border border-border shadow-xs hover:bg-background-subtle hover:border-border/70 hover:shadow-sm",
+  overlay: "bg-white text-black shadow-sm hover:bg-white/90 hover:shadow-md",
 };
 
 const layoutClasses = isIconOnly
@@ -69,11 +70,11 @@ const layoutClasses = isIconOnly
   : sizeClasses[size];
 
 const baseClasses = cn(
-  "inline-flex items-center justify-center rounded-lg font-semibold cursor-pointer",
-  "transition-[colors,scale] duration-200 motion-reduce:transition-none",
-  "active:scale-[0.96] motion-reduce:active:scale-100",
+  "inline-flex items-center justify-center rounded-xl font-semibold cursor-pointer",
+  "transition-[scale,box-shadow,background-color,border-color] duration-200 ease-out motion-reduce:transition-none",
+  "active:scale-[0.97] active:shadow-sm motion-reduce:active:scale-100",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-  "disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100",
+  "disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100",
   layoutClasses,
   variantClasses[variant],
   className,

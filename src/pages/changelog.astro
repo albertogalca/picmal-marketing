@@ -84,7 +84,7 @@ const softwareSchema = {
 
       <div class="max-w-2xl mx-auto px-6 mb-16">
         <div
-          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
+          class="relative bg-background-subtle border border-border rounded-xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
         >
           <Paragraph class="mb-0 flex-1 text-body">
             As an indie developer, Picmal grows through word of mouth. A review
@@ -94,7 +94,7 @@ const softwareSchema = {
             href="https://tally.so/r/Me18qE"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-small rounded-lg transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-small rounded-xl transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
           >
             Leave a Review
             <svg
@@ -134,13 +134,13 @@ const softwareSchema = {
                       <FormattedDate date={row.pubDate} />
                     </span>
                   )}
-                  <span class="inline-block text-small font-mono px-2 py-1 rounded-md bg-accent/10 text-accent order-1 sm:order-2">
+                  <span class="inline-block text-small font-semibold leading-none px-2 py-0.5 rounded-xl bg-accent/10 text-accent order-1 sm:order-2">
                     v{row.version}
                   </span>
                   {row.hasDownload && (
                     <a
                       href={row.downloadUrl}
-                      class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent order-3"
+                      class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent order-3"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ const softwareSchema = {
                   <h2 class="text-h2 text-text text-balance mb-3">
                     <a
                       href={`#${row.slug}`}
-                      class="rounded-sm hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      class="rounded-xl hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                     >
                       {row.title}
                     </a>

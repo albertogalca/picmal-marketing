@@ -10,6 +10,7 @@ export interface Props {
     title: string;
     description: string;
     date: string;
+    noindex?: boolean;
   };
 }
 
@@ -19,7 +20,11 @@ const { meta } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={meta.title} description={meta.description} />
+    <BaseHead
+      title={meta.title}
+      description={meta.description}
+      noindex={meta.noindex}
+    />
   </head>
   <body class="bg-background">
     <Header />
@@ -63,7 +68,7 @@ const { meta } = Astro.props;
               prose-ul:text-text/65
               prose-ol:text-text/65
               prose-li:text-text/65
-              prose-img:rounded-lg"
+              prose-img:rounded-xl"
         >
           <slot />
         </div>

@@ -57,10 +57,10 @@ const isActive = (item: NavItem) =>
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const desktopLinkBase = `text-body transition-colors cursor-pointer rounded-sm ${focusRing}`;
+const desktopLinkBase = `text-body transition-colors cursor-pointer rounded-xl ${focusRing}`;
 const desktopLinkIdle =
   "text-text-secondary hover:text-text focus-visible:text-text";
-const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-lg hover:bg-background-subtle focus-visible:bg-background-subtle transition-colors ${focusRing}`;
+const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:bg-background-subtle focus-visible:bg-background-subtle transition-colors ${focusRing}`;
 ---
 
 <nav
@@ -76,7 +76,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-lg hover:
             alt="Picmal - Mac media converter app logo"
             width={40}
             height={40}
-            class="rounded-lg w-8 h-8 sm:w-10 sm:h-10 object-cover"
+            class="rounded-xl w-8 h-8 sm:w-10 sm:h-10 object-cover"
             loading="eager"
           />
           <Paragraph class="text-text font-semibold text-body">Picmal</Paragraph
@@ -101,13 +101,15 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-lg hover:
         <Button
           class="hidden md:block m-0"
           size="small"
-          text="Buy for Mac"
+          text="Get Picmal"
+          href="/#pricing"
+          target="_self"
           onclick="posthog.capture('buy_clicked')"
         />
 
         <button
           id="mobile-menu-button"
-          class={`md:hidden inline-flex items-center justify-center p-2 rounded-md text-text-secondary hover:text-text hover:bg-background-subtle transition-colors ${focusRing}`}
+          class={`md:hidden inline-flex items-center justify-center p-2 rounded-xl text-text-secondary hover:text-text hover:bg-background-subtle transition-colors ${focusRing}`}
           aria-controls="mobile-menu"
           aria-expanded="false"
         >

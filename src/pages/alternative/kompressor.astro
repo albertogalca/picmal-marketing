@@ -8,42 +8,40 @@ import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
 import BentoFeatures from "../../components/BentoFeatures.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
-import ComparisonMeta from "../../components/ComparisonMeta.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 
 const SITE_TITLE = "Picmal: The Kompressor Alternative for Video and Audio";
 const SITE_DESCRIPTION =
-  "Looking for a Kompressor alternative that handles video and audio? Picmal converts images, video, and audio with Shortcuts integration and folder monitoring. $15.99 one-time. 14-day refund.";
+  "Looking for a Kompressor alternative that does more than convert? Picmal is an all-in-one Mac media toolkit that converts, compresses, and lightly edits images, video, and audio — plus PDF tools. $15.99 one-time. 14-day refund.";
 
 const faqs = [
   {
     question: "Is Picmal a good Kompressor alternative?",
     answer:
-      "If you need video and audio conversion, yes. Picmal handles images, video, and audio in one app with automation features like Shortcuts and folder monitoring. If you only convert images and want a free app with real-time preview, Kompressor is a great choice.",
+      "If you need more than image compression, yes. Picmal converts and compresses images, video, audio, and PDFs in one app, with Shortcuts, folder monitoring, and Finder right-click. Kompressor is a great free option if images are all you need.",
   },
   {
     question: "Does Picmal have real-time preview like Kompressor?",
     answer:
-      "No. Picmal focuses on fast batch conversion rather than previewing individual files. If real-time quality adjustment is important to you, Kompressor offers that feature.",
+      "No — Picmal batches files without the per-file preview. If seeing the before/after for each image before committing matters to you, Kompressor's live preview is genuinely useful.",
   },
   {
     question: "Why pay for Picmal when Kompressor is free?",
     answer:
-      "Picmal adds video and audio conversion, Shortcuts integration, folder monitoring, and Finder right-click actions. If you only need image conversion, Kompressor is an excellent free option.",
+      "Kompressor is image-only and free. Picmal is $15.99 and covers video, audio, and PDFs alongside images — plus format conversion, metadata removal, Shortcuts, and folder monitoring. If image compression is all you need, Kompressor is a perfectly good choice.",
   },
   {
     question: "Can Kompressor convert video files?",
     answer:
-      "No. Kompressor is image-only. If you need to convert MP4, MOV, or other video formats, Picmal handles those along with images and audio.",
+      "No. Kompressor is image-only. For video — or audio, or format conversion — Picmal covers those.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -59,12 +57,6 @@ const faqs = [
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -72,80 +64,17 @@ const faqs = [
   >
     <Header />
 
-    <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-8 sm:mb-12">
-          <div
-            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
-          >
-            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">
-              The Kompressor alternative for video and audio
-            </H1>
-            <p
-              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-body-big leading-relaxed text-text-secondary px-4 sm:px-0"
-            >
-              Kompressor is great for images. But if you also need video and
-              audio conversion with automation features like Shortcuts and
-              folder monitoring, Picmal has you covered.
-            </p>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4">
-            <HeroCTA buyEvent="buy_clicked_kompressor_comparison" />
-            <p class="text-small sm:text-small text-text-secondary">
-              One-time purchase • 14-day money back
-            </p>
-          </div>
-
-          <!-- Social Proof Above Fold -->
-          <div class="mt-6 sm:mt-8 hero-trust">
-            <TrustBar />
-          </div>
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover block dark:hidden"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover hidden dark:block"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-          </div>
-        </div>
-      </div>
-    </main>
+    <ComparisonHero
+      title="The Kompressor alternative that does more than convert"
+      subhead="Kompressor compresses images and does it well, for free. If you also need to convert formats, work with video and audio, or handle PDFs — and want Shortcuts and folder monitoring — Picmal covers all of that."
+      buyEvent="buy_clicked_kompressor_comparison"
+    />
 
     <ComparisonVerdict
       competitor="Kompressor"
-      summary="Kompressor is a free Mac image compressor with real-time quality preview. Picmal ($15.99 one-time) is broader: it converts and compresses images, video, and audio, and adds Shortcuts, folder monitoring, and Finder right-click actions."
-      picmalFor="You convert or compress video and audio (not just images), or need automation across Shortcuts and watched folders."
-      competitorFor="You only compress images and want a free tool with a live quality preview."
+      summary="Kompressor is a free Mac image compressor with a live quality preview per file. Picmal ($15.99 one-time) covers more ground: it converts and compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click."
+      picmalFor="You need more than image compression — video, audio, PDF tools, format conversion — or want Shortcuts and folder monitoring in the mix."
+      competitorFor="You only compress images, want real-time before/after preview, and free is important."
     />
 
     <SectionDivider />
@@ -155,13 +84,13 @@ const faqs = [
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-4 text-center">Picmal vs Kompressor at a glance</H2>
         <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          Both apps are native macOS converters that work offline. The main
-          difference: Picmal handles all media types while Kompressor focuses
-          exclusively on images.
+          Both run offline on Mac. Kompressor focuses on one thing: compressing
+          images, with a live quality preview. Picmal covers more: convert,
+          compress, and edit across images, video, audio, and PDFs.
         </Paragraph>
 
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
@@ -175,6 +104,11 @@ const faqs = [
                 </tr>
               </thead>
               <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="p-4 text-text-secondary">Primary purpose</td>
+                  <td class="p-4 text-text">Convert, compress & edit</td>
+                  <td class="p-4 text-text">Image compression</td>
+                </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Price</td>
                   <td class="p-4 text-text">$15.99 one-time</td>
@@ -205,6 +139,20 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Audio conversion</td>
                   <td class="p-4 text-text">Yes—MP3, WAV, FLAC, and more</td>
+                  <td class="p-4 text-text">No</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Compression</td>
+                  <td class="p-4 text-text"
+                    >Images, video, audio & PDF (never bigger)</td
+                  >
+                  <td class="p-4 text-text">Images</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">PDF tools</td>
+                  <td class="p-4 text-text"
+                    >Compress, combine, images→PDF, PDF→PNG</td
+                  >
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
@@ -257,22 +205,21 @@ const faqs = [
         <div class="text-center mb-12">
           <H2 class="mb-4">Which one is right for you?</H2>
           <Paragraph class="max-w-2xl mx-auto">
-            Both are excellent native Mac apps. Here's an honest comparison to
-            help you decide.
+            Here's where each one makes more sense.
           </Paragraph>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
                 Choose Picmal
               </h3>
               <p class="text-text-secondary">
-                Best for all media types and automation
+                More than image compression
               </p>
             </div>
 
@@ -309,7 +256,8 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need to convert videos and audio files
+                  You want one app to convert, compress, and edit images, video,
+                  audio, and PDFs
                 </span>
               </li>
 
@@ -354,14 +302,14 @@ const faqs = [
 
           <!-- Kompressor Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
                 Choose Kompressor
               </h3>
               <p class="text-text-secondary">
-                Best for image-only conversion with preview
+                Free, image-only, with live quality preview
               </p>
             </div>
 
@@ -453,10 +401,12 @@ const faqs = [
     <!-- Testimonials Section -->
     <MasonryTestimonials />
 
-    <SectionDivider />
-
-    <!-- Featured On Section -->
-    <section class="relative z-10">
+    <section
+      id="featured"
+      class="absolute w-px h-px overflow-hidden -m-px p-0 border-0"
+      style="clip:rect(0 0 0 0); clip-path:inset(50%)"
+      aria-hidden="true"
+    >
       <FeaturedOn />
     </section>
 
@@ -477,23 +427,12 @@ const faqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>
       </div>
     </section>
-
-    <ComparisonMeta
-      lastUpdated="2026-04-22"
-      sources={[
-        {
-          label: "Kompressor on the Mac App Store",
-          href: "https://apps.apple.com/app/kompressor-image-compressor/id1526047227",
-        },
-        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
-      ]}
-    />
 
     <Footer />
 

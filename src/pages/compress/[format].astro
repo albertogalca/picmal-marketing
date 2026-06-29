@@ -128,7 +128,7 @@ const faqSchema = {
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <H2 class="mb-6">Why compress {compression.name} files?</H2>
             <ul class="space-y-4">
@@ -169,7 +169,7 @@ const faqSchema = {
             </div>
 
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -180,7 +180,7 @@ const faqSchema = {
               <Paragraph>Download and open Picmal on your Mac.</Paragraph>
             </div>
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -196,7 +196,7 @@ const faqSchema = {
               >
             </div>
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -305,7 +305,7 @@ const faqSchema = {
           <div class="grid md:grid-cols-2 gap-4">
             {
               compression.useCases.map((useCase: CompressionUseCase) => (
-                <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+                <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
                   <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
                   <Paragraph class="text-small">{useCase.description}</Paragraph>
                 </div>
@@ -318,7 +318,7 @@ const faqSchema = {
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <FAQ faqs={compression.faqs} />
           </div>

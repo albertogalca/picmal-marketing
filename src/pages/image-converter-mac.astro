@@ -6,15 +6,14 @@ import FAQ from "../components/FAQ.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Paragraph from "../components/Paragraph.astro";
-import HeroCTA from "../components/HeroCTA.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import BentoFeatures from "../components/BentoFeatures.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
-import TrustBar from "../components/TrustBar.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
 
 const title = "Image Converter for Mac — Convert Any Format | Picmal";
 const description =
@@ -69,12 +68,6 @@ const faqSchema = {
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -82,47 +75,12 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16">
-      <div class="max-w-5xl mx-auto px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Image Converter for Mac" },
-          ]}
-        />
-
-        <div class="text-center mb-12">
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >The image converter for Mac that just works</H1
-          >
-          <Paragraph class="max-w-2xl mx-auto mb-8">
-            Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, and 20+ other
-            formats. Batch processing, offline, no subscription.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_image_converter_mac" class="mb-6" />
-          <TrustBar />
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"></video>
-          </div>
-        </div>
-      </div>
-    </main>
+        <ComparisonHero
+      title="The image converter for Mac that just works"
+      subhead="Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, and 20+ other formats. Batch processing, offline, no subscription."
+      buyEvent="buy_clicked_image_converter_mac"
+      defaultTab="convert"
+    />
 
     <SectionDivider />
     <BentoFeatures />
@@ -272,7 +230,7 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-8 text-center">Frequently asked questions</H2>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

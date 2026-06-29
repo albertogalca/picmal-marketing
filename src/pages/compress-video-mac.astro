@@ -6,14 +6,13 @@ import FAQ from "../components/FAQ.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Paragraph from "../components/Paragraph.astro";
-import HeroCTA from "../components/HeroCTA.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
-import TrustBar from "../components/TrustBar.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
 
 const title =
   "Compress Video on Mac — Reduce File Size Without Losing Quality | Picmal";
@@ -69,12 +68,6 @@ const faqSchema = {
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -82,48 +75,12 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16">
-      <div class="max-w-5xl mx-auto px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Compress Video on Mac" },
-          ]}
-        />
-
-        <div class="text-center mb-12">
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >Compress video on your Mac without losing quality</H1
-          >
-          <Paragraph class="max-w-2xl mx-auto mb-8">
-            Shrink MP4, MOV, MKV and more with a quality slider and a live size
-            estimate. Make a clip small enough to email, or batch-compress a
-            whole folder. Offline, no watermark, no upload limit.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_compress_video_mac" class="mb-6" />
-          <TrustBar />
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal video compression interface"></video>
-          </div>
-        </div>
-      </div>
-    </main>
+        <ComparisonHero
+      title="Compress video on your Mac without losing quality"
+      subhead="Shrink MP4, MOV, MKV and more with a quality slider and a live size estimate. Make a clip small enough to email, or batch-compress a whole folder. Offline, no watermark, no upload limit."
+      buyEvent="buy_clicked_compress_video_mac"
+      defaultTab="compress"
+    />
 
     <SectionDivider />
 
@@ -133,7 +90,7 @@ const faqSchema = {
         <H2 class="mb-8 text-center">Compress a video in 3 steps</H2>
         <div class="grid md:grid-cols-3 gap-6">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -146,7 +103,7 @@ const faqSchema = {
             >
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -160,7 +117,7 @@ const faqSchema = {
             >
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -181,28 +138,28 @@ const faqSchema = {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-8 text-center">Real control over the trade-off</H2>
         <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">CRF quality slider</h3>
             <Paragraph
               >0–51 scale. CRF 18–20 is visually lossless; push higher for
               smaller files when you need them.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Modern codecs</h3>
             <Paragraph
               >H.264 for compatibility, H.265/HEVC for ~50% smaller files, VP9
               and AV1 for the web.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Frame-rate reduction</h3>
             <Paragraph
               >Drop 60 fps to 30 fps to shrink screen recordings and tutorials
               that don't need cinematic motion.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Size estimate first</h3>
             <Paragraph
               >See the projected output size before you encode — perfect for
@@ -232,7 +189,7 @@ const faqSchema = {
           to send or store.</Paragraph
         >
         <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">It won't fit in an email</h3>
             <Paragraph
               >Gmail and most providers cap attachments around 25&nbsp;MB. Drop
@@ -240,21 +197,21 @@ const faqSchema = {
               send.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Upload limits and slow uploads</h3>
             <Paragraph
               >Discord, Slack, and form uploads reject big files or crawl. A
               smaller H.265 file uploads in a fraction of the time.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Screen recordings</h3>
             <Paragraph
               >Tutorials and demos don't need 60&nbsp;fps or full resolution.
               Halving both can shrink a recording by 80% with no real loss.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Reclaiming disk space</h3>
             <Paragraph
               >Old vacation clips eating your SSD? Re-encode to H.265 and cut
@@ -303,7 +260,7 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-8 text-center">Frequently asked questions</H2>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

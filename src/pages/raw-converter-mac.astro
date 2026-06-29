@@ -6,15 +6,14 @@ import FAQ from "../components/FAQ.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Paragraph from "../components/Paragraph.astro";
-import HeroCTA from "../components/HeroCTA.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
-import TrustBar from "../components/TrustBar.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import { formats, RAW_INPUT_FORMATS } from "../data/conversions";
+import ComparisonHero from "../components/ComparisonHero.astro";
 
 const title = "RAW Converter for Mac — Convert CR2, NEF, ARW to JPG | Picmal";
 const description =
@@ -76,12 +75,6 @@ const faqSchema = {
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -89,48 +82,12 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16">
-      <div class="max-w-5xl mx-auto px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "RAW Converter for Mac" },
-          ]}
-        />
-
-        <div class="text-center mb-12">
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >Convert camera RAW to JPG on your Mac</H1
-          >
-          <Paragraph class="max-w-2xl mx-auto mb-8">
-            CR2, NEF, ARW, RAF and more — Picmal decodes your camera's raw files
-            with correct white balance and batch-exports an entire shoot to JPG.
-            Fast, offline, and private. No Lightroom subscription.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_raw_converter_mac" class="mb-6" />
-          <TrustBar />
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal RAW conversion interface"></video>
-          </div>
-        </div>
-      </div>
-    </main>
+        <ComparisonHero
+      title="Convert camera RAW to JPG on your Mac"
+      subhead="CR2, NEF, ARW, RAF and more — Picmal decodes your camera's raw files with correct white balance and batch-exports an entire shoot to JPG. Fast, offline, and private. No Lightroom subscription."
+      buyEvent="buy_clicked_raw_converter_mac"
+      defaultTab="convert"
+    />
 
     <SectionDivider />
 
@@ -140,7 +97,7 @@ const faqSchema = {
         <H2 class="mb-8 text-center">Convert your shoot in 3 steps</H2>
         <div class="grid md:grid-cols-3 gap-6">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -153,7 +110,7 @@ const faqSchema = {
             >
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -166,7 +123,7 @@ const faqSchema = {
             >
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -219,21 +176,21 @@ const faqSchema = {
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-8 text-center">Built for photographers, not subscriptions</H2>
         <div class="grid sm:grid-cols-3 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">No monthly fee</h3>
             <Paragraph
               >A one-time $15.99 — not a subscription like Lightroom or Capture
               One. Just get your JPGs and move on.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Correct colors</h3>
             <Paragraph
               >Camera white balance, demosaicing, and gamma applied — your JPGs
               look the way the shot was meant to.</Paragraph
             >
           </div>
-          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
             <h3 class="font-semibold text-text mb-2">Whole shoots, offline</h3>
             <Paragraph
               >Batch hundreds of raw files at once, entirely on your Mac. Nothing
@@ -259,7 +216,7 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-8 text-center">Frequently asked questions</H2>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

@@ -8,47 +8,45 @@ import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
 import BentoFeatures from "../../components/BentoFeatures.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
-import ComparisonMeta from "../../components/ComparisonMeta.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 
 const SITE_TITLE = "Picmal: The Native Mac HandBrake Alternative";
 const SITE_DESCRIPTION =
-  "Looking for a HandBrake alternative on Mac? Picmal converts images, video, and audio with a native macOS interface. Shortcuts integration, folder monitoring. $15.99 one-time.";
+  "Looking for a HandBrake alternative on Mac? Picmal is an all-in-one media toolkit—convert, compress, and edit images, video, audio, and PDFs—with a native macOS interface. Shortcuts integration, folder monitoring. $15.99 one-time.";
 
 const faqs = [
   {
     question: "Is Picmal a good HandBrake alternative?",
     answer:
-      "If you want a native Mac app that handles images alongside video and audio, yes. Picmal offers a cleaner interface with Shortcuts integration. If you need free cross-platform video encoding with advanced options, HandBrake is hard to beat.",
+      "For Mac users who also work with images, audio, and PDFs — yes. Picmal has a polished native interface, Shortcuts integration, and covers more file types. HandBrake is a better fit if you need advanced video encoding controls and don't want to pay for an app.",
   },
   {
     question: "Why pay for Picmal when HandBrake is free?",
     answer:
-      "HandBrake is an excellent free tool for video encoding. Picmal adds image conversion, a native macOS interface, Shortcuts integration, folder monitoring, and Finder right-click actions. If you only need video encoding and don't mind the interface, HandBrake works great.",
+      "HandBrake is great for video encoding and costs nothing. Picmal adds image conversion, audio, PDF tools, folder monitoring, and Finder right-click — and feels like a native Mac app. If video encoding is all you need, HandBrake is genuinely a fine choice.",
   },
   {
     question: "Can Picmal convert images? Can HandBrake?",
     answer:
-      "Picmal converts 20+ image formats (HEIC, JPG, PNG, WebP, etc.). HandBrake is video-only—it doesn't handle images at all.",
+      "Picmal converts 20+ image formats (HEIC, JPG, PNG, WebP, etc.) and decodes RAW files. HandBrake is video-only — images aren't on its radar.",
   },
   {
     question: "Does HandBrake have more video options than Picmal?",
     answer:
-      "Yes. HandBrake offers advanced encoding controls, device presets, DVD/BluRay ripping, subtitle handling, and HDR support. Picmal focuses on simple conversions with sensible defaults.",
+      "Yes — device presets, CRF tuning, DVD/BluRay ripping, subtitle tracks, HDR. HandBrake goes deep on video. Picmal picks good defaults so you don't have to think about codecs, and covers images, audio, and PDFs alongside video.",
   },
   {
     question: "Does Picmal work on Windows or Linux like HandBrake?",
     answer:
-      "No. Picmal is macOS-only with a native interface. HandBrake runs on Windows, Mac, and Linux.",
+      "No. Picmal is Mac-only. HandBrake runs on Windows and Linux too.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -64,12 +62,6 @@ const faqs = [
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -77,80 +69,17 @@ const faqs = [
   >
     <Header />
 
-    <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-8 sm:mb-12">
-          <div
-            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
-          >
-            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">
-              The native Mac HandBrake alternative
-            </H1>
-            <p
-              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-body-big leading-relaxed text-text-secondary px-4 sm:px-0"
-            >
-              HandBrake is powerful and free. But if you want an app that feels
-              like it belongs on Mac—and handles images too—Picmal gives you a
-              native interface with Shortcuts integration and folder monitoring.
-            </p>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4">
-            <HeroCTA buyEvent="buy_clicked_handbrake_comparison" />
-            <p class="text-small sm:text-small text-text-secondary">
-              One-time purchase • 14-day money back
-            </p>
-          </div>
-
-          <!-- Social Proof Above Fold -->
-          <div class="mt-6 sm:mt-8 hero-trust">
-            <TrustBar />
-          </div>
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover block dark:hidden"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover hidden dark:block"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-          </div>
-        </div>
-      </div>
-    </main>
+    <ComparisonHero
+      title="The native Mac HandBrake alternative"
+      subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs — and want something that feels like a proper Mac app — Picmal covers all of it for $15.99."
+      buyEvent="buy_clicked_handbrake_comparison"
+    />
 
     <ComparisonVerdict
       competitor="HandBrake"
-      summary="HandBrake is a free, open-source, cross-platform video transcoder with deep encoding controls. Picmal ($15.99 one-time) is a native macOS app that converts images, video, and audio with a simpler UI and Shortcuts automation. Neither uploads your files."
-      picmalFor="You're on macOS, convert images alongside video, want native UI, Shortcuts, and folder monitoring."
-      competitorFor="You need advanced video encoding (CRF tuning, filters, device presets), DVD/Blu-ray ripping, or cross-platform support (Windows/Linux)."
+      summary="HandBrake is free, open-source, and runs on Windows/Linux/Mac with serious encoding controls. Picmal ($15.99 one-time) is Mac-only, covers images, audio, and PDFs alongside video, and feels like it belongs on your Mac. Neither uploads your files."
+      picmalFor="You're on Mac and need images, audio, or PDFs alongside video — or just want an app with a native feel and Shortcuts integration."
+      competitorFor="You need CRF tuning, device presets, DVD/Blu-ray ripping, or cross-platform (Windows/Linux) support — and free is important."
     />
 
     <SectionDivider />
@@ -160,12 +89,13 @@ const faqs = [
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-4 text-center">Picmal vs HandBrake at a glance</H2>
         <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          HandBrake is a powerful free video encoder. Picmal is a native Mac app
-          for all media types. Different tools for different needs.
+          HandBrake is a free video encoder with serious encoding controls.
+          Picmal is a paid Mac app that covers images, audio, and PDFs alongside
+          video, with a simpler interface. Different tradeoffs.
         </Paragraph>
 
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
@@ -213,6 +143,18 @@ const faqs = [
                   <td class="p-4 text-text-secondary">Audio conversion</td>
                   <td class="p-4 text-text">Yes—MP3, WAV, FLAC, etc.</td>
                   <td class="p-4 text-text">Audio within video only</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">Compression</td>
+                  <td class="p-4 text-text">Images, video, audio &amp; PDF</td>
+                  <td class="p-4 text-text">Video encoding only</td>
+                </tr>
+                <tr>
+                  <td class="p-4 text-text-secondary">PDF tools</td>
+                  <td class="p-4 text-text"
+                    >Yes—compress, combine, images&rarr;PDF</td
+                  >
+                  <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">DVD/BluRay ripping</td>
@@ -269,22 +211,21 @@ const faqs = [
         <div class="text-center mb-12">
           <H2 class="mb-4">Which one is right for you?</H2>
           <Paragraph class="max-w-2xl mx-auto">
-            Both are excellent tools. Here's an honest comparison to help you
-            decide.
+            Here's where each one makes more sense.
           </Paragraph>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
                 Choose Picmal
               </h3>
               <p class="text-text-secondary">
-                Best for Mac users who want a native experience
+                Mac-native, images + audio + PDFs + video in one place
               </p>
             </div>
 
@@ -303,7 +244,8 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You want to convert images, videos, and audio in one app
+                  You want to convert, compress, and edit images, video, audio,
+                  and PDFs in one app
                 </span>
               </li>
 
@@ -321,7 +263,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You use Shortcuts for automation workflows
+                  You use Apple Shortcuts for automation
                 </span>
               </li>
 
@@ -365,14 +307,14 @@ const faqs = [
 
           <!-- HandBrake Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
                 Choose HandBrake
               </h3>
               <p class="text-text-secondary">
-                Best for free cross-platform video encoding
+                Free, powerful video encoding, cross-platform
               </p>
             </div>
 
@@ -462,10 +404,12 @@ const faqs = [
     <!-- Testimonials Section -->
     <MasonryTestimonials />
 
-    <SectionDivider />
-
-    <!-- Featured On Section -->
-    <section class="relative z-10">
+    <section
+      id="featured"
+      class="absolute w-px h-px overflow-hidden -m-px p-0 border-0"
+      style="clip:rect(0 0 0 0); clip-path:inset(50%)"
+      aria-hidden="true"
+    >
       <FeaturedOn />
     </section>
 
@@ -486,24 +430,12 @@ const faqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>
       </div>
     </section>
-
-    <ComparisonMeta
-      lastUpdated="2026-04-22"
-      sources={[
-        { label: "HandBrake official site", href: "https://handbrake.fr/" },
-        {
-          label: "HandBrake documentation",
-          href: "https://handbrake.fr/docs/",
-        },
-        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
-      ]}
-    />
 
     <Footer />
 

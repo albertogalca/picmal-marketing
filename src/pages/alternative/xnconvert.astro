@@ -8,47 +8,45 @@ import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
 import BentoFeatures from "../../components/BentoFeatures.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
-import ComparisonMeta from "../../components/ComparisonMeta.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 
 const SITE_TITLE = "Picmal: The Native Mac XnConvert Alternative";
 const SITE_DESCRIPTION =
-  "Looking for an XnConvert alternative on Mac? Picmal offers a native macOS interface for converting images, video, and audio. Shortcuts integration. $15.99 one-time.";
+  "Looking for an XnConvert alternative on Mac? Picmal is a native all-in-one media toolkit that converts, compresses, and edits images, video, audio, and PDFs. Shortcuts integration. $15.99 one-time.";
 
 const faqs = [
   {
     question: "Is Picmal a good XnConvert alternative?",
     answer:
-      "If you want a native Mac experience with video and audio support, yes. Picmal offers a cleaner interface with Shortcuts integration. If you need 500+ formats, 80+ editing actions, or cross-platform support, XnConvert is more feature-rich.",
+      "For Mac users who work with video and audio alongside images, yes — XnConvert doesn't touch those. If you need 500+ image formats, 80+ editing actions, or the same app on Windows and Linux, XnConvert goes deeper on the image side.",
   },
   {
     question: "Why pay for Picmal when XnConvert is free?",
     answer:
-      "XnConvert is free for personal use and excellent for batch image processing. Picmal adds video and audio conversion, a native macOS interface, Shortcuts integration, and Finder right-click actions. If you only need image conversion with advanced editing, XnConvert works great.",
+      "XnConvert is free and excellent for bulk image editing with 80+ actions. Picmal is $15.99 and adds video, audio, PDF tools, compression, Shortcuts, and Finder right-click — things XnConvert doesn't have. If images are all you need and you want deep editing, XnConvert is hard to argue with.",
   },
   {
     question: "Does XnConvert support more formats than Picmal?",
     answer:
-      "Yes. XnConvert supports 500+ input formats and 70+ export formats with 80+ editing actions. Picmal supports 20+ image formats but also handles video and audio—which XnConvert doesn't.",
+      "For images, easily — 500+ input formats vs Picmal's 20+. But Picmal handles video, audio, RAW decode, and PDFs, which XnConvert doesn't touch at all.",
   },
   {
     question: "Can Picmal add watermarks like XnConvert?",
     answer:
-      "No. XnConvert offers advanced editing features like watermarks, metadata editing, transforms, and filters. Picmal focuses on simple, fast conversions with sensible defaults.",
+      "Picmal adds watermarks to video. XnConvert watermarks images. Neither does both. XnConvert goes deeper on image editing overall — 80+ actions, filters, full metadata editing — so for bulk image work it's the stronger tool.",
   },
   {
     question: "Does Picmal work on Windows or Linux like XnConvert?",
     answer:
-      "No. Picmal is macOS-only with a native interface. XnConvert runs on Windows, Mac, and Linux.",
+      "No. Picmal is Mac-only. XnConvert runs on Windows and Linux too.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -64,12 +62,6 @@ const faqs = [
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -77,81 +69,17 @@ const faqs = [
   >
     <Header />
 
-    <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16 md:pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-8 sm:mb-12">
-          <div
-            class="max-w-4xl mx-auto flex justify-center items-center flex-col"
-          >
-            <H1 class="mb-4 sm:mb-6 max-w-3xl mx-auto">
-              The native Mac XnConvert alternative
-            </H1>
-            <p
-              class="mb-8 sm:mb-10 max-w-2xl mx-auto text-body-big leading-relaxed text-text-secondary px-4 sm:px-0"
-            >
-              XnConvert offers 500+ formats and 80+ editing actions. Picmal
-              offers simplicity. If you want an app that feels like Mac and
-              handles video too, Picmal gives you a native interface with
-              Shortcuts integration.
-            </p>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col items-center gap-3 sm:gap-4">
-            <HeroCTA buyEvent="buy_clicked_xnconvert_comparison" />
-            <p class="text-small sm:text-small text-text-secondary">
-              One-time purchase • 14-day money back
-            </p>
-          </div>
-
-          <!-- Social Proof Above Fold -->
-          <div class="mt-6 sm:mt-8 hero-trust">
-            <TrustBar />
-          </div>
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto mb-6 sm:mb-8 rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover block dark:hidden"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover hidden dark:block"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal app interface"
-            >
-            </video>
-          </div>
-        </div>
-      </div>
-    </main>
+    <ComparisonHero
+      title="The native Mac XnConvert alternative"
+      subhead="XnConvert goes deep on bulk image editing — 500+ formats, 80+ actions, free. Picmal covers more media types: video, audio, and PDFs alongside images, in a native Mac app with Shortcuts integration."
+      buyEvent="buy_clicked_xnconvert_comparison"
+    />
 
     <ComparisonVerdict
       competitor="XnConvert"
-      summary="XnConvert is free for personal use, cross-platform (Windows, macOS, Linux), and supports 500+ input formats with 80+ editing actions like watermarks and metadata editing. Picmal ($15.99 one-time) is a native macOS app that adds video and audio conversion and focuses on a simpler drag-and-drop flow."
-      picmalFor="You want a Mac-native UI, convert video and audio alongside images, and need Shortcuts or folder monitoring."
-      competitorFor="You need 500+ formats, watermarking, metadata editing, scripting, or cross-platform support."
+      summary="XnConvert is free, cross-platform, and supports 500+ formats with 80+ editing actions for bulk image processing. Picmal ($15.99 one-time) is Mac-only and covers more media types: video, audio, and PDFs alongside images, with a native interface and Shortcuts integration."
+      picmalFor="You work with video and audio alongside images, want a native Mac feel with Shortcuts and Finder right-click, and are fine with fewer image editing options."
+      competitorFor="You need 500+ image formats, 80+ editing actions, full metadata editing, scripting, or the same app on Windows/Linux — and free matters."
     />
 
     <SectionDivider />
@@ -161,13 +89,13 @@ const faqs = [
       <div class="max-w-4xl mx-auto">
         <H2 class="mb-4 text-center">Picmal vs XnConvert at a glance</H2>
         <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          XnConvert is a powerful batch image processor with hundreds of
-          features. Picmal is a simple converter for all media types. Different
-          tools for different needs.
+          XnConvert is a bulk image processor with hundreds of editing actions.
+          Picmal covers more media types — video, audio, PDFs — with fewer image
+          editing options. Pick based on what you actually need.
         </Paragraph>
 
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
@@ -220,14 +148,16 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Editing actions</td>
-                  <td class="p-4 text-text">Basic (resize, compress)</td>
+                  <td class="p-4 text-text"
+                    >Light (watermark, resize, rotate, metadata removal)</td
+                  >
                   <td class="p-4 text-text"
                     >80+ (watermarks, filters, transforms)</td
                   >
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Watermarks</td>
-                  <td class="p-4 text-text">No</td>
+                  <td class="p-4 text-text">Video only</td>
                   <td class="p-4 text-text">Yes</td>
                 </tr>
                 <tr>
@@ -273,22 +203,21 @@ const faqs = [
         <div class="text-center mb-12">
           <H2 class="mb-4">Which one is right for you?</H2>
           <Paragraph class="max-w-2xl mx-auto">
-            Both are excellent tools. Here's an honest comparison to help you
-            decide.
+            Here's where each one makes more sense.
           </Paragraph>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
                 Choose Picmal
               </h3>
               <p class="text-text-secondary">
-                Best for simplicity and native Mac experience
+                Video, audio, and PDFs alongside images — Mac-native
               </p>
             </div>
 
@@ -307,7 +236,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need a simple interface that just works
+                  You want one native app to convert, compress, and edit
                 </span>
               </li>
 
@@ -325,7 +254,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You use Shortcuts for automation workflows
+                  You use Apple Shortcuts for automation
                 </span>
               </li>
 
@@ -361,7 +290,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need video and audio conversion too
+                  You need video, audio, and PDF tools plus real compression
                 </span>
               </li>
             </ul>
@@ -369,7 +298,7 @@ const faqs = [
 
           <!-- XnConvert Column -->
           <div
-            class="bg-background-subtle border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
           >
             <div class="mb-6">
               <h3 class="text-h3 text-text mb-2">
@@ -411,7 +340,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need advanced features like watermarks, transforms, and
+                  You need deep bulk image editing—transforms, filters, and full
                   metadata editing
                 </span>
               </li>
@@ -467,10 +396,12 @@ const faqs = [
     <!-- Testimonials Section -->
     <MasonryTestimonials />
 
-    <SectionDivider />
-
-    <!-- Featured On Section -->
-    <section class="relative z-10">
+    <section
+      id="featured"
+      class="absolute w-px h-px overflow-hidden -m-px p-0 border-0"
+      style="clip:rect(0 0 0 0); clip-path:inset(50%)"
+      aria-hidden="true"
+    >
       <FeaturedOn />
     </section>
 
@@ -491,27 +422,12 @@ const faqs = [
           </Paragraph>
         </div>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-4 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>
       </div>
     </section>
-
-    <ComparisonMeta
-      lastUpdated="2026-04-22"
-      sources={[
-        {
-          label: "XnConvert official site",
-          href: "https://www.xnview.com/en/xnconvert/",
-        },
-        {
-          label: "XnConvert downloads",
-          href: "https://www.xnview.com/en/xnconvert/#downloads",
-        },
-        { label: "Picmal pricing", href: "https://picmal.app/pricing.md" },
-      ]}
-    />
 
     <Footer />
 

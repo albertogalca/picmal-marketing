@@ -6,15 +6,14 @@ import FAQ from "../components/FAQ.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Paragraph from "../components/Paragraph.astro";
-import HeroCTA from "../components/HeroCTA.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import CTASection from "../components/CTASection.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
-import TrustBar from "../components/TrustBar.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
 
 const title =
   "HEIC Converter for Mac — Convert HEIC to JPG, PNG, WebP | Picmal";
@@ -70,12 +69,6 @@ const faqSchema = {
     <BaseHead title={title} description={description} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-    <link
-      rel="preload"
-      href="/picmal-1.2.0-demo.mp4"
-      as="video"
-      type="video/mp4"
-    />
   </head>
 
   <body
@@ -83,48 +76,12 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16">
-      <div class="max-w-5xl mx-auto px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "HEIC Converter for Mac" },
-          ]}
-        />
-
-        <div class="text-center mb-12">
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >Convert HEIC photos on your Mac in seconds</H1
-          >
-          <Paragraph size="lead" class="max-w-2xl mx-auto mb-8">
-            Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch
-            converts your HEIC files to JPG, PNG, WebP, or any format — fast,
-            offline, and private.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_heic_converter_mac" class="mb-6" />
-          <TrustBar />
-        </div>
-
-        <!-- Demo Video -->
-        <div
-          class="max-w-5xl mx-auto rounded-xl sm:rounded-xl overflow-hidden border border-border"
-        >
-          <div class="aspect-[16/10]">
-            <video
-              src="/picmal-1.2.0-demo.mp4"
-              class="w-full h-full object-cover"
-              width="1920"
-              height="1200"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              aria-label="Picmal HEIC conversion interface"></video>
-          </div>
-        </div>
-      </div>
-    </main>
+        <ComparisonHero
+      title="Convert HEIC photos on your Mac in seconds"
+      subhead="Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch converts your HEIC files to JPG, PNG, WebP, or any format — fast, offline, and private."
+      buyEvent="buy_clicked_heic_converter_mac"
+      defaultTab="convert"
+    />
 
     <SectionDivider />
 
@@ -134,7 +91,7 @@ const faqSchema = {
         <H2 class="mb-8 text-center">Convert HEIC in 3 steps</H2>
         <div class="grid md:grid-cols-3 gap-6">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -147,7 +104,7 @@ const faqSchema = {
             >
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -158,7 +115,7 @@ const faqSchema = {
             <Paragraph>Select JPG, PNG, WebP, or any other format.</Paragraph>
           </div>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
           >
             <div
               class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
@@ -219,7 +176,7 @@ const faqSchema = {
       <div class="max-w-3xl mx-auto">
         <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
         <div
-          class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
         >
           <FAQ faqs={faqs} />
         </div>

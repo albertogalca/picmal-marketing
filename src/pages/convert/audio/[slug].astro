@@ -106,7 +106,7 @@ const faqSchema = {
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <H2 class="mb-6">Why convert {from.name} to {to.name} with Picmal</H2>
             <ul class="space-y-3">
@@ -156,7 +156,7 @@ const faqSchema = {
                   d: "Click Convert — everything runs on your Mac.",
                 },
               ].map((step) => (
-                <div class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center">
+                <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center">
                   <div class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold">
                     {step.n}
                   </div>
@@ -172,7 +172,7 @@ const faqSchema = {
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">Frequently asked questions</H2>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <FAQ faqs={conversion.faqs} />
           </div>

@@ -184,7 +184,7 @@ const faqSchema = {
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <H2 class="mb-6">Why convert {from.name} to {to.name}?</H2>
             <ul class="space-y-4">
@@ -304,7 +304,7 @@ const faqSchema = {
               </H2>
               <div class="grid md:grid-cols-2 gap-4">
                 {conversion.useCases.map((useCase: UseCase) => (
-                  <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+                  <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
                     <h3 class="font-semibold text-text mb-2">
                       {useCase.title}
                     </h3>
@@ -329,7 +329,7 @@ const faqSchema = {
             </div>
 
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -340,7 +340,7 @@ const faqSchema = {
               <Paragraph>Download and open Picmal on your Mac.</Paragraph>
             </div>
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -355,7 +355,7 @@ const faqSchema = {
               >
             </div>
             <div
-              class="bg-background-subtle/50 border border-border rounded-xl p-6 text-center relative z-10"
+              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
             >
               <div
                 class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
@@ -431,7 +431,7 @@ const faqSchema = {
         <section class="mb-16 sm:mb-20">
           <H2 class="mb-8 text-center">Frequently asked questions</H2>
           <div
-            class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8"
+            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
           >
             <FAQ faqs={conversion.faqs} />
           </div>
@@ -442,7 +442,7 @@ const faqSchema = {
           (from.standardBody || to.standardBody) && (
             <section class="mb-16 sm:mb-20">
               <H2 class="mb-8 text-center">Format standards & sources</H2>
-              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
                 <ul class="space-y-3 text-small text-text-secondary">
                   {from.standardBody && (
                     <li class="flex gap-2 items-start">
@@ -494,7 +494,7 @@ const faqSchema = {
         {
           (fromCompress || toCompress) && (
             <section class="mb-16 sm:mb-20">
-              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
                 <H2 class="mb-4">Need to compress instead?</H2>
                 <Paragraph class="mb-4">
                   If you don't need to change formats, Picmal can also compress
@@ -581,7 +581,7 @@ const faqSchema = {
         {
           blogGuide && (
             <section class="mb-16 sm:mb-20">
-              <div class="bg-background-subtle/50 border border-border rounded-xl p-6 md:p-8">
+              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
                 <H2 class="mb-4">In-depth guide</H2>
                 <Paragraph class="mb-4">
                   Want step-by-step instructions with multiple methods including

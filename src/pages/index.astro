@@ -25,9 +25,10 @@ import FeaturedReview from "../components/FeaturedReview.astro";
 import Lead from "../components/Lead.astro";
 import { getEntrySlug } from "../utils/changelog";
 
-const SITE_TITLE = "Convert, Compress & Create Media on Your Mac | Picmal";
+const SITE_TITLE =
+  "Picmal is your Mac's media toolkit to convert, compress & edit";
 const SITE_DESCRIPTION =
-  "Your Mac's media toolkit. Batch convert and compress images, video, and audio, combine PDFs, and turn images into PDFs — all offline, no subscription.";
+  "Convert, compress, and edit your images, video, and audio right on your Mac — instead of trusting sketchy websites. Everything works offline, no subscription.";
 
 const changelogEntries = await getCollection("changelog");
 const latestRelease = changelogEntries.sort((a, b) =>
@@ -62,10 +63,10 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
           >
             <a
               href={latestReleaseHref}
-              class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-body-sm text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              class="group/release mb-6 inline-flex items-center gap-2 max-w-full rounded-full border border-border bg-background-subtle py-1 pl-1 pr-3 text-small text-text-secondary whitespace-nowrap hover:text-text hover:border-border/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
               <span
-                class="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-caption font-semibold leading-none text-accent"
+                class="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-small font-semibold leading-none text-accent"
                 >v{latestRelease.data.version}</span
               >
               <span class="hidden sm:inline truncate"
@@ -79,9 +80,9 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
             </a>
             <H1 class="mb-6 max-w-2xl mx-auto">Your Mac's media toolkit</H1>
             <Lead class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
-              Convert, compress, and create multiple files from different types
-              of media, like images, videos, and audio. Everything works offline
-              and respects your privacy.
+              Convert, compress, and edit your images, videos, and audio right
+              on your Mac — instead of trusting sketchy websites with them.
+              Everything works offline and respects your privacy.
             </Lead>
           </div>
 
@@ -95,7 +96,7 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
               />
               <a
                 href="/download"
-                class="inline-flex items-center gap-1.5 text-body-sm text-text-secondary hover:text-text transition-colors rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                class="inline-flex items-center gap-1.5 text-small text-text-secondary hover:text-text transition-colors rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 id="download-cta-button"
               >
                 or download to take a look
@@ -106,7 +107,7 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
             <!-- Social Proof & Guarantee -->
             <div class="flex flex-col items-center gap-3">
               <TrustBar />
-              <p class="text-body-sm text-text-secondary text-pretty">
+              <p class="text-small text-text-secondary text-pretty">
                 One payment, yours for good · 14-day money-back
               </p>
             </div>
@@ -165,46 +166,6 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
 
     <SectionDivider />
 
-    <!-- Popular tools & guides -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Popular tools &amp; guides</H2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <a
-            href="/image-converter-mac"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">Image converter for Mac</span></a
-          >
-          <a
-            href="/compress-images-mac"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">Compress images on Mac</span></a
-          >
-          <a
-            href="/compress-video-mac"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">Compress video on Mac</span></a
-          >
-          <a
-            href="/heic-converter-mac"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">HEIC converter for Mac</span></a
-          >
-          <a
-            href="/blog/best-image-formats-for-web"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">Best image formats for the web</span></a
-          >
-          <a
-            href="/blog/reduce-photo-library-size-mac"
-            class="bg-background-subtle/50 border border-border rounded-lg p-4 text-center transition-colors hover:border-accent/30"
-            ><span class="text-body-sm font-medium text-text">Reduce photo library size</span></a
-          >
-        </div>
-      </div>
-    </section>
-
-    {/* ponytail: visually hidden but kept in DOM so reciprocal badge links stay crawlable. Don't use `hidden`/display:none — that drops the links. */}
     <section
       id="featured"
       class="absolute w-px h-px overflow-hidden -m-px p-0 border-0"

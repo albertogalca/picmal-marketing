@@ -8,7 +8,7 @@ export interface Props {
 const { class: className = "" } = Astro.props;
 // Hero subheading / large lead paragraph. Callers keep their layout
 // classes (max-width, margins, alignment) via `class`.
-const defaultClasses = "text-body-lg text-text-secondary text-pretty";
+const defaultClasses = "text-body-big text-text-secondary text-pretty";
 const mergedClasses = cn(defaultClasses, className);
 ---
 

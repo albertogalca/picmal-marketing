@@ -89,7 +89,7 @@ const blogListSchema = {
                     />
                   </div>
                   <div class="p-4 flex flex-col flex-1">
-                    <div class="flex items-center gap-2 mb-3 text-caption text-text-secondary">
+                    <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
                       {post.data.category && (
                         <>
                           <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
@@ -106,7 +106,7 @@ const blogListSchema = {
                       {post.data.title}
                     </h2>
                     {post.data.description && (
-                      <p class="text-body-sm text-text-secondary leading-relaxed line-clamp-3">
+                      <p class="text-small text-text-secondary leading-relaxed line-clamp-3">
                         {post.data.description}
                       </p>
                     )}

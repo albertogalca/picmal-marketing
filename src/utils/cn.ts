@@ -12,17 +12,7 @@ export const cn = extendTailwindMerge({
     classGroups: {
       "font-size": [
         {
-          text: [
-            "display",
-            "h1",
-            "h2",
-            "h3",
-            "body-lg",
-            "body",
-            "body-sm",
-            "eyebrow",
-            "caption",
-          ],
+          text: ["h1", "h2", "h3", "h4", "body-big", "body", "small"],
         },
       ],
     },

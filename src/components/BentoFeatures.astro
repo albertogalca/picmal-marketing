@@ -9,7 +9,7 @@ import rawSampleBeach from "../assets/raw-sample-beach.jpg";
 // Shared styles
 const card =
   "relative bg-background-subtle rounded-2xl border border-border overflow-hidden";
-const eyebrow = "text-eyebrow uppercase text-accent mb-2";
+const eyebrow = "text-small text-text-secondary mb-2";
 const blockTitle = "text-h3 text-text text-balance";
 // Screenshot that bleeds into a corner on desktop, stacks below text on mobile
 const cornerImg = "rounded-lg lg:rounded-tl-lg shadow-sm w-full h-auto";
@@ -149,7 +149,7 @@ const metadataRows: [string, string][] = [
                     sizes="144px"
                   />
                   <span
-                    class="absolute left-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-caption font-semibold leading-none text-white backdrop-blur-sm"
+                    class="absolute left-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
                     >RAW</span
                   >
                 </div>
@@ -165,7 +165,7 @@ const metadataRows: [string, string][] = [
                     sizes="144px"
                   />
                   <span
-                    class="absolute right-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-caption font-semibold leading-none text-white backdrop-blur-sm"
+                    class="absolute right-2 top-2 rounded bg-black/40 px-1.5 py-0.5 text-small font-semibold leading-none text-white backdrop-blur-sm"
                     >RAW</span
                   >
                 </div>
@@ -174,7 +174,7 @@ const metadataRows: [string, string][] = [
                   class="absolute bottom-0 left-1/2 z-20 w-28 origin-bottom -translate-x-1/2 -translate-y-0 overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
-                    class="absolute top-4 left-3.5 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute top-4 left-3.5 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -259,7 +259,7 @@ const metadataRows: [string, string][] = [
                   class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
-                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -277,7 +277,7 @@ const metadataRows: [string, string][] = [
                   class="absolute inset-0 z-10 m-auto h-24 md:h-36 w-16 md:w-28 rotate-[4deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
-                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -295,7 +295,7 @@ const metadataRows: [string, string][] = [
                   class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 translate-x-5 rotate-[14deg] overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
-                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -329,7 +329,7 @@ const metadataRows: [string, string][] = [
                   class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-2 ring-red-500/25"
                 >
                   <span
-                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -433,7 +433,7 @@ const metadataRows: [string, string][] = [
                   class="absolute inset-0 z-20 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/10 dark:ring-white/10"
                 >
                   <span
-                    class="absolute left-3.5 top-4 text-caption font-bold leading-none tracking-wide text-red-500"
+                    class="absolute left-3.5 top-4 text-small font-bold leading-none tracking-wide text-red-500"
                     >PDF</span
                   >
                   <div class="space-y-2 px-3.5 pt-12 pb-4">
@@ -504,7 +504,7 @@ const metadataRows: [string, string][] = [
                 />
                 <!-- macOS-style count badge -->
                 <span
-                  class="absolute -top-1.5 -right-2 px-1.5 py-px rounded-full bg-red-500 text-white text-caption font-semibold leading-tight tracking-tight ring-[1.5px] ring-white tabular-nums"
+                  class="absolute -top-1.5 -right-2 px-1.5 py-px rounded-full bg-red-500 text-white text-small font-semibold leading-tight tracking-tight ring-[1.5px] ring-white tabular-nums"
                   >1,248</span
                 >
               </div>
@@ -643,7 +643,7 @@ const metadataRows: [string, string][] = [
               >
                 <!-- PICMAL watermark, stamped bottom-right -->
                 <span
-                  class="absolute bottom-2.5 right-3 text-caption font-semibold uppercase tracking-[0.18em] text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+                  class="absolute bottom-2.5 right-3 text-small font-semibold uppercase tracking-[0.18em] text-white/85 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
                   aria-hidden="true">Picmal</span
                 >
                 <!-- Position selector — bottom-right anchor active -->
@@ -680,7 +680,7 @@ const metadataRows: [string, string][] = [
                 class="rounded-t-xl border border-b-0 border-white/10 bg-[#242424] overflow-hidden translate-y-px"
               >
                 <div class="px-3.5 py-2.5 border-b border-white/10">
-                  <span class="text-caption font-semibold text-white"
+                  <span class="text-small font-semibold text-white"
                     >Metadata</span
                   >
                 </div>
@@ -688,10 +688,10 @@ const metadataRows: [string, string][] = [
                   {
                     metadataRows.map(([key, value]) => (
                       <div class="flex items-center justify-between gap-3 px-3.5 py-1.5">
-                        <dt class="text-caption text-neutral-400 truncate">
+                        <dt class="text-small text-neutral-400 truncate">
                           {key}
                         </dt>
-                        <dd class="text-caption font-medium text-neutral-100 tabular-nums shrink-0">
+                        <dd class="text-small font-medium text-neutral-100 tabular-nums shrink-0">
                           {value}
                         </dd>
                       </div>
@@ -751,7 +751,7 @@ const metadataRows: [string, string][] = [
                   title="Raycast — coming soon"
                 />
                 <span
-                  class="absolute -top-2 -right-2 px-1.5 py-0.5 text-caption font-semibold leading-none rounded-full bg-accent text-white ring-2 ring-background-subtle"
+                  class="absolute -top-2 -right-2 px-1.5 py-0.5 text-small font-semibold leading-none rounded-full bg-accent text-white ring-2 ring-background-subtle"
                   >Soon</span
                 >
                 <span class="sr-only">Coming soon</span>
@@ -788,13 +788,13 @@ const metadataRows: [string, string][] = [
                     <span class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
                     <span class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
                   </span>
-                  <span class="text-caption font-medium text-neutral-400"
+                  <span class="text-small font-medium text-neutral-400"
                     >picmal-cli</span
                   >
                 </div>
                 <!-- prompt + sample commands -->
                 <div
-                  class="px-3.5 py-4 min-h-[180px] font-mono text-caption leading-relaxed text-neutral-400"
+                  class="px-3.5 py-4 min-h-[180px] font-mono text-small leading-relaxed text-neutral-400"
                 >
                   <div class="text-neutral-100">
                     <span class="text-[#28c840]">$</span> picmal-cli convert <span

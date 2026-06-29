@@ -1,8 +1,18 @@
 ---
-title: '7 Best Image Formats for Web Performance in 2025'
-description: 'Discover the 7 best image formats for web, including JPEG, PNG, WebP, and AVIF. Learn their pros, cons, and use cases to optimize your site speed.'
+title: 'The 7 Best Image Formats for the Web in 2026, Compared'
+description: 'JPEG, PNG, WebP, AVIF, SVG and more — which image format to use for the web, when, and why. Clear picks for speed, quality, and file size.'
 pubDate: '2025-09-09'
+updatedDate: '2026-06-29'
 category: 'Guide'
+faqs:
+  - question: 'What is the best image format for a website?'
+    answer: 'For photographs, WebP with a JPEG fallback gives you 25–35% smaller files at the same quality. For logos and icons, use SVG. For maximum compression on a high-traffic site, AVIF with WebP and JPEG fallbacks.'
+  - question: 'Is WebP better than JPEG?'
+    answer: 'For the web, yes — WebP files are typically 25–35% smaller than JPEG at the same visual quality, and WebP also supports transparency and animation. JPEG still wins on universal compatibility, so many sites serve WebP with a JPEG fallback.'
+  - question: 'Should I use AVIF or WebP in 2026?'
+    answer: 'WebP if you want a safe default that works almost everywhere with fast encoding. AVIF if you are serving a lot of images and want the smallest possible files and can absorb slower encode times. Serve AVIF first, WebP second, JPEG last.'
+  - question: 'Which image format has the smallest file size?'
+    answer: 'For photographs, AVIF, followed by WebP, then JPEG. For flat graphics and icons, SVG is usually the smallest because it stores math instead of pixels.'
 ---
 
 Images are usually the heaviest thing on any webpage. A single unoptimized hero photo can weigh more than all your HTML, CSS, and JavaScript combined. The format you pick determines whether that photo loads in 200ms or 3 seconds.
@@ -60,7 +70,7 @@ Before uploading PNGs, run them through an optimizer like OptiPNG to squeeze out
 
 Google built WebP to do what JPEG and PNG do, but with smaller files. It supports **both lossy and lossless compression**, plus transparency and animation. A WebP photo is typically 25-35% smaller than the same JPEG at the same visual quality.
 
-In practice, WebP can replace both JPEG and PNG for most web use cases. It handles photographs, graphics with transparency, and even animated sequences (a better GIF, basically). With 97%+ browser support in 2025, the compatibility excuse is gone.
+In practice, WebP can replace both JPEG and PNG for most web use cases. It handles photographs, graphics with transparency, and even animated sequences (a better GIF, basically). With 98%+ browser support in 2026, the compatibility excuse is gone.
 
 ![WebP](https://cdn.outrank.so/25b3ca91-c69c-4e68-b842-e90b44c6f9fe/1ffa2765-d31b-4250-a68b-8cbfb560bbbd.jpg)
 
@@ -92,7 +102,7 @@ Picmal can generate WebP versions from your source files in batch. A quality set
 
 AVIF is built on the AV1 video codec, and the compression numbers are genuinely impressive: files that are 50% smaller than WebP and up to 90% smaller than JPEG at comparable visual quality. It supports **lossy and lossless compression**, HDR, 12-bit color depth, and transparency.
 
-The downside is speed. AVIF encoding is slow. Converting a large batch of photos to AVIF will take noticeably longer than the same batch to WebP. Browser support sits around 90% in 2025, with Chrome, Firefox, and Safari all on board (Safari was the last holdout). It's no longer experimental, but it's not as bulletproof as WebP yet.
+The downside is speed. AVIF encoding is slow. Converting a large batch of photos to AVIF will take noticeably longer than the same batch to WebP. Browser support sits around 95% in 2026, with Chrome, Firefox, Safari, and Edge all on board (Safari was the last holdout). It's no longer experimental, but it's not as bulletproof as WebP yet.
 
 ### When to Use AVIF
 
@@ -108,7 +118,7 @@ AVIF pays off most when you're serving a lot of images to a lot of people:
 
 Same pattern as WebP: use the `<picture>` element to serve AVIF first, then fall back to WebP, then JPEG. Three sources, one `<img>` tag. The browser picks the best one it understands.
 
-Picmal can batch convert your source files into AVIF (and generate the fallback formats at the same time). For a deeper look at how AVIF stacks up against everything else, see our guide to [the best image formats in 2025](https://picmal.app/blog/best-image-formats-2025).
+Picmal can batch convert your source files into AVIF (and generate the fallback formats at the same time) — it's a native [image converter for Mac](https://picmal.app/image-converter-mac) that runs the whole job locally, so nothing gets uploaded.
 
 <iframe
   width="560"
@@ -233,7 +243,7 @@ For archival workflows, convert your edited master files (TIFF, PSD) to JPEG 200
       <td>High</td>
       <td>High CPU and memory usage</td>
       <td>Exceptional compression, HDR, wide color gamut</td>
-      <td>Experimental, HDR content, bandwidth-limited apps</td>
+      <td>High-traffic sites, HDR content, bandwidth-limited apps</td>
       <td>Outstanding compression, advanced color support, royalty-free</td>
     </tr>
     <tr>
@@ -276,4 +286,20 @@ There’s no single best format. The right choice depends on what’s in the ima
 
 ### Converting Between Formats with Picmal
 
-Once you know which formats you need, the tedious part is actually converting the files. Doing it one at a time in Preview or an online tool wastes hours you could spend on actual work. Picmal converts entire folders at once, handles all the formats above, and runs locally on your Mac so nothing gets uploaded anywhere.
+Once you know which formats you need, the conversion itself is the boring part. Doing it one at a time in Preview or through an online tool takes forever on a big folder. Picmal is a native [image converter for Mac](https://picmal.app/image-converter-mac) that converts entire folders at once, handles all the formats above, and runs locally so nothing gets uploaded.
+
+Already have the right format but the files are still too heavy? That's a separate problem — see [how to reduce image file size on Mac](https://picmal.app/blog/reduce-image-file-size-mac), or [compress images on Mac](https://picmal.app/compress-images-mac) to batch-shrink a whole folder without changing the format.
+
+### Frequently asked questions
+
+**What is the best image format for a website?**
+For photographs, WebP with a JPEG fallback gives you 25–35% smaller files at the same quality. For logos and icons, use SVG. For maximum compression on a high-traffic site, AVIF with WebP and JPEG fallbacks.
+
+**Is WebP better than JPEG?**
+For the web, yes — WebP files are typically 25–35% smaller than JPEG at the same visual quality, and WebP also supports transparency and animation. JPEG still wins on universal compatibility (email, old devices), so many sites serve WebP with a JPEG fallback.
+
+**Should I use AVIF or WebP in 2026?**
+WebP if you want a safe default that works almost everywhere with fast encoding. AVIF if you're serving a lot of images and want the smallest possible files, and you can absorb slower encode times. The two aren't mutually exclusive — serve AVIF first, WebP second, JPEG last.
+
+**Which image format has the smallest file size?**
+For photographs, AVIF, followed by WebP, then JPEG. For flat graphics and icons, SVG is usually the smallest because it stores math instead of pixels.

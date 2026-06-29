@@ -206,6 +206,111 @@ const faqSchema = {
     </section>
 
     <SectionDivider />
+
+    <!-- Compress vs convert -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto">
+        <H2 class="mb-6 text-center">Compressing isn't the same as converting</H2>
+        <Paragraph class="mb-4"
+          >It's an easy thing to mix up. <strong class="text-text"
+            >Converting</strong
+          > changes the format — a HEIC becomes a JPG, a PNG becomes a WebP. <strong
+            class="text-text">Compressing</strong
+          > keeps the format and shrinks the file. A 6&nbsp;MB JPG comes out a
+          1.5&nbsp;MB JPG. Same format, same filename extension, smaller on
+          disk.</Paragraph
+        >
+        <Paragraph class="mb-4"
+          >Most of the time, compressing is what you actually want. You're not
+          trying to make a file openable somewhere new — you're trying to make
+          it lighter for email, for a website, or just to claw back disk space.
+          Picmal does both, and on this page it stays in its lane: drop images
+          in, they come out smaller, in the format they started in.</Paragraph
+        >
+        <Paragraph
+          >If you do need a different format, that's the <a
+            href="/image-converter-mac"
+            class="text-accent hover:underline">image converter for Mac</a
+          >. And you can convert and compress in the same pass — switch a folder
+          of PNGs to WebP <em>and</em> drop the quality, in one go.</Paragraph
+        >
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- What you control -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-4xl mx-auto">
+        <H2 class="mb-8 text-center">Real control over size and quality</H2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Quality slider</h3>
+            <Paragraph
+              >For JPG, WebP, and AVIF you set the quality and see the trade-off.
+              80–85% usually cuts the file 60–70% with no difference you'd notice
+              on screen.</Paragraph
+            >
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Lossless where it matters</h3>
+            <Paragraph
+              >PNG and TIFF compress without throwing away a single pixel.
+              Smaller files, identical image — right for screenshots, logos, and
+              diagrams.</Paragraph
+            >
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Whole folders at once</h3>
+            <Paragraph
+              >Drag in hundreds of images or a nested folder and apply one
+              setting to all of them. No uploading one file at a time to a
+              website.</Paragraph
+            >
+          </div>
+          <div class="bg-background-subtle/50 border border-border rounded-xl p-6">
+            <h3 class="font-semibold text-text mb-2">Nothing leaves your Mac</h3>
+            <Paragraph
+              >Compression runs locally. No upload, no queue, no file-size cap,
+              and your photos never touch someone else's server.</Paragraph
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
+
+    <!-- Related guides -->
+    <section class="relative z-10 px-6 py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto text-center">
+        <H2 class="mb-6">Related guides</H2>
+        <div class="flex flex-col gap-3">
+          <a
+            href="/blog/reduce-image-file-size-mac"
+            class="text-accent hover:underline"
+            >How to reduce image file size on Mac &rarr;</a
+          >
+          <a
+            href="/blog/best-image-formats-for-web"
+            class="text-accent hover:underline"
+            >Best image formats for the web (and when to use each) &rarr;</a
+          >
+          <a
+            href="/blog/reduce-photo-library-size-mac"
+            class="text-accent hover:underline"
+            >Reduce your photo library size on Mac &rarr;</a
+          >
+          <a
+            href="/compress-video-mac"
+            class="text-accent hover:underline"
+            >Need to shrink video instead? Compress video on Mac &rarr;</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <SectionDivider />
     <MasonryTestimonials />
     <SectionDivider />
 

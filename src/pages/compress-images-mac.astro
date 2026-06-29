@@ -13,6 +13,7 @@ import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const title =
   "Compress Images on Mac — Reduce File Size Without Quality Loss | Picmal";
@@ -80,57 +81,35 @@ const faqSchema = {
       subhead="Reduce image file sizes by up to 80% with Picmal. Batch compression for JPG, PNG, WebP, AVIF, and more. Offline, adjustable quality, no subscription."
       buyEvent="buy_clicked_compress_images_mac"
       defaultTab="compress"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Compress Images on Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
     <!-- How It Works -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Compress images in 3 steps</H2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              1
-            </div>
-            <h3 class="font-semibold text-text mb-2">Drop your images</h3>
-            <Paragraph
-              >Drag and drop images or entire folders into Picmal.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              2
-            </div>
-            <h3 class="font-semibold text-text mb-2">Adjust quality</h3>
-            <Paragraph
-              >Use the quality slider to balance file size and visual quality.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              3
-            </div>
-            <h3 class="font-semibold text-text mb-2">Compress</h3>
-            <Paragraph
-              >Click Compress and your smaller files are ready.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Compress images in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your images",
+          description: "Drag and drop images or entire folders into Picmal.",
+        },
+        {
+          title: "Adjust quality",
+          description:
+            "Use the quality slider to balance file size and visual quality.",
+        },
+        {
+          title: "Compress",
+          description: "Click Compress and your smaller files are ready.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 
@@ -197,44 +176,31 @@ const faqSchema = {
     <SectionDivider />
 
     <!-- What you control -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Real control over size and quality</H2>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Quality slider</h3>
-            <Paragraph
-              >For JPG, WebP, and AVIF you set the quality and see the trade-off.
-              80–85% usually cuts the file 60–70% with no difference you'd notice
-              on screen.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Lossless where it matters</h3>
-            <Paragraph
-              >PNG and TIFF compress without throwing away a single pixel.
-              Smaller files, identical image — right for screenshots, logos, and
-              diagrams.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Whole folders at once</h3>
-            <Paragraph
-              >Drag in hundreds of images or a nested folder and apply one
-              setting to all of them. No uploading one file at a time to a
-              website.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Nothing leaves your Mac</h3>
-            <Paragraph
-              >Compression runs locally. No upload, no queue, no file-size cap,
-              and your photos never touch someone else's server.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Real control over size and quality"
+      items={[
+        {
+          title: "Quality slider",
+          description:
+            "For JPG, WebP, and AVIF you set the quality and see the trade-off. 80–85% usually cuts the file 60–70% with no difference you'd notice on screen.",
+        },
+        {
+          title: "Lossless where it matters",
+          description:
+            "PNG and TIFF compress without throwing away a single pixel. Smaller files, identical image — right for screenshots, logos, and diagrams.",
+        },
+        {
+          title: "Whole folders at once",
+          description:
+            "Drag in hundreds of images or a nested folder and apply one setting to all of them. No uploading one file at a time to a website.",
+        },
+        {
+          title: "Nothing leaves your Mac",
+          description:
+            "Compression runs locally. No upload, no queue, no file-size cap, and your photos never touch someone else's server.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 

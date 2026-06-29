@@ -41,8 +41,9 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
 
 <main id="main-content" class="relative z-10 pt-32 pb-20">
   <div class="max-w-7xl mx-auto px-6 xl:px-0">
+    <slot name="breadcrumb" />
     <div
-      class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center mb-12 sm:mb-16"
+      class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start mb-12 sm:mb-16"
     >
       <div class="text-center lg:text-left lg:col-span-2">
         <div
@@ -107,39 +108,35 @@ const latestReleaseHref = `/changelog#${getEntrySlug(latestRelease)}`;
 
       <!-- Demo Video + filter -->
       <div class="w-full lg:col-span-3">
-        <div class="lg:relative">
-          <div
-            class="mb-6 lg:mb-0 lg:absolute lg:bottom-full lg:inset-x-0 lg:pb-6"
-          >
-            <SegmentedControl
-              ariaLabel="Filter demo by action"
-              mode="tabs"
-              segmentClass="hero-demo-tab"
-              activeId={defaultTab}
-              segments={[
-                { id: "convert", label: "Convert" },
-                { id: "compress", label: "Compress" },
-                { id: "pdf", label: "PDF" },
-              ]}
-            />
-          </div>
-          <div class="rounded-xl sm:rounded-xl overflow-hidden border border-border">
-            <div class="aspect-video bg-background-subtle">
-              <video
-                id="hero-demo-video"
+        <div class="mb-6">
+          <SegmentedControl
+            ariaLabel="Filter demo by action"
+            mode="tabs"
+            segmentClass="hero-demo-tab"
+            activeId={defaultTab}
+            segments={[
+              { id: "convert", label: "Convert" },
+              { id: "compress", label: "Compress" },
+              { id: "pdf", label: "PDF" },
+            ]}
+          />
+        </div>
+        <div class="rounded-xl overflow-hidden border border-border">
+          <div class="aspect-video bg-background-subtle">
+            <video
+              id="hero-demo-video"
               data-default-tab={defaultTab}
-                class="w-full h-full object-cover"
-                width="1920"
-                height="1080"
-                poster={`/${defaultTab}-poster.webp`}
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                aria-label="Picmal demo"
-              >
-              </video>
-            </div>
+              class="w-full h-full object-cover"
+              width="1920"
+              height="1080"
+              poster={`/${defaultTab}-poster.webp`}
+              loop
+              muted
+              playsinline
+              preload="metadata"
+              aria-label="Picmal demo"
+            >
+            </video>
           </div>
         </div>
       </div>

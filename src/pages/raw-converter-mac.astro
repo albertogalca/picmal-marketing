@@ -12,6 +12,7 @@ import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import CardGrid from "../components/CardGrid.astro";
 import { formats, RAW_INPUT_FORMATS } from "../data/conversions";
 import ComparisonHero from "../components/ComparisonHero.astro";
 
@@ -87,57 +88,36 @@ const faqSchema = {
       subhead="CR2, NEF, ARW, RAF and more — Picmal decodes your camera's raw files with correct white balance and batch-exports an entire shoot to JPG. Fast, offline, and private. No Lightroom subscription."
       buyEvent="buy_clicked_raw_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "RAW Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
     <!-- How It Works -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Convert your shoot in 3 steps</H2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              1
-            </div>
-            <h3 class="font-semibold text-text mb-2">Drop your RAW files</h3>
-            <Paragraph
-              >Drag a whole folder straight from your memory card or Finder.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              2
-            </div>
-            <h3 class="font-semibold text-text mb-2">Choose JPG & quality</h3>
-            <Paragraph
-              >Pick JPG (or PNG/TIFF) and set the quality you need.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              3
-            </div>
-            <h3 class="font-semibold text-text mb-2">Convert the batch</h3>
-            <Paragraph
-              >Click Convert and the whole shoot is ready in minutes.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Convert your shoot in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your RAW files",
+          description:
+            "Drag a whole folder straight from your memory card or Finder.",
+        },
+        {
+          title: "Choose JPG & quality",
+          description: "Pick JPG (or PNG/TIFF) and set the quality you need.",
+        },
+        {
+          title: "Convert the batch",
+          description:
+            "Click Convert and the whole shoot is ready in minutes.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 
@@ -154,9 +134,9 @@ const faqSchema = {
             rawCards.map((card) => (
               <a
                 href={`/convert/${card.slug}`}
-                class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-colors hover:border-accent/30"
+                class="bg-background-subtle/40 border border-border rounded-2xl p-5 text-center transition-colors hover:border-accent/30"
               >
-                <span class="block text-small font-medium text-text">
+                <span class="block font-semibold text-text">
                   {card.name} to JPG
                 </span>
                 <span class="block text-small text-text-secondary mt-1">
@@ -172,34 +152,26 @@ const faqSchema = {
     <SectionDivider />
 
     <!-- Why Picmal for RAW -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Built for photographers, not subscriptions</H2>
-        <div class="grid sm:grid-cols-3 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">No monthly fee</h3>
-            <Paragraph
-              >A one-time $15.99 — not a subscription like Lightroom or Capture
-              One. Just get your JPGs and move on.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Correct colors</h3>
-            <Paragraph
-              >Camera white balance, demosaicing, and gamma applied — your JPGs
-              look the way the shot was meant to.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Whole shoots, offline</h3>
-            <Paragraph
-              >Batch hundreds of raw files at once, entirely on your Mac. Nothing
-              uploaded, nothing phoned home.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Built for photographers, not subscriptions"
+      items={[
+        {
+          title: "No monthly fee",
+          description:
+            "A one-time $15.99 — not a subscription like Lightroom or Capture One. Just get your JPGs and move on.",
+        },
+        {
+          title: "Correct colors",
+          description:
+            "Camera white balance, demosaicing, and gamma applied — your JPGs look the way the shot was meant to.",
+        },
+        {
+          title: "Whole shoots, offline",
+          description:
+            "Batch hundreds of raw files at once, entirely on your Mac. Nothing uploaded, nothing phoned home.",
+        },
+      ]}
+    />
 
     <SectionDivider />
     <MasonryTestimonials />

@@ -116,7 +116,7 @@ const softwareSchema = {
         </div>
       </div>
 
-      <div class="max-w-3xl mx-auto px-6 pb-20">
+      <div class="max-w-5xl mx-auto px-6 pb-20">
         {
           rows.map((row) => (
             <article
@@ -126,9 +126,9 @@ const softwareSchema = {
               {/* version anchor preserved for legacy #v<version> deep links */}
               <span id={`v${row.version}`} class="block scroll-mt-28" />
 
-              <div class="flex flex-col sm:flex-row gap-3 sm:gap-8">
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-12">
                 {/* Left: metadata */}
-                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:w-[140px] sm:shrink-0 sm:pt-1">
+                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:w-[200px] sm:shrink-0 sm:pt-1">
                   {row.pubDate && (
                     <span class="text-small text-text-secondary order-2 sm:order-1">
                       <FormattedDate date={row.pubDate} />

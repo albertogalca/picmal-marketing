@@ -13,6 +13,7 @@ import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const title =
   "Compress Audio on Mac — Shrink MP3, M4A, WAV & More | Picmal";
@@ -80,102 +81,66 @@ const faqSchema = {
       subhead="Shrink MP3, M4A, WAV, FLAC and more with bitrate control, force mono, and sample-rate options. Perfect for podcasts, voice memos, and audiobooks. Batch, offline, no upload limit."
       buyEvent="buy_clicked_compress_audio_mac"
       defaultTab="compress"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Compress Audio on Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
     <!-- How It Works -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Compress audio in 3 steps</H2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              1
-            </div>
-            <h3 class="font-semibold text-text mb-2">Drop your audio</h3>
-            <Paragraph
-              >Drag in one file or a whole folder of recordings.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              2
-            </div>
-            <h3 class="font-semibold text-text mb-2">Pick bitrate & mode</h3>
-            <Paragraph
-              >Choose a bitrate and VBR/ABR/CBR mode, or force mono for
-              voice.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              3
-            </div>
-            <h3 class="font-semibold text-text mb-2">Compress</h3>
-            <Paragraph>Click Compress — everything runs on your Mac.</Paragraph>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Compress audio in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your audio",
+          description: "Drag in one file or a whole folder of recordings.",
+        },
+        {
+          title: "Pick bitrate & mode",
+          description:
+            "Choose a bitrate and VBR/ABR/CBR mode, or force mono for voice.",
+        },
+        {
+          title: "Compress",
+          description: "Click Compress — everything runs on your Mac.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 
     <!-- Controls -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Tuned for every kind of audio</H2>
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Bitrate & VBR/ABR/CBR</h3>
-            <Paragraph
-              >Target an exact bitrate or let VBR allocate bits where they
-              matter for the best quality per megabyte.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Force mono</h3>
-            <Paragraph
-              >Collapse stereo to mono for podcasts and voice memos — roughly
-              half the size, no audible loss.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Sample rate & bit depth</h3>
-            <Paragraph
-              >From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit — match the
-              source to the use.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Lossless option</h3>
-            <Paragraph
-              >Need to shrink without any loss? Compress to FLAC for
-              roughly half the size of WAV, bit-for-bit identical.</Paragraph
-            >
-          </div>
-        </div>
-        <div class="text-center mt-8">
-          <a
-            href="/audio-converter-mac"
-            class="text-small text-accent hover:underline"
-            >Need to convert audio formats too? See the audio converter &rarr;</a
-          >
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Tuned for every kind of audio"
+      items={[
+        {
+          title: "Bitrate & VBR/ABR/CBR",
+          description:
+            "Target an exact bitrate or let VBR allocate bits where they matter for the best quality per megabyte.",
+        },
+        {
+          title: "Force mono",
+          description:
+            "Collapse stereo to mono for podcasts and voice memos — roughly half the size, no audible loss.",
+        },
+        {
+          title: "Sample rate & bit depth",
+          description:
+            "From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit — match the source to the use.",
+        },
+        {
+          title: "Lossless option",
+          description:
+            "Need to shrink without any loss? Compress to FLAC for roughly half the size of WAV, bit-for-bit identical.",
+        },
+      ]}
+      linkText="Need to convert audio formats too? See the audio converter"
+      linkHref="/audio-converter-mac"
+    />
 
     <SectionDivider />
     <MasonryTestimonials />

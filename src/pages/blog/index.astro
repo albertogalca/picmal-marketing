@@ -56,7 +56,7 @@ const blogListSchema = {
 
     <!-- Hero with gradient -->
     <main class="relative z-10 pt-32 pb-20">
-      <div class="max-w-4xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
           <H1 class="mb-4">Picmal Blog</H1>
           <Paragraph class="max-w-2xl mx-auto">
@@ -71,21 +71,23 @@ const blogListSchema = {
         </div>
 
         <!-- Blog Posts Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {
             posts.map((post) => (
-              <article class="group h-full">
+              <article class="h-full">
                 <a
                   href={`/blog/${post.id}`}
-                  class="flex flex-col h-full bg-background-subtle rounded-xl border border-border overflow-hidden hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
+                  class="flex flex-col h-full bg-background-subtle rounded-xl overflow-hidden"
                 >
                   <div class="relative aspect-video overflow-hidden bg-background">
                     <Image
                       src={post.data.heroImage || "/images/blog/default.png"}
                       alt={post.data.title}
-                      width={400}
-                      height={225}
-                      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100"
+                      width={800}
+                      height={450}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover"
                     />
                   </div>
                   <div class="p-4 flex flex-col flex-1">
@@ -102,7 +104,7 @@ const blogListSchema = {
                         <FormattedDate date={post.data.pubDate} />
                       </time>
                     </div>
-                    <h2 class="text-body font-semibold text-text text-balance group-hover:text-accent transition-colors duration-200 mb-2 leading-snug">
+                    <h2 class="text-body font-semibold text-text text-balance mb-2 leading-snug">
                       {post.data.title}
                     </h2>
                     {post.data.description && (

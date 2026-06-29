@@ -6,13 +6,11 @@ import FAQ from "../../components/FAQ.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
-import DemoVideo from "../../components/DemoVideo.astro";
-import FeaturedReview from "../../components/FeaturedReview.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import {
   conversions,
   formats,
@@ -109,78 +107,23 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Convert", href: "/convert" },
-            { label: `${from.name} to ${to.name}` },
-          ]}
-        />
+    <ComparisonHero
+      title={`Convert ${from.name} to ${to.name} on Mac`}
+      subhead={conversion.whyConvert}
+      buyEvent={`buy_clicked_convert_${conversion.slug}`}
+      defaultTab="convert"
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Convert", href: "/convert" },
+          { label: `${from.name} to ${to.name}` },
+        ]}
+      />
+    </ComparisonHero>
 
-        <!-- Hero -->
-        <div class="text-center mb-16 sm:mb-20">
-          <!-- Format badge -->
-          <div class="flex items-center justify-center gap-3 mb-8">
-            <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
-            >
-              .{from.extension}
-            </span>
-            <svg
-              class="w-5 h-5 text-text-secondary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-            <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
-            >
-              .{to.extension}
-            </span>
-          </div>
-
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >Convert {from.name} to {to.name} on Mac</H1
-          >
-          <Paragraph
-            class="mb-4 max-w-xl mx-auto text-body-big leading-relaxed text-text-secondary px-4 sm:px-0 text-pretty"
-          >
-            {conversion.whyConvert}
-          </Paragraph>
-          <Paragraph
-            class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0 text-pretty"
-          >
-            Online converters cap file sizes and upload your photos to their
-            servers. Picmal runs on your Mac, offline. Drag in a folder and it
-            converts everything, no upload needed.
-          </Paragraph>
-          <HeroCTA
-            buyEvent={`buy_clicked_convert_${conversion.slug}`}
-            class="mb-4"
-          />
-          <p class="text-small text-text-secondary mb-6">
-            One-time $15.99 · no subscription · 14-day money-back
-          </p>
-          <TrustBar />
-
-          <DemoVideo
-            src="/convert.mp4"
-            poster="/convert-poster.webp"
-            label={`Convert ${from.name} to ${to.name} in Picmal`}
-            class="max-w-3xl mx-auto mt-10 sm:mt-12"
-          />
-        </div>
-
-        <FeaturedReview />
-
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
           <div
@@ -317,60 +260,26 @@ const faqSchema = {
         }
 
         <!-- How To Steps -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center"
-            >How to convert {from.name} to {to.name} on Mac</H2
-          >
-          <div class="grid md:grid-cols-3 gap-4 relative">
-            <!-- Connector lines (desktop only) -->
-            <div
-              class="hidden md:block absolute top-[2.25rem] left-[calc(33.33%_-_0.5rem)] right-[calc(33.33%_-_0.5rem)] h-px bg-border z-0"
-            >
-            </div>
-
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                1
-              </div>
-              <h3 class="font-semibold text-text mb-2">Open Picmal</h3>
-              <Paragraph>Download and open Picmal on your Mac.</Paragraph>
-            </div>
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                2
-              </div>
-              <h3 class="font-semibold text-text mb-2">
-                Add your {from.name} files
-              </h3>
-              <Paragraph
-                >Drag and drop your {from.name} files or entire folders into Picmal.</Paragraph
-              >
-            </div>
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                3
-              </div>
-              <h3 class="font-semibold text-text mb-2">
-                Select {to.name} and convert
-              </h3>
-              <Paragraph
-                >Choose {to.name} as the output format and click Convert.</Paragraph
-              >
-            </div>
-          </div>
-        </section>
+        <CardGrid
+          bare
+          numbered
+          class="mb-16 sm:mb-20"
+          heading={`How to convert ${from.name} to ${to.name} on Mac`}
+          items={[
+            {
+              title: "Open Picmal",
+              description: "Download and open Picmal on your Mac.",
+            },
+            {
+              title: `Add your ${from.name} files`,
+              description: `Drag and drop your ${from.name} files or entire folders into Picmal.`,
+            },
+            {
+              title: `Select ${to.name} and convert`,
+              description: `Choose ${to.name} as the output format and click Convert.`,
+            },
+          ]}
+        />
 
         <!-- Format Comparison -->
         <section class="mb-16 sm:mb-20">
@@ -603,8 +512,7 @@ const faqSchema = {
           heading={`Convert ${from.name} to ${to.name} with Picmal`}
           analyticsEvent={`buy_clicked_convert_${conversion.slug}_bottom`}
         />
-      </div>
-    </main>
+    </div>
 
     <Footer />
 

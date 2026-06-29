@@ -5,11 +5,10 @@ import Footer from "../../components/Footer.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import { formats, conversions } from "../../data/conversions";
 
 const title = "Convert Images on Mac — All Formats Supported | Picmal";
@@ -35,24 +34,19 @@ const groupedBySource = formatKeys.map((key) => ({
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <Breadcrumb
-          items={[{ label: "Home", href: "/" }, { label: "Convert" }]}
-        />
+    <ComparisonHero
+      title="Convert Any Image Format on Mac"
+      subhead="Picmal converts between all major image formats — HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
+      buyEvent="buy_clicked_convert_hub"
+      defaultTab="convert"
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Convert" }]}
+      />
+    </ComparisonHero>
 
-        <div class="text-center mb-16 sm:mb-20">
-          <H1 class="mb-6 max-w-3xl mx-auto">Convert Any Image Format on Mac</H1
-          >
-          <Paragraph size="lead" class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
-            Picmal converts between all major image formats — HEIC, JPG, PNG,
-            WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no
-            quality loss.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_convert_hub" class="mb-6" />
-          <TrustBar />
-        </div>
-
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
         <!-- All Conversions Grid -->
         <div class="space-y-12 sm:space-y-16">
           {
@@ -113,8 +107,7 @@ const groupedBySource = formatKeys.map((key) => ({
             analyticsEvent="buy_clicked_convert_hub_bottom"
           />
         </div>
-      </div>
-    </main>
+    </div>
 
     <Footer />
 

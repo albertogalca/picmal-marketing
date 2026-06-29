@@ -5,9 +5,9 @@ import Footer from "../components/Footer.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import Lead from "../components/Lead.astro";
-import Paragraph from "../components/Paragraph.astro";
 import Button from "../components/Button.astro";
 import TrustBar from "../components/TrustBar.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const DMG_URL =
   "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
@@ -15,15 +15,18 @@ const DMG_URL =
 const steps = [
   {
     title: "Open the disk image",
-    body: "Double-click the downloaded Picmal.dmg and drag Picmal into your Applications folder.",
+    description:
+      "Double-click the downloaded Picmal.dmg and drag Picmal into your Applications folder.",
   },
   {
     title: "Launch Picmal",
-    body: "Open Picmal from Applications. You can look around the whole app for free.",
+    description:
+      "Open Picmal from Applications. You can look around the whole app for free.",
   },
   {
     title: "Add your license to start converting",
-    body: "The app needs a license to process files. Buy one, paste the key, and you're running in about ten seconds.",
+    description:
+      "The app needs a license to process files. Buy one, paste the key, and you're running in about ten seconds.",
   },
 ];
 ---
@@ -46,8 +49,8 @@ const steps = [
       <div class="max-w-3xl mx-auto px-6 text-center">
         <H1 class="mb-6">Download Picmal for Mac</H1>
         <Lead class="mb-8 max-w-xl mx-auto">
-          The download is free. Install it, look around, see if it fits. Buy a
-          license once for $15.99 and the whole thing is yours. No subscription.
+          You need a license for using Picmal. You can buy one for $15.99 and if
+          you don't like it, you can get a full refund within 14 days.
         </Lead>
 
         <div class="flex flex-col items-center gap-3">
@@ -71,28 +74,12 @@ const steps = [
         </div>
 
         <p class="mt-6 text-small text-text-secondary">
-          Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel ·
-          14-day money-back guarantee
+          Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel
         </p>
       </div>
 
       <!-- Install steps -->
-      <div class="max-w-6xl mx-auto px-6 mt-16 sm:mt-20">
-        <H2 class="mb-8 text-center">Installing Picmal</H2>
-        <div class="grid md:grid-cols-3 gap-4">
-          {
-            steps.map((step, i) => (
-              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center">
-                <div class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small">
-                  {i + 1}
-                </div>
-                <h3 class="font-semibold text-text mb-2">{step.title}</h3>
-                <Paragraph>{step.body}</Paragraph>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+      <CardGrid heading="Installing Picmal" numbered items={steps} />
     </main>
 
     <Footer />

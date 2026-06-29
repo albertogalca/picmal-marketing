@@ -14,6 +14,7 @@ import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const title =
   "HEIC Converter for Mac — Convert HEIC to JPG, PNG, WebP | Picmal";
@@ -81,55 +82,35 @@ const faqSchema = {
       subhead="Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch converts your HEIC files to JPG, PNG, WebP, or any format — fast, offline, and private."
       buyEvent="buy_clicked_heic_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "HEIC Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
     <!-- How It Works -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Convert HEIC in 3 steps</H2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              1
-            </div>
-            <h3 class="font-semibold text-text mb-2">Drop your HEIC files</h3>
-            <Paragraph
-              >Drag and drop HEIC files from Finder, Photos, or any folder.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              2
-            </div>
-            <h3 class="font-semibold text-text mb-2">Choose output format</h3>
-            <Paragraph>Select JPG, PNG, WebP, or any other format.</Paragraph>
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              3
-            </div>
-            <h3 class="font-semibold text-text mb-2">Convert</h3>
-            <Paragraph
-              >Click Convert and your files are ready in seconds.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Convert HEIC in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your HEIC files",
+          description:
+            "Drag and drop HEIC files from Finder, Photos, or any folder.",
+        },
+        {
+          title: "Choose output format",
+          description: "Select JPG, PNG, WebP, or any other format.",
+        },
+        {
+          title: "Convert",
+          description: "Click Convert and your files are ready in seconds.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 

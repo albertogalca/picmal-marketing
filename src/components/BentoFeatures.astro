@@ -9,8 +9,8 @@ import rawSampleBeach from "../assets/raw-sample-beach.jpg";
 // Shared styles
 const card =
   "relative bg-background-subtle rounded-2xl border border-border overflow-hidden";
-const eyebrow = "text-small text-text-secondary mb-2";
-const blockTitle = "text-h3 text-text text-balance";
+const eyebrow = "text-small font-medium text-text-secondary mb-2";
+const blockTitle = "text-h2 text-text text-balance";
 // Screenshot that bleeds into a corner on desktop, stacks below text on mobile
 const cornerImg = "rounded-2xl lg:rounded-tl-2xl shadow-sm w-full h-auto";
 
@@ -28,7 +28,7 @@ const metadataRows: [string, string][] = [
 ---
 
 <section id="features" class="relative z-10 px-6 xl:px-0 py-24">
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-5xl mx-auto">
     <!-- Intro -->
     <div class="text-center mb-20">
       <H2 class="mb-4">What Picmal actually does</H2>
@@ -106,7 +106,7 @@ const metadataRows: [string, string][] = [
             </div>
             <div class="mt-auto">
               <div
-                class="h-44 overflow-hidden rounded-t-2xl ring-1 ring-inset ring-black/10 dark:ring-white/10 flex items-center justify-center translate-y-px"
+                class="h-44 overflow-hidden rounded-t-2xl border border-b-0 border-black/10 dark:border-white/10 flex items-center justify-center translate-y-px"
               >
                 <Image
                   class="w-full max-w-none h-auto"
@@ -119,10 +119,8 @@ const metadataRows: [string, string][] = [
             </div>
           </div>
 
-          <!-- RAW & PDF — photo + PDF close-up, fans out on hover -->
-          <div
-            class={`group ${card} lg:col-span-2 min-h-[315px] flex flex-col`}
-          >
+          <!-- RAW & PDF — photo + PDF close-up, fanned arrangement -->
+          <div class={`${card} lg:col-span-2 min-h-[315px] flex flex-col`}>
             <div class="p-6">
               <H3 class="mb-2">RAW and PDF, too</H3>
               <Paragraph>
@@ -130,9 +128,9 @@ const metadataRows: [string, string][] = [
                 pick.
               </Paragraph>
             </div>
-            <!-- PDF page (center) flanked by two RAW photos, fanned at rest.
+            <!-- PDF page (center) flanked by two RAW photos, fanned out.
                  Stack is pushed down (translate-y-5) so the rotated bottoms
-                 bleed off and the card clips them — no gap shows at rest or on hover. -->
+                 bleed off and the card clips them, leaving no gap at the base. -->
             <div
               class="mt-auto flex items-end justify-center overflow-hidden px-6"
             >
@@ -242,18 +240,18 @@ const metadataRows: [string, string][] = [
           </div>
 
           <!-- Combine PDFs — separate card, diagram-led -->
-          <div class={`group ${card} lg:col-span-3 p-8 sm:p-10`}>
+          <div class={`${card} lg:col-span-3 p-6`}>
             <H3 class="mb-2">Combine PDFs</H3>
             <Paragraph>
               Merge a stack of PDFs into one. Drag to reorder pages, pick the
               page size, save it out.
             </Paragraph>
-            <!-- Diagram: three PDFs fan apart, then merge into one on hover -->
+            <!-- Diagram: three source PDFs merging into one -->
             <div
               class="mt-10 flex items-center justify-center gap-6 sm:gap-8"
               aria-hidden="true"
             >
-              <!-- Source stack — fans wider, then gathers on hover (staggered) -->
+              <!-- Source stack — three fanned PDFs -->
               <div class="relative h-44 w-36">
                 <div
                   class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
@@ -323,7 +321,7 @@ const metadataRows: [string, string][] = [
                   stroke-linejoin="round"
                   d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
               </svg>
-              <!-- Result — one merged PDF, settles in on hover -->
+              <!-- Result — one merged PDF -->
               <div class="relative h-44 w-32">
                 <div
                   class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 overflow-hidden rounded-xl bg-white shadow-lg ring-2 ring-red-500/25"
@@ -350,7 +348,7 @@ const metadataRows: [string, string][] = [
           </div>
 
           <!-- Images to PDF — separate card, diagram-led -->
-          <div class={`group ${card} lg:col-span-3 p-8 sm:p-10`}>
+          <div class={`${card} lg:col-span-3 p-6`}>
             <H3 class="mb-2">Images to PDF</H3>
             <Paragraph>
               Turn a batch of photos into a multi-page PDF. A4, Letter, or
@@ -361,7 +359,7 @@ const metadataRows: [string, string][] = [
               class="mt-10 flex items-center justify-center gap-6 sm:gap-8"
               aria-hidden="true"
             >
-              <!-- Source — photo thumbs, fan in and gather on hover (staggered) -->
+              <!-- Source — three fanned photo thumbs -->
               <div class="relative h-24 md:h-44 w-36">
                 <div
                   class="absolute inset-0 m-auto h-16 md:h-28 w-20 md:w-36 -translate-x-5 -rotate-[14deg] overflow-hidden rounded-xl shadow-md ring-1 ring-black/10 dark:ring-white/10"
@@ -403,7 +401,7 @@ const metadataRows: [string, string][] = [
                   stroke-linejoin="round"
                   d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
               </svg>
-              <!-- Result — multi-page PDF, pages fan out on hover -->
+              <!-- Result — multi-page PDF -->
               <div class="relative h-24 md:h-44 w-32">
                 <div
                   class="absolute inset-0 m-auto h-24 md:h-36 w-16 md:w-28 -translate-x-[20%] -rotate-[8deg] overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10 dark:ring-white/10"
@@ -520,10 +518,10 @@ const metadataRows: [string, string][] = [
               </Paragraph>
             </div>
             <div
-              class="schedule-stack group flex-1 flex items-end justify-center px-6 pb-6 pt-10 lg:pt-0"
+              class="flex-1 flex items-end justify-center px-6 pb-6 pt-10 lg:pt-0"
             >
               <div class="relative w-full max-w-[300px] -translate-x-2">
-                <!-- Back card — compress, peeks above and rises further on hover -->
+                <!-- Back card — compress, peeking above the front card -->
                 <Image
                   class="absolute left-1/2 top-0 w-full h-auto -translate-x-[calc(50%-1rem)] -translate-y-7 rounded-xl shadow-lg"
                   src="/schedule_compress.png"
@@ -717,7 +715,7 @@ const metadataRows: [string, string][] = [
             >
               <a
                 href="/docs/integrations#finder-services-right-click-menu"
-                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.96] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                 title="Finder — read the docs"
               >
                 <Image
@@ -730,7 +728,7 @@ const metadataRows: [string, string][] = [
               </a>
               <a
                 href="/docs/integrations#shortcuts-app"
-                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                class="block rounded-[22%] shadow-lg transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.96] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                 title="Shortcuts — read the docs"
               >
                 <Image
@@ -772,7 +770,11 @@ const metadataRows: [string, string][] = [
                 class="group/cli mt-4 inline-flex items-center gap-1 text-body font-medium text-accent hover:text-accent/80 transition-colors rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
               >
                 Read the docs
-                <span aria-hidden="true">&rarr;</span>
+                <span
+                  aria-hidden="true"
+                  class="transition-transform group-hover/cli:translate-x-0.5 motion-reduce:transition-none"
+                  >&rarr;</span
+                >
               </a>
             </div>
             <div class="flex-1 flex items-center justify-center px-6 pb-6">
@@ -982,7 +984,11 @@ const metadataRows: [string, string][] = [
         class="group inline-flex items-center gap-1 text-body text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         Learn more in the docs
-        <span aria-hidden="true">&rarr;</span>
+        <span
+          aria-hidden="true"
+          class="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+          >&rarr;</span
+        >
       </a>
     </div>
   </div>

@@ -13,6 +13,7 @@ import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const title =
   "Batch Image Converter for Mac — Convert Hundreds at Once | Picmal";
@@ -80,104 +81,66 @@ const faqSchema = {
       subhead="Drop entire folders into Picmal and convert everything at once. HEIC, JPG, PNG, WebP, AVIF, TIFF — all formats supported. Offline, no subscription."
       buyEvent="buy_clicked_batch_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Batch Image Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
     <!-- How Batch Works -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">How batch conversion works</H2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              1
-            </div>
-            <h3 class="font-semibold text-text mb-2">Drop files or folders</h3>
-            <Paragraph
-              >Drag and drop any number of files or entire folders into Picmal.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              2
-            </div>
-            <h3 class="font-semibold text-text mb-2">Choose output format</h3>
-            <Paragraph
-              >Select your target format and adjust quality settings if needed.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center"
-          >
-            <div
-              class="w-10 h-10 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4 font-semibold"
-            >
-              3
-            </div>
-            <h3 class="font-semibold text-text mb-2">Convert everything</h3>
-            <Paragraph
-              >Click Convert and watch individual progress for each file.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="How batch conversion works"
+      numbered
+      items={[
+        {
+          title: "Drop files or folders",
+          description:
+            "Drag and drop any number of files or entire folders into Picmal.",
+        },
+        {
+          title: "Choose output format",
+          description:
+            "Select your target format and adjust quality settings if needed.",
+        },
+        {
+          title: "Convert everything",
+          description:
+            "Click Convert and watch individual progress for each file.",
+        },
+      ]}
+    />
 
     <SectionDivider />
 
     <!-- Key Features for Batch -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Built for batch processing</H2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6"
-          >
-            <h3 class="font-semibold text-text mb-2">Folder drop support</h3>
-            <Paragraph
-              >Drop entire folders — Picmal finds and converts all supported
-              files inside, including nested subfolders.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6"
-          >
-            <h3 class="font-semibold text-text mb-2">Individual progress</h3>
-            <Paragraph
-              >Track conversion progress for each file individually. See which
-              files are done and which are still processing.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6"
-          >
-            <h3 class="font-semibold text-text mb-2">Mixed format input</h3>
-            <Paragraph
-              >Drop a mix of HEIC, JPG, PNG, and other formats. Picmal detects
-              each file type and converts them all.</Paragraph
-            >
-          </div>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6"
-          >
-            <h3 class="font-semibold text-text mb-2">Watched folders</h3>
-            <Paragraph
-              >Set up folders that automatically convert any new files added to
-              them. Perfect for automated workflows.</Paragraph
-            >
-          </div>
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="Built for batch processing"
+      items={[
+        {
+          title: "Folder drop support",
+          description:
+            "Drop entire folders — Picmal finds and converts all supported files inside, including nested subfolders.",
+        },
+        {
+          title: "Individual progress",
+          description:
+            "Track conversion progress for each file individually. See which files are done and which are still processing.",
+        },
+        {
+          title: "Mixed format input",
+          description:
+            "Drop a mix of HEIC, JPG, PNG, and other formats. Picmal detects each file type and converts them all.",
+        },
+        {
+          title: "Watched folders",
+          description:
+            "Set up folders that automatically convert any new files added to them. Perfect for automated workflows.",
+        },
+      ]}
+    />
 
     <SectionDivider />
     <MasonryTestimonials />

@@ -14,6 +14,7 @@ import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import { videoConversions, videoFormats } from "../data/videoConversions";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
 
 const title = "Video Converter for Mac — MOV to MP4, MKV, AVI & More | Picmal";
 const description =
@@ -83,7 +84,12 @@ const faqSchema = {
       subhead="MOV, MKV, AVI, WebM and more — Picmal converts to MP4 (H.264/H.265), compresses with a quality slider, and batch-processes whole folders. Offline, no watermark, no file-size limit."
       buyEvent="buy_clicked_video_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Video Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 
@@ -142,41 +148,28 @@ const faqSchema = {
     <SectionDivider />
 
     <!-- Why Picmal for video -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">More than a converter</H2>
-        <div class="grid sm:grid-cols-3 gap-6">
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Real compression</h3>
-            <Paragraph
-              >CRF quality slider, codec choice (H.264/H.265/VP9/AV1), and frame
-              rate — with a size estimate before you encode.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">Subtitle burn-in</h3>
-            <Paragraph
-              >Bake SRT or VTT subtitles straight into the frames so they play
-              anywhere, with no separate track.</Paragraph
-            >
-          </div>
-          <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-            <h3 class="font-semibold text-text mb-2">No limits, no watermark</h3>
-            <Paragraph
-              >Any file size, fully offline, no watermark — a one-time $15.99,
-              not a subscription or an online upload.</Paragraph
-            >
-          </div>
-        </div>
-        <div class="text-center mt-8">
-          <a
-            href="/compress-video-mac"
-            class="text-small text-accent hover:underline"
-            >Just need a smaller file? Compress video on Mac &rarr;</a
-          >
-        </div>
-      </div>
-    </section>
+    <CardGrid
+      heading="More than a converter"
+      items={[
+        {
+          title: "Real compression",
+          description:
+            "CRF quality slider, codec choice (H.264/H.265/VP9/AV1), and frame rate — with a size estimate before you encode.",
+        },
+        {
+          title: "Subtitle burn-in",
+          description:
+            "Bake SRT or VTT subtitles straight into the frames so they play anywhere, with no separate track.",
+        },
+        {
+          title: "No limits, no watermark",
+          description:
+            "Any file size, fully offline, no watermark — a one-time $15.99, not a subscription or an online upload.",
+        },
+      ]}
+      linkText="Just need a smaller file? Compress video on Mac"
+      linkHref="/compress-video-mac"
+    />
 
     <SectionDivider />
     <MasonryTestimonials />

@@ -6,13 +6,11 @@ import FAQ from "../../components/FAQ.astro";
 import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
-import DemoVideo from "../../components/DemoVideo.astro";
-import FeaturedReview from "../../components/FeaturedReview.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import {
   compressions,
   type CompressionFileSizeExample,
@@ -59,72 +57,23 @@ const faqSchema = {
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6">
-        <Breadcrumb
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Compress", href: "/compress" },
-            { label: compression.name },
-          ]}
-        />
+    <ComparisonHero
+      title={`Compress ${compression.name} Files on Mac`}
+      subhead={compression.whyCompress}
+      buyEvent={`buy_clicked_compress_${compression.slug}`}
+      defaultTab="compress"
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Compress", href: "/compress" },
+          { label: compression.name },
+        ]}
+      />
+    </ComparisonHero>
 
-        <!-- Hero -->
-        <div class="text-center mb-16 sm:mb-20">
-          <div class="flex items-center justify-center gap-3 mb-8">
-            <span
-              class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
-            >
-              .{compression.format}
-            </span>
-            <svg
-              class="w-5 h-5 text-accent"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-            <span
-              class="inline-flex items-center justify-center px-3 py-2 rounded-xl bg-accent/10 border border-accent/20 text-small font-medium text-accent tracking-wide"
-            >
-              Smaller
-            </span>
-          </div>
-
-          <H1 class="mb-6">Compress {compression.name} Files on Mac</H1>
-          <Paragraph class="max-w-2xl mx-auto mb-4">
-            {compression.whyCompress}
-          </Paragraph>
-          <Paragraph class="max-w-xl mx-auto mb-8 text-pretty">
-            Online compressors need your files on their servers. Picmal
-            compresses folders on your Mac, offline, with a quality slider so
-            you control how small the output gets.
-          </Paragraph>
-          <HeroCTA
-            buyEvent={`buy_clicked_compress_${compression.slug}`}
-            class="mb-4"
-          />
-          <p class="text-small text-text-secondary mb-6">
-            One-time $15.99 · no subscription · 14-day money-back
-          </p>
-          <TrustBar />
-
-          <DemoVideo
-            src="/compress.mp4"
-            poster="/compress-poster.webp"
-            label={`Compress ${compression.name} files in Picmal`}
-            class="max-w-3xl mx-auto mt-10 sm:mt-12"
-          />
-        </div>
-
-        <FeaturedReview />
-
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
         <!-- Benefits -->
         <section class="mb-16 sm:mb-20">
           <div
@@ -158,61 +107,27 @@ const faqSchema = {
         </section>
 
         <!-- How To Steps -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center"
-            >How to compress {compression.name} files on Mac</H2
-          >
-          <div class="grid md:grid-cols-3 gap-4 relative">
-            <div
-              class="hidden md:block absolute top-[2.25rem] left-[calc(33.33%_-_0.5rem)] right-[calc(33.33%_-_0.5rem)] h-px bg-border z-0"
-            >
-            </div>
-
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                1
-              </div>
-              <h3 class="font-semibold text-text mb-2">Open Picmal</h3>
-              <Paragraph>Download and open Picmal on your Mac.</Paragraph>
-            </div>
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                2
-              </div>
-              <h3 class="font-semibold text-text mb-2">
-                Add your {compression.name} files
-              </h3>
-              <Paragraph
-                >Drag and drop your {compression.name} files or entire folders into
-                Picmal.</Paragraph
-              >
-            </div>
-            <div
-              class="bg-background-subtle/50 border border-border rounded-2xl p-6 text-center relative z-10"
-            >
-              <div
-                class="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-4 font-semibold text-small"
-              >
-                3
-              </div>
-              <h3 class="font-semibold text-text mb-2">
-                Adjust quality and compress
-              </h3>
-              <Paragraph
-                >Set your preferred quality level and click Compress to reduce
-                file sizes.</Paragraph
-              >
-            </div>
-          </div>
-        </section>
+        <CardGrid
+          bare
+          numbered
+          class="mb-16 sm:mb-20"
+          heading={`How to compress ${compression.name} files on Mac`}
+          items={[
+            {
+              title: "Open Picmal",
+              description: "Download and open Picmal on your Mac.",
+            },
+            {
+              title: `Add your ${compression.name} files`,
+              description: `Drag and drop your ${compression.name} files or entire folders into Picmal.`,
+            },
+            {
+              title: "Adjust quality and compress",
+              description:
+                "Set your preferred quality level and click Compress to reduce file sizes.",
+            },
+          ]}
+        />
 
         <!-- File Size Comparison -->
         <section class="mb-16 sm:mb-20">
@@ -373,8 +288,7 @@ const faqSchema = {
           heading={`Compress ${compression.name} files with Picmal`}
           analyticsEvent={`buy_clicked_compress_${compression.slug}_bottom`}
         />
-      </div>
-    </main>
+    </div>
 
     <Footer />
 

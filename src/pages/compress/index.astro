@@ -4,11 +4,10 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import H1 from "../../components/H1.astro";
 import Paragraph from "../../components/Paragraph.astro";
-import HeroCTA from "../../components/HeroCTA.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
-import TrustBar from "../../components/TrustBar.astro";
 import { compressions } from "../../data/compressions";
 
 const title = "Compress Images on Mac — Reduce File Size | Picmal";
@@ -27,24 +26,19 @@ const description =
   >
     <Header />
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <Breadcrumb
-          items={[{ label: "Home", href: "/" }, { label: "Compress" }]}
-        />
+    <ComparisonHero
+      title="Compress Any Image Format on Mac"
+      subhead="Reduce file sizes for JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF on your Mac. Batch processing, adjustable quality, completely offline."
+      buyEvent="buy_clicked_compress_hub"
+      defaultTab="compress"
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Compress" }]}
+      />
+    </ComparisonHero>
 
-        <div class="text-center mb-16 sm:mb-20">
-          <H1 class="mb-6 max-w-3xl mx-auto"
-            >Compress Any Image Format on Mac</H1
-          >
-          <Paragraph size="lead" class="mb-6 sm:mb-8 max-w-xl mx-auto px-4 sm:px-0">
-            Reduce file sizes for JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF on
-            your Mac. Batch processing, adjustable quality, completely offline.
-          </Paragraph>
-          <HeroCTA buyEvent="buy_clicked_compress_hub" class="mb-6" />
-          <TrustBar />
-        </div>
-
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
         <!-- Format Cards -->
         <div class="grid md:grid-cols-2 gap-4 mb-16 sm:mb-20">
           {
@@ -73,8 +67,7 @@ const description =
           heading="Compress any file format with Picmal"
           analyticsEvent="buy_clicked_compress_hub_bottom"
         />
-      </div>
-    </main>
+    </div>
 
     <Footer />
 

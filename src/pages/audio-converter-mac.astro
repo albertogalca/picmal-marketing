@@ -83,7 +83,12 @@ const faqSchema = {
       subhead="FLAC, M4A, WAV, WMA, OGG, Opus and more — Picmal converts to MP3 for universal playback, or to ALAC for lossless Apple Music. Bitrate control, batch, fully offline."
       buyEvent="buy_clicked_audio_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Audio Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
 

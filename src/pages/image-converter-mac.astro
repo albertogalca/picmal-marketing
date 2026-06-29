@@ -80,7 +80,12 @@ const faqSchema = {
       subhead="Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, and 20+ other formats. Batch processing, offline, no subscription."
       buyEvent="buy_clicked_image_converter_mac"
       defaultTab="convert"
-    />
+    >
+      <Breadcrumb
+        slot="breadcrumb"
+        items={[{ label: "Home", href: "/" }, { label: "Image Converter for Mac" }]}
+      />
+    </ComparisonHero>
 
     <SectionDivider />
     <BentoFeatures />

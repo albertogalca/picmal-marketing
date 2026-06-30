@@ -3,6 +3,23 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.2</title>
+            <pubDate>Tue, 30 Jun 2026 06:58:04 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>92</sparkle:version>
+            <sparkle:shortVersionString>1.7.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.2/Picmal.dmg" length="121809739" type="application/octet-stream" sparkle:edSignature="VcAA7dbc6Ar6vI2ycvtUq7LT2DB+3ce5Ldg/FM888dKjLvay0BGOAklUTcvOFfWcwrbtH1dqabX3dQBrk7TYCg=="/>
+        <description><![CDATA[<div><h3>Bug Fixes</h3>
+<ul>
+<li><strong>Opus conversions no longer fail at high bitrates.</strong> Setting the bitrate to 320 kbps would always error out because libopus tops out at 256 kbps. It now clamps to 256 kbps quietly instead of aborting.</li>
+<li><strong>Picmal no longer crashes when many files fail at once.</strong> In large batches on Intel Macs, rapid back-to-back failures could trigger a crash. A race condition in error reporting was the cause.</li>
+<li><strong>"Remove Metadata" in the Shortcuts action now actually strips metadata.</strong> The setting was passed in correctly but dropped before it reached the step that does the stripping, so GPS and EXIF stayed in the file no matter what you set.</li>
+<li><strong>iPhone Live Photos and other `.mov` files with bad timestamps no longer fail to convert.</strong> Some videos carry timestamps that confuse the video muxer part way through, aborting the conversion. Picmal now catches that and retries with the timestamps corrected.</li>
+<li><strong>Image conversions no longer crash when a process is killed mid-read.</strong> The code that captured output from image conversion processes could raise an unrecoverable error if interrupted during a large batch. It now uses the same safe reading approach the rest of the app already used.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.1</title>
             <pubDate>Thu, 25 Jun 2026 09:59:06 +0200</pubDate>
             <link>https://picmal.app/</link>

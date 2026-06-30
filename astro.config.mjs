@@ -69,6 +69,7 @@ export default defineConfig({
               label: "Resize and color space",
               link: "/docs/resize-and-color-space",
             },
+            { label: "Metadata", link: "/docs/metadata" },
             { label: "Watermarks", link: "/docs/watermarks" },
             { label: "Output and naming", link: "/docs/output-and-naming" },
           ],

@@ -1,0 +1,16 @@
+---
+version: "1.7.2"
+title: "Stability fixes for Opus, big batches, Shortcuts, and tricky videos"
+description: "High-bitrate Opus conversions work, large batches stay crash-free on Intel, the Shortcuts Remove Metadata action actually strips metadata, and iPhone Live Photos with bad timestamps convert again."
+pubDate: 2026-06-30
+---
+
+A round of stability fixes across audio, video, and the Shortcuts integration — plus a couple of crash fixes that show up most on Intel Macs and in large batches.
+
+### Bug fixes
+
+- Fixed Opus conversions failing at high bitrates. Asking for 320 kbps always errored out because Opus tops out at 256 kbps — it now quietly clamps to 256 kbps instead of aborting.
+- Fixed a crash when many files failed at once. In large batches on Intel Macs, rapid back-to-back failures could trigger a crash. A race condition in the error reporting was to blame.
+- Fixed `Remove Metadata` in the Shortcuts action not actually stripping metadata. The setting was passed in correctly but dropped before it reached the step that does the work, so GPS and EXIF data stayed in the file no matter what you set. See [Integrations](/docs/integrations).
+- Fixed iPhone Live Photos and other `.mov` files with bad timestamps failing to convert. Some videos carry timestamps that confuse the muxer part way through, aborting the conversion. Picmal now catches that and retries with the timestamps corrected.
+- Fixed a crash when an image conversion process was killed mid-read. Capturing output from a conversion process could raise an unrecoverable error if it was interrupted during a large batch — it now uses the same safe reading approach as the rest of the app.

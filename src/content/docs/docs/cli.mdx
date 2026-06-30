@@ -74,7 +74,10 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
 | `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
 | `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`.                                     |
-| `-s`, `--strip-metadata`  | Strip EXIF/IPTC/XMP from output.                                             |
+| `--metadata <mode>`       | Preset: `stripall`, `essential`, or `keepall`. See [Metadata](#metadata).    |
+| `--keep <categories>`     | Comma-separated categories to keep; everything else is stripped.             |
+| `--strip <categories>`    | Comma-separated categories to strip; everything else is kept.                |
+| `-s`, `--strip-metadata`  | Strip EXIF/IPTC/XMP from output (alias for `--metadata stripall`).           |
 | `--copyright <text>`      | Copyright notice to embed (EXIF, IPTC, and XMP). Written even with `--strip-metadata`. |
 | `--artist <text>`         | Artist / creator name to embed (EXIF Artist, IPTC byline, XMP creator).     |
 | `--credit <text>`         | Credit line to embed (IPTC credit, XMP credit).                             |
@@ -85,6 +88,20 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--watermark-position`    | `tl`, `tr`, `bl`, `br`, or `center`. Default `br`.                           |
 
 The copyright flags are independent of `--strip-metadata`: pass both to strip a photo's camera/GPS data while still stamping your own ownership tags onto the output. Empty flags are skipped; values you pass always overwrite any existing tag.
+
+### Metadata
+
+The metadata flags mirror the app's [Metadata settings](/docs/metadata). Use a preset, or take per-category control with `--keep` / `--strip`:
+
+```bash
+picmal-cli convert -i photo.jpg -f jpg --metadata essential
+picmal-cli convert -i photo.jpg -f jpg --keep copyright,colorProfile
+picmal-cli convert -i photo.jpg -f jpg --strip location,identifiers
+```
+
+Categories: `location`, `camera`, `dateTime`, `copyright`, `colorProfile`, `orientation`, `identifiers`, `thumbnail`. Friendly aliases work too — `gps`, `icc`, `date`, `serial`, `lens`, `thumb`. `--keep` lists what survives; `--strip` lists what comes off and keeps the rest. Precedence is `--keep` > `--strip` > `--metadata` > `--strip-metadata`.
+
+These flags work the same on `compress` and `watch add`.
 
 ## compress
 

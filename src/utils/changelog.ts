@@ -23,16 +23,9 @@ export function getEntrySlug(entry: ChangelogEntry): string {
   return `picmal-${entry.data.version}`;
 }
 
-/** Sort releases newest-first (by pubDate, falling back to version). */
+/** Sort releases newest-first by version (semver-aware numeric compare). */
 export function sortEntries(entries: ChangelogEntry[]): ChangelogEntry[] {
-  return [...entries].sort((a, b) => {
-    if (a.data.pubDate && b.data.pubDate) {
-      return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-    }
-    if (a.data.pubDate) return -1;
-    if (b.data.pubDate) return 1;
-    return b.data.version.localeCompare(a.data.version, undefined, {
-      numeric: true,
-    });
-  });
+  return [...entries].sort((a, b) =>
+    b.data.version.localeCompare(a.data.version, undefined, { numeric: true }),
+  );
 }

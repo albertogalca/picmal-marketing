@@ -23,41 +23,6 @@ const today = new Date();
           >
         </div>
         <NewsletterSignup />
-        <p class="text-small text-text-secondary mt-8">
-          &copy; {today.getFullYear()} - All rights reserved.
-        </p>
-        <div class="pt-8 text-small text-text-secondary">
-          <button
-            onclick="toggleTheme()"
-            class="flex items-center gap-2 py-2 -my-2 rounded-xl hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            type="button"
-            aria-label="Toggle color theme"
-          >
-            <svg
-              class="w-4 h-4 hidden dark:block"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path
-                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                fill-rule="evenodd"
-                clip-rule="evenodd"></path>
-            </svg>
-            <svg
-              class="w-4 h-4 block dark:hidden"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-              ></path>
-            </svg>
-            <span class="hidden dark:block">Light Mode</span>
-            <span class="block dark:hidden">Dark Mode</span>
-          </button>
-        </div>
       </div>
 
       <div>
@@ -181,51 +146,104 @@ const today = new Date();
           </li>
         </ul>
       </div>
-      <div>
-        <p class="text-small text-text mb-4 font-semibold">Company</p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          <li>
-            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
-          </li>
-          <li>
-            <a href="/changelog" class="transition-colors hover:text-text"
-              >Changelog</a
-            >
-          </li>
-          <li>
-            <a
-              href="mailto:support@picmal.app"
-              class="transition-colors hover:text-text">Get in touch</a
-            >
-          </li>
-          <li>
-            <a href="/press" class="transition-colors hover:text-text"
-              >Press kit</a
-            >
-          </li>
-          <li>
-            <a href="/affiliate" class="transition-colors hover:text-text"
-              >Earn 25% as affiliate</a
-            >
-          </li>
-          <li>
-            <a href="/terms" class="transition-colors hover:text-text"
-              >Terms of use</a
-            >
-          </li>
-          <li>
-            <a href="/privacy" class="transition-colors hover:text-text"
-              >Privacy policy</a
-            >
-          </li>
-          <li>
-            <a
-              href="/legal/open-source"
-              class="transition-colors hover:text-text">Open source</a
-            >
-          </li>
-        </ul>
+      {/* ponytail: `contents` un-nests these on mobile so Product/Company/Legal
+          flow as separate 2-up grid cells; on lg they stack in one column */}
+      <div class="contents lg:block">
+        <div>
+          <p class="text-small text-text mb-4 font-semibold">Product</p>
+          <ul class="space-y-3 text-body text-text-secondary">
+            <li>
+              <a href="/blog" class="transition-colors hover:text-text">Blog</a>
+            </li>
+            <li>
+              <a href="/changelog" class="transition-colors hover:text-text"
+                >Changelog</a
+              >
+            </li>
+            {/* ponytail: no Pricing link — pricing lives on the homepage, no standalone /pricing route */}
+          </ul>
+        </div>
+
+        <div class="lg:mt-10">
+          <p class="text-small text-text mb-4 font-semibold">Company</p>
+          <ul class="space-y-3 text-body text-text-secondary">
+            <li>
+              <a
+                href="mailto:support@picmal.app"
+                class="transition-colors hover:text-text">Get in touch</a
+              >
+            </li>
+            <li>
+              <a href="/press" class="transition-colors hover:text-text"
+                >Press kit</a
+              >
+            </li>
+            <li>
+              <a href="/affiliate" class="transition-colors hover:text-text"
+                >Earn 25% as affiliate</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:mt-10">
+          <p class="text-small text-text mb-4 font-semibold">Legal</p>
+          <ul class="space-y-3 text-body text-text-secondary">
+            <li>
+              <a href="/terms" class="transition-colors hover:text-text"
+                >Terms of use</a
+              >
+            </li>
+            <li>
+              <a href="/privacy" class="transition-colors hover:text-text"
+                >Privacy policy</a
+              >
+            </li>
+            <li>
+              <a
+                href="/legal/open-source"
+                class="transition-colors hover:text-text">Open source</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div
+      class="mt-12 pt-8 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-2 text-body text-text-secondary"
+    >
+      <span>&copy; {today.getFullYear()} Picmal - All rights reserved.</span>
+      <button
+        onclick="toggleTheme()"
+        class="flex items-center gap-2 py-2 -my-2 rounded-xl hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        type="button"
+        aria-label="Toggle color theme"
+      >
+        <svg
+          class="w-4 h-4 hidden dark:block"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fill-rule="evenodd"
+            clip-rule="evenodd"></path>
+        </svg>
+        <svg
+          class="w-4 h-4 block dark:hidden"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+          ></path>
+        </svg>
+        <span class="hidden dark:block">Light Mode</span>
+        <span class="block dark:hidden">Dark Mode</span>
+      </button>
     </div>
   </div>
 </footer>

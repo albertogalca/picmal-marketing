@@ -54,7 +54,7 @@ You don't need Picmal open. **Picmal — Compress**, **Picmal — Convert**, **P
 
 ## Shortcuts app
 
-Picmal provides four actions for Apple's Shortcuts app, so you can build automated workflows.
+Picmal provides five actions for Apple's Shortcuts app, so you can build automated workflows.
 
 ![Picmal actions in the Shortcuts app](/images/docs/shortcuts.png)
 
@@ -82,6 +82,15 @@ Picmal provides four actions for Apple's Shortcuts app, so you can build automat
 | PDFs      | The PDFs to merge, in page order (two or more) |
 
 Returns the merged PDF, ready for a "Save File" action or the next step in your shortcut.
+
+### Split PDF
+
+| Parameter   | Description                                                       |
+| ----------- | ----------------------------------------------------------------- |
+| PDF         | The PDF to split                                                  |
+| Page ranges | Ranges like `1-3, 5, 8-`. Leave blank to split every page separately |
+
+Returns the split PDFs as a list of files, ready for a "Save File" action or the next step.
 
 ### Make PDF from Images
 

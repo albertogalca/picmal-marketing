@@ -1,6 +1,6 @@
 ---
 title: Command line (picmal-cli)
-description: Run Picmal from the terminal — convert, compress, combine PDFs, make PDFs from images, watch folders, and apply saved presets without opening the app.
+description: Run Picmal from the terminal — convert, compress, combine and split PDFs, make PDFs from images, watch folders, and apply saved presets without opening the app.
 ---
 
 Picmal ships with a command-line companion, `picmal-cli`, bundled inside the app. Same conversion engine as the UI, so the output is identical — you just get flags, JSON, and exit codes you can drop into a script.
@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `images-to-pdf`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -32,6 +32,7 @@ picmal-cli <subcommand> [options]
 | `convert`        | Convert files to a target format                  |
 | `compress`       | Compress files keeping the same format            |
 | `combine`        | Combine two or more PDFs into one                 |
+| `split-pdf`      | Split a PDF into one document per page range      |
 | `images-to-pdf`  | Create a multi-page PDF from images               |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
@@ -146,6 +147,25 @@ picmal-cli combine chapter*.pdf -o book.pdf
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
 Password-protected inputs are refused (exit `11`) — unlock them first. Uses PDFKit, macOS's native PDF engine, so pages are copied losslessly.
+
+## split-pdf
+
+Split a PDF into one document per page range. Each comma-separated range in `--pages` becomes its own file; with no `--pages`, every page is split into a separate file.
+
+```bash
+picmal-cli split-pdf book.pdf --pages 1-3,5,8-
+picmal-cli split-pdf book.pdf
+picmal-cli split-pdf *.pdf --pages 1-2 -o out/
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | PDF files to split (positional, at least one). Each is split by the same ranges.   |
+| `--pages <ranges>`      | Page ranges, 1-based: `N`, `N-M`, `N-` (N to end), `-M` (start to M), comma-separated. Default: one file per page. |
+| `-o`, `--output <dir>`  | Output directory. Default: next to each input, as `<basename>-1.pdf`, `<basename>-2.pdf`, … |
+| `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
+
+Like `combine`, it uses PDFKit and copies pages losslessly; password-protected inputs are refused — unlock them first.
 
 ## images-to-pdf
 

@@ -1,9 +1,9 @@
 ---
 title: PDF tools
-description: Combine multiple PDFs into one and turn images into multi-page PDFs — locally, with reorderable pages, page sizes, and optional password protection.
+description: Combine PDFs into one, split a PDF by page range, and turn images into multi-page PDFs — locally, with reorderable pages, page sizes, and optional password protection.
 ---
 
-Picmal's sidebar has a **PDF** section with two tools: **Combine PDFs** merges documents into one, and **Images to PDF** turns a set of images into a multi-page PDF. Both run entirely on your Mac, like everything else in Picmal.
+Picmal's sidebar has a **PDF** section with three tools: **Combine PDFs** merges documents into one, **Split PDF** breaks one document into several, and **Images to PDF** turns a set of images into a multi-page PDF. All run entirely on your Mac, like everything else in Picmal.
 
 ## Combine PDFs
 
@@ -20,6 +20,31 @@ The merged file is saved next to the first PDF as `<name> (combined).pdf`. If th
 - Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
 - Locked PDFs show an orange lock badge and block the merge. Unlock them in Preview first, then re-add.
 - If your Convert or Compress list has only PDFs when you switch to Combine PDFs, they carry over automatically.
+
+## Split PDF
+
+1. Select **Split PDF** in the sidebar
+2. Drop a PDF into the window
+3. Type the page ranges you want in the options popover
+4. Click **Split**
+
+Each comma-separated range becomes its own PDF, saved next to the original as `<name>-1.pdf`, `<name>-2.pdf`, and so on. If a name is taken, Picmal counts up instead of overwriting.
+
+### Page ranges
+
+Ranges are written 1-based, separated by commas. So `1-3, 5, 8-` makes three files: pages 1–3, page 5, and page 8 to the end.
+
+| Token   | Meaning                  |
+| ------- | ------------------------ |
+| `5`     | Just page 5              |
+| `1-3`   | Pages 1 through 3        |
+| `8-`    | Page 8 to the last page  |
+| `-3`    | The first page through 3 |
+
+Leave the field blank to **split every page into its own PDF** — handy for bursting a scanned batch back into separate documents.
+
+- Drop several PDFs at once and each is split by the same ranges.
+- Locked PDFs show an orange lock badge and block the split. Unlock them in Preview first, then re-add.
 
 ## Images to PDF
 
@@ -56,10 +81,10 @@ Type a password in the options popover and the PDF requires it to open. The pass
 
 ## Use them from Finder, Shortcuts, and the terminal
 
-Both tools are available everywhere Convert and Compress are:
+These tools are available beyond the app window:
 
 - In Finder, right-click a PDF selection and choose **Picmal — Combine PDFs**, or an image selection and choose **Picmal — Images to PDF**. Both run with your saved settings, in selection order, even with Picmal closed. See [Integrations](/docs/integrations#finder-services-right-click-menu).
-- In Shortcuts, the **Combine PDFs** and **Make PDF from Images** actions take files in and return the finished PDF. Add a ready-made [Combine PDFs](https://www.icloud.com/shortcuts/c43669db2eb446619afb33e47efda649) or [Make PDF from Images](https://www.icloud.com/shortcuts/ec32a8c7305c44c89f37a39785c46b23) shortcut, or see [Integrations](/docs/integrations#shortcuts-app).
-- From the terminal, use `picmal-cli combine` and `picmal-cli images-to-pdf`. See [Command line](/docs/cli#combine).
+- In Shortcuts, the **Combine PDFs**, **Split PDF**, and **Make PDF from Images** actions take files in and return the finished PDF. See [Integrations](/docs/integrations#shortcuts-app).
+- From the terminal, use `picmal-cli combine`, `picmal-cli split-pdf`, and `picmal-cli images-to-pdf`. See [Command line](/docs/cli#split-pdf).
 
-Like Convert and Compress, both tools require an active [license](/docs/license).
+Like Convert and Compress, all three tools require an active [license](/docs/license).

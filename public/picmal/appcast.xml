@@ -10,6 +10,14 @@
             <sparkle:shortVersionString>1.7.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.4/Picmal.dmg" length="121936276" type="application/octet-stream" sparkle:edSignature="v1cmHWQlcvN84jvzy2AbavbTrMGa2RhQiLAGA8poEt9fazRjTrcGxkzwE6FEzfwxx/AzOfYDqm5qRPXlLDLnBw=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Merge Audio.</strong> Drop in two or more audio files, drag them into the order you want, and join them into a single track. When every file already shares the same format, Picmal copies the streams together untouched — no re-encoding, no quality loss. Mix formats and it re-encodes to match. Pick the output format from Audio Options, or leave it matching the first file, and name the result there too. Runs entirely on your Mac, and works from the command line (<code>picmal-cli merge-audio</code>), Shortcuts, and Raycast.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Convert and Compress no longer drop extra audio tracks from videos.</strong> They kept only the single track ffmpeg picked by default, so commentary and alternate-language tracks quietly disappeared. Every audio track now carries through to the output.</li>
+</ul></div>]]></description>
         </item>
         <item>
             <title>1.7.3</title>

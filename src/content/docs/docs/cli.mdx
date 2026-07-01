@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, `merge-audio`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -34,6 +34,7 @@ picmal-cli <subcommand> [options]
 | `combine`        | Combine two or more PDFs into one                 |
 | `split-pdf`      | Split a PDF into one document per page range      |
 | `images-to-pdf`  | Create a multi-page PDF from images               |
+| `merge-audio`    | Merge two or more audio files into one            |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
 | `watch`          | Add, list, and remove watched folders             |
@@ -185,6 +186,23 @@ picmal-cli images-to-pdf report.png --password secret
 | `--password <text>`     | Password required to open the PDF.                                            |
 | `-o`, `--output <path>` | Output file or directory. Default: `<first basename>.pdf` next to the first input. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                            |
+
+## merge-audio
+
+Join two or more audio files into one, in the order you pass them. When every input shares the same codec, sample rate, and channels the streams are copied losslessly; mix formats and they're re-encoded to the output format instead.
+
+```bash
+picmal-cli merge-audio part1.mp3 part2.mp3
+picmal-cli merge-audio intro.wav track.wav outro.wav -o full.wav
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | Audio files to merge, in order (positional, at least two).                         |
+| `-o`, `--output <path>` | Output file or directory. The extension sets the format. Default: `<first basename> (merged).<ext>` next to the first input, in that file's format. |
+| `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
+
+Uses the same bundled ffmpeg as Convert and Compress. Decode-only formats (like APE) are refused as output targets — pick a format Picmal can write.
 
 ## presets
 

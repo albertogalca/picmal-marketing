@@ -54,7 +54,7 @@ You don't need Picmal open. **Picmal — Compress**, **Picmal — Convert**, **P
 
 ## Shortcuts app
 
-Picmal provides five actions for Apple's Shortcuts app, so you can build automated workflows.
+Picmal provides six actions for Apple's Shortcuts app, so you can build automated workflows.
 
 ![Picmal actions in the Shortcuts app](/images/docs/shortcuts.png)
 
@@ -102,6 +102,14 @@ Returns the split PDFs as a list of files, ready for a "Save File" action or the
 | Password  | Optional password required to open the PDF                      |
 
 Returns the finished PDF.
+
+### Merge Audio
+
+| Parameter   | Description                                          |
+| ----------- | --------------------------------------------------- |
+| Audio Files | The audio files to join, in order (two or more)      |
+
+Returns the merged track, ready for a "Save File" action or the next step. Same-format files are joined losslessly; mixed formats are re-encoded to match the first file. See [Audio tools](/docs/audio-tools).
 
 Use these to build automations like "compress every screenshot I take," "convert HEIC photos to JPEG when added to a folder," or "merge this month's invoices into one PDF."
 

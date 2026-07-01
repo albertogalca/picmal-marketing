@@ -1,0 +1,18 @@
+---
+version: "1.7.4"
+title: "Merge Audio, a new tool for joining audio files"
+description: "A new Merge Audio tool joins several audio files into one — losslessly when they share a format, re-encoded to match when they don't. Plus a fix so video conversions keep every audio track."
+pubDate: 2026-07-01
+---
+
+The sidebar gains an **Audio** section with its first tool: **Merge Audio**. Drop in a few tracks, put them in order, and get one file back.
+
+![Merge Audio in Picmal: three audio files queued under the new Audio section of the sidebar, with the Audio Options popover set to output format and name](/images/changelog/1.7.4/merge_audio.png)
+
+### New features
+
+- **Merge Audio.** Drop in two or more audio files, drag them into the order you want, and join them into a single track. When every file already shares the same format, Picmal copies the streams together untouched — no re-encoding, no quality loss. Mix formats and it re-encodes to match. Pick the output format from **Audio Options**, or leave it matching the first file, and name the result there too. Like the rest of Picmal it runs entirely on your Mac, and works from the command line (`picmal-cli merge-audio`), [Shortcuts](/docs/integrations#shortcuts-app), and Raycast. See [Audio tools](/docs/audio-tools).
+
+### Bug fixes
+
+- Fixed Convert and Compress dropping extra audio tracks from videos. They kept only the single track ffmpeg picked by default, so commentary and alternate-language tracks quietly disappeared. Every audio track now carries through to the output.

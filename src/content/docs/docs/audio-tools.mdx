@@ -1,0 +1,42 @@
+---
+title: Audio tools
+description: Merge several audio files into one on your Mac — reorder them, choose the output format, and join them losslessly when they share a format.
+---
+
+Picmal's sidebar has an **Audio** section for working with audio files as a whole, rather than converting them one by one. Its first tool is **Merge Audio**, which joins several files into a single track. Like everything else in Picmal, it runs entirely on your Mac.
+
+## Merge Audio
+
+1. Select **Merge Audio** in the sidebar
+2. Drop two or more audio files into the window
+3. Drag rows to set the order — the list order is the play order
+4. Click **Merge**
+
+![Merge Audio in Picmal: three audio files queued under the Audio section of the sidebar, with the Audio Options popover showing the output format and name](/images/docs/merge_audio.png)
+
+The merged file is saved next to the first one as `<name> (merged).<ext>`. If that name is taken, Picmal counts up instead of overwriting — `<name> (merged) 2.mp3`, and so on.
+
+- Drag rows to reorder; the number on each row is its position in the merged track.
+- Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
+- A file Picmal can't read as audio shows an orange warning and blocks the merge. Remove it and try again.
+
+### Lossless when it can be
+
+When every file in the list already shares the same format, sample rate, and channels, Picmal joins the streams without re-encoding — it's fast and there's no quality loss. Mix formats (say an MP3 and a WAV) and it re-encodes them to the output format instead. Either way you get one continuous track.
+
+### Output format
+
+Open **Audio Options** to choose the output format. Leave it on **Same as first file** to keep the first track's format — the setting that keeps a same-format merge lossless — or pick one of MP3, M4A, AAC, WAV, AIFF, FLAC, OGG, OPUS, or AC3 to convert everything as it merges. Your choice is remembered between sessions.
+
+### Output name
+
+In the same popover, type a name for the merged file, or leave it blank for the automatic `<name> (merged)` name. The extension follows the output format you picked. The file is always saved next to the first input.
+
+## Use it from Shortcuts and the terminal
+
+Merge Audio is available beyond the app window:
+
+- In Shortcuts, the **Merge Audio** action takes audio files in and returns the finished track. See [Integrations](/docs/integrations#shortcuts-app).
+- From the terminal, use `picmal-cli merge-audio`. See [Command line](/docs/cli#merge-audio).
+
+Like Convert and Compress, Merge Audio requires an active [license](/docs/license).

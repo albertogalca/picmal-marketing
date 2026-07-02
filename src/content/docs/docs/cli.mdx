@@ -75,7 +75,7 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--quality <n>`           | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`.    |
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
 | `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
-| `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`.                                     |
+| `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`, `cmyk`.                              |
 | `--metadata <mode>`       | Preset: `stripall`, `essential`, or `keepall`. See [Metadata](#metadata).    |
 | `--keep <categories>`     | Comma-separated categories to keep; everything else is stripped.             |
 | `--strip <categories>`    | Comma-separated categories to strip; everything else is kept.                |

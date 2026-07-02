@@ -1,0 +1,25 @@
+---
+version: "1.7.5"
+title: "Organize PDF pages, plus grayscale and CMYK output"
+description: "A new Organize Pages tool lets you reorder and delete PDF pages visually, and color space adds two new targets: grayscale for black-and-white output and CMYK for print-ready files."
+pubDate: 2026-07-02
+---
+
+The **PDF** section gains a fourth tool for tidying up documents, and color space picks up two new targets for print and black-and-white work.
+
+![Organize Pages in Picmal: a PDF's pages listed as thumbnails under the new PDF tool, with one page hovered to show a full-size preview](/images/changelog/1.7.5/organize_pages.png)
+
+### New features
+
+- **Organize Pages.** A new PDF tool for reordering and deleting pages. Drop in a PDF and its pages show up as a thumbnail list — drag to reorder, delete the ones you don't need, and click any thumbnail to preview it full-size. Save when the order looks right. App only for now. See [PDF tools](/docs/pdf-tools#organize-pages).
+- **Grayscale and CMYK color spaces.** Two new targets join the RGB profiles when you set a [color space](/docs/resize-and-color-space#color-space): **Grayscale** for clean black-and-white output, and **CMYK** — through Picmal's bundled color profiles — for print-ready files. Both work in the app and from the command line (`--color-space cmyk`). See [Command line](/docs/cli).
+
+### Improvements
+
+- **Hardened image and PDF processing against malicious files.** ImageMagick's security policy now blocks risky script and URL-fetching coders, and Ghostscript's sandbox permissions are trimmed down to just what it needs. Copyright and artist metadata you set are also sanitized before they're written to a file.
+
+### Bug fixes
+
+- Fixed PDF compression hanging indefinitely on complex files that produced a lot of Ghostscript warnings.
+- Fixed images and PDF pages sometimes rendering a pixel smaller than expected — scaled dimensions were truncated instead of rounded, which in rare cases could even skip a page.
+- Fixed watched folder file size filters using 1024-based kilobytes while the rest of Picmal uses 1000-based ones.

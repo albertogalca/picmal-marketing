@@ -3,6 +3,30 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.5</title>
+            <pubDate>Thu, 02 Jul 2026 20:26:35 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>98</sparkle:version>
+            <sparkle:shortVersionString>1.7.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.5/Picmal.dmg" length="122305307" type="application/octet-stream" sparkle:edSignature="y7OwjPyDG5BN7tCg5lvXVi7cc7CILnOOQRIenLpJHNADQdc4pfgF85GcoHRFOUVsTtLeRDNg/JXErNc9XnsaDg=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Organize Pages.</strong> A new PDF tool for reordering and deleting pages. Drop in a PDF and its pages show up as a thumbnail list — drag to reorder, delete the ones you don't want, and click any thumbnail to preview it full-size. Save when you're happy with the order. App only, for now.</li>
+<li><strong>Convert to Grayscale or CMYK.</strong> Two more color space targets join the RGB profiles: Grayscale for black-and-white output, and CMYK — through Picmal's bundled color profiles — for print-ready files. Available in the app and from the command line (`--color-space cmyk`).</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>Hardened image and PDF processing against malicious files.</strong> Tightened ImageMagick's default security policy to block risky script and URL-fetching coders, and trimmed Ghostscript's sandbox permissions down to what it actually needs. Copyright and artist metadata you set are also sanitized before they're written to a file.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>PDF compression no longer hangs on complex files.</strong> A PDF that made Ghostscript print a lot of warnings could stall the compression indefinitely instead of finishing.</li>
+<li><strong>Fixed image and PDF pages sometimes rendering at the wrong pixel size.</strong> Scaled width and height were truncated instead of rounded, which could shave off a pixel or, in rare cases, skip a page entirely.</li>
+<li><strong>Watched folder file size filters now match the rest of the app's units.</strong> Minimum and maximum size settings used 1024-based kilobytes while everywhere else in Picmal uses 1000-based ones.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.4</title>
             <pubDate>Wed, 01 Jul 2026 17:08:16 +0200</pubDate>
             <link>https://picmal.app/</link>

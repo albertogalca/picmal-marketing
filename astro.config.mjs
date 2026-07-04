@@ -25,7 +25,7 @@ const noindexLegalUrls = new Set([
 export default defineConfig({
   site: "https://picmal.app",
   trailingSlash: "never",
-  build: { format: "file" },
+  build: { format: "directory" },
   integrations: [
     starlight({
       title: "Picmal Docs",

@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, `merge-audio`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -35,6 +35,7 @@ picmal-cli <subcommand> [options]
 | `split-pdf`      | Split a PDF into one document per page range      |
 | `images-to-pdf`  | Create a multi-page PDF from images               |
 | `merge-audio`    | Merge two or more audio files into one            |
+| `split-chapters` | Split a chaptered audiobook into per-chapter files |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
 | `watch`          | Add, list, and remove watched folders             |
@@ -203,6 +204,25 @@ picmal-cli merge-audio intro.wav track.wav outro.wav -o full.wav
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
 Uses the same bundled ffmpeg as Convert and Compress. Decode-only formats (like APE) are refused as output targets — pick a format Picmal can write.
+
+## split-chapters
+
+Split a chaptered audiobook into one file per chapter. Picmal reads the chapter markers in an M4B/M4A audiobook (or any audio file that carries them) and writes one file per chapter, tagged with its title and track number. Pass several files to split them all.
+
+```bash
+picmal-cli split-chapters book.m4b                 # one m4b per chapter
+picmal-cli split-chapters book.m4b --format mp3    # convert to mp3
+picmal-cli split-chapters *.m4b --format mp3 -o out/
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | Audiobook file(s) to split (positional).                                           |
+| `--format <fmt>`        | Output format, e.g. `mp3`. Default: keep the input's format.                        |
+| `-o`, `--output <dir>`  | Output directory. Default: next to each input.                                     |
+| `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
+
+Outputs are named `<book> - 01 - <chapter title>.<ext>`. Files with no chapter markers are reported and skipped.
 
 ## presets
 

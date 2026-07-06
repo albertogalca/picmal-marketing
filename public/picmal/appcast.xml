@@ -3,6 +3,25 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.6</title>
+            <pubDate>Mon, 06 Jul 2026 13:49:54 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>99</sparkle:version>
+            <sparkle:shortVersionString>1.7.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.6/Picmal.dmg" length="122471638" type="application/octet-stream" sparkle:edSignature="12T/vhM/4I1Y/75aeWxPDkyitXFw1Kaa7xFx8Tr7UzGeftUNlkgiBtWnId+Sg9yg0rC7mGQxkuI7ttrtC3kBBA=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Audiobook conversion (M4B).</strong> M4B audiobooks now convert to and from M4A and MP3, in the app and from the command line. Chapters and cover art come along for the ride — even MP3 keeps its chapter markers.</li>
+<li><strong>Split by Chapter.</strong> A new Audio tool: drop a chaptered audiobook, see its chapters, and break it into one file per chapter — each named `Book - 01 - Chapter Title` and tagged with its title and track number. Keep the original format or convert as you go. In the app and from the command line (`picmal-cli split-chapters book.m4b --format mp3`).</li>
+<li><strong>Merge Audio into a chaptered M4B.</strong> Merge Audio can now output M4B and turn each file you add into its own chapter, named after the file. Pick M4B in Audio Options, tick "Add chapter markers," and per-chapter files — the kind you get out of Audible or Libation — become one audiobook that scrubs by chapter in Books, Music, or QuickTime.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Picmal no longer asks to "access data from other apps" every time it opens.</strong> Your watched-folders list was stored in a shared system location that macOS treats as another app's data, so it prompted on every launch. It now lives in Picmal's own folder — the prompt is gone and your watched folders carry over untouched.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.5</title>
             <pubDate>Thu, 02 Jul 2026 20:26:35 +0200</pubDate>
             <link>https://picmal.app/</link>

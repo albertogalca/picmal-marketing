@@ -1,0 +1,23 @@
+---
+version: "1.7.6"
+title: "Audiobooks: convert, split, and build M4B files with chapters"
+description: "Picmal now works with M4B audiobooks — convert to and from M4A and MP3 with chapters intact, split a book into one file per chapter, and merge loose files into a single chaptered audiobook."
+pubDate: 2026-07-06
+---
+
+Picmal's **Audio** tools grow up around audiobooks. You can convert M4B files while keeping their chapters and cover art, break a long book into one file per chapter, and turn a folder of loose tracks into a single audiobook that scrubs by chapter in Books, Music, or QuickTime.
+
+### New features
+
+- **Audiobook conversion (M4B).** M4B audiobooks now convert to and from M4A and MP3, both in the app and from the command line. Chapters and cover art come along for the ride — even MP3 keeps its chapter markers. See [Supported formats](/docs/supported-formats#audio).
+- **Split by Chapter.** A new **Audio** tool: drop a chaptered audiobook, see its chapters listed, and break it into one file per chapter — each named `Book - 01 - Chapter Title` and tagged with its title and track number. Keep the original format or convert as you go. Also from the command line: `picmal-cli split-chapters book.m4b --format mp3`. See [Audio tools](/docs/audio-tools#split-by-chapter) and [Command line](/docs/cli#split-chapters).
+
+![Split by Chapter in Picmal: a chaptered audiobook's chapters listed under the Audio section of the sidebar, ready to split into one file per chapter](/images/changelog/1.7.6/split_by_chapter.png)
+
+- **Merge Audio into a chaptered M4B.** [Merge Audio](/docs/audio-tools#merge-audio) can now output M4B and turn each file you add into its own chapter, named after the file. Pick **M4B** in Audio Options, tick **Add chapter markers**, and the per-chapter files you get out of Audible or Libation become one audiobook that scrubs by chapter.
+
+![Merge Audio in Picmal building an M4B audiobook: several audio files queued with the Audio Options popover showing M4B output and the Add chapter markers option](/images/changelog/1.7.6/merge_audio_chapters.png)
+
+### Bug fixes
+
+- Fixed Picmal asking to "access data from other apps" on every launch. Your watched-folders list was stored in a shared system location that macOS treats as another app's data. It now lives in Picmal's own folder — the prompt is gone and your existing watched folders carry over untouched.

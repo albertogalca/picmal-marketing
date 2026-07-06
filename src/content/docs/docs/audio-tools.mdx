@@ -1,9 +1,9 @@
 ---
 title: Audio tools
-description: Merge several audio files into one on your Mac — reorder them, choose the output format, and join them losslessly when they share a format.
+description: Merge audio files into one and split chaptered audiobooks into per-chapter files on your Mac — reorder, choose the output format, and build M4B audiobooks with chapters.
 ---
 
-Picmal's sidebar has an **Audio** section for working with audio files as a whole, rather than converting them one by one. Its first tool is **Merge Audio**, which joins several files into a single track. Like everything else in Picmal, it runs entirely on your Mac.
+Picmal's sidebar has an **Audio** section for working with audio files as a whole, rather than converting them one by one. **Merge Audio** joins several files into a single track — and can build a chaptered M4B audiobook — while **Split by Chapter** breaks an audiobook back into one file per chapter. Like everything else in Picmal, both run entirely on your Mac.
 
 ## Merge Audio
 
@@ -26,17 +26,39 @@ When every file in the list already shares the same format, sample rate, and cha
 
 ### Output format
 
-Open **Audio Options** to choose the output format. Leave it on **Same as first file** to keep the first track's format — the setting that keeps a same-format merge lossless — or pick one of MP3, M4A, AAC, WAV, AIFF, FLAC, OGG, OPUS, or AC3 to convert everything as it merges. Your choice is remembered between sessions.
+Open **Audio Options** to choose the output format. Leave it on **Same as first file** to keep the first track's format — the setting that keeps a same-format merge lossless — or pick one of MP3, M4A, M4B, AAC, WAV, AIFF, FLAC, OGG, OPUS, or AC3 to convert everything as it merges. Your choice is remembered between sessions.
+
+### Build a chaptered audiobook
+
+Pick **M4B** as the output format and a **Add chapter markers** option appears in Audio Options. Tick it, and each file you added becomes its own chapter in the finished book, named after the file. Point Merge Audio at the per-chapter files you get out of Audible or Libation and you get a single M4B that scrubs by chapter in Books, Music, or QuickTime. Leave it unticked for one continuous track with no chapters.
+
+![Merge Audio in Picmal building an M4B audiobook: several audio files queued with the Audio Options popover showing M4B output and the Add chapter markers option](/images/docs/merge_audio_chapters.png)
 
 ### Output name
 
 In the same popover, type a name for the merged file, or leave it blank for the automatic `<name> (merged)` name. The extension follows the output format you picked. The file is always saved next to the first input.
+
+## Split by Chapter
+
+The reverse of building an audiobook: take one chaptered file and get one file per chapter back.
+
+1. Select **Split by Chapter** in the sidebar
+2. Drop in a chaptered audiobook (M4B, M4A, or any file that carries chapter markers)
+3. Its chapters show up in a list so you can check them
+4. Choose an output format, or keep the original
+5. Click **Split**
+
+![Split by Chapter in Picmal: a chaptered audiobook's chapters listed under the Audio section of the sidebar, ready to split into one file per chapter](/images/docs/split_by_chapter.png)
+
+Each chapter is written out as `Book - 01 - Chapter Title`, tagged with its chapter title and track number so it stays in order in your library. Leave the format on the original to split without re-encoding, or pick another format (say MP3) to convert as it splits.
+
+A file with no chapter markers can't be split — Picmal tells you and skips it.
 
 ## Use it from Shortcuts and the terminal
 
 Merge Audio is available beyond the app window:
 
 - In Shortcuts, the **Merge Audio** action takes audio files in and returns the finished track. See [Integrations](/docs/integrations#shortcuts-app).
-- From the terminal, use `picmal-cli merge-audio`. See [Command line](/docs/cli#merge-audio).
+- From the terminal, use `picmal-cli merge-audio` to join files and `picmal-cli split-chapters` to split an audiobook. See [Command line](/docs/cli#merge-audio).
 
-Like Convert and Compress, Merge Audio requires an active [license](/docs/license).
+Like Convert and Compress, both tools require an active [license](/docs/license).

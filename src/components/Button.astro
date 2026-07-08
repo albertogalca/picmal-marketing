@@ -1,9 +1,13 @@
 ---
 import { cn } from "../utils/cn";
+import { TIERS } from "../config/pricing";
 
 export interface Props {
   class?: string;
   href?: string;
+  /** Stripe Price ID. When set (or when no href is given) the button starts
+   *  Stripe Checkout via licencio instead of navigating. Defaults to the 1-device tier. */
+  priceId?: string;
   text?: string;
   size?: "small" | "normal";
   variant?: "primary" | "secondary" | "overlay";
@@ -22,7 +26,8 @@ export interface Props {
 
 const {
   class: className = "",
-  href = "https://cantimplorastudio.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
+  href,
+  priceId,
   text = "",
   size = "normal",
   variant = "primary",
@@ -84,13 +89,19 @@ const baseClasses = cn(
 const accessibleLabel = ariaLabel ?? (isIconOnly ? title : undefined);
 
 const isStroke = iconType === "stroke";
+
+// A link button with no explicit href (or an explicit priceId) is a buy button:
+// it starts Stripe Checkout via the delegated handler below instead of navigating.
+const isCheckout = type === "link" && href === undefined;
+const checkoutPrice = priceId ?? TIERS[0].priceId;
 ---
 
 {
   type === "link" ? (
     <a
-      href={disabled ? undefined : href}
-      target={target}
+      href={disabled ? undefined : isCheckout ? "#" : href}
+      data-checkout-price={isCheckout ? checkoutPrice : undefined}
+      target={isCheckout ? undefined : target}
       rel={rel}
       class={baseClasses}
       id={id}
@@ -148,3 +159,39 @@ const isStroke = iconType === "stroke";
     </button>
   )
 }
+
+<script>
+  // Delegated Stripe Checkout starter. Astro hoists this once for the whole site.
+  // Any [data-checkout-price] element POSTs to licencio, which returns a Stripe
+  // Checkout URL. ph_distinct_id is forwarded for purchase attribution (licencio side).
+  import { LICENCIO_URL } from "../config/pricing";
+
+  document.addEventListener("click", async (e) => {
+    const target = e.target as Element | null;
+    const el = target?.closest?.("[data-checkout-price]");
+    if (!el) return;
+    e.preventDefault();
+    if (el.getAttribute("aria-busy") === "true") return; // ignore double-clicks
+    el.setAttribute("aria-busy", "true");
+
+    const ph = (window as any).posthog;
+    try {
+      const res = await fetch(`${LICENCIO_URL}/api/checkout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_slug: "picmal",
+          price_id: el.getAttribute("data-checkout-price"),
+          ph_distinct_id: ph?.get_distinct_id?.() ?? null,
+        }),
+      });
+      if (!res.ok) throw new Error(`checkout ${res.status}`);
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch (err) {
+      el.setAttribute("aria-busy", "false");
+      console.error("[checkout]", err);
+      alert("Checkout is temporarily unavailable. Please try again in a moment.");
+    }
+  });
+</script>

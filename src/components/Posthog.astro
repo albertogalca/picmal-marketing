@@ -63,10 +63,10 @@
 </script>
 
 <!--
-  Closed-loop attribution: forward the visitor's PostHog identity through the Stripe
-  Payment Link as client_reference_id. It comes back on checkout.session.completed
-  (session.client_reference_id), where licencio emits an attributed purchase event so
-  source → click → revenue land on the same PostHog person. distinct_id is enough —
+  Closed-loop attribution: forward the visitor's PostHog identity through the licencio
+  checkout link as client_reference_id. licencio passes it to the Stripe Checkout
+  Session, so it comes back on checkout.session.completed (session.client_reference_id)
+  and source → click → revenue land on the same PostHog person. distinct_id is enough —
   PostHog already holds that person's first-touch UTMs. Capture phase + reading href
   at click time keeps every CTA (and DynamicPricing's tier-swapping href) working.
 -->
@@ -74,7 +74,7 @@
   document.addEventListener(
     "click",
     function (e) {
-      var a = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+      var a = e.target.closest && e.target.closest('a[href*="/api/checkout"]');
       if (!a) return;
       try {
         var url = new URL(a.href);

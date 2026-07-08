@@ -196,8 +196,8 @@ import { TIERS } from "../config/pricing";
         // Update feature list
         seatCountTextEl.textContent = `${tier.devices} ${tier.devices === 1 ? "seat" : "seats"}`;
 
-        // Update buy button -> this tier's Stripe Payment Link
-        buyButton.href = tier.paymentLink;
+        // Update buy button -> this tier's licencio checkout link (302s to Stripe)
+        buyButton.href = tier.checkoutUrl;
 
         // Update button states
         decreaseBtn.disabled = currentTierIndex === 0;

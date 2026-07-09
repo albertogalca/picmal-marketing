@@ -49,6 +49,7 @@ export default defineConfig({
             { label: "Converting files", link: "/docs/converting-files" },
             { label: "Compressing files", link: "/docs/compressing-files" },
             { label: "Audio tools", link: "/docs/audio-tools" },
+            { label: "Video tools", link: "/docs/video-tools" },
             { label: "PDF tools", link: "/docs/pdf-tools" },
             { label: "Managing the queue", link: "/docs/managing-the-queue" },
             { label: "Watched folders", link: "/docs/watched-folders" },

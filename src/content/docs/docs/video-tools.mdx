@@ -1,0 +1,42 @@
+---
+title: Video tools
+description: Combine several videos into one on your Mac — reorder the clips, choose the output format, and let Picmal copy them losslessly or scale and re-encode mismatched clips to match.
+---
+
+Picmal's **Media** section has a **Combine Videos** tool for joining clips end-to-end, rather than converting them one by one. Drop in a few videos, put them in order, and get a single file back. Like everything else in Picmal, it runs entirely on your Mac.
+
+## Combine Videos
+
+1. Select **Combine Videos** in the sidebar
+2. Drop two or more videos into the window
+3. Drag rows to set the order — the list order is the play order
+4. Click **Combine**
+
+![Combine Videos in Picmal: three video clips queued under the Media section of the sidebar, with the Video Options popover showing the output format and name](/images/docs/combine_videos.png)
+
+The combined file is saved next to the first one as `<name> (combined).<ext>`. If that name is taken, Picmal counts up instead of overwriting — `<name> (combined) 2.mp4`, and so on.
+
+- Drag rows to reorder; the number on each row is its position in the finished video.
+- Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
+- A file Picmal can't read as video shows an orange warning and blocks the combine. Remove it and try again.
+
+### Lossless when it can be
+
+When every clip in the list already shares the same codec, resolution, and frame rate, Picmal joins the streams without re-encoding — it's fast and there's no quality loss. Mix formats or sizes (say a 720p MP4 and a 1080p WebM) and it scales each clip onto the first one's frame and re-encodes to match. Either way you get one continuous video.
+
+### Output format
+
+Open **Video Options** to choose the output format. Leave it on **Same as first file** to keep the first clip's format — the setting that keeps a matched combine lossless — or pick MP4, MOV, MKV, or WebM to convert everything as it combines. WebM is re-encoded to VP9; the rest use H.264. Your choice is remembered between sessions.
+
+### Output name
+
+In the same popover, type a name for the combined file, or leave it blank for the automatic `<name> (combined)` name. The extension follows the output format you picked. The file is always saved next to the first input.
+
+## Use it from Shortcuts and the terminal
+
+Combine Videos is available beyond the app window:
+
+- In Shortcuts, the **Combine Videos** action takes videos in and returns the finished file. See [Integrations](/docs/integrations#shortcuts-app).
+- From the terminal, use `picmal-cli combine-videos` to join clips. See [Command line](/docs/cli#combine-videos).
+
+Like Convert and Compress, the tool requires an active [license](/docs/license).

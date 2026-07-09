@@ -1,0 +1,18 @@
+---
+version: "1.7.7"
+title: "Combine Videos, a new tool for joining clips"
+description: "A new Combine Videos tool joins several videos into one — a fast, lossless copy when they match, scaled and re-encoded when they don't. Plus a fix so transparent images convert to JPEG on white instead of black."
+pubDate: 2026-07-09
+---
+
+The sidebar's **Media** section gains a new tool: **Combine Videos**. Drop in a few clips, put them in order, and get one video back.
+
+![Combine Videos in Picmal: three video clips queued under the Media section of the sidebar, with the Video Options popover showing the output format and name](/images/changelog/1.7.7/combine_videos.png)
+
+### New features
+
+- **Combine Videos.** Drop in two or more videos, drag them into the order you want, and join them into a single file. When every clip already shares the same codec, resolution, and frame rate, Picmal copies the streams together untouched — no re-encoding, no quality loss. Mix formats or sizes and it scales each clip onto the first one's frame and re-encodes to match. Pick the output format from **Video Options**, or leave it matching the first file, and name the result there too. Like the rest of Picmal it runs entirely on your Mac, and works from the command line (`picmal-cli combine-videos`) and [Shortcuts](/docs/integrations#shortcuts-app). See [Video tools](/docs/video-tools).
+
+### Bug fixes
+
+- Fixed transparent images turning black when converted to JPEG. JPEG can't store transparency, so a see-through PNG (or WebP, GIF, HEIC…) used to fill its transparent areas with black. They now fill with white, matching how Picmal already handled PDF. Works in the app and from the command line.

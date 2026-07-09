@@ -3,6 +3,23 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.7</title>
+            <pubDate>Thu, 09 Jul 2026 11:34:42 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>101</sparkle:version>
+            <sparkle:shortVersionString>1.7.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.7/Picmal.dmg" length="122451682" type="application/octet-stream" sparkle:edSignature="G204NQrbd79H779DpMvJzYv3Po0iI2bhQrWmgjr6lu09X5AvgjIly6uwsmdt8aoRShx/fmhJ/rTP3ta3LxnfBw=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Combine Videos.</strong> Drop in two or more videos, drag them into the order you want, and join them into one file. Same codec and size all around and it's a fast, lossless copy; mix formats or resolutions and it scales each clip to match the first and re-encodes. Pick the output format (or leave it matching the first file) and name the result in Video Options. Works in the app, from the command line (`picmal-cli combine-videos`), and in Shortcuts.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Transparent images now convert to JPEG on a white background instead of black.</strong> Converting a transparent PNG (or WebP, GIF, HEIC…) to JPEG, which can't store transparency, used to fill the see-through areas with black. They now fill with white, matching how Picmal already handled PDF. Works in the app and from the command line.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.6</title>
             <pubDate>Mon, 06 Jul 2026 13:49:54 +0200</pubDate>
             <link>https://picmal.app/</link>

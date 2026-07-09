@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `combine-videos`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -35,6 +35,7 @@ picmal-cli <subcommand> [options]
 | `split-pdf`      | Split a PDF into one document per page range      |
 | `images-to-pdf`  | Create a multi-page PDF from images               |
 | `merge-audio`    | Merge two or more audio files into one            |
+| `combine-videos` | Combine two or more videos into one               |
 | `split-chapters` | Split a chaptered audiobook into per-chapter files |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
@@ -204,6 +205,23 @@ picmal-cli merge-audio intro.wav track.wav outro.wav -o full.wav
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
 Uses the same bundled ffmpeg as Convert and Compress. Decode-only formats (like APE) are refused as output targets — pick a format Picmal can write.
+
+## combine-videos
+
+Join two or more videos into one, in the order you pass them. When every input shares the same codec, resolution, and frame rate the streams are copied losslessly; mix formats or sizes and each clip is scaled onto the first one's frame and re-encoded to match.
+
+```bash
+picmal-cli combine-videos clip1.mp4 clip2.mp4
+picmal-cli combine-videos intro.mov main.mp4 outro.webm -o full.mp4
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | Video files to combine, in order (positional, at least two).                       |
+| `-o`, `--output <path>` | Output file or directory. The extension sets the format. Default: `<first basename> (combined).<ext>` next to the first input, in that file's format. |
+| `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
+
+Uses the same bundled ffmpeg as Convert and Compress. H.264 for MP4/MOV/MKV, VP9 for WebM; on Apple Silicon it encodes in hardware. Decode-only formats are refused as output targets — pick a format Picmal can write.
 
 ## split-chapters
 

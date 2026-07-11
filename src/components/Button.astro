@@ -1,5 +1,6 @@
 ---
 import { cn } from "../utils/cn";
+import { DEFAULT_TIER } from "../config/pricing";
 
 export interface Props {
   class?: string;
@@ -22,7 +23,7 @@ export interface Props {
 
 const {
   class: className = "",
-  href = "https://cantimplorastudio.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
+  href = DEFAULT_TIER.checkoutUrl,
   text = "",
   size = "normal",
   variant = "primary",

@@ -2,30 +2,7 @@
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
 import Button from "./Button.astro";
-
-// Pricing tiers configuration
-const pricingTiers = [
-  {
-    devices: 1,
-    price: 15.99,
-    url: "https://cantimplorastudio.lemonsqueezy.com/buy/d5bc408c-c4b4-4162-beed-0c1ddc8e1dbc",
-  },
-  {
-    devices: 2,
-    price: 28.78,
-    url: "https://cantimplorastudio.lemonsqueezy.com/buy/b7caae04-3793-444c-92b6-44c209b3d8e5",
-  },
-  {
-    devices: 3,
-    price: 40.77,
-    url: "https://cantimplorastudio.lemonsqueezy.com/buy/00394b68-9753-4c9f-81a4-17ed7c192fea",
-  },
-  {
-    devices: 5,
-    price: 63.95,
-    url: "https://cantimplorastudio.lemonsqueezy.com/buy/e77fee96-f07a-4f57-91ec-56836cf6d23b",
-  },
-];
+import { TIERS } from "../config/pricing";
 ---
 
 <div class="bg-background-subtle rounded-2xl p-4 md:p-8 border border-border">
@@ -36,7 +13,7 @@ const pricingTiers = [
     <!-- Price Display -->
     <div class="flex items-baseline gap-1 mb-8">
       <span id="current-price" class="text-4xl font-semibold text-text">
-        ${pricingTiers[0].price.toFixed(2)}
+        ${TIERS[0].price.toFixed(2)}
       </span>
       <span class="text-text-secondary text-body">/ once</span>
     </div>
@@ -192,7 +169,7 @@ const pricingTiers = [
       onclick="posthog.capture('buy_clicked')"
     />
 
-    <script define:vars={{ pricingTiers }}>
+    <script define:vars={{ pricingTiers: TIERS }}>
       // Initialize state
       let currentTierIndex = 0;
 
@@ -219,8 +196,8 @@ const pricingTiers = [
         // Update feature list
         seatCountTextEl.textContent = `${tier.devices} ${tier.devices === 1 ? "seat" : "seats"}`;
 
-        // Update buy button URL
-        buyButton.href = tier.url;
+        // Update buy button -> this tier's licencio checkout link (302s to Stripe)
+        buyButton.href = tier.checkoutUrl;
 
         // Update button states
         decreaseBtn.disabled = currentTierIndex === 0;
@@ -249,5 +226,5 @@ const pricingTiers = [
 </div>
 
 <Paragraph size="small" class="text-center text-text-secondary mt-4">
-  Prices in USD. VAT may apply. Secure payment via Lemon Squeezy.
+  Prices in USD. VAT may apply. Secure payment via Stripe.
 </Paragraph>

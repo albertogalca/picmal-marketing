@@ -63,35 +63,24 @@
 </script>
 
 <!--
-  Closed-loop attribution: forward the visitor's PostHog identity + first-touch UTMs
-  through the Lemon Squeezy checkout as custom data. They come back in the order_created
-  webhook (meta.custom_data), where the worker emits an attributed `purchase` event so
-  source → click → revenue all land on the same PostHog person.
-  Capture phase + reading href at click time keeps every CTA (and DynamicPricing's
-  tier-swapping href) working without per-button changes.
+  Closed-loop attribution: forward the visitor's PostHog identity through the licencio
+  checkout link as client_reference_id. licencio passes it to the Stripe Checkout
+  Session, so it comes back on checkout.session.completed (session.client_reference_id)
+  and source → click → revenue land on the same PostHog person. distinct_id is enough —
+  PostHog already holds that person's first-touch UTMs. Capture phase + reading href
+  at click time keeps every CTA (and DynamicPricing's tier-swapping href) working.
 -->
 <script is:inline>
   document.addEventListener(
     "click",
     function (e) {
-      var a = e.target.closest && e.target.closest('a[href*="lemonsqueezy.com/buy/"]');
+      var a = e.target.closest && e.target.closest('a[href*="/api/checkout"]');
       if (!a) return;
       try {
         var url = new URL(a.href);
         var ph = window.posthog;
         var did = ph && ph.get_distinct_id && ph.get_distinct_id();
-        if (did) url.searchParams.set("checkout[custom][ph_distinct_id]", did);
-
-        var current = new URLSearchParams(location.search);
-        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
-          var v = null;
-          try {
-            v = ph && ph.get_property && ph.get_property("$initial_" + k);
-          } catch (_) {}
-          if (!v) v = current.get(k);
-          if (v) url.searchParams.set("checkout[custom][" + k + "]", v);
-        });
-
+        if (did) url.searchParams.set("client_reference_id", did);
         a.href = url.toString();
       } catch (_) {}
     },

@@ -70,7 +70,21 @@
   PostHog already holds that person's first-touch UTMs. Capture phase + reading href
   at click time keeps every CTA (and DynamicPricing's tier-swapping href) working.
 -->
+<!--
+  Affiliate attribution: capture ?ref=CODE into a 60-day first-party cookie, then
+  append ref=<code> to every /api/checkout link. licencio resolves the code to an
+  approved Affiliate and freezes commission at sale time (unknown codes ignored).
+-->
 <script is:inline>
+  try {
+    var refParam = new URLSearchParams(location.search).get("ref");
+    if (refParam)
+      document.cookie =
+        "ref=" +
+        encodeURIComponent(refParam) +
+        "; max-age=5184000; path=/; samesite=lax"; // 60 days
+  } catch (_) {}
+
   document.addEventListener(
     "click",
     function (e) {
@@ -81,6 +95,8 @@
         var ph = window.posthog;
         var did = ph && ph.get_distinct_id && ph.get_distinct_id();
         if (did) url.searchParams.set("client_reference_id", did);
+        var ref = document.cookie.match(/(?:^|;\s*)ref=([^;]*)/);
+        if (ref) url.searchParams.set("ref", decodeURIComponent(ref[1]));
         a.href = url.toString();
       } catch (_) {}
     },

@@ -153,6 +153,10 @@ Open **Settings → Video** to control how subtitles look:
 
 Styling is global. Whatever you pick in Settings applies to every video with a subtitle file attached.
 
+### Existing subtitle tracks are preserved
+
+If a video already carries soft subtitle tracks — the kind Subler and other tools add — Picmal keeps them when it converts or compresses the file, as long as the output format can hold them: text subtitles into MP4, MOV, and WebM, and anything into MKV. A subtitle the target format can't store is quietly dropped so the conversion still goes through. This is separate from burn-in above — the tracks stay selectable subtitles rather than being painted onto the frames. It works in the app and from the command line.
+
 ## Playback speed
 
 Speed a video up or slow it down without wrecking the audio pitch. Useful for trimming down meeting recordings, rolling tutorials into time-lapses, or stretching a golf swing out for review.

@@ -189,6 +189,27 @@ picmal-cli images-to-pdf report.png --password secret
 | `-o`, `--output <path>` | Output file or directory. Default: `<first basename>.pdf` next to the first input. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                            |
 
+## app-icon
+
+Turn a single image into ready-to-ship app icons: a macOS `.icns`, a Windows `.ico`, and an iOS `.appiconset` you can drag into Xcode. Pass no format flag to generate all three. A non-square source is fit into the square without cropping, and the iOS icon is flattened onto an opaque background.
+
+```bash
+picmal-cli app-icon logo.png                 # all three formats
+picmal-cli app-icon logo.png --macos         # just .icns
+picmal-cli app-icon logo.png --ios --windows -o icons/
+```
+
+| Flag                    | Description                                                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `<input>`               | Source image to generate icons from (positional). Use a square image ≥ 1024×1024 for crisp results. |
+| `--macos`               | Generate the macOS `.icns`.                                                               |
+| `--windows`             | Generate the Windows `.ico`.                                                              |
+| `--ios`                 | Generate the iOS `.appiconset`.                                                           |
+| `-o`, `--output <path>` | Output directory. Default: a `<name> App Icons` folder next to the source.                |
+| `-w`, `--overwrite`     | Overwrite existing output files.                                                          |
+
+Pass any combination of `--macos`, `--windows`, and `--ios` to pick formats; with none, all three are generated. See [App Icons](/docs/app-icons).
+
 ## merge-audio
 
 Join two or more audio files into one, in the order you pass them. When every input shares the same codec, sample rate, and channels the streams are copied losslessly; mix formats and they're re-encoded to the output format instead.

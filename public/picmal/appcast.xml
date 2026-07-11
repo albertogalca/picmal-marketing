@@ -3,6 +3,24 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.8</title>
+            <pubDate>Sat, 11 Jul 2026 15:46:10 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>102</sparkle:version>
+            <sparkle:shortVersionString>1.7.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.8/Picmal.dmg" length="122745604" type="application/octet-stream" sparkle:edSignature="wS8n2nvjRem4sJfmmLAJeYL6WstedeUCTMo5ggwzPAAHOQH+SbyU+pbHPveVo9xqwqyWxAUr3nrYt/WZ+MO2Bg=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>App Icons.</strong> Drop in one image and Picmal turns it into ready-to-use app icons: a macOS `.icns`, a Windows `.ico`, and an iOS icon set you can drag straight into Xcode. Pick which formats you want; a non-square image is fit into the square without cropping, and the iOS icon is flattened to an opaque background so the App Store accepts it. Works in the app, from the command line (`picmal-cli app-icon`), and in Shortcuts.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>Soft subtitle tracks now survive compression and conversion.</strong> Videos that already carry subtitles — the soft subs Subler adds, say — used to lose them every time Picmal re-encoded the file. They now come along for the ride, as long as the output format can hold them: text subtitles into MP4, MOV, and WebM, and anything into MKV. A subtitle a format can't store is quietly dropped so the conversion still goes through. Works in the app and from the command line.</li>
+<li><strong>A self-serve portal for your license.</strong> Lost your key, or need to free up a device? The License tab now links straight to a portal that emails you a sign-in link, then lets you recover your key, move seats between machines, and manage renewals. Your license also verifies offline now, so Picmal stays activated on a flaky connection or a plane. Existing licenses carry over on their own — nothing to re-enter.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.7</title>
             <pubDate>Thu, 09 Jul 2026 11:34:42 +0200</pubDate>
             <link>https://picmal.app/</link>

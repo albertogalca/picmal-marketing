@@ -1,0 +1,38 @@
+---
+title: App Icons
+description: Turn a single image into ready-to-ship app icons on your Mac — a macOS .icns, a Windows .ico, and an Xcode-ready iOS icon set, with non-square images fit without cropping.
+---
+
+Picmal's sidebar has an **App Icons** tool that turns one image into ready-to-ship app icons for every platform. Drop in a logo and get back a macOS `.icns`, a Windows `.ico`, and an iOS icon set. Like everything else in Picmal, it runs entirely on your Mac.
+
+## Generate app icons
+
+1. Select **App Icons** in the sidebar
+2. Drop a single image into the window
+3. Pick the formats you want — macOS, Windows, iOS, or any combination
+4. Click **Generate**
+
+![App Icons in Picmal: a 1024px source image loaded under the Media section of the sidebar, with the macOS, Windows, and iOS output formats checked in the bottom bar](/images/docs/app_icons.png)
+
+Each format is written into an output folder next to your source, named `<name> App Icons`.
+
+| Format  | Output              | What you get                                                             |
+| ------- | ------------------- | ------------------------------------------------------------------------ |
+| macOS   | `AppIcon.icns`      | The multi-resolution icon macOS apps use.                                |
+| Windows | `AppIcon.ico`       | A multi-resolution `.ico` for Windows apps.                              |
+| iOS     | `AppIcon.appiconset`| A universal 1024 icon set you can drag straight into Xcode's asset catalog. |
+
+## Getting a clean result
+
+- **Use a square source, at least 1024×1024.** That's the largest size any of the icons need, so a big square image stays crisp everywhere.
+- **Non-square images are fit, never cropped.** A wide or tall image is centered and padded to a square, so nothing gets cut off.
+- **The iOS icon is flattened to an opaque background.** iOS icons can't be transparent, so a see-through source is placed on a solid background — the App Store rejects icons with an alpha channel otherwise.
+
+## Use it from Shortcuts and the terminal
+
+App Icons is available beyond the app window:
+
+- In Shortcuts, the **Generate App Icons** action takes one image and returns the icon files. See [Integrations](/docs/integrations#shortcuts-app).
+- From the terminal, use `picmal-cli app-icon` to generate icons. See [Command line](/docs/cli#app-icon).
+
+Like Convert and Compress, the tool requires an active [license](/docs/license).

@@ -1,0 +1,19 @@
+---
+version: "1.7.8"
+title: "App Icons from a single image"
+description: "A new App Icons tool turns one image into a macOS .icns, a Windows .ico, and an Xcode-ready iOS icon set. Plus soft subtitles now survive re-encoding, and a self-serve license portal with offline verification."
+pubDate: 2026-07-11
+---
+
+The sidebar gains a new tool: **App Icons**. Drop in one image and Picmal hands you back ready-to-ship app icons for every platform — no export presets to fiddle with.
+
+![App Icons in Picmal: a 1024px source image loaded under the Media section of the sidebar, with the macOS, Windows, and iOS output formats checked in the bottom bar](/images/changelog/1.7.8/app_icons.png)
+
+### New features
+
+- **App Icons.** Give Picmal a single image and it generates a macOS `.icns`, a Windows `.ico`, and an iOS icon set you can drag straight into Xcode. Pick which formats you want. A non-square image is fit into the square without cropping, and the iOS icon is flattened onto an opaque background so the App Store accepts it. Like the rest of Picmal it runs entirely on your Mac, and works from the command line (`picmal-cli app-icon`) and [Shortcuts](/docs/integrations#shortcuts-app). See [App Icons](/docs/app-icons).
+
+### Improvements
+
+- **Soft subtitles now survive compression and conversion.** Videos that already carry subtitle tracks — the soft subs Subler adds, say — used to lose them every time Picmal re-encoded the file. They now come along for the ride, as long as the output format can hold them: text subtitles into MP4, MOV, and WebM, and anything into MKV. A subtitle the target format can't store is quietly dropped so the conversion still goes through. Works in the app and from the command line.
+- **A self-serve portal for your license.** Lost your key, or need to free up a device? The License tab now links straight to a portal that emails you a sign-in link, then lets you recover your key, move seats between machines, and manage renewals. Your license also verifies offline now, so Picmal stays activated on a flaky connection or a plane. Existing licenses carry over on their own — nothing to re-enter. See [License](/docs/license).

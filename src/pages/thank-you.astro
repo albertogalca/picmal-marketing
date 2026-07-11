@@ -1,0 +1,145 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import H1 from "../components/H1.astro";
+import Lead from "../components/Lead.astro";
+import Button from "../components/Button.astro";
+import TrustBar from "../components/TrustBar.astro";
+import Confetti from "../components/Confetti.astro";
+
+// Where licencio sends buyers after a successful Stripe checkout (set as the
+// product's checkout success URL). The license key arrives by email once
+// payment confirms, so this page's job is to say that plainly and hand over the
+// download while they wait.
+
+const DMG_URL =
+  "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
+const RECOVERY_URL =
+  "https://licenses.albertogalca.com/portal/recoveries/new?product=picmal";
+
+const inlineLink =
+  "underline underline-offset-4 decoration-text-secondary/40 hover:decoration-text-secondary transition-colors rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Thank you — Picmal"
+      description="Your Picmal license key is on its way to your inbox. Download Picmal for Mac and start converting."
+      noindex={true}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Confetti />
+    <Header />
+
+    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <H1 class="mb-6 reveal">Thank you!</H1>
+        <Lead class="mb-8 max-w-xl mx-auto reveal" style="animation-delay:80ms">
+          Your license key is on its way to the email you paid with. While it
+          lands, grab the app.
+        </Lead>
+
+        <div
+          class="flex flex-col items-center gap-3 reveal"
+          style="animation-delay:160ms"
+        >
+          <Button
+            href={DMG_URL}
+            text="Download Picmal (.dmg)"
+            class="w-full sm:w-auto"
+            onclick="posthog.capture('download_dmg')"
+          />
+          <p class="mt-2 text-small text-text-secondary">
+            Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel
+          </p>
+        </div>
+
+        <div class="mt-6 reveal" style="animation-delay:240ms">
+          <TrustBar />
+        </div>
+      </div>
+
+      <!-- The key arrives by email, not on this page. Say it once, clearly,
+           where someone scanning for "so where is my key?" will look. -->
+      <div class="max-w-2xl mx-auto px-6 mt-12 reveal" style="animation-delay:320ms">
+        <section
+          class="flex items-start gap-3.5 rounded-2xl px-6 py-5 text-left ring-1 ring-text/10 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_28px_-16px_rgba(0,0,0,0.14)] sm:px-7"
+        >
+          <svg
+            class="mt-0.5 shrink-0 text-accent"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect>
+            <path d="m3 6 9 6 9-6"></path>
+          </svg>
+          <div>
+            <h2 class="text-body font-semibold text-text">
+              Your key arrives by email
+            </h2>
+            <p class="mt-1.5 text-pretty text-body text-text-secondary">
+              Stripe sends the receipt right away. Your license key follows in a
+              separate email, usually within a minute. Open Picmal, go to
+              <strong class="font-medium text-text">Settings → License</strong>,
+              paste it in and click <strong class="font-medium text-text"
+                >Activate</strong
+              >. That's the whole setup.
+            </p>
+            <p class="mt-3 text-pretty text-body text-text-secondary">
+              Nothing after a few minutes? Check your spam folder, then <a
+                href={RECOVERY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={inlineLink}>have it sent again</a
+              >. Still stuck? Write to <a
+                href="mailto:support@picmal.app"
+                class={inlineLink}>support@picmal.app</a
+              > and I'll sort it out.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <Footer />
+
+    <!-- Split-and-stagger entrance: each chunk fades up ~80ms after the last,
+         so the page assembles itself rather than popping in as one block.
+         translateY is a small fixed nudge, not full height. -->
+    <style>
+      .reveal {
+        opacity: 0;
+        animation: reveal-up 0.5s cubic-bezier(0.2, 0, 0, 1) both;
+      }
+      @keyframes reveal-up {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          animation: none;
+        }
+      }
+    </style>
+  </body>
+</html>

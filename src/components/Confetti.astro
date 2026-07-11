@@ -1,0 +1,146 @@
+---
+// A party confetti burst for the moment someone buys Picmal. Deliberately not a
+// canvas library: a few absolutely-positioned spans and one keyframe do the job,
+// and nothing runs after the last piece falls.
+//
+// It plays once on load, bursts from the top and rains down, and never runs for
+// someone who asked for reduced motion.
+const COUNT = 90;
+// Longest a piece can live: the biggest delay plus the longest fall. The overlay
+// removes itself once that's elapsed.
+const MAX_DELAY_MS = 500;
+const MAX_FALL_MS = 3200;
+---
+
+<div id="confetti" class="confetti" aria-hidden="true"></div>
+
+<!-- `is:global` on purpose: the pieces are created in JS, so Astro's scoped
+     styles (which work by stamping a class onto template elements) would never
+     reach them. Every rule below is namespaced under #confetti instead. -->
+<style is:global>
+  #confetti {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  #confetti span {
+    position: absolute;
+    top: -5vh;
+    display: block;
+    width: var(--size);
+    height: var(--height);
+    background: var(--tint);
+    border-radius: var(--radius);
+    opacity: 0;
+    /* No will-change: transform and opacity already composite on the GPU, and
+       promoting 90 layers up front costs more than it saves. ease-in so pieces
+       accelerate like gravity and keep moving — no hanging mid-screen. */
+    animation: confetti-fall var(--duration) cubic-bezier(0.45, 0, 0.9, 1)
+      var(--delay) forwards;
+  }
+
+  @keyframes confetti-fall {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+      opacity: 0;
+    }
+    6% {
+      opacity: 1;
+    }
+    /* Sway sideways on the way down, tumbling end over end. */
+    50% {
+      transform: translate3d(var(--drift), 50vh, 0)
+        rotate(calc(var(--spin) * 0.5));
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(calc(var(--drift) * 1.4), 112vh, 0)
+        rotate(var(--spin));
+      opacity: 0;
+    }
+  }
+
+  /* No motion, no confetti. Not a faded version — nothing at all. */
+  @media (prefers-reduced-motion: reduce) {
+    #confetti {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ COUNT, MAX_DELAY_MS, MAX_FALL_MS }}>
+  (() => {
+    const root = document.getElementById("confetti");
+    if (!root) return;
+    // Belt and braces: the CSS hides it, but don't build nodes we won't show.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      root.remove();
+      return;
+    }
+
+    // A festive party palette — brand blue leads, the rest bring the confetti.
+    const tints = [
+      "#1b5bff",
+      "#ff3b5c",
+      "#ffca3a",
+      "#2ec27e",
+      "#a15cff",
+      "#ff8c42",
+      "#3b82f6",
+    ];
+
+    const fall = () => {
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < COUNT; i++) {
+        const el = document.createElement("span");
+        const size = 6 + Math.random() * 6;
+        // Mix of rectangles/ribbons and the odd circle — party confetti, not petals.
+        const circle = Math.random() < 0.25;
+        el.style.setProperty("--size", `${size.toFixed(1)}px`);
+        el.style.setProperty(
+          "--height",
+          circle ? `${size.toFixed(1)}px` : `${(size * (1.6 + Math.random())).toFixed(1)}px`,
+        );
+        el.style.setProperty("--radius", circle ? "50%" : "1px");
+        el.style.setProperty("--tint", tints[i % tints.length]);
+        el.style.setProperty("--drift", `${(Math.random() - 0.5) * 40}vw`);
+        el.style.setProperty("--spin", `${(Math.random() - 0.5) * 1440}deg`);
+        el.style.setProperty(
+          "--duration",
+          `${(MAX_FALL_MS / 1000 - Math.random() * 2).toFixed(2)}s`,
+        );
+        el.style.setProperty(
+          "--delay",
+          `${((Math.random() * MAX_DELAY_MS) / 1000).toFixed(2)}s`,
+        );
+        el.style.left = `${Math.random() * 100}%`;
+        frag.appendChild(el);
+      }
+      root.appendChild(frag);
+
+      // Once the last piece has landed, drop the whole overlay. A timer rather
+      // than an `animationend` tally: browsers pause animations in a hidden tab,
+      // so the events can simply never arrive and the layer would linger.
+      setTimeout(() => root.remove(), MAX_DELAY_MS + MAX_FALL_MS + 500);
+    };
+
+    // A Stripe redirect can land in a tab the buyer isn't looking at, and Chrome
+    // freezes animations there — they'd come back to confetti mid-air, or to none
+    // at all. Wait until the page is actually on screen before dropping any.
+    if (document.visibilityState === "visible") {
+      fall();
+    } else {
+      document.addEventListener("visibilitychange", function once() {
+        if (document.visibilityState !== "visible") return;
+        document.removeEventListener("visibilitychange", once);
+        fall();
+      });
+    }
+  })();
+</script>

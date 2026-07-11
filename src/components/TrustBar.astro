@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Paragraph from "./Paragraph.astro";
 import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
-import { getCustomerCount } from "../utils/lemonsqueezy";
+import { getCustomerCount } from "../utils/customers";
 
 const displayUsers = users.slice(0, 8);
 const customerCount = await getCustomerCount();

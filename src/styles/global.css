@@ -3,6 +3,16 @@
 
 @variant dark (&:is(.dark *));
 
+/* Self-hosted so the founder-letter signature never falls back to the system
+   cursive (iOS Snell Roundhand). font-display:swap keeps text visible. */
+@font-face {
+  font-family: "Grape Nuts";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/grape-nuts-latin.woff2") format("woff2");
+}
+
 @theme {
   --color-accent: light-dark(#1b5bff, #3b82f6);
   --color-accent-dark: light-dark(#1450e0, #2563eb);

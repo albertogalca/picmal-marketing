@@ -26,9 +26,7 @@ const today = new Date();
       </div>
 
       <div>
-        <p class="text-small text-text mb-4 font-semibold">
-          Convert & Compress
-        </p>
+        <p class="text-text mb-4 font-semibold">Convert & Compress</p>
         <ul class="space-y-3 text-body text-text-secondary">
           <li>
             <a href="/convert" class="transition-colors hover:text-text"
@@ -76,13 +74,6 @@ const today = new Date();
           </li>
           <li>
             <a
-              href="/compress-images-mac"
-              class="transition-colors hover:text-text"
-              >Compress images for Mac</a
-            >
-          </li>
-          <li>
-            <a
               href="/compress-video-mac"
               class="transition-colors hover:text-text"
               >Compress video for Mac</a
@@ -98,7 +89,7 @@ const today = new Date();
         </ul>
       </div>
       <div>
-        <p class="text-small text-text mb-4 font-semibold">Alternatives</p>
+        <p class="text-text mb-4 font-semibold">Alternatives</p>
         <ul class="space-y-3 text-body text-text-secondary">
           <li>
             <a
@@ -146,67 +137,34 @@ const today = new Date();
           </li>
         </ul>
       </div>
-      {/* ponytail: `contents` un-nests these on mobile so Product/Company/Legal
-          flow as separate 2-up grid cells; on lg they stack in one column */}
-      <div class="contents lg:block">
-        <div>
-          <p class="text-small text-text mb-4 font-semibold">Product</p>
-          <ul class="space-y-3 text-body text-text-secondary">
-            <li>
-              <a href="/blog" class="transition-colors hover:text-text">Blog</a>
-            </li>
-            <li>
-              <a href="/changelog" class="transition-colors hover:text-text"
-                >Changelog</a
-              >
-            </li>
-            {/* ponytail: no Pricing link — pricing lives on the homepage, no standalone /pricing route */}
-          </ul>
-        </div>
-
-        <div class="lg:mt-10">
-          <p class="text-small text-text mb-4 font-semibold">Company</p>
-          <ul class="space-y-3 text-body text-text-secondary">
-            <li>
-              <a
-                href="mailto:support@picmal.app"
-                class="transition-colors hover:text-text">Get in touch</a
-              >
-            </li>
-            <li>
-              <a href="/press" class="transition-colors hover:text-text"
-                >Press kit</a
-              >
-            </li>
-            <li>
-              <a href="/affiliate" class="transition-colors hover:text-text"
-                >Earn 25% as affiliate</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:mt-10">
-          <p class="text-small text-text mb-4 font-semibold">Legal</p>
-          <ul class="space-y-3 text-body text-text-secondary">
-            <li>
-              <a href="/terms" class="transition-colors hover:text-text"
-                >Terms of use</a
-              >
-            </li>
-            <li>
-              <a href="/privacy" class="transition-colors hover:text-text"
-                >Privacy policy</a
-              >
-            </li>
-            <li>
-              <a
-                href="/legal/open-source"
-                class="transition-colors hover:text-text">Open source</a
-              >
-            </li>
-          </ul>
-        </div>
+      <div>
+        <p class="text-text mb-4 font-semibold">Company</p>
+        <ul class="space-y-3 text-body text-text-secondary">
+          <li>
+            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
+          </li>
+          <li>
+            <a href="/changelog" class="transition-colors hover:text-text"
+              >Changelog</a
+            >
+          </li>
+          <li>
+            <a
+              href="mailto:support@picmal.app"
+              class="transition-colors hover:text-text">Get in touch</a
+            >
+          </li>
+          <li>
+            <a href="/press" class="transition-colors hover:text-text"
+              >Press kit</a
+            >
+          </li>
+          <li>
+            <a href="/affiliate" class="transition-colors hover:text-text"
+              >Earn 25% as affiliate</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -244,6 +202,18 @@ const today = new Date();
         <span class="hidden dark:block">Light Mode</span>
         <span class="block dark:hidden">Dark Mode</span>
       </button>
+
+      <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 sm:ml-auto">
+        <a href="/terms" class="transition-colors hover:text-text"
+          >Terms of use</a
+        >
+        <a href="/privacy" class="transition-colors hover:text-text"
+          >Privacy policy</a
+        >
+        <a href="/legal/open-source" class="transition-colors hover:text-text"
+          >Open source</a
+        >
+      </nav>
     </div>
   </div>
 </footer>

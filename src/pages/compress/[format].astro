@@ -3,14 +3,16 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import CardGrid from "../../components/CardGrid.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import BenefitsCard from "../../components/BenefitsCard.astro";
+import ConversionGrid from "../../components/ConversionGrid.astro";
 import {
   compressions,
   type CompressionFileSizeExample,
@@ -58,239 +60,172 @@ const faqSchema = {
     <Header />
 
     <ComparisonHero
-      title={`Compress ${compression.name} Files on Mac`}
+      title={`Compress ${compression.name} files on Mac`}
       subhead={compression.whyCompress}
       buyEvent={`buy_clicked_compress_${compression.slug}`}
       defaultTab="compress"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Compress", href: "/compress" },
-          { label: compression.name },
-        ]}
+    />
+
+    <!-- Benefits -->
+    <Section width="narrow">
+      <BenefitsCard
+        heading={`Why compress ${compression.name} files?`}
+        benefits={compression.benefits}
       />
-    </ComparisonHero>
+    </Section>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <!-- Benefits -->
-        <section class="mb-16 sm:mb-20">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <H2 class="mb-6">Why compress {compression.name} files?</H2>
-            <ul class="space-y-4">
-              {
-                compression.benefits.map((benefit) => (
-                  <li class="flex gap-3 items-start">
-                    <svg
-                      class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span class="text-text">{benefit}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </section>
-
-        <!-- How To Steps -->
-        <CardGrid
-          bare
-          numbered
-          class="mb-16 sm:mb-20"
-          heading={`How to compress ${compression.name} files on Mac`}
-          items={[
-            {
-              title: "Open Picmal",
-              description: "Download and open Picmal on your Mac.",
-            },
-            {
-              title: `Add your ${compression.name} files`,
-              description: `Drag and drop your ${compression.name} files or entire folders into Picmal.`,
-            },
-            {
-              title: "Adjust quality and compress",
-              description:
-                "Set your preferred quality level and click Compress to reduce file sizes.",
-            },
-          ]}
-        />
-
-        <!-- File Size Comparison -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center"
-            >{compression.name} Compression Results</H2
-          >
-          <div
-            class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden"
-          >
-            <table class="w-full">
-              <thead>
-                <tr class="border-b border-border">
-                  <th
-                    class="text-left text-small font-medium text-text-secondary px-6 py-4"
-                    >File Type</th
-                  >
-                  <th
-                    class="text-right text-small font-medium text-text-secondary px-6 py-4"
-                    >Original</th
-                  >
-                  <th
-                    class="text-right text-small font-medium text-text-secondary px-6 py-4"
-                    >Compressed</th
-                  >
-                  <th
-                    class="text-right text-small font-medium text-text-secondary px-6 py-4"
-                    >Savings</th
-                  >
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  compression.fileSizeExamples.map(
-                    (example: CompressionFileSizeExample, i: number) => (
-                      <tr
-                        class={
-                          i < compression.fileSizeExamples.length - 1
-                            ? "border-b border-border/50"
-                            : ""
-                        }
-                      >
-                        <td class="px-6 py-4 text-small text-text">
-                          {example.label}
-                        </td>
-                        <td class="px-6 py-4 text-small text-text-secondary text-right font-mono">
-                          {example.originalSize}
-                        </td>
-                        <td class="px-6 py-4 text-small text-text text-right font-mono font-medium">
-                          {example.compressedSize}
-                        </td>
-                        <td class="px-6 py-4 text-small text-accent text-right">
-                          {example.savings}
-                        </td>
-                      </tr>
-                    ),
-                  )
-                }
-              </tbody>
-            </table>
-            <div class="px-6 py-4 border-t border-border bg-background/50">
-              <div class="flex items-center gap-2 text-small text-text-secondary">
-                <svg
-                  class="w-4 h-4 text-accent flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                <span
-                  >Speed: <strong class="text-text"
-                    >{compression.compressionSpeed}</strong
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Use Cases -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center"
-            >When to compress {compression.name} files</H2
-          >
-          <div class="grid md:grid-cols-2 gap-4">
-            {
-              compression.useCases.map((useCase: CompressionUseCase) => (
-                <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-                  <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
-                  <Paragraph class="text-small">{useCase.description}</Paragraph>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <FAQ faqs={compression.faqs} />
-          </div>
-        </section>
-
-        <!-- Related Conversions -->
+    <!-- How To Steps -->
+    <CardGrid
+      numbered
+      heading={`How to compress ${compression.name} files on Mac`}
+      items={[
         {
-          relatedConversions.length > 0 && (
-            <section class="mb-16 sm:mb-20">
-              <H2 class="mb-8 text-center">
-                Convert {compression.name} to Other Formats
-              </H2>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {relatedConversions.map((c) => (
-                  <a
-                    href={`/convert/${c.slug}`}
-                    class="group bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
-                  >
-                    <div class="flex items-center justify-center gap-2 mb-1">
-                      <span class="text-small font-mono text-text-secondary">
-                        .{formats[c.from].extension}
-                      </span>
-                      <svg
-                        class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        />
-                      </svg>
-                      <span class="text-small font-mono text-text-secondary">
-                        .{formats[c.to].extension}
-                      </span>
-                    </div>
-                    <span class="text-small font-medium text-text">
-                      {formats[c.from].name} to {formats[c.to].name}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </section>
-          )
-        }
+          title: "Open Picmal",
+          description: "Download and open Picmal on your Mac.",
+        },
+        {
+          title: `Add your ${compression.name} files`,
+          description: `Drag and drop your ${compression.name} files or entire folders into Picmal.`,
+        },
+        {
+          title: "Adjust quality and compress",
+          description:
+            "Set your preferred quality level and click Compress to reduce file sizes.",
+        },
+      ]}
+    />
 
-        <CTASection
-          heading={`Compress ${compression.name} files with Picmal`}
-          analyticsEvent={`buy_clicked_compress_${compression.slug}_bottom`}
-        />
-    </div>
+    <!-- File Size Comparison -->
+    <Section width="narrow">
+      <SectionHeading>{compression.name} compression results</SectionHeading>
+      <div
+        class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden"
+      >
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-border">
+              <th
+                class="text-left text-small font-medium text-text-secondary px-6 py-4"
+                >File type</th
+              >
+              <th
+                class="text-right text-small font-medium text-text-secondary px-6 py-4"
+                >Original</th
+              >
+              <th
+                class="text-right text-small font-medium text-text-secondary px-6 py-4"
+                >Compressed</th
+              >
+              <th
+                class="text-right text-small font-medium text-text-secondary px-6 py-4"
+                >Savings</th
+              >
+            </tr>
+          </thead>
+          <tbody>
+            {
+              compression.fileSizeExamples.map(
+                (example: CompressionFileSizeExample, i: number) => (
+                  <tr
+                    class={
+                      i < compression.fileSizeExamples.length - 1
+                        ? "border-b border-border/50"
+                        : ""
+                    }
+                  >
+                    <td class="px-6 py-4 text-small text-text">
+                      {example.label}
+                    </td>
+                    <td class="px-6 py-4 text-small text-text-secondary text-right font-mono">
+                      {example.originalSize}
+                    </td>
+                    <td class="px-6 py-4 text-small text-text text-right font-mono font-medium">
+                      {example.compressedSize}
+                    </td>
+                    <td class="px-6 py-4 text-small text-accent text-right tabular-nums">
+                      {example.savings}
+                    </td>
+                  </tr>
+                ),
+              )
+            }
+          </tbody>
+        </table>
+        <div class="px-6 py-4 border-t border-border bg-background/50">
+          <div class="flex items-center gap-2 text-small text-text-secondary">
+            <svg
+              class="w-4 h-4 text-accent flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span
+              >Speed: <strong class="text-text"
+                >{compression.compressionSpeed}</strong
+              ></span
+            >
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <!-- Use Cases -->
+    <Section>
+      <SectionHeading>When to compress {compression.name} files</SectionHeading>
+      <div class="grid md:grid-cols-2 gap-4">
+        {
+          compression.useCases.map((useCase: CompressionUseCase) => (
+            <Card>
+              <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
+              <Paragraph class="text-small">{useCase.description}</Paragraph>
+            </Card>
+          ))
+        }
+      </div>
+    </Section>
+
+    <!-- FAQ -->
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={compression.faqs} />
+      </Card>
+    </Section>
+
+    <!-- Related Conversions -->
+    {
+      relatedConversions.length > 0 && (
+        <Section width="narrow">
+          <SectionHeading>
+            Convert {compression.name} to other formats
+          </SectionHeading>
+          <ConversionGrid
+            columns={4}
+            links={relatedConversions.map((c) => ({
+              href: `/convert/${c.slug}`,
+              label: `${formats[c.from].name} to ${formats[c.to].name}`,
+            }))}
+          />
+        </Section>
+      )
+    }
+
+    <CTASection
+      heading={`Compress ${compression.name} files with Picmal`}
+      analyticsEvent={`buy_clicked_compress_${compression.slug}_bottom`}
+    />
 
     <Footer />
-
   </body>
 </html>

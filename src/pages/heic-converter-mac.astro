@@ -3,21 +3,19 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
-import H1 from "../components/H1.astro";
-import H2 from "../components/H2.astro";
-import Paragraph from "../components/Paragraph.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
-import CTASection from "../components/CTASection.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
-import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
 import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ConversionGrid from "../components/ConversionGrid.astro";
 
 const title =
-  "HEIC Converter for Mac — Convert HEIC to JPG, PNG, WebP | Picmal";
+  "Picmal: HEIC converter for Mac, convert HEIC to JPG, PNG, WebP";
 const description =
   "Convert HEIC files from your iPhone to JPG, PNG, WebP, or any format on your Mac. Batch conversion, offline, no quality loss. $15.99 one-time.";
 
@@ -30,7 +28,7 @@ const faqs = [
   {
     question: "What formats can I convert HEIC to?",
     answer:
-      "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF, DNG, and more — any image format you need.",
+      "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF, DNG, and any other image format you need.",
   },
   {
     question: "Can I batch convert all my iPhone photos at once?",
@@ -40,7 +38,7 @@ const faqs = [
   {
     question: "Does converting HEIC to JPG lose quality?",
     answer:
-      "JPG uses lossy compression, so there's a slight quality reduction. Picmal lets you adjust the quality slider — at 90%+ quality, the difference is imperceptible.",
+      "JPG uses lossy compression, so there's a slight quality reduction. Picmal lets you adjust the quality slider. At 90%+ quality, the difference is imperceptible.",
   },
   {
     question: "Is this different from Preview's export feature?",
@@ -50,7 +48,7 @@ const faqs = [
   {
     question: "Do my photos leave my Mac?",
     answer:
-      "No. All conversion happens locally on your Mac. Picmal works completely offline — your photos never touch any server.",
+      "No. All conversion happens locally on your Mac. Picmal works completely offline. Your photos never touch any server.",
   },
 ];
 
@@ -77,19 +75,12 @@ const faqSchema = {
   >
     <Header />
 
-        <ComparisonHero
+    <ComparisonHero
       title="Convert HEIC photos on your Mac in seconds"
-      subhead="Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch converts your HEIC files to JPG, PNG, WebP, or any format — fast, offline, and private."
+      subhead="Your iPhone shoots HEIC, but the world runs on JPG. Picmal batch converts your HEIC files to JPG, PNG, WebP, or any format. Fast, offline, and private."
       buyEvent="buy_clicked_heic_converter_mac"
       defaultTab="convert"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "HEIC Converter for Mac" }]}
-      />
-    </ComparisonHero>
-
-    <SectionDivider />
+    />
 
     <!-- How It Works -->
     <CardGrid
@@ -112,60 +103,41 @@ const faqSchema = {
       ]}
     />
 
-    <SectionDivider />
-
     <!-- HEIC Conversion Options -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-8 text-center">Convert HEIC to any format</H2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {
-            [
-              "heic-to-jpg",
-              "heic-to-png",
-              "heic-to-webp",
-              "heic-to-avif",
-              "heic-to-tiff",
-              "heic-to-gif",
-            ].map((slug) => (
-              <a
-                href={`/convert/${slug}`}
-                class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-colors hover:border-accent/30"
-              >
-                <span class="text-small font-medium text-text">
-                  {slug.replace("heic-to-", "HEIC to ").toUpperCase()}
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+    <Section>
+      <SectionHeading>Convert HEIC to any format</SectionHeading>
+      <ConversionGrid
+        columns={4}
+        links={[
+          "heic-to-jpg",
+          "heic-to-png",
+          "heic-to-webp",
+          "heic-to-avif",
+          "heic-to-tiff",
+          "heic-to-gif",
+        ].map((slug) => ({
+          href: `/convert/${slug}`,
+          label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
+        }))}
+      />
+    </Section>
 
-    <SectionDivider />
     <MasonryTestimonials />
-    <SectionDivider />
 
-    <section
-      id="pricing"
-      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
-    >
-      <PricingSection />
-    </section>
+    <PricingSection />
 
-    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-8 text-center">Frequently Asked Questions</H2>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
     <SupportedFormatsModal />
-
   </body>
 </html>

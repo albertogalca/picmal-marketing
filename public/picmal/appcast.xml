@@ -3,6 +3,23 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.7.9</title>
+            <pubDate>Sun, 12 Jul 2026 11:26:38 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>104</sparkle:version>
+            <sparkle:shortVersionString>1.7.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.7.9/Picmal.dmg" length="122736028" type="application/octet-stream" sparkle:edSignature="aMSxL38md0lBXmXoxyfBPzjXTUShgb8RQapwx/YlYSD/AlbJCr970PgpsD6Jc0Uc3Dh8T22qFbvpcKG3w6AtAg=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Cap video output to a resolution.</strong> Video Options gains a Resolution setting — 2160p (4K), 1440p, 1080p, 720p, 480p, 360p, or Original. Picmal only ever scales down and keeps the aspect ratio, so a source already smaller than your pick is left untouched. Applies to both Convert and Compress.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>App icons can take on a real macOS shape.</strong> The App Icons tool can now round your image into a proper macOS tile — a Big Sur squircle or the rounder Tahoe corner — with the margin and soft shadow baked in, instead of filling the square edge to edge. Pick the shape (or None) next to the format checkboxes; it applies to the `.icns`.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.8</title>
             <pubDate>Sat, 11 Jul 2026 15:46:10 +0200</pubDate>
             <link>https://picmal.app/</link>

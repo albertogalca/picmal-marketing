@@ -6,54 +6,65 @@ import FAQ from "../../components/FAQ.astro";
 import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import BentoFeatures from "../../components/BentoFeatures.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 
-const SITE_TITLE = "Picmal: A Native Mac Alternative to How To Convert";
 const SITE_DESCRIPTION =
-  "Looking for a How To Convert alternative on Mac? Picmal is a beautifully designed, privacy-first media toolkit that converts, compresses, and edits images, video, and audio—plus PDF tools—with native macOS integration. $15.99 one-time. 14-day refund.";
+  "Want a How To Convert alternative on your Mac? Picmal converts, compresses, and edits images, video, and audio, plus PDF tools, all on your Mac. Nothing gets uploaded. $15.99 once, no subscription. 14-day refund.";
 
 const faqs = [
   {
     question: "Is Picmal a good How To Convert alternative?",
     answer:
-      "For media files on Mac, yes. Picmal converts, compresses, and handles images, video, audio, and PDFs with native macOS integrations like Shortcuts and folder monitoring. If you need to convert Word documents or emails, How To Convert handles those and Picmal doesn't.",
+      "For media files on a Mac, yes. Picmal converts and compresses images, video, audio, and PDFs, and it ties into macOS with Shortcuts and folder monitoring. If you need to convert Word documents or emails, How To Convert does that and Picmal doesn't.",
   },
   {
     question: "Does Picmal work offline like How To Convert?",
     answer:
-      "Yes. Both apps process files on your Mac — nothing goes to a server.",
+      "Yes. Both apps do the work on your Mac. Your files never go to a server.",
   },
   {
     question: "Why is Picmal cheaper than How To Convert?",
     answer:
-      "Picmal is $15.99 vs $29 for How To Convert. Picmal covers one platform and focuses on media. How To Convert supports three platforms and includes document and email conversions too — that broader scope is what you're paying for.",
+      "Picmal is $15.99, How To Convert is $29. Picmal does one platform and sticks to media. How To Convert runs on three platforms and adds document and email conversions. You're paying for that wider scope.",
   },
   {
     question: "Can Picmal convert documents like PDFs or Word files?",
     answer:
-      "Picmal can compress PDFs, combine them, turn images into a PDF, and export pages to PNG. It doesn't convert document formats — no Word, DOCX, or Markdown. For that, How To Convert or Pandoc is the right tool.",
+      "Picmal can compress PDFs, combine them, turn images into a PDF, and export pages to PNG. It doesn't convert document formats, so no Word, DOCX, or Markdown. For that, reach for How To Convert or Pandoc.",
   },
   {
     question: "What if Picmal doesn't work for me?",
     answer:
-      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+      "Email support@picmal.app within 14 days and I'll refund you, no questions asked.",
   },
 ];
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: A native Mac alternative to How To Convert"
+      description={SITE_DESCRIPTION}
+    />
+    <!-- Grape Nuts: handwritten signature in the founder letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap"
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -66,33 +77,29 @@ const faqs = [
 
     <ComparisonHero
       title="A native Mac alternative to How To Convert"
-      subhead="How To Convert covers documents, emails, and three platforms. Picmal covers media — images, video, audio, and PDFs — for Mac only, with a native interface and Shortcuts integration. Nearly half the price."
+      subhead="How To Convert does documents, emails, and three platforms. Picmal does media, so images, video, audio, and PDFs, on the Mac only, with a native interface and Shortcuts. Nearly half the price."
       buyEvent="buy_clicked_howtoconvert_comparison"
     />
 
     <ComparisonVerdict
       competitor="How To Convert"
-      summary="How To Convert covers documents, emails, and media across Windows, Mac, and Linux. Picmal ($15.99 one-time) is Mac-only and focused on media — images, video, audio, PDFs — with a native interface, Shortcuts, and folder monitoring."
-      picmalFor="You're on Mac and work mainly with media files. You want something that feels native, with Shortcuts and folder monitoring, for less than $20."
+      summary="How To Convert handles documents, emails, and media across Windows, Mac, and Linux. Picmal ($15.99, paid once) is Mac only and sticks to media, so images, video, audio, and PDFs, with a native interface, Shortcuts, and folder monitoring."
+      picmalFor="You're on a Mac and mostly work with media files. You want something that feels native, with Shortcuts and folder monitoring, for less than $20."
       competitorFor="You convert documents or emails, or you need the same app on Windows or Linux too."
     />
 
-    <SectionDivider />
-
     <!-- Comparison Table -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-4 text-center">Picmal vs How To Convert at a glance</H2>
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          How To Convert is powerful—it supports thousands of format
-          combinations across five categories. But if you're on Mac and live in
-          media—converting, compressing, and editing images, video, and
-          audio—Picmal offers a more focused, native experience.
-        </Paragraph>
-
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs How To Convert at a glance
+        <Fragment slot="sublead">
+          How To Convert is broad. It supports thousands of format combinations
+          across five categories. But if you're on a Mac and you live in media,
+          converting, compressing, and editing images, video, and audio, Picmal
+          is the more focused, native pick.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
               <thead>
@@ -148,14 +155,14 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Metadata removal</td>
                   <td class="p-4 text-text"
-                    >Yes—strip location data before sharing</td
+                    >Yes, strip location data before sharing</td
                   >
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Finder right-click</td>
                   <td class="p-4 text-text"
-                    >Yes—convert without opening the app</td
+                    >Yes, convert without opening the app</td
                   >
                   <td class="p-4 text-text">No</td>
                 </tr>
@@ -177,32 +184,28 @@ const faqs = [
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <!-- Who Picmal Is For / Who Should Stick with How To Convert -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-4">Which one is right for you?</H2>
-          <Paragraph class="max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
             Here's where each one makes more sense.
-          </Paragraph>
-        </div>
+        </Fragment>
+      </SectionHeading>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Picmal
-              </h3>
-              <p class="text-text-secondary">
-                Best for Mac users who value design and automation
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Best for Mac users who care about design and automation
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -258,8 +261,8 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You convert, compress, and edit images, video, and
-                  audio—plus PDF tools—not documents
+                  You convert, compress, and edit images, video, and audio,
+                  plus PDF tools, and you don't need documents
                 </span>
               </li>
 
@@ -277,8 +280,8 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You prefer a focused tool from a developer committed to one
-                  platform
+                  You'd rather have a focused tool from one developer who
+                  builds for one platform
                 </span>
               </li>
 
@@ -298,19 +301,17 @@ const faqs = [
                 <span class="text-text"> You want to save $13 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <!-- How To Convert Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose How To Convert
-              </h3>
-              <p class="text-text-secondary">
-                Best for cross-platform users with diverse format needs
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Best for cross-platform users with a wide range of formats
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -404,17 +405,15 @@ const faqs = [
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
-      </div>
-    </section>
+    </Section>
 
-    <SectionDivider />
-
-    <!-- BentoFeatures -->
-    <BentoFeatures />
-
-    <SectionDivider />
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
 
     <!-- Testimonials Section -->
     <MasonryTestimonials />
@@ -428,29 +427,23 @@ const faqs = [
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
-      <PricingSection />
-    </section>
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
-          <Paragraph class="max-w-2xl mx-auto">
-            Can't find what you're looking for? Email support@picmal.app
-          </Paragraph>
-        </div>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
 

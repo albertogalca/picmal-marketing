@@ -1,0 +1,44 @@
+---
+import Card from "./Card.astro";
+import H2 from "./H2.astro";
+
+/**
+ * BenefitsCard — the "Why convert/compress…" panel shared across the SEO
+ * conversion/compression pages. Renders a Card with a heading and an accent
+ * checkmark list from a plain string array. Wrap in a `Section` (usually
+ * `width="narrow"`) at the call site.
+ */
+interface Props {
+  heading: string;
+  benefits: string[];
+}
+
+const { heading, benefits } = Astro.props;
+---
+
+<Card>
+  <H2 class="mb-6">{heading}</H2>
+  <ul class="space-y-3">
+    {
+      benefits.map((benefit) => (
+        <li class="flex items-start gap-3">
+          <svg
+            class="w-5 h-5 text-accent shrink-0 mt-0.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span class="text-text-secondary">{benefit}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Card>

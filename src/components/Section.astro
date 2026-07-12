@@ -1,0 +1,40 @@
+---
+import { cn } from "../utils/cn";
+
+/**
+ * Section — the single source of truth for page section rhythm.
+ * Handles the `relative z-10` stacking, standard vertical padding, horizontal
+ * gutter, centered max-width container and optional subtle band. Every landing
+ * section should go through here so spacing/width stay unified site-wide.
+ */
+interface Props {
+  id?: string;
+  width?: "wide" | "medium" | "default" | "narrow";
+  bg?: "default" | "subtle";
+  class?: string;
+}
+
+const { id, width = "default", bg = "default", class: className } = Astro.props;
+
+// `wide` hits the xl breakpoint at its own max width, so it drops the gutter
+// there (matches the hero). Narrower widths keep the gutter at every size.
+const widths = {
+  wide: "max-w-7xl",
+  medium: "max-w-6xl",
+  default: "max-w-5xl",
+  narrow: "max-w-3xl",
+};
+
+const sectionClasses = cn(
+  "relative z-10 px-6 py-16 sm:py-20",
+  width === "wide" && "xl:px-0",
+  bg === "subtle" && "bg-background-subtle/50 border-y border-border",
+  className,
+);
+---
+
+<section id={id} class={sectionClasses}>
+  <div class={cn(widths[width], "mx-auto")}>
+    <slot />
+  </div>
+</section>

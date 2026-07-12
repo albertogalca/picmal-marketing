@@ -20,7 +20,7 @@ export interface Tier {
   checkoutUrl: string; // licencio buy link → 302 to Stripe Checkout
 }
 
-// Volume discounts preserved (mirror the current Lemon Squeezy tiers).
+// Volume discounts preserved (mirror the current Stripe tiers).
 const RAW: Omit<Tier, "checkoutUrl">[] = [
   { devices: 1, price: 15.99, priceId: "price_1TqpcE4RpfcAQYtyX4BGl8H9" },
   { devices: 2, price: 28.78, priceId: "price_1TqpcD4RpfcAQYtyQ5Y77fSI" },
@@ -28,6 +28,9 @@ const RAW: Omit<Tier, "checkoutUrl">[] = [
   { devices: 5, price: 63.95, priceId: "price_1TqpcD4RpfcAQYtyL6KKMeII" },
 ];
 
-export const TIERS: Tier[] = RAW.map((t) => ({ ...t, checkoutUrl: checkoutUrl(t.priceId) }));
+export const TIERS: Tier[] = RAW.map((t) => ({
+  ...t,
+  checkoutUrl: checkoutUrl(t.priceId),
+}));
 
 export const DEFAULT_TIER = TIERS[0];

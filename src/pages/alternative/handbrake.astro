@@ -6,42 +6,43 @@ import FAQ from "../../components/FAQ.astro";
 import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import BentoFeatures from "../../components/BentoFeatures.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 
-const SITE_TITLE = "Picmal: The Native Mac HandBrake Alternative";
 const SITE_DESCRIPTION =
-  "Looking for a HandBrake alternative on Mac? Picmal is an all-in-one media toolkit—convert, compress, and edit images, video, audio, and PDFs—with a native macOS interface. Shortcuts integration, folder monitoring. $15.99 one-time.";
+  "Want a HandBrake alternative on Mac? Picmal handles images, video, audio, and PDFs in one native Mac app. Convert, compress, and edit, with Shortcuts and folder monitoring. Files never leave your Mac. Pay $15.99 once.";
 
 const faqs = [
   {
     question: "Is Picmal a good HandBrake alternative?",
     answer:
-      "For Mac users who also work with images, audio, and PDFs — yes. Picmal has a polished native interface, Shortcuts integration, and covers more file types. HandBrake is a better fit if you need advanced video encoding controls and don't want to pay for an app.",
+      "If you're on a Mac and also work with images, audio, and PDFs, yes. Picmal is a native Mac app, it works with Shortcuts, and it handles more file types. HandBrake is the better pick if you want deep video encoding controls and would rather not pay for an app.",
   },
   {
     question: "Why pay for Picmal when HandBrake is free?",
     answer:
-      "HandBrake is great for video encoding and costs nothing. Picmal adds image conversion, audio, PDF tools, folder monitoring, and Finder right-click — and feels like a native Mac app. If video encoding is all you need, HandBrake is genuinely a fine choice.",
+      "HandBrake is great at video encoding, and it costs nothing. Picmal adds image conversion, audio, PDF tools, folder monitoring, and a Finder right-click, and it feels like a real Mac app. If video encoding is all you need, HandBrake is honestly a fine choice.",
   },
   {
     question: "Can Picmal convert images? Can HandBrake?",
     answer:
-      "Picmal converts 20+ image formats (HEIC, JPG, PNG, WebP, etc.) and decodes RAW files. HandBrake is video-only — images aren't on its radar.",
+      "Picmal converts 20+ image formats (HEIC, JPG, PNG, WebP, and more) and reads RAW files. HandBrake is video only. It doesn't touch images.",
   },
   {
     question: "Does HandBrake have more video options than Picmal?",
     answer:
-      "Yes — device presets, CRF tuning, DVD/BluRay ripping, subtitle tracks, HDR. HandBrake goes deep on video. Picmal picks good defaults so you don't have to think about codecs, and covers images, audio, and PDFs alongside video.",
+      "Yes. Device presets, CRF tuning, DVD and Blu-ray ripping, subtitle tracks, HDR. HandBrake goes deep on video. Picmal picks good defaults so you don't have to think about codecs, and it also handles images, audio, and PDFs.",
   },
   {
     question: "Does Picmal work on Windows or Linux like HandBrake?",
@@ -51,14 +52,24 @@ const faqs = [
   {
     question: "What if Picmal doesn't work for me?",
     answer:
-      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+      "Full refund within 14 days, no questions asked. Just email support@picmal.app.",
   },
 ];
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: A native Mac HandBrake alternative"
+      description={SITE_DESCRIPTION}
+    />
+    <!-- Grape Nuts: handwritten signature in the founder letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap"
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -70,33 +81,30 @@ const faqs = [
     <Header />
 
     <ComparisonHero
-      title="The native Mac HandBrake alternative"
-      subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs — and want something that feels like a proper Mac app — Picmal covers all of it for $15.99."
+      title="A native Mac HandBrake alternative"
+      subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs, and you want something that feels like a proper Mac app, Picmal handles all of it for $15.99."
       buyEvent="buy_clicked_handbrake_comparison"
     />
 
     <ComparisonVerdict
       competitor="HandBrake"
-      summary="HandBrake is free, open-source, and runs on Windows/Linux/Mac with serious encoding controls. Picmal ($15.99 one-time) is Mac-only, covers images, audio, and PDFs alongside video, and feels like it belongs on your Mac. Neither uploads your files."
-      picmalFor="You're on Mac and need images, audio, or PDFs alongside video — or just want an app with a native feel and Shortcuts integration."
-      competitorFor="You need CRF tuning, device presets, DVD/Blu-ray ripping, or cross-platform (Windows/Linux) support — and free is important."
+      summary="HandBrake is free, open source, and runs on Windows, Linux, and Mac with serious encoding controls. Picmal is Mac only and costs $15.99 once. It handles images, audio, and PDFs alongside video, and it feels at home on your Mac. Neither one uploads your files."
+      picmalFor="You're on a Mac and you need images, audio, or PDFs as well as video. Or you just want an app that feels native and works with Shortcuts."
+      competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, or Windows and Linux support. And free matters to you."
     />
 
-    <SectionDivider />
-
     <!-- Comparison Table -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-4 text-center">Picmal vs HandBrake at a glance</H2>
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs HandBrake at a glance
+        <Fragment slot="sublead">
           HandBrake is a free video encoder with serious encoding controls.
-          Picmal is a paid Mac app that covers images, audio, and PDFs alongside
-          video, with a simpler interface. Different tradeoffs.
-        </Paragraph>
-
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
+          Picmal is a paid Mac app that handles images, audio, and PDFs as well
+          as video, with a simpler interface. Different tradeoffs, so pick the
+          one that fits.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
               <thead>
@@ -126,22 +134,22 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Interface</td>
-                  <td class="p-4 text-text">Native macOS, polished UI</td>
-                  <td class="p-4 text-text">Cross-platform, functional</td>
+                  <td class="p-4 text-text">Native macOS, clean UI</td>
+                  <td class="p-4 text-text">Cross-platform, gets the job done</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Image conversion</td>
-                  <td class="p-4 text-text">Yes—20+ formats</td>
+                  <td class="p-4 text-text">Yes, 20+ formats</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes—common formats</td>
-                  <td class="p-4 text-text">Yes—advanced encoding options</td>
+                  <td class="p-4 text-text">Yes, common formats</td>
+                  <td class="p-4 text-text">Yes, advanced encoding options</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes—MP3, WAV, FLAC, etc.</td>
+                  <td class="p-4 text-text">Yes, MP3, WAV, FLAC, and more</td>
                   <td class="p-4 text-text">Audio within video only</td>
                 </tr>
                 <tr>
@@ -152,7 +160,7 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">PDF tools</td>
                   <td class="p-4 text-text"
-                    >Yes—compress, combine, images&rarr;PDF</td
+                    >Yes, compress, combine, images&rarr;PDF</td
                   >
                   <td class="p-4 text-text">No</td>
                 </tr>
@@ -164,7 +172,7 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Device presets</td>
                   <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes—Apple, Android, web, etc.</td>
+                  <td class="p-4 text-text">Yes, Apple, Android, web, and more</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Video filters</td>
@@ -176,7 +184,7 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Subtitle support</td>
                   <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes—SRT, SSA, VobSub, CEA-608</td>
+                  <td class="p-4 text-text">Yes, SRT, SSA, VobSub, CEA-608</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Metadata removal</td>
@@ -201,32 +209,28 @@ const faqs = [
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <!-- Who Picmal Is For / Who Should Stick with HandBrake -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-4">Which one is right for you?</H2>
-          <Paragraph class="max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
             Here's where each one makes more sense.
-          </Paragraph>
-        </div>
+        </Fragment>
+      </SectionHeading>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Picmal
-              </h3>
-              <p class="text-text-secondary">
-                Mac-native, images + audio + PDFs + video in one place
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Mac-native. Images, audio, PDFs, and video in one place.
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -245,7 +249,7 @@ const faqs = [
                 </svg>
                 <span class="text-text">
                   You want to convert, compress, and edit images, video, audio,
-                  and PDFs in one app
+                  and PDFs without juggling five apps
                 </span>
               </li>
 
@@ -263,7 +267,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You use Apple Shortcuts for automation
+                  You automate things with Apple Shortcuts
                 </span>
               </li>
 
@@ -281,7 +285,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You care about a well-designed UI that feels like Mac
+                  You want an app that actually looks and feels like a Mac app
                 </span>
               </li>
 
@@ -299,23 +303,21 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You want folder monitoring and Finder integration
+                  You want folder monitoring and a Finder right-click
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <!-- HandBrake Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose HandBrake
-              </h3>
-              <p class="text-text-secondary">
-                Free, powerful video encoding, cross-platform
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Free, powerful video encoding, runs everywhere.
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -333,7 +335,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You only need video transcoding and encoding
+                  Video transcoding and encoding is all you need
                 </span>
               </li>
 
@@ -350,7 +352,7 @@ const faqs = [
                     stroke-width="2"
                     d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-text"> You use Windows or Linux </span>
+                <span class="text-text"> You're on Windows or Linux </span>
               </li>
 
               <li class="flex gap-3 items-start">
@@ -367,7 +369,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You don't want to pay for an app
+                  You'd rather not pay for an app
                 </span>
               </li>
 
@@ -385,21 +387,19 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need DVD/BluRay ripping or subtitle support
+                  You need DVD or Blu-ray ripping, or subtitle tracks
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
-      </div>
-    </section>
+    </Section>
 
-    <SectionDivider />
-
-    <!-- BentoFeatures -->
-    <BentoFeatures />
-
-    <SectionDivider />
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
 
     <!-- Testimonials Section -->
     <MasonryTestimonials />
@@ -413,29 +413,23 @@ const faqs = [
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
-      <PricingSection />
-    </section>
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
-          <Paragraph class="max-w-2xl mx-auto">
-            Can't find what you're looking for? Email support@picmal.app
-          </Paragraph>
-        </div>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
 

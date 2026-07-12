@@ -34,7 +34,7 @@ export const compressions: CompressionFormat[] = [
     name: "JPG",
     fullName: "Joint Photographic Experts Group",
     slug: "jpg",
-    metaTitle: "Compress JPG (JPEG) on Mac — Reduce Photo Size Up to 80%",
+    metaTitle: "Picmal: Compress JPG (JPEG) on Mac, reduce photo size up to 80%",
     metaDescription:
       "Compress JPG/JPEG files on Mac with adjustable quality. Reduce photo sizes by up to 80% while keeping images sharp. Batch processing, offline, one-time purchase.",
     description:
@@ -136,7 +136,7 @@ export const compressions: CompressionFormat[] = [
     name: "PNG",
     fullName: "Portable Network Graphics",
     slug: "png",
-    metaTitle: "Compress PNG on Mac — Lossless, Zero Quality Loss",
+    metaTitle: "Picmal: Compress PNG on Mac, lossless, zero quality loss",
     metaDescription:
       "Compress PNG files on Mac with lossless optimization. Reduce screenshots and graphics by 20-50% with zero quality loss. Batch processing, offline.",
     description:
@@ -238,7 +238,7 @@ export const compressions: CompressionFormat[] = [
     name: "GIF",
     fullName: "Graphics Interchange Format",
     slug: "gif",
-    metaTitle: "Compress GIF on Mac — Smaller Animations, All Frames",
+    metaTitle: "Picmal: Compress GIF on Mac, smaller animations, all frames",
     metaDescription:
       "Compress GIF files on Mac without losing animation frames. Reduce animated GIF sizes by 10-40% through optimized encoding. Batch processing, offline.",
     description:
@@ -340,7 +340,7 @@ export const compressions: CompressionFormat[] = [
     name: "WebP",
     fullName: "WebP Image Format",
     slug: "webp",
-    metaTitle: "Compress WebP on Mac — Optimize Further",
+    metaTitle: "Picmal: Compress WebP on Mac, optimize further",
     metaDescription:
       "Further compress WebP files on Mac by re-encoding with optimized settings. Reduce file sizes by 10-40%. Batch processing, offline, adjustable quality.",
     description:
@@ -442,7 +442,7 @@ export const compressions: CompressionFormat[] = [
     name: "TIFF",
     fullName: "Tagged Image File Format",
     slug: "tiff",
-    metaTitle: "Compress TIFF on Mac — Lossless, Print-Ready",
+    metaTitle: "Picmal: Compress TIFF on Mac, lossless, print-ready",
     metaDescription:
       "Compress TIFF files on Mac with lossless encoding. Reduce scan and camera files by 30-60% while maintaining print-ready quality. Batch processing.",
     description:
@@ -544,7 +544,7 @@ export const compressions: CompressionFormat[] = [
     name: "AVIF",
     fullName: "AV1 Image File Format",
     slug: "avif",
-    metaTitle: "Compress AVIF on Mac — Squeeze More from AV1",
+    metaTitle: "Picmal: Compress AVIF on Mac, squeeze more from AV1",
     metaDescription:
       "Further compress AVIF files on Mac by re-encoding with optimized AV1 settings. Reduce file sizes 10-40%. Batch processing, adjustable quality.",
     description:
@@ -646,7 +646,7 @@ export const compressions: CompressionFormat[] = [
     name: "PDF",
     fullName: "Portable Document Format",
     slug: "pdf",
-    metaTitle: "Compress PDF on Mac — Reduce Size, Keep Text Sharp",
+    metaTitle: "Picmal: Compress PDF on Mac, reduce size, keep text sharp",
     metaDescription:
       "Compress PDF files on Mac by optimizing embedded images. Reduce PDF sizes 30-80% while keeping text and vectors crisp. Batch processing, offline.",
     description:

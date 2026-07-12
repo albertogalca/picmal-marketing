@@ -1,16 +1,45 @@
 ---
+import { Icon } from "astro-icon/components";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import H1 from "../components/H1.astro";
-import H2 from "../components/H2.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Card from "../components/Card.astro";
+import H3 from "../components/H3.astro";
 import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
 import FAQ from "../components/FAQ.astro";
 
-const SITE_TITLE = "Picmal Affiliate Program — Earn 25% Commission";
 const SITE_DESCRIPTION =
   "Earn 25% commission on every Picmal sale you refer. 60-day cookie, $10 payout threshold, no quotas.";
+
+const SIGNUP_URL = "https://licenses.albertogalca.com/affiliate/signup/new";
+const SIGNIN_URL = "https://licenses.albertogalca.com/affiliate/recoveries/new";
+
+const stats = [
+  { value: "25%", label: "Commission Rate", sub: "On every sale you refer" },
+  { value: "60", label: "Cookie Days", sub: "Attribution window" },
+  { value: "$10", label: "Minimum Payout", sub: "Monthly threshold" },
+];
+
+const steps = [
+  {
+    title: "Sign up",
+    body: "Register in a couple of minutes and get your unique affiliate link.",
+    icon: "ph:user-plus-duotone",
+  },
+  {
+    title: "Share your link",
+    body: "Share Picmal on your website, blog, or social media.",
+    icon: "ph:share-network-duotone",
+  },
+  {
+    title: "Earn commission",
+    body: "Get 25% on every sale. Tracked live, paid out monthly.",
+    icon: "ph:coins-duotone",
+  },
+];
 
 const affiliateFaqs = [
   {
@@ -54,7 +83,7 @@ const affiliateFaqs = [
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title="Picmal: Affiliate program" description={SITE_DESCRIPTION} />
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -76,200 +105,85 @@ const affiliateFaqs = [
     <Header />
 
     <!-- Hero + Stats -->
-    <main id="main-content" class="relative z-10 pt-32 pb-12 sm:pb-16">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-10 sm:mb-14">
-          <H1 class="mb-4 sm:mb-6 max-w-2xl mx-auto">
-            Become an affiliate and earn 25% on each sale
-          </H1>
-
-          <p
-            class="mb-8 max-w-2xl mx-auto text-body-big leading-relaxed text-text-secondary"
-          >
+    <main id="main-content">
+      <Section class="pt-32 sm:pt-32 pb-12 sm:pb-16">
+        <SectionHeading
+          level={1}
+          class="mb-10 sm:mb-14"
+          headingClass="max-w-2xl mx-auto"
+        >
+          Become an affiliate and earn 25% on each sale
+          <Fragment slot="sublead">
             You get $4 to $16 per sale, depending on which plan they buy. The
             cookie lasts 60 days, so people who click your link have two months
             to come back and purchase.
-          </p>
+          </Fragment>
+        </SectionHeading>
 
-          <div class="flex flex-col items-center gap-3">
-            <Button
-              href="https://licenses.albertogalca.com/affiliate/signup/new"
-              text="Become an affiliate"
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-            <a
-              href="https://licenses.albertogalca.com/affiliate/recoveries/new"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-block py-1 text-small text-text-secondary underline decoration-text-secondary/40 underline-offset-4 rounded-sm transition-colors duration-200 ease-out hover:text-text hover:decoration-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
-            >
-              Already an affiliate? Sign in
-            </a>
-          </div>
+        <div class="flex flex-col items-center gap-3 -mt-4 mb-10 sm:mb-14">
+          <Button
+            href={SIGNUP_URL}
+            text="Become an affiliate"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+          <a
+            href={SIGNIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link inline-block py-1 text-small text-text-secondary"
+          >
+            Already an affiliate? Sign in
+          </a>
         </div>
 
-        <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
-        >
-          <!-- Stat Card 1 -->
-          <div
-            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center stat-card"
-          >
-            <div
-              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
-            >
-              25%
-            </div>
-            <div class="text-body sm:text-body-big font-medium text-text mb-1">
-              Commission Rate
-            </div>
-            <div class="text-small text-text-secondary">
-              On every sale you refer
-            </div>
-          </div>
-
-          <!-- Stat Card 2 -->
-          <div
-            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center stat-card"
-          >
-            <div
-              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
-            >
-              60
-            </div>
-            <div class="text-body sm:text-body-big font-medium text-text mb-1">
-              Cookie Days
-            </div>
-            <div class="text-small text-text-secondary">Attribution window</div>
-          </div>
-
-          <!-- Stat Card 3 -->
-          <div
-            class="bg-background-subtle/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 text-center stat-card"
-          >
-            <div
-              class="text-4xl sm:text-5xl font-bold text-accent mb-2 tracking-tight"
-            >
-              $10
-            </div>
-            <div class="text-body sm:text-body-big font-medium text-text mb-1">
-              Minimum Payout
-            </div>
-            <div class="text-small text-text-secondary">Monthly threshold</div>
-          </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          {
+            stats.map((stat) => (
+              <Card padding="p-6 sm:p-8" class="text-center">
+                <div class="text-h1 font-bold text-accent mb-2 tabular-nums">
+                  {stat.value}
+                </div>
+                <div class="text-body-big font-medium text-text mb-1">
+                  {stat.label}
+                </div>
+                <Paragraph size="small">{stat.sub}</Paragraph>
+              </Card>
+            ))
+          }
         </div>
-      </div>
+      </Section>
     </main>
 
     <!-- How It Works -->
-    <section class="relative z-10 px-4 sm:px-6 py-12 sm:py-16">
-      <div class="max-w-5xl mx-auto">
-        <H2 class="text-center mb-10 sm:mb-12">How it works</H2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          <div>
-            <div
-              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-                ></path>
-              </svg>
+    <Section>
+      <SectionHeading align="left" subleadClass="max-w-xl">
+        How it works
+        <Fragment slot="sublead">
+          Three steps, and you're set up in a couple of minutes. No quotas, no
+          approval hoops.
+        </Fragment>
+      </SectionHeading>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        {
+          steps.map((step) => (
+            <div>
+              <Icon name={step.icon} class="w-10 h-10 mb-4 text-text" />
+              <H3 class="text-h4 mb-1">{step.title}</H3>
+              <Paragraph>{step.body}</Paragraph>
             </div>
-            <h3 class="text-body-big font-semibold text-text mb-2">Sign up</h3>
-            <p class="text-text-secondary leading-relaxed">
-              Register in a couple of minutes and get your unique affiliate link.
-            </p>
-          </div>
-
-          <div>
-            <div
-              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-body-big font-semibold text-text mb-2">
-              Share your link
-            </h3>
-            <p class="text-text-secondary leading-relaxed">
-              Share Picmal on your website, blog, or social media.
-            </p>
-          </div>
-
-          <div>
-            <div
-              class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-accent"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-body-big font-semibold text-text mb-2">
-              Earn commission
-            </h3>
-            <p class="text-text-secondary leading-relaxed">
-              Get 25% on every sale. Tracked live, paid out monthly.
-            </p>
-          </div>
-        </div>
+          ))
+        }
       </div>
-    </section>
+    </Section>
 
     <!-- FAQ -->
-    <section id="faq" class="relative z-10 px-4 sm:px-6 py-12 sm:py-16">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="text-center mb-10 sm:mb-12">Frequently asked questions</H2>
+    <Section id="faq" width="narrow">
+      <SectionHeading>Frequently asked questions</SectionHeading>
+      <Card>
         <FAQ faqs={affiliateFaqs} />
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="relative z-10 px-4 sm:px-6 py-12 sm:py-20">
-      <div class="max-w-2xl mx-auto text-center">
-        <H2 class="mb-4">Want in?</H2>
-        <Paragraph class="mb-8">
-          Sign up takes two minutes. You get your link right after.
-        </Paragraph>
-        <Button
-          href="https://licenses.albertogalca.com/affiliate/signup/new"
-          text="Become an affiliate"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <Footer />
   </body>

@@ -28,6 +28,16 @@ Each format is written into an output folder next to your source, named `<name> 
 - **Non-square images are fit, never cropped.** A wide or tall image is centered and padded to a square, so nothing gets cut off.
 - **The iOS icon is flattened to an opaque background.** iOS icons can't be transparent, so a see-through source is placed on a solid background — the App Store rejects icons with an alpha channel otherwise.
 
+## macOS tile shape
+
+By default the icon fills the square edge to edge. Next to the format checkboxes you can instead pick a **macOS tile shape** to round the image into a proper macOS app tile, with the margin and soft shadow baked in:
+
+- **Big Sur** — the classic squircle macOS has used since Big Sur.
+- **Tahoe** — the rounder corner from the newer icon style.
+- **None** — leave the image full-bleed (the default).
+
+The shape applies to the `.icns` output. Windows and iOS icons are unaffected.
+
 ## Use it from Shortcuts and the terminal
 
 App Icons is available beyond the app window:

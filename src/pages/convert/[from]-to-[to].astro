@@ -3,14 +3,17 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import CardGrid from "../../components/CardGrid.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import BenefitsCard from "../../components/BenefitsCard.astro";
+import ConversionGrid from "../../components/ConversionGrid.astro";
 import {
   conversions,
   formats,
@@ -75,7 +78,7 @@ const fromCompress = compressions.find((c) => c.format === conversion.from);
 const toCompress = compressions.find((c) => c.format === conversion.to);
 
 const title =
-  conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac`;
+  conversion.metaTitle || `Picmal: Convert ${from.name} to ${to.name} on Mac`;
 const description = conversion.metaDescription;
 
 // Low-demand templated pairs are de-indexed to concentrate site quality on winners.
@@ -112,409 +115,326 @@ const faqSchema = {
       subhead={conversion.whyConvert}
       buyEvent={`buy_clicked_convert_${conversion.slug}`}
       defaultTab="convert"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Convert", href: "/convert" },
-          { label: `${from.name} to ${to.name}` },
-        ]}
+    />
+
+    <!-- Benefits -->
+    <Section width="narrow">
+      <BenefitsCard
+        heading={`Why convert ${from.name} to ${to.name}?`}
+        benefits={conversion.benefits}
       />
-    </ComparisonHero>
+    </Section>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <!-- Benefits -->
-        <section class="mb-16 sm:mb-20">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <H2 class="mb-6">Why convert {from.name} to {to.name}?</H2>
-            <ul class="space-y-4">
-              {
-                conversion.benefits.map((benefit) => (
-                  <li class="flex gap-3 items-start">
-                    <svg
-                      class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+    <!-- File Size Comparison -->
+    {
+      conversion.fileSizeExamples && conversion.fileSizeExamples.length > 0 && (
+        <Section width="narrow">
+          <SectionHeading>
+            {from.name} vs {to.name} file sizes
+          </SectionHeading>
+          <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="text-left text-small font-medium text-text-secondary px-6 py-4">
+                    File type
+                  </th>
+                  <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
+                    {from.name}
+                  </th>
+                  <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
+                    {to.name}
+                  </th>
+                  <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
+                    Note
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {conversion.fileSizeExamples.map(
+                  (example: FileSizeExample, i: number) => (
+                    <tr
+                      class={
+                        i < conversion.fileSizeExamples!.length - 1
+                          ? "border-b border-border/50"
+                          : ""
+                      }
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span class="text-text">{benefit}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </section>
-
-        {/* File Size Comparison */}
-        {
-          conversion.fileSizeExamples &&
-            conversion.fileSizeExamples.length > 0 && (
-              <section class="mb-16 sm:mb-20">
-                <H2 class="mb-8 text-center">
-                  {from.name} vs {to.name} file sizes
-                </H2>
-                <div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
-                  <table class="w-full">
-                    <thead>
-                      <tr class="border-b border-border">
-                        <th class="text-left text-small font-medium text-text-secondary px-6 py-4">
-                          File Type
-                        </th>
-                        <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
-                          {from.name}
-                        </th>
-                        <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
-                          {to.name}
-                        </th>
-                        <th class="text-right text-small font-medium text-text-secondary px-6 py-4">
-                          Note
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {conversion.fileSizeExamples.map(
-                        (example: FileSizeExample, i: number) => (
-                          <tr
-                            class={
-                              i < conversion.fileSizeExamples!.length - 1
-                                ? "border-b border-border/50"
-                                : ""
-                            }
-                          >
-                            <td class="px-6 py-4 text-small text-text">
-                              {example.label}
-                            </td>
-                            <td class="px-6 py-4 text-small text-text-secondary text-right font-mono">
-                              {example.fromSize}
-                            </td>
-                            <td class="px-6 py-4 text-small text-text text-right font-mono font-medium">
-                              {example.toSize}
-                            </td>
-                            <td class="px-6 py-4 text-small text-accent text-right">
-                              {example.savings}
-                            </td>
-                          </tr>
-                        ),
-                      )}
-                    </tbody>
-                  </table>
-                  {conversion.conversionSpeed && (
-                    <div class="px-6 py-4 border-t border-border bg-background/50">
-                      <div class="flex items-center gap-2 text-small text-text-secondary">
-                        <svg
-                          class="w-4 h-4 text-accent flex-shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z"
-                          />
-                        </svg>
-                        <span>
-                          Conversion speed:{" "}
-                          <strong class="text-text">
-                            {conversion.conversionSpeed}
-                          </strong>
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </section>
-            )
-        }
-
-        {/* Real-World Use Cases */}
-        {
-          conversion.useCases && conversion.useCases.length > 0 && (
-            <section class="mb-16 sm:mb-20">
-              <H2 class="mb-8 text-center">
-                When to convert {from.name} to {to.name}
-              </H2>
-              <div class="grid md:grid-cols-2 gap-4">
-                {conversion.useCases.map((useCase: UseCase) => (
-                  <div class="bg-background-subtle/50 border border-border rounded-2xl p-6">
-                    <h3 class="font-semibold text-text mb-2">
-                      {useCase.title}
-                    </h3>
-                    <Paragraph class="text-small">{useCase.description}</Paragraph>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )
-        }
-
-        <!-- How To Steps -->
-        <CardGrid
-          bare
-          numbered
-          class="mb-16 sm:mb-20"
-          heading={`How to convert ${from.name} to ${to.name} on Mac`}
-          items={[
-            {
-              title: "Open Picmal",
-              description: "Download and open Picmal on your Mac.",
-            },
-            {
-              title: `Add your ${from.name} files`,
-              description: `Drag and drop your ${from.name} files or entire folders into Picmal.`,
-            },
-            {
-              title: `Select ${to.name} and convert`,
-              description: `Choose ${to.name} as the output format and click Convert.`,
-            },
-          ]}
-        />
-
-        <!-- Format Comparison -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">{from.name} vs {to.name}</H2>
-          <div
-            class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border"
-          >
-            <div class="bg-background p-6 md:p-8">
-              <div class="flex items-center gap-3 mb-4">
-                <span
-                  class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
-                  >.{from.extension}</span
-                >
-                <h3 class="font-semibold text-text">{from.name}</h3>
-              </div>
-              <p
-                class="text-small text-text-secondary mb-3"
-              >
-                {from.fullName}
-              </p>
-              <Paragraph class="mb-4">{from.description}</Paragraph>
-              <div class="pt-4 border-t border-border">
-                <p
-                  class="text-small font-medium text-text-secondary mb-2"
-                >
-                  Best for
-                </p>
-                <p class="text-small text-text">{from.bestFor}</p>
-              </div>
-            </div>
-            <div class="bg-background p-6 md:p-8">
-              <div class="flex items-center gap-3 mb-4">
-                <span
-                  class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
-                  >.{to.extension}</span
-                >
-                <h3 class="font-semibold text-text">{to.name}</h3>
-              </div>
-              <p
-                class="text-small text-text-secondary mb-3"
-              >
-                {to.fullName}
-              </p>
-              <Paragraph class="mb-4">{to.description}</Paragraph>
-              <div class="pt-4 border-t border-border">
-                <p
-                  class="text-small font-medium text-text-secondary mb-2"
-                >
-                  Best for
-                </p>
-                <p class="text-small text-text">{to.bestFor}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Frequently asked questions</H2>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <FAQ faqs={conversion.faqs} />
-          </div>
-        </section>
-
-        <!-- Sources & Standards -->
-        {
-          (from.standardBody || to.standardBody) && (
-            <section class="mb-16 sm:mb-20">
-              <H2 class="mb-8 text-center">Format standards & sources</H2>
-              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
-                <ul class="space-y-3 text-small text-text-secondary">
-                  {from.standardBody && (
-                    <li class="flex gap-2 items-start">
-                      <span class="text-accent font-medium flex-shrink-0">
-                        {from.name}:
-                      </span>
-                      <span>
-                        Defined by {from.standardBody}.
-                        {from.sourceUrl && (
-                          <a
-                            href={from.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-accent hover:underline ml-1"
-                          >
-                            View specification &rarr;
-                          </a>
-                        )}
-                      </span>
-                    </li>
-                  )}
-                  {to.standardBody && (
-                    <li class="flex gap-2 items-start">
-                      <span class="text-accent font-medium flex-shrink-0">
-                        {to.name}:
-                      </span>
-                      <span>
-                        Defined by {to.standardBody}.
-                        {to.sourceUrl && (
-                          <a
-                            href={to.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-accent hover:underline ml-1"
-                          >
-                            View specification &rarr;
-                          </a>
-                        )}
-                      </span>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </section>
-          )
-        }
-
-        <!-- Compress Cross-Links -->
-        {
-          (fromCompress || toCompress) && (
-            <section class="mb-16 sm:mb-20">
-              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
-                <H2 class="mb-4">Need to compress instead?</H2>
-                <Paragraph class="mb-4">
-                  If you don't need to change formats, Picmal can also compress
-                  your files to reduce size:
-                </Paragraph>
-                <div class="flex flex-wrap gap-3">
-                  {fromCompress && (
-                    <a
-                      href={`/compress/${fromCompress.slug}`}
-                      class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-                    >
-                      <span class="font-mono text-small text-text-secondary">
-                        .{fromCompress.format}
-                      </span>
-                      Compress {fromCompress.name}
-                    </a>
-                  )}
-                  {toCompress && (
-                    <a
-                      href={`/compress/${toCompress.slug}`}
-                      class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-                    >
-                      <span class="font-mono text-small text-text-secondary">
-                        .{toCompress.format}
-                      </span>
-                      Compress {toCompress.name}
-                    </a>
-                  )}
-                </div>
-              </div>
-            </section>
-          )
-        }
-
-        <!-- Related Conversions -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Related conversions</H2>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {
-              related.map((r) => (
-                <a
-                  href={`/convert/${r.slug}`}
-                  class="group bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-all duration-200 hover:border-accent/30 hover:bg-accent/[0.03]"
-                >
-                  <div class="flex items-center justify-center gap-2">
-                    <span class="text-small font-mono text-text-secondary">
-                      .{formats[r.from].extension}
-                    </span>
-                    <svg
-                      class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      <td class="px-6 py-4 text-small text-text">
+                        {example.label}
+                      </td>
+                      <td class="px-6 py-4 text-small text-text-secondary text-right font-mono">
+                        {example.fromSize}
+                      </td>
+                      <td class="px-6 py-4 text-small text-text text-right font-mono font-medium">
+                        {example.toSize}
+                      </td>
+                      <td class="px-6 py-4 text-small text-accent text-right">
+                        {example.savings}
+                      </td>
+                    </tr>
+                  ),
+                )}
+              </tbody>
+            </table>
+            {conversion.conversionSpeed && (
+              <div class="px-6 py-4 border-t border-border bg-background/50">
+                <div class="flex items-center gap-2 text-small text-text-secondary">
+                  <svg
+                    class="w-4 h-4 text-accent flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                       stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                    <span class="text-small font-mono text-text-secondary">
-                      .{formats[r.to].extension}
-                    </span>
-                  </div>
-                  <span class="text-small font-medium text-text mt-1 block">
-                    {formats[r.from].name} to {formats[r.to].name}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  <span>
+                    Conversion speed:{" "}
+                    <strong class="text-text">
+                      {conversion.conversionSpeed}
+                    </strong>
                   </span>
-                </a>
-              ))
-            }
-          </div>
-          <div class="text-center mt-6">
-            <a
-              href="/convert"
-              class="text-small text-text-secondary hover:text-text transition-colors"
-            >
-              View all conversions &rarr;
-            </a>
-          </div>
-        </section>
-
-        <!-- Blog Guide Cross-Link -->
-        {
-          blogGuide && (
-            <section class="mb-16 sm:mb-20">
-              <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
-                <H2 class="mb-4">In-depth guide</H2>
-                <Paragraph class="mb-4">
-                  Want step-by-step instructions with multiple methods including
-                  Preview, Terminal, and online tools?
-                </Paragraph>
-                <a
-                  href={`/blog/${blogGuide.slug}`}
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-200"
-                >
-                  Read: {blogGuide.title} &rarr;
-                </a>
+                </div>
               </div>
-            </section>
-          )
-        }
+            )}
+          </div>
+        </Section>
+      )
+    }
 
-        <!-- CTA -->
-        <CTASection
-          heading={`Convert ${from.name} to ${to.name} with Picmal`}
-          analyticsEvent={`buy_clicked_convert_${conversion.slug}_bottom`}
-        />
-    </div>
+    <!-- Real-World Use Cases -->
+    {
+      conversion.useCases && conversion.useCases.length > 0 && (
+        <Section>
+          <SectionHeading>
+            When to convert {from.name} to {to.name}
+          </SectionHeading>
+          <div class="grid md:grid-cols-2 gap-4">
+            {conversion.useCases.map((useCase: UseCase) => (
+              <Card>
+                <h3 class="font-semibold text-text mb-2">{useCase.title}</h3>
+                <Paragraph class="text-small">{useCase.description}</Paragraph>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      )
+    }
+
+    <!-- How To Steps -->
+    <CardGrid
+      numbered
+      heading={`How to convert ${from.name} to ${to.name} on Mac`}
+      items={[
+        {
+          title: "Open Picmal",
+          description: "Download and open Picmal on your Mac.",
+        },
+        {
+          title: `Add your ${from.name} files`,
+          description: `Drag and drop your ${from.name} files or entire folders into Picmal.`,
+        },
+        {
+          title: `Select ${to.name} and convert`,
+          description: `Choose ${to.name} as the output format and click Convert.`,
+        },
+      ]}
+    />
+
+    <!-- Format Comparison -->
+    <Section>
+      <SectionHeading>{from.name} vs {to.name}</SectionHeading>
+      <div
+        class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border"
+      >
+        <div class="bg-background p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span
+              class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text tracking-wide"
+              >.{from.extension}</span
+            >
+            <h3 class="font-semibold text-text">{from.name}</h3>
+          </div>
+          <p class="text-small text-text-secondary mb-3">{from.fullName}</p>
+          <Paragraph class="mb-4">{from.description}</Paragraph>
+          <div class="pt-4 border-t border-border">
+            <p class="text-small font-medium text-text-secondary mb-2">
+              Best for
+            </p>
+            <p class="text-small text-text">{from.bestFor}</p>
+          </div>
+        </div>
+        <div class="bg-background p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span
+              class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-accent/10 border border-accent/20 text-small font-mono font-medium text-accent tracking-wide"
+              >.{to.extension}</span
+            >
+            <h3 class="font-semibold text-text">{to.name}</h3>
+          </div>
+          <p class="text-small text-text-secondary mb-3">{to.fullName}</p>
+          <Paragraph class="mb-4">{to.description}</Paragraph>
+          <div class="pt-4 border-t border-border">
+            <p class="text-small font-medium text-text-secondary mb-2">
+              Best for
+            </p>
+            <p class="text-small text-text">{to.bestFor}</p>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <!-- FAQ -->
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={conversion.faqs} />
+      </Card>
+    </Section>
+
+    <!-- Sources & Standards -->
+    {
+      (from.standardBody || to.standardBody) && (
+        <Section width="narrow">
+          <Card>
+            <H2 class="mb-6">Format standards & sources</H2>
+            <ul class="space-y-3 text-small text-text-secondary">
+              {from.standardBody && (
+                <li class="flex gap-2 items-start">
+                  <span class="text-accent font-medium flex-shrink-0">
+                    {from.name}:
+                  </span>
+                  <span>
+                    Defined by {from.standardBody}.
+                    {from.sourceUrl && (
+                      <a
+                        href={from.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-accent hover:underline ml-1"
+                      >
+                        View specification &rarr;
+                      </a>
+                    )}
+                  </span>
+                </li>
+              )}
+              {to.standardBody && (
+                <li class="flex gap-2 items-start">
+                  <span class="text-accent font-medium flex-shrink-0">
+                    {to.name}:
+                  </span>
+                  <span>
+                    Defined by {to.standardBody}.
+                    {to.sourceUrl && (
+                      <a
+                        href={to.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-accent hover:underline ml-1"
+                      >
+                        View specification &rarr;
+                      </a>
+                    )}
+                  </span>
+                </li>
+              )}
+            </ul>
+          </Card>
+        </Section>
+      )
+    }
+
+    <!-- Compress Cross-Links -->
+    {
+      (fromCompress || toCompress) && (
+        <Section width="narrow">
+          <Card>
+            <H2 class="mb-4">Need to compress instead?</H2>
+            <Paragraph class="mb-4">
+              If you don't need to change formats, Picmal can also compress your
+              files to reduce size:
+            </Paragraph>
+            <div class="flex flex-wrap gap-3">
+              {fromCompress && (
+                <a
+                  href={`/compress/${fromCompress.slug}`}
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+                >
+                  <span class="font-mono text-small text-text-secondary">
+                    .{fromCompress.format}
+                  </span>
+                  Compress {fromCompress.name}
+                </a>
+              )}
+              {toCompress && (
+                <a
+                  href={`/compress/${toCompress.slug}`}
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+                >
+                  <span class="font-mono text-small text-text-secondary">
+                    .{toCompress.format}
+                  </span>
+                  Compress {toCompress.name}
+                </a>
+              )}
+            </div>
+          </Card>
+        </Section>
+      )
+    }
+
+    <!-- Related Conversions -->
+    <Section>
+      <SectionHeading>Related conversions</SectionHeading>
+      <ConversionGrid
+        columns={3}
+        links={related.map((r) => ({
+          href: `/convert/${r.slug}`,
+          label: `${formats[r.from].name} to ${formats[r.to].name}`,
+        }))}
+        linkText="View all conversions"
+        linkHref="/convert"
+      />
+    </Section>
+
+    <!-- Blog Guide Cross-Link -->
+    {
+      blogGuide && (
+        <Section width="narrow">
+          <Card>
+            <H2 class="mb-4">In-depth guide</H2>
+            <Paragraph class="mb-4">
+              Want step-by-step instructions with multiple methods including
+              Preview, Terminal, and online tools?
+            </Paragraph>
+            <a
+              href={`/blog/${blogGuide.slug}`}
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+            >
+              Read: {blogGuide.title} &rarr;
+            </a>
+          </Card>
+        </Section>
+      )
+    }
+
+    <!-- CTA -->
+    <CTASection
+      heading={`Convert ${from.name} to ${to.name} with Picmal`}
+      analyticsEvent={`buy_clicked_convert_${conversion.slug}_bottom`}
+    />
 
     <Footer />
-
   </body>
 </html>

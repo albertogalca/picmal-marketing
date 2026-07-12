@@ -5,6 +5,14 @@ import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
 import { getCustomerCount } from "../utils/customers";
 
+// `prefix`/`suffix` bracket the bold count so callers can reframe the line,
+// e.g. suffix=" people (including me) too". Defaults keep the original copy.
+interface Props {
+  prefix?: string;
+  suffix?: string;
+}
+const { prefix = "Trusted by ", suffix = " Mac users" } = Astro.props;
+
 const displayUsers = users.slice(0, 8);
 const customerCount = await getCustomerCount();
 ---
@@ -28,6 +36,6 @@ const customerCount = await getCustomerCount();
 
   <!-- Text -->
   <Paragraph size="small" class="text-text-secondary">
-    Trusted by <span class="font-semibold text-text">{customerCount}+ Mac users</span>
+    {prefix}<span class="font-semibold text-text">{customerCount}+{suffix}</span>
   </Paragraph>
 </div>

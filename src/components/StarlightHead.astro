@@ -6,6 +6,9 @@ function stripHtml(url: string) {
 }
 
 const head = route.head.map((entry) => {
+  if (entry.tag === "title") {
+    return { ...entry, content: `Picmal: ${route.entry.data.title}` };
+  }
   if (
     entry.tag === "link" &&
     entry.attrs?.rel === "canonical" &&

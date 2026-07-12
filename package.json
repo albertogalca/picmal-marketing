@@ -19,8 +19,10 @@
     "@astrojs/starlight": "^0.39.2",
     "@fontsource/geist-mono": "^5.2.7",
     "@fontsource/geist-sans": "^5.2.5",
+    "@iconify-json/ph": "^1.2.2",
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^6.3.7",
+    "astro-icon": "^1.1.5",
     "sharp": "^0.34.3",
     "tailwind-merge": "^3.3.1"
   },

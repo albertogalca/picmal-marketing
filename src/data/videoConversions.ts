@@ -328,7 +328,7 @@ function buildMetaDescription(
 }
 
 function buildMetaTitle(from: VideoFormatInfo, to: VideoFormatInfo): string {
-  return `Convert ${from.name} to ${to.name} on Mac — Fast & Offline`;
+  return `Picmal: Convert ${from.name} to ${to.name} on Mac, fast and offline`;
 }
 
 export const videoConversions: VideoConversionPair[] = PAIRS.map(
@@ -348,9 +348,38 @@ export const videoConversions: VideoConversionPair[] = PAIRS.map(
   },
 );
 
+// SEO allowlist: only these high-demand video conversions are indexed. Every
+// other generated /convert/video page emits <meta robots="noindex"> and is
+// excluded from the sitemap, so the thin long-tail stops dragging site quality.
+// Edit this list to change which pages Google indexes.
+export const INDEXED_VIDEO_CONVERSIONS = new Set<string>([
+  // → MP4 (the universal container)
+  "mov-to-mp4",
+  "mkv-to-mp4",
+  "avi-to-mp4",
+  "webm-to-mp4",
+  "wmv-to-mp4",
+  "flv-to-mp4",
+  "m4v-to-mp4",
+  // from MP4
+  "mp4-to-mov",
+  "mp4-to-webm",
+  // → GIF
+  "mp4-to-gif",
+  "mov-to-gif",
+  // extract audio
+  "mp4-to-mp3",
+]);
+
+export function isVideoConversionIndexed(slug: string): boolean {
+  return INDEXED_VIDEO_CONVERSIONS.has(slug);
+}
+
 export function getRelatedVideoConversions(
   slug: string,
   limit = 6,
 ): VideoConversionPair[] {
-  return videoConversions.filter((c) => c.slug !== slug).slice(0, limit);
+  return videoConversions
+    .filter((c) => c.slug !== slug && isVideoConversionIndexed(c.slug))
+    .slice(0, limit);
 }

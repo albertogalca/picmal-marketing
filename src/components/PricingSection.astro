@@ -1,8 +1,11 @@
 ---
-import H2 from "./H2.astro";
-import Paragraph from "./Paragraph.astro";
 import DynamicPricing from "./DynamicPricing.astro";
 import FAQ from "./FAQ.astro";
+import Section from "./Section.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+const pricingBlurb =
+  "One purchase includes all updates. If you change your mind, you can ask for a refund within 14 days.";
 
 const licenseFaqs = [
   {
@@ -27,15 +30,16 @@ const licenseFaqs = [
 ];
 ---
 
-<div class="max-w-5xl mx-auto">
+<Section id="pricing" width="medium" bg="subtle">
   <!-- Mobile-only Pricing Header -->
-  <div class="md:hidden text-center mb-12">
-    <H2 class="mb-4">Pay once, own forever</H2>
-    <Paragraph class="max-w-md mx-auto">
-      One purchase, all updates included. No subscriptions sneaking up on you.
-      14-day money-back guarantee.
-    </Paragraph>
-  </div>
+  <SectionHeading
+    class="md:hidden"
+    headingClass="text-pretty"
+    subleadClass="max-w-md"
+    sublead={pricingBlurb}
+  >
+    Pay once and you're all set
+  </SectionHeading>
 
   <div
     class="flex flex-col md:flex-row justify-between gap-12 md:gap-16 items-center md:items-start"
@@ -49,14 +53,15 @@ const licenseFaqs = [
 
     <!-- Benefits & FAQ -->
     <div class="w-full md:max-w-md text-left order-2 md:order-1 space-y-6">
-      <div class="hidden md:block">
-        <H2 class="mb-4">Pay once, <br />own forever</H2>
-        <Paragraph>
-          One purchase, all updates included. No subscriptions sneaking up on
-          you. 14-day money-back guarantee.
-        </Paragraph>
-      </div>
+      <SectionHeading
+        align="left"
+        class="hidden md:block mb-0"
+        headingClass="text-pretty"
+        sublead={pricingBlurb}
+      >
+        Pay once and you're all set
+      </SectionHeading>
       <FAQ faqs={licenseFaqs} />
     </div>
   </div>
-</div>
+</Section>

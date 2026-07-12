@@ -3,17 +3,19 @@ import BaseHead from "../../../components/BaseHead.astro";
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
 import FAQ from "../../../components/FAQ.astro";
-import H1 from "../../../components/H1.astro";
-import H2 from "../../../components/H2.astro";
-import Paragraph from "../../../components/Paragraph.astro";
 import CardGrid from "../../../components/CardGrid.astro";
 import ComparisonHero from "../../../components/ComparisonHero.astro";
-import Breadcrumb from "../../../components/Breadcrumb.astro";
 import ProductSchema from "../../../components/schema/ProductSchema.astro";
+import Section from "../../../components/Section.astro";
+import Card from "../../../components/Card.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import BenefitsCard from "../../../components/BenefitsCard.astro";
+import ConversionGrid from "../../../components/ConversionGrid.astro";
 import {
   audioConversions,
   audioFormats,
   getRelatedAudioConversions,
+  isAudioConversionIndexed,
 } from "../../../data/audioConversions";
 
 export function getStaticPaths() {
@@ -31,6 +33,9 @@ const related = getRelatedAudioConversions(conversion.slug, 6);
 const title = conversion.metaTitle;
 const description = conversion.metaDescription;
 
+// Low-demand templated pairs are de-indexed to concentrate site quality on winners.
+const noindex = !isAudioConversionIndexed(conversion.slug);
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -44,7 +49,7 @@ const faqSchema = {
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} noindex={noindex} />
     <ProductSchema url={Astro.site!.href} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
@@ -59,109 +64,61 @@ const faqSchema = {
       subhead={conversion.whyConvert}
       buyEvent={`buy_clicked_audio_${conversion.slug}`}
       defaultTab="convert"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Audio Converter", href: "/audio-converter-mac" },
-          { label: `${from.name} to ${to.name}` },
-        ]}
+    />
+
+    <!-- Benefits -->
+    <Section width="narrow">
+      <BenefitsCard
+        heading={`Why convert ${from.name} to ${to.name} with Picmal`}
+        benefits={conversion.benefits}
       />
-    </ComparisonHero>
+    </Section>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <!-- Benefits -->
-        <section class="mb-16 sm:mb-20">
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <H2 class="mb-6">Why convert {from.name} to {to.name} with Picmal</H2>
-            <ul class="space-y-3">
-              {
-                conversion.benefits.map((benefit) => (
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 text-accent shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span class="text-text-secondary">{benefit}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </section>
+    <!-- How it works -->
+    <CardGrid
+      numbered
+      heading="Convert in 3 steps"
+      items={[
+        {
+          title: `Drop your ${from.name} files`,
+          description: "Drag and drop one file or a whole folder.",
+        },
+        {
+          title: `Choose ${to.name}`,
+          description: "Pick the output format and quality.",
+        },
+        {
+          title: "Convert",
+          description: "Click Convert. Everything runs on your Mac.",
+        },
+      ]}
+    />
 
-        <!-- How it works -->
-        <CardGrid
-          bare
-          numbered
-          class="mb-16 sm:mb-20"
-          heading="Convert in 3 steps"
-          items={[
-            {
-              title: `Drop your ${from.name} files`,
-              description: "Drag and drop one file or a whole folder.",
-            },
-            {
-              title: `Choose ${to.name}`,
-              description: "Pick the output format and quality.",
-            },
-            {
-              title: "Convert",
-              description: "Click Convert — everything runs on your Mac.",
-            },
-          ]}
-        />
+    <!-- FAQ -->
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={conversion.faqs} />
+      </Card>
+    </Section>
 
-        <!-- FAQ -->
-        <section class="mb-16 sm:mb-20">
-          <H2 class="mb-8 text-center">Frequently asked questions</H2>
-          <div
-            class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-          >
-            <FAQ faqs={conversion.faqs} />
-          </div>
-        </section>
-
-        <!-- Related audio conversions -->
-        <section class="mb-8">
-          <H2 class="mb-6 text-center">More audio conversions</H2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {
-              related.map((c) => (
-                <a
-                  href={`/convert/audio/${c.slug}`}
-                  class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-colors hover:border-accent/30"
-                >
-                  <span class="text-small font-medium text-text">
-                    {audioFormats[c.from].name} to {audioFormats[c.to].name}
-                  </span>
-                </a>
-              ))
-            }
-          </div>
-          <div class="text-center mt-6">
-            <a
-              href="/audio-converter-mac"
-              class="text-small text-accent hover:underline"
-              >All audio conversions &rarr;</a
-            >
-          </div>
-        </section>
-    </div>
+    <!-- Related audio conversions -->
+    <Section>
+      <SectionHeading class="mb-8">More audio conversions</SectionHeading>
+      <ConversionGrid
+        links={related.map((c) => ({
+          href: `/convert/audio/${c.slug}`,
+          label: `${audioFormats[c.from].name} to ${audioFormats[c.to].name}`,
+        }))}
+        linkText="All audio conversions"
+        linkHref="/audio-converter-mac"
+      />
+    </Section>
 
     <Footer />
-
   </body>
 </html>

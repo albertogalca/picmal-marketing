@@ -1,0 +1,18 @@
+---
+version: "1.7.9"
+title: "Cap video resolution, and round your app icons"
+description: "Video Options gains a Resolution setting that downscales to 4K, 1080p, 720p, and more without touching an already-smaller source. Plus App Icons can now round your image into a real macOS tile."
+pubDate: 2026-07-12
+---
+
+Big videos can now come out smaller by resolution, not just codec: a new **Resolution** setting downscales 4K footage to 1080p or 720p on the way through. And the App Icons tool can round your image into a proper macOS tile instead of filling the square edge to edge.
+
+![The Video settings in Picmal with the Resolution dropdown open, showing Original, 2160p (4K), 1440p, 1080p, 720p, 480p, and 360p](/images/changelog/1.7.9/set_video_resolution.png)
+
+### New features
+
+- **Cap a video to a resolution.** Video Options gains a **Resolution** setting — 2160p (4K), 1440p, 1080p, 720p, 480p, 360p, or Original. Picmal only ever scales down and keeps the aspect ratio, so a source that's already smaller than your pick is left untouched. Applies to both Convert and Compress. See [Audio and video](/docs/audio-and-video#resolution).
+
+### Improvements
+
+- **App icons can take on a real macOS shape.** The App Icons tool can now round your image into a proper macOS tile — a Big Sur squircle or the rounder Tahoe corner — with the margin and soft shadow baked in, instead of filling the square edge to edge. Pick the shape (or None) next to the format checkboxes; it applies to the `.icns`. See [App Icons](/docs/app-icons#macos-tile-shape).

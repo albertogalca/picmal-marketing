@@ -321,7 +321,7 @@ function buildMetaDescription(
 }
 
 function buildMetaTitle(from: AudioFormatInfo, to: AudioFormatInfo): string {
-  return `Convert ${from.name} to ${to.name} on Mac — Fast & Offline`;
+  return `Picmal: Convert ${from.name} to ${to.name} on Mac, fast and offline`;
 }
 
 export const audioConversions: AudioConversionPair[] = PAIRS.map(
@@ -341,9 +341,37 @@ export const audioConversions: AudioConversionPair[] = PAIRS.map(
   },
 );
 
+// SEO allowlist: only these high-demand audio conversions are indexed. Every
+// other generated /convert/audio page emits <meta robots="noindex"> and is
+// excluded from the sitemap, so the thin long-tail stops dragging site quality.
+// Edit this list to change which pages Google indexes.
+export const INDEXED_AUDIO_CONVERSIONS = new Set<string>([
+  // → MP3 (the universal workhorse)
+  "m4a-to-mp3",
+  "wav-to-mp3",
+  "flac-to-mp3",
+  "aac-to-mp3",
+  "ogg-to-mp3",
+  "wma-to-mp3",
+  "opus-to-mp3",
+  // → WAV (editing / DAW)
+  "mp3-to-wav",
+  "m4a-to-wav",
+  // lossless
+  "wav-to-flac",
+  // iPhone ringtone
+  "mp3-to-m4r",
+]);
+
+export function isAudioConversionIndexed(slug: string): boolean {
+  return INDEXED_AUDIO_CONVERSIONS.has(slug);
+}
+
 export function getRelatedAudioConversions(
   slug: string,
   limit = 6,
 ): AudioConversionPair[] {
-  return audioConversions.filter((c) => c.slug !== slug).slice(0, limit);
+  return audioConversions
+    .filter((c) => c.slug !== slug && isAudioConversionIndexed(c.slug))
+    .slice(0, limit);
 }

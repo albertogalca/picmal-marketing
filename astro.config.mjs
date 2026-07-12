@@ -1,18 +1,33 @@
 // @ts-check
 
+import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { conversions, isConversionIndexed } from "./src/data/conversions.ts";
+import {
+  audioConversions,
+  isAudioConversionIndexed,
+} from "./src/data/audioConversions.ts";
+import {
+  videoConversions,
+  isVideoConversionIndexed,
+} from "./src/data/videoConversions.ts";
 
 // Convert pages that are noindexed should also be kept out of the sitemap.
-const noindexConvertUrls = new Set(
-  conversions
+const noindexConvertUrls = new Set([
+  ...conversions
     .filter((c) => !isConversionIndexed(c.slug))
     .map((c) => `https://picmal.app/convert/${c.slug}`),
-);
+  ...audioConversions
+    .filter((c) => !isAudioConversionIndexed(c.slug))
+    .map((c) => `https://picmal.app/convert/audio/${c.slug}`),
+  ...videoConversions
+    .filter((c) => !isVideoConversionIndexed(c.slug))
+    .map((c) => `https://picmal.app/convert/video/${c.slug}`),
+]);
 
 // Noindexed standalone pages (see meta.noindex in each); keep them out of the sitemap too.
 const noindexLegalUrls = new Set([
@@ -105,6 +120,7 @@ export default defineConfig({
       },
     }),
     mdx(),
+    icon(),
     sitemap({
       filter: (page) =>
         !noindexConvertUrls.has(page) && !noindexLegalUrls.has(page),

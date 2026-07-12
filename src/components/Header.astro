@@ -60,17 +60,20 @@ const focusRing =
 const desktopLinkBase = `text-body transition-colors cursor-pointer rounded-xl ${focusRing}`;
 const desktopLinkIdle =
   "text-text-secondary hover:text-text focus-visible:text-text";
-const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:bg-background-subtle focus-visible:bg-background-subtle transition-colors ${focusRing}`;
+const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:bg-background-subtle focus-visible:bg-background-subtle transition-[color,background-color,scale] active:scale-[0.98] motion-reduce:transition-none ${focusRing}`;
 ---
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-30 text-body transition-all duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
+  class="fixed top-0 left-0 right-0 z-30 text-body transition-colors duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
 >
   <div class="px-6 xl:px-0 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center">
-        <a href="/" class="flex items-center gap-3 cursor-pointer">
+        <a
+          href="/"
+          class="flex items-center gap-3 cursor-pointer transition-[scale] active:scale-[0.97] motion-reduce:transition-none"
+        >
           <Image
             src="/logo.webp"
             alt="Picmal - Mac media converter app logo"
@@ -109,7 +112,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
 
         <button
           id="mobile-menu-button"
-          class={`md:hidden inline-flex items-center justify-center p-2 rounded-xl text-text-secondary hover:text-text hover:bg-background-subtle transition-colors ${focusRing}`}
+          class={`md:hidden inline-flex items-center justify-center p-2 rounded-xl text-text-secondary hover:text-text hover:bg-background-subtle transition-[color,background-color,scale] active:scale-[0.96] motion-reduce:transition-none ${focusRing}`}
           aria-controls="mobile-menu"
           aria-expanded="false"
         >

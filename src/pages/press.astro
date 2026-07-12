@@ -2,26 +2,26 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import H2 from "../components/H2.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import H3 from "../components/H3.astro";
+import H4 from "../components/H4.astro";
 import Paragraph from "../components/Paragraph.astro";
-import Lead from "../components/Lead.astro";
+import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
-import SegmentedControl from "../components/SegmentedControl.astro";
 
-const SITE_TITLE = "Picmal Press Kit";
 const SITE_DESCRIPTION =
   "Picmal press kit: download logos, app screenshots, demo videos, brand assets, and ready-to-use copy for articles, reviews, and stories about Picmal for Mac.";
 
 const shortDescription =
-  "Images, videos, audio, PDFs. Batch process hundreds at once, generate PDFs from your files, all right on your Mac. Works offline, no account, nothing to subscribe to.";
+  "Convert, compress, and edit images, video, audio, and PDFs right on your Mac, instead of trusting sketchy websites with them. Batch up to 10,000 files at once, and do far more than convert: merge audio, combine video, edit PDFs, and generate app icons. Works offline, no account, nothing to subscribe to.";
 
 const mediumDescription =
-  "Picmal converts, compresses, and creates images, videos, audio, and PDFs on your Mac. Drop files in, and that's it. No setup, no uploads, no need to know what a codec is. If you want more control, there's an advanced mode — but the defaults are already sensible, so most people won't need it. It feels native because it is. Picmal lives wherever your other Mac apps live, and everything runs locally. Your files never leave your machine.";
+  "Picmal converts, compresses, and edits images, video, audio, and PDFs on your Mac. Drop files in, and that's it. No setup, no uploads, no need to know what a codec is. It handles batches of up to 10,000 files at a time, reads RAW from most cameras, and watermarks photos and video. It does far more than convert, too: merge audio into chaptered audiobooks, combine videos, burn in subtitles, split and organize PDFs, and generate app icons for macOS, Windows, and iOS. It plugs into Finder, Shortcuts, Raycast, and the command line, and can watch folders to process files automatically. There's an advanced mode if you want control, but the defaults are already sensible, so most people won't need it. It feels native because it is. Everything runs locally, so your files never leave your machine.";
 
-const longDescription = `Picmal is a Mac app for converting, compressing, and creating images, videos, audio, and PDFs. Simple by default. Drop your files in and go. No setup, no need to know what a bitrate is.
+const longDescription = `Picmal is a Mac app for converting, compressing, and editing images, video, audio, and PDFs. Simple by default. Drop your files in and go. No setup, no need to know what a bitrate is.
 
-If you want more control, there's an advanced mode. The defaults are already sensible, so most people won't touch it.
+It does a lot: batch up to 10,000 files at once, read RAW photos from most cameras, watermark photos and video, resize and recolor images, and compress to a target file size without ever making a file bigger. Beyond converting, it can merge audio into chaptered audiobooks, combine videos, burn in subtitles, split and organize PDFs, build PDFs from images, and generate app icons for macOS, Windows, and iOS. It plugs into Finder Quick Actions, Shortcuts, Raycast, and a full command-line tool, and can watch folders to process new files on its own. If you want more control, there's an advanced mode. The defaults are already sensible, so most people won't touch it.
 
 It feels native because it is. Picmal lives wherever your other Mac apps live. Everything runs locally, so your files never leave your machine.`;
 
@@ -34,7 +34,7 @@ const principles = [
   {
     title: "Opinionated advanced mode",
     description:
-      "The options that matter are already configured. The goal was never to expose every knob — it was to make the right choice for you by default.",
+      "The options that matter are already configured. The goal was never to expose every knob. It was to make the right choice for you by default.",
   },
   {
     title: "Native to macOS",
@@ -78,12 +78,12 @@ const screenshots = [
 const storeAssets = [
   {
     src: "/press/mac_store_a.png",
-    title: "Hero — convert",
+    title: "Hero, convert",
     caption: "Brand hero, conversion side.",
   },
   {
     src: "/press/mac_store_b.png",
-    title: "Hero — compress",
+    title: "Hero, compress",
     caption: "Brand hero, compression side.",
   },
   {
@@ -98,8 +98,8 @@ const storeAssets = [
   },
   {
     src: "/press/lemon_squeezy_version.png",
-    title: "Lemon Squeezy listing",
-    caption: "Storefront preview used on Lemon Squeezy.",
+    title: "Storefront listing",
+    caption: "Storefront preview.",
   },
 ];
 
@@ -134,9 +134,24 @@ const videos = [
 
 const facts = [
   {
+    label: "What it handles",
+    value:
+      "Images (including RAW from Sony, Canon, Nikon, Fujifilm, and Adobe), video, audio, and PDFs. Over 100 formats.",
+  },
+  {
+    label: "What it does",
+    value:
+      "Convert, compress, resize, and watermark. Combine videos, merge audio into chaptered audiobooks, burn in subtitles, split and organize PDFs, and generate app icons for macOS, Windows, and iOS.",
+  },
+  {
+    label: "Fits your workflow",
+    value:
+      "Batch up to 10,000 files at once. Runs from Finder Quick Actions, Shortcuts, Raycast, watched folders, and a full command-line tool that shares the app's engine.",
+  },
+  {
     label: "Pricing",
     value:
-      "Pay once. Updates included. Sold on picmal.app via Lemon Squeezy. Not on the App Store.",
+      "Pay once, every update included. Sold direct on picmal.app, not on the App Store.",
   },
   {
     label: "Who uses it",
@@ -146,467 +161,377 @@ const facts = [
   {
     label: "Requirements",
     value:
-      "macOS 15.0 (Sequoia) or later. Runs natively on Apple Silicon and Intel.",
+      "macOS 15 (Sequoia) or later. Runs natively on Apple Silicon and Intel.",
   },
+];
+
+const descriptionBlocks = [
+  { label: "Short", text: shortDescription },
+  { label: "Medium", text: mediumDescription },
+  { label: "Long", text: longDescription },
 ];
 
 const ICON_EYE =
   "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z";
 const ICON_DOWNLOAD =
   "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4";
+
+const CARD_LINK =
+  "bg-background-subtle/50 rounded-2xl border border-border p-6 hover:border-accent/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 active:scale-[0.99] motion-reduce:active:scale-100 transition-[border-color,scale] duration-200";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title="Picmal: Press kit" description={SITE_DESCRIPTION} />
   </head>
 
-  <body class="bg-background overflow-x-hidden">
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
     <Header />
 
-    <main class="relative z-10 pt-28 lg:pt-32 pb-20 px-6">
-      <div class="max-w-5xl mx-auto">
-        <!-- MOBILE BRAND HEADER (centered, compact) -->
-        <div class="lg:hidden text-center mb-8">
-          <img
-            src="/Icon-macOS-Default-1024x1024@1x.png"
-            alt="Picmal icon"
-            class="w-12 h-12 rounded-xl mb-3 mx-auto"
-          />
-          <p class="font-semibold mb-1">Picmal</p>
-          <Paragraph size="small" class="max-w-xs mx-auto">
-            Convert, compress, and create images, videos, audio, and PDFs on
-            your Mac.
-          </Paragraph>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 lg:gap-14">
-          <!-- DESKTOP SIDEBAR -->
-          <aside
-            class="hidden lg:block lg:sticky lg:top-32 lg:self-start space-y-8"
+    <!-- Hero -->
+    <main id="main-content" class="relative z-10 pt-32 pb-8">
+      <div class="max-w-7xl mx-auto px-6 xl:px-0">
+        <div class="max-w-3xl">
+          <SectionHeading
+            level={1}
+            align="left"
+            headingClass="mb-6"
+            subleadClass="max-w-2xl"
           >
-            <div>
-              <img
-                src="/Icon-macOS-Default-1024x1024@1x.png"
-                alt="Picmal icon"
-                class="w-12 h-12 rounded-xl mb-4"
-              />
-              <p class="font-semibold mb-2">Picmal</p>
-              <Paragraph size="small">
-                Convert, compress, and create images, videos, audio, and PDFs on
-                your Mac.
-              </Paragraph>
-            </div>
-
-            <div>
-              <p class="text-small text-text-secondary mb-3">Quick links</p>
-              <ul class="space-y-2">
-                <li>
-                  <a href="https://picmal.app" class="link text-small"
-                    >Website</a
-                  >
-                </li>
-                <li>
-                  <a href="https://picmal.app/docs" class="link text-small"
-                    >Documentation</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://licenses.albertogalca.com/affiliate/signup/new"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link text-small">Affiliate program</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p class="text-small text-text-secondary mb-3">Contact</p>
-              <a
-                href="mailto:support@picmal.app"
-                class="link text-small break-all"
-              >
-                support@picmal.app
-              </a>
-            </div>
-          </aside>
-
-          <!-- RIGHT CONTENT -->
-          <div>
-            <!-- Tabs -->
-            <div class="mb-8 lg:mb-10">
-              <SegmentedControl
-                mode="tabs"
-                ariaLabel="Press kit sections"
-                activeId="about"
-                segmentClass="press-tab"
-                segments={[
-                  { id: "about", label: "About" },
-                  { id: "media", label: "Media" },
-                  { id: "contact", label: "Contact" },
-                ]}
-              />
-            </div>
-
-            <!-- ABOUT TAB -->
-            <section
-              data-panel="about"
-              class="press-panel space-y-14 sm:space-y-16"
-            >
-              <div>
-                <H2 class="mb-4 max-w-2xl"
-                  >Convert, compress, and create media on your Mac</H2
-                >
-                <Lead class="max-w-2xl">{shortDescription}</Lead>
-              </div>
-
-              <div class="border-t border-border pt-10 sm:pt-12">
-                <H3 class="mb-4">Why I built this</H3>
-                <div class="space-y-4 max-w-2xl">
-                  <Paragraph
-                    >I built Picmal because I couldn't find a file converter I
-                    actually liked.</Paragraph
-                  >
-                  <Paragraph>
-                    Every option I tried had the same problems: outdated, clunky
-                    interfaces. Terminal-only tools when I just wanted something
-                    I could see and click. Online services that expected me to
-                    upload private media files to some external server. And no
-                    batch conversion anywhere.
-                  </Paragraph>
-                </div>
-                <p class="text-balance mt-7 font-bold">
-                  So I built the thing I wanted to use.
-                </p>
-              </div>
-
-              <div class="border-t border-border pt-10 sm:pt-12">
-                <H3 class="mb-6">Four principles</H3>
-                <ol class="border-t border-border">
-                  {
-                    principles.map((p, i) => (
-                      <li class="grid grid-cols-[2.25rem_1fr] sm:grid-cols-[3rem_1fr] gap-x-4 sm:gap-x-6 border-b border-border py-5">
-                        <span
-                          class="text-h2 leading-none font-semibold text-accent/30 tabular-nums select-none"
-                          aria-hidden="true"
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <div class="max-w-xl">
-                          <p class="text-h4 text-text mb-1">{p.title}</p>
-                          <Paragraph size="small">{p.description}</Paragraph>
-                        </div>
-                      </li>
-                    ))
-                  }
-                </ol>
-              </div>
-
-              <div class="border-t border-border pt-10 sm:pt-12">
-                <H3 class="mb-2">Descriptions</H3>
-                <Paragraph size="small" class="mb-5 max-w-2xl">
-                  Copy-paste ready, in three lengths.
-                </Paragraph>
-                <div class="space-y-3">
-                  {
-                    [
-                      { label: "Short", text: shortDescription },
-                      { label: "Medium", text: mediumDescription },
-                      { label: "Long", text: longDescription },
-                    ].map((d) => (
-                      <div class="bg-background-subtle rounded-xl border border-border p-5">
-                        <div class="flex items-center justify-between mb-2.5">
-                          <p class="text-small text-text-secondary">{d.label}</p>
-                          <button
-                            class="copy-btn text-small text-text-secondary hover:text-accent transition-colors cursor-pointer"
-                            data-copy={d.text}
-                          >
-                            Copy
-                          </button>
-                        </div>
-                        <Paragraph size="small" class="whitespace-pre-line">
-                          {d.text}
-                        </Paragraph>
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div class="border-t border-border pt-10 sm:pt-12">
-                <H3 class="mb-6">About me</H3>
-                <div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
-                  <div class="shrink-0">
-                    <img
-                      src="/alberto.webp"
-                      alt="Alberto Gallego, creator of Picmal"
-                      width="112"
-                      height="112"
-                      class="w-28 h-28 object-cover ring-1 ring-border shadow-sm"
-                      loading="lazy"
-                    />
-                    <p class="mt-4 text-h4 text-text">Alberto Gallego</p>
-                    <p class="text-small text-text-secondary">
-                      Independent developer
-                    </p>
-                    <div class="mt-3 flex items-center gap-4 text-small">
-                      <a
-                        href="https://albertogalca.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link">Website ↗</a
-                      >
-                      <a
-                        href="https://github.com/albertogalca"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="link">GitHub ↗</a
-                      >
-                    </div>
-                  </div>
-                  <div class="space-y-4 max-w-xl">
-                    <Paragraph size="small">
-                      I build tools that try to respect the people using them —
-                      small, private, and deliberate. Nothing overdesigned or
-                      cluttered. Just software that works and doesn't feel like
-                      it was made by a committee.
-                    </Paragraph>
-                    <Paragraph size="small">
-                      Outside of building, I take photos, travel, read, and walk
-                      a lot. That stuff probably matters more than it sounds
-                      like it should. It's where most of my ideas about what
-                      good software feels like come from.
-                    </Paragraph>
-                  </div>
-                </div>
-              </div>
-
-              <div class="border-t border-border pt-10 sm:pt-12">
-                <H3 class="mb-6">Quick facts</H3>
-                <dl class="grid sm:grid-cols-3 gap-x-8 gap-y-6">
-                  {
-                    facts.map((f) => (
-                      <div>
-                        <dt class="text-small text-text-secondary mb-1.5">
-                          {f.label}
-                        </dt>
-                        <dd class="text-small text-text">{f.value}</dd>
-                      </div>
-                    ))
-                  }
-                </dl>
-              </div>
-            </section>
-
-            <!-- MEDIA TAB -->
-            <section data-panel="media" class="press-panel space-y-12 hidden">
-              <div>
-                <H2 class="mb-2">Media</H2>
-                <Paragraph size="small"
-                  >Use any of this freely. Need higher-res versions or something
-                  specific? Email me.</Paragraph
-                >
-              </div>
-
-              <div>
-                <H3 class="mb-4">App icon</H3>
-                <div
-                  class="bg-background-subtle rounded-xl border border-border p-4 flex items-center gap-4"
-                >
-                  <img
-                    src="/Icon-macOS-Default-1024x1024@1x.png"
-                    alt="Picmal icon"
-                    class="w-16 h-16 rounded-xl"
-                  />
-                  <div class="flex-1">
-                    <p class="font-semibold">App icon</p>
-                    <Paragraph size="small">PNG · 1024×1024</Paragraph>
-                  </div>
-                  <Button
-                    href="/Icon-macOS-Default-1024x1024@1x.png"
-                    text="Download"
-                    size="small"
-                    variant="secondary"
-                    target="_self"
-                    download="picmal-icon.png"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <H3 class="mb-4">macOS screenshots</H3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {
-                    screenshots.map((s) => (
-                      <div
-                        class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-xl border border-border"
-                        data-image-src={s.src}
-                        data-image-title={s.title}
-                      >
-                        <img
-                          src={s.src}
-                          alt={s.title}
-                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                          loading="lazy"
-                        />
-                        <div class="image-card-overlay">
-                          <Button
-                            type="button"
-                            variant="overlay"
-                            size="small"
-                            text="View"
-                            icon={ICON_EYE}
-                            class="view-btn"
-                          />
-                          <Button
-                            href={s.src}
-                            variant="overlay"
-                            size="small"
-                            text="Download"
-                            icon={ICON_DOWNLOAD}
-                            target="_self"
-                            download={true}
-                          />
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div>
-                <H3 class="mb-4">Store assets</H3>
-                <Paragraph size="small" class="mb-4">
-                  Marketing visuals from the Mac App Store and Lemon Squeezy
-                  listing.
-                </Paragraph>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {
-                    storeAssets.map((s) => (
-                      <div
-                        class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-xl border border-border"
-                        data-image-src={s.src}
-                        data-image-title={s.title}
-                      >
-                        <img
-                          src={s.src}
-                          alt={s.title}
-                          class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                          loading="lazy"
-                        />
-                        <div class="image-card-overlay">
-                          <Button
-                            type="button"
-                            variant="overlay"
-                            size="small"
-                            text="View"
-                            icon={ICON_EYE}
-                            class="view-btn"
-                          />
-                          <Button
-                            href={s.src}
-                            variant="overlay"
-                            size="small"
-                            text="Download"
-                            icon={ICON_DOWNLOAD}
-                            target="_self"
-                            download={true}
-                          />
-                        </div>
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div>
-                <H3 class="mb-4">Videos</H3>
-                <div class="space-y-4">
-                  {
-                    videos.map((v) => (
-                      <div class="bg-background-subtle rounded-xl border border-border overflow-hidden">
-                        <div class="p-4 flex items-center justify-between gap-4">
-                          <div class="flex-1 min-w-0">
-                            <p class="font-semibold">{v.title}</p>
-                            <Paragraph size="small">{v.description}</Paragraph>
-                          </div>
-                          <Button
-                            href={v.src}
-                            text="Download"
-                            size="small"
-                            variant="secondary"
-                            target="_self"
-                            download={true}
-                          />
-                        </div>
-                        <video
-                          src={v.src}
-                          class="w-full h-auto border-t border-border"
-                          controls
-                          muted
-                          playsinline
-                          preload="metadata"
-                        />
-                      </div>
-                    ))
-                  }
-                </div>
-              </div>
-            </section>
-
-            <!-- CONTACT TAB -->
-            <section data-panel="contact" class="press-panel space-y-8 hidden">
-              <div>
-                <H2 class="mb-2">Get in touch</H2>
-                <Paragraph size="small"
-                  >Writing about Picmal, want to partner, or just have a
-                  question? Email me.</Paragraph
-                >
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a
-                  href="mailto:support@picmal.app"
-                  class="bg-background-subtle rounded-xl border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
-                >
-                  <p class="text-small text-text-secondary mb-2">Email</p>
-                  <p class="font-semibold truncate">support@picmal.app</p>
-                </a>
-
-                <a
-                  href="https://picmal.app"
-                  class="bg-background-subtle rounded-xl border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
-                >
-                  <p class="text-small text-text-secondary mb-2">Website</p>
-                  <p class="font-semibold truncate">picmal.app</p>
-                </a>
-
-                <a
-                  href="https://licenses.albertogalca.com/affiliate/signup/new"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="sm:col-span-2 bg-background-subtle rounded-xl border border-border p-4 hover:border-accent/30 focus-visible:border-accent focus-visible:outline-none active:scale-[0.99] motion-reduce:active:scale-100 transition-[colors,scale] duration-200"
-                >
-                  <p class="text-small text-text-secondary mb-2">Become an affiliate</p>
-                  <p class="font-semibold">Earn 25% on every sale you refer</p>
-                </a>
-              </div>
-
-              <div class="bg-accent/5 border border-accent/20 rounded-xl p-4">
-                <Paragraph size="small">
-                  <strong class="text-text">Press note:</strong> use any of these
-                  assets freely. If you need a different format or higher resolution,
-                  email me and I'll send it over.
-                </Paragraph>
-              </div>
-            </section>
-          </div>
+            Picmal Press Kit
+            <Fragment slot="sublead">
+              Everything you need to write about Picmal: logos, screenshots,
+              demo videos, and ready-to-use copy. Use any of it freely, and if
+              you need a different format or higher resolution, just ask.
+            </Fragment>
+          </SectionHeading>
         </div>
       </div>
     </main>
+
+    <!-- About / descriptions -->
+    <Section width="wide">
+      <SectionHeading
+        align="left"
+        class="mb-8"
+        sublead="Ready-to-paste descriptions, in three lengths. Take whichever fits."
+      >
+        Descriptions
+      </SectionHeading>
+      <div class="space-y-3 max-w-3xl">
+        {
+          descriptionBlocks.map((d) => (
+            <Card>
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-small text-text-secondary">{d.label}</p>
+                <button
+                  class="copy-btn text-small text-text-secondary hover:text-accent focus-visible:text-accent transition-colors cursor-pointer"
+                  data-copy={d.text}
+                >
+                  Copy
+                </button>
+              </div>
+              <Paragraph class="whitespace-pre-line">{d.text}</Paragraph>
+            </Card>
+          ))
+        }
+      </div>
+    </Section>
+
+    <!-- About me -->
+    <Section id="about" bg="subtle" width="wide">
+      <SectionHeading align="left" class="mb-8" headingClass="mb-0">
+        About me
+      </SectionHeading>
+
+      <div class="flex flex-col sm:flex-row gap-8 sm:gap-12">
+        <div class="shrink-0">
+          <img
+            src="/alberto.webp"
+            alt="Alberto Gallego, creator of Picmal"
+            width="112"
+            height="112"
+            class="w-28 h-28 object-cover rounded-2xl ring-1 ring-black/10 dark:ring-white/10 shadow-sm"
+            loading="lazy"
+          />
+          <p class="mt-4 text-h4 text-text">Alberto Gallego</p>
+          <p class="text-small text-text-secondary">Independent developer</p>
+          <div class="mt-3 flex items-center gap-4 text-small">
+            <a
+              href="https://albertogalca.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link">Website ↗</a
+            >
+            <a
+              href="https://github.com/albertogalca"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link">GitHub ↗</a
+            >
+          </div>
+        </div>
+        <div class="space-y-4 max-w-xl">
+          <Paragraph>
+            I build tools that try to respect the people using them: small,
+            private, and deliberate. Nothing overdesigned or cluttered. Just
+            software that works and doesn't feel like it was made by a
+            committee.
+          </Paragraph>
+          <Paragraph>
+            I built Picmal because I couldn't find a file converter I actually
+            liked. Every option I tried had the same problems: outdated, clunky
+            interfaces. Terminal-only tools when I just wanted something I could
+            see and click. Online services that expected me to upload private
+            media files to some external server. And no batch conversion
+            anywhere.
+          </Paragraph>
+          <Paragraph color="primary" class="font-bold text-balance pt-1">
+            So I built the thing I wanted to use.
+          </Paragraph>
+          <Paragraph>
+            Outside of building, I take photos, travel, read, and walk a lot.
+            That stuff probably matters more than it sounds like it should. It's
+            where most of my ideas about what good software feels like come
+            from.
+          </Paragraph>
+        </div>
+      </div>
+
+      <div class="mt-14">
+        <H3 class="mb-6">The principles behind it</H3>
+        <ol class="border-t border-border">
+          {
+            principles.map((p, i) => (
+              <li class="grid grid-cols-[2.25rem_1fr] sm:grid-cols-[3rem_1fr] gap-x-4 sm:gap-x-6 border-b border-border py-5">
+                <span
+                  class="text-h2 leading-none font-semibold text-accent/30 tabular-nums select-none"
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div class="max-w-xl">
+                  <H4 class="mb-1.5">{p.title}</H4>
+                  <Paragraph>{p.description}</Paragraph>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </Section>
+
+    <!-- Quick facts -->
+    <Section width="wide">
+      <SectionHeading align="left" class="mb-8" headingClass="mb-0">
+        Quick facts
+      </SectionHeading>
+      <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+        {
+          facts.map((f) => (
+            <div>
+              <dt class="text-small text-text-secondary mb-1.5">{f.label}</dt>
+              <dd class="text-body text-text">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </Section>
+
+    <!-- Media -->
+    <Section bg="subtle" width="wide">
+      <SectionHeading
+        align="left"
+        class="mb-8"
+        sublead="App icon, screenshots, store visuals, and demo videos."
+      >
+        Media
+      </SectionHeading>
+
+      <div class="space-y-12">
+        <!-- App icon -->
+        <div>
+          <H3 class="mb-4">App icon</H3>
+          <Card padding="p-4" class="flex items-center gap-4">
+            <img
+              src="/Icon-macOS-Default-1024x1024@1x.png"
+              alt="Picmal icon"
+              class="w-16 h-16 rounded-2xl"
+            />
+            <div class="flex-1">
+              <p class="text-h4 text-text">PNG</p>
+              <Paragraph size="small">1024 × 1024</Paragraph>
+            </div>
+            <Button
+              href="/Icon-macOS-Default-1024x1024@1x.png"
+              text="Download"
+              size="small"
+              variant="secondary"
+              target="_self"
+              download="picmal-icon.png"
+            />
+          </Card>
+        </div>
+
+        <!-- Screenshots -->
+        <div>
+          <H3 class="mb-4">macOS screenshots</H3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+              screenshots.map((s) => (
+                <div
+                  class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-2xl ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_1px_2px_-1px_rgba(0,0,0,0.06),0_8px_24px_-12px_rgba(0,0,0,0.18)]"
+                  data-image-src={s.src}
+                  data-image-title={s.title}
+                >
+                  <img
+                    src={s.src}
+                    alt={s.title}
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <div class="image-card-overlay">
+                    <Button
+                      type="button"
+                      variant="overlay"
+                      size="small"
+                      text="View"
+                      icon={ICON_EYE}
+                      class="view-btn"
+                    />
+                    <Button
+                      href={s.src}
+                      variant="overlay"
+                      size="small"
+                      text="Download"
+                      icon={ICON_DOWNLOAD}
+                      target="_self"
+                      download={true}
+                    />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Store assets -->
+        <div>
+          <H3 class="mb-4">Store assets</H3>
+          <Paragraph class="mb-4">
+            Marketing visuals and storefront previews.
+          </Paragraph>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+              storeAssets.map((s) => (
+                <div
+                  class="image-card group relative aspect-video overflow-hidden bg-background-subtle rounded-2xl ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_1px_2px_-1px_rgba(0,0,0,0.06),0_8px_24px_-12px_rgba(0,0,0,0.18)]"
+                  data-image-src={s.src}
+                  data-image-title={s.title}
+                >
+                  <img
+                    src={s.src}
+                    alt={s.title}
+                    class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <div class="image-card-overlay">
+                    <Button
+                      type="button"
+                      variant="overlay"
+                      size="small"
+                      text="View"
+                      icon={ICON_EYE}
+                      class="view-btn"
+                    />
+                    <Button
+                      href={s.src}
+                      variant="overlay"
+                      size="small"
+                      text="Download"
+                      icon={ICON_DOWNLOAD}
+                      target="_self"
+                      download={true}
+                    />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Videos -->
+        <div>
+          <H3 class="mb-4">Videos</H3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+              videos.map((v) => (
+                <Card padding="p-0" class="overflow-hidden">
+                  <div class="p-4 flex items-center justify-between gap-4">
+                    <div class="flex-1 min-w-0">
+                      <p class="text-h4 text-text">{v.title}</p>
+                      <Paragraph>{v.description}</Paragraph>
+                    </div>
+                    <Button
+                      href={v.src}
+                      text="Download"
+                      size="small"
+                      variant="secondary"
+                      target="_self"
+                      download={true}
+                    />
+                  </div>
+                  <video
+                    src={v.src}
+                    class="w-full h-auto border-t border-border"
+                    controls
+                    muted
+                    playsinline
+                    preload="metadata"
+                  />
+                </Card>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <!-- Contact -->
+    <Section width="wide">
+      <SectionHeading
+        align="left"
+        class="mb-8"
+        sublead="Writing about Picmal, want to partner, or just have a question? Email me."
+      >
+        Get in touch
+      </SectionHeading>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="mailto:support@picmal.app" class={CARD_LINK}>
+          <p class="text-small text-text-secondary mb-2">Email</p>
+          <p class="text-h4 text-text truncate">support@picmal.app</p>
+        </a>
+
+        <a href="https://picmal.app/docs" class={CARD_LINK}>
+          <p class="text-small text-text-secondary mb-2">Documentation</p>
+          <p class="text-h4 text-text truncate">picmal.app/docs</p>
+        </a>
+
+        <a
+          href="https://licenses.albertogalca.com/affiliate/signup/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`sm:col-span-2 ${CARD_LINK}`}
+        >
+          <p class="text-small text-text-secondary mb-2">Become an affiliate</p>
+          <p class="text-h4 text-text">Earn 25% on every sale you refer</p>
+        </a>
+      </div>
+    </Section>
 
     <Footer />
 
@@ -630,24 +555,14 @@ const ICON_DOWNLOAD =
           target="_self"
           download={true}
         />
-        <button
+        <Button
           type="button"
           id="lightbox-close"
-          class="lightbox-close"
-          aria-label="Close"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"></path></svg
-          >
-        </button>
+          variant="overlay"
+          size="small"
+          icon="M6 18L18 6M6 6l12 12"
+          ariaLabel="Close"
+        />
       </div>
       <img id="lightbox-image" src="" alt="" />
       <p id="lightbox-title" class="lightbox-caption"></p>
@@ -714,31 +629,6 @@ const ICON_DOWNLOAD =
         align-items: center;
         gap: 0.5rem;
       }
-      .lightbox-close {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 9999px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition:
-          background-color 0.15s ease-out,
-          transform 0.15s ease-out;
-      }
-      .lightbox-close:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-      .lightbox-close:active {
-        transform: scale(0.94);
-      }
-      .lightbox-close:focus-visible {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 2px;
-      }
       .lightbox img {
         max-width: 100%;
         max-height: calc(100vh - 8rem);
@@ -774,31 +664,10 @@ const ICON_DOWNLOAD =
         .lightbox {
           animation: none;
         }
-        .lightbox-close {
-          transition: none;
-        }
       }
     </style>
 
     <script>
-      const tabs = document.querySelectorAll<HTMLButtonElement>(".press-tab");
-      const panels = document.querySelectorAll<HTMLElement>(".press-panel");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const target = tab.dataset.segment;
-          tabs.forEach((t) => {
-            const isActive = t === tab;
-            t.setAttribute("aria-selected", isActive ? "true" : "false");
-            t.classList.toggle("active", isActive);
-          });
-          panels.forEach((p) =>
-            p.classList.toggle("hidden", p.dataset.panel !== target),
-          );
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
-
       document
         .querySelectorAll<HTMLButtonElement>(".copy-btn")
         .forEach((btn) => {

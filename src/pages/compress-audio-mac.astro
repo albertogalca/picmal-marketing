@@ -3,20 +3,18 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
-import H1 from "../components/H1.astro";
-import H2 from "../components/H2.astro";
-import Paragraph from "../components/Paragraph.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
-import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
 import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 
 const title =
-  "Compress Audio on Mac — Shrink MP3, M4A, WAV & More | Picmal";
+  "Picmal: Compress audio on Mac, shrink MP3, M4A, WAV & more";
 const description =
   "Compress MP3, M4A, WAV, FLAC and more on your Mac. Bitrate control, force mono, sample-rate options, batch processing. Offline, no upload limit. $15.99 one-time, no subscription.";
 
@@ -29,7 +27,7 @@ const faqs = [
   {
     question: "Does compressing audio lose quality?",
     answer:
-      "Lowering the bitrate of a lossy format trades some quality for size — at 192–320 kbps it's transparent for music, and 64–96 kbps is plenty for speech. For archival, compress to FLAC instead, which is lossless.",
+      "Lowering the bitrate of a lossy format trades some quality for size. At 192–320 kbps it's transparent for music, and 64–96 kbps is plenty for speech. For archival, compress to FLAC instead, which is lossless.",
   },
   {
     question: "How do I make a voice memo or podcast smaller?",
@@ -49,7 +47,7 @@ const faqs = [
   {
     question: "Are my files uploaded anywhere?",
     answer:
-      "No. All compression happens locally on your Mac — no uploads, no per-file limits. It's a one-time $15.99, not a subscription.",
+      "No. All compression happens locally on your Mac. No uploads, no per-file limits. It's a one-time $15.99, not a subscription.",
   },
 ];
 
@@ -76,19 +74,12 @@ const faqSchema = {
   >
     <Header />
 
-        <ComparisonHero
+    <ComparisonHero
       title="Compress audio on your Mac"
       subhead="Shrink MP3, M4A, WAV, FLAC and more with bitrate control, force mono, and sample-rate options. Perfect for podcasts, voice memos, and audiobooks. Batch, offline, no upload limit."
       buyEvent="buy_clicked_compress_audio_mac"
       defaultTab="compress"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "Compress Audio on Mac" }]}
-      />
-    </ComparisonHero>
-
-    <SectionDivider />
+    />
 
     <!-- How It Works -->
     <CardGrid
@@ -106,12 +97,10 @@ const faqSchema = {
         },
         {
           title: "Compress",
-          description: "Click Compress — everything runs on your Mac.",
+          description: "Click Compress. Everything runs on your Mac.",
         },
       ]}
     />
-
-    <SectionDivider />
 
     <!-- Controls -->
     <CardGrid
@@ -125,12 +114,12 @@ const faqSchema = {
         {
           title: "Force mono",
           description:
-            "Collapse stereo to mono for podcasts and voice memos — roughly half the size, no audible loss.",
+            "Collapse stereo to mono for podcasts and voice memos, roughly half the size, no audible loss.",
         },
         {
           title: "Sample rate & bit depth",
           description:
-            "From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit — match the source to the use.",
+            "From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit, match the source to the use.",
         },
         {
           title: "Lossless option",
@@ -142,30 +131,22 @@ const faqSchema = {
       linkHref="/audio-converter-mac"
     />
 
-    <SectionDivider />
     <MasonryTestimonials />
-    <SectionDivider />
 
-    <section
-      id="pricing"
-      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
-    >
-      <PricingSection />
-    </section>
+    <PricingSection />
 
-    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-8 text-center">Frequently asked questions</H2>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
     <SupportedFormatsModal />
-
   </body>
 </html>

@@ -1,0 +1,64 @@
+---
+import { cn } from "../utils/cn";
+
+/**
+ * ConversionGrid — the one canonical grid of "simple pill" link cards used for
+ * every related-conversions / format-link block across the SEO pages. Callers
+ * map their own data (image/audio/video/compression) to `{ href, label }` and
+ * optionally a `sublabel` (e.g. the camera brand on RAW pages).
+ */
+interface LinkItem {
+  href: string;
+  label: string;
+  sublabel?: string;
+}
+
+interface Props {
+  links: LinkItem[];
+  columns?: 3 | 4;
+  /** Optional trailing centered accent link (arrow appended automatically). */
+  linkText?: string;
+  linkHref?: string;
+  class?: string;
+}
+
+const {
+  links,
+  columns = 3,
+  linkText,
+  linkHref,
+  class: className,
+} = Astro.props;
+
+const cols =
+  columns === 4
+    ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+    : "grid-cols-2 sm:grid-cols-3";
+---
+
+<div class={cn("grid gap-3", cols, className)}>
+  {
+    links.map((l) => (
+      <a
+        href={l.href}
+        class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[border-color,scale] duration-150 hover:border-accent/30 active:scale-[0.97] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <span class="block text-small font-medium text-text">{l.label}</span>
+        {l.sublabel && (
+          <span class="block text-small text-text-secondary mt-1">
+            {l.sublabel}
+          </span>
+        )}
+      </a>
+    ))
+  }
+</div>
+{
+  linkText && linkHref && (
+    <div class="text-center mt-6">
+      <a href={linkHref} class="text-small text-accent hover:underline">
+        {linkText} <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  )
+}

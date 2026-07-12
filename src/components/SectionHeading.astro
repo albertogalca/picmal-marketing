@@ -1,0 +1,52 @@
+---
+import { cn } from "../utils/cn";
+import H1 from "./H1.astro";
+import H2 from "./H2.astro";
+import Paragraph from "./Paragraph.astro";
+
+/**
+ * SectionHeading — the single heading-block primitive for every section header
+ * on the site. Adapts to its position:
+ *   - `level`  1 for the page hero (renders H1), 2 for sections (default, H2)
+ *   - `align`  "center" (default) or "left"
+ *   - sublead  a supporting lead line — pass the `sublead` string, or use the
+ *              named `sublead` slot when it needs links/markup
+ * Margins are baked in (block `mb-12`, heading `mb-4`); override per position
+ * with `class` (wrapper), `headingClass`, and `subleadClass`.
+ */
+interface Props {
+  level?: 1 | 2;
+  align?: "center" | "left";
+  sublead?: string;
+  class?: string;
+  headingClass?: string;
+  subleadClass?: string;
+}
+
+const {
+  level = 2,
+  align = "center",
+  sublead,
+  class: className,
+  headingClass,
+  subleadClass,
+} = Astro.props;
+
+const Heading = level === 1 ? H1 : H2;
+const centered = align === "center";
+const hasSublead = sublead !== undefined || Astro.slots.has("sublead");
+---
+
+<div class={cn(centered && "text-center", "mb-12", className)}>
+  <Heading class={cn("mb-4", headingClass)}><slot /></Heading>
+  {
+    hasSublead && (
+      <Paragraph
+        size="lead"
+        class={cn(centered && "max-w-2xl mx-auto", subleadClass)}
+      >
+        <slot name="sublead">{sublead}</slot>
+      </Paragraph>
+    )
+  }
+</div>

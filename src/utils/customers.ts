@@ -1,11 +1,10 @@
 // "Trusted by N" social-proof count, fetched at build time from licencio (our
-// own license server) — replaces the old Lemon Squeezy orders API.
+// own license server) — replaces the old Stripe orders API.
 //
 // Build-time memoization: Astro's static build runs in a single Node process, so
 // caching the promise means the fetch runs once per build and is reused across
 // every page that renders TrustBar (instead of once per page).
-const STATS_URL =
-  "https://licenses.albertogalca.com/api/products/picmal/stats";
+const STATS_URL = "https://licenses.albertogalca.com/api/products/picmal/stats";
 
 let cachedCountPromise: Promise<number> | null = null;
 

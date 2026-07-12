@@ -2,16 +2,16 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
+import Section from "../../components/Section.astro";
+import ConversionGrid from "../../components/ConversionGrid.astro";
 import { formats, conversions } from "../../data/conversions";
 
-const title = "Convert Images on Mac — All Formats Supported | Picmal";
+const title = "Picmal: Convert images on Mac, all formats supported";
 const description =
   "Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG on your Mac. Batch conversion, offline processing.";
 
@@ -35,81 +35,45 @@ const groupedBySource = formatKeys.map((key) => ({
     <Header />
 
     <ComparisonHero
-      title="Convert Any Image Format on Mac"
-      subhead="Picmal converts between all major image formats — HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
+      title="Convert any image format on Mac"
+      subhead="Picmal converts between all major image formats, HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
       buyEvent="buy_clicked_convert_hub"
       defaultTab="convert"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "Convert" }]}
-      />
-    </ComparisonHero>
+    />
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <!-- All Conversions Grid -->
-        <div class="space-y-12 sm:space-y-16">
-          {
-            groupedBySource.map((group) => (
-              <section>
-                <div class="flex items-center gap-3 mb-2">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text">
-                    .{group.format.extension}
-                  </span>
-                  <H2 class="text-h3">
-                    Convert from {group.format.name}
-                  </H2>
-                </div>
-                <Paragraph class="mb-6 max-w-2xl">
-                  {group.format.description}
-                </Paragraph>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                  {group.conversions.map((c) => (
-                    <a
-                      href={`/convert/${c.slug}`}
-                      class="group bg-background-subtle/50 border border-border rounded-xl p-4 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                    >
-                      <div class="flex items-center gap-2 mb-1">
-                        <span class="text-small font-mono text-text-secondary">
-                          .{formats[c.from].extension}
-                        </span>
-                        <svg
-                          class="w-3 h-3 text-text-secondary/50 group-hover:text-accent transition-colors"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          stroke-width="2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M13 7l5 5m0 0l-5 5m5-5H6"
-                          />
-                        </svg>
-                        <span class="text-small font-mono text-text-secondary">
-                          .{formats[c.to].extension}
-                        </span>
-                      </div>
-                      <span class="text-small font-medium text-text">
-                        {formats[c.from].name} to {formats[c.to].name}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))
-          }
-        </div>
+    <!-- All Conversions Grid -->
+    <Section>
+      <div class="space-y-12 sm:space-y-16">
+        {
+          groupedBySource.map((group) => (
+            <section>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text">
+                  .{group.format.extension}
+                </span>
+                <H2 class="text-h3">Convert from {group.format.name}</H2>
+              </div>
+              <Paragraph class="mb-6 max-w-2xl">
+                {group.format.description}
+              </Paragraph>
+              <ConversionGrid
+                columns={4}
+                links={group.conversions.map((c) => ({
+                  href: `/convert/${c.slug}`,
+                  label: `${formats[c.from].name} to ${formats[c.to].name}`,
+                }))}
+              />
+            </section>
+          ))
+        }
+      </div>
+    </Section>
 
-        <div class="mt-16 sm:mt-20">
-          <CTASection
-            heading="Convert any image format with Picmal"
-            analyticsEvent="buy_clicked_convert_hub_bottom"
-          />
-        </div>
-    </div>
+    <CTASection
+      heading="Convert any image format with Picmal"
+      analyticsEvent="buy_clicked_convert_hub_bottom"
+    />
 
     <Footer />
-
   </body>
 </html>

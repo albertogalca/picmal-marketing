@@ -3,20 +3,19 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
-import H1 from "../components/H1.astro";
-import H2 from "../components/H2.astro";
-import Paragraph from "../components/Paragraph.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
-import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import CardGrid from "../components/CardGrid.astro";
 import { formats, RAW_INPUT_FORMATS } from "../data/conversions";
 import ComparisonHero from "../components/ComparisonHero.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ConversionGrid from "../components/ConversionGrid.astro";
 
-const title = "RAW Converter for Mac — Convert CR2, NEF, ARW to JPG | Picmal";
+const title = "Picmal: RAW converter for Mac, convert CR2, NEF, ARW to JPG";
 const description =
   "Convert camera RAW files — CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF, DNG — to JPG on your Mac. Batch process entire shoots offline with correct white balance. $15.99 one-time, no Lightroom subscription.";
 
@@ -31,32 +30,32 @@ const faqs = [
   {
     question: "Which RAW formats can Picmal convert?",
     answer:
-      "Picmal decodes Canon CR2 and CR3, Nikon NEF, Sony ARW, Fujifilm RAF, Panasonic RW2, Olympus ORF, Pentax PEF, and Adobe DNG — and exports them to JPG, PNG, or TIFF.",
+      "Picmal decodes Canon CR2 and CR3, Nikon NEF, Sony ARW, Fujifilm RAF, Panasonic RW2, Olympus ORF, Pentax PEF, and Adobe DNG, then exports them to JPG, PNG, or TIFF.",
   },
   {
     question: "Do I need Lightroom or Photoshop to convert RAW files?",
     answer:
-      "No. Picmal decodes RAW files directly on your Mac with correct white balance and demosaicing. It's a one-time purchase of $15.99 — no Adobe subscription required just to get shareable JPGs from your shoots.",
+      "No. Picmal decodes RAW files directly on your Mac with correct white balance and demosaicing. It's a one-time purchase of $15.99. No Adobe subscription required just to get shareable JPGs from your shoots.",
   },
   {
     question: "Will the colors look right when I convert RAW to JPG?",
     answer:
-      "Yes. Picmal reads the camera white balance embedded in each RAW file and applies proper demosaicing and gamma, so your JPGs reflect what the camera intended — not the flat, washed-out look of an unprocessed raw preview.",
+      "Yes. Picmal reads the camera white balance embedded in each RAW file and applies proper demosaicing and gamma, so your JPGs reflect what the camera intended, not the flat, washed-out look of an unprocessed raw preview.",
   },
   {
     question: "Can I batch convert an entire shoot at once?",
     answer:
-      "Yes. Drag hundreds of RAW files, or a whole folder straight from your memory card, into Picmal and convert them all to JPG in a single pass — ideal for culling and delivering shoots.",
+      "Yes. Drag hundreds of RAW files, or a whole folder straight from your memory card, into Picmal and convert them all to JPG in a single pass. Ideal for culling and delivering shoots.",
   },
   {
     question: "Can Picmal convert a JPG back into a RAW file?",
     answer:
-      "No. RAW files contain unprocessed sensor data that only your camera can produce — no software can rebuild a true RAW file from a JPG. Picmal converts RAW to standard formats like JPG, PNG, and TIFF, not the other way around.",
+      "No. RAW files contain unprocessed sensor data that only your camera can produce, and no software can rebuild a true RAW file from a JPG. Picmal converts RAW to standard formats like JPG, PNG, and TIFF, not the other way around.",
   },
   {
     question: "Do my photos leave my Mac?",
     answer:
-      "No. All decoding and conversion happens locally on your Mac. Picmal works completely offline — your raw files never touch any server.",
+      "No. All decoding and conversion happens locally on your Mac. Picmal works completely offline. Your raw files never touch any server.",
   },
 ];
 
@@ -83,19 +82,12 @@ const faqSchema = {
   >
     <Header />
 
-        <ComparisonHero
+    <ComparisonHero
       title="Convert camera RAW to JPG on your Mac"
-      subhead="CR2, NEF, ARW, RAF and more — Picmal decodes your camera's raw files with correct white balance and batch-exports an entire shoot to JPG. Fast, offline, and private. No Lightroom subscription."
+      subhead="CR2, NEF, ARW, RAF and more. Picmal decodes your camera's raw files with correct white balance and batch-exports an entire shoot to JPG. Fast, offline, and private. No Lightroom subscription."
       buyEvent="buy_clicked_raw_converter_mac"
       defaultTab="convert"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "RAW Converter for Mac" }]}
-      />
-    </ComparisonHero>
-
-    <SectionDivider />
+    />
 
     <!-- How It Works -->
     <CardGrid
@@ -113,43 +105,27 @@ const faqSchema = {
         },
         {
           title: "Convert the batch",
-          description:
-            "Click Convert and the whole shoot is ready in minutes.",
+          description: "Click Convert and the whole shoot is ready in minutes.",
         },
       ]}
     />
 
-    <SectionDivider />
-
     <!-- RAW Format Options -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-3 text-center">Convert any camera RAW format</H2>
-        <Paragraph class="text-center max-w-2xl mx-auto mb-8">
-          Pick your camera's format below. RAW files are input-only — Picmal
-          decodes them to JPG, but no app can turn a JPG back into RAW.
-        </Paragraph>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {
-            rawCards.map((card) => (
-              <a
-                href={`/convert/${card.slug}`}
-                class="bg-background-subtle/40 border border-border rounded-2xl p-5 text-center transition-colors hover:border-accent/30"
-              >
-                <span class="block font-semibold text-text">
-                  {card.name} to JPG
-                </span>
-                <span class="block text-small text-text-secondary mt-1">
-                  {card.brand}
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <SectionDivider />
+    <Section>
+      <SectionHeading
+        sublead="Pick your camera's format below. RAW files are input-only. Picmal decodes them to JPG, but no app can turn a JPG back into RAW."
+      >
+        Convert any camera RAW format
+      </SectionHeading>
+      <ConversionGrid
+        columns={3}
+        links={rawCards.map((card) => ({
+          href: `/convert/${card.slug}`,
+          label: `${card.name} to JPG`,
+          sublabel: card.brand,
+        }))}
+      />
+    </Section>
 
     <!-- Why Picmal for RAW -->
     <CardGrid
@@ -158,12 +134,12 @@ const faqSchema = {
         {
           title: "No monthly fee",
           description:
-            "A one-time $15.99 — not a subscription like Lightroom or Capture One. Just get your JPGs and move on.",
+            "A one-time $15.99, not a subscription like Lightroom or Capture One. Just get your JPGs and move on.",
         },
         {
           title: "Correct colors",
           description:
-            "Camera white balance, demosaicing, and gamma applied — your JPGs look the way the shot was meant to.",
+            "Camera white balance, demosaicing, and gamma applied, so your JPGs look the way the shot was meant to.",
         },
         {
           title: "Whole shoots, offline",
@@ -173,30 +149,22 @@ const faqSchema = {
       ]}
     />
 
-    <SectionDivider />
     <MasonryTestimonials />
-    <SectionDivider />
 
-    <section
-      id="pricing"
-      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
-    >
-      <PricingSection />
-    </section>
+    <PricingSection />
 
-    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-8 text-center">Frequently asked questions</H2>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
     <SupportedFormatsModal />
-
   </body>
 </html>

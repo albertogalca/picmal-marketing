@@ -82,16 +82,11 @@ const quote =
   </div>
 
   <!-- Quote -->
-  <p
-    class:list={[
-      "text-text-secondary text-pretty mb-6",
-      isCenter ? "text-body-big" : "text-body",
-    ]}
-  >
+  <p class:list={["text-text-secondary text-pretty mb-6 text-body"]}>
     "{quote.before}
     {
       quote.mark && (
-        <span class="bg-accent/15 text-text rounded-xl px-1 py-0.5 font-medium box-decoration-clone">
+        <span class="bg-accent/15 text-text px-1 py-0.5 font-medium box-decoration-clone">
           {quote.mark}
         </span>
       )
@@ -143,7 +138,7 @@ const quote =
           alt={`${t.name}, Picmal user`}
           width={40}
           height={40}
-          class="w-10 h-10 rounded-full flex-shrink-0 object-cover"
+          class="w-10 h-10 rounded-full flex-shrink-0 object-cover ring-1 ring-black/10 dark:ring-white/10"
           loading="lazy"
         />
         <div class:list={["flex flex-col", isCenter && "items-center"]}>

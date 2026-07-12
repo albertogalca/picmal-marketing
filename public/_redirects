@@ -24,7 +24,7 @@
 /docs/getting-started/quick-start /docs/getting-started 301
 /docs/getting-started/installation /docs/getting-started 301
 /docs/guides/converting-images /docs/converting-files 301
-/docs/guides/batch-conversion /batch-image-converter-mac 301
+/docs/guides/batch-conversion /image-converter-mac 301
 /docs/guides/video-conversion /docs/converting-files 301
 /docs/reference/supported-formats /docs/supported-formats 301
 /docs/reference/keyboard-shortcuts /docs 301
@@ -46,10 +46,15 @@
 
 /media-converter-mac /image-converter-mac 301
 
+# "Batch" is a feature of image-converter-mac, not a separate intent.
+/batch-image-converter-mac /image-converter-mac 301
+# compress-images-mac was a head-term duplicate of the /compress hub.
+/compress-images-mac /compress 301
+
 # Free tools section removed — forward to the closest converter/compressor page.
 
 /tools/image-format-support-matrix /image-converter-mac 301
-/tools/image-file-size-calculator /compress-images-mac 301
+/tools/image-file-size-calculator /compress 301
 /tools/image-format-selector /image-converter-mac 301
 /tools / 301
 

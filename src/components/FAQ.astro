@@ -9,9 +9,10 @@ interface FAQ {
 
 interface Props {
   faqs: FAQ[];
+  size?: "base" | "lead";
 }
 
-const { faqs } = Astro.props;
+const { faqs, size = "base" } = Astro.props;
 ---
 
 <div class="space-y-1">
@@ -41,7 +42,7 @@ const { faqs } = Astro.props;
             </div>
           </summary>
           <div class="pb-4">
-            <Paragraph>{faq.answer}</Paragraph>
+            <Paragraph size={size}>{faq.answer}</Paragraph>
           </div>
         </details>
       </div>

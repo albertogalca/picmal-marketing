@@ -1,0 +1,71 @@
+---
+import Section from "./Section.astro";
+import Paragraph from "./Paragraph.astro";
+
+// The founder's note, framed as an elevated "paper" sheet so it reads as a
+// letter and stands apart from the flat sections above and below it.
+---
+
+<Section id="letter" width="medium">
+  <div
+    class="relative bg-background dark:bg-white/[0.04] border border-border rounded-2xl p-8 sm:p-10 md:p-14 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_18px_40px_-18px_rgba(0,0,0,0.18)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.4),0_18px_40px_-18px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.05)]"
+  >
+    <!-- Founder badge: a transparent starburst cutout, so depth comes from a
+         shape-following drop-shadow (a ring/box-shadow would box the star).
+         Decorative → pointer-events-none + empty alt is intentional. -->
+    <img
+      src="/founder-badge.png"
+      alt=""
+      width="156"
+      height="151"
+      loading="lazy"
+      class="pointer-events-none select-none absolute -top-6 -right-3 sm:-top-8 sm:-right-6 w-20 h-20 sm:w-24 sm:h-24 rotate-6 [filter:drop-shadow(0_6px_14px_rgba(0,0,0,0.20))]"
+    />
+
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      <div class="space-y-4">
+        <Paragraph color="primary">Hello there 👋</Paragraph>
+        <Paragraph color="primary">
+          I'm <a
+            href="https://albertogalca.com"
+            target="_blank"
+            rel="noreferrer"
+            class="link">Alberto</a
+          >, the developer behind Picmal.</Paragraph
+        >
+        <Paragraph color="primary">
+          Picmal started because I was tired of opening a browser every time I
+          needed to convert a few files. I figured there had to be a better way,
+          so I built one.
+        </Paragraph>
+        <Paragraph color="primary">
+          Over time, that simple image converter has grown into something much
+          bigger, mostly thanks to the people who use it.
+        </Paragraph>
+        <Paragraph color="primary">
+          Along the way, I've tried to stay true to a few simple ideas: your
+          files should stay on your computer, the app should feel at home on
+          your Mac, and you should only have to pay once.
+        </Paragraph>
+      </div>
+      <div class="space-y-4">
+        <Paragraph color="primary">
+          One of my favorite parts of building Picmal is talking to customers.
+          Many of the features in the app today started as conversations with
+          people who needed something that didn't exist yet.
+        </Paragraph>
+        <Paragraph color="primary">
+          So if there's a feature you've always wished for, or something you
+          haven't found in other tools, I'd love to <a
+            href="mailto:support@picmal.app"
+            class="link">hear from you</a
+          >. If it fits Picmal, I'll do my best to build it.
+        </Paragraph>
+        <div class="pt-2">
+          <Paragraph color="primary" class="mb-1">Best,</Paragraph>
+          <p class="font-signature text-text text-3xl leading-none">Alberto</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

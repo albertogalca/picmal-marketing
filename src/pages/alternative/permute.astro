@@ -6,54 +6,65 @@ import FAQ from "../../components/FAQ.astro";
 import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import BentoFeatures from "../../components/BentoFeatures.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 
-const SITE_TITLE = "Picmal: The All-in-One Permute Alternative for Mac";
 const SITE_DESCRIPTION =
-  "Looking for a Permute alternative? Picmal is your Mac's media toolkit—convert, compress, and edit images, video, audio, and PDFs in one app. 100% offline, native macOS UI, $15.99 one-time. 14-day refund.";
+  "Want a Permute alternative? Picmal converts, compresses, and edits images, video, audio, and PDFs in one Mac app. Runs fully offline, native macOS UI, $15.99 once. 14-day refund.";
 
 const faqs = [
   {
     question: "Is Picmal a good Permute alternative?",
     answer:
-      "If you don't need timeline video editing like trimming, cropping, or merging — yes. Picmal converts, compresses, and handles images, video, audio, and PDFs in one window. Permute adds that editing layer; Picmal skips it.",
+      "If you don't need to trim, crop, or merge video, then yes. Picmal converts, compresses, and handles images, video, audio, and PDFs in one window. Permute adds a video editing layer. Picmal skips it.",
   },
   {
     question: "Does Picmal work offline like Permute?",
     answer:
-      "Yes. Everything runs locally on your Mac — nothing is uploaded anywhere.",
+      "Yes. Everything runs locally on your Mac. Nothing gets uploaded anywhere.",
   },
   {
     question: "Can Picmal convert and compress video and audio?",
     answer:
-      "Yes. Picmal converts video (MP4, MOV, MKV, and more) and audio (MP3, WAV, FLAC, and more), and compresses all of them — images, video, audio, and PDFs — with a guarantee the output is never larger than the input. No timeline editing though: no trimming, cropping, or merging.",
+      "Yes. Picmal converts video (MP4, MOV, MKV, and more) and audio (MP3, WAV, FLAC, and more). It compresses all of them, images, video, audio, and PDFs, and the output is never larger than the input. No timeline editing though. No trimming, cropping, or merging.",
   },
   {
     question: "Is Picmal actually cheaper than Permute?",
     answer:
-      "Barely more expensive — $15.99 vs Permute's $14.99. Permute is also on Setapp if you pay for that. Picmal adds PDF tools, folder monitoring, Finder right-click, and metadata removal that Permute doesn't have.",
+      "No, it's a dollar more. $15.99 versus Permute's $14.99. Permute is also on Setapp if you pay for that. Picmal adds PDF tools, folder monitoring, Finder right-click, and metadata removal that Permute doesn't have.",
   },
   {
     question: "What if Picmal doesn't work for me?",
     answer:
-      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+      "Full refund within 14 days, no questions asked. Just email support@picmal.app.",
   },
 ];
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: The all-in-one Permute alternative for Mac"
+      description={SITE_DESCRIPTION}
+    />
+    <!-- Grape Nuts: handwritten signature in the founder letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap"
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -66,31 +77,27 @@ const faqs = [
 
     <ComparisonHero
       title="The all-in-one Permute alternative for Mac"
-      subhead="Both apps are offline Mac converters at nearly the same price. Picmal adds compression for images, video, audio, and PDFs, plus Shortcuts and folder monitoring. Permute adds timeline video editing. Depends what you need."
+      subhead="Both are offline Mac converters at about the same price. Picmal adds compression for images, video, audio, and PDFs, plus Shortcuts and folder monitoring. Permute adds timeline video editing. It comes down to what you need."
       buyEvent="buy_clicked_permute_comparison"
     />
 
     <ComparisonVerdict
       competitor="Permute"
-      summary="Picmal ($15.99) and Permute (~$14.99, also on Setapp) are both offline Mac converters at nearly identical prices. Picmal compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click. Permute adds timeline editing — trim, crop, merge — and audio normalization."
-      picmalFor="You convert and compress media on Mac and want Shortcuts, folder monitoring, and PDF tools — but don't need to trim or merge videos."
+      summary="Picmal ($15.99) and Permute (~$14.99, also on Setapp) are both offline Mac converters at about the same price. Picmal compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click. Permute adds timeline editing (trim, crop, merge) and audio normalization."
+      picmalFor="You convert and compress media on your Mac and want Shortcuts, folder monitoring, and PDF tools, and you don't need to trim or merge videos."
       competitorFor="You need to trim, crop, or merge videos, normalize audio, or already pay for Setapp."
     />
 
-    <SectionDivider />
-
     <!-- Comparison Table -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-4 text-center">Picmal vs Permute at a glance</H2>
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          Permute is powerful at video editing. But sometimes you just want one
-          app to convert and compress a file without thinking about it.
-        </Paragraph>
-
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs Permute at a glance
+        <Fragment slot="sublead">
+          Permute is good at video editing. But sometimes you just want one app
+          to convert and compress a file without thinking about it.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
               <thead>
@@ -108,7 +115,7 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Also available via</td>
-                  <td class="p-4 text-text-secondary">—</td>
+                  <td class="p-4 text-text-secondary">Not available</td>
                   <td class="p-4 text-text">Setapp ($9.99/mo)</td>
                 </tr>
                 <tr>
@@ -119,7 +126,7 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Interface</td>
                   <td class="p-4 text-text"
-                    >Single window—no hunting through menus</td
+                    >One window, no hunting through menus</td
                   >
                   <td class="p-4 text-text">Groups + presets</td>
                 </tr>
@@ -141,14 +148,14 @@ const faqs = [
                 <tr>
                   <td class="p-4 text-text-secondary">Metadata removal</td>
                   <td class="p-4 text-text"
-                    >Yes—strip location data before sharing</td
+                    >Yes, strip location data before sharing</td
                   >
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Finder right-click</td>
                   <td class="p-4 text-text"
-                    >Yes—convert without opening the app</td
+                    >Yes, convert without opening the app</td
                   >
                   <td class="p-4 text-text">No</td>
                 </tr>
@@ -160,32 +167,28 @@ const faqs = [
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <!-- Who Picmal Is For / Who Should Stick with Permute -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-4">Which one is right for you?</H2>
-          <Paragraph class="max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
             Here's where each one makes more sense.
-          </Paragraph>
-        </div>
+        </Fragment>
+      </SectionHeading>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Picmal
-              </h3>
-              <p class="text-text-secondary">
-                Convert, compress, and automate — no video editing
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Convert, compress, and automate, no video editing
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -203,7 +206,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You convert and compress — no need to trim or merge videos
+                  You convert and compress, and don't need to trim or merge videos
                 </span>
               </li>
 
@@ -221,7 +224,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You use folder monitoring or Apple Shortcuts for automation
+                  You lean on folder monitoring or Apple Shortcuts to automate work
                 </span>
               </li>
 
@@ -239,7 +242,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You want PDF tools — compress, combine, images-to-PDF
+                  You want PDF tools: compress, combine, images to PDF
                 </span>
               </li>
 
@@ -257,23 +260,21 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  Your files stay on your Mac, nothing goes to a server
+                  Your files stay on your Mac. Nothing goes to a server
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <!-- Permute Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Permute
-              </h3>
-              <p class="text-text-secondary">
-                Trim, crop, merge videos, normalize audio
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Trim, crop, and merge videos, normalize audio
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -291,8 +292,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need video editing features like trimming, cropping, and
-                  merging
+                  You need to trim, crop, and merge video
                 </span>
               </li>
 
@@ -310,7 +310,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need scheduled conversions that run at specific times
+                  You want conversions scheduled to run at specific times
                 </span>
               </li>
 
@@ -328,7 +328,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You require OCR text extraction from images
+                  You need to pull text out of images with OCR
                 </span>
               </li>
 
@@ -346,7 +346,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need audio normalization and volume adjustment
+                  You need to normalize audio and adjust volume
                 </span>
               </li>
 
@@ -364,21 +364,19 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You already have a Setapp subscription
+                  You already pay for Setapp
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
-      </div>
-    </section>
+    </Section>
 
-    <SectionDivider />
-
-    <!-- BentoFeatures -->
-    <BentoFeatures />
-
-    <SectionDivider />
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
 
     <!-- Testimonials Section -->
     <MasonryTestimonials />
@@ -392,29 +390,23 @@ const faqs = [
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
-      <PricingSection />
-    </section>
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
-          <Paragraph class="max-w-2xl mx-auto">
-            Can't find what you're looking for? Email support@picmal.app
-          </Paragraph>
-        </div>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
 

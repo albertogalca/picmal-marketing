@@ -4,9 +4,10 @@ import { cn } from "../utils/cn";
 interface Props {
   class?: string;
   size?: "base" | "small" | "lead";
+  color?: "secondary" | "primary";
 }
 
-const { class: className, size = "base" } = Astro.props;
+const { class: className, size = "base", color = "secondary" } = Astro.props;
 
 const sizeClasses = {
   base: "text-body",
@@ -14,7 +15,12 @@ const sizeClasses = {
   lead: "text-body-big",
 };
 
-const defaultClasses = `${sizeClasses[size]} text-text-secondary text-pretty`;
+const colorClasses = {
+  secondary: "text-text-secondary",
+  primary: "text-text",
+};
+
+const defaultClasses = `${sizeClasses[size]} ${colorClasses[color]} text-pretty`;
 const mergedClasses = cn(defaultClasses, className);
 ---
 

@@ -3,7 +3,10 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import H1 from "../components/H1.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
 import { SITE_TITLE } from "../consts";
 import { getCollection, render } from "astro:content";
@@ -48,7 +51,7 @@ const softwareSchema = {
 <html lang="en">
   <head>
     <BaseHead
-      title={`Changelog - ${SITE_TITLE}`}
+      title="Picmal: Changelog"
       description="Full changelog and release notes for Picmal, the macOS image converter. See every new feature, format addition, performance boost and bug fix shipped across versions."
     />
     <script
@@ -75,45 +78,28 @@ const softwareSchema = {
     <Header />
 
     <main class="relative z-10 pt-32 pb-20">
-      <div class="text-center mb-16 px-6">
-        <H1 class="mb-4">Changelog</H1>
-        <Paragraph class="max-w-2xl mx-auto">
-          Latest updates, new features, and improvements to Picmal.
-        </Paragraph>
+      <div class="max-w-5xl mx-auto px-6">
+        <SectionHeading
+          level={1}
+          sublead="Latest updates, new features, and improvements to Picmal."
+        >
+          Changelog
+        </SectionHeading>
       </div>
 
-      <div class="max-w-2xl mx-auto px-6 mb-16">
-        <div
-          class="relative bg-background-subtle border border-border rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6"
-        >
-          <Paragraph class="mb-0 flex-1 text-body">
+      <div class="max-w-3xl mx-auto px-6 mb-16">
+        <Card class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+          <Paragraph class="mb-0 flex-1">
             As an indie developer, Picmal grows through word of mouth. A review
             only takes a minute and makes a huge difference.
           </Paragraph>
-          <a
+          <Button
             href="https://tally.so/r/Me18qE"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent text-white font-semibold text-small rounded-xl transition duration-200 hover:bg-accent-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent whitespace-nowrap w-full sm:w-auto"
-          >
-            Leave a Review
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
+            text="Leave a Review"
+            size="small"
+            class="w-full sm:w-auto whitespace-nowrap"
+          />
+        </Card>
       </div>
 
       <div class="max-w-5xl mx-auto px-6 pb-20">
@@ -176,12 +162,12 @@ const softwareSchema = {
                   <div
                     class="prose max-w-none
                       prose-headings:text-text prose-headings:font-semibold
-                      prose-p:text-text/65 prose-p:leading-relaxed
+                      prose-p:text-text-secondary prose-p:leading-relaxed
                       prose-strong:text-text
-                      prose-ul:text-text/65
-                      prose-ol:text-text/65
-                      prose-li:text-text/65
-                      prose-img:rounded-none prose-img:border prose-img:border-border"
+                      prose-ul:text-text-secondary
+                      prose-ol:text-text-secondary
+                      prose-li:text-text-secondary
+                      prose-img:rounded-lg prose-img:border prose-img:border-border"
                   >
                     <row.Content />
                   </div>

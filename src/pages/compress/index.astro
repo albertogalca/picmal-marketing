@@ -2,15 +2,13 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import H1 from "../../components/H1.astro";
-import Paragraph from "../../components/Paragraph.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
-import Breadcrumb from "../../components/Breadcrumb.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
+import Section from "../../components/Section.astro";
 import { compressions } from "../../data/compressions";
 
-const title = "Compress Images on Mac — Reduce File Size | Picmal";
+const title = "Picmal: Compress images on Mac, reduce file size";
 const description =
   "Compress JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF files on your Mac. Batch compression, offline processing, adjustable quality.";
 ---
@@ -27,49 +25,39 @@ const description =
     <Header />
 
     <ComparisonHero
-      title="Compress Any Image Format on Mac"
+      title="Compress any image format on Mac"
       subhead="Reduce file sizes for JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF on your Mac. Batch processing, adjustable quality, completely offline."
       buyEvent="buy_clicked_compress_hub"
       defaultTab="compress"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "Compress" }]}
-      />
-    </ComparisonHero>
+    />
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20">
-        <!-- Format Cards -->
-        <div class="grid md:grid-cols-2 gap-4 mb-16 sm:mb-20">
-          {
-            compressions.map((c) => (
-              <a
-                href={`/compress/${c.slug}`}
-                class="group bg-background-subtle/50 border border-border rounded-2xl p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
-                <div class="flex items-center gap-3 mb-3">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background border border-border text-small font-mono font-medium text-text group-hover:border-accent/20 transition-colors">
-                    .{c.format}
-                  </span>
-                  <h2 class="text-h3 text-text">
-                    Compress {c.name}
-                  </h2>
-                </div>
-                <p class="text-small text-text-secondary">
-                  {c.description}
-                </p>
-              </a>
-            ))
-          }
-        </div>
+    <!-- Format Cards -->
+    <Section>
+      <div class="grid md:grid-cols-2 gap-4">
+        {
+          compressions.map((c) => (
+            <a
+              href={`/compress/${c.slug}`}
+              class="group bg-background-subtle/50 border border-border rounded-2xl p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background border border-border text-small font-mono font-medium text-text group-hover:border-accent/20 transition-colors">
+                  .{c.format}
+                </span>
+                <h2 class="text-h3 text-text">Compress {c.name}</h2>
+              </div>
+              <p class="text-small text-text-secondary">{c.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
 
-        <CTASection
-          heading="Compress any file format with Picmal"
-          analyticsEvent="buy_clicked_compress_hub_bottom"
-        />
-    </div>
+    <CTASection
+      heading="Compress any file format with Picmal"
+      analyticsEvent="buy_clicked_compress_hub_bottom"
+    />
 
     <Footer />
-
   </body>
 </html>

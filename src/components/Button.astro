@@ -59,11 +59,26 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
-  primary:
-    "bg-accent text-white shadow-sm shadow-accent/25 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30",
-  secondary:
-    "bg-background text-text border border-border shadow-xs hover:bg-background-subtle hover:border-border/70 hover:shadow-sm",
-  overlay: "bg-white text-black shadow-sm hover:bg-white/90 hover:shadow-md",
+  primary: cn(
+    "text-white font-semibold rounded-lg",
+    "bg-[linear-gradient(180deg,#2583FF_14%,#1C5DFF_81.56%)] hover:bg-[linear-gradient(180deg,#1C5DFF_14%,#1450E0_81.56%)]",
+    "dark:bg-[linear-gradient(180deg,#3B82F6_14%,#2563EB_81.56%)] dark:hover:bg-[linear-gradient(180deg,#2563EB_14%,#1D4ED8_81.56%)]",
+    "shadow-[0_1px_2px_rgba(0,0,0,0.12),0_5px_14px_-3px_rgba(28,93,255,0.35),inset_0_1px_0_rgba(255,255,255,0.22)]",
+    "hover:shadow-[0_2px_5px_rgba(0,0,0,0.14),0_10px_22px_-4px_rgba(28,93,255,0.45),inset_0_1px_0_rgba(255,255,255,0.28)]",
+    "dark:shadow-[0_1px_2px_rgba(0,0,0,0.45),0_5px_16px_-3px_rgba(59,130,246,0.5),inset_0_1px_0_rgba(255,255,255,0.18)]",
+    "dark:hover:shadow-[0_2px_6px_rgba(0,0,0,0.55),0_12px_26px_-4px_rgba(59,130,246,0.6),inset_0_1px_0_rgba(255,255,255,0.26)]",
+  ),
+  secondary: cn(
+    "text-text font-semibold rounded-lg border",
+    "bg-background border-border shadow-xs hover:bg-background-subtle hover:border-border/70 hover:shadow-sm",
+    "dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]",
+    "dark:hover:bg-white/[0.10] dark:hover:border-white/[0.16] dark:hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]",
+  ),
+  overlay: cn(
+    "font-semibold bg-white/85 text-black backdrop-blur-md ring-1 ring-black/[0.06]",
+    "shadow-[0_2px_8px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.5)]",
+    "hover:bg-white hover:shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.6)]",
+  ),
 };
 
 const layoutClasses = isIconOnly
@@ -71,9 +86,9 @@ const layoutClasses = isIconOnly
   : sizeClasses[size];
 
 const baseClasses = cn(
-  "inline-flex items-center justify-center rounded-xl font-semibold cursor-pointer",
+  "inline-flex items-center justify-center rounded-xl font-[590] cursor-pointer",
   "transition-[scale,box-shadow,background-color,border-color] duration-200 ease-out motion-reduce:transition-none",
-  "active:scale-[0.97] active:shadow-sm motion-reduce:active:scale-100",
+  "active:scale-[0.96] active:shadow-sm motion-reduce:active:scale-100",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
   "disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100",
   layoutClasses,

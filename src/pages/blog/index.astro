@@ -2,17 +2,25 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
-import BlogNavigation from "../../components/BlogNavigation.astro";
 import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
-import H1 from "../../components/H1.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import SegmentedControl from "../../components/SegmentedControl.astro";
 import Paragraph from "../../components/Paragraph.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Categories come from the posts themselves, so a new category needs no code
+// change here. "All" is always first.
+const categories = [
+  "All",
+  ...new Set(posts.map((p) => p.data.category).filter(Boolean)),
+];
+const segments = categories.map((c) => ({ id: c, label: c }));
 
 const blogListSchema = {
   "@context": "https://schema.org",
@@ -43,7 +51,7 @@ const blogListSchema = {
 <html lang="en">
   <head>
     <BaseHead
-      title="Picmal Blog"
+      title="Picmal: Blog"
       description="Guides on converting and compressing images, video, audio, and PDFs on your Mac, plus format tips, batch-processing workflows, and product updates."
     />
     <script
@@ -54,32 +62,40 @@ const blogListSchema = {
   <body class="bg-background overflow-x-hidden">
     <Header />
 
-    <!-- Hero with gradient -->
     <main class="relative z-10 pt-32 pb-20">
       <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <H1 class="mb-4">Picmal Blog</H1>
-          <Paragraph class="max-w-2xl mx-auto">
-            Updates, guides, and thoughts about building a media conversion app
-            for Mac
-          </Paragraph>
-        </div>
+        <SectionHeading
+          level={1}
+          sublead="Updates, guides, and thoughts about building a media conversion app for Mac"
+        >
+          Picmal Blog
+        </SectionHeading>
 
-        <!-- Category Navigation -->
-        <div class="mb-16">
-          <BlogNavigation currentCategory="All" />
-        </div>
+        <!-- Category filter (client-side, no page reloads) -->
+        {
+          segments.length > 1 && (
+            <div class="mb-12">
+              <SegmentedControl
+                segments={segments}
+                activeId="All"
+                ariaLabel="Blog categories"
+                mode="tabs"
+                segmentClass="blog-cat-tab"
+              />
+            </div>
+          )
+        }
 
         <!-- Blog Posts Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {
             posts.map((post) => (
-              <article class="h-full">
+              <article class="h-full" data-category={post.data.category ?? ""}>
                 <a
                   href={`/blog/${post.id}`}
-                  class="flex flex-col h-full bg-background-subtle rounded-xl overflow-hidden"
+                  class="flex flex-col h-full bg-background-subtle/50 border border-border rounded-2xl overflow-hidden transition-[scale] duration-200 active:scale-[0.98] motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <div class="relative aspect-video overflow-hidden bg-background">
+                  <div class="relative aspect-video overflow-hidden bg-background ring-1 ring-inset ring-black/10 dark:ring-white/10">
                     <Image
                       src={post.data.heroImage || "/images/blog/default.png"}
                       alt={post.data.title}
@@ -94,7 +110,7 @@ const blogListSchema = {
                     <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
                       {post.data.category && (
                         <>
-                          <span class="px-2 py-1 bg-accent/10 text-accent rounded-xl font-medium">
+                          <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
                             {post.data.category}
                           </span>
                           <span>•</span>
@@ -119,16 +135,43 @@ const blogListSchema = {
           }
         </div>
 
-        {
-          posts.length === 0 && (
-            <div class="text-center py-16">
-              <Paragraph>No blog posts found.</Paragraph>
-            </div>
-          )
-        }
+        <div
+          id="blog-empty"
+          class="text-center py-16"
+          hidden={posts.length !== 0}
+        >
+          <Paragraph>No posts here yet.</Paragraph>
+        </div>
       </div>
     </main>
 
     <Footer />
+
+    <!-- Filter the grid by category without leaving the page. -->
+    <script>
+      const tabs =
+        document.querySelectorAll<HTMLElement>(".blog-cat-tab");
+      const articles =
+        document.querySelectorAll<HTMLElement>("article[data-category]");
+      const empty = document.getElementById("blog-empty");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const cat = tab.dataset.segment;
+          tabs.forEach((b) => {
+            const active = b === tab;
+            b.classList.toggle("active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          let visible = 0;
+          articles.forEach((a) => {
+            const show = cat === "All" || a.dataset.category === cat;
+            a.hidden = !show;
+            if (show) visible++;
+          });
+          if (empty) empty.hidden = visible !== 0;
+        });
+      });
+    </script>
   </body>
 </html>

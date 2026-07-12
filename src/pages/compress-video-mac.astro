@@ -3,20 +3,18 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FAQ from "../components/FAQ.astro";
-import H1 from "../components/H1.astro";
-import H2 from "../components/H2.astro";
-import Paragraph from "../components/Paragraph.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
-import SectionDivider from "../components/SectionDivider.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
 import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 
 const title =
-  "Compress Video on Mac — Reduce File Size Without Losing Quality | Picmal";
+  "Picmal: Compress video on Mac, reduce file size without losing quality";
 const description =
   "Compress MP4, MOV, MKV and more on your Mac. H.264/H.265 with a quality slider, target a size for email, batch process. Offline, no watermark, no upload limit. $15.99 one-time.";
 
@@ -29,7 +27,7 @@ const faqs = [
   {
     question: "Does compressing a video lose quality?",
     answer:
-      "Only as much as you choose. Picmal uses a CRF quality slider — at CRF 18–20 the result is visually lossless. Picmal also shows an estimated output size before you encode, so you can dial in the size/quality trade-off without guessing.",
+      "Only as much as you choose. Picmal uses a CRF quality slider. At CRF 18–20 the result is visually lossless. Picmal also shows an estimated output size before you encode, so you can dial in the size/quality trade-off without guessing.",
   },
   {
     question: "Can I compress a video to send by email?",
@@ -49,7 +47,7 @@ const faqs = [
   {
     question: "Is there an upload, watermark, or size limit?",
     answer:
-      "No. Picmal compresses entirely on your Mac — no uploads, no queues, no watermark, and no file-size cap. It's a one-time $15.99, not a subscription.",
+      "No. Picmal compresses entirely on your Mac. No uploads, no queues, no watermark, and no file-size cap. It's a one-time $15.99, not a subscription.",
   },
 ];
 
@@ -76,19 +74,12 @@ const faqSchema = {
   >
     <Header />
 
-        <ComparisonHero
+    <ComparisonHero
       title="Compress video on your Mac without losing quality"
       subhead="Shrink MP4, MOV, MKV and more with a quality slider and a live size estimate. Make a clip small enough to email, or batch-compress a whole folder. Offline, no watermark, no upload limit."
       buyEvent="buy_clicked_compress_video_mac"
       defaultTab="compress"
-    >
-      <Breadcrumb
-        slot="breadcrumb"
-        items={[{ label: "Home", href: "/" }, { label: "Compress Video on Mac" }]}
-      />
-    </ComparisonHero>
-
-    <SectionDivider />
+    />
 
     <!-- How It Works -->
     <CardGrid
@@ -106,12 +97,10 @@ const faqSchema = {
         },
         {
           title: "Compress",
-          description: "Click Compress — everything runs on your Mac.",
+          description: "Click Compress. Everything runs on your Mac.",
         },
       ]}
     />
-
-    <SectionDivider />
 
     <!-- Controls -->
     <CardGrid
@@ -135,24 +124,22 @@ const faqSchema = {
         {
           title: "Size estimate first",
           description:
-            "See the projected output size before you encode — perfect for hitting an email or upload limit.",
+            "See the projected output size before you encode, perfect for hitting an email or upload limit.",
         },
       ]}
       linkText="Need to convert video formats too? See the video converter"
       linkHref="/video-converter-mac"
     />
 
-    <SectionDivider />
-
     <!-- Why compress -->
     <CardGrid
       heading="When you actually need this"
-      intro={"Modern phones and cameras produce enormous files. A two-minute 4K clip can be over 1 GB. Most of the time you just need it small enough to send or store."}
+      intro={"Modern phones and cameras produce enormous files. A two-minute 4K clip can be over 1 GB. Most of the time you just need it small enough to send or store."}
       items={[
         {
           title: "It won't fit in an email",
           description:
-            "Gmail and most providers cap attachments around 25 MB. Drop the CRF and resolution until the live size estimate fits, then send.",
+            "Gmail and most providers cap attachments around 25 MB. Drop the CRF and resolution until the live size estimate fits, then send.",
         },
         {
           title: "Upload limits and slow uploads",
@@ -162,7 +149,7 @@ const faqSchema = {
         {
           title: "Screen recordings",
           description:
-            "Tutorials and demos don't need 60 fps or full resolution. Halving both can shrink a recording by 80% with no real loss.",
+            "Tutorials and demos don't need 60 fps or full resolution. Halving both can shrink a recording by 80% with no real loss.",
         },
         {
           title: "Reclaiming disk space",
@@ -172,53 +159,41 @@ const faqSchema = {
       ]}
     />
 
-    <SectionDivider />
-
     <!-- Related -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-3xl mx-auto text-center">
-        <H2 class="mb-6">Related tools</H2>
-        <div class="flex flex-col gap-3">
-          <a href="/video-converter-mac" class="text-accent hover:underline"
-            >Convert video formats (MOV to MP4, and more) &rarr;</a
-          >
-          <a href="/compress-images-mac" class="text-accent hover:underline"
-            >Compress images on Mac &rarr;</a
-          >
-          <a href="/compress-audio-mac" class="text-accent hover:underline"
-            >Compress audio on Mac &rarr;</a
-          >
-          <a href="/compress" class="text-accent hover:underline"
-            >All compression options &rarr;</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <SectionDivider />
-    <MasonryTestimonials />
-    <SectionDivider />
-
-    <section
-      id="pricing"
-      class="relative z-10 px-6 py-16 sm:py-20 bg-background-subtle/50 border-y border-border"
-    >
-      <PricingSection />
-    </section>
-
-    <section id="faq" class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-3xl mx-auto">
-        <H2 class="mb-8 text-center">Frequently asked questions</H2>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8"
+    <Section width="narrow" class="text-center">
+      <SectionHeading class="mb-6">Related tools</SectionHeading>
+      <div class="flex flex-col gap-3">
+        <a href="/video-converter-mac" class="text-accent hover:underline"
+          >Convert video formats (MOV to MP4, and more) &rarr;</a
         >
-          <FAQ faqs={faqs} />
-        </div>
+        <a href="/compress" class="text-accent hover:underline"
+          >Compress images on Mac &rarr;</a
+        >
+        <a href="/compress-audio-mac" class="text-accent hover:underline"
+          >Compress audio on Mac &rarr;</a
+        >
+        <a href="/compress" class="text-accent hover:underline"
+          >All compression options &rarr;</a
+        >
       </div>
-    </section>
+    </Section>
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
     <SupportedFormatsModal />
-
   </body>
 </html>

@@ -6,47 +6,48 @@ import FAQ from "../../components/FAQ.astro";
 import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import BentoFeatures from "../../components/BentoFeatures.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 
-const SITE_TITLE = "Picmal: The Affordable Compresto Alternative for Mac";
 const SITE_DESCRIPTION =
-  "Looking for a Compresto alternative? Picmal is an all-in-one Mac media toolkit—convert, compress, and edit images, video, audio, and PDFs for $15.99, not $49. Shortcuts integration, folder monitoring. 14-day refund.";
+  "Looking for a Compresto alternative? Picmal is one Mac app for convert, compress, and edit across images, video, audio, and PDFs. Pay once, $15.99, not $49. Works with Shortcuts and folder monitoring. 14-day refund.";
 
 const faqs = [
   {
     question: "Is Picmal a good Compresto alternative?",
     answer:
-      "Depends what you need. Picmal converts formats, compresses files, and handles images, video, audio, and PDFs — all for $15.99. Compresto is purpose-built to compress as aggressively as possible, and has a Raycast extension. Different tools for different jobs.",
+      "Depends what you need. Picmal converts formats, compresses files, and handles images, video, audio, and PDFs, all for $15.99. Compresto is built to compress as hard as it can, and it has a Raycast extension. Different tools for different jobs.",
   },
   {
     question: "Does Picmal compress files as much as Compresto?",
     answer:
-      "Compresto advertises up to 90% reduction and is tuned specifically for that. Picmal compresses well across images, video, audio, and PDFs — not as aggressively, but enough for most cases. You also get format conversion and PDF tools alongside.",
+      "Compresto advertises up to 90% reduction and is tuned for exactly that. Picmal compresses well across images, video, audio, and PDFs. Not as far, but enough for most jobs. And you get format conversion and PDF tools in the same app.",
   },
   {
     question: "Why is Picmal so much cheaper than Compresto?",
     answer:
-      "Compresto costs $49 and focuses entirely on compression. Picmal is $15.99 and covers more: converting, compressing, light editing, and PDF tools. Single-purpose tools that do one thing very well often cost more.",
+      "Compresto costs $49 and does one thing, compression, very well. Picmal is $15.99 and covers more: converting, compressing, light editing, and PDF tools. A tool built to do one thing extremely well often costs more than one that does a lot.",
   },
   {
     question: "Does Picmal have Raycast integration like Compresto?",
     answer:
-      "Not yet — Raycast is coming. Right now Picmal works with Apple Shortcuts and Finder right-click. If Raycast is core to your workflow, Compresto's extension is the better option for now.",
+      "Not yet. Raycast is coming. Right now Picmal works with Apple Shortcuts and Finder right-click. If Raycast is central to how you work, Compresto's extension is the better pick for now.",
   },
   {
     question: "Can Picmal compress PDFs like Compresto?",
     answer:
-      "Yes. Picmal compresses PDFs with a guarantee the output is never larger than the input. It also combines PDFs, turns images into a PDF, and exports PDF pages to PNG at a chosen DPI. Plus real compression for images, video, and audio.",
+      "Yes. Picmal compresses PDFs, and the output is never larger than the input. It also combines PDFs, turns images into a PDF, and exports PDF pages to PNG at the DPI you pick. On top of that, real compression for images, video, and audio.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -58,7 +59,17 @@ const faqs = [
 
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: The affordable Compresto alternative for Mac"
+      description={SITE_DESCRIPTION}
+    />
+    <!-- Grape Nuts: handwritten signature in the founder letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap"
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -71,32 +82,28 @@ const faqs = [
 
     <ComparisonHero
       title="The affordable Compresto alternative for Mac"
-      subhead="Compresto does compression well. If you also need to convert formats, work with video and audio, or handle PDFs — Picmal does all of that for $15.99, not $49."
+      subhead="Compresto compresses well. If you also need to convert formats, work with video and audio, or handle PDFs, Picmal does all of it for $15.99, not $49. Files never leave your Mac."
       buyEvent="buy_clicked_compresto_comparison"
     />
 
     <ComparisonVerdict
       competitor="Compresto"
-      summary="Compresto squeezes files as small as they'll go — up to 90% reduction — with a Raycast extension. Picmal ($15.99 one-time) does real compression too, but also converts formats, covers video and audio, handles PDFs, and costs a third as much."
-      picmalFor="You need more than just compression — formats to convert, video and audio to process, PDFs to shrink or combine — and don't want to pay $49 for it."
-      competitorFor="You compress files constantly and want the maximum reduction possible, and you live in Raycast."
+      summary="Compresto squeezes files as small as they'll go, up to 90% reduction, and has a Raycast extension. Picmal ($15.99, pay once) does real compression too. It also converts formats, covers video and audio, handles PDFs, and costs about a third as much."
+      picmalFor="You need more than compression. Formats to convert, video and audio to process, PDFs to shrink or combine, and you'd rather not pay $49 for it."
+      competitorFor="You compress files all day, want the smallest possible output, and you live in Raycast."
     />
 
-    <SectionDivider />
-
     <!-- Comparison Table -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-4 text-center">Picmal vs Compresto at a glance</H2>
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs Compresto at a glance
+        <Fragment slot="sublead">
           Compresto is built for one thing: squeezing files as small as possible.
-          Picmal handles more — convert, compress, and edit across images, video,
-          audio, and PDFs. Both run offline, both support batch.
-        </Paragraph>
-
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
+          Picmal does more. Convert, compress, and edit across images, video,
+          audio, and PDFs. Both run offline, both handle batches.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
               <thead>
@@ -115,7 +122,7 @@ const faqs = [
                   <td class="p-4 text-text">$49 one-time (or $7/mo)</td>
                 </tr>
                 <tr>
-                  <td class="p-4 text-text-secondary">Primary purpose</td>
+                  <td class="p-4 text-text-secondary">What it's for</td>
                   <td class="p-4 text-text">Convert, compress &amp; edit</td>
                   <td class="p-4 text-text">File compression</td>
                 </tr>
@@ -126,30 +133,30 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Image conversion</td>
-                  <td class="p-4 text-text">Yes—HEIC, JPG, PNG, WebP, etc.</td>
+                  <td class="p-4 text-text">Yes. HEIC, JPG, PNG, WebP, and more</td>
                   <td class="p-4 text-text">Compression only</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes—MP4, MOV, MKV, etc.</td>
+                  <td class="p-4 text-text">Yes. MP4, MOV, MKV, and more</td>
                   <td class="p-4 text-text">Compression only</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes—MP3, WAV, FLAC, etc.</td>
+                  <td class="p-4 text-text">Yes. MP3, WAV, FLAC, and more</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">PDF support</td>
                   <td class="p-4 text-text"
-                    >Yes—compress, combine, images→PDF</td
+                    >Yes. Compress, combine, images to PDF</td
                   >
-                  <td class="p-4 text-text">Yes—compression</td>
+                  <td class="p-4 text-text">Yes. Compression</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Compression</td>
                   <td class="p-4 text-text"
-                    >Yes—images, video, audio, PDF</td
+                    >Yes. Images, video, audio, PDF</td
                   >
                   <td class="p-4 text-text">Up to 90% reduction</td>
                 </tr>
@@ -186,32 +193,28 @@ const faqs = [
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <!-- Who Picmal Is For / Who Should Stick with Compresto -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-4">Which one is right for you?</H2>
-          <Paragraph class="max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
             Here's where each one makes more sense.
-          </Paragraph>
-        </div>
+        </Fragment>
+      </SectionHeading>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Picmal
-              </h3>
-              <p class="text-text-secondary">
+              </H3>
+              <Paragraph color="secondary">
                 You need more than just compression
-              </p>
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -287,19 +290,17 @@ const faqs = [
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <!-- Compresto Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Compresto
-              </h3>
-              <p class="text-text-secondary">
+              </H3>
+              <Paragraph color="secondary">
                 Compression is your only job
-              </p>
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -335,7 +336,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You need Raycast extension integration
+                  You run everything through Raycast
                 </span>
               </li>
 
@@ -371,21 +372,19 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You want a dedicated, single-purpose compression app
+                  You want one app that only compresses, and does it hard
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
-      </div>
-    </section>
+    </Section>
 
-    <SectionDivider />
-
-    <!-- BentoFeatures -->
-    <BentoFeatures />
-
-    <SectionDivider />
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
 
     <!-- Testimonials Section -->
     <MasonryTestimonials />
@@ -399,29 +398,23 @@ const faqs = [
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
-      <PricingSection />
-    </section>
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
-          <Paragraph class="max-w-2xl mx-auto">
-            Can't find what you're looking for? Email support@picmal.app
-          </Paragraph>
-        </div>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
 

@@ -6,54 +6,65 @@ import FAQ from "../../components/FAQ.astro";
 import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import H1 from "../../components/H1.astro";
-import H2 from "../../components/H2.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import SectionDivider from "../../components/SectionDivider.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
 import FeaturedOn from "../../components/FeaturedOn.astro";
-import BentoFeatures from "../../components/BentoFeatures.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 
-const SITE_TITLE = "Picmal: The Kompressor Alternative for Video and Audio";
 const SITE_DESCRIPTION =
-  "Looking for a Kompressor alternative that does more than convert? Picmal is an all-in-one Mac media toolkit that converts, compresses, and lightly edits images, video, and audio — plus PDF tools. $15.99 one-time. 14-day refund.";
+  "Want a Kompressor alternative that does more than compress images? Picmal converts, compresses, and lightly edits images, video, and audio on your Mac, and has PDF tools too. Everything runs offline. $15.99 once, 14-day refund.";
 
 const faqs = [
   {
     question: "Is Picmal a good Kompressor alternative?",
     answer:
-      "If you need more than image compression, yes. Picmal converts and compresses images, video, audio, and PDFs in one app, with Shortcuts, folder monitoring, and Finder right-click. Kompressor is a great free option if images are all you need.",
+      "If you need more than image compression, yes. Picmal converts and compresses images, video, audio, and PDFs in one app, with Shortcuts, folder monitoring, and Finder right-click. If images are all you need, Kompressor is free and does that well.",
   },
   {
     question: "Does Picmal have real-time preview like Kompressor?",
     answer:
-      "No — Picmal batches files without the per-file preview. If seeing the before/after for each image before committing matters to you, Kompressor's live preview is genuinely useful.",
+      "No. Picmal batches files without a per-file preview. If you want to see the before and after for each image before committing, Kompressor's live preview is genuinely useful.",
   },
   {
     question: "Why pay for Picmal when Kompressor is free?",
     answer:
-      "Kompressor is image-only and free. Picmal is $15.99 and covers video, audio, and PDFs alongside images — plus format conversion, metadata removal, Shortcuts, and folder monitoring. If image compression is all you need, Kompressor is a perfectly good choice.",
+      "Kompressor is free and does images only. Picmal is $15.99 and covers video, audio, and PDFs alongside images. It also converts formats, strips metadata, and works with Shortcuts and folder monitoring. If image compression is all you need, Kompressor is a fine choice.",
   },
   {
     question: "Can Kompressor convert video files?",
     answer:
-      "No. Kompressor is image-only. For video — or audio, or format conversion — Picmal covers those.",
+      "No. Kompressor does images only. For video, audio, or format conversion, Picmal handles those.",
   },
   {
     question: "What if Picmal doesn't work for me?",
     answer:
-      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+      "Email support@picmal.app within 14 days and I'll refund you in full, no questions asked.",
   },
 ];
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: The Kompressor alternative that does more than compress images"
+      description={SITE_DESCRIPTION}
+    />
+    <!-- Grape Nuts: handwritten signature in the founder letter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap"
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -65,33 +76,29 @@ const faqs = [
     <Header />
 
     <ComparisonHero
-      title="The Kompressor alternative that does more than convert"
-      subhead="Kompressor compresses images and does it well, for free. If you also need to convert formats, work with video and audio, or handle PDFs — and want Shortcuts and folder monitoring — Picmal covers all of that."
+      title="The Kompressor alternative that does more than compress images"
+      subhead="Kompressor compresses images, for free, and does it well. If you also need to convert formats, work with video and audio, or handle PDFs, and you want Shortcuts and folder monitoring, Picmal covers all of it. Everything runs on your Mac."
       buyEvent="buy_clicked_kompressor_comparison"
     />
 
     <ComparisonVerdict
       competitor="Kompressor"
-      summary="Kompressor is a free Mac image compressor with a live quality preview per file. Picmal ($15.99 one-time) covers more ground: it converts and compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click."
-      picmalFor="You need more than image compression — video, audio, PDF tools, format conversion — or want Shortcuts and folder monitoring in the mix."
-      competitorFor="You only compress images, want real-time before/after preview, and free is important."
+      summary="Kompressor is a free Mac image compressor with a live quality preview for each file. Picmal costs $15.99 once and does more. It converts and compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click."
+      picmalFor="You need more than image compression. Think video, audio, PDF tools, and format conversion, plus Shortcuts and folder monitoring."
+      competitorFor="You only compress images, you want a real-time before and after preview, and free matters to you."
     />
 
-    <SectionDivider />
-
     <!-- Comparison Table -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-4xl mx-auto">
-        <H2 class="mb-4 text-center">Picmal vs Kompressor at a glance</H2>
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
-          Both run offline on Mac. Kompressor focuses on one thing: compressing
-          images, with a live quality preview. Picmal covers more: convert,
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs Kompressor at a glance
+        <Fragment slot="sublead">
+          Both run offline on your Mac. Kompressor does one thing, compressing
+          images with a live quality preview. Picmal does more: convert,
           compress, and edit across images, video, audio, and PDFs.
-        </Paragraph>
-
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse">
               <thead>
@@ -105,9 +112,9 @@ const faqs = [
               </thead>
               <tbody class="divide-y divide-border">
                 <tr>
-                  <td class="p-4 text-text-secondary">Primary purpose</td>
+                  <td class="p-4 text-text-secondary">What it's for</td>
                   <td class="p-4 text-text">Convert, compress & edit</td>
-                  <td class="p-4 text-text">Image compression</td>
+                  <td class="p-4 text-text">Compressing images</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Price</td>
@@ -121,9 +128,9 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Interface</td>
-                  <td class="p-4 text-text">Simple drag-and-drop</td>
+                  <td class="p-4 text-text">Simple drag and drop</td>
                   <td class="p-4 text-text"
-                    >Unique design with real-time preview</td
+                    >Original design with a real-time preview</td
                   >
                 </tr>
                 <tr>
@@ -133,12 +140,12 @@ const faqs = [
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes—MP4, MOV, MKV, and more</td>
+                  <td class="p-4 text-text">Yes, MP4, MOV, MKV, and more</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
                   <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes—MP3, WAV, FLAC, and more</td>
+                  <td class="p-4 text-text">Yes, MP3, WAV, FLAC, and more</td>
                   <td class="p-4 text-text">No</td>
                 </tr>
                 <tr>
@@ -159,7 +166,7 @@ const faqs = [
                   <td class="p-4 text-text-secondary">Real-time preview</td>
                   <td class="p-4 text-text">No</td>
                   <td class="p-4 text-text"
-                    >Yes—adjust quality and see results</td
+                    >Yes, adjust quality and see the result</td
                   >
                 </tr>
                 <tr>
@@ -195,32 +202,28 @@ const faqs = [
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
 
     <!-- Who Picmal Is For / Who Should Stick with Kompressor -->
-    <section class="relative z-10 px-6 py-16 sm:py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-4">Which one is right for you?</H2>
-          <Paragraph class="max-w-2xl mx-auto">
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
             Here's where each one makes more sense.
-          </Paragraph>
-        </div>
+        </Fragment>
+      </SectionHeading>
 
         <div class="grid md:grid-cols-2 gap-6">
           <!-- Picmal Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Picmal
-              </h3>
-              <p class="text-text-secondary">
+              </H3>
+              <Paragraph color="secondary">
                 More than image compression
-              </p>
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -298,19 +301,17 @@ const faqs = [
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
 
           <!-- Kompressor Column -->
-          <div
-            class="bg-background-subtle border border-border rounded-2xl p-6 md:p-8"
-          >
+          <Card>
             <div class="mb-6">
-              <h3 class="text-h3 text-text mb-2">
+              <H3 class="mb-2">
                 Choose Kompressor
-              </h3>
-              <p class="text-text-secondary">
-                Free, image-only, with live quality preview
-              </p>
+              </H3>
+              <Paragraph color="secondary">
+                Free, images only, with a live quality preview
+              </Paragraph>
             </div>
 
             <ul class="space-y-4">
@@ -328,7 +329,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You want an original interface with great user experience
+                  You like its original interface and the way it feels to use
                 </span>
               </li>
 
@@ -364,7 +365,7 @@ const faqs = [
                     d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span class="text-text">
-                  You only need image conversion (no video or audio)
+                  You only work with images, no video or audio
                 </span>
               </li>
 
@@ -386,17 +387,15 @@ const faqs = [
                 </span>
               </li>
             </ul>
-          </div>
+          </Card>
         </div>
-      </div>
-    </section>
+    </Section>
 
-    <SectionDivider />
-
-    <!-- BentoFeatures -->
-    <BentoFeatures />
-
-    <SectionDivider />
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
 
     <!-- Testimonials Section -->
     <MasonryTestimonials />
@@ -410,29 +409,23 @@ const faqs = [
       <FeaturedOn />
     </section>
 
-    <SectionDivider />
-
     <!-- Pricing -->
-    <section id="pricing" class="relative z-10 px-6 py-20">
-      <PricingSection />
-    </section>
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
 
     <!-- FAQ Section -->
-    <section id="faq" class="relative z-10 px-6 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-12">
-          <H2 class="mb-6">Frequently asked questions</H2>
-          <Paragraph class="max-w-2xl mx-auto">
-            Can't find what you're looking for? Email support@picmal.app
-          </Paragraph>
-        </div>
-        <div
-          class="bg-background-subtle/50 border border-border rounded-2xl p-4 md:p-8"
-        >
-          <FAQ faqs={faqs} />
-        </div>
-      </div>
-    </section>
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
 
     <Footer />
 

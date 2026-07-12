@@ -1,19 +1,21 @@
 ---
 import Button from "./Button.astro";
 
-// Email capture for non-buyers → Loops (source: Newsletter), via the picmal-loops-worker
-// /subscribe route. Builds an audience we can segment for cross-promo (e.g. Cozy).
-//
-// NOTE: set SUBSCRIBE_ENDPOINT to the deployed worker URL (same host as the Lemon
-// Squeezy webhook, with /subscribe instead of /lemonsqueezy).
+// Email capture → Loops "Picmal Newsletter" mailing list, via Loops' own public
+// form endpoint. No API key in the client, no backend.
+// Contract: POST application/x-www-form-urlencoded `email=...&mailingLists=<id>`,
+// returns { success: true }. The list MUST be passed explicitly — the form's
+// "Select a list" setting in Loops is ignored on raw API POSTs.
 const SUBSCRIBE_ENDPOINT =
-  "https://picmal-loops-worker.albertogallego.workers.dev/subscribe";
+  "https://app.loops.so/api/newsletter-form/cmiluz55e9uluzv0ibuw5hwgv";
+const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
 ---
 
 <form
   id="newsletter-form"
   class="mt-6 max-w-xs"
   data-endpoint={SUBSCRIBE_ENDPOINT}
+  data-list={NEWSLETTER_LIST_ID}
   novalidate
 >
   <label for="newsletter-email" class="block text-body text-text mb-2">
@@ -69,6 +71,12 @@ const SUBSCRIBE_ENDPOINT =
       const email = String(data.get("email") || "").trim();
       const website = String(data.get("website") || "");
 
+      // Honeypot: a real user never fills this. Fake success, never hit Loops.
+      if (website) {
+        form.reset();
+        msg.textContent = "Thanks — you're on the list.";
+        return;
+      }
       if (!email) {
         msg.textContent = "Please enter your email.";
         return;
@@ -80,15 +88,15 @@ const SUBSCRIBE_ENDPOINT =
       try {
         const res = await fetch(form.dataset.endpoint!, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, website }),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ email, mailingLists: form.dataset.list! }),
         });
         const out = await res.json().catch(() => ({}));
-        if (res.ok && out.ok) {
+        if (res.ok && out.success) {
           form.reset();
           msg.textContent = "Thanks — you're on the list.";
         } else {
-          msg.textContent = out.error || "Something went wrong. Try again.";
+          msg.textContent = out.message || "Something went wrong. Try again.";
           button.disabled = false;
         }
       } catch {

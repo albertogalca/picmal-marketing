@@ -19,6 +19,18 @@ const DMG_URL =
   "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
 const RECOVERY_URL =
   "https://licenses.albertogalca.com/portal/recoveries/new?product=picmal";
+
+// Buyer-side newsletter opt-in. Buying does NOT subscribe anyone to the
+// newsletter; important notices still reach every buyer as transactional email
+// regardless. This form is the one place a buyer can choose to also get the
+// marketing newsletter. Same Loops form endpoint as the footer NewsletterSignup
+// (adds to the "Picmal Newsletter" list), but its own ids so it doesn't collide
+// with the footer form on this page.
+const SUBSCRIBE_ENDPOINT =
+  "https://app.loops.so/api/newsletter-form/cmiluz55e9uluzv0ibuw5hwgv";
+// List must be passed explicitly on the POST — the form's Loops "Select a list"
+// setting is ignored for raw API submissions.
+const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
 ---
 
 <html lang="en">
@@ -110,7 +122,110 @@ const RECOVERY_URL =
           </div>
         </Card>
       </div>
+
+      <!-- Optional newsletter opt-in. Buyers already get their license and any
+           critical notices; this is purely the marketing newsletter, off by
+           default, only if they ask for it. Kept as a light, unboxed footnote so
+           it stays clearly secondary to the "your key arrives" card above. -->
+      <div class="max-w-2xl mx-auto px-6 mt-8 pt-8 border-t border-border reveal text-left" style="animation-delay:400ms">
+        <Paragraph size="small">
+          <strong class="font-medium text-text">Want the occasional update?</strong>
+          Your license and any important notices reach you either way. This is just
+          the newsletter: now and then, a note on new Picmal features and other
+          things I make. Leave anytime.
+        </Paragraph>
+
+        <form id="ty-optin-form" class="mt-3" data-endpoint={SUBSCRIBE_ENDPOINT} data-list={NEWSLETTER_LIST_ID} novalidate>
+          <label for="ty-optin-email" class="sr-only">Email</label>
+          <div class="flex flex-col gap-2 sm:flex-row sm:max-w-md">
+            <input
+              id="ty-optin-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@example.com"
+              class="min-w-0 flex-1 rounded-xl border border-border bg-background px-3 py-2 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            />
+            <Button type="submit" text="Keep me posted" size="small" class="shrink-0" />
+          </div>
+          <!-- Honeypot: hidden from users, bots fill it. -->
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="hidden"
+          />
+          <p
+            id="ty-optin-msg"
+            class="mt-2 text-small text-text-secondary"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+        </form>
+      </div>
     </main>
+
+    <script>
+      function initThankYouOptIn() {
+        const form = document.getElementById(
+          "ty-optin-form",
+        ) as HTMLFormElement | null;
+        if (!form || form.dataset.bound) return;
+        form.dataset.bound = "true";
+
+        const msg = document.getElementById("ty-optin-msg") as HTMLElement;
+        const button = form.querySelector(
+          'button[type="submit"]',
+        ) as HTMLButtonElement;
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const data = new FormData(form);
+          const email = String(data.get("email") || "").trim();
+          const website = String(data.get("website") || "");
+
+          // Honeypot: a real user never fills this. Fake success, never hit Loops.
+          if (website) {
+            form.reset();
+            msg.textContent = "Thanks — you're on the list.";
+            return;
+          }
+          if (!email) {
+            msg.textContent = "Please enter your email.";
+            return;
+          }
+
+          button.disabled = true;
+          msg.textContent = "Subscribing…";
+
+          try {
+            const res = await fetch(form.dataset.endpoint!, {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams({ email, mailingLists: form.dataset.list! }),
+            });
+            const out = await res.json().catch(() => ({}));
+            if (res.ok && out.success) {
+              form.reset();
+              msg.textContent = "Thanks — you're on the list.";
+            } else {
+              msg.textContent = out.message || "Something went wrong. Try again.";
+              button.disabled = false;
+            }
+          } catch {
+            msg.textContent = "Network error. Try again.";
+            button.disabled = false;
+          }
+        });
+      }
+
+      initThankYouOptIn();
+      document.addEventListener("astro:page-load", initThankYouOptIn);
+    </script>
 
     <Footer />
 

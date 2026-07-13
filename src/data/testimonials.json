@@ -236,5 +236,13 @@
     "email": "mc@zwo3.de",
     "content": "The easy going workflow",
     "date": "Jul 02, 2026"
+  },
+  {
+    "id": 31,
+    "name": "Andy Cockill",
+    "email": "andrew.cockill@gmail.com",
+    "content": "I just sent a few samples through to check everything, and I am very pleased with the results. Everything worked correctly and above all it was easy and not unduly complicated.",
+    "highlight": "easy and not unduly complicated",
+    "date": "Jul 13, 2026"
   }
 ]

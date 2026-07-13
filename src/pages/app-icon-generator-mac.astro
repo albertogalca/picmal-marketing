@@ -1,0 +1,159 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: App icon generator for Mac, make .icns, .ico & iOS icons";
+const description =
+  "Turn one image into a macOS .icns, a Windows .ico, and an Xcode-ready iOS icon set on your Mac. Runs offline, no upload. $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "How do I generate an app icon on my Mac?",
+    answer:
+      "Drop your source image into Picmal, pick App Icons as the output, choose the platforms you want, and click go. Picmal renders every size and packages them for you. It all runs locally on your Mac, no upload and no web tool.",
+  },
+  {
+    question: "What formats do I get out?",
+    answer:
+      "A macOS .icns file, a Windows .ico file, and an iOS .appiconset folder. You can generate one platform or all three at once from the same source image, so a single render covers your Mac app, your Windows build, and your iOS project.",
+  },
+  {
+    question: "Can I use the iOS set directly in Xcode?",
+    answer:
+      "Yes. Picmal writes a proper .appiconset folder with the Contents.json and every required size, so you drop it straight into your Xcode asset catalog and it's ready to build. The iOS icons are flattened to opaque with no alpha channel, which is what the App Store requires.",
+  },
+  {
+    question: "What if my source image isn't square?",
+    answer:
+      "Picmal fits a non-square image into each icon without cropping it, so nothing important gets cut off at the edges. For the cleanest result, start from a square image at the highest resolution you have, ideally 1024x1024 or larger.",
+  },
+  {
+    question: "Can I change the macOS icon tile shape?",
+    answer:
+      "Yes. Pick the Big Sur squircle for the classic rounded-square macOS tile, Tahoe for the newer shape, or None if you want to keep your full-bleed artwork and mask it yourself. Windows .ico and iOS icons keep their own platform conventions.",
+  },
+  {
+    question: "Can I generate icons from Shortcuts or the command line?",
+    answer:
+      "Yes. Picmal ships a Shortcuts action so you can wire icon generation into an automation, and a command-line tool so you can script it into a build step. Point either at a source image and get the same icon set the app produces.",
+  },
+  {
+    question: "Do my images stay private, and what does it cost?",
+    answer:
+      "Everything happens locally on your Mac. Your source art never gets uploaded, there are no per-file limits, and nothing leaves your machine. It's a one-time $15.99, not a subscription, updates included.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Generate app icons on your Mac"
+      subhead="Turn one source image into a full icon set, macOS .icns, Windows .ico, and an Xcode-ready iOS .appiconset. Every size rendered and packaged in one pass. Offline, no upload, no web tool."
+      buyEvent="buy_clicked_app_icon_mac"
+      defaultTab="convert"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Generate an icon set in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your image",
+          description:
+            "Start from a square PNG at 1024x1024 or larger for the sharpest result.",
+        },
+        {
+          title: "Pick your platforms",
+          description:
+            "Choose macOS .icns, Windows .ico, iOS .appiconset, or all three at once.",
+        },
+        {
+          title: "Generate",
+          description:
+            "Picmal renders every size and packages it, ready to ship. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="One image, every icon you ship"
+      items={[
+        {
+          title: "Every platform in one pass",
+          description:
+            "A macOS .icns, a Windows .ico, and an iOS .appiconset from the same source, all sizes rendered for you.",
+        },
+        {
+          title: "Drops straight into Xcode",
+          description:
+            "The .appiconset comes with its Contents.json and every required size, ready for your asset catalog. iOS icons flattened to opaque, per App Store rules.",
+        },
+        {
+          title: "Handles any source",
+          description:
+            "Non-square art fits without cropping. Pick a Big Sur squircle, Tahoe, or None for the macOS tile shape.",
+        },
+        {
+          title: "Scriptable and local",
+          description:
+            "Run it from the app, a Shortcuts action, or the command line. Nothing gets uploaded, nothing leaves your Mac.",
+        },
+      ]}
+      linkText="Just need to resize or convert an image? See the image converter"
+      linkHref="/image-converter-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

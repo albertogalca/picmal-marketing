@@ -648,7 +648,7 @@ export const compressions: CompressionFormat[] = [
     slug: "pdf",
     metaTitle: "Picmal: Compress PDF on Mac, reduce size, keep text sharp",
     metaDescription:
-      "Compress PDF files on Mac by optimizing embedded images. Reduce PDF sizes 30-80% while keeping text and vectors crisp. Batch processing, offline.",
+      "How to compress a PDF on Mac: drop it into Picmal and shrink it 30-80% while keeping text and vectors crisp. Never bigger than the original. Batch, offline, no upload.",
     description:
       "PDF files with embedded images can be very large. Compression reduces the size of embedded images while keeping text sharp.",
     whyCompress:
@@ -659,9 +659,20 @@ export const compressions: CompressionFormat[] = [
       "Text, fonts, and vector graphics stay perfectly sharp",
       "Batch compress multiple PDF files at once",
       "Meet email attachment size limits without splitting files",
-      "All processing happens locally on your Mac — documents stay private",
+      "Never bigger than the original: if a PDF can't shrink, Picmal keeps your file untouched",
+      "All processing happens locally on your Mac, documents stay private",
     ],
     faqs: [
+      {
+        question: "How do I compress a PDF on my Mac?",
+        answer:
+          "Open Picmal, drag your PDF in (or a whole folder of them), pick a quality level, and click Compress. Picmal optimizes the embedded images and saves a smaller PDF, all on your Mac with nothing uploaded.",
+      },
+      {
+        question: "Could compression make my PDF bigger?",
+        answer:
+          "No. Picmal guarantees the result is never larger than the original. If a PDF is already as small as it can get, Picmal keeps your existing file instead of writing a bigger one.",
+      },
       {
         question: "How does PDF compression work?",
         answer:

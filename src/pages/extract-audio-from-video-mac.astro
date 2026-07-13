@@ -1,0 +1,158 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Extract audio from video on Mac, save as MP3, M4A, WAV";
+const description =
+  "Pull the audio track out of any video on your Mac and save it as MP3, M4A, WAV or FLAC. Works with MP4, MOV, MKV and more. Batch, offline, no upload. $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "How do I extract audio from a video on my Mac?",
+    answer:
+      "Drop the video into Picmal, pick an audio format like MP3 or M4A as the output, and click Convert. Picmal keeps the audio track and drops the video, saving just the sound as a new file. It all runs on your Mac.",
+  },
+  {
+    question: "What formats can I save the audio as?",
+    answer:
+      "MP3 and M4A/AAC for everyday use, WAV or AIFF for uncompressed audio, and FLAC or ALAC when you want lossless. You can also target Opus for the smallest speech files or M4B for audiobooks.",
+  },
+  {
+    question: "Does it work with iPhone videos and .mov files?",
+    answer:
+      "Yes. Drop in .mov clips from your iPhone, or MP4, MKV, WebM, AVI and more. Picmal reads the video and writes out the audio track in whatever format you choose.",
+  },
+  {
+    question: "Can I pull the audio from a YouTube video?",
+    answer:
+      "Picmal works with the video files you already have on your Mac, it doesn't download from YouTube. Once a clip is saved to your Mac, drop it in and Picmal extracts the audio.",
+  },
+  {
+    question: "Can I extract audio from a whole batch of videos at once?",
+    answer:
+      "Yes. Drag in several clips or an entire folder and Picmal pulls the audio from all of them in one pass, each saved as its own file.",
+  },
+  {
+    question: "Does extracting the audio lose quality?",
+    answer:
+      "Save to a lossless format like FLAC or WAV and the audio is bit-for-bit identical to the source track. Save to MP3 or M4A and you can pick a high bitrate that's effectively transparent.",
+  },
+  {
+    question: "Are my videos uploaded anywhere?",
+    answer:
+      "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $15.99, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Extract audio from any video on your Mac"
+      subhead="Pull the sound out of MP4, MOV, MKV and more, and save it as MP3, M4A, WAV or FLAC. Great for grabbing music, interviews, or a podcast track from a recording. Batch, offline, no upload."
+      buyEvent="buy_clicked_extract_audio_mac"
+      defaultTab="convert"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Extract audio in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your video",
+          description: "Drag in one clip or a whole folder of recordings.",
+        },
+        {
+          title: "Pick an audio format",
+          description:
+            "Choose MP3, M4A, WAV, FLAC or another output as the target.",
+        },
+        {
+          title: "Convert",
+          description:
+            "Click Convert and Picmal saves just the audio. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="Any video in, just the sound out"
+      items={[
+        {
+          title: "Any video in",
+          description:
+            "MP4, MOV, MKV, WebM, AVI, iPhone .mov and more, Picmal reads them all and writes out the sound.",
+        },
+        {
+          title: "Any audio out",
+          description:
+            "MP3 and M4A for sharing, WAV and AIFF for editing, FLAC or ALAC when you want it lossless.",
+        },
+        {
+          title: "Batch a whole folder",
+          description:
+            "Grab the audio from dozens of clips in one pass, each saved as its own file.",
+        },
+        {
+          title: "Stays on your Mac",
+          description:
+            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+        },
+      ]}
+      linkText="Need to convert or compress audio too? See the audio converter"
+      linkHref="/audio-converter-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

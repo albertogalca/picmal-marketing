@@ -20,6 +20,11 @@ const description =
 
 const faqs = [
   {
+    question: "How do I compress a video on my Mac?",
+    answer:
+      "Open Picmal, drag your video in (or a whole folder), pick a quality level and codec, and click Compress. A live size estimate shows how small it will be before you export, and everything runs on your Mac with no upload.",
+  },
+  {
     question: "How much can Picmal shrink a video?",
     answer:
       "It depends on the source and your settings, but 50–80% is common. Switching to H.265 (HEVC) alone cuts size roughly in half versus H.264 at the same quality, and lowering the CRF, resolution, or frame rate shrinks it further.",
@@ -83,7 +88,7 @@ const faqSchema = {
 
     <!-- How It Works -->
     <CardGrid
-      heading="Compress a video in 3 steps"
+      heading="How to compress a video on your Mac"
       numbered
       items={[
         {

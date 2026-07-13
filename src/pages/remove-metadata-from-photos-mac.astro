@@ -1,0 +1,158 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Remove metadata (EXIF & GPS) from photos on Mac";
+const description =
+  "Strip EXIF and GPS location from your photos right on your Mac. Batch a whole folder, keep only what you want, nothing gets uploaded. $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "What metadata gets removed from a photo?",
+    answer:
+      "Everything a photo carries about how and where it was made: GPS location, camera and lens, exposure settings, date and time, serial numbers, copyright and author, color profile, orientation, and the embedded thumbnail. Strip all of it, keep the essentials only, or pick exactly which categories stay.",
+  },
+  {
+    question: "How do I remove GPS and location data from my photos?",
+    answer:
+      "Turn off the Location category and Picmal drops the GPS coordinates while it writes the file, so the photo no longer says where it was taken. You can strip location on its own and leave the rest, or wipe everything at once.",
+  },
+  {
+    question: "Can I keep the copyright and author but strip the rest?",
+    answer:
+      "Yes. Picmal can stamp copyright and author into the EXIF, IPTC and XMP fields even while it removes everything else, so a photo you share carries your credit and nothing else.",
+  },
+  {
+    question: "Does removing metadata change the image itself?",
+    answer:
+      "No. Metadata is just the data attached to the file, not the pixels. Stripping it leaves the picture untouched. You can check before and after in the metadata panel, which shows the original and the result side by side.",
+  },
+  {
+    question: "Does it work with iPhone photos and HEIC files?",
+    answer:
+      "Yes. Drop in HEIC photos straight from your iPhone, or JPG, PNG and more. Picmal strips the metadata as it converts or compresses, so your iPhone shots stop carrying their location and camera details.",
+  },
+  {
+    question: "Can I clean the metadata from a whole batch of photos at once?",
+    answer:
+      "Yes. Drag in a whole folder and Picmal applies the same metadata settings to every photo in one pass, each saved as its own clean file.",
+  },
+  {
+    question: "Are my photos uploaded anywhere?",
+    answer:
+      "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine, unlike the sketchy websites you'd otherwise paste private photos into. It's a one-time $15.99, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Remove metadata from your photos on Mac"
+      subhead="Strip the EXIF and GPS location out of your photos before you share them. Wipe everything, keep only the essentials, or choose exactly what stays. Batch a whole folder, offline, no upload."
+      buyEvent="buy_clicked_remove_metadata_mac"
+      defaultTab="convert"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Remove metadata in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your photos",
+          description: "Drag in one photo or a whole folder.",
+        },
+        {
+          title: "Pick what to strip",
+          description:
+            "Strip all metadata, keep the essentials, or choose which categories stay.",
+        },
+        {
+          title: "Save",
+          description:
+            "Click and Picmal writes clean copies. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="What Picmal strips, and what it keeps"
+      items={[
+        {
+          title: "Kill the location",
+          description:
+            "Drop the GPS coordinates so a photo stops telling everyone where it was taken.",
+        },
+        {
+          title: "Choose what stays",
+          description:
+            "Strip all, keep essentials, or pick per category: location, camera, date, copyright, color profile and more.",
+        },
+        {
+          title: "Keep your credit",
+          description:
+            "Stamp copyright and author into the file while everything else gets wiped.",
+        },
+        {
+          title: "Stays on your Mac",
+          description:
+            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+        },
+      ]}
+      linkText="Need to convert or compress images too? See the image converter"
+      linkHref="/image-converter-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

@@ -1,0 +1,158 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Resize images on Mac, batch resize by size or dimensions";
+const description =
+  "Resize images on your Mac by percentage, dimensions, or a target file size. Batch a whole folder at once. Works with JPG, PNG, HEIC, WebP and more. No upload, $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "How do I resize an image on my Mac?",
+    answer:
+      "Drop the image into Picmal, choose a resize mode like Percentage or Fixed Width, type your value, and click Convert. Picmal writes out the resized image as a new file. It all runs on your Mac.",
+  },
+  {
+    question: "Can I resize a whole folder of images at once?",
+    answer:
+      "Yes. Drag in dozens of images or an entire folder and Picmal resizes all of them in one pass with the same settings, each saved as its own file. That's the part Preview can't do.",
+  },
+  {
+    question: "Can I resize an image to a specific file size?",
+    answer:
+      "Yes. Pick the Max File Size mode, type a target like 500 KB or 2 MB, and Picmal scales the image down until it fits under that budget. Great for upload limits and email attachments.",
+  },
+  {
+    question: "Can I resize by exact dimensions or by percentage?",
+    answer:
+      "Both. Picmal has six modes: Percentage, Fixed Width, Fixed Height, Max Dimensions, Exact Dimensions, and Max File Size. Set a hard width and height, cap the longest side, or scale everything by a percentage.",
+  },
+  {
+    question: "Does resizing an image lose quality?",
+    answer:
+      "Making an image smaller keeps things sharp, you're just discarding pixels you didn't need. Blowing a small image up past its native size is where quality drops, since there's no extra detail to invent. You can also set DPI when the output needs a specific resolution.",
+  },
+  {
+    question: "Does Picmal keep the aspect ratio?",
+    answer:
+      "Yes, by default. Percentage, Fixed Width, Fixed Height and Max Dimensions all keep the original proportions so nothing looks stretched. Use Exact Dimensions when you deliberately want a precise width and height.",
+  },
+  {
+    question: "Are my images uploaded anywhere?",
+    answer:
+      "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $15.99, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Resize images on your Mac"
+      subhead="Resize by percentage, by exact dimensions, or down to a target file size like 500 KB. Batch a whole folder in one pass. Works with JPG, PNG, HEIC, WebP and more. Offline, no upload."
+      buyEvent="buy_clicked_resize_image_mac"
+      defaultTab="convert"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Resize images in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your images",
+          description: "Drag in one photo or a whole folder of them.",
+        },
+        {
+          title: "Pick a resize mode",
+          description:
+            "Choose Percentage, dimensions, or a target file size, then set your value.",
+        },
+        {
+          title: "Convert",
+          description:
+            "Click Convert and Picmal saves the resized images. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="Everything Preview's resize can't do"
+      items={[
+        {
+          title: "Six resize modes",
+          description:
+            "Percentage, Fixed Width, Fixed Height, Max Dimensions, Exact Dimensions, and Max File Size, all in one place.",
+        },
+        {
+          title: "Resize to a target size",
+          description:
+            "Type a budget like 500 KB or 2 MB and Picmal scales the image down until it fits. Perfect for upload limits.",
+        },
+        {
+          title: "Batch a whole folder",
+          description:
+            "Resize dozens of images in one pass with the same settings, each saved as its own file.",
+        },
+        {
+          title: "Stays on your Mac",
+          description:
+            "JPG, PNG, HEIC, WebP and more. No uploads, no per-file limits, nothing leaves your machine.",
+        },
+      ]}
+      linkText="Need to convert between formats too? See the image converter"
+      linkHref="/image-converter-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

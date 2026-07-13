@@ -1,0 +1,158 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Add a watermark to videos on Mac, batch logo overlay";
+const description =
+  "Stamp a logo or PNG watermark onto your videos on Mac, set the position and opacity, and batch a whole folder at once. Runs offline, no upload. $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "How do I add a watermark to a video on my Mac?",
+    answer:
+      "Drop the video into Picmal, turn on the watermark and pick a logo or PNG to overlay, set where it sits and how strong it is, then click Convert. Picmal burns the watermark into the video as it encodes. It all runs on your Mac.",
+  },
+  {
+    question: "Can I use my own logo or a PNG as the watermark?",
+    answer:
+      "Yes. Point Picmal at any PNG, a transparent logo works best so only your mark shows and the video stays visible behind it. Picmal scales and places it onto every frame as it encodes.",
+  },
+  {
+    question: "Can I choose where the watermark goes and how visible it is?",
+    answer:
+      "Yes. Place the watermark using a 3x3 grid, so any corner, edge or the center, then dial in the margin from the edge and the opacity. Drop the opacity for a subtle mark or push it up for a bold, obvious stamp.",
+  },
+  {
+    question: "Can I watermark a whole batch of clips at once?",
+    answer:
+      "Yes. Drag in several clips or an entire folder and Picmal stamps the same watermark onto all of them in one pass, each saved as its own file. Save a preset and reuse it whenever you need it.",
+  },
+  {
+    question: "Is the watermark burned into the video permanently?",
+    answer:
+      "Yes. The watermark is baked into the frames as Picmal encodes, so it travels with the video wherever it goes and can't be toggled off by whoever watches it. Keep your original clip if you ever need a clean version.",
+  },
+  {
+    question: "How do I keep the watermark consistent across different video sizes?",
+    answer:
+      "Use scale to watermark, which sizes the mark as a percentage of the video height. One preset then looks the same on a small clip and a big one, so your branding stays consistent across a whole batch.",
+  },
+  {
+    question: "Are my videos uploaded anywhere?",
+    answer:
+      "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $15.99, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Add a watermark to your videos on Mac"
+      subhead="Stamp a logo or PNG overlay onto any video as it encodes. Set the position, margin and opacity, save it as a preset, and batch a whole folder at once. Offline, no upload."
+      buyEvent="buy_clicked_watermark_video_mac"
+      defaultTab="convert"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Watermark a video in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your video",
+          description: "Drag in one clip or a whole folder of videos.",
+        },
+        {
+          title: "Add your watermark",
+          description:
+            "Pick a logo or PNG, set the position on the grid, margin and opacity.",
+        },
+        {
+          title: "Convert",
+          description:
+            "Click Convert and Picmal burns the watermark in. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="Your logo, burned into every frame"
+      items={[
+        {
+          title: "Your logo, any corner",
+          description:
+            "Drop in a PNG and place it with a 3x3 grid, any corner, edge or the center, with margin and opacity you control.",
+        },
+        {
+          title: "Consistent across sizes",
+          description:
+            "Scale the watermark as a percentage of the video height, so one preset looks the same on small and large clips.",
+        },
+        {
+          title: "Presets and batch",
+          description:
+            "Save multiple watermark presets and stamp a whole folder of clips in one pass, each saved as its own file.",
+        },
+        {
+          title: "Burned in, on your Mac",
+          description:
+            "The mark is baked into the frames as it encodes. No uploads, no per-file limits, nothing leaves your machine.",
+        },
+      ]}
+      linkText="Need to convert or compress video too? See the video converter"
+      linkHref="/video-converter-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

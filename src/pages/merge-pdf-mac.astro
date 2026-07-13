@@ -1,0 +1,157 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title = "Picmal: Merge PDF files on Mac, combine PDFs in order";
+const description =
+  "Merge and combine multiple PDFs into one on your Mac, in the exact order you choose. Lossless, offline, no upload. $15.99 one-time, no subscription.";
+
+const faqs = [
+  {
+    question: "How do I merge PDF files on my Mac?",
+    answer:
+      "Drop your PDFs into Picmal, drag them into the order you want, and click Combine. Picmal stitches them into a single PDF and saves it as a new file. It all runs on your Mac.",
+  },
+  {
+    question: "Can I reorder the pages before merging?",
+    answer:
+      "Yes. Once your PDFs are in Picmal, drag them up or down to set the exact order they'll appear in the combined file. What you see is the order you get.",
+  },
+  {
+    question: "Does combining PDFs lose any quality?",
+    answer:
+      "No. Merging is lossless. Picmal copies each page across untouched, so text stays sharp and selectable and images are bit-for-bit identical to the originals.",
+  },
+  {
+    question: "Can I merge PDFs from Finder without opening the app?",
+    answer:
+      "Yes. Select your PDFs in Finder, right-click, and use Picmal's Quick Action to combine them. There's also a Shortcuts action so you can merge PDFs from any automation.",
+  },
+  {
+    question: "How many PDFs can I merge at once?",
+    answer:
+      "As many as you like. Drag in a handful or a whole folder of PDFs and Picmal combines them all into one file in a single pass, with no per-file limits.",
+  },
+  {
+    question: "Are my PDFs uploaded anywhere?",
+    answer:
+      "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $15.99, not a subscription.",
+  },
+  {
+    question: "Is Picmal better than merging PDFs in Preview?",
+    answer:
+      "Preview works for a couple of files but gets fiddly fast. Picmal lets you drag many PDFs in at once, reorder them clearly, and combine them in one click, plus batch straight from Finder or Shortcuts.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Merge PDF files on your Mac"
+      subhead="Combine multiple PDFs into one, in the exact order you choose. Drag them into place, click once, done. Lossless, offline, no upload."
+      buyEvent="buy_clicked_merge_pdf_mac"
+      defaultTab="pdf"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Merge PDFs in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your PDFs",
+          description: "Drag in a few files or a whole folder of PDFs.",
+        },
+        {
+          title: "Set the order",
+          description:
+            "Drag the files up or down until they're in the order you want.",
+        },
+        {
+          title: "Combine",
+          description:
+            "Click Combine and Picmal saves one merged PDF. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="One file, in your order"
+      items={[
+        {
+          title: "Any order you want",
+          description:
+            "Drag files into place before you merge, so the pages land in the exact order you need.",
+        },
+        {
+          title: "Lossless every time",
+          description:
+            "Pages are copied across untouched. Text stays selectable, images stay sharp, nothing is re-encoded.",
+        },
+        {
+          title: "Merge from Finder",
+          description:
+            "Right-click your PDFs in Finder or fire a Shortcuts action, no need to open the app first.",
+        },
+        {
+          title: "Stays on your Mac",
+          description:
+            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+        },
+      ]}
+      linkText="Need a smaller file too? Compress PDF on Mac"
+      linkHref="/compress/pdf"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

@@ -1,0 +1,158 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Convert images to PDF on Mac, JPG & PNG to PDF";
+const description =
+  "Combine JPG, PNG and HEIC photos into one multi-page PDF on your Mac. Pick page size (A4, US Letter, fit to image), reorder pages, add a password. Offline, no upload. $15.99 one-time.";
+
+const faqs = [
+  {
+    question: "How do I make a PDF from images on my Mac?",
+    answer:
+      "Drop your images into Picmal, choose PDF as the output, and click Convert. Picmal turns your photos into one multi-page PDF, one image per page. It all runs on your Mac.",
+  },
+  {
+    question: "Can I combine multiple photos into one PDF?",
+    answer:
+      "Yes. Drag in as many images as you like and Picmal stitches them into a single PDF, each photo becoming its own page. You end up with one file instead of a pile of loose images.",
+  },
+  {
+    question: "Can I set the page size to A4 or US Letter?",
+    answer:
+      "Yes. Pick Fit to Image to match each page to the photo, or set a fixed A4, US Letter or a custom size in millimetres. You can also tune JPEG quality to keep the file small.",
+  },
+  {
+    question: "Can I password-protect the PDF?",
+    answer:
+      "Yes. Turn on password protection and Picmal encrypts the finished PDF so it can't be opened without the password. Handy when the pages hold anything private.",
+  },
+  {
+    question: "Can I reorder the images before making the PDF?",
+    answer:
+      "Yes. Drag the pages into the order you want before you convert, so the PDF comes out in the right sequence. No need to rename files first.",
+  },
+  {
+    question: "Does it work with HEIC photos from my iPhone?",
+    answer:
+      "Yes. Drop in HEIC shots straight from your iPhone, along with JPG, PNG and more. Picmal auto-uprights them using their EXIF data, so nothing comes out sideways.",
+  },
+  {
+    question: "Can I do a whole batch, and where do my images go?",
+    answer:
+      "Drag in a whole folder and Picmal builds the PDF in one pass. Everything happens locally on your Mac, no uploads, no per-file limits, nothing leaves your machine. It's a one-time $15.99, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Turn images into a PDF on your Mac"
+      subhead="Combine JPG, PNG and HEIC photos into one multi-page PDF. Pick a page size, reorder the pages, and add a password if you need one. Batch, offline, no upload."
+      buyEvent="buy_clicked_images_to_pdf_mac"
+      defaultTab="pdf"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="Images to PDF in 3 steps"
+      numbered
+      items={[
+        {
+          title: "Drop your images",
+          description: "Drag in a few photos or a whole folder at once.",
+        },
+        {
+          title: "Set the page and order",
+          description:
+            "Pick a page size, reorder the pages, and add a password if you want.",
+        },
+        {
+          title: "Convert",
+          description:
+            "Click Convert and Picmal saves one PDF. It all runs on your Mac.",
+        },
+      ]}
+    />
+
+    <!-- Why Picmal -->
+    <CardGrid
+      heading="Loose photos in, one PDF out"
+      items={[
+        {
+          title: "Any image in",
+          description:
+            "JPG, PNG, HEIC and more, Picmal reads them all and lays each one out as a page.",
+        },
+        {
+          title: "Page size your way",
+          description:
+            "Fit to Image, A4, US Letter or a custom size in millimetres, with JPEG quality control.",
+        },
+        {
+          title: "Reorder and protect",
+          description:
+            "Drag pages into order, auto-upright sideways photos, and lock the PDF with a password.",
+        },
+        {
+          title: "Stays on your Mac",
+          description:
+            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+        },
+      ]}
+      linkText="Need to join PDFs you already have? See the PDF merger"
+      linkHref="/merge-pdf-mac"
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

@@ -15,11 +15,16 @@ import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
 
 const title =
-  "Picmal: HEIC converter for Mac, convert HEIC to JPG, PNG, WebP";
+  "Picmal: Convert HEIC to JPG on Mac, batch HEIC converter";
 const description =
-  "Convert HEIC files from your iPhone to JPG, PNG, WebP, or any format on your Mac. Batch conversion, offline, no quality loss. $15.99 one-time.";
+  "How to convert HEIC to JPG on Mac: drop your iPhone photos into Picmal and convert them to JPG, PNG, WebP or any format. Batch, offline, no quality loss. $15.99 one-time.";
 
 const faqs = [
+  {
+    question: "How do I convert HEIC to JPG on a Mac?",
+    answer:
+      "Open Picmal, drag your HEIC photos in from Finder or Photos, choose JPG as the output format, and click Convert. You can do one photo or a whole folder at once, and it all happens on your Mac.",
+  },
   {
     question: "What is HEIC and why do I need to convert it?",
     answer:
@@ -84,7 +89,7 @@ const faqSchema = {
 
     <!-- How It Works -->
     <CardGrid
-      heading="Convert HEIC in 3 steps"
+      heading="How to convert HEIC to JPG on your Mac"
       numbered
       items={[
         {

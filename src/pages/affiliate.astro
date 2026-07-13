@@ -17,10 +17,12 @@ const SITE_DESCRIPTION =
 const SIGNUP_URL = "https://licenses.albertogalca.com/affiliate/signup/new";
 const SIGNIN_URL = "https://licenses.albertogalca.com/affiliate/recoveries/new";
 
-const stats = [
-  { value: "25%", label: "Commission Rate", sub: "On every sale you refer" },
-  { value: "60", label: "Cookie Days", sub: "Attribution window" },
-  { value: "$10", label: "Minimum Payout", sub: "Monthly threshold" },
+// The three terms of the deal, shown as one quiet summary panel (not competing
+// trophy cards) so they inform without out-shouting the CTA. Labels explain the jargon.
+const terms = [
+  { value: "25%", label: "Commission on every sale" },
+  { value: "60 days", label: "Cookie window to come back and buy" },
+  { value: "$10", label: "Minimum payout, paid monthly" },
 ];
 
 const steps = [
@@ -83,7 +85,10 @@ const affiliateFaqs = [
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title="Picmal: Affiliate program" description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: Affiliate program"
+      description={SITE_DESCRIPTION}
+    />
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -100,59 +105,96 @@ const affiliateFaqs = [
   </head>
 
   <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
   >
     <Header />
 
-    <!-- Hero + Stats -->
-    <main id="main-content">
-      <Section class="pt-32 sm:pt-32 pb-12 sm:pb-16">
-        <SectionHeading
-          level={1}
-          class="mb-10 sm:mb-14"
-          headingClass="max-w-2xl mx-auto"
-        >
-          Become an affiliate and earn 25% on each sale
-          <Fragment slot="sublead">
-            You get $4 to $16 per sale, depending on which plan they buy. The
-            cookie lasts 60 days, so people who click your link have two months
-            to come back and purchase.
-          </Fragment>
-        </SectionHeading>
+    <!-- Hero — left-aligned to match the site's reference hero (index.astro);
+         two-column so the deal-terms panel fills the space a hero image would. -->
+    <main id="main-content" class="relative z-10 px-6 pt-32 pb-16 sm:pb-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <div class="hero-reveal" style="--d: 0ms">
+              <SectionHeading
+                level={1}
+                align="left"
+                class="mb-8"
+                headingClass="mb-6"
+              >
+                Become an affiliate and earn 25% on each sale
+                <Fragment slot="sublead">
+                  You get $4 to $16 per sale, depending on which plan they buy.
+                  The cookie lasts 60 days, so people who click your link have
+                  two months to come back and purchase.
+                </Fragment>
+              </SectionHeading>
+            </div>
 
-        <div class="flex flex-col items-center gap-3 -mt-4 mb-10 sm:mb-14">
-          <Button
-            href={SIGNUP_URL}
-            text="Become an affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
-          <a
-            href={SIGNIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link inline-block py-1 text-small text-text-secondary"
-          >
-            Already an affiliate? Sign in
-          </a>
-        </div>
+            <div
+              class="hero-reveal flex flex-col items-start gap-3"
+              style="--d: 80ms"
+            >
+              <Button
+                href={SIGNUP_URL}
+                text="Become an affiliate"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto"
+              />
+              <a
+                href={SIGNIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link inline-block py-1 text-small text-text-secondary"
+              >
+                Already an affiliate? Sign in
+              </a>
+            </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-          {
-            stats.map((stat) => (
-              <Card padding="p-6 sm:p-8" class="text-center">
-                <div class="text-h1 font-bold text-accent mb-2 tabular-nums">
-                  {stat.value}
-                </div>
-                <div class="text-body-big font-medium text-text mb-1">
-                  {stat.label}
-                </div>
-                <Paragraph size="small">{stat.sub}</Paragraph>
-              </Card>
-            ))
-          }
+            <p
+              class="hero-reveal mt-5 flex items-center gap-2 text-small text-text-secondary"
+              style="--d: 160ms"
+            >
+              <svg
+                class="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              Free to join, no quotas. Approved manually by me.
+            </p>
+          </div>
+
+          <!-- The deal at a glance: fills the right column and groups the terms
+               as one quiet summary panel, not competing metric cards. -->
+          <div class="hero-reveal" style="--d: 240ms">
+            <Card>
+              <p class="text-small font-[590] text-text-secondary mb-2">
+                The deal at a glance
+              </p>
+              <dl class="divide-y divide-border">
+                {
+                  terms.map((t) => (
+                    <div class="flex items-baseline justify-between gap-4 py-4 last:pb-0">
+                      <dt class="text-h3 text-text tabular-nums">{t.value}</dt>
+                      <dd class="text-small text-text-secondary text-right max-w-[20ch]">
+                        {t.label}
+                      </dd>
+                    </div>
+                  ))
+                }
+              </dl>
+            </Card>
+          </div>
         </div>
-      </Section>
+      </div>
     </main>
 
     <!-- How It Works -->
@@ -166,9 +208,14 @@ const affiliateFaqs = [
       </SectionHeading>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
         {
-          steps.map((step) => (
+          steps.map((step, i) => (
             <div>
-              <Icon name={step.icon} class="w-10 h-10 mb-4 text-text" />
+              <div class="flex items-center gap-3 mb-4">
+                <Icon name={step.icon} class="w-9 h-9 text-text" />
+                <span class="text-small font-[590] tabular-nums text-text-secondary">
+                  Step {i + 1}
+                </span>
+              </div>
               <H3 class="text-h4 mb-1">{step.title}</H3>
               <Paragraph>{step.body}</Paragraph>
             </div>
@@ -185,6 +232,62 @@ const affiliateFaqs = [
       </Card>
     </Section>
 
+    <!-- Closing CTA — repairs the peak-end: the reader is convinced by the FAQ,
+         then gets a place to act plus a plain, first-person reassurance. -->
+    <Section bg="subtle">
+      <SectionHeading>
+        Ready to earn 25%?
+        <Fragment slot="sublead">
+          It's just me, Alberto, behind Picmal and this program. Payouts go out
+          every month once you pass $10, and you can watch every click and sale
+          land in your dashboard in real time.
+        </Fragment>
+      </SectionHeading>
+      <div class="flex flex-col items-center gap-3">
+        <Button
+          href={SIGNUP_URL}
+          text="Become an affiliate"
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+        <a
+          href={SIGNIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link inline-block py-1 text-small text-text-secondary"
+        >
+          Already an affiliate? Sign in
+        </a>
+      </div>
+      <Paragraph size="small" class="text-center mt-8">
+        Questions? Email me at <a class="link" href="mailto:support@picmal.app"
+          >support@picmal.app</a
+        >, or grab the <a class="link" href="/press">press kit</a>.
+      </Paragraph>
+    </Section>
+
     <Footer />
+
+    <!-- One-time hero entrance, staggered; opacity + transform only, gated on
+         prefers-reduced-motion. Matches the reference hero. -->
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-reveal {
+          opacity: 0;
+          animation: hero-reveal 0.6s cubic-bezier(0.2, 0, 0, 1) both;
+          animation-delay: var(--d, 0ms);
+        }
+        @keyframes hero-reveal {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
   </body>
 </html>

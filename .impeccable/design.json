@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-13T00:00:00Z",
+  "title": "Design System: Picmal",
+  "extensions": {
+    "colorMeta": {
+      "system-blue": { "role": "primary", "displayName": "System Blue", "canonical": "#1b5bff", "darkValue": "#3b82f6", "tonalRamp": ["#08183f", "#0d2a73", "#123ba6", "#1450e0", "#1b5bff", "#5285ff", "#8aadff", "#c4d6ff"] },
+      "system-blue-deep": { "role": "primary", "displayName": "System Blue Deep", "canonical": "#1450e0", "darkValue": "#2563eb" },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#fbfbfb", "darkValue": "#242424", "note": "Pure off-white, zero chroma. Never cream/tinted.", "tonalRamp": ["#242424", "#3d3d3d", "#5c5c5c", "#828282", "#a8a8a8", "#cfcfcf", "#ededed", "#fbfbfb"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "rgba(0,0,0,0.85)", "darkValue": "rgba(255,255,255,0.85)" },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "rgba(0,0,0,0.5)", "darkValue": "rgba(255,255,255,0.6)", "note": "Near AA floor; large/non-essential text only." },
+      "surface-subtle": { "role": "neutral", "displayName": "Surface Subtle", "canonical": "rgba(245,245,245,0.85)", "darkValue": "rgba(42,42,42,0.85)" },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "rgba(237,237,237,0.85)", "darkValue": "rgb(48,48,48)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display / H1", "purpose": "Hero headline only. text-balance." },
+      "headline": { "displayName": "Headline / H2", "purpose": "Section headings." },
+      "title": { "displayName": "Title / H3-H4", "purpose": "Sub-section and card headings." },
+      "body": { "displayName": "Body", "purpose": "Default paragraph. Prose capped at 68ch." },
+      "body-big": { "displayName": "Body Big", "purpose": "Hero subheads." },
+      "label": { "displayName": "Label / Small", "purpose": "Metadata, captions, secondary UI. tabular-nums on numbers." }
+    },
+    "shadows": [
+      { "name": "primary-lift", "value": "0 1px 2px rgba(0,0,0,0.12), 0 5px 14px -3px rgba(28,93,255,0.35), inset 0 1px 0 rgba(255,255,255,0.22)", "purpose": "Primary button at rest: colored glow tinted to the blue. The only resting shadow on the page." },
+      { "name": "primary-lift-hover", "value": "0 2px 5px rgba(0,0,0,0.14), 0 10px 22px -4px rgba(28,93,255,0.45), inset 0 1px 0 rgba(255,255,255,0.28)", "purpose": "Primary button hover." },
+      { "name": "inset-highlight", "value": "inset 0 1px 0 rgba(255,255,255,0.1)", "purpose": "Dark-mode top edge on translucent surfaces (secondary button, founder letter)." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "Default easing for state transitions and the hero reveal." },
+      { "name": "press", "value": "scale(0.96)", "purpose": "Active-state press feedback on buttons; 0.97-0.98 on large cards/pills, never below 0.95." },
+      { "name": "duration-standard", "value": "200ms", "purpose": "State transitions. List exact properties, never transition-all. Gate entrances behind prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single loud action on any screen: white text on a System Blue gradient with a colored lift glow.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download for Mac</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-size: 16px; font-weight: 590; color: #fff; text-decoration: none; border-radius: 8px; background: linear-gradient(180deg, #2583FF 14%, #1C5DFF 81.56%); box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 5px 14px -3px rgba(28,93,255,0.35), inset 0 1px 0 rgba(255,255,255,0.22); cursor: pointer; transition: scale .2s cubic-bezier(0.2,0,0,1), box-shadow .2s, background-color .2s; } .ds-btn-primary:hover { background: linear-gradient(180deg, #1C5DFF 14%, #1450E0 81.56%); box-shadow: 0 2px 5px rgba(0,0,0,0.14), 0 10px 22px -4px rgba(28,93,255,0.45), inset 0 1px 0 rgba(255,255,255,0.28); } .ds-btn-primary:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; } .ds-btn-primary:active { scale: 0.96; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ink text on paper with a hairline border. The quiet counterpart to the primary.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">See how it works</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-size: 16px; font-weight: 590; color: rgba(0,0,0,0.85); text-decoration: none; background: #fbfbfb; border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); cursor: pointer; transition: scale .2s cubic-bezier(0.2,0,0,1), background-color .2s, border-color .2s; } .ds-btn-secondary:hover { background: rgba(245,245,245,0.85); border-color: rgba(237,237,237,0.6); } .ds-btn-secondary:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; } .ds-btn-secondary:active { scale: 0.96; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The standard panel surface: subtle fill, one hairline border, 8px corners, no resting shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Everything stays on your Mac</h3><p class=\"ds-card-body\">No uploads, no account, no servers. Files never leave your machine.</p></div>",
+      "css": ".ds-card { background: rgba(245,245,245,0.5); border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; padding: 24px; } @media (min-width: 768px) { .ds-card { padding: 32px; } } .ds-card-title { margin: 0 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -0.015em; color: rgba(0,0,0,0.85); } .ds-card-body { margin: 0; font-size: 16px; line-height: 1.6; letter-spacing: -0.011em; color: rgba(0,0,0,0.5); text-wrap: pretty; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Paper background, hairline border, 8px radius, blue focus ring. No glow.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\" />",
+      "css": ".ds-input { min-width: 0; width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 16px; letter-spacing: -0.011em; color: rgba(0,0,0,0.85); background: #fbfbfb; border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; } .ds-input::placeholder { color: rgba(0,0,0,0.5); } .ds-input:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Body-size link, muted at idle, full ink on hover, System Blue when it is the current page.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Features</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\" aria-current=\"page\">Pricing</a><a class=\"ds-nav-link\" href=\"#\">Blog</a></nav>",
+      "css": ".ds-nav { display: inline-flex; gap: 24px; padding: 12px 16px; background: rgba(251,251,251,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(237,237,237,0.85); } .ds-nav-link { font-size: 16px; text-decoration: none; color: rgba(0,0,0,0.5); border-radius: 8px; transition: color .2s; } .ds-nav-link:hover { color: rgba(0,0,0,0.85); } .ds-nav-link--active { color: #1b5bff; } .ds-nav-link:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Quiet Utility, Warm Maker",
+    "overview": "Picmal's site looks and behaves like a well-made native Mac utility, not a marketing funnel. System fonts, the macOS action blue, hairline borders, and generous quiet space do the work; the restraint is itself the argument that the app is carefully built. Underneath the native chrome runs a single person's warmth: the voice is first-person from Alberto, a solo developer, plain and honest, and the founder letter renders on elevated paper with a handwritten signature, the one deliberately human note. The system rejects the generic SaaS landing template, the sketchy free-converter look it reacts against, cold enterprise polish, and loud over-animation. Depth comes from hairline borders and a single lifted action, never decorative glass or shadow.",
+    "keyCharacteristics": [
+      "System-native: Apple system font stack, macOS-style blue, no custom brand typeface except the signature.",
+      "One accent, used sparingly: blue means action or link, nothing else.",
+      "Flat surfaces, hairline borders; a single 8px corner language across the whole site.",
+      "Automatic dark mode via light-dark() tokens; every surface designed in both themes at once.",
+      "Motion is quiet and physical: press-scale feedback, a one-time staggered hero reveal, prefers-reduced-motion honored."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Blue is the only hue and appears on a small fraction of any screen: primary CTA, links, active nav, focus. Its rarity is what makes it read as action. Never tint neutrals toward blue, never add a second accent hue. One sanctioned exception: the testimonial key-phrase highlight uses System Blue at ~15% alpha as a text mark, a deliberate low-intensity brand touch and the only non-action use of blue.", "section": "colors" },
+      { "name": "The Pure Neutral Rule", "body": "Neutrals are chroma-zero black and white at varying opacity. No warm cream, no cool slate, no tinted paper. Warmth comes from copy and the founder letter, never the background.", "section": "colors" },
+      { "name": "The Semantic Scale Rule", "body": "Always use the text-h1 to text-small tokens (or H1-H4 / Paragraph components), never raw text-lg/text-xl. Tune sizes only in the @theme block.", "section": "typography" },
+      { "name": "The One Family Rule", "body": "The system sans is the only UI typeface. The signature script appears exactly once (the founder letter). Never pair a second display or body sans.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. A shadow is a response, not decoration: it belongs to the single primary action and to media objects, nowhere else. If a card has a resting drop shadow, it is wrong, use the hairline border.", "section": "elevation" },
+      { "name": "The Image Outline Rule", "body": "Filled images get a ring-1 ring-black/10 dark:ring-white/10 in pure black/white, never tinted. Transparent cutouts use drop-shadow instead, a ring would box the cutout's bounding rect.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use the semantic type tokens and the H1-H4 / Paragraph / Section / Card / SectionHeading primitives. index.astro is the reference implementation.",
+      "Do keep neutrals pure black/white at opacity, and let System Blue be the only hue, on a small fraction of any screen.",
+      "Do keep every corner at 8px; only rounded-full and explicit app-icon squircles escape.",
+      "Do design light and dark at once via light-dark() tokens; verify body text hits 4.5:1 in both themes.",
+      "Do give press feedback (active:scale-[0.96]) and a focus-visible accent ring to every interactive element, and gate entrance motion behind prefers-reduced-motion.",
+      "Do outline filled images with ring-1 ring-black/10 dark:ring-white/10; use drop-shadow for transparent cutouts."
+    ],
+    "donts": [
+      "Don't build the generic SaaS landing template: no gradient-mesh hero, no big-number hero-metric cards, no endless identical icon-card grids.",
+      "Don't drift toward the sketchy free-converter look: ad clutter, fake urgency, dark patterns. Picmal is the reaction against it.",
+      "Don't go cold-corporate (faceless we-deliver-solutions polish, stock photography) or loud/over-animated (neon, scroll-jacking, constant motion).",
+      "Don't put a resting drop shadow on a card; use the hairline border. Depth belongs to the primary button and media frames only.",
+      "Don't use gradient text, decorative glassmorphism, side-stripe accent borders over 1px, or a tiny uppercase tracked eyebrow above every section.",
+      "Don't tint neutrals toward warm cream or any hue, introduce a second accent color, add a second UI typeface, or use transition-all / em dashes."
+    ]
+  }
+}

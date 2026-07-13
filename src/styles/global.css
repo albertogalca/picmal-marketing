@@ -18,8 +18,11 @@
   --color-accent-dark: light-dark(#1450e0, #2563eb);
   --color-background: light-dark(rgb(251, 251, 251), rgb(36, 36, 36));
   --color-text: light-dark(rgba(0, 0, 0, 0.85), rgba(255, 255, 255, 0.85));
+  /* Light bumped 0.5 → 0.6 so secondary copy (hero sublead, feature text,
+     nav, fine print) clears WCAG AA 4.5:1 on paper (~5.7:1). Dark 0.6 already
+     passes (~6.3:1). Still visibly secondary against 0.85 ink. */
   --color-text-secondary: light-dark(
-    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.6),
     rgba(255, 255, 255, 0.6)
   );
   --color-background-subtle: light-dark(

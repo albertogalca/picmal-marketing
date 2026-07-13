@@ -81,6 +81,27 @@ const SITE_DESCRIPTION =
               class="w-full sm:w-auto"
             />
           </div>
+          <!-- The 10-second takeaway, proven above the fold: files never
+               leave the Mac. Muted so it supports the CTAs without competing. -->
+          <p
+            class="hero-reveal mt-5 flex items-center gap-2 text-small text-text-secondary"
+            style="--d: 200ms"
+          >
+            <svg
+              class="w-4 h-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            100% on your Mac. No uploads, no account, works offline.
+          </p>
         </div>
 
         <!-- Demo Video -->
@@ -114,6 +135,7 @@ const SITE_DESCRIPTION =
       heading="Tired of having to go online, upload your files, wait for the process to finish, then download them again?"
       showTrustBar={true}
       trustSuffix=" people (including me) too"
+      limit={12}
     />
 
     <!-- Features -->
@@ -127,10 +149,14 @@ const SITE_DESCRIPTION =
 
     <!-- FAQ Section -->
     <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
+      <SectionHeading>
         Frequently Asked Questions
+        <Fragment slot="sublead">
+          Something not covered here? Write to <a
+            class="link"
+            href="mailto:support@picmal.app">support@picmal.app</a
+          >
+        </Fragment>
       </SectionHeading>
       <Card>
         <FAQ faqs={faqs} />

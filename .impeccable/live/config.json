@@ -1,0 +1,6 @@
+{
+  "files": ["src/pages/**/*.astro", "src/layouts/*.astro", "src/components/StaticPageLayout.astro"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}

@@ -9,10 +9,51 @@ interface Props {
   heading?: string;
   showTrustBar?: boolean;
   trustSuffix?: string;
+  /** Show this many cards up front; the rest hide behind a "Show more" toggle.
+      Schema still counts all of them, so SEO reviewCount is unchanged; reorder
+      testimonials.json to pick which ones lead. Omit to render every card with
+      no toggle. */
+  limit?: number;
 }
-const { heading, showTrustBar = false, trustSuffix } = Astro.props;
+const { heading, showTrustBar = false, trustSuffix, limit } = Astro.props;
 
 const userTestimonials = testimonials.filter((t) => t.type !== "press");
+
+// Primary cards are always visible; the rest sit behind the toggle.
+const limited = typeof limit === "number";
+const primary = limited ? testimonials.slice(0, limit) : testimonials;
+const rest = limited ? testimonials.slice(limit) : [];
+
+// Pack a set into `columns` height-balanced buckets: greedily drop each card
+// (tallest first) into the shortest column so the columns end near-even
+// (~25px ragged vs ~220px in naive order), no matter how testimonials.json is
+// reordered. Height is estimated from content length (no DOM at build time).
+type Testimonial = (typeof testimonials)[number];
+function estHeight(t: { content?: string }): number {
+  return 90 + Math.ceil((t.content?.length ?? 0) / 40) * 25;
+}
+function packColumns(list: Testimonial[], columns = 3): Testimonial[][] {
+  const cols = Array.from({ length: columns }, () => ({
+    items: [] as Testimonial[],
+    height: 0,
+  }));
+  [...list]
+    .sort((a, b) => estHeight(b) - estHeight(a))
+    .forEach((t) => {
+      const shortest = cols.reduce((a, b) => (b.height < a.height ? b : a));
+      shortest.items.push(t);
+      shortest.height += estHeight(t);
+    });
+  return cols.map((c) => c.items);
+}
+const REST_COLUMNS = 3;
+// Primary uses CSS `columns` (responsive 1→2→3), fed column-major so it balances.
+const orderedPrimary = packColumns(primary).flat();
+// Rest uses explicit flex columns so its wrapper height can animate — CSS
+// multi-column collapses to 0 under any definite max-height ancestor.
+const restColumns = packColumns(rest, REST_COLUMNS);
+const restCount = rest.length;
+const moreLabel = `Show ${restCount} more review${restCount === 1 ? "" : "s"}`;
 
 const reviewSchemas = userTestimonials.map((t) => ({
   "@type": "Review",
@@ -67,12 +108,10 @@ const aggregateRatingSchema = {
 
   <div class="masonry-grid">
     {
-      testimonials.map((testimonial) => {
+      orderedPrimary.map((testimonial) => {
         const isPress = testimonial.type === "press";
-        const hasLink = !!testimonial.link;
-        const wrapAsLink = hasLink && !isPress;
+        const wrapAsLink = !!testimonial.link && !isPress;
         const CardWrapper = wrapAsLink ? "a" : "div";
-
         return (
           <div class="masonry-item">
             <CardWrapper
@@ -92,6 +131,77 @@ const aggregateRatingSchema = {
       })
     }
   </div>
+
+  {
+    restCount > 0 && (
+      <>
+        <div
+          id="testimonials-rest"
+          class="masonry-reveal"
+          data-testimonials-reveal
+          hidden
+          inert
+        >
+          <div class="rest-columns">
+            {restColumns.map((column, c) => (
+              <div class="rest-column">
+                {column.map((testimonial, r) => {
+                  const isPress = testimonial.type === "press";
+                  const wrapAsLink = !!testimonial.link && !isPress;
+                  const CardWrapper = wrapAsLink ? "a" : "div";
+                  // Row-major stagger index: the top row across all columns
+                  // reveals first, then the next row down.
+                  const i = r * REST_COLUMNS + c;
+                  return (
+                    <div class="masonry-item" style={`--i:${i}`}>
+                      <CardWrapper
+                        href={wrapAsLink ? testimonial.link : undefined}
+                        target={wrapAsLink ? "_blank" : undefined}
+                        rel={wrapAsLink ? "nofollow noreferrer" : undefined}
+                        class:list={[
+                          "block",
+                          wrapAsLink &&
+                            "rounded-xl cursor-pointer hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
+                        ]}
+                      >
+                        <TestimonialCard testimonial={testimonial} align="left" />
+                      </CardWrapper>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-2 flex justify-center">
+          <button
+            type="button"
+            data-testimonials-toggle
+            data-label-more={moreLabel}
+            data-label-less="Show fewer"
+            aria-expanded="false"
+            aria-controls="testimonials-rest"
+            class="inline-flex items-center justify-center gap-2 rounded-lg font-[590] text-body py-3 px-6 cursor-pointer text-text border bg-background border-border shadow-xs hover:bg-background-subtle hover:border-border/70 hover:shadow-sm dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] dark:hover:bg-white/[0.10] dark:hover:border-white/[0.16] transition-[scale,box-shadow,background-color,border-color] duration-200 ease-out motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <span data-toggle-label>{moreLabel}</span>
+            <svg
+              class="reveal-chevron w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+        </div>
+      </>
+    )
+  }
 </Section>
 
 <style>
@@ -116,4 +226,123 @@ const aggregateRatingSchema = {
     break-inside: avoid;
     margin-bottom: 3rem;
   }
+
+  /* Collapsible "rest" panel. Toggled via the `hidden` attribute (height snaps)
+     rather than an animated height — animating max-height on this flex/column
+     content stalls in Chrome. The reveal itself is the staggered card cascade
+     below. Explicit flex columns (not CSS multi-column, which won't lay out
+     correctly here). */
+  .masonry-reveal[hidden] {
+    display: none;
+  }
+
+  /* Same balanced columns as the primary grid, but explicit so max-height can
+     animate. Stacks on mobile, 3 columns from md up. Top padding separates it
+     from the primary grid once open. */
+  .rest-columns {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .rest-columns {
+      flex-direction: row;
+      gap: 3rem;
+    }
+  }
+
+  .rest-column {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Cards fade + rise in as the panel opens, staggered by row (capped so a
+     long tail doesn't drag). Transitions stay interruptible. */
+  .masonry-reveal .masonry-item {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+    transition-delay: calc(min(var(--i, 0), 10) * 35ms);
+  }
+
+  .masonry-reveal.is-open .masonry-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-chevron {
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  [data-testimonials-toggle][aria-expanded="true"] .reveal-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .masonry-reveal,
+    .masonry-reveal .masonry-item,
+    .reveal-chevron {
+      transition: none;
+    }
+    .masonry-reveal .masonry-item {
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(
+    "[data-testimonials-toggle]",
+  );
+  const reveal = document.querySelector<HTMLElement>(
+    "[data-testimonials-reveal]",
+  );
+  const label = toggle?.querySelector<HTMLElement>("[data-toggle-label]");
+
+  if (toggle && reveal && label) {
+    const more = toggle.dataset.labelMore ?? "Show more";
+    const less = toggle.dataset.labelLess ?? "Show fewer";
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    let closeTimer = 0;
+
+    const expand = () => {
+      window.clearTimeout(closeTimer);
+      reveal.hidden = false; // panel takes its full height; cards still at 0
+      reveal.inert = false;
+      if (reduce) {
+        reveal.classList.add("is-open");
+        return;
+      }
+      // Two frames so the browser paints the opacity:0 start before we flip
+      // to is-open, letting the staggered card transition actually run.
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => reveal.classList.add("is-open")),
+      );
+    };
+    const collapse = () => {
+      reveal.classList.remove("is-open"); // cards fade back out
+      reveal.inert = true;
+      if (reduce) {
+        reveal.hidden = true;
+        return;
+      }
+      // Pull the panel from layout once the cards have faded.
+      closeTimer = window.setTimeout(() => {
+        reveal.hidden = true;
+      }, 320);
+    };
+
+    toggle.addEventListener("click", () => {
+      const willOpen = reveal.hidden || !reveal.classList.contains("is-open");
+      toggle.setAttribute("aria-expanded", String(willOpen));
+      label.textContent = willOpen ? less : more;
+      willOpen ? expand() : collapse();
+    });
+  }
+</script>

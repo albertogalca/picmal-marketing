@@ -52,10 +52,19 @@ const logos = [
     width: 130,
     height: 24,
   },
+  {
+    name: "Product Wing",
+    href: "https://productwing.com/product/picmal",
+    src: "https://productwing.com/assets/images/badge.png",
+    width: 200,
+    height: 54,
+  },
 ];
 ---
 
-<div class="w-full py-8">
+<!-- ponytail: sr-only keeps the badge links in the DOM (backlinks on every
+     page via the footer) but hides the section visually. -->
+<div class="sr-only w-full py-8">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col items-center gap-10">
       <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">

@@ -5,6 +5,15 @@ description: "Free up disk space from photos on your Mac: delete duplicates, com
 pubDate: "2026-03-31"
 category: "Tutorial"
 tags: ["Storage", "Photos", "Mac", "Tutorial", "Compression"]
+faqs:
+  - question: "How do I reduce the size of a photo on my Mac?"
+    answer: "For a single photo, open it in Preview, choose File > Export, and either switch the format to JPEG or drag the quality slider down. A 5MB PNG screenshot becomes a 200 to 300KB JPEG with no visible difference at normal viewing sizes. For a whole folder, drag it into Picmal, pick JPEG, and convert the batch in one pass. Everything runs on your Mac, nothing gets uploaded."
+  - question: "Why are my photos taking up so much space on my Mac?"
+    answer: "Usually four culprits: uncompressed PNG screenshots at 3 to 8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25 to 50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check System Settings > General > Storage to see what is actually eating the space."
+  - question: "How do I reduce image file size on Mac without losing quality?"
+    answer: "Export to JPEG or WebP at 80 to 85% quality. At that level the file is 40 to 60% smaller and looks identical on screen. If the image is bigger than you will ever display it, resize the dimensions too. For the full walkthrough see How to Reduce Image File Size on Mac at /blog/reduce-image-file-size-mac."
+  - question: "How do I compress a JPEG on my Mac?"
+    answer: "80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via File > Export with the quality slider. The JPEG compression guide at /blog/compress-jpeg-mac breaks down what each quality level actually looks like."
 ---
 
 Last week my MacBook hit me with the "Storage Almost Full" notification. I checked System Settings, and Photos was eating 74GB. Seventy-four gigabytes. I've been importing from my iPhone since 2019 and never once thought about what was accumulating.
@@ -71,7 +80,7 @@ I moved about 15GB of pre-2020 photos to a 1TB SSD in a desk drawer. Not elegant
 
 If you shot RAW at some point and you're never going back to edit those files, converting to JPG saves grotesque amounts of space. A single RAW file (ARW, CR2, NEF, DNG) is 25-50MB. The JPG at high quality is 2-5MB. Ninety percent gone.
 
-Batch convert with <a href="https://picmal.app" target="_blank">Picmal</a>: drag in the folder, pick JPG, set quality to 95%, convert. Keep quality high since you presumably care about these.
+Batch convert with a dedicated [RAW converter for Mac](/raw-converter-mac) like <a href="https://picmal.app" target="_blank">Picmal</a>: drag in the folder, pick JPG, set quality to 95%, convert. It reads ARW, CR2, CR3, NEF and the rest directly. Keep quality high since you presumably care about these.
 
 One thing you can't undo: once it's a JPG, the RAW editing latitude is gone. If there's any chance you'll re-edit a photo in Lightroom, keep the RAW. For the 300 shots from a trip where you already picked your favorites, JPG is fine.
 
@@ -96,3 +105,21 @@ Don't install "Mac cleaner" apps that promise to free up space with one click. M
 Don't turn off iCloud Photos thinking it will free up space. It does the opposite: your Mac downloads every original locally.
 
 The boring answer is the right one. Delete what you don't need, compress what you're keeping, let iCloud handle the rest.
+
+## FAQ
+
+### How do I reduce the size of a photo on my Mac?
+
+For a single photo, open it in Preview, choose **File > Export**, and either switch the format to JPEG or drag the quality slider down. A 5MB PNG screenshot becomes a 200-300KB JPEG with no visible difference at normal viewing sizes. For a whole folder, drag it into <a href="https://picmal.app" target="_blank">Picmal</a>, pick JPEG, and convert the batch in one pass. Everything runs on your Mac, nothing gets uploaded.
+
+### Why are my photos taking up so much space on my Mac?
+
+Usually four culprits: uncompressed PNG screenshots at 3-8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25-50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check **System Settings > General > Storage** to see what's actually eating the space.
+
+### How do I reduce image file size on Mac without losing quality?
+
+Export to JPEG or WebP at 80-85% quality. At that level the file is 40-60% smaller and looks identical on screen. If the image is bigger than you'll ever display it, resize the dimensions too. For the full walkthrough see [How to Reduce Image File Size on Mac](/blog/reduce-image-file-size-mac).
+
+### How do I compress a JPEG on my Mac?
+
+80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via **File > Export** with the quality slider. The [JPEG compression guide](/blog/compress-jpeg-mac) breaks down what each quality level actually looks like.

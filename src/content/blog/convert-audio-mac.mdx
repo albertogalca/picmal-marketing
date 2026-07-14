@@ -1,0 +1,148 @@
+---
+title: "How to Convert Audio on Mac (M4A, FLAC, WAV, and More)"
+description: "Convert audio files on your Mac: M4A, FLAC, WAV, AAC, OGG to MP3 and back. Four methods with Picmal, the Music app, VLC, and FFmpeg. Batch a folder, no upload."
+pubDate: "2026-07-14"
+category: "Guide"
+tags: ["Audio", "MP3", "Conversion", "Mac"]
+faqs:
+  - question: "How do I convert audio to MP3 on a Mac for free?"
+    answer: "The built-in Music app can do it: set the import encoder to MP3 in its settings, then select a track and choose File, Convert, Create MP3 Version. VLC and FFmpeg are free too. For batches and formats the Music app won't touch, Picmal ($15.99, one-time) is faster."
+  - question: "Will converting audio lose quality?"
+    answer: "Converting between lossy formats (like M4A to MP3) re-compresses and loses a little. Converting a lossless source (FLAC, WAV) to a high-bitrate MP3 sounds transparent to most ears. Converting lossy up to a lossless format doesn't restore quality, it just makes a bigger file."
+  - question: "What bitrate should I use for MP3?"
+    answer: "320 kbps for the best MP3 quality, 192 to 256 kbps for a good balance of size and sound. Below 128 kbps you'll hear the difference on decent headphones."
+  - question: "What's the fastest way to convert a whole folder of audio?"
+    answer: "A batch converter like Picmal, which processes a whole folder in one pass on your Mac. The Music app converts one selection at a time and only handles a few formats."
+  - question: "Can I convert FLAC on a Mac?"
+    answer: "Yes. The Music app doesn't import FLAC, but Picmal, VLC, and FFmpeg all convert FLAC to MP3, ALAC, or WAV. Picmal decodes FLAC directly and batch-converts a whole library."
+---
+
+You've got an audio file in the wrong format. Maybe it's an M4A that a device won't play, a FLAC your car stereo rejects, a WAV that's too big to email, or a track you want as an MP3 that works absolutely everywhere.
+
+MP3 is still the universal audio format, but "convert audio on a Mac" covers a lot of ground. Here's how to handle the common cases, with four tools from the free apps on your Mac to a batch converter built for it.
+
+**Quick answer:** To convert audio on a Mac, the built-in **Music app** converts common formats to MP3 or AAC for free (set the encoder in Settings, then File → Convert). For FLAC, batches, or formats Music won't open, [Picmal](/audio-converter-mac) converts a whole folder at once on your Mac with no upload. The methods below cover both.
+
+## The conversions people actually need
+
+| You have | You want | Why |
+| -------- | -------- | --- |
+| M4A / AAC | [MP3](/convert/audio/m4a-to-mp3) | Play on any device or old player |
+| FLAC | [MP3](/convert/audio/flac-to-mp3) or ALAC | Shrink lossless, or use it in Apple Music |
+| WAV | [MP3](/convert/audio/wav-to-mp3) | Same audio, a fraction of the size |
+| OGG / WMA | [MP3](/convert/audio/ogg-to-mp3) | Escape a format Apple doesn't like |
+| MP3 | [WAV](/convert/audio/mp3-to-wav) | Editable, uncompressed for a DAW |
+| MP3 | [M4R](/convert/audio/mp3-to-m4r) | Custom iPhone ringtone |
+
+## Lossy vs lossless (read this first)
+
+One rule saves you from bad conversions:
+
+- **Lossy formats** (MP3, AAC, M4A, OGG) throw away data to save space. Converting one lossy format to another re-compresses and loses a little more each time.
+- **Lossless formats** (FLAC, WAV, ALAC) keep everything. Converting lossless to a high-bitrate MP3 sounds transparent, and that's the normal path when you want smaller files.
+- **You can't recover quality.** Converting an MP3 up to FLAC just makes a bigger file, not a better one.
+
+So: keep lossless originals if you have them, and convert copies to MP3 for everyday use.
+
+## Method 1: Picmal (batch, and every format)
+
+[Picmal](https://picmal.app) is a native Mac app that converts audio (and video, images, PDFs) in batches, entirely offline.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your audio files, or a whole folder
+3. Choose the output format (MP3, WAV, FLAC, ALAC, AAC)
+4. Set a bitrate if you want to control size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Handles formats the Music app won't open, including FLAC and OGG
+- Batches a whole library in one pass
+- Runs entirely on your Mac, nothing uploaded
+- Bitrate control, no file size limit, no watermark
+
+### Best for:
+
+Converting a music library, or any batch the built-in tools choke on.
+
+## Method 2: the Music app (free, built in)
+
+Apple's Music app (formerly iTunes) converts common formats without a download.
+
+### Steps:
+
+1. Open **Music → Settings → Files → Import Settings**
+2. Set **Import Using** to **MP3 Encoder** (or AAC)
+3. Close settings, select the track(s) in your library
+4. **File → Convert → Create MP3 Version**
+
+### The catch:
+
+It won't import FLAC or OGG, and it converts within your library, so you have to add files first. Fine for tracks already in Music, awkward for loose files or unsupported formats.
+
+## Method 3: VLC (free, opens anything)
+
+VLC plays and converts nearly every audio format.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your audio file
+3. Choose an audio profile (for example **Audio - MP3**)
+4. **Save as File**, pick a destination, **Save**
+
+### The catch:
+
+One file at a time, and the interface is utilitarian. Handy when a format won't open anywhere else.
+
+## Method 4: FFmpeg (command line)
+
+For scripting or bulk jobs:
+
+```bash
+brew install ffmpeg
+```
+
+### Convert one file to MP3 at 320 kbps:
+
+```bash
+ffmpeg -i input.m4a -b:a 320k output.mp3
+```
+
+### Every FLAC in a folder to MP3:
+
+```bash
+for f in *.flac; do ffmpeg -i "$f" -b:a 320k "${f%.*}.mp3"; done
+```
+
+Free, and precise about bitrate down to the number. Not the move if the command line isn't for you.
+
+## Side-by-side comparison
+
+| Method    | Speed     | Batch     | Formats        | Ease of use | Price  |
+| --------- | --------- | --------- | -------------- | ----------- | ------ |
+| Picmal    | Very Fast | Excellent | All, incl FLAC | Very Easy   | $15.99 |
+| Music app | Moderate  | Limited   | Common only    | Easy        | Free   |
+| VLC       | Slow      | None      | Nearly all     | Easy        | Free   |
+| FFmpeg    | Fast      | Excellent | All            | Technical   | Free   |
+
+## Tips
+
+- **Use 320 kbps** for MP3 when quality matters, 192 to 256 kbps to save space.
+- **Keep lossless originals** and convert copies. You can't get quality back later.
+- **Batch it** if you're doing a whole album or library, so you set the format once.
+
+## The short version
+
+- **A track already in Music:** File → Convert
+- **FLAC, a folder, or an odd format:** [Picmal](/audio-converter-mac)
+- **One stubborn file:** VLC
+- **Scripting it:** FFmpeg
+
+## Related guides
+
+- **Want a dedicated audio tool?** See the [audio converter for Mac](/audio-converter-mac).
+- **Pulling audio out of a video?** [How to Convert HEVC to MP4](/blog/convert-hevc-to-mp4-mac) and the [video converter](/video-converter-mac) cover the video side.
+- **One app for everything?** The [best media converter for Mac](/blog/best-media-converter-mac-2026) roundup covers audio, video, and images.

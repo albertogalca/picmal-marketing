@@ -11,6 +11,8 @@ import Card from "../../../components/Card.astro";
 import SectionHeading from "../../../components/SectionHeading.astro";
 import BenefitsCard from "../../../components/BenefitsCard.astro";
 import ConversionGrid from "../../../components/ConversionGrid.astro";
+import H2 from "../../../components/H2.astro";
+import Paragraph from "../../../components/Paragraph.astro";
 import {
   videoConversions,
   videoFormats,
@@ -32,6 +34,27 @@ const related = getRelatedVideoConversions(conversion.slug, 6);
 
 const title = conversion.metaTitle;
 const description = conversion.metaDescription;
+
+// Cross-links to the in-depth blog guide for high-demand video conversions.
+const blogGuides: Record<string, { title: string; slug: string }> = {
+  "hevc-to-mp4": {
+    title: "How to Convert HEVC to MP4 on Mac (2026 Guide)",
+    slug: "convert-hevc-to-mp4-mac",
+  },
+  "avi-to-mp4": {
+    title: "How to Convert AVI to MP4 on Mac (Free and Paid)",
+    slug: "convert-avi-to-mp4-mac",
+  },
+  "mov-to-mp4": {
+    title: "How to Convert MOV to MP4 on Mac (Fast, Near-Lossless)",
+    slug: "convert-mov-to-mp4-mac",
+  },
+  "mkv-to-mp4": {
+    title: "How to Convert MKV to MP4 on Mac (Keep Subtitles and Audio Tracks)",
+    slug: "convert-mkv-to-mp4-mac",
+  },
+};
+const blogGuide = blogGuides[conversion.slug];
 
 // Low-demand templated pairs are de-indexed to concentrate site quality on winners.
 const noindex = !isVideoConversionIndexed(conversion.slug);
@@ -105,6 +128,27 @@ const faqSchema = {
         <FAQ faqs={conversion.faqs} />
       </Card>
     </Section>
+
+    <!-- Blog Guide Cross-Link -->
+    {
+      blogGuide && (
+        <Section width="narrow">
+          <Card>
+            <H2 class="mb-4">In-depth guide</H2>
+            <Paragraph class="mb-4">
+              Want step-by-step instructions with free methods (HandBrake, VLC,
+              FFmpeg) alongside Picmal?
+            </Paragraph>
+            <a
+              href={`/blog/${blogGuide.slug}`}
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+            >
+              Read: {blogGuide.title} &rarr;
+            </a>
+          </Card>
+        </Section>
+      )
+    }
 
     <!-- Related video conversions -->
     <Section>

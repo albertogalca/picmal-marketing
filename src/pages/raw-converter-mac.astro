@@ -112,10 +112,16 @@ const faqSchema = {
 
     <!-- RAW Format Options -->
     <Section>
-      <SectionHeading
-        sublead="Pick your camera's format below. RAW files are input-only. Picmal decodes them to JPG, but no app can turn a JPG back into RAW."
-      >
+      <SectionHeading>
         Convert any camera RAW format
+        <Fragment slot="sublead">
+          Pick your camera's format below. RAW files are input-only. Picmal
+          decodes them to JPG, but no app can turn a JPG back into RAW. For the
+          full walkthrough, see <a
+            class="link"
+            href="/blog/convert-raw-to-jpg-mac">how to convert RAW to JPG on Mac</a
+          >.
+        </Fragment>
       </SectionHeading>
       <ConversionGrid
         columns={3}

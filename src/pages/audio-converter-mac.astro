@@ -86,10 +86,15 @@ const faqSchema = {
 
     <!-- Convert to MP3 -->
     <Section>
-      <SectionHeading
-        sublead="MP3 plays on every device, app, and player. Pick your source format below."
-      >
+      <SectionHeading>
         Convert any audio to MP3
+        <Fragment slot="sublead">
+          MP3 plays on every device, app, and player. Pick your source format
+          below, or read the full guide on <a
+            class="link"
+            href="/blog/convert-audio-mac">how to convert audio on Mac</a
+          >.
+        </Fragment>
       </SectionHeading>
       <ConversionGrid
         columns={4}

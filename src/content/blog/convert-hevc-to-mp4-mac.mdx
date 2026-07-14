@@ -1,0 +1,168 @@
+---
+title: "How to Convert HEVC to MP4 on Mac (2026 Guide)"
+description: "Convert HEVC (H.265) video to a widely compatible MP4 on your Mac. Four methods compared: Picmal, HandBrake, VLC, and FFmpeg, with quality and batch tips."
+pubDate: "2026-07-14"
+category: "Guide"
+tags: ["HEVC", "MP4", "Video", "Conversion", "Mac"]
+faqs:
+  - question: "Isn't HEVC already an MP4?"
+    answer: "Often, yes. HEVC (H.265) is a video codec, and MP4 is a container that can hold it. The problem is compatibility, not the file extension. When people say 'convert HEVC to MP4' they almost always mean re-encode the video to H.264, the codec that plays everywhere. That is what the methods below do."
+  - question: "Will I lose quality converting HEVC to MP4 (H.264)?"
+    answer: "Some, because you are re-encoding. At a high enough bitrate the difference is invisible on screen. The trade-off is file size: H.264 files are usually larger than the H.265 originals at matching quality, which is the price of universal playback."
+  - question: "What's the fastest way to convert a lot of HEVC files at once?"
+    answer: "A dedicated batch app like Picmal, or FFmpeg if you are comfortable in the terminal. HandBrake and VLC convert one file at a time (HandBrake has a queue, but it is slower to set up)."
+  - question: "Can I convert HEVC to MP4 on Mac for free?"
+    answer: "Yes. HandBrake, VLC, and FFmpeg are all free and open source. Picmal ($15.99, one-time) adds batch speed, a simpler interface, and stays entirely on your Mac."
+  - question: "Why won't my HEVC video play or show only a green screen?"
+    answer: "Your Mac may be missing HEVC decode support, or the player doesn't handle H.265. Converting to H.264 MP4 fixes it everywhere. On Apple Silicon, hardware decode is built in, so playback issues usually point to the player, not the file."
+---
+
+You exported a video, or pulled one off your iPhone or a drone, and now it won't play, won't upload, or chokes your editor. The usual culprit is HEVC, also called H.265. Apple leans on it because it halves file sizes at the same quality. A lot of the software world still expects the older, universal H.264 in an MP4.
+
+Here's the thing most guides skip: **HEVC is a codec, MP4 is a container.** Your HEVC file may already have an `.mp4` extension. Renaming it does nothing. What you actually need is to re-encode the video to H.264, the codec that plays on every phone, browser, TV, and editor made in the last fifteen years.
+
+Below are four ways to do that on your Mac, from the fastest batch tool to the free command line.
+
+**Quick answer:** To convert HEVC to a widely compatible MP4 on a Mac, re-encode the video to H.264. For one or two files, [HandBrake](https://handbrake.fr) (free) does the job. For a folder of clips, a native batch converter like [Picmal](/convert/video/hevc-to-mp4) re-encodes them all at once, entirely on your Mac with no upload. The methods below cover both.
+
+## Why convert HEVC to H.264 MP4?
+
+HEVC is genuinely more efficient. So why downgrade?
+
+- **Compatibility.** Older devices, Windows machines, web uploads, and many editors still trip over H.265.
+- **Editing.** Some editors stutter on HEVC or refuse it outright. H.264 scrubs smoothly.
+- **Sharing.** An H.264 MP4 is the safest thing to send someone when you don't know what they'll open it with.
+
+If everything you own already plays HEVC, you don't need to convert. This is about the moment something doesn't.
+
+## Method 1: Picmal (fastest for batches)
+
+[Picmal](https://picmal.app) is a native Mac app for converting and compressing video, audio, images, and PDFs. If you have more than a couple of clips, start here.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag your HEVC files (or a whole folder) into the app
+3. Choose **MP4** as the output format
+4. Set a quality level if you want to control file size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Converts a batch of clips in one pass instead of one at a time
+- Runs entirely on your Mac. Nothing gets uploaded, nothing phones home
+- Uses your Mac's hardware encoder, so it's fast on Apple Silicon
+- Quality control so you decide the size-versus-fidelity trade-off
+- No file size limit and no watermark
+
+### Best for:
+
+Emptying a folder of drone or iPhone footage into a compatible format. Anyone who converts video often enough that clicking through a file at a time gets old.
+
+## Method 2: HandBrake (the free standard)
+
+[HandBrake](https://handbrake.fr) is the free, open-source workhorse for video conversion. It's more knobs than most people need, but the defaults are sensible.
+
+### Steps:
+
+1. Download and open HandBrake
+2. Drag in your HEVC file
+3. Under **Summary**, set the format to **MP4**
+4. Pick a preset like **Fast 1080p30**, which uses H.264
+5. Check that **Video Encoder** is set to **H.264 (x264)**, not H.265
+6. Click **Start**
+
+### Worth knowing:
+
+HandBrake has a queue, so you can line up several files, but you add them one at a time. The interface is busy. If you just want compatible output without learning what a "constant quality RF" is, leave the preset alone and hit Start.
+
+## Method 3: VLC (already installed for many people)
+
+VLC plays everything, and it quietly converts too.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your HEVC file
+3. Under **Choose Profile**, pick **Video - H.264 + MP3 (MP4)**
+4. Click **Save as File**, choose a destination
+5. Click **Save** to start
+
+### The catch:
+
+VLC's converter is basic and does one file at a time. Progress feedback is minimal, so a long clip can look frozen when it isn't. Fine for the occasional file, frustrating for a batch.
+
+## Method 4: FFmpeg (command line)
+
+If you live in the terminal, FFmpeg is the most direct route.
+
+### Installation:
+
+```bash
+brew install ffmpeg
+```
+
+### A single file:
+
+```bash
+ffmpeg -i input.mov -c:v libx264 -crf 20 -c:a aac output.mp4
+```
+
+`-crf 20` sets quality (lower is better, 18 to 23 is a sensible range). `-c:v libx264` forces H.264.
+
+### Every HEVC file in a folder:
+
+```bash
+for f in *.mov; do
+  ffmpeg -i "$f" -c:v libx264 -crf 20 -c:a aac "${f%.*}-h264.mp4"
+done
+```
+
+### Why bother:
+
+Free, and it drops into a Hazel rule or a cron job if you convert video regularly. If "cron job" means nothing to you, one of the apps above is the better call.
+
+## Side-by-side comparison
+
+| Method    | Speed     | Batch     | Quality control | Ease of use | Price  |
+| --------- | --------- | --------- | --------------- | ----------- | ------ |
+| Picmal    | Very Fast | Excellent | Advanced        | Very Easy   | $15.99 |
+| HandBrake | Moderate  | Good      | Advanced        | Moderate    | Free   |
+| VLC       | Slow      | None      | Basic           | Easy        | Free   |
+| FFmpeg    | Fast      | Excellent | Advanced        | Technical   | Free   |
+
+## Tips for better results
+
+- **Match the source bitrate.** If the original looks great, don't crank compression too hard. Starting around CRF 20 (or a "high quality" preset) keeps it clean.
+- **Keep the audio.** Make sure your output includes the audio track. AAC is the safe, universal choice.
+- **Keep your originals.** The HEVC files are smaller. Hold onto them until you've confirmed the MP4 plays where you need it.
+- **Use hardware encoding for speed.** On Apple Silicon, hardware-accelerated encoding (which Picmal and FFmpeg's VideoToolbox can use) converts much faster than pure software.
+
+## Troubleshooting
+
+### The MP4 is much bigger than the HEVC original
+
+That's expected. H.264 is less efficient than H.265, so matching quality costs more space. If size matters more than universal playback, keep the HEVC file, or [compress the video](/compress-video-mac) after converting.
+
+### The converted file still won't play somewhere
+
+Confirm the video encoder was H.264, not H.265. Some presets default to HEVC. Re-run with H.264 explicitly selected.
+
+### Audio is out of sync
+
+Try FFmpeg with `-c:a aac` and re-encode both streams, or use HandBrake's default audio settings. Variable frame rate source footage is the usual cause.
+
+## The short version
+
+- **A few files, free:** HandBrake
+- **Already have VLC, one clip:** VLC
+- **A whole folder, fast and local:** [Picmal](/convert/video/hevc-to-mp4)
+- **Scripting it:** FFmpeg
+
+Whichever you pick, the goal is the same: re-encode HEVC to H.264 so the MP4 plays everywhere.
+
+## Related guides
+
+- **Need the file smaller after converting?** See [How to Compress Video on Mac](/compress-video-mac).
+- **Converting other video formats?** Browse the [video converter for Mac](/video-converter-mac) or all [format conversion tools](/convert).
+- **Working with images too?** Our [best media converter for Mac](/blog/best-media-converter-mac-2026) roundup covers images, video, and audio in one app.

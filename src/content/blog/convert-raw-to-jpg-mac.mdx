@@ -1,0 +1,166 @@
+---
+title: "How to Convert RAW to JPG on Mac (Every Camera Brand)"
+description: "Convert camera RAW files (ARW, CR2, CR3, NEF, RAF, ORF, RW2, PEF) to JPG on your Mac. Batch-convert a whole shoot with correct colors, no subscription, no upload."
+pubDate: "2026-07-14"
+category: "Guide"
+tags: ["RAW", "JPG", "Photography", "Conversion", "Mac"]
+faqs:
+  - question: "Which RAW formats can I convert to JPG on a Mac?"
+    answer: "Every major camera brand: Sony ARW, Canon CR2 and CR3, Nikon NEF, Fujifilm RAF, Olympus ORF, Panasonic RW2, and Pentax PEF. Preview and Photos handle most of these once macOS has the right camera support; a dedicated app like Picmal decodes them all directly."
+  - question: "Will converting RAW to JPG lose quality?"
+    answer: "You lose the RAW file's editing latitude (the extra highlight and shadow data), not visible quality. The JPG itself looks great. Just keep your RAW originals, because a JPG can never be turned back into RAW."
+  - question: "Why do my converted JPGs look flat or washed out?"
+    answer: "The tool isn't applying your camera's white balance and color profile during decode. Picmal applies demosaicing, white balance, and gamma so the JPG looks the way the shot was meant to. Preview's results can look flatter."
+  - question: "What's the fastest way to convert a whole shoot of RAW files?"
+    answer: "A batch converter like Picmal, which processes hundreds of RAW files in one pass entirely on your Mac. Preview and Photos slow down and flatten your folder structure past a few dozen files."
+  - question: "Can I convert RAW to JPG on Mac for free?"
+    answer: "Yes. Preview and the Photos app are free and built in, and handle most RAW formats. Picmal ($15.99, one-time) adds batch speed, correct color decoding across every brand, and stays entirely offline."
+  - question: "Do I need Lightroom or Capture One just to get JPGs?"
+    answer: "No. Those are subscription editors built for grading, not quick conversion. If you only need JPGs out of your RAW files, a one-time tool or the built-in Mac apps are enough."
+---
+
+You shot a whole event in RAW for the editing headroom. Now the client wants JPGs, the gallery won't accept `.ARW` files, and your phone can't preview them. RAW is the right format to capture in and the wrong format to send anyone.
+
+The catch is that "RAW" isn't one format. Every camera maker has their own: Sony writes ARW, Canon writes CR2 or CR3, Nikon writes NEF, Fujifilm RAF, Olympus ORF, Panasonic RW2, Pentax PEF. They all need decoding to a normal JPG before the rest of the world can open them.
+
+Here's how to do that on your Mac, for any brand, one file or a thousand.
+
+**Quick answer:** To convert RAW to JPG on a Mac, open the file in **Preview → File → Export → JPEG** for a one-off, or use a batch converter like [Picmal](/raw-converter-mac) for a whole shoot. Picmal decodes every major RAW format with correct white balance and color, converts hundreds of files at once, and never uploads anything. Keep your RAW originals: the conversion is one-way.
+
+## RAW files are input-only (read this first)
+
+You can convert RAW to JPG. You cannot convert JPG back to RAW. No app can, because the extra data RAW stores (the full sensor readout, the highlight and shadow latitude) is thrown away the moment you export to JPG.
+
+So the rule is simple: **always keep your RAW originals.** Convert copies to JPG for sharing, uploading, and previewing. Archive the RAW files for editing later.
+
+## Which format does your camera shoot?
+
+| Brand      | RAW extension | Convert page                          |
+| ---------- | ------------- | ------------------------------------- |
+| Sony       | ARW           | [ARW to JPG](/convert/arw-to-jpg)     |
+| Canon      | CR2 / CR3     | [CR2 to JPG](/convert/cr2-to-jpg) · [CR3 to JPG](/convert/cr3-to-jpg) |
+| Nikon      | NEF           | [NEF to JPG](/convert/nef-to-jpg)     |
+| Fujifilm   | RAF           | [RAF to JPG](/convert/raf-to-jpg)     |
+| Olympus    | ORF           | [ORF to JPG](/convert/orf-to-jpg)     |
+| Panasonic  | RW2           | [RW2 to JPG](/convert/rw2-to-jpg)     |
+| Pentax     | PEF           | [PEF to JPG](/convert/pef-to-jpg)     |
+
+The methods below work the same regardless of which one you have.
+
+## Method 1: Picmal (fastest for a whole shoot)
+
+[Picmal](https://picmal.app) is a native Mac app that decodes every major RAW format and batch-converts to JPG. If you've got more than a handful of files, start here.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag your RAW files, or a whole folder, into the app
+3. Choose **JPG** as the output format
+4. Set a quality level if you want to control file size
+5. Click **Convert**
+
+### Why photographers reach for it:
+
+- Decodes ARW, CR2, CR3, NEF, RAF, ORF, RW2, and PEF, no per-brand fiddling
+- Applies camera white balance, demosaicing, and gamma, so JPGs look right, not flat
+- Batches hundreds of files in one pass and keeps folder structure
+- Runs entirely on your Mac. Nothing uploaded, nothing phoned home
+- One-time $15.99, not a Lightroom-style subscription
+
+### Best for:
+
+Delivering JPGs from a full shoot. Anyone who wants correct colors without opening an editor.
+
+## Method 2: Preview (already on your Mac)
+
+Preview can open and export most RAW files once macOS has support for your camera.
+
+### Steps:
+
+1. Right-click the RAW file → **Open With → Preview**
+2. **File → Export**
+3. Pick **JPEG** from the Format dropdown
+4. Adjust the quality slider
+5. **Save**
+
+### For multiple files:
+
+1. Select the RAW files in Finder
+2. Right-click → Open with Preview
+3. Cmd+A to select all in the sidebar
+4. **File → Export Selected Images**, choose JPEG
+
+### The catch:
+
+Preview's decode can look flatter than your camera intended, since it doesn't always apply the full color profile. It also slows down past a few dozen files and flattens your folders into one pile.
+
+## Method 3: the Photos app
+
+If your RAW files are already imported into Photos, export straight from there.
+
+### Steps:
+
+1. Open **Photos** and select the images
+2. **File → Export → Export [N] Photos**
+3. Set Photo Kind to **JPEG**
+4. Choose quality and size
+5. **Export**
+
+### Upside and downside:
+
+Your edits and albums carry over, and color is generally good. But if the files aren't in Photos yet, you have to import them first, which bloats your library with big RAW files you may not want there.
+
+## Method 4: the command line (dcraw / ImageMagick)
+
+For scripting, `dcraw` or ImageMagick can decode RAW in the terminal.
+
+### Installation:
+
+```bash
+brew install imagemagick dcraw
+```
+
+### Every RAW file in a folder (example for Sony ARW):
+
+```bash
+for f in *.ARW; do
+  magick "$f" "${f%.*}.jpg"
+done
+```
+
+Swap the extension for your camera (`*.CR3`, `*.NEF`, `*.RAF`, and so on).
+
+### Why bother:
+
+Free and scriptable. The downside is color: getting white balance and profiles right on the command line takes real tuning, and the defaults often look dull. For accurate colors with no effort, use Method 1.
+
+## Side-by-side comparison
+
+| Method       | Speed     | Batch     | Color accuracy | Ease of use | Price  |
+| ------------ | --------- | --------- | -------------- | ----------- | ------ |
+| Picmal       | Very Fast | Excellent | Excellent      | Very Easy   | $15.99 |
+| Preview      | Moderate  | Limited   | Fair           | Easy        | Free   |
+| Photos App   | Slow      | Good      | Good           | Easy        | Free   |
+| dcraw / CLI  | Fast      | Excellent | Needs tuning   | Technical   | Free   |
+
+## Tips for better results
+
+- **Keep your RAW originals.** Convert copies. The conversion is permanent.
+- **Export at high quality for delivery.** 90% or above for client galleries; drop lower only for quick web previews.
+- **Watch the color.** If JPGs look flat, the tool isn't applying your camera's profile. Picmal handles this automatically.
+- **Convert copies into a separate folder** so you never mix RAW and JPG in the same directory.
+
+## The short version
+
+- **One or two files, free:** Preview
+- **Already in Photos:** export from Photos
+- **A whole shoot, correct colors, offline:** [Picmal](/raw-converter-mac)
+- **Scripting it:** dcraw or ImageMagick
+
+Whatever your camera writes, the destination is the same: a normal JPG anyone can open, with your RAW files safely archived.
+
+## Related guides
+
+- **Need a dedicated RAW tool?** See the [RAW converter for Mac](/raw-converter-mac).
+- **Converting from your iPhone instead?** [How to Convert HEIC to JPG on Mac](/blog/how-to-convert-heic-to-jpg-mac) covers Apple's photo format.
+- **Working through a big library?** [How to Batch Convert Images on Mac](/blog/batch-convert-images-mac) handles hundreds of files in one pass.

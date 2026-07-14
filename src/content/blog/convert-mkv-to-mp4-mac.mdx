@@ -1,0 +1,130 @@
+---
+title: "How to Convert MKV to MP4 on Mac (Keep Subtitles and Audio Tracks)"
+description: "MKV won't play on your Mac? Convert MKV to MP4 with Picmal, HandBrake, VLC, or FFmpeg. Handle multiple audio and subtitle tracks, batch a folder, no upload."
+pubDate: "2026-07-14"
+category: "Guide"
+tags: ["MKV", "MP4", "Video", "Conversion", "Mac"]
+faqs:
+  - question: "Why won't MKV play on my Mac?"
+    answer: "QuickTime and Preview don't support the MKV (Matroska) container, so double-clicking does nothing. VLC plays MKV fine, and converting to MP4 makes the file work everywhere on your Mac, including QuickTime, Photos, and editors."
+  - question: "Will I lose quality converting MKV to MP4?"
+    answer: "Not necessarily. If the video inside is already H.264 or H.265, tools can remux it into MP4 without re-encoding, keeping the exact quality. Only when the codec isn't MP4-compatible do you need a full, slightly lossy re-encode."
+  - question: "What happens to subtitles and extra audio tracks?"
+    answer: "MKV often holds multiple audio tracks and subtitles. MP4 supports fewer subtitle types, so soft subtitles may need to be selected, burned in, or exported separately. HandBrake and FFmpeg let you choose which tracks to keep."
+  - question: "What's the fastest way to convert many MKV files?"
+    answer: "A batch converter like Picmal handles a folder in one pass on your Mac. If the codecs allow a remux, each file converts almost instantly."
+---
+
+MKV is everywhere in downloaded and archived video because it's a flexible open container: it can pack a movie, several audio languages, and multiple subtitle tracks into one file. The problem on a Mac is that Apple never supported it. QuickTime won't open MKV, Preview won't, and neither will Photos or iMovie.
+
+Convert it to MP4 and it plays everywhere on your Mac. The one thing to watch is those extra audio and subtitle tracks, which need a decision during conversion.
+
+**Quick answer:** To convert MKV to MP4 on a Mac, remux it if the video is already H.264/H.265, or re-encode if not. [Picmal](/convert/video/mkv-to-mp4) batch-converts MKV files on your Mac with no upload; for track control, [HandBrake](https://handbrake.fr) lets you pick which audio and subtitle streams to keep.
+
+## The subtitle and audio-track catch
+
+This is what makes MKV different from a plain format swap:
+
+- **Multiple audio tracks:** MKV can hold several (different languages, commentary). MP4 supports multiple audio tracks too, but you may want to pick just one to keep the file lean.
+- **Subtitles:** MKV commonly uses SRT or ASS soft subtitles. MP4's subtitle support is narrower. Your options are to **keep compatible soft subs**, **burn them into the video** (permanent, always visible), or **export them separately** as an .srt file.
+
+HandBrake and FFmpeg give you this control. Simpler tools just take the defaults.
+
+## Method 1: Picmal (batch, on your Mac)
+
+[Picmal](https://picmal.app) converts a folder of MKV files to MP4 at once, entirely offline.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your MKV files, or a whole folder
+3. Choose **MP4** as the output
+4. Click **Convert**
+
+### Why people reach for it:
+
+- Batches a whole folder in one pass
+- Runs entirely on your Mac, nothing uploaded
+- Fast on Apple Silicon, no size limit, no watermark
+
+### Best for:
+
+Turning a folder of MKV downloads into MP4s that play in QuickTime and import into editors.
+
+## Method 2: HandBrake (best for track and subtitle control)
+
+[HandBrake](https://handbrake.fr) is the free tool to reach for when you care about which tracks survive.
+
+### Steps:
+
+1. Open HandBrake and drag in your MKV
+2. Set format to **MP4**
+3. In the **Audio** tab, pick the track(s) to keep
+4. In the **Subtitles** tab, choose to pass through or **Burn In**
+5. Pick a video preset (H.264) and click **Start**
+
+### Worth knowing:
+
+The most control of any free option, at the cost of a busier interface. One file at a time.
+
+## Method 3: VLC (plays MKV, converts it too)
+
+VLC opens MKV when nothing else will.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your MKV
+3. Choose the **Video - H.264 + MP3 (MP4)** profile
+4. **Save as File**, choose a destination, **Save**
+
+### The catch:
+
+Basic converter, limited track control, one file at a time.
+
+## Method 4: FFmpeg (remux or full control)
+
+```bash
+brew install ffmpeg
+```
+
+### Fast remux (no re-encode, when codecs are compatible):
+
+```bash
+ffmpeg -i input.mkv -c copy output.mp4
+```
+
+If the MKV has subtitles that MP4 can't hold, this may error. Then either drop subtitles:
+
+```bash
+ffmpeg -i input.mkv -c copy -sn output.mp4
+```
+
+or re-encode with them burned in. FFmpeg gives you exact control over every track.
+
+## Side-by-side comparison
+
+| Method    | Speed           | Track control | Batch     | Ease of use | Price  |
+| --------- | --------------- | ------------- | --------- | ----------- | ------ |
+| Picmal    | Very Fast       | Automatic     | Excellent | Very Easy   | $15.99 |
+| HandBrake | Moderate        | Excellent     | Good      | Moderate    | Free   |
+| VLC       | Slow            | Basic         | None      | Easy        | Free   |
+| FFmpeg    | Instant (remux) | Full          | Excellent | Technical   | Free   |
+
+## Tips
+
+- **Decide on subtitles first.** Burn them in if you want them always visible, keep them soft if you want them toggleable, or export them separately.
+- **Remux when possible** for zero quality loss and speed.
+- **Trim extra audio tracks** you don't need to keep the MP4 small.
+
+## The short version
+
+- **A folder of files, on your Mac:** [Picmal](/convert/video/mkv-to-mp4)
+- **Need specific subtitles or audio tracks:** HandBrake
+- **Fast lossless remux:** `ffmpeg -i in.mkv -c copy out.mp4`
+
+## Related guides
+
+- **Coming from HEVC or MOV?** [Convert HEVC to MP4](/blog/convert-hevc-to-mp4-mac) · [Convert MOV to MP4](/blog/convert-mov-to-mp4-mac).
+- **Need it smaller?** [How to Compress a Video on Mac](/blog/how-to-compress-video-mac).
+- **More formats?** Browse the [video converter for Mac](/video-converter-mac).

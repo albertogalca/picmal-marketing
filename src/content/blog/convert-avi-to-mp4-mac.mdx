@@ -1,0 +1,138 @@
+---
+title: "How to Convert AVI to MP4 on Mac (Free and Paid)"
+description: "AVI won't play on your Mac? Convert AVI to MP4 with Picmal, HandBrake, VLC, or FFmpeg. Batch a whole folder, keep the quality, no upload. Step-by-step."
+pubDate: "2026-07-14"
+category: "Guide"
+tags: ["AVI", "MP4", "Video", "Conversion", "Mac"]
+faqs:
+  - question: "Why won't my AVI file play on my Mac?"
+    answer: "QuickTime doesn't support the AVI container or the old DivX/Xvid codecs many AVI files use. That's why double-clicking an AVI often does nothing. VLC will play it, and converting to MP4 fixes playback everywhere on your Mac."
+  - question: "Will converting AVI to MP4 lose quality?"
+    answer: "A little, because you're re-encoding. At a high quality setting the difference is invisible. MP4 with H.264 is also far more efficient than old AVI codecs, so the MP4 is often smaller at the same visible quality."
+  - question: "What's the fastest way to convert many AVI files?"
+    answer: "A batch converter like Picmal, which processes a whole folder of AVIs in one pass on your Mac. HandBrake and VLC convert one file at a time."
+  - question: "Can I convert AVI to MP4 on Mac for free?"
+    answer: "Yes. HandBrake, VLC, and FFmpeg are all free and open source. Picmal ($15.99, one-time) adds batch speed and a simpler interface, and never uploads your files."
+---
+
+You downloaded an old video, or dug one out of an archive, and your Mac just stares at it. Double-click an AVI and often nothing happens. QuickTime doesn't speak AVI, and the DivX or Xvid codecs inside many AVI files are from a different era of the internet.
+
+Convert it to MP4 and the problem disappears. MP4 with H.264 plays on every Mac, phone, browser, and editor. Here are four ways to do it.
+
+**Quick answer:** To convert AVI to MP4 on a Mac, re-encode it with a free tool like [HandBrake](https://handbrake.fr) for one file, or a batch converter like [Picmal](/convert/video/avi-to-mp4) for a folder of them. Both re-encode the old AVI to a modern H.264 MP4 that plays natively on your Mac, no upload required.
+
+## Why AVI is a headache on a Mac
+
+AVI is a Microsoft container from 1992. It still shows up in downloads, old camcorder footage, and archives, but the Mac ecosystem moved on:
+
+- **QuickTime can't open most AVI files** and Preview won't touch them
+- The **DivX/Xvid codecs** inside are rarely supported by modern Apple software
+- **Editors reject it**, so you can't drop an AVI into iMovie or Final Cut
+
+MP4 solves all three. It's the format everything expects now.
+
+## Method 1: Picmal (fastest for batches)
+
+[Picmal](https://picmal.app) is a native Mac app for converting video. If you have more than one AVI, this is the quickest route.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your AVI files, or a whole folder
+3. Choose **MP4** as the output
+4. Set a quality level if you want to control size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Converts a folder of AVIs in one pass instead of one at a time
+- Runs entirely on your Mac, nothing uploaded
+- Uses hardware encoding, so it's fast on Apple Silicon
+- No file size limit and no watermark
+
+### Best for:
+
+Cleaning up an archive of old AVI clips into something modern and playable.
+
+## Method 2: HandBrake (free standard)
+
+[HandBrake](https://handbrake.fr) is the free, open-source workhorse and opens AVI without trouble.
+
+### Steps:
+
+1. Download and open HandBrake
+2. Drag in your AVI file
+3. Set the format to **MP4**
+4. Pick a preset like **Fast 1080p30** (H.264)
+5. Click **Start**
+
+### Worth knowing:
+
+Busy interface, sensible defaults. It has a queue for multiple files, but you add them one at a time.
+
+## Method 3: VLC (plays and converts AVI)
+
+VLC opens AVI when nothing else will, and it converts too.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your AVI file
+3. Choose the **Video - H.264 + MP3 (MP4)** profile
+4. Click **Save as File**, pick a destination
+5. **Save** to start
+
+### The catch:
+
+Basic converter, one file at a time, minimal progress feedback. Fine for the occasional file.
+
+## Method 4: FFmpeg (command line)
+
+For scripting or bulk jobs:
+
+```bash
+brew install ffmpeg
+```
+
+### A single file:
+
+```bash
+ffmpeg -i input.avi -c:v libx264 -crf 20 -c:a aac output.mp4
+```
+
+### Every AVI in a folder:
+
+```bash
+for f in *.avi; do
+  ffmpeg -i "$f" -c:v libx264 -crf 20 -c:a aac "${f%.*}.mp4"
+done
+```
+
+Free, and easy to loop over a folder of old clips at once. Worth it only if you're comfortable in the terminal.
+
+## Side-by-side comparison
+
+| Method    | Speed     | Batch     | Ease of use | Price  |
+| --------- | --------- | --------- | ----------- | ------ |
+| Picmal    | Very Fast | Excellent | Very Easy   | $15.99 |
+| HandBrake | Moderate  | Good      | Moderate    | Free   |
+| VLC       | Slow      | None      | Easy        | Free   |
+| FFmpeg    | Fast      | Excellent | Technical   | Free   |
+
+## Tips
+
+- **Keep a high quality setting** (CRF around 20). Old AVI footage is precious; don't crush it.
+- **Check the audio track survived.** AAC is the safe, universal choice.
+- **MP4 is often smaller** than the AVI original at the same quality, thanks to modern H.264 efficiency.
+
+## The short version
+
+- **One file, free:** HandBrake, or VLC if HandBrake can't open it
+- **A whole folder, fast and local:** [Picmal](/convert/video/avi-to-mp4)
+- **Scripting it:** FFmpeg
+
+## Related guides
+
+- **Different source format?** [How to Convert HEVC to MP4 on Mac](/blog/convert-hevc-to-mp4-mac).
+- **File too big after converting?** [How to Compress a Video on Mac](/blog/how-to-compress-video-mac).
+- **More conversions?** Browse the [video converter for Mac](/video-converter-mac).

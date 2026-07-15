@@ -1,0 +1,36 @@
+---
+title: Remove Background
+description: Cut the subject out of a photo onto a transparent PNG, entirely on your Mac — in the app, in Shortcuts, or from the command line. Nothing is ever uploaded.
+---
+
+Picmal's sidebar has a **Remove Background** tool that finds the subject in an image and drops everything else to transparent, giving you a clean PNG with an alpha channel. It uses Apple's on-device Vision framework, so the whole thing happens on your Mac — nothing is uploaded anywhere.
+
+## Remove a background
+
+1. Select **Remove Background** in the sidebar
+2. Drop one or more images into the window
+3. Click **Remove Background**
+
+Each result is written next to its source as `<name>_removed.png` — a transparent PNG. If Picmal can't find a subject in an image, it skips that one and tells you in the status bar, then finishes the rest of the batch. Use **Show in Finder** to jump to the results.
+
+![The Remove Background tool in Picmal: a potted plant lifted off its background onto a transparent PNG, previewed in Quick Look, with the status bar reading "Removed background from 1 image"](/images/docs/remove_background.png)
+
+## From Shortcuts
+
+Picmal ships a **Remove Background** action for the Shortcuts app. Pass it one or more images and it returns the cut-out PNGs, so you can wire it into an automation or a Quick Action in Finder. See [Integrations](/docs/integrations).
+
+## From the command line
+
+The [command line tool](/docs/cli) has a `remove-background` command:
+
+```bash
+picmal-cli remove-background photo.jpg
+picmal-cli remove-background *.png -o cutouts/
+```
+
+By default each output lands next to its source as `<name>_removed.png`. Pass `-o` to choose an output directory, `-w` to overwrite existing files, and `--json` for machine-readable output when you're piping into other tools.
+
+## Getting a clean result
+
+- **It works best with a clear subject.** A person, product, or animal against a distinct background cuts out cleanly; a busy scene with no obvious subject may be skipped.
+- **Everything runs on your Mac.** No image ever leaves your machine, so it works offline and on private files.

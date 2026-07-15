@@ -3,6 +3,28 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.0</title>
+            <pubDate>Wed, 15 Jul 2026 12:54:03 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>105</sparkle:version>
+            <sparkle:shortVersionString>1.8.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.0/Picmal.dmg" length="124776780" type="application/octet-stream" sparkle:edSignature="xmwHGZDXftCQq4/PeLDZW5wJAhC892t64XcYlETBX13hw9nyZGzGweRwavnQXwPbrvWiJZbJZYbVMOQxCnDLAw=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Vectorize.</strong> Turn PNG, JPG, and other raster images into true SVG vectors — real traced paths, not a bitmap wrapped in an SVG. Drop a whole batch, pick a style for each image (Logo, Photo, or B&W), and trace them all at once. It shines on logos, icons, and flat art.</li>
+<li><strong>Remove Background.</strong> Drop an image and Picmal lifts the subject out onto a transparent PNG. It finds the foreground right on your Mac — nothing is uploaded — and works in the app, from the command line (`picmal-cli remove-background`), and in Shortcuts.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>Convert-with-compression now makes smaller files.</strong> When you convert with compression turned on, Picmal uses the same optimised encoders as Compress mode, so JPEGs, PNGs and GIFs come out smaller. Formats like BMP, JP2 and JXL that used to pass through uncompressed now get compressed too.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Fixed a crash when converting a damaged HEIC photo.</strong> A corrupt or truncated HEIC in a big batch could take the whole app down partway through. Now Picmal just skips the bad file, marks it as failed, and finishes the rest of the batch.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.7.9</title>
             <pubDate>Sun, 12 Jul 2026 11:26:38 +0200</pubDate>
             <link>https://picmal.app/</link>

@@ -54,7 +54,7 @@ You don't need Picmal open. **Picmal — Compress**, **Picmal — Convert**, **P
 
 ## Shortcuts app
 
-Picmal provides seven actions for Apple's Shortcuts app, so you can build automated workflows.
+Picmal provides nine actions for Apple's Shortcuts app, so you can build automated workflows.
 
 ![Picmal actions in the Shortcuts app](/images/docs/shortcuts.png)
 
@@ -126,6 +126,14 @@ Returns the combined video, ready for a "Save File" action or the next step. Mat
 | Image     | The source image to generate icons from              |
 
 Returns the app icon files — a macOS `.icns`, a Windows `.ico`, and an iOS icon set. See [App Icons](/docs/app-icons).
+
+### Remove Background
+
+| Parameter | Description                                     |
+| --------- | ----------------------------------------------- |
+| Images    | The image(s) to cut the background out of       |
+
+Returns transparent PNGs with the background removed, ready for a "Save File" action or the next step. It runs on-device, so nothing is uploaded. See [Remove Background](/docs/remove-background).
 
 Use these to build automations like "compress every screenshot I take," "convert HEIC photos to JPEG when added to a folder," or "merge this month's invoices into one PDF."
 

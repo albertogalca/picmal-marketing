@@ -67,6 +67,8 @@ export default defineConfig({
             { label: "Video tools", link: "/docs/video-tools" },
             { label: "PDF tools", link: "/docs/pdf-tools" },
             { label: "App Icons", link: "/docs/app-icons" },
+            { label: "Vectorize", link: "/docs/vectorize" },
+            { label: "Remove Background", link: "/docs/remove-background" },
             { label: "Managing the queue", link: "/docs/managing-the-queue" },
             { label: "Watched folders", link: "/docs/watched-folders" },
             {

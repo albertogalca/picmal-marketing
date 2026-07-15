@@ -1,0 +1,25 @@
+---
+version: "1.8.0"
+title: "Vectorize images and lift out backgrounds"
+description: "Two new tools: turn raster images into real traced SVG vectors, and cut the background out of a photo onto a transparent PNG — both running entirely on your Mac. Plus smaller files when you convert with compression on."
+pubDate: 2026-07-15
+---
+
+Two new tools land in the sidebar this release. **Vectorize** traces a PNG or JPG into a real SVG — actual paths, not a bitmap in disguise — and **Remove Background** lifts the subject out of a photo onto a transparent PNG. Both run entirely on your Mac, nothing gets uploaded, and both handle a whole batch at once.
+
+![Picmal's Vectorize tool with a potted plant traced into a crisp SVG in Photo style, showing the per-row Style dropdown and the Vectorize All button](/images/changelog/1.8.0/vectorize.png)
+
+### New features
+
+- **Vectorize turns images into real SVG vectors.** Drop a batch of PNGs, JPGs, GIFs, or WebPs, pick a style per image — Logo, Photo, or B&W — and trace them all at once. You get true traced paths, not a bitmap wrapped in an SVG, so it shines on logos, icons, and flat art. See [Vectorize](/docs/vectorize).
+- **Remove Background cuts the subject out onto a transparent PNG.** Drop an image and Picmal finds the foreground and drops the rest to transparent — all on-device, nothing uploaded. It works in the app, in Shortcuts, and from the terminal with `picmal-cli remove-background`. See [Remove Background](/docs/remove-background).
+
+![The same potted plant with its background removed, previewed on a transparent checkerboard](/images/changelog/1.8.0/remove_background.png)
+
+### Improvements
+
+- **Convert-with-compression makes smaller files.** When you convert with compression turned on, Picmal now runs the same optimized encoders it uses in Compress mode, so JPEGs, PNGs, and GIFs come out smaller. Formats like BMP, JP2, and JXL that used to pass through untouched now get compressed too. See [Converting files](/docs/converting-files).
+
+### Bug fixes
+
+- **Fixed a crash when converting a damaged HEIC photo.** A corrupt or truncated HEIC in a big batch could take the whole app down partway through. Now Picmal skips the bad file, marks it as failed, and finishes the rest of the batch.

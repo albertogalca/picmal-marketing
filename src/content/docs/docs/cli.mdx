@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `combine-videos`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `combine`, `combine-videos`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, `remove-background`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -37,6 +37,7 @@ picmal-cli <subcommand> [options]
 | `merge-audio`    | Merge two or more audio files into one            |
 | `combine-videos` | Combine two or more videos into one               |
 | `split-chapters` | Split a chaptered audiobook into per-chapter files |
+| `remove-background` | Cut the background out of images (transparent PNG) |
 | `presets`        | List or inspect saved presets (built-in + custom) |
 | `formats`        | List supported formats by category                |
 | `watch`          | Add, list, and remove watched folders             |
@@ -209,6 +210,24 @@ picmal-cli app-icon logo.png --ios --windows -o icons/
 | `-w`, `--overwrite`     | Overwrite existing output files.                                                          |
 
 Pass any combination of `--macos`, `--windows`, and `--ios` to pick formats; with none, all three are generated. See [App Icons](/docs/app-icons).
+
+## remove-background
+
+Cut the background out of one or more images and write each subject to a transparent PNG. It runs entirely on your Mac using Apple's Vision framework — nothing is uploaded.
+
+```bash
+picmal-cli remove-background photo.jpg
+picmal-cli remove-background *.png -o cutouts/
+```
+
+| Flag                    | Description                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------- |
+| `<inputs...>`           | Source image(s) to remove the background from (positional).                         |
+| `-o`, `--output <path>` | Output directory. Default: `<name>_removed.png` next to each source.                 |
+| `-w`, `--overwrite`     | Overwrite existing output files.                                                     |
+| `--json`                | Force JSON output.                                                                   |
+
+An image with no clear subject is skipped and reported, and the rest of the batch still runs. See [Remove Background](/docs/remove-background).
 
 ## merge-audio
 

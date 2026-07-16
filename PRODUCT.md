@@ -14,7 +14,7 @@ Mac users who need to convert, compress, or edit images, video, audio, and PDFs 
 
 ## Product Purpose
 
-Picmal is a native macOS app that converts, compresses, and edits images, video, audio, and PDFs entirely on the user's Mac. It exists so people can do everyday media work without uploading files to servers, creating accounts, or paying a subscription. It batches hundreds of files at once and lives in Finder, Shortcuts, and Quick Actions like a real Mac app rather than a web wrapper. Success looks like a visitor going from a specific search intent to a download or a $15.99 purchase, confident their files never left their machine.
+Picmal is a native macOS app that converts, compresses, and edits images, video, audio, and PDFs entirely on the user's Mac. It exists so people can do everyday media work without uploading files to servers, creating accounts, or paying a subscription. It batches hundreds of files at once and lives in Finder, Shortcuts, Raycast, and Quick Actions like a real Mac app rather than a web wrapper. Success looks like a visitor going from a specific search intent to a download or a $15.99 purchase, confident their files never left their machine.
 
 ## Positioning
 

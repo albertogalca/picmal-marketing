@@ -66,7 +66,7 @@ Keep camera info, dates, and GPS — or strip what you don't want shared.
 ## Block 4 — Fits the way you work
 
 Lead [medium]: **Fits your workflow**
-A conversion is a right-click away — Finder, Shortcuts, and Raycast (soon).
+A conversion is a right-click away — Finder, Shortcuts, and Raycast.
 Visual: Finder right-click + Shortcuts.
 
 Card [medium]: **A command line for scripts and agents** [coming soon]

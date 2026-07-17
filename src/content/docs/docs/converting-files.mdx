@@ -30,6 +30,20 @@ After converting a file, click the screen icon on any processed file to open an 
 
 You can convert a file to the same format it's already in. This is useful for resampling audio (for example, FLAC to FLAC at a different sample rate) without changing the codec. Same-format conversions follow your convert naming pattern (default `{original}_converted`), so the output lands beside the original instead of overwriting it. Adjust the pattern, prefix, or suffix in **Settings → Output**; see [output and naming](/docs/output-and-naming).
 
+## Apple icon files
+
+Drop an `.icns` in and convert it to PNG, JPG, or any other image format. An icon file holds several sizes at once, so each one becomes its own file saved next to the original:
+
+```
+icon-1024x1024.png
+icon-512x512.png
+icon-256x256.png
+```
+
+Sizes stored twice inside the icon (a `256x256` and a `128x128@2x`, say) come out once. An icon with only one size inside just converts normally, keeping your usual output name. This works from the command line too — `picmal-cli convert -i icon.icns -f png`.
+
+Picmal reads `.icns` but doesn't write it here. To make one from an image, use [App Icons](/docs/app-icons).
+
 ## Format compatibility
 
 Picmal converts within the same media type:

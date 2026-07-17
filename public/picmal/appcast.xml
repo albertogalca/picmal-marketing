@@ -3,6 +3,25 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.1</title>
+            <pubDate>Fri, 17 Jul 2026 15:45:03 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>106</sparkle:version>
+            <sparkle:shortVersionString>1.8.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.1/Picmal.dmg" length="124761145" type="application/octet-stream" sparkle:edSignature="fhE6d1WGEM7pS0nG8so0+z8NyujuzKK+tuEx3lM0ZdNr81AiwnBpQ6+W6aPPCCIDcSw/FsR3g2aQbA7swgmxAA=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Convert Apple icon files.</strong> Drop an `.icns` in and turn it into PNG, JPG, or whatever else you need. An icon file holds several sizes at once, so each one becomes its own file saved next to the original — `icon-1024x1024.png`, `icon-512x512.png`, and so on. Works in the app and from the command line (`picmal-cli convert`).</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Converting to WebP no longer bloats the file.</strong> With compression turned off, Picmal was encoding WebP — and AVIF, HEIC and other lossy formats — at full quality, so a 355 KB JPEG could balloon past 1 MB. It now converts at a visually lossless quality that stays well under the original. Same fix for clipboard optimisation.</li>
+<li><strong>The Saving percentage is accurate again.</strong> Re-running a file with Again, or switching its output format, could leave the Saving column stuck at 0% even when the file got smaller. It now compares against your original file every time.</li>
+<li><strong>Readable errors when audio or video won't convert.</strong> A failed media file used to dump a wall of raw FFmpeg log into the file row. Now you get a plain explanation, and if the video's picture track is damaged or incomplete, Picmal tells you outright.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.0</title>
             <pubDate>Wed, 15 Jul 2026 12:54:03 +0200</pubDate>
             <link>https://picmal.app/</link>

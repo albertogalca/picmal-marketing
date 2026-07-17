@@ -66,6 +66,7 @@ picmal-cli convert -i a.png b.png -f avif --strip-metadata
 picmal-cli convert -i clip.mov -f mp4 --quality 70
 picmal-cli convert -i photo.jpg -f jpg --resize 100kB
 picmal-cli convert -i photo.jpg -f jpg --copyright "© 2026 Jane Doe" --artist "Jane Doe"
+picmal-cli convert -i icon.icns -f png -o ~/out
 cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 ```
 
@@ -93,6 +94,8 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--watermark-position`    | `tl`, `tr`, `bl`, `br`, or `center`. Default `br`.                           |
 
 The copyright flags are independent of `--strip-metadata`: pass both to strip a photo's camera/GPS data while still stamping your own ownership tags onto the output. Empty flags are skipped; values you pass always overwrite any existing tag.
+
+An `.icns` input fans out to one output per embedded size, named `<name>-<W>x<H>.<ext>` — the same convention `split-pdf` uses for pages. `--quality`, `--resize`, and `--watermark` apply to each size. See [Apple icon files](/docs/converting-files#apple-icon-files).
 
 ### Metadata
 

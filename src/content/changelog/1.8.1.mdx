@@ -1,0 +1,17 @@
+---
+version: "1.8.1"
+title: "Convert Apple icon files, and leaner WebP"
+description: "Drop an .icns in and every size inside it comes out as its own PNG or JPG. Plus WebP conversions no longer end up bigger than the original, and the Saving column is accurate again."
+pubDate: 2026-07-17
+---
+
+Picmal has made app icons for a while — now it reads them back. Drop an `.icns` in and you get every size it holds as a separate image. This release also fixes a big one: converting to WebP could leave you with a *larger* file than you started with.
+
+### New features
+
+- **Convert Apple icon files.** Drop an `.icns` in and turn it into PNG, JPG, or whatever else you need. An icon file holds several sizes at once, so each one becomes its own file saved next to the original — `icon-1024x1024.png`, `icon-512x512.png`, and so on. Works in the app and from the terminal with `picmal-cli convert`. See [Converting files](/docs/converting-files#apple-icon-files).
+
+### Bug fixes
+
+- **Fixed WebP conversions bloating the file.** With compression turned off, Picmal was encoding WebP — along with AVIF, HEIC, and other lossy formats — at full quality, so a 355 KB JPEG could balloon past 1 MB. It now converts at a visually lossless quality that stays well under the original. Same fix for [clipboard optimization](/docs/clipboard-optimization).
+- **Fixed the Saving percentage getting stuck at 0%.** Re-running a file with **Again**, or switching its output format, could leave the Saving column reading 0% even when the file did get smaller. It now compares against your original file every time.

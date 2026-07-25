@@ -5,7 +5,7 @@ const host = import.meta.env.PUBLIC_POSTHOG_HOST;
 if (import.meta.env.DEV && !token) {
   throw new Error(
     "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, " +
-    "this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured"
+      "this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured",
   );
 }
 ---
@@ -65,8 +65,9 @@ if (import.meta.env.DEV && !token) {
   })(document, window.posthog || []);
   if (phToken) {
     posthog.init(phToken, {
-      api_host: phHost || "https://eu.i.posthog.com",
-      defaults: "2025-11-30",
+      api_host: "https://k.cozyjournal.app",
+      ui_host: "https://eu.posthog.com",
+      defaults: "2026-05-30",
       person_profiles: "identified_only",
     });
   }
@@ -79,8 +80,7 @@ if (import.meta.env.DEV && !token) {
   and source → click → revenue land on the same PostHog person. distinct_id is enough —
   PostHog already holds that person's first-touch UTMs. Capture phase + reading href
   at click time keeps every CTA (and DynamicPricing's tier-swapping href) working.
--->
-<!--
+--><!--
   Affiliate attribution: capture ?ref=CODE into a 60-day first-party cookie, then
   append ref=<code> to every /api/checkout link. licencio resolves the code to an
   approved Affiliate and freezes commission at sale time (unknown codes ignored).

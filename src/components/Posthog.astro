@@ -1,8 +1,16 @@
 ---
-// src/components/Posthog.astro
+const token = import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN;
+const host = import.meta.env.PUBLIC_POSTHOG_HOST;
+
+if (import.meta.env.DEV && !token) {
+  throw new Error(
+    "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, " +
+    "this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured"
+  );
+}
 ---
 
-<script is:inline>
+<script is:inline define:vars={{ phToken: token, phHost: host }}>
   !(function (t, e) {
     var o, n, p, r;
     e.__SV ||
@@ -55,11 +63,13 @@
       }),
       (e.__SV = 1));
   })(document, window.posthog || []);
-  posthog.init("phc_vYPDIdS2FFUZwvsqscaZ6Ke7gQYo0Iedd07FAPPSgvX", {
-    api_host: "https://eu.i.posthog.com",
-    defaults: "2025-11-30",
-    person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-  });
+  if (phToken) {
+    posthog.init(phToken, {
+      api_host: phHost || "https://eu.i.posthog.com",
+      defaults: "2025-11-30",
+      person_profiles: "identified_only",
+    });
+  }
 </script>
 
 <!--

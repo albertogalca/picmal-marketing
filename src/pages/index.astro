@@ -20,12 +20,15 @@ import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 
 const SITE_DESCRIPTION =
-  "Convert, compress, and edit your images, video, and audio right on your Mac, instead of trusting sketchy websites. Everything offline, no subscription.";
+  "Convert, compress, and edit your images, video, and audio right on your Mac, instead of trusting sketchy websites. Everything works offline, no subscription.";
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title="Your Mac's media toolkit" description={SITE_DESCRIPTION} />
+    <BaseHead
+      title="Picmal: your Mac's media toolkit to convert & compress"
+      description={SITE_DESCRIPTION}
+    />
     <OrganizationSchema url={Astro.site!.href} />
     <WebSiteSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />

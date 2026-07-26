@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getPublishedPosts } from "../utils/posts";
 import { Image } from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
 import ogImage from "../../public/og.png";
@@ -14,7 +14,7 @@ interface Props {
 const { currentSlug, category, tags = [], limit = 2 } = Astro.props;
 
 // Get all blog posts
-const allPosts = await getCollection("blog");
+const allPosts = await getPublishedPosts();
 
 // Filter and sort related posts
 const relatedPosts = allPosts

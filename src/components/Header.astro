@@ -107,7 +107,9 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
           text="Buy for Mac"
           href="/#pricing"
           target="_self"
-          onclick="posthog.capture('buy_clicked')"
+          onclick={import.meta.env.PROD
+            ? "posthog.capture('buy_clicked')"
+            : undefined}
         />
 
         <button

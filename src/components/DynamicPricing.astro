@@ -184,7 +184,7 @@ import { TIERS } from "../config/pricing";
       id="buy-button"
       text="Buy for Mac"
       class="w-full mt-6"
-      onclick="posthog.capture('buy_clicked')"
+      onclick={import.meta.env.PROD ? "posthog.capture('buy_clicked')" : undefined}
     />
 
     <script define:vars={{ pricingTiers: TIERS }}>

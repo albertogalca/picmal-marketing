@@ -210,20 +210,21 @@ const SITE_DESCRIPTION =
 
     <!-- PostHog Analytics with keyboard accessibility -->
     <script>
-      // Track buy button clicks (both mouse and keyboard)
-      document
-        .getElementById("buy-cta-button")
-        ?.addEventListener("click", () => {
-          if (typeof posthog !== "undefined") posthog.capture("buy_clicked");
-        });
+      if (import.meta.env.PROD) {
+        // Track buy button clicks (both mouse and keyboard)
+        document
+          .getElementById("buy-cta-button")
+          ?.addEventListener("click", () => {
+            window.posthog?.capture("buy_clicked");
+          });
 
-      // Track download button clicks
-      document
-        .getElementById("download-cta-button")
-        ?.addEventListener("click", () => {
-          if (typeof posthog !== "undefined")
-            posthog.capture("download_clicked");
-        });
+        // Track download button clicks
+        document
+          .getElementById("download-cta-button")
+          ?.addEventListener("click", () => {
+            window.posthog?.capture("download_clicked");
+          });
+      }
     </script>
   </body>
 </html>

@@ -58,7 +58,9 @@ const steps = [
             href={DMG_URL}
             text="Download Picmal (.dmg)"
             class="w-full sm:w-auto"
-            onclick="posthog.capture('download_dmg')"
+            onclick={import.meta.env.PROD
+              ? "posthog.capture('download_dmg')"
+              : undefined}
           />
           <a
             href="/#pricing"

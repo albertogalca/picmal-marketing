@@ -1,5 +1,6 @@
 ---
 import testimonials from "../data/testimonials.json";
+import Card from "./Card.astro";
 import H2 from "./H2.astro";
 import TestimonialCard from "./TestimonialCard.astro";
 import TrustBar from "./TrustBar.astro";
@@ -9,51 +10,28 @@ interface Props {
   heading?: string;
   showTrustBar?: boolean;
   trustSuffix?: string;
-  /** Show this many cards up front; the rest hide behind a "Show more" toggle.
-      Schema still counts all of them, so SEO reviewCount is unchanged; reorder
-      testimonials.json to pick which ones lead. Omit to render every card with
-      no toggle. */
-  limit?: number;
 }
-const { heading, showTrustBar = false, trustSuffix, limit } = Astro.props;
+const { heading, showTrustBar = false, trustSuffix } = Astro.props;
 
 const userTestimonials = testimonials.filter((t) => t.type !== "press");
 
-// Primary cards are always visible; the rest sit behind the toggle.
-const limited = typeof limit === "number";
-const primary = limited ? testimonials.slice(0, limit) : testimonials;
-const rest = limited ? testimonials.slice(limit) : [];
-
-// Pack a set into `columns` height-balanced buckets: greedily drop each card
-// (tallest first) into the shortest column so the columns end near-even
-// (~25px ragged vs ~220px in naive order), no matter how testimonials.json is
-// reordered. Height is estimated from content length (no DOM at build time).
-type Testimonial = (typeof testimonials)[number];
-function estHeight(t: { content?: string }): number {
-  return 90 + Math.ceil((t.content?.length ?? 0) / 40) * 25;
-}
-function packColumns(list: Testimonial[], columns = 3): Testimonial[][] {
-  const cols = Array.from({ length: columns }, () => ({
-    items: [] as Testimonial[],
-    height: 0,
-  }));
-  [...list]
-    .sort((a, b) => estHeight(b) - estHeight(a))
-    .forEach((t) => {
-      const shortest = cols.reduce((a, b) => (b.height < a.height ? b : a));
-      shortest.items.push(t);
-      shortest.height += estHeight(t);
-    });
-  return cols.map((c) => c.items);
-}
-const REST_COLUMNS = 3;
-// Primary uses CSS `columns` (responsive 1→2→3), fed column-major so it balances.
-const orderedPrimary = packColumns(primary).flat();
-// Rest uses explicit flex columns so its wrapper height can animate — CSS
-// multi-column collapses to 0 under any definite max-height ancestor.
-const restColumns = packColumns(rest, REST_COLUMNS);
-const restCount = rest.length;
-const moreLabel = `Show ${restCount} more review${restCount === 1 ? "" : "s"}`;
+// Three slowly scrolling columns. Each column's list is rendered twice and the
+// track animates to -50%, so the loop closes seamlessly; the second copy is
+// `inert` (out of the a11y tree and out of the tab order). Durations differ a
+// little so the columns don't march in lockstep.
+const per = Math.ceil(testimonials.length / 3);
+const columns = [
+  { items: testimonials.slice(0, per), duration: "56s" },
+  { items: testimonials.slice(per, per * 2), duration: "68s" },
+  { items: testimonials.slice(per * 2), duration: "62s" },
+].map((column) => ({
+  duration: column.duration,
+  cards: [...column.items, ...column.items].map((t, i) => ({
+    t,
+    dup: i >= column.items.length,
+    isLink: !!t.link && t.type !== "press",
+  })),
+}));
 
 const reviewSchemas = userTestimonials.map((t) => ({
   "@type": "Review",
@@ -89,260 +67,191 @@ const aggregateRatingSchema = {
 
 <Section id="testimonials" width="wide">
   <div class="text-center mb-12">
-    {
-      heading ? (
-        <>
-          <H2 class="mb-6 max-w-3xl mx-auto">{heading}</H2>
-          {showTrustBar && <TrustBar prefix="" suffix={trustSuffix} />}
-        </>
-      ) : (
-        <>
-          <H2 class="mb-6 max-w-3xl mx-auto">
+    <H2 class="mb-6 max-w-3xl mx-auto">
+      {
+        heading ? (
+          heading
+        ) : (
+          <>
             What people are <br /> saying about Picmal
-          </H2>
-          {showTrustBar && <TrustBar prefix="" suffix={trustSuffix} />}
-        </>
-      )
-    }
+          </>
+        )
+      }
+    </H2>
+    {showTrustBar && <TrustBar prefix="" suffix={trustSuffix} />}
   </div>
 
-  <div class="masonry-grid">
+  <div class="marquee flex justify-center gap-6" data-marquee>
     {
-      orderedPrimary.map((testimonial) => {
-        const isPress = testimonial.type === "press";
-        const wrapAsLink = !!testimonial.link && !isPress;
-        const CardWrapper = wrapAsLink ? "a" : "div";
-        return (
-          <div class="masonry-item">
-            <CardWrapper
-              href={wrapAsLink ? testimonial.link : undefined}
-              target={wrapAsLink ? "_blank" : undefined}
-              rel={wrapAsLink ? "nofollow noreferrer" : undefined}
-              class:list={[
-                "block",
-                wrapAsLink &&
-                  "rounded-xl cursor-pointer hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
-              ]}
-            >
-              <TestimonialCard testimonial={testimonial} align="left" />
-            </CardWrapper>
+      columns.map((column, c) => (
+        <div
+          class:list={[
+            "marquee-col",
+            c === 1 && "hidden md:block",
+            c === 2 && "hidden lg:block",
+          ]}
+        >
+          <div class="marquee-track" style={`--duration:${column.duration}`}>
+            {column.cards.map((card) =>
+              card.isLink ? (
+                <a
+                  href={card.t.link}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                  inert={card.dup}
+                  class:list={[
+                    "block rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                    card.dup && "marquee-dup",
+                  ]}
+                >
+                  <Card>
+                    <TestimonialCard testimonial={card.t} align="left" />
+                  </Card>
+                </a>
+              ) : (
+                <Card inert={card.dup} class={card.dup ? "marquee-dup" : ""}>
+                  <TestimonialCard testimonial={card.t} align="left" />
+                </Card>
+              )
+            )}
           </div>
-        );
-      })
+        </div>
+      ))
     }
   </div>
 
-  {
-    restCount > 0 && (
-      <>
-        <div
-          id="testimonials-rest"
-          class="masonry-reveal"
-          data-testimonials-reveal
-          hidden
-          inert
-        >
-          <div class="rest-columns">
-            {restColumns.map((column, c) => (
-              <div class="rest-column">
-                {column.map((testimonial, r) => {
-                  const isPress = testimonial.type === "press";
-                  const wrapAsLink = !!testimonial.link && !isPress;
-                  const CardWrapper = wrapAsLink ? "a" : "div";
-                  // Row-major stagger index: the top row across all columns
-                  // reveals first, then the next row down.
-                  const i = r * REST_COLUMNS + c;
-                  return (
-                    <div class="masonry-item" style={`--i:${i}`}>
-                      <CardWrapper
-                        href={wrapAsLink ? testimonial.link : undefined}
-                        target={wrapAsLink ? "_blank" : undefined}
-                        rel={wrapAsLink ? "nofollow noreferrer" : undefined}
-                        class:list={[
-                          "block",
-                          wrapAsLink &&
-                            "rounded-xl cursor-pointer hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
-                        ]}
-                      >
-                        <TestimonialCard testimonial={testimonial} align="left" />
-                      </CardWrapper>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="mt-2 flex justify-center">
-          <button
-            type="button"
-            data-testimonials-toggle
-            data-label-more={moreLabel}
-            data-label-less="Show fewer"
-            aria-expanded="false"
-            aria-controls="testimonials-rest"
-            class="inline-flex items-center justify-center gap-2 rounded-lg font-[590] text-body py-3 px-6 cursor-pointer text-text border bg-background border-border shadow-xs hover:bg-background-subtle hover:border-border/70 hover:shadow-sm dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] dark:hover:bg-white/[0.10] dark:hover:border-white/[0.16] transition-[scale,box-shadow,background-color,border-color] duration-200 ease-out motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            <span data-toggle-label>{moreLabel}</span>
-            <svg
-              class="reveal-chevron w-4 h-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </button>
-        </div>
-      </>
-    )
-  }
+  <div class="marquee-controls mt-8 flex justify-center">
+    <button
+      type="button"
+      data-marquee-toggle
+      aria-pressed="false"
+      aria-label="Pause the scrolling reviews"
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-text-secondary hover:text-text border bg-background border-border shadow-xs hover:bg-background-subtle dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] dark:hover:bg-white/[0.10] transition-[color,scale,background-color,border-color] duration-200 ease-out motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      <svg
+        class="icon-pause w-4 h-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <rect x="7" y="5" width="3.5" height="14" rx="1.25"></rect>
+        <rect x="13.5" y="5" width="3.5" height="14" rx="1.25"></rect>
+      </svg>
+      <svg
+        class="icon-play w-4 h-4 hidden"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 5.5a1 1 0 0 1 1.53-.85l9 6.5a1 1 0 0 1 0 1.7l-9 6.5A1 1 0 0 1 8 18.5v-13Z"
+        ></path>
+      </svg>
+    </button>
+  </div>
 </Section>
 
 <style>
-  .masonry-grid {
-    columns: 1;
-    column-gap: 3rem;
+  .marquee {
+    max-height: 740px;
+    /* `clip`, not `hidden`: a focused card near the edge would otherwise scroll
+       this box and knock the loop out of alignment. */
+    overflow: clip;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
   }
 
-  @media (min-width: 640px) {
-    .masonry-grid {
-      columns: 2;
-    }
+  .marquee-col {
+    width: 100%;
+    max-width: 24rem;
   }
 
-  @media (min-width: 1024px) {
-    .masonry-grid {
-      columns: 3;
-    }
-  }
-
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 3rem;
-  }
-
-  /* Collapsible "rest" panel. Toggled via the `hidden` attribute (height snaps)
-     rather than an animated height — animating max-height on this flex/column
-     content stalls in Chrome. The reveal itself is the staggered card cascade
-     below. Explicit flex columns (not CSS multi-column, which won't lay out
-     correctly here). */
-  .masonry-reveal[hidden] {
-    display: none;
-  }
-
-  /* Same balanced columns as the primary grid, but explicit so max-height can
-     animate. Stacks on mobile, 3 columns from md up. Top padding separates it
-     from the primary grid once open. */
-  .rest-columns {
+  .marquee-track {
     display: flex;
     flex-direction: column;
-    padding-top: 3rem;
+    /* Gap and trailing padding must match, or the loop seam shows. */
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    animation: marquee-scroll var(--duration, 60s) linear infinite;
+    will-change: transform;
   }
 
-  @media (min-width: 768px) {
-    .rest-columns {
-      flex-direction: row;
-      gap: 3rem;
-    }
+  /* Reading a quote shouldn't be a moving target: hover and keyboard focus both
+     hold the wall still. The button sets animation-play-state inline (a
+     runtime-only class gets pruned from Astro's scoped sheet). */
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
   }
 
-  .rest-column {
-    flex: 1;
-    min-width: 0;
-  }
-
-  /* Cards fade + rise in as the panel opens, staggered by row (capped so a
-     long tail doesn't drag). Transitions stay interruptible. */
-  .masonry-reveal .masonry-item {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      opacity 0.4s ease,
-      transform 0.4s cubic-bezier(0.2, 0, 0, 1);
-    transition-delay: calc(min(var(--i, 0), 10) * 35ms);
-  }
-
-  .masonry-reveal.is-open .masonry-item {
-    opacity: 1;
-    transform: none;
-  }
-
-  .reveal-chevron {
-    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
-  }
-
-  [data-testimonials-toggle][aria-expanded="true"] .reveal-chevron {
-    transform: rotate(180deg);
-  }
-
+  /* No motion: a plain scrollable wall, with the duplicate copies and the
+     pause control (which would then do nothing) dropped. */
   @media (prefers-reduced-motion: reduce) {
-    .masonry-reveal,
-    .masonry-reveal .masonry-item,
-    .reveal-chevron {
-      transition: none;
+    .marquee {
+      overflow-y: auto;
     }
-    .masonry-reveal .masonry-item {
-      opacity: 1;
-      transform: none;
+
+    .marquee-track {
+      animation: none;
+      will-change: auto;
+    }
+
+    .marquee-dup,
+    .marquee-controls {
+      display: none;
+    }
+  }
+
+  /* Keep @keyframes last: rules after it get dropped from the scoped sheet. */
+  @keyframes marquee-scroll {
+    to {
+      transform: translateY(-50%);
     }
   }
 </style>
 
 <script>
+  const marquee = document.querySelector<HTMLElement>("[data-marquee]");
   const toggle = document.querySelector<HTMLButtonElement>(
-    "[data-testimonials-toggle]",
+    "[data-marquee-toggle]",
   );
-  const reveal = document.querySelector<HTMLElement>(
-    "[data-testimonials-reveal]",
-  );
-  const label = toggle?.querySelector<HTMLElement>("[data-toggle-label]");
 
-  if (toggle && reveal && label) {
-    const more = toggle.dataset.labelMore ?? "Show more";
-    const less = toggle.dataset.labelLess ?? "Show fewer";
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    let closeTimer = 0;
+  const tracks = marquee
+    ? [...marquee.querySelectorAll<HTMLElement>(".marquee-track")]
+    : [];
+  let paused = false;
 
-    const expand = () => {
-      window.clearTimeout(closeTimer);
-      reveal.hidden = false; // panel takes its full height; cards still at 0
-      reveal.inert = false;
-      if (reduce) {
-        reveal.classList.add("is-open");
-        return;
-      }
-      // Two frames so the browser paints the opacity:0 start before we flip
-      // to is-open, letting the staggered card transition actually run.
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => reveal.classList.add("is-open")),
-      );
-    };
-    const collapse = () => {
-      reveal.classList.remove("is-open"); // cards fade back out
-      reveal.inert = true;
-      if (reduce) {
-        reveal.hidden = true;
-        return;
-      }
-      // Pull the panel from layout once the cards have faded.
-      closeTimer = window.setTimeout(() => {
-        reveal.hidden = true;
-      }, 320);
-    };
+  toggle?.addEventListener("click", () => {
+    paused = !paused;
+    tracks.forEach((track) => {
+      track.style.animationPlayState = paused ? "paused" : "";
+    });
+    toggle.setAttribute("aria-pressed", String(paused));
+    toggle.setAttribute(
+      "aria-label",
+      paused ? "Resume the scrolling reviews" : "Pause the scrolling reviews",
+    );
+    toggle.querySelector(".icon-pause")?.classList.toggle("hidden", paused);
+    toggle.querySelector(".icon-play")?.classList.toggle("hidden", !paused);
+  });
 
-    toggle.addEventListener("click", () => {
-      const willOpen = reveal.hidden || !reveal.classList.contains("is-open");
-      toggle.setAttribute("aria-expanded", String(willOpen));
-      label.textContent = willOpen ? less : more;
-      willOpen ? expand() : collapse();
+  // Focusing a card near the clipped edge would otherwise scroll this box and
+  // knock the loop out of alignment. (Reduced motion turns it into a real
+  // scroll area, so leave that alone.)
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    marquee?.addEventListener("scroll", () => {
+      marquee.scrollTop = 0;
     });
   }
 </script>

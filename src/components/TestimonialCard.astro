@@ -49,14 +49,17 @@ function getInitialsAvatar(name: string): string {
 
 // Split the quote around the highlighted phrase so it can carry the accent
 // treatment shared by the hero and the testimonials grid.
-const at = t.highlight ? t.content.indexOf(t.highlight) : -1;
+// Trimmed: a few entries carry trailing whitespace, which shows up as a gap
+// before the closing quote mark.
+const content = t.content.trim();
+const at = t.highlight ? content.indexOf(t.highlight) : -1;
 const quote =
   at === -1
-    ? { before: t.content, mark: "", after: "" }
+    ? { before: content, mark: "", after: "" }
     : {
-        before: t.content.slice(0, at),
+        before: content.slice(0, at),
         mark: t.highlight!,
-        after: t.content.slice(at + t.highlight!.length),
+        after: content.slice(at + t.highlight!.length),
       };
 ---
 
@@ -82,17 +85,9 @@ const quote =
   </div>
 
   <!-- Quote -->
-  <p class:list={["text-text-secondary text-pretty mb-6 text-body"]}>
-    "{quote.before}
-    {
-      quote.mark && (
-        <span class="bg-accent/15 text-text px-1 py-0.5 font-medium box-decoration-clone">
-          {quote.mark}
-        </span>
-      )
-    }
-    {quote.after}"
-  </p>
+  <!-- No newlines inside the quote: they collapse into stray spaces around the
+       highlight ("word . Next" instead of "word. Next"). -->
+  <p class:list={["text-text-secondary text-pretty mb-6 text-body"]}>"{quote.before}{quote.mark && <span class="bg-accent/15 text-text px-1 py-0.5 font-medium box-decoration-clone">{quote.mark}</span>}{quote.after}"</p>
 
   <!-- Attribution -->
   {

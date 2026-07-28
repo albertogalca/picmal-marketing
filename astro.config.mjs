@@ -16,7 +16,6 @@ import {
   isVideoConversionIndexed,
 } from "./src/data/videoConversions.ts";
 
-// Convert pages that are noindexed should also be kept out of the sitemap.
 const noindexConvertUrls = new Set([
   ...conversions
     .filter((c) => !isConversionIndexed(c.slug))
@@ -29,12 +28,12 @@ const noindexConvertUrls = new Set([
     .map((c) => `https://picmal.app/convert/video/${c.slug}`),
 ]);
 
-// Noindexed standalone pages (see meta.noindex in each); keep them out of the sitemap too.
 const noindexLegalUrls = new Set([
   "https://picmal.app/terms",
   "https://picmal.app/privacy",
   "https://picmal.app/legal/open-source",
   "https://picmal.app/download",
+  "https://picmal.app/thank-you",
 ]);
 
 export default defineConfig({
@@ -124,6 +123,7 @@ export default defineConfig({
     mdx(),
     icon(),
     sitemap({
+      lastmod: new Date(),
       filter: (page) =>
         !noindexConvertUrls.has(page) && !noindexLegalUrls.has(page),
     }),

@@ -1,10 +1,3 @@
-// Video conversion data for programmatic SEO pages.
-// Separate from image conversions (conversions.ts) so the two matrices never mix
-// (e.g. no nonsensical jpg-to-mp4). Pages render at /convert/video/[slug].
-//
-// Picmal does real video conversion AND compression (H.264/H.265/VP9/AV1, CRF,
-// container swap, subtitle burn-in, speed change). See /docs/audio-and-video.
-
 export interface VideoFormatInfo {
   name: string;
   extension: string;
@@ -166,9 +159,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
   },
 };
 
-// Curated, high-demand pairs only (no full matrix — keeps every page intentional).
 const PAIRS: [string, string][] = [
-  // → MP4 (the compatibility workhorse)
   ["mov", "mp4"],
   ["mkv", "mp4"],
   ["avi", "mp4"],
@@ -182,18 +173,14 @@ const PAIRS: [string, string][] = [
   ["vob", "mp4"],
   ["mpg", "mp4"],
   ["hevc", "mp4"],
-  // MP4 → other
   ["mp4", "mov"],
   ["mp4", "webm"],
   ["mp4", "3g2"],
-  // Legacy/game formats → MP4 (read-only sources)
   ["rm", "mp4"],
   ["rmvb", "mp4"],
   ["bik", "mp4"],
-  // Video → GIF
   ["mp4", "gif"],
   ["mov", "gif"],
-  // Video → audio
   ["mp4", "mp3"],
 ];
 
@@ -362,6 +349,15 @@ export const INDEXED_VIDEO_CONVERSIONS = new Set<string>([
   "mp4-to-gif",
   "mov-to-gif",
   "mp4-to-mp3",
+  "bik-to-mp4",
+  "m2ts-to-mp4",
+  "vob-to-mp4",
+  "rm-to-mp4",
+  "mp4-to-3g2", // 1 click, 63 impr, pos 6.7
+  "mpg-to-mp4", // 1 click, 50 impr, pos 13.9
+  "3gp-to-mp4", // 30 impr, pos 18.0
+  "rmvb-to-mp4", // 17 impr, pos 26.3
+  "ts-to-mp4", // 7 impr, pos 16.9
 ]);
 
 export function isVideoConversionIndexed(slug: string): boolean {

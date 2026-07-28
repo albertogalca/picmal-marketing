@@ -1,17 +1,8 @@
-// Audio conversion data for programmatic SEO pages.
-// Separate matrix from image (conversions.ts) and video (videoConversions.ts).
-// Pages render at /convert/audio/[slug].
-//
-// Picmal does real audio conversion + compression: codecs AAC/MP3/Opus/FLAC/ALAC,
-// bitrate modes (VBR/ABR/CBR), force mono, sample rate, bit depth.
-// See /docs/audio-and-video.
-
 export interface AudioFormatInfo {
   name: string;
   extension: string;
   fullName: string;
   description: string;
-  // Optional source-context sentence used in copy (e.g. where the format comes from).
   note?: string;
   lossless?: boolean;
 }
@@ -149,9 +140,7 @@ export const audioFormats: Record<string, AudioFormatInfo> = {
   },
 };
 
-// Curated, high-demand pairs only.
 const PAIRS: [string, string][] = [
-  // → MP3 (the universal workhorse)
   ["m4a", "mp3"],
   ["wav", "mp3"],
   ["flac", "mp3"],
@@ -160,18 +149,14 @@ const PAIRS: [string, string][] = [
   ["wma", "mp3"],
   ["aiff", "mp3"],
   ["opus", "mp3"],
-  // → WAV (editing / DAW)
   ["mp3", "wav"],
   ["m4a", "wav"],
   ["flac", "wav"],
-  // → lossless / Apple Music
   ["wav", "flac"],
   ["flac", "alac"],
   ["wav", "alac"],
   ["m4a", "flac"],
-  // iPhone ringtone
   ["mp3", "m4r"],
-  // Newer formats — Dolby Digital Plus, Matroska audio, Monkey's Audio
   ["eac3", "aac"],
   ["eac3", "mp3"],
   ["mka", "mp3"],
@@ -264,7 +249,6 @@ function buildFaqs(
     },
   ];
 
-  // Honest quality FAQ depending on lossless/lossy direction.
   if (to.extension === "mp3" || to.name === "M4R") {
     faqs.push({
       question: `Does converting ${from.name} to ${to.name} lose quality?`,
@@ -341,12 +325,7 @@ export const audioConversions: AudioConversionPair[] = PAIRS.map(
   },
 );
 
-// SEO allowlist: only these high-demand audio conversions are indexed. Every
-// other generated /convert/audio page emits <meta robots="noindex"> and is
-// excluded from the sitemap, so the thin long-tail stops dragging site quality.
-// Edit this list to change which pages Google indexes.
 export const INDEXED_AUDIO_CONVERSIONS = new Set<string>([
-  // → MP3 (the universal workhorse)
   "m4a-to-mp3",
   "wav-to-mp3",
   "flac-to-mp3",
@@ -354,13 +333,20 @@ export const INDEXED_AUDIO_CONVERSIONS = new Set<string>([
   "ogg-to-mp3",
   "wma-to-mp3",
   "opus-to-mp3",
-  // → WAV (editing / DAW)
   "mp3-to-wav",
   "m4a-to-wav",
-  // lossless
   "wav-to-flac",
-  // iPhone ringtone
   "mp3-to-m4r",
+  "mka-to-mp3",
+  "eac3-to-mp3",
+  "eac3-to-aac",
+  "flac-to-alac",
+  "ape-to-mp3",
+  "ape-to-flac",
+  "m4a-to-flac",
+  "wav-to-alac",
+  "flac-to-wav",
+  "aiff-to-mp3",
 ]);
 
 export function isAudioConversionIndexed(slug: string): boolean {

@@ -3,6 +3,21 @@
 /convert/png-to-png / 301
 /nofollow / 301
 
+# DNG is decode-only (Picmal never outputs RAW), so *-to-dng pages were removed.
+# ponytail: listed out, not `:from-to-dng` — Cloudflare placeholders match a whole
+# segment, so that pattern would swallow every /convert/* page.
+/convert/heic-to-dng /raw-converter-mac 301
+/convert/jpg-to-dng /raw-converter-mac 301
+/convert/png-to-dng /raw-converter-mac 301
+/convert/webp-to-dng /raw-converter-mac 301
+/convert/avif-to-dng /raw-converter-mac 301
+/convert/tiff-to-dng /raw-converter-mac 301
+/convert/gif-to-dng /raw-converter-mac 301
+
+# Old blog placeholders that still pull impressions.
+/blog/tutorial /blog 301
+/blog/guide /blog 301
+
 # Changelog consolidation: old per-release pages now live as anchors on /changelog.
 # Placeholder forwards the slug to its in-page anchor; falls back to /changelog
 # if the fragment is dropped, so nothing 404s either way.

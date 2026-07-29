@@ -25,7 +25,7 @@ const { heading, analyticsEvent } = Astro.props;
         <Button
           text="Get Picmal for $15.99"
           onclick={import.meta.env.PROD
-            ? `posthog.capture('${analyticsEvent}')`
+            ? `window.seline?.track('${analyticsEvent}')`
             : undefined}
         />
         <a

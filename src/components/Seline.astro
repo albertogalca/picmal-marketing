@@ -1,0 +1,45 @@
+---
+// ponytail: analytics is Seline (prod only). Events fire via window.seline?.track(...)
+---
+
+{
+  import.meta.env.PROD && (
+    <script
+      is:inline
+      async
+      src="https://cdn.seline.com/seline.js"
+      data-token="0545957829e3e8e"
+    />
+  )
+}
+
+<!--
+  Affiliate attribution: capture ?ref=CODE into a 60-day first-party cookie, then
+  append ref=<code> to every /api/checkout link. licencio resolves the code to an
+  approved Affiliate and freezes commission at sale time (unknown codes ignored).
+-->
+<script is:inline>
+  try {
+    var refParam = new URLSearchParams(location.search).get("ref");
+    if (refParam)
+      document.cookie =
+        "ref=" +
+        encodeURIComponent(refParam) +
+        "; max-age=5184000; path=/; samesite=lax"; // 60 days
+  } catch (_) {}
+
+  document.addEventListener(
+    "click",
+    function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="/api/checkout"]');
+      if (!a) return;
+      try {
+        var url = new URL(a.href);
+        var ref = document.cookie.match(/(?:^|;\s*)ref=([^;]*)/);
+        if (ref) url.searchParams.set("ref", decodeURIComponent(ref[1]));
+        a.href = url.toString();
+      } catch (_) {}
+    },
+    true,
+  );
+</script>

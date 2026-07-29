@@ -68,7 +68,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
             text="Download Picmal (.dmg)"
             class="w-full sm:w-auto"
             onclick={import.meta.env.PROD
-              ? "posthog.capture('download_dmg')"
+              ? "window.seline?.track('download_dmg')"
               : undefined}
           />
           <p class="mt-2 text-small text-text-secondary">
@@ -215,7 +215,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
               form.reset();
               msg.textContent = "Thanks — you're on the list.";
               if (import.meta.env.PROD)
-                window.posthog?.capture("newsletter_subscribed", {
+                window.seline?.track("newsletter_subscribed", {
                   source: "post_purchase",
                 });
             } else {

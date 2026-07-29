@@ -108,7 +108,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
           href="/#pricing"
           target="_self"
           onclick={import.meta.env.PROD
-            ? "posthog.capture('buy_clicked')"
+            ? "window.seline?.track('buy_clicked')"
             : undefined}
         />
 

@@ -96,7 +96,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
           form.reset();
           msg.textContent = "Thanks — you're on the list.";
           if (import.meta.env.PROD)
-            window.posthog?.capture("newsletter_subscribed");
+            window.seline?.track("newsletter_subscribed");
         } else {
           msg.textContent = out.message || "Something went wrong. Try again.";
           button.disabled = false;

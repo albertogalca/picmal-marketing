@@ -55,7 +55,7 @@ const {
           target="_self"
           class="w-full sm:w-auto"
           onclick={import.meta.env.PROD
-            ? `posthog.capture('${buyEvent}')`
+            ? `window.seline?.track('${buyEvent}')`
             : undefined}
         />
         <Button
@@ -67,7 +67,7 @@ const {
           iconType="fill"
           class="w-full sm:w-auto"
           onclick={import.meta.env.PROD
-            ? `posthog.capture('${downloadEvent}')`
+            ? `window.seline?.track('${downloadEvent}')`
             : undefined}
         />
       </div>

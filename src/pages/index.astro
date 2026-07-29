@@ -214,14 +214,14 @@ const SITE_DESCRIPTION =
         document
           .getElementById("buy-cta-button")
           ?.addEventListener("click", () => {
-            window.posthog?.capture("buy_clicked");
+            window.seline?.track("buy_clicked");
           });
 
         // Track download button clicks
         document
           .getElementById("download-cta-button")
           ?.addEventListener("click", () => {
-            window.posthog?.capture("download_clicked");
+            window.seline?.track("download_clicked");
           });
       }
     </script>

@@ -59,7 +59,7 @@ const steps = [
             text="Download Picmal (.dmg)"
             class="w-full sm:w-auto"
             onclick={import.meta.env.PROD
-              ? "posthog.capture('download_dmg')"
+              ? "window.seline?.track('download_dmg')"
               : undefined}
           />
           <a

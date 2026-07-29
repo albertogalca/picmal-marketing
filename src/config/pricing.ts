@@ -7,7 +7,7 @@
 // metadata.seats == devices. Price IDs below drive the checkout URL per tier.
 
 // licencio prod host + product slug. checkoutUrl(priceId) is the buy link;
-// Posthog.astro appends &client_reference_id=<distinct_id> at click time.
+// Seline.astro appends &client_reference_id=<distinct_id> at click time.
 const LICENCIO_CHECKOUT = "https://licenses.albertogalca.com/api/checkout";
 const PRODUCT_SLUG = "picmal";
 const checkoutUrl = (priceId: string): string =>

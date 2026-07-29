@@ -26,13 +26,13 @@ const DOWNLOAD_URL = "/download";
   <Button
     text="Get Picmal for $15.99"
     class="w-full sm:w-auto"
-    onclick={import.meta.env.PROD ? `posthog.capture('${buyEvent}')` : undefined}
+    onclick={import.meta.env.PROD ? `window.seline?.track('${buyEvent}')` : undefined}
   />
   <a
     href={DOWNLOAD_URL}
     class="inline-flex items-center gap-1.5 text-small text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     onclick={import.meta.env.PROD
-      ? `posthog.capture('${downloadEvent}')`
+      ? `window.seline?.track('${downloadEvent}')`
       : undefined}
   >
     or download to take a look

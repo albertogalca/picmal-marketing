@@ -5,23 +5,41 @@
 //   public/59c9300ee77946cfbe1babd877ef01b3.txt
 //
 // Usage:
-//   node scripts/indexnow.js                       # submits the homepage
+//   node scripts/indexnow.js                       # every URL in dist/sitemap-0.xml
 //   node scripts/indexnow.js /convert/heic-to-jpg /blog/some-post
 //   npm run indexnow -- /convert/heic-to-jpg
 //
-// Wire it into your Cloudflare Pages deploy (post-build hook / CI step) and pass
-// the URLs that changed in the release. Submitting unchanged URLs repeatedly is
-// discouraged by the protocol.
+// Wire it into your Cloudflare Pages deploy (post-build hook / CI step). Prefer
+// passing the URLs that changed in the release — submitting unchanged URLs
+// repeatedly is discouraged by the protocol — but a full sitemap sweep after a
+// build is fine and is what the no-args form does.
+
+import { readFileSync } from "node:fs";
 
 const HOST = "picmal.app";
 const KEY = "59c9300ee77946cfbe1babd877ef01b3";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 const args = process.argv.slice(2);
-const paths = args.length > 0 ? args : ["/"];
-const urlList = paths.map((p) =>
-  p.startsWith("http") ? p : `https://${HOST}${p.startsWith("/") ? p : `/${p}`}`,
-);
+const urlList =
+  args.length > 0
+    ? args.map((p) =>
+        p.startsWith("http")
+          ? p
+          : `https://${HOST}${p.startsWith("/") ? p : `/${p}`}`,
+      )
+    : // ponytail: regex over the sitemap instead of an XML parser. It's generated
+      // by @astrojs/sitemap, so <loc> is always plain text.
+      [
+        ...readFileSync("dist/sitemap-0.xml", "utf8").matchAll(
+          /<loc>(.*?)<\/loc>/g,
+        ),
+      ].map((m) => m[1]);
+
+if (urlList.length === 0) {
+  console.error("No <loc> entries in dist/sitemap-0.xml — did the build run?");
+  process.exit(1);
+}
 
 const body = {
   host: HOST,

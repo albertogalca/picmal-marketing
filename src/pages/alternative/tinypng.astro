@@ -1,0 +1,404 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import FAQSchema from "../../components/schema/FAQSchema.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
+import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
+
+const SITE_DESCRIPTION =
+  "Looking for a TinyPNG alternative? Picmal compresses images on your Mac with no 5MB limit, no 20 image batches, and no uploads. Video, audio, and PDFs too. $15.99 once.";
+
+const faqs = [
+  {
+    question: "Is Picmal a good TinyPNG alternative?",
+    answer:
+      "If you compress images regularly, yes. Picmal does the same job on your Mac with no per-file size cap, no 20 image batch limit, and nothing uploaded. TinyPNG is excellent and free for occasional use, so if you compress a few images a month there's no reason to switch.",
+  },
+  {
+    question: "What are TinyPNG's free limits?",
+    answer:
+      "20 images at a time, 5MB each. Format conversion is limited to 3 free images, while compression itself is unlimited in batches of 20. Files are uploaded to their servers and deleted within 48 hours. Picmal has no caps because nothing leaves your Mac.",
+  },
+  {
+    question: "Does Picmal compress as well as TinyPNG?",
+    answer:
+      "For normal web use the results are close enough that you won't see a difference at the same file size. TinyPNG has spent years tuning its lossy PNG quantisation and is genuinely very good at that one job. Picmal compresses JPG, PNG, WebP, HEIC, AVIF and more, plus video, audio, and PDFs.",
+  },
+  {
+    question: "Can I compress images larger than 5MB?",
+    answer:
+      "In Picmal, yes, there's no size limit. That's usually the reason people look for a TinyPNG alternative, since camera photos and screenshots on a retina display go past 5MB easily.",
+  },
+  {
+    question: "Does TinyPNG upload my images?",
+    answer:
+      "Yes. It's a web service, so images are uploaded, compressed on their servers, and downloaded back. They state files are deleted within 48 hours. Picmal never sends an image anywhere and works with no internet connection at all.",
+  },
+  {
+    question: "What if Picmal doesn't work for me?",
+    answer:
+      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Picmal: The TinyPNG alternative with no upload and no 5MB limit"
+      description={SITE_DESCRIPTION}
+    />
+    <OrganizationSchema url={Astro.site!.href} />
+    <ProductSchema url={Astro.site!.href} />
+    <FAQSchema />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="The TinyPNG alternative with no upload and no 5MB limit"
+      subhead="TinyPNG is great until you hit 20 images at a time, 5MB each, all going to someone else's server. Picmal compresses images, video, audio, and PDFs on your Mac, in batches of hundreds, for $15.99 once."
+      buyEvent="buy_clicked_tinypng_comparison"
+    />
+
+    <ComparisonVerdict
+      competitor="TinyPNG"
+      summary="TinyPNG is very good at one thing: squeezing PNG and JPEG for the web, free, in your browser. The limits are 20 images at a time, 5MB each, and every file gets uploaded. Picmal ($15.99, pay once) compresses the same formats on your Mac with no caps, and also converts formats and handles video, audio, and PDFs."
+      picmalFor="You compress images often, your files go past 5MB, or you'd rather not upload client photos to a web service to make them smaller."
+      competitorFor="You compress a handful of small web images now and then. It's free and it works, so keep using it."
+    />
+
+    <!-- Comparison Table -->
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs TinyPNG at a glance
+        <Fragment slot="sublead">
+          TinyPNG is a free web compressor for images. Picmal is a Mac app that
+          converts and compresses images, video, audio, and PDFs without
+          uploading anything.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left p-4 font-semibold text-text">Feature</th>
+                <th class="text-left p-4 font-semibold text-text">Picmal</th>
+                <th class="text-left p-4 font-semibold text-text">TinyPNG</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr>
+                <td class="p-4 text-text-secondary">Price</td>
+                <td class="p-4 text-text tabular-nums">$15.99 one-time</td>
+                <td class="p-4 text-text">Free tier, then subscription</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Where files are processed</td>
+                <td class="p-4 text-text">On your Mac</td>
+                <td class="p-4 text-text">Uploaded to their servers</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Works offline</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">File size limit</td>
+                <td class="p-4 text-text">None</td>
+                <td class="p-4 text-text tabular-nums">5MB per image (free)</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Batch size</td>
+                <td class="p-4 text-text">Hundreds at once</td>
+                <td class="p-4 text-text tabular-nums">20 at a time (free)</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Image compression</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes, its speciality</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Image conversion</td>
+                <td class="p-4 text-text">Yes, unlimited</td>
+                <td class="p-4 text-text tabular-nums">3 free images</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Video</td>
+                <td class="p-4 text-text">Convert &amp; compress</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Audio</td>
+                <td class="p-4 text-text">Convert &amp; compress</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">PDF</td>
+                <td class="p-4 text-text"
+                  >Compress, merge, split, images to PDF</td
+                >
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Resize</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes, on paid plans</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Folder monitoring</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Shortcuts integration</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Finder right-click</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Platform</td>
+                <td class="p-4 text-text tabular-nums">macOS 15+</td>
+                <td class="p-4 text-text">Any browser</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </Section>
+
+    <!-- Who each is for -->
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
+          Here's where each one makes more sense.
+        </Fragment>
+      </SectionHeading>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <Card>
+          <div class="mb-6">
+            <H3 class="mb-2">Choose Picmal</H3>
+            <Paragraph color="secondary">
+              You're compressing constantly, or your files are big
+            </Paragraph>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                Your images are over 5MB, which most camera photos are
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You're tired of uploading 20 at a time and repeating
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                The images are client work, and uploading them isn't your call
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You also need to convert formats, or shrink video and PDFs
+              </span>
+            </li>
+          </ul>
+        </Card>
+
+        <Card>
+          <div class="mb-6">
+            <H3 class="mb-2">Stay with TinyPNG</H3>
+            <Paragraph color="secondary">
+              Occasional web images, and free is hard to beat
+            </Paragraph>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You compress a few small web images a month
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You want the absolute smallest PNG and nothing else matters
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You're not on a Mac, or you need it from any browser
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You're using their API inside a build pipeline
+              </span>
+            </li>
+          </ul>
+        </Card>
+      </div>
+    </Section>
+
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <FounderLetter />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+
+    <SupportedFormatsModal />
+  </body>
+</html>

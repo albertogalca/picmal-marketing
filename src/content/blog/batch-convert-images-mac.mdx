@@ -1,11 +1,15 @@
 ---
 title: "How to Batch Convert HEIC Photos on Mac (Without Uploading Them)"
 heroImage: "../../../public/images/blog/batch-convert-images-mac/cover.png"
-description: "The fastest ways to batch convert hundreds of HEIC photos on your Mac — offline, with no file size limits. Includes Picmal, Preview, Automator, and command line methods."
+description: "The fastest ways to batch convert hundreds of HEIC photos on your Mac, offline and with no file size limits. Covers Preview, Automator, the sips command line, and when an app is worth it."
 pubDate: "2025-07-09"
 category: "Tutorial"
 tags: ["HEIC", "Batch Convert", "Mac", "Tutorial", "Privacy"]
 ---
+
+**The free way, built into macOS:** select every HEIC file in Finder, right-click, choose Quick Actions > Convert Image, pick JPEG and a size, then click Convert. It handles the whole selection at once and costs nothing. For a folder from Terminal, `sips -s format jpeg *.heic --out ./jpgs` does the same thing.
+
+That works well up to a few hundred files. Past that, or if you need to keep a nested folder structure and your EXIF data intact, it starts to fall apart. This post covers every method, what each one actually does to your metadata, and where each one breaks.
 
 Last month I imported 800 photos from my iPhone to my Mac. Every single one was HEIC. I needed JPGs to upload to a client's WordPress site, and the site rejected every file.
 
@@ -13,25 +17,20 @@ Most people hit this wall the same way. Your iPhone shoots HEIC by default since
 
 So you need to convert them. And if you have more than a handful, you need to do it in batch.
 
-I've tried every method. Here's what actually works, ranked by how much of your afternoon each one eats.
+I've tried every method. Here's what actually works, ranked by how much of your afternoon each one eats. Only converting one or two photos? [Converting a single HEIC to JPG](/blog/how-to-convert-heic-to-jpg-mac) is a much shorter read. Already decided you want an app for it? The [HEIC converter for Mac](/heic-converter-mac) page has the details.
 
-## Picmal — what I built for exactly this
+## Quick Actions, the hidden Finder option
 
-I built <a href="https://picmal.app" target="_blank">Picmal</a> because I got tired of the workarounds I'm about to describe below. Drag your files in, pick a format, hit convert. Done.
+Since macOS Monterey, there's a built-in option most people miss:
 
-What makes it different from the free options:
+1. Select your HEIC files in Finder
+2. Right-click → Quick Actions → Convert Image
+3. Pick JPEG and a size
+4. Done
 
-- **Handles thousands of files at once** without your fans spinning up or the app going white
-- **Keeps your folder structure** — drag a nested folder of vacation albums and the output mirrors it exactly
-- **Preserves metadata** — GPS coordinates, camera settings, dates all survive
-- **Works offline** — nothing leaves your Mac, ever
-- **Right-click integration** — select files in Finder, right-click, "Convert with Picmal" (see [how to enable this](/blog/how-to-enable-picmal-right-click-menu))
+Faster than Preview for small batches, and it creates copies instead of overwriting originals. But it shares the same blind spots: no metadata preservation, no folder structure, and your only quality options are "small/medium/large/actual size." That's it.
 
-If you do this regularly (uploading to a CMS, sending files to clients, archiving old shoots), this is the fastest path. <a href="https://picmal.app" target="_blank">$15.99, one-time purchase, no subscription</a>.
-
-For the rest of this post, here are the free alternatives and where each one falls apart.
-
-## Preview — fine for a few files
+## Preview, fine for a few files
 
 Preview is already on your Mac. It can convert images.
 
@@ -45,18 +44,7 @@ Preview is already on your Mac. It can convert images.
 
 Good enough for 10-20 files. Beyond that, Preview becomes the bottleneck.
 
-## Quick Actions — the hidden Finder option
-
-Since macOS Monterey, there's a built-in option most people miss:
-
-1. Select your HEIC files in Finder
-2. Right-click → Quick Actions → Convert Image
-3. Pick JPEG and a size
-4. Done
-
-Faster than Preview for small batches, and it creates copies instead of overwriting originals. But it shares the same blind spots: no metadata preservation, no folder structure, and your only quality options are "small/medium/large/actual size." That's it.
-
-## Automator — powerful but fragile
+## Automator, powerful but fragile
 
 You can build a reusable workflow in Automator:
 
@@ -72,7 +60,7 @@ Then you can select files in Finder, right-click → Services → your workflow 
 
 If you're comfortable with Automator, it's a decent free option for regular use. Just don't skip the copy step, or your originals are gone.
 
-## Command line — for developers
+## Command line, for developers
 
 If you're comfortable with Terminal:
 
@@ -90,6 +78,22 @@ find . -name "*.heic" -exec sh -c 'magick "$1" "${1%.heic}.jpg"' _ {} \;
 ```
 
 Fast, scriptable, handles any volume. But there's no preview, no quality slider, and if you mistype the path you'll stare at an error message for ten minutes wondering what went wrong. Most people reading this post aren't looking for a Terminal solution.
+
+## Picmal, what I built for exactly this
+
+Once the free options above stop fitting, this is the gap I built for. Drag your files in, pick a format, hit convert. Done.
+
+What makes it different from the free options:
+
+- **Handles thousands of files at once** without your fans spinning up or the app going white
+- **Keeps your folder structure** — drag a nested folder of vacation albums and the output mirrors it exactly
+- **Preserves metadata** — GPS coordinates, camera settings, dates all survive
+- **Works offline** — nothing leaves your Mac, ever
+- **Right-click integration** — select files in Finder, right-click, "Convert with Picmal" (see [how to enable this](/blog/how-to-enable-picmal-right-click-menu))
+
+If you do this regularly (uploading to a CMS, sending files to clients, archiving old shoots), this is the fastest path. <a href="https://picmal.app" target="_blank">$15.99, one-time purchase, no subscription</a>.
+
+If you don't, use Quick Actions. It's free, it's already there, and it's the right answer for most people reading this.
 
 ## Which method to use
 

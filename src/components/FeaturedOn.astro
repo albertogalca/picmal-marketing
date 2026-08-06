@@ -174,41 +174,92 @@ const logos = [
 ];
 ---
 
-<div class="sr-only w-full py-8">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col items-center gap-10">
-      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-        {
-          logos.map((logo) => (
-            <a
-              href={logo.href}
-              target="_blank"
-              class="logo-link w-auto h-auto flex items-center"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt || logo.name}
-                class="max-h-full w-auto min-w-[36px] max-w-[150px] object-contain h-auto"
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-              />
-            </a>
-          ))
-        }
-      </div>
-    </div>
+<div class="marquee w-full overflow-hidden py-8">
+  <div class="marquee-track flex w-max items-center gap-12">
+    {
+      logos.map((logo) => (
+        <a
+          href={logo.href}
+          target="_blank"
+          rel="noopener"
+          class="logo-link flex h-auto w-auto shrink-0 items-center"
+        >
+          <Image
+            src={logo.src}
+            alt={logo.alt || logo.name}
+            class="h-auto max-h-full w-auto min-w-[36px] max-w-[150px] object-contain"
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+          />
+        </a>
+      ))
+    }
+    {/* ponytail: duplicated copy is decorative filler for the seamless loop */}
+    {
+      logos.map((logo) => (
+        <span aria-hidden="true" class="logo-link flex shrink-0 items-center">
+          <Image
+            src={logo.src}
+            alt=""
+            class="h-auto max-h-full w-auto min-w-[36px] max-w-[150px] object-contain"
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+          />
+        </span>
+      ))
+    }
   </div>
 </div>
 
 <style>
+  .marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6rem,
+      black calc(100% - 6rem),
+      transparent
+    );
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-track {
+      animation: marquee 120s linear infinite;
+    }
+
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* half the track + half the gap that sits between the two copies */
+      transform: translateX(calc(-50% - 1.5rem));
+    }
+  }
+
   .logo-link {
     opacity: 0.4;
     filter: grayscale(100%);
-    transition: all 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      filter 0.2s ease;
   }
 
-  .logo-link:hover {
+  a.logo-link:hover {
     opacity: 1;
     filter: grayscale(0%);
   }
@@ -218,7 +269,7 @@ const logos = [
     opacity: 0.4;
   }
 
-  :global(.dark) .logo-link:hover {
+  :global(.dark) a.logo-link:hover {
     filter: grayscale(0%) invert(1);
     opacity: 1;
   }

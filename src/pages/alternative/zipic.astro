@@ -1,0 +1,416 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
+import ProductSchema from "../../components/schema/ProductSchema.astro";
+import FAQSchema from "../../components/schema/FAQSchema.astro";
+import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
+import PricingSection from "../../components/PricingSection.astro";
+import FounderLetter from "../../components/FounderLetter.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import H3 from "../../components/H3.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
+import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
+import ComparisonHero from "../../components/ComparisonHero.astro";
+
+const SITE_DESCRIPTION =
+  "Looking for a Zipic alternative? Picmal converts, compresses, and edits images, video, audio, and PDFs on your Mac. $15.99 once, not $29.99. Everything runs offline. 14-day refund.";
+
+const faqs = [
+  {
+    question: "Is Picmal a good Zipic alternative?",
+    answer:
+      "If you only ever compress images, Zipic is a fine app and does that job well. Picmal covers images, video, audio, and PDFs in one place, converting and compressing both, for $15.99. If your files aren't all images, Picmal is the better fit.",
+  },
+  {
+    question: "Does Picmal compress images as well as Zipic?",
+    answer:
+      "Yes. Picmal compresses JPG, PNG, WebP, HEIC, AVIF, GIF, TIFF, and more, in batches, with quality control. Zipic is tuned specifically for image compression and has more knobs for that one job. Picmal trades a bit of that depth for handling video, audio, and PDFs too.",
+  },
+  {
+    question: "How much does Picmal cost compared to Zipic?",
+    answer:
+      "Picmal is $15.99, paid once, updates included. Zipic's personal license is $29.99 one-time for 2 devices. Neither is a subscription, which is a nice thing to be able to say about two Mac apps in 2026.",
+  },
+  {
+    question: "Does Zipic handle video and audio?",
+    answer:
+      "No. Zipic is images only. Picmal converts and compresses video (MP4, MOV, MKV, and more) and audio (MP3, WAV, FLAC, and more), plus PDF compress, merge, and split.",
+  },
+  {
+    question: "Does Picmal have Raycast and Shortcuts integration like Zipic?",
+    answer:
+      "Yes. Picmal has a Raycast extension with Convert Files, Compress Files, Combine PDFs, and Images to PDF, plus Apple Shortcuts actions, Finder right-click, folder monitoring, and a command line tool.",
+  },
+  {
+    question: "Do my images get uploaded anywhere?",
+    answer:
+      "No. Both apps process everything locally on your Mac. No uploads, no account, no servers. That's the whole point of using a native app instead of a website.",
+  },
+  {
+    question: "What if Picmal doesn't work for me?",
+    answer:
+      "Full refund within 14 days, no questions asked. Email support@picmal.app.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Picmal: The Zipic alternative that does more than images"
+      description={SITE_DESCRIPTION}
+    />
+    <OrganizationSchema url={Astro.site!.href} />
+    <ProductSchema url={Astro.site!.href} />
+    <FAQSchema />
+  </head>
+
+  <body
+    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="The Zipic alternative that does more than images"
+      subhead="Zipic compresses images, and it's good at it. If your folder also has video, audio, and PDFs in it, Picmal handles all of them for $15.99 instead of $29.99. Files never leave your Mac."
+      buyEvent="buy_clicked_zipic_comparison"
+    />
+
+    <ComparisonVerdict
+      competitor="Zipic"
+      summary="Zipic is a focused image compressor with some genuinely clever touches, clipboard auto-compress and dropping files on the notch. Picmal ($15.99, pay once) compresses images too, and adds format conversion, video, audio, PDF tools, and light editing, for about half the price."
+      picmalFor="Your work isn't only images. You've got video to shrink, audio to convert, PDFs to merge, and you'd rather buy one app than four."
+      competitorFor="You compress images all day, nothing else, and you want the deepest set of image-specific controls."
+    />
+
+    <!-- Comparison Table -->
+    <Section width="default">
+      <SectionHeading>
+        Picmal vs Zipic at a glance
+        <Fragment slot="sublead">
+          Zipic is an image compressor. Picmal converts, compresses, and edits
+          images, video, audio, and PDFs. Both are native Mac apps, both run
+          fully offline, both handle batches.
+        </Fragment>
+      </SectionHeading>
+      <Card padding="p-4 md:p-8">
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left p-4 font-semibold text-text">Feature</th>
+                <th class="text-left p-4 font-semibold text-text">Picmal</th>
+                <th class="text-left p-4 font-semibold text-text">Zipic</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr>
+                <td class="p-4 text-text-secondary">Price</td>
+                <td class="p-4 text-text tabular-nums">$15.99 one-time</td>
+                <td class="p-4 text-text tabular-nums"
+                  >$29.99 one-time, 2 devices</td
+                >
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">What it's for</td>
+                <td class="p-4 text-text">Convert, compress &amp; edit</td>
+                <td class="p-4 text-text">Image compression</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Privacy</td>
+                <td class="p-4 text-text">100% offline</td>
+                <td class="p-4 text-text">100% offline</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Image formats</td>
+                <td class="p-4 text-text"
+                  >JPG, PNG, WebP, HEIC, AVIF, JXL, GIF, TIFF, and more</td
+                >
+                <td class="p-4 text-text">12 image formats</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Image conversion</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Video</td>
+                <td class="p-4 text-text">Convert &amp; compress</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Audio</td>
+                <td class="p-4 text-text">Convert &amp; compress</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">PDF support</td>
+                <td class="p-4 text-text"
+                  >Compress, merge, split, images to PDF</td
+                >
+                <td class="p-4 text-text">Compression only</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Resize</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Watermark</td>
+                <td class="p-4 text-text">Yes, on video</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Metadata removal</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Folder monitoring</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Shortcuts integration</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Raycast extension</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Finder right-click</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">Yes</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Command line</td>
+                <td class="p-4 text-text">Yes</td>
+                <td class="p-4 text-text">No</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">Try before you buy</td>
+                <td class="p-4 text-text">14-day refund, no questions</td>
+                <td class="p-4 text-text">7-day trial, then 25 images a day</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">macOS</td>
+                <td class="p-4 text-text tabular-nums">14+</td>
+                <td class="p-4 text-text tabular-nums">13+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </Section>
+
+    <!-- Who Picmal Is For / Who Should Stick with Zipic -->
+    <Section width="default">
+      <SectionHeading>
+        Which one is right for you?
+        <Fragment slot="sublead">
+          Here's where each one makes more sense.
+        </Fragment>
+      </SectionHeading>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Picmal Column -->
+        <Card>
+          <div class="mb-6">
+            <H3 class="mb-2">Choose Picmal</H3>
+            <Paragraph color="secondary">
+              Your files aren't only images
+            </Paragraph>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You also need to convert or compress video and audio
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You work with PDFs and want to compress, merge, and split them
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You'd rather pay $15.99 once than $29.99 for one file type
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You automate things with Shortcuts, Raycast, or the terminal
+              </span>
+            </li>
+          </ul>
+        </Card>
+
+        <!-- Zipic Column -->
+        <Card>
+          <div class="mb-6">
+            <H3 class="mb-2">Choose Zipic</H3>
+            <Paragraph color="secondary">
+              Image compression is the whole job
+            </Paragraph>
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You only ever touch images, never video, audio, or PDFs
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You want the deepest set of image-specific compression controls
+              </span>
+            </li>
+
+            <li class="flex gap-3 items-start">
+              <svg
+                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-text">
+                You're on macOS 13 and can't upgrade to 14 yet
+              </span>
+            </li>
+          </ul>
+        </Card>
+      </div>
+    </Section>
+
+    <!-- Features -->
+    <FeatureGrid
+      heading="Everything else Picmal does"
+      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+    />
+
+    <!-- Testimonials Section -->
+    <MasonryTestimonials />
+
+    <!-- Pricing -->
+    <PricingSection />
+
+    <!-- Founder letter -->
+    <FounderLetter />
+
+    <!-- FAQ Section -->
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Can't find what you're looking for? Email support@picmal.app"
+      >
+        Frequently asked questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+
+    <SupportedFormatsModal />
+  </body>
+</html>

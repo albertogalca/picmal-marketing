@@ -23,6 +23,11 @@ const {
   downloadEvent = "download_clicked",
   defaultTab = "convert",
 } = Astro.props;
+
+// ponytail: this hero's "Buy" goes to /#pricing, not checkout — it's a nav click.
+// Re-prefix so it never mixes with the real buy_clicked from DynamicPricing,
+// while keeping the per-page attribution the buyEvent prop already carries.
+const navEvent = buyEvent.replace(/^buy_clicked/, "pricing_nav");
 ---
 
 <!-- Hero Section — mirrors the landing page hero (src/pages/index.astro) -->
@@ -55,7 +60,7 @@ const {
           target="_self"
           class="w-full sm:w-auto"
           onclick={import.meta.env.PROD
-            ? `window.seline?.track('${buyEvent}')`
+            ? `window.seline?.track('${navEvent}')`
             : undefined}
         />
         <Button

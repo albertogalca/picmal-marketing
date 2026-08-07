@@ -285,7 +285,7 @@ function buildFaqs(
   faqs.push({
     question: `Is converting ${from.name} to ${to.name} free?`,
     answer:
-      "Picmal is a one-time purchase of $15.99 — no subscription, no per-file limits, no watermark. Download to explore the interface; 14-day money-back guarantee.",
+      "Picmal is a one-time purchase of $19 — no subscription, no per-file limits, no watermark. Download to explore the interface; 14-day money-back guarantee.",
   });
 
   return faqs;
@@ -296,12 +296,12 @@ function buildMetaDescription(
   to: AudioFormatInfo,
 ): string {
   if (to.name === "ALAC") {
-    return `Convert ${from.name} to ALAC on Mac — lossless .m4a for Apple Music. Bit-perfect, batch, fully offline. One-time $15.99, no subscription.`;
+    return `Convert ${from.name} to ALAC on Mac — lossless .m4a for Apple Music. Bit-perfect, batch, fully offline. One-time $19, no subscription.`;
   }
   if (to.name === "M4R") {
-    return `Convert ${from.name} to M4R on Mac — make a custom iPhone ringtone. Fast, offline, batch. One-time $15.99, no subscription.`;
+    return `Convert ${from.name} to M4R on Mac — make a custom iPhone ringtone. Fast, offline, batch. One-time $19, no subscription.`;
   }
-  return `Convert ${from.name} to ${to.name} on Mac — bitrate and quality control, batch processing, fully offline. No upload limits. One-time $15.99, no subscription.`;
+  return `Convert ${from.name} to ${to.name} on Mac — bitrate and quality control, batch processing, fully offline. No upload limits. One-time $19, no subscription.`;
 }
 
 function buildMetaTitle(from: AudioFormatInfo, to: AudioFormatInfo): string {

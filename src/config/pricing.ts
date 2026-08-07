@@ -20,17 +20,40 @@ export interface Tier {
   checkoutUrl: string; // licencio buy link → 302 to Stripe Checkout
 }
 
-// Volume discounts preserved (mirror the current Stripe tiers).
+// Repriced Aug 2026. Same 1/2/3/5 seat ladder as before, but anchored on $19
+// instead of $15.99 — the old entry price put Picmal above Permute ($14.99 for
+// 3 activations) on a per-device basis. Per-device cost still falls as seats go
+// up ($19.00 / $14.50 / $13.00 / $11.80). See MARKETING-PLAN.md.
+const PLACEHOLDER = "REPLACE_WITH_STRIPE_PRICE_ID";
+
 const RAW: Omit<Tier, "checkoutUrl">[] = [
-  { devices: 1, price: 15.99, priceId: "price_1TqpcE4RpfcAQYtyX4BGl8H9" },
-  { devices: 2, price: 28.78, priceId: "price_1TqpcD4RpfcAQYtyQ5Y77fSI" },
-  { devices: 3, price: 40.77, priceId: "price_1TqpcD4RpfcAQYtyhW7a0BK0" },
-  { devices: 5, price: 63.95, priceId: "price_1TqpcD4RpfcAQYtyL6KKMeII" },
+  { devices: 1, price: 19, priceId: "price_1U1mKw4RpfcAQYtyhReLLXWB" },
+  { devices: 2, price: 29, priceId: "price_1U1mLl4RpfcAQYtyLFKL7XNM" },
+  { devices: 3, price: 39, priceId: "price_1U1mM84RpfcAQYtym1F67zWs" },
+  { devices: 5, price: 59, priceId: "price_1U1mMS4RpfcAQYtycjQOPp7c" },
 ];
+
+// The tier the pricing card opens on, and what every bare <Button> charges. Keep
+// it matching the price written on those buttons ("Get Picmal for $19").
+export const DEFAULT_TIER_INDEX = 0; // 1 Mac @ $19
+
+// ponytail: a money path, so fail the production build rather than ship buttons
+// that charge the old $15.99 price behind new labels. Dev only warns, so the
+// copy is still reviewable before the Stripe Prices exist. Paste the live Price
+// IDs above and this goes quiet.
+const missing = RAW.filter((t) => t.priceId === PLACEHOLDER);
+if (missing.length > 0) {
+  const msg =
+    `pricing.ts: ${missing.length} tier(s) still on ${PLACEHOLDER} ` +
+    `(${missing.map((t) => `${t.devices}-device/$${t.price}`).join(", ")}). ` +
+    `Create the Stripe Prices on prod_Upt9NufoSBShSV and paste their IDs.`;
+  if (import.meta.env.PROD) throw new Error(msg);
+  console.warn(`[pricing] ${msg}`);
+}
 
 export const TIERS: Tier[] = RAW.map((t) => ({
   ...t,
   checkoutUrl: checkoutUrl(t.priceId),
 }));
 
-export const DEFAULT_TIER = TIERS[0];
+export const DEFAULT_TIER = TIERS[DEFAULT_TIER_INDEX];

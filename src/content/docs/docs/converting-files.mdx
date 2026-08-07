@@ -28,7 +28,7 @@ After converting a file, click the screen icon on any processed file to open an 
 
 ## Same-format conversions
 
-You can convert a file to the same format it's already in. This is useful for resampling audio (for example, FLAC to FLAC at a different sample rate) without changing the codec. Same-format conversions follow your convert naming pattern (default `{original}_converted`), so the output lands beside the original instead of overwriting it. Adjust the pattern, prefix, or suffix in **Settings → Output**; see [output and naming](/docs/output-and-naming).
+You can convert a file to the same format it's already in. Every format lists itself as a target, though it's never the default pick. This is useful for resampling audio (for example, FLAC to FLAC at a different sample rate) without changing the codec, and for re-encoding an image at your compression quality — a WebP to WebP pass shrinks the file instead of pushing it out to PNG or JPG. Because a same-format pass with compression off can only leave the file the same size or bigger, Picmal always compresses these. Same-format conversions follow your convert naming pattern (default `{original}_converted`), so the output lands beside the original instead of overwriting it. Adjust the pattern, prefix, or suffix in **Settings → Output**; see [output and naming](/docs/output-and-naming).
 
 ## Apple icon files
 

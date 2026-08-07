@@ -3,6 +3,28 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.2</title>
+            <pubDate>Fri, 07 Aug 2026 15:58:57 +0300</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>107</sparkle:version>
+            <sparkle:shortVersionString>1.8.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.2/Picmal.dmg" length="124150313" type="application/octet-stream" sparkle:edSignature="w4sK0/yzodINwBi9juRqlSenLY8TaR8ogq6r2V4YDjZO0CJT1NpruHDgv/E02g/pKVQ5DYTQ0rmC2ErhOgGIDA=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>One output format for everything you drop.</strong> Output settings gains a "Convert everything to" option, so a folder of mixed JPGs, PNGs and HEICs can all come out as WebP without you writing a rule per format. Audio and video are left alone.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>A fresh app icon.</strong> The icon and the menu bar icon have been redrawn to sit properly alongside the rest of your Mac.</li>
+<li><strong>A file can now convert to the format it already is.</strong> WebP was never offered as a target for a WebP file, so sending a mixed folder to WebP pushed those files out to PNG or JPG and the batch grew instead of shrinking. Any format can now target itself, and Picmal re-encodes it at your compression quality instead.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>picmal-cli no longer destroys a file it converts in place.</strong> Converting a file to the format it already was, with `--overwrite`, gave the encoder the same path to read from and write to at once, and the original was lost. It now writes a copy alongside and swaps the finished file in.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.1</title>
             <pubDate>Fri, 17 Jul 2026 15:45:03 +0200</pubDate>
             <link>https://picmal.app/</link>

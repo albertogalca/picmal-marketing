@@ -1,0 +1,21 @@
+---
+version: "1.8.2"
+title: "One output format for the whole drop"
+description: "Send a folder of mixed JPGs, PNGs and HEICs to WebP with one setting instead of a rule per format. Plus a redrawn app icon, and a fix for picmal-cli losing a file it converted in place."
+pubDate: 2026-08-07
+---
+
+Until now, telling Picmal what to convert to meant writing a rule per input format. This release adds a single switch: pick one output format and everything you drop comes out as that. The app icon has been redrawn too.
+
+### New features
+
+- **Convert everything you drop to one format.** In **Settings → Output → Default format conversion**, switch from **Per input format** to **Convert everything to** and pick a format. A folder of mixed JPGs, PNGs and HEICs all come out as WebP, no rule-writing required. Audio and video are left alone. See [Output and naming](/docs/output-and-naming#default-format-conversion).
+
+### Improvements
+
+- **A fresh app icon.** The app icon and the menu bar icon have been redrawn to sit properly alongside the rest of your Mac.
+- **A file can now convert to the format it already is.** WebP was never offered as a target for a WebP file, so sending a mixed folder to WebP pushed those files out to PNG or JPG — and the batch grew instead of shrinking. Any image format can now target itself, and Picmal re-encodes it at your compression quality instead. See [Same-format conversions](/docs/converting-files#same-format-conversions).
+
+### Bug fixes
+
+- **Fixed `picmal-cli` destroying a file it converted in place.** Converting a file to the format it already was, with `--overwrite`, handed the encoder the same path to read from and write to at once, and the original was lost. It now writes a copy alongside and swaps the finished file in.

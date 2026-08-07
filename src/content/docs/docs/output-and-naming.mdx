@@ -66,10 +66,20 @@ In Compress mode, if the result isn't smaller than the original, the original is
 
 The settings panel warns you when your pattern would overwrite originals.
 
-## Default format mapping
+## Default format conversion
 
-You can configure default output formats per input type. For example, you can set all HEIC files to convert to JPEG automatically. This is useful for drag-and-drop workflows where you always want a specific conversion.
+Picmal can pick the output format for you when you drop files, so drag-and-drop workflows don't need a click. Choose how in **Settings → Output → Default format conversion**. There are two modes.
 
-Configure default mappings in **Settings → Output**.
+### Per input format
+
+Set a default output format for each input type — all HEIC files to JPEG, all PNGs to WebP, and so on. Click **Add format rule** to add a pair. Input types you haven't mapped keep using the format you last picked for them.
 
 ![Default format conversion settings](/images/docs/default_format.png)
+
+### Convert everything to
+
+Pick one format and every image you drop converts to it, whatever it started as. This is the quick way to send a folder of mixed JPGs, PNGs and HEICs out as WebP without writing a rule per format.
+
+Files already in the target format are re-encoded at your compression quality rather than pushed out to a different, often larger, format. Audio and video are unaffected — an MP4 never becomes a WebP.
+
+Switching back to **Per input format** leaves your rules as they were.

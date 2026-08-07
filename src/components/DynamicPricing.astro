@@ -2,7 +2,9 @@
 import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
 import Button from "./Button.astro";
-import { TIERS } from "../config/pricing";
+import { TIERS, DEFAULT_TIER_INDEX } from "../config/pricing";
+
+const initial = TIERS[DEFAULT_TIER_INDEX];
 ---
 
 <div class="bg-background-subtle rounded-2xl p-4 md:p-8 border border-border">
@@ -13,7 +15,7 @@ import { TIERS } from "../config/pricing";
     <!-- Price Display -->
     <div class="flex items-baseline gap-1 mb-8">
       <span id="current-price" class="text-4xl font-semibold text-text tabular-nums">
-        ${TIERS[0].price.toFixed(2)}
+        ${initial.price.toFixed(2)}
       </span>
       <span class="text-text-secondary text-body">/ once</span>
     </div>
@@ -46,10 +48,12 @@ import { TIERS } from "../config/pricing";
             <div
               class="flex items-center justify-center min-w-[85px] h-7 rounded-xl border border-border bg-background px-2.5"
             >
-              <span id="device-count" class="text-body font-semibold tabular-nums">1</span>
+              <span id="device-count" class="text-body font-semibold tabular-nums"
+                >{initial.devices}</span
+              >
               <span
                 class="ml-1.5 text-small text-text-secondary"
-                id="device-label">device</span
+                id="device-label">{initial.devices === 1 ? "device" : "devices"}</span
               >
             </div>
 
@@ -74,7 +78,9 @@ import { TIERS } from "../config/pricing";
           </div>
 
           <Paragraph>
-            (<span id="seat-count-text">1 seat</span>)
+            (<span id="seat-count-text"
+              >{initial.devices} {initial.devices === 1 ? "seat" : "seats"}</span
+            >)
           </Paragraph>
         </div>
       </li>
@@ -187,9 +193,9 @@ import { TIERS } from "../config/pricing";
       onclick={import.meta.env.PROD ? "window.seline?.track('buy_clicked')" : undefined}
     />
 
-    <script define:vars={{ pricingTiers: TIERS }}>
-      // Initialize state
-      let currentTierIndex = 0;
+    <script define:vars={{ pricingTiers: TIERS, defaultIndex: DEFAULT_TIER_INDEX }}>
+      // Initialize state — opens on the default (2-Mac) tier, not the cheapest.
+      let currentTierIndex = defaultIndex;
 
       // Get DOM elements
       const decreaseBtn = document.getElementById("decrease-devices");

@@ -17,7 +17,7 @@ import ConversionGrid from "../components/ConversionGrid.astro";
 
 const title = "Picmal: RAW converter for Mac, convert CR2, NEF, ARW to JPG";
 const description =
-  "Convert camera RAW files to JPG on your Mac: CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF and DNG. Batch process entire shoots offline with correct white balance. $15.99 one-time, no Lightroom subscription.";
+  "Convert camera RAW files to JPG on your Mac: CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF and DNG. Batch process entire shoots offline with correct white balance. $19 one-time, no Lightroom subscription.";
 
 // Build the RAW format cards from the source of truth (8 camera formats + DNG).
 const rawCards = [...RAW_INPUT_FORMATS, "dng"].map((ext) => ({
@@ -35,7 +35,7 @@ const faqs = [
   {
     question: "Do I need Lightroom or Photoshop to convert RAW files?",
     answer:
-      "No. Picmal decodes RAW files directly on your Mac with correct white balance and demosaicing. It's a one-time purchase of $15.99. No Adobe subscription required just to get shareable JPGs from your shoots.",
+      "No. Picmal decodes RAW files directly on your Mac with correct white balance and demosaicing. It's a one-time purchase of $19. No Adobe subscription required just to get shareable JPGs from your shoots.",
   },
   {
     question: "Will the colors look right when I convert RAW to JPG?",
@@ -140,7 +140,7 @@ const faqSchema = {
         {
           title: "No monthly fee",
           description:
-            "A one-time $15.99, not a subscription like Lightroom or Capture One. Just get your JPGs and move on.",
+            "A one-time $19, not a subscription like Lightroom or Capture One. Just get your JPGs and move on.",
         },
         {
           title: "Correct colors",

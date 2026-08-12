@@ -1,9 +1,9 @@
 ---
 title: Video tools
-description: Combine several videos into one on your Mac — reorder the clips, choose the output format, and let Picmal copy them losslessly or scale and re-encode mismatched clips to match.
+description: Combine several videos into one on your Mac, or turn a batch of photos into an MP4 slideshow — reorder the clips, choose the output format, and let Picmal copy them losslessly or scale and re-encode mismatched clips to match.
 ---
 
-Picmal's **Media** section has a **Combine Videos** tool for joining clips end-to-end, rather than converting them one by one. Drop in a few videos, put them in order, and get a single file back. Like everything else in Picmal, it runs entirely on your Mac.
+Picmal's **Media** section has two video tools: **Combine Videos** joins clips end-to-end, and **Slideshow** turns a batch of still images into a video. Like everything else in Picmal, both run entirely on your Mac.
 
 ## Combine Videos
 
@@ -32,11 +32,46 @@ Open **Video Options** to choose the output format. Leave it on **Same as first 
 
 In the same popover, type a name for the combined file, or leave it blank for the automatic `<name> (combined)` name. The extension follows the output format you picked. The file is always saved next to the first input.
 
-## Use it from Shortcuts and the terminal
+## Slideshow
 
-Combine Videos is available beyond the app window:
+1. Select **Slideshow** in the sidebar
+2. Drop your images in — mixed formats and sizes are fine
+3. Drag rows to set the order — the list order is the play order
+4. Pick a resolution in the bottom bar, and set the seconds per image in the options popover
+5. Click **Create Slideshow**
+
+The video is saved next to the first image as `<name> (slideshow).mp4`. If that name is taken, Picmal counts up instead of overwriting. The status line shows the image count and the finished runtime as you build the list, so you know how long the video will be before you make it.
+
+- Drag rows to reorder; the number on each row is its position in the video.
+- Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
+- An image Picmal can't read shows a warning and blocks the create. Remove it and try again.
+
+### Resolution
+
+The picker in the bottom bar sets the frame size of the video.
+
+| Option              | Frame size                                                      |
+| ------------------- | --------------------------------------------------------------- |
+| Match Largest Image | Sized to your biggest photo, capped at 4096 px on the long edge |
+| 4K                  | 2160p                                                           |
+| 1080p               | Full HD. Default.                                               |
+| 720p                | HD                                                              |
+
+The preset frames are 16:9, rotated to match the orientation of most of your images. Every image is then scaled to fit the frame and centered, with black filling the rest — nothing is ever cropped, whatever mix of sizes you drop in.
+
+### Seconds per image and output name
+
+Open the options popover to set how long each image is held (0.5 to 30 seconds, default 3) and to name the file. Every image gets the same time on screen. Leave the name blank for the automatic `<name> (slideshow)` name; the video is always saved next to the first image.
+
+The output is H.264 MP4 at 30 fps, encoded on the Mac's hardware media engine. HEICs, sideways iPhone photos, CMYK images and transparent PNGs are all prepared for you — orientation is applied and transparency is flattened before encoding.
+
+## Use them from Shortcuts and the terminal
+
+These tools are available beyond the app window:
 
 - In Shortcuts, the **Combine Videos** action takes videos in and returns the finished file. See [Integrations](/docs/integrations#shortcuts-app).
-- From the terminal, use `picmal-cli combine-videos` to join clips. See [Command line](/docs/cli#combine-videos).
+- From the terminal, use `picmal-cli combine-videos` to join clips and `picmal-cli slideshow` to build a slideshow. See [Command line](/docs/cli#combine-videos).
 
-Like Convert and Compress, the tool requires an active [license](/docs/license).
+Slideshow is app and command line only for now — there's no Finder or Shortcuts equivalent yet.
+
+Like Convert and Compress, both tools require an active [license](/docs/license).

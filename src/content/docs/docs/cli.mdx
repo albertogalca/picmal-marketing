@@ -36,6 +36,7 @@ picmal-cli <subcommand> [options]
 | `images-to-pdf`  | Create a multi-page PDF from images               |
 | `merge-audio`    | Merge two or more audio files into one            |
 | `combine-videos` | Combine two or more videos into one               |
+| `slideshow`      | Turn still images into a video slideshow          |
 | `split-chapters` | Split a chaptered audiobook into per-chapter files |
 | `remove-background` | Cut the background out of images (transparent PNG) |
 | `presets`        | List or inspect saved presets (built-in + custom) |
@@ -135,6 +136,8 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `--credit <text>`        | Credit line to embed.                                                    |
 | `--contact <text>`       | Contact or URL to embed.                                                 |
 | `-w`, `--overwrite`      | Overwrite existing outputs.                                              |
+
+PDFs are compressed with the same text-preserving engine as the app: only the images inside are re-encoded, and the output is never larger than the input. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
 
 If your `--preset` is an audio or video preset and you don't pass `--output`, `picmal-cli` picks the right container for you (Opus → `.opus`, AAC → `.m4a`, FLAC → `.flac`, VP9 → `.webm`). Pass `--output` if you want a specific path.
 
@@ -264,7 +267,26 @@ picmal-cli combine-videos intro.mov main.mp4 outro.webm -o full.mp4
 | `-o`, `--output <path>` | Output file or directory. The extension sets the format. Default: `<first basename> (combined).<ext>` next to the first input, in that file's format. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
-Uses the same bundled ffmpeg as Convert and Compress. H.264 for MP4/MOV/MKV, VP9 for WebM; on Apple Silicon it encodes in hardware. Decode-only formats are refused as output targets — pick a format Picmal can write.
+Uses the same bundled ffmpeg as Convert and Compress. H.264 for MP4/MOV/MKV, VP9 for WebM; H.264 encodes on the Mac's hardware media engine on both Apple Silicon and Intel. Decode-only formats are refused as output targets — pick a format Picmal can write.
+
+## slideshow
+
+Turn still images into a video slideshow. Images appear in the order you pass them, each held for the same time. Every image is scaled to fit the frame and centered, with black filling the rest, so nothing is ever cropped.
+
+```bash
+picmal-cli slideshow photo1.jpg photo2.jpg photo3.jpg
+picmal-cli slideshow *.heic --duration 5 --resolution 4k -o trip.mp4
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | Image files, in the order they should appear (positional).                         |
+| `-o`, `--output <path>` | Output file or directory. Default: `<first basename> (slideshow).mp4` next to the first input. |
+| `--duration <seconds>`  | Seconds each image is held. Default: `3`.                                          |
+| `--resolution <size>`   | Frame size: `match`, `4k`, `1080p` or `720p`. Default: `1080p`.                     |
+| `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
+
+Output is H.264 MP4 at 30 fps. `match` sizes the frame to your largest image; the presets are 16:9, rotated to match the orientation of most of the inputs. See [Video tools](/docs/video-tools#slideshow).
 
 ## split-chapters
 

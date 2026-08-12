@@ -3,6 +3,37 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.3</title>
+            <pubDate>Wed, 12 Aug 2026 15:34:19 +0300</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>110</sparkle:version>
+            <sparkle:shortVersionString>1.8.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.3/Picmal.dmg" length="87790074" type="application/octet-stream" sparkle:edSignature="xI/y3H318hU5YlOUkPOrJSXCDBWs4weyjn9WMi3kUUX4raCi2S8DoROEhwx0m8tm7xmKlZ8qt6W0QTOCn3NbCQ=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Turn photos into a video slideshow.</strong> The new Slideshow tool takes a batch of images — mixed sizes, HEICs, whatever — and builds an MP4. Pick how long each image stays on screen and the frame size: 4K, 1080p, 720p, or match your largest photo. Every image is scaled to fit and centred, so nothing gets cropped. Also works from the command line as `picmal-cli slideshow`.</li>
+<li><strong>Tell Picmal to leave a format alone.</strong> Default output formats gain a KEEP option: map HEIC to WebP but keep your PNGs as they are, and drop a whole mixed folder without sorting it first. Kept files land in the list but are never converted. Compressing is unaffected.</li>
+<li><strong>PDF compression that keeps your text.</strong> Compressing a PDF used to redraw every page as a flat photo — selectable text, links and crisp vector graphics all gone, and on text-heavy documents the "compressed" file often came out _larger_, so Picmal quietly kept the original and showed you nothing. The compressor has been rebuilt: it now re-encodes just the images inside the PDF and leaves everything else untouched. A web article saved as PDF typically shrinks 60–80%, and every word stays selectable. Scanned documents still compress page-by-page, now at a resolution that never upsamples.</li>
+<li><strong>"Already optimized", said out loud.</strong> When compressing can't make a file smaller, the Saving column now tells you the original was kept instead of showing a silent dash. No more wondering whether anything happened.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>The app is 47 MB lighter.</strong> PDF and Illustrator files are now processed natively with Apple's frameworks, so the bundled Ghostscript engine is gone. AI files render sharper through their PDF layer, and AI → PDF now stays true vector instead of being rasterized.</li>
+<li><strong>Video conversion runs on your Mac's media engine.</strong> H.264 and HEVC now always encode through Apple's hardware encoder, which is faster and easier on the battery, and the video engine inside the app shrank by another 55 MB. The encoder preset row is gone from video settings; the hardware encoder doesn't use presets.</li>
+<li><strong>Settings looks right in light mode.</strong> Sections and the tab bar used to sit flat against a white background; they now stand out from a gray backdrop, the way they always did in dark mode.</li>
+<li><strong>The PDF quality slider works across its whole range.</strong> Below 65 it previously changed nothing; every step now maps to a distinct output.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>`picmal-cli compress` works on PDFs.</strong> It previously failed on every PDF with a cryptic ImageMagick error. It now uses the same text-preserving engine as the app, and never emits a file larger than the input.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><strong>EPS input.</strong> EPS is PostScript, which macOS itself can no longer read, and supporting it was the only reason the 24 MB Ghostscript interpreter existed in the app. If you have EPS files, export them as PDF from Illustrator or Affinity Designer and Picmal will take it from there. Illustrator (.ai) files are unaffected.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.2</title>
             <pubDate>Fri, 07 Aug 2026 15:58:57 +0300</pubDate>
             <link>https://picmal.app/</link>

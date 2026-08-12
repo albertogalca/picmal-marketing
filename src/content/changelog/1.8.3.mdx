@@ -1,0 +1,30 @@
+---
+version: "1.8.3"
+title: "Photos into a slideshow, and PDF compression that keeps your text"
+description: "A new Slideshow tool turns a batch of photos into an MP4, PDF compression has been rebuilt so text stays selectable, and video always encodes on your Mac's hardware media engine. The app is also about 100 MB lighter."
+pubDate: 2026-08-12
+---
+
+Two big changes this release. There's a new **Slideshow** tool that turns a folder of photos into a video, and PDF compression has been rebuilt from scratch — it now shrinks the images inside a PDF instead of flattening every page into a picture, so your text stays selectable. Under the hood, both the PDF and video engines were rebuilt, which made the app about 100 MB smaller.
+
+### New features
+
+- **Turn photos into a video slideshow.** The new **Slideshow** tool takes a batch of images — mixed sizes, HEICs, whatever — and builds an MP4. Choose how long each image stays on screen and the frame size: 4K, 1080p, 720p, or match your largest photo. Every image is scaled to fit and centered, so nothing gets cropped. Also available as `picmal-cli slideshow`. See [Video tools](/docs/video-tools#slideshow).
+- **PDF compression that keeps your text.** Compressing a PDF used to redraw every page as a flat photo — selectable text, links and crisp vector graphics all gone — and on text-heavy documents the "compressed" file often came out _larger_, so Picmal quietly kept the original and told you nothing. The compressor now re-encodes only the images inside the PDF and leaves everything else untouched. A web article saved as PDF typically shrinks 60–80%, and every word stays selectable. Scanned documents are still compressed page by page, now at a resolution that never upsamples. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
+- **Tell Picmal to leave a format alone.** Default output formats gain a **KEEP** option: map HEIC to WebP but keep your PNGs as they are, and drop a whole mixed folder without sorting it first. Kept files land in the list but are never converted. Compressing is unaffected. See [Default format conversion](/docs/output-and-naming#keep-a-format-as-it-is).
+- **"Already optimized", said out loud.** When compressing can't make a file smaller, the Saving column now tells you the original was kept instead of showing a silent dash. No more wondering whether anything happened.
+
+### Improvements
+
+- **Video conversion runs on your Mac's media engine.** H.264 and HEVC now always encode through Apple's hardware encoder — faster, easier on the battery, and no longer limited to Apple Silicon. The rebuilt video engine is also 55 MB smaller.
+- **The app is 47 MB lighter from the PDF side too.** PDF and Illustrator files are now handled natively with Apple's own frameworks, so the bundled Ghostscript engine is gone. AI files render sharper through their PDF layer, and AI → PDF now stays true vector instead of being rasterized.
+- **Settings looks right in light mode.** Sections and the tab bar used to blend into a white background; they now stand out from a gray backdrop, matching what dark mode always did.
+- **The PDF quality slider works across its whole range.** Below 65 it previously changed nothing; every step now maps to a distinct output.
+
+### Bug fixes
+
+- **Fixed `picmal-cli compress` failing on PDFs.** It previously refused every PDF with a cryptic ImageMagick error. It now uses the same text-preserving engine as the app, and never writes a file larger than the input.
+
+### Removed
+
+- **EPS input.** EPS is PostScript, which macOS itself can no longer read, and supporting it was the only reason the Ghostscript interpreter was in the app at all. If you have EPS files, export them as PDF from Illustrator or Affinity Designer and Picmal will take it from there. Illustrator (`.ai`) files are unaffected.

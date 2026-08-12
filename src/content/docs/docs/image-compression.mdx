@@ -20,7 +20,7 @@ These formats use a quality percentage where **higher = better quality, larger f
 | HEIC   | 0–100 | 85      | Apple ecosystem, great compression           |
 | AVIF   | 0–100 | 85      | Next-gen, best compression ratios            |
 | TIFF   | 0–100 | 85      | Archival/print use                           |
-| PDF    | 0–100 | 85      | Image-in-PDF quality                         |
+| PDF    | 0–100 | 85      | Quality of the images inside the PDF — text stays selectable |
 | JP2    | 0–100 | 85      | JPEG 2000                                    |
 | JXL    | 0–100 | 85      | JPEG XL                                      |
 | EXR    | 0–100 | 85      | HDR imagery                                  |
@@ -30,6 +30,16 @@ These formats use a quality percentage where **higher = better quality, larger f
 | DDS    | 0–100 | 85      | DirectDraw Surface                           |
 | SGI    | 0–100 | 85      | Silicon Graphics                             |
 | QOI    | 0–100 | 85      | Quite OK Image                               |
+
+## How PDF compression works
+
+Picmal re-compresses the images embedded inside a PDF and leaves everything else alone: text stays selectable, links keep working, and vector graphics stay sharp.
+
+This matters more than it sounds. A web article saved as PDF often *looks* like a text document but is almost entirely image data — browsers store photos losslessly when printing to PDF, so a three-page article can carry a single photo that makes up 97% of the file. Picmal re-encodes that photo as JPEG at your chosen quality and typically saves 60–80% without touching a word of the text.
+
+The flip side: a PDF that really is mostly text and fonts has almost nothing to remove. When that happens, Picmal says so — the Saving column shows **Already optimized** and your original is kept byte-for-byte.
+
+Scanned documents (where each page is one big image) are compressed page-by-page instead, at a resolution derived from the quality slider.
 
 ## Never larger than the original
 

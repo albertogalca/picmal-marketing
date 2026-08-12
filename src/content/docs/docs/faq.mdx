@@ -7,13 +7,15 @@ description: Answers to common Picmal questions — privacy, file size results, 
 
 No. Everything happens locally on your Mac. No files are uploaded, no internet is required for processing. The only network call is license activation.
 
-## Why is my file larger after compression?
+## Why does a file show "Already optimized"?
 
-The file was likely already highly optimized. Re-compressing an already-compressed file can sometimes increase size due to encoding overhead. Try a more aggressive preset, or skip files that are already small.
+Compressing it wouldn't have made it smaller, so Picmal kept your original untouched. This is common with files that are already well compressed, and with PDFs whose size comes from text and fonts rather than images — there's simply nothing left to squeeze. Picmal never delivers a file larger than the one you started with.
 
-## EPS or AI files aren't converting?
+## AI files aren't converting?
 
-Picmal uses a bundled Ghostscript engine to handle EPS and AI files — no extra software needed. Make sure the file is a valid EPS or AI document. Some AI files saved in PDF-compatible mode work better.
+Picmal reads Illustrator files through their PDF layer. Almost every `.ai` file made this century has one — it's on by default when saving from Illustrator. If yours doesn't convert, re-save it from Illustrator with **Create PDF Compatible File** enabled and try again.
+
+EPS files are no longer supported: they're PostScript, which macOS itself stopped being able to read, and keeping support meant bundling a 47 MB interpreter most users never touched. If you have EPS files to convert, open them in Illustrator or Affinity Designer and export a PDF first.
 
 ## Can I undo a conversion?
 
@@ -33,7 +35,7 @@ If you no longer have access to the old Mac, you can [deactivate it remotely thr
 
 ## What formats are input-only?
 
-RAW camera formats (ARW, CR2, DNG, NEF, RAF) and vector formats (AI, EPS) can be read and converted to other formats, but Picmal cannot write to them. See [Supported Formats](/docs/supported-formats#input-only-formats) for the full list.
+RAW camera formats (ARW, CR2, DNG, NEF, RAF) and Illustrator files (AI) can be read and converted to other formats, but Picmal cannot write to them. See [Supported Formats](/docs/supported-formats#input-only-formats) for the full list.
 
 ## Can I process multiple files at once?
 

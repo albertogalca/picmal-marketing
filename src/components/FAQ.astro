@@ -42,7 +42,7 @@ const { faqs, size = "base" } = Astro.props;
             </div>
           </summary>
           <div class="pb-4">
-            <Paragraph size={size}>{faq.answer}</Paragraph>
+            <Paragraph size={size} set:html={faq.answer} />
           </div>
         </details>
       </div>

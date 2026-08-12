@@ -1,0 +1,92 @@
+---
+title: "Picmal on the Mac App Store or direct: which one should you get?"
+description: "Both builds of Picmal convert and compress the same formats at the same quality, entirely on your Mac. The direct build adds the command line tool, Raycast, watched folders, and a few extra compressors."
+pubDate: "2026-08-12"
+category: "Guide"
+tags: ["Picmal", "Mac App Store", "Licensing"]
+faqs:
+  - question: "Is the App Store version of Picmal a cut-down app?"
+    answer: "No. Every conversion and compression feature is there, running the same engines at the same quality. What's missing is the command line tool, the Raycast extension, watched folders, camera EXIF on RAW conversions, and the last few percent of PNG and GIF compression. Those depend on tools Apple's sandbox and licensing rules don't allow inside an App Store build."
+  - question: "Is the price different?"
+    answer: "No. $39 either way. Picmal Pro, at $69 for 5 Macs, is only sold direct, because App Store licensing follows your Apple account instead of a license key."
+  - question: "Which one gets updates first?"
+    answer: "The direct build, usually by a day or two. It updates itself through Sparkle the moment I ship. App Store updates wait for review."
+  - question: "Can I switch later?"
+    answer: "Yes, but you'd be buying it twice. Apple and I are separate shops, and neither can see the other's receipt. Pick based on whether you want the command line tool, not on hedging."
+  - question: "Do my files leave my Mac in either version?"
+    answer: "Never, in either one. No uploads, no account, no servers. That's the whole point of Picmal."
+---
+
+Picmal is in two places now: on [picmal.app](/#pricing) and on the Mac App Store.
+Same app, same price, same engines. People keep asking which one to get, so here
+is the honest answer, including the parts where the App Store build loses.
+
+The short version: if you live in the Terminal, buy direct. If you would rather
+let Apple handle the receipt and share the app with your family, use the App
+Store. Everything else is identical.
+
+## What's the same in both
+
+- Every conversion format, at the same quality, for images, video, audio and PDF
+- Compression for images, video, audio and PDF
+- All the tools: Combine Videos, Slideshow, App Icons, Remove Background,
+  Vectorize, Merge Audio, Split by Chapter, Combine and Split PDFs, Organize
+  Pages, Images to PDF
+- Batch processing, resize modes, target file size, metadata removal
+- Copyright and ownership stamping, and per-field metadata control
+- Lossy and lossless PNG compression, GIF compression, SVG optimization
+- Finder Services and Shortcuts
+- 100% local processing. Nothing is uploaded, and it works offline
+
+That last one matters more than the rest. Both builds do all the work on your
+Mac. Neither one has an account, a server, or a file that leaves your machine.
+
+## What only the direct version has
+
+Apple's sandbox is a real security boundary, not a formality, and some of what
+Picmal does simply cannot happen inside it. A few other pieces use GPL-licensed
+tools, which App Store licensing rules don't allow. So:
+
+**Command line tool (`picmal-cli`).** A sandboxed app can't install a tool into
+`/usr/local/bin`. If you script conversions, this is the deciding line.
+
+**Raycast extension.** It's built on the command line tool, so it goes with it.
+
+**Watched folders.** Drop a file in a folder, get a converted one back. It
+depends on state the command line tool shares, so the sandboxed build turns it
+off.
+
+**Camera EXIF carried through RAW conversions.** This needs exiv2, which is GPL.
+RAW conversions in the App Store build lose the camera EXIF. Everything else
+about RAW decoding is the same.
+
+**The last few percent on PNG and GIF.** Both builds compress PNG and GIF
+properly. The direct build adds pngquant and gifsicle on top, which squeeze a
+little more out of each file.
+
+**Instant updates.** The direct build updates itself through Sparkle the moment
+I ship. App Store updates wait for review.
+
+**Up to 5 Macs on one license.** Picmal Pro is a direct-only plan, because App
+Store licensing follows your Apple account rather than a key you can move.
+
+## What only the App Store version has
+
+**Apple handles everything commercial.** Purchase, updates and refunds all go
+through Apple. There's no license key to keep, and nothing for you to email me
+about if you lose it.
+
+**Family Sharing.** One purchase, your household.
+
+**The full App Sandbox.** The app asks once per folder before it saves next to
+your files, and remembers. Some people want exactly that.
+
+## So which one?
+
+Buy direct if you want the command line tool, Raycast, watched folders, camera
+EXIF on RAW, or more than two Macs on one license.
+
+Use the App Store if you want Apple to handle the receipt, you like Family
+Sharing, or you just prefer installing everything from one place.
+
+Either way it's $39 once, updates included, and your files never leave your Mac.

@@ -201,7 +201,7 @@ function buildBenefits(from: VideoFormatInfo, to: VideoFormatInfo): string[] {
   const common = [
     "Runs entirely on your Mac — no uploads, no watermark, no file-size limit",
     `Batch convert many ${from.name} files at once`,
-    "One-time $19 — no monthly subscription",
+    "One-time $39 — no monthly subscription",
   ];
   if (to.extension === "gif") {
     return [
@@ -295,7 +295,7 @@ function buildFaqs(
   faqs.push({
     question: `Is converting ${from.name} to ${to.name} free?`,
     answer:
-      "Picmal is a one-time purchase of $19 — no subscription, no per-file limits, no watermark. Download to explore the interface; 14-day money-back guarantee.",
+      "Picmal is a one-time purchase of $39 — no subscription, no per-file limits, no watermark. Download to explore the interface; 14-day money-back guarantee.",
   });
 
   return faqs;
@@ -306,12 +306,12 @@ function buildMetaDescription(
   to: VideoFormatInfo,
 ): string {
   if (to.extension === "gif") {
-    return `Convert ${from.name} to GIF on Mac — turn video clips into looping animations with frame-rate and size control. Batch, offline, no watermark. One-time $19.`;
+    return `Convert ${from.name} to GIF on Mac — turn video clips into looping animations with frame-rate and size control. Batch, offline, no watermark. One-time $39.`;
   }
   if (to.extension === "mp3") {
-    return `Convert ${from.name} to MP3 on Mac — extract audio from video with bitrate control. Batch process offline, no upload limits. One-time $19, no subscription.`;
+    return `Convert ${from.name} to MP3 on Mac — extract audio from video with bitrate control. Batch process offline, no upload limits. One-time $39, no subscription.`;
   }
-  return `Convert ${from.name} to ${to.name} on Mac — H.264/H.265 with quality control, batch processing, fully offline. No watermark, no file-size limit. One-time $19.`;
+  return `Convert ${from.name} to ${to.name} on Mac — H.264/H.265 with quality control, batch processing, fully offline. No watermark, no file-size limit. One-time $39.`;
 }
 
 function buildMetaTitle(from: VideoFormatInfo, to: VideoFormatInfo): string {

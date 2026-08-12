@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 // ponytail: this hero's "Buy" goes to /#pricing, not checkout — it's a nav click.
-// Re-prefix so it never mixes with the real buy_clicked from DynamicPricing,
+// Re-prefix so it never mixes with the real buy_clicked from PricingPlans,
 // while keeping the per-page attribution the buyEvent prop already carries.
 const navEvent = buyEvent.replace(/^buy_clicked/, "pricing_nav");
 ---

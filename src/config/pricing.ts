@@ -39,7 +39,7 @@ const RAW: Omit<Plan, "checkoutUrl">[] = [
     name: "Picmal",
     price: 39,
     devices: 2,
-    priceId: "price_1U3cDY4RpfcAQYtyjbZD1tin",
+    priceId: "price_1U3rbv4RpfcAQYtyDdjCARJC",
     // `{mac}` is swapped for a laptop glyph at render time (PricingPlans).
     features: [
       "Every feature, no add-ons",
@@ -56,7 +56,7 @@ const RAW: Omit<Plan, "checkoutUrl">[] = [
     name: "Picmal Pro",
     price: 69,
     devices: 5,
-    priceId: "price_1U3cDx4RpfcAQYtym6wjgVPZ",
+    priceId: "price_1U3rby4RpfcAQYty3Tzatrg0",
     // No support tier here on purpose: everyone gets the same answer from the
     // same person, so promising "priority" would be a lie.
     features: [
@@ -116,6 +116,15 @@ export const STUDENT_DISCOUNT = {
   contact: "support@picmal.app",
 };
 
-// Purchasing-power pricing is Stripe Adaptive Pricing, decided at checkout from
-// the buyer's country. Deliberately not listed band by band here: the bands are
-// Stripe's to change, and a stale table on the site would be a broken promise.
+// Purchasing-power pricing is decided at checkout from the buyer's country, by
+// two mechanisms that compose. 62 currencies carry a hand-set PPP amount in the
+// price's currency_options (India 0.35×, Brazil 0.45×, Japan 0.80× — see
+// picmal/scripts/stripe-ppp-pricing.py); everywhere else Stripe's Adaptive
+// Pricing just FX-converts the USD price. Euro countries can only be in the
+// second group: currency_options keys on currency, not country, so discounting
+// Portugal would discount Germany too.
+//
+// Deliberately not listed band by band here: a stale table on the site would be
+// a broken promise. The amounts are frozen at the rates of the day they were
+// set — currency_options entries are write-once, so re-running that script
+// mints new prices and the two priceIds above have to change with them.

@@ -20,10 +20,10 @@
   approved Affiliate and freezes commission at sale time (unknown codes ignored).
 
   Purchase attribution: data-cookie above makes Seline store its visitor id in a
-  first-party seline_vid cookie. Sending it as client_reference_id lets Seline
-  match the Stripe charge back to the visit (there is no login, so no email to
-  identify with). licencio passes the param straight through to the Checkout
-  Session, and Stripe echoes it on checkout.session.completed.
+  first-party seline_vid cookie, sent on as client_reference_id (there is no
+  login, so no email to identify with). Seline only reads the Checkout Session
+  metadata key seline_visitor_id, so licencio copies client_reference_id into
+  that metadata key when it builds the session.
 -->
 <script is:inline>
   try {

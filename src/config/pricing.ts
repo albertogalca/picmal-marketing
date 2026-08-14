@@ -8,52 +8,123 @@
 
 // licencio prod host + product slug. checkoutUrl(priceId) is the buy link;
 // Seline.astro appends &client_reference_id=<distinct_id> at click time.
-const LICENCIO_CHECKOUT = "https://licenses.albertogalca.com/api/checkout";
+const LICENCIO = "https://licenses.albertogalca.com";
 const PRODUCT_SLUG = "picmal";
 const checkoutUrl = (priceId: string): string =>
-  `${LICENCIO_CHECKOUT}?product_slug=${PRODUCT_SLUG}&price_id=${encodeURIComponent(priceId)}`;
+  `${LICENCIO}/api/checkout?product_slug=${PRODUCT_SLUG}&price_id=${encodeURIComponent(priceId)}`;
 
-export interface Tier {
-  devices: number;
+/** A plain bullet, or one with a link on `linkText` (a substring of `text`). */
+export type Feature = string | { text: string; linkText: string; href: string };
+
+export interface Plan {
+  id: "standard" | "pro";
+  name: string;
   price: number; // display price in USD, tax-exclusive (tax handled at Stripe Checkout)
+  devices: number;
   priceId: string; // Stripe Price ID
   checkoutUrl: string; // licencio buy link → 302 to Stripe Checkout
+  features: Feature[];
 }
 
-// Repriced Aug 2026. Same 1/2/3/5 seat ladder as before, but anchored on $19
-// instead of $15.99 — the old entry price put Picmal above Permute ($14.99 for
-// 3 activations) on a per-device basis. Per-device cost still falls as seats go
-// up ($19.00 / $14.50 / $13.00 / $11.80). See MARKETING-PLAN.md.
-const PLACEHOLDER = "REPLACE_WITH_STRIPE_PRICE_ID";
-
-const RAW: Omit<Tier, "checkoutUrl">[] = [
-  { devices: 1, price: 19, priceId: "price_1U1mKw4RpfcAQYtyhReLLXWB" },
-  { devices: 2, price: 29, priceId: "price_1U1mLl4RpfcAQYtyLFKL7XNM" },
-  { devices: 3, price: 39, priceId: "price_1U1mM84RpfcAQYtym1F67zWs" },
-  { devices: 5, price: 59, priceId: "price_1U1mMS4RpfcAQYtycjQOPp7c" },
+// Repriced Aug 2026. The 1/2/3/5 seat ladder collapsed into two named plans:
+// the seat stepper made buyers do arithmetic before they knew what the app was.
+// Pro is the same app with 5 seats instead of 2, so nobody has to guess which
+// features they lose by paying less. Support is not a tier.
+const RAW: Omit<Plan, "checkoutUrl">[] = [
+  {
+    id: "standard",
+    // Named "Picmal", not "Picmal Standard": the buy button, the licence FAQ and
+    // the terms page all call the cheap plan "Picmal", so a card heading that
+    // says "Standard" makes the Pro bullet "Everything in Picmal" ambiguous.
+    name: "Picmal",
+    price: 39,
+    devices: 2,
+    priceId: "price_1U3rbv4RpfcAQYtyDdjCARJC",
+    // `{mac}` is swapped for a laptop glyph at render time (PricingPlans).
+    features: [
+      "Every feature, no add-ons",
+      "Free updates forever",
+      "Use on 2 {mac}",
+      "Command line tool, Raycast extension and watched folders",
+      // Was "Instant updates via Sparkle". Sparkle means nothing to a buyer;
+      // what they actually get is the update without Apple's review queue.
+      "Updates land the day I ship them, with no App Store review wait",
+    ],
+  },
+  {
+    id: "pro",
+    name: "Picmal Pro",
+    price: 69,
+    devices: 5,
+    priceId: "price_1U3rby4RpfcAQYty3Tzatrg0",
+    // No support tier here on purpose: everyone gets the same answer from the
+    // same person, so promising "priority" would be a lie.
+    features: [
+      "Everything in Picmal",
+      "Use on 5 {mac}",
+      "One license for a studio, a family, or a desk and a laptop",
+    ],
+  },
 ];
 
-// The tier the pricing card opens on, and what every bare <Button> charges. Keep
-// it matching the price written on those buttons ("Get Picmal for $19").
-export const DEFAULT_TIER_INDEX = 0; // 1 Mac @ $19
-
-// ponytail: a money path, so fail the production build rather than ship buttons
-// that charge the old $15.99 price behind new labels. Dev only warns, so the
-// copy is still reviewable before the Stripe Prices exist. Paste the live Price
-// IDs above and this goes quiet.
-const missing = RAW.filter((t) => t.priceId === PLACEHOLDER);
-if (missing.length > 0) {
-  const msg =
-    `pricing.ts: ${missing.length} tier(s) still on ${PLACEHOLDER} ` +
-    `(${missing.map((t) => `${t.devices}-device/$${t.price}`).join(", ")}). ` +
-    `Create the Stripe Prices on prod_Upt9NufoSBShSV and paste their IDs.`;
-  if (import.meta.env.PROD) throw new Error(msg);
-  console.warn(`[pricing] ${msg}`);
-}
-
-export const TIERS: Tier[] = RAW.map((t) => ({
-  ...t,
-  checkoutUrl: checkoutUrl(t.priceId),
+export const PLANS: Plan[] = RAW.map((p) => ({
+  ...p,
+  checkoutUrl: checkoutUrl(p.priceId),
 }));
 
-export const DEFAULT_TIER = TIERS[DEFAULT_TIER_INDEX];
+// What every bare <Button> charges. Keep it matching the price written on those
+// buttons ("Get Picmal for $39").
+export const DEFAULT_PLAN = PLANS[0];
+
+// Third buying channel, not a third tier. Same price as the direct license, but
+// Apple's sandbox costs it the CLI, Raycast, watched folders and camera EXIF on
+// RAW. The link only resolves once the app clears review (App Store Connect id
+// 6800392871), so this site does not go out before it does.
+export const MAC_APP_STORE = {
+  price: 39,
+  url: "https://apps.apple.com/app/id6800392871",
+  features: [
+    "All conversion and compression features, same engines, same quality",
+    "Free updates forever",
+    "Purchases, updates and refunds handled by Apple",
+    "Family Sharing, no license key",
+    // Was "Some things work differently on the App Store", which left the buyer
+    // guessing what they give up at the exact moment they pick a channel. Name
+    // the three missing tools, and keep the link for the long version.
+    {
+      text: "No command line tool, Raycast extension or watched folders. Compare the two builds",
+      linkText: "Compare the two builds",
+      href: "/blog/picmal-mac-app-store-vs-direct",
+    },
+  ],
+};
+
+// Handled by hand today: the buyer pays and their license's max_activations goes
+// 2 → 5 in the licencio admin. No expiry, so buying the $39 plan first is never
+// the wrong call. Automate it (a $30 price + an `upgrade_license_key` branch in
+// the Stripe webhook, mirroring `renew_license_key`) when the emails get boring.
+export const UPGRADE_TO_PRO_PRICE = 30;
+
+// The code is never in this bundle. The form posts the address to licencio,
+// which re-runs the same domain check server-side and mails the Stripe
+// promotion code to it — so having the school inbox is what buys the discount,
+// not reading this file. See app/controllers/api/students_controller.rb.
+export const STUDENT_DISCOUNT = {
+  percentOff: 40,
+  endpoint: `${LICENCIO}/api/students/discount`,
+  productSlug: PRODUCT_SLUG,
+  contact: "support@picmal.app",
+};
+
+// Purchasing-power pricing is decided at checkout from the buyer's country, by
+// two mechanisms that compose. 62 currencies carry a hand-set PPP amount in the
+// price's currency_options (India 0.35×, Brazil 0.45×, Japan 0.80× — see
+// picmal/scripts/stripe-ppp-pricing.py); everywhere else Stripe's Adaptive
+// Pricing just FX-converts the USD price. Euro countries can only be in the
+// second group: currency_options keys on currency, not country, so discounting
+// Portugal would discount Germany too.
+//
+// Deliberately not listed band by band here: a stale table on the site would be
+// a broken promise. The amounts are frozen at the rates of the day they were
+// set — currency_options entries are write-once, so re-running that script
+// mints new prices and the two priceIds above have to change with them.

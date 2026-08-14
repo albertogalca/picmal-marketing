@@ -156,6 +156,7 @@ body {
   transition:
     color 0.2s ease,
     text-decoration-color 0.2s ease;
+  font-weight: 500;
 }
 .link:hover {
   text-decoration-color: var(--color-accent);

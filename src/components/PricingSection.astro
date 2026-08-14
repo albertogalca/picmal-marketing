@@ -1,6 +1,8 @@
 ---
-import DynamicPricing from "./DynamicPricing.astro";
+import Card from "./Card.astro";
+import { STUDENT_DISCOUNT, UPGRADE_TO_PRO_PRICE } from "../config/pricing";
 import FAQ from "./FAQ.astro";
+import PricingPlans from "./PricingPlans.astro";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
 
@@ -11,12 +13,22 @@ const licenseFaqs = [
   {
     question: "How does the license work?",
     answer:
-      "You pay once and keep it. No renewals, no subscriptions. The license activates on one Mac at a time, but you can move it between machines whenever you want.",
+      "You pay once and keep it. No renewals, no subscriptions. Picmal activates on 2 Macs, Picmal Pro on 5, and you can move a license to another Mac whenever you want.",
   },
   {
-    question: "How many devices can I use Picmal on?",
+    question: "What is the difference between Picmal and Picmal Pro?",
     answer:
-      "Depends on the tier you pick: 1, 2, 3, or 5 Macs. You can swap between machines anytime.",
+      "The app is identical, and so is the support: one person answers every email, and that person is me. Pro covers 5 Macs instead of 2.",
+  },
+  {
+    question: "I bought Picmal and now I need more Macs. Can I upgrade?",
+    answer:
+      `Yes, for $${UPGRADE_TO_PRO_PRICE}. Email support@picmal.app and I'll send you the link, then your existing key covers 5 Macs. The offer never expires, so starting with the cheaper plan is never the wrong call.`,
+  },
+  {
+    question: "Should I buy here or on the Mac App Store?",
+    answer:
+      `Same price, same engines, same quality. Apple handles the purchase, updates and refunds, and you get Family Sharing with no license key. Buying direct adds the command line tool, the Raycast extension, watched folders, camera EXIF on RAW conversions, and up to 5 Macs on one license. Here is the <a class="link" href="/blog/picmal-mac-app-store-vs-direct">full comparison of the two builds</a>.`,
   },
   {
     question: "What happens if I get a new Mac?",
@@ -24,44 +36,28 @@ const licenseFaqs = [
       "Open Picmal on your old Mac, go to Picmal → Register license to deactivate, then activate on the new one. Takes about ten seconds.",
   },
   {
+    question: "Do you offer student or country discounts?",
+    answer:
+      `Yes. I want Picmal to be affordable wherever you are. Students and educators get ${STUDENT_DISCOUNT.percentOff}% off: verify your school email on the <a class="link" href="/education">education page</a> and the code lands in your inbox. If the price is steep for your country, checkout already adjusts it for you. If it still doesn't work, email <a class="link" href="mailto:support@picmal.app">support@picmal.app</a> and tell me where you are, and I'll send a code.`,
+  },
+  {
     question: "Can I get a refund?",
-    answer: "14 days, no questions asked. Email support@picmal.app.",
+    answer:
+      "14 days, no questions asked. Email support@picmal.app. App Store purchases go through Apple instead.",
   },
 ];
 ---
 
 <Section id="pricing" width="medium" bg="subtle">
-  <!-- Mobile-only Pricing Header -->
-  <SectionHeading
-    class="md:hidden"
-    headingClass="text-pretty"
-    subleadClass="max-w-md"
-    sublead={pricingBlurb}
-  >
+  <SectionHeading sublead={pricingBlurb}>
     Pay once and you're all set
   </SectionHeading>
 
-  <div
-    class="flex flex-col md:flex-row justify-between gap-12 md:gap-16 items-center md:items-start"
-  >
-    <!-- Pricing Card -->
-    <div class="w-full max-w-md md:max-w-none md:w-auto order-1 md:order-2">
-      <div class="md:sticky md:top-8">
-        <DynamicPricing />
-      </div>
-    </div>
+  <PricingPlans />
 
-    <!-- Benefits & FAQ -->
-    <div class="w-full md:max-w-md text-left order-2 md:order-1 space-y-6">
-      <SectionHeading
-        align="left"
-        class="hidden md:block mb-0"
-        headingClass="text-pretty"
-        sublead={pricingBlurb}
-      >
-        Pay once and you're all set
-      </SectionHeading>
+  <div class="max-w-3xl mx-auto mt-16">
+    <Card>
       <FAQ faqs={licenseFaqs} />
-    </div>
+    </Card>
   </div>
 </Section>

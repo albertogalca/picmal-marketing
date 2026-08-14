@@ -51,6 +51,18 @@
     "link": "https://www.macstories.net/reviews/picmal-streamlines-batch-conversion-and-compression-on-the-mac/"
   },
   {
+    "id": 32,
+    "type": "press",
+    "publication": "TheSweetBits",
+    "logo": "/thesweetbits_proof.webp",
+    "logoWidth": 168,
+    "logoHeight": 38,
+    "logoInvertDark": true,
+    "content": "The app keeps everything local, it works quickly, and it doesn't ask you to make a single decision before your first conversion.",
+    "highlight": "keeps everything local, it works quickly",
+    "link": "https://thesweetbits.com/tools/picmal-review/"
+  },
+  {
     "id": 8,
     "name": "Gianluca Savini",
     "content": "You did a great job here! I like how easy Picmal is to use, and the frequent upgrades show that you are very committed to improving this beautiful software.",

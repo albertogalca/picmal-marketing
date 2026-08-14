@@ -1,22 +1,24 @@
 ---
-import macStoriesLogo from "../../public/macstories_proof.webp";
+import testimonials from "../data/testimonials.json";
 import TestimonialCard from "./TestimonialCard.astro";
 
-// Abridged MacStories pull-quote shown in the hero. Kept here (not in
-// testimonials.json) so the hero can run a tighter edit than the full review.
-const macStories = {
-  type: "press",
-  publication: "MacStories",
-  logo: macStoriesLogo,
-  content:
-    "Picmal is an excellent way to manage file conversion and compression jobs of any size. The simplicity and speed with which you can manage batch conversion and compression sets it apart and makes it worth checking out.",
-  highlight: "The simplicity and speed",
-  link: "https://www.macstories.net/reviews/picmal-streamlines-batch-conversion-and-compression-on-the-mac/",
-};
+interface Props {
+  /** Which press entry to feature, matched on `publication`. */
+  publication: string;
+  class?: string;
+}
+const { publication, class: className = "" } = Astro.props;
+
+// Single source of truth: the press entries in testimonials.json. They are
+// filtered out of the scrolling wall, so this is the only place they render.
+// Cast: the JSON import infers a union where the press-only keys are absent
+// from most members, so plain property access would not typecheck.
+const review = (testimonials as Record<string, any>[]).find(
+  (t) => t.type === "press" && t.publication === publication,
+);
+if (!review) throw new Error(`No press review for "${publication}"`);
 ---
 
-<section class="relative z-10 px-6 pt-8 sm:pt-10 pb-4">
-  <div class="max-w-2xl mx-auto">
-    <TestimonialCard testimonial={macStories} align="center" />
-  </div>
-</section>
+<div class:list={["max-w-2xl mx-auto", className]}>
+  <TestimonialCard testimonial={review} align="center" />
+</div>

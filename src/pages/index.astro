@@ -15,6 +15,7 @@ import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import CompressFormatsModal from "../components/CompressFormatsModal.astro";
 import PricingSection from "../components/PricingSection.astro";
 import FounderLetter from "../components/FounderLetter.astro";
+import FeaturedReview from "../components/FeaturedReview.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
@@ -105,6 +106,7 @@ const SITE_DESCRIPTION =
             </svg>
             100% on your Mac. No uploads, no account, works offline.
           </p>
+
         </div>
 
         <!-- Demo Video -->
@@ -130,6 +132,12 @@ const SITE_DESCRIPTION =
             </div>
           </div>
         </div>
+
+        <!-- Featured review: the video shows what it does, this vouches that
+             it's a real, reviewed app. Highest-authority outlet goes here. -->
+        <div class="hero-reveal mt-16" style="--d: 320ms">
+          <FeaturedReview publication="MacStories" />
+        </div>
       </div>
     </main>
 
@@ -145,6 +153,12 @@ const SITE_DESCRIPTION =
 
     <!-- Pricing -->
     <PricingSection />
+
+    <!-- Second featured review, placed right after the price: this is where
+         "is this a legit app?" gets asked, so an outside voice answers it. -->
+    <Section id="press" width="default">
+      <FeaturedReview publication="TheSweetBits" />
+    </Section>
 
     <!-- Founder letter -->
     <FounderLetter />

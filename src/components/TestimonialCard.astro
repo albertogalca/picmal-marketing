@@ -12,6 +12,11 @@ interface Testimonial {
   type?: string;
   publication?: string;
   logo?: string | ImageMetadata;
+  /** Dark-text logo on transparent bg: flip it to stay legible in dark mode. */
+  logoInvertDark?: boolean;
+  /** Intrinsic logo size. Wrong values letterbox the mark inside object-contain. */
+  logoWidth?: number;
+  logoHeight?: number;
 }
 
 interface Props {
@@ -52,6 +57,10 @@ function getInitialsAvatar(name: string): string {
 // Trimmed: a few entries carry trailing whitespace, which shows up as a gap
 // before the closing quote mark.
 const content = t.content.trim();
+
+// brightness-0 first flattens the logo to black, so invert gives a clean white
+// silhouette instead of the hue-shifted mess plain `invert` makes of a colour mark.
+const logoClass = `h-8 sm:h-9 w-auto object-contain${t.logoInvertDark ? " dark:brightness-0 dark:invert" : ""}`;
 const at = t.highlight ? content.indexOf(t.highlight) : -1;
 const quote =
   at === -1
@@ -104,9 +113,9 @@ const quote =
             <Image
               src={t.logo!}
               alt={t.publication ?? ""}
-              width={240}
-              height={73}
-              class="h-8 sm:h-9 w-auto object-contain"
+              width={t.logoWidth ?? 240}
+              height={t.logoHeight ?? 73}
+              class={logoClass}
               loading="lazy"
             />
           </a>
@@ -114,9 +123,9 @@ const quote =
           <Image
             src={t.logo!}
             alt={t.publication ?? ""}
-            width={240}
-            height={73}
-            class="h-8 sm:h-9 w-auto object-contain"
+            width={t.logoWidth ?? 240}
+            height={t.logoHeight ?? 73}
+            class={logoClass}
             loading="lazy"
           />
         )}

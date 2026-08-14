@@ -19,17 +19,19 @@ const userTestimonials = testimonials.filter((t) => t.type !== "press");
 // track animates to -50%, so the loop closes seamlessly; the second copy is
 // `inert` (out of the a11y tree and out of the tab order). Durations differ a
 // little so the columns don't march in lockstep.
-const per = Math.ceil(testimonials.length / 3);
+// Press reviews live in `FeaturedReview` (hero + below pricing), not in the
+// wall: a logo card reads as an ad when it drifts past between user quotes.
+const per = Math.ceil(userTestimonials.length / 3);
 const columns = [
-  { items: testimonials.slice(0, per), duration: "56s" },
-  { items: testimonials.slice(per, per * 2), duration: "68s" },
-  { items: testimonials.slice(per * 2), duration: "62s" },
+  { items: userTestimonials.slice(0, per), duration: "56s" },
+  { items: userTestimonials.slice(per, per * 2), duration: "68s" },
+  { items: userTestimonials.slice(per * 2), duration: "62s" },
 ].map((column) => ({
   duration: column.duration,
   cards: [...column.items, ...column.items].map((t, i) => ({
     t,
     dup: i >= column.items.length,
-    isLink: !!t.link && t.type !== "press",
+    isLink: !!t.link,
   })),
 }));
 

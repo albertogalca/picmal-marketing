@@ -9,6 +9,7 @@
       async
       src="https://cdn.seline.com/seline.js"
       data-token="0545957829e3e8e"
+      data-cookie="true"
     />
   )
 }
@@ -17,6 +18,12 @@
   Affiliate attribution: capture ?ref=CODE into a 60-day first-party cookie, then
   append ref=<code> to every /api/checkout link. licencio resolves the code to an
   approved Affiliate and freezes commission at sale time (unknown codes ignored).
+
+  Purchase attribution: data-cookie above makes Seline store its visitor id in a
+  first-party seline_vid cookie. Sending it as client_reference_id lets Seline
+  match the Stripe charge back to the visit (there is no login, so no email to
+  identify with). licencio passes the param straight through to the Checkout
+  Session, and Stripe echoes it on checkout.session.completed.
 -->
 <script is:inline>
   try {
@@ -37,6 +44,15 @@
         var url = new URL(a.href);
         var ref = document.cookie.match(/(?:^|;\s*)ref=([^;]*)/);
         if (ref) url.searchParams.set("ref", decodeURIComponent(ref[1]));
+        // ponytail: read at click time, not page load. Seline writes seline_vid
+        // from the first pageview response, so a click in the first moments of a
+        // first-ever visit has no id yet and stays unattributed. Fine as is.
+        var vid = document.cookie.match(/(?:^|;\s*)seline_vid=([^;]*)/);
+        if (vid)
+          url.searchParams.set(
+            "client_reference_id",
+            decodeURIComponent(vid[1]),
+          );
         a.href = url.toString();
       } catch (_) {}
     },

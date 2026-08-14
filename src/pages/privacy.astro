@@ -61,9 +61,16 @@ const meta = {
   <H2>The website</H2>
 
   <p>
-    The website (picmal.app) uses PostHog to understand how many
-    people visit and which pages are popular. PostHog is privacy-friendly—no
-    personal tracking, just basic visitor counts and page views.
+    The website (picmal.app) uses Seline to understand how many people visit and
+    which pages are popular. Seline is privacy-friendly, no personal tracking,
+    just basic visitor counts and page views.
+  </p>
+
+  <p>
+    Seline stores an anonymous visitor ID in a first-party cookie. It's used to
+    count returning visitors instead of counting the same person twice, and to
+    match a purchase back to the visit that led to it. It holds no personal
+    information.
   </p>
 
   <p>
@@ -88,8 +95,8 @@ const meta = {
 
   <ul>
     <li>
-      <strong>PostHog</strong>: For privacy-friendly website
-      visitor stats (website only)
+      <strong>Seline</strong>: For privacy-friendly website visitor stats
+      (website only)
     </li>
     <li>
       <strong>Stripe</strong>: For secure payment processing (as our merchant of

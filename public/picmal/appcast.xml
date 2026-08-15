@@ -3,6 +3,27 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.4</title>
+            <pubDate>Sat, 15 Aug 2026 09:54:59 +0300</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>112</sparkle:version>
+            <sparkle:shortVersionString>1.8.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.4/Picmal.dmg" length="87878298" type="application/octet-stream" sparkle:edSignature="imvLpXwytzqJQKhHWkgR3TqG9nrVpxXnGdHPBLaxWmD0mWTnHERnPom4MLZwoOuSxqYsC+A0nAqkilMY97cGAA=="/>
+        <description><![CDATA[<div><h3>Improvements</h3>
+<ul>
+<li><strong>Converting to SVG now gives you an SVG.</strong> Picking SVG as the output format failed every time, because the tracer it needed had never been bundled. Convert now uses the same tracer as the Vectorize tool, so a PNG or a JPG comes out as real vector paths you can open in Illustrator or Affinity.</li>
+<li><strong>Picmal won't quietly replace a file that's already there.</strong> If something with the output name already sits next to your file, the new one is saved alongside it as `photo_converted 2.jpg`.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Fixed a crash on files that aren't really PDFs.</strong> A renamed image or a half-downloaded document could take the whole app down instead of failing quietly, whether it went through PDF compression, PDF conversion, an Illustrator file or the command line. Picmal now checks the file before it opens it.</li>
+<li><strong>Videos with cover art convert and compress again.</strong> A clip carrying embedded artwork — GoPro footage, anything downloaded with a thumbnail — had the artwork encoded as the video while the real footage was thrown away, and the file failed outright. Picmal now picks the actual picture track.</li>
+<li><strong>A straight answer when the disk is read-only.</strong> Saving next to a file on a locked disk image or a camera card failed with "Processing failed unexpectedly", and could even ask for folder permission that would never have helped. It now tells you the disk is read-only.</li>
+<li><strong>"Open With → Picmal" opens one window, not a window per file.</strong> Sending a few files from the Finder spawned a separate window for each of them, and on newer versions of macOS the window could stay buried until you clicked the app. All the files now land in one window, and that window comes to the front.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.3</title>
             <pubDate>Wed, 12 Aug 2026 15:34:19 +0300</pubDate>
             <link>https://picmal.app/</link>

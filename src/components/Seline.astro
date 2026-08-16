@@ -62,15 +62,20 @@
         var url = new URL(a.href);
         var ref = document.cookie.match(/(?:^|;\s*)ref=([^;]*)/);
         if (ref) url.searchParams.set("ref", decodeURIComponent(ref[1]));
-        // ponytail: read at click time, not page load. Seline writes seline_vid
-        // from the first pageview response, so a click in the first moments of a
-        // first-ever visit has no id yet and stays unattributed. Fine as is.
-        var vid = document.cookie.match(/(?:^|;\s*)seline_vid=([^;]*)/);
+        // Read at click time, not page load. getVisitorId() is the documented
+        // way to get it (seline.com/docs/stripe) and it answers as soon as
+        // seline.js has an id — including on a first-ever visit, where the
+        // seline_vid cookie has not come back from the pageview response yet.
+        // The cookie alone lost exactly those first clicks; it stays on as the
+        // fallback, since it still holds a valid id from an earlier visit when
+        // seline.js is blocked or has not finished loading.
+        var vid =
+          (window.seline &&
+            window.seline.getVisitorId &&
+            window.seline.getVisitorId()) ||
+          (document.cookie.match(/(?:^|;\s*)seline_vid=([^;]*)/) || [])[1];
         if (vid)
-          url.searchParams.set(
-            "client_reference_id",
-            decodeURIComponent(vid[1]),
-          );
+          url.searchParams.set("client_reference_id", decodeURIComponent(vid));
         // Affonso attribution: its pixel drops an affonso_referral cookie on
         // this domain; licencio must copy this param into the Checkout
         // Session's metadata.affonso_referral for commissions to attribute.

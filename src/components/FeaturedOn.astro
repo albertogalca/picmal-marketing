@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 const logos = [
   {
     name: "Product Hunt",
@@ -188,103 +186,18 @@ const logos = [
 ];
 ---
 
-<div class="marquee w-full overflow-hidden py-8 sr-only">
-  <div class="marquee-track flex w-max items-center gap-12">
-    {
-      logos.map((logo) => (
-        <a
-          href={logo.href}
-          target="_blank"
-          rel="noopener"
-          class="logo-link flex h-auto w-auto shrink-0 items-center"
-        >
-          <Image
-            src={logo.src}
-            alt={logo.alt || logo.name}
-            class="h-auto max-h-full w-auto min-w-[36px] max-w-[150px] object-contain"
-            width={logo.width}
-            height={logo.height}
-            loading="lazy"
-          />
+<!-- ponytail: sr-only backlink holder, not social proof. It used to be a
+     visible logo marquee; the leftover w-full + w-max track beat sr-only's
+     width:1px and pushed the document ~300px wider than the viewport. Anchor
+     text carries the link now, no images and no animation. -->
+<ul class="sr-only">
+  {
+    logos.map((logo) => (
+      <li>
+        <a href={logo.href} target="_blank" rel="noopener">
+          {logo.alt || logo.name}
         </a>
-      ))
-    }
-    {/* ponytail: duplicated copy is decorative filler for the seamless loop */}
-    {
-      logos.map((logo) => (
-        <span aria-hidden="true" class="logo-link flex shrink-0 items-center">
-          <Image
-            src={logo.src}
-            alt=""
-            class="h-auto max-h-full w-auto min-w-[36px] max-w-[150px] object-contain"
-            width={logo.width}
-            height={logo.height}
-            loading="lazy"
-          />
-        </span>
-      ))
-    }
-  </div>
-</div>
-
-<style>
-  .marquee {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 6rem,
-      black calc(100% - 6rem),
-      transparent
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 6rem,
-      black calc(100% - 6rem),
-      transparent
-    );
+      </li>
+    ))
   }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .marquee-track {
-      animation: marquee 120s linear infinite;
-    }
-
-    .marquee:hover .marquee-track {
-      animation-play-state: paused;
-    }
-  }
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      /* half the track + half the gap that sits between the two copies */
-      transform: translateX(calc(-50% - 1.5rem));
-    }
-  }
-
-  .logo-link {
-    opacity: 0.4;
-    filter: grayscale(100%);
-    transition:
-      opacity 0.2s ease,
-      filter 0.2s ease;
-  }
-
-  a.logo-link:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-  }
-
-  :global(.dark) .logo-link {
-    filter: grayscale(100%) invert(1);
-    opacity: 0.4;
-  }
-
-  :global(.dark) a.logo-link:hover {
-    filter: grayscale(0%) invert(1);
-    opacity: 1;
-  }
-</style>
+</ul>

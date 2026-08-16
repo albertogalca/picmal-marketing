@@ -1,4 +1,6 @@
 ---
+import Seline from "./Seline.astro";
+
 const route = Astro.locals.starlightRoute;
 
 function stripHtml(url: string) {
@@ -29,18 +31,7 @@ const head = route.head.map((entry) => {
 
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
 
-<!-- Affonso affiliate tracking (first-party /r proxy, see Seline.astro) —
-     docs pages don't go through BaseHead, and the pixel must load on every page. -->
-{
-  import.meta.env.PROD && (
-    <script
-      is:inline
-      async
-      defer
-      src="/r/pixel.js"
-      data-affonso="cmsv7goeg000f7f4l751rl9f8"
-      data-cookie_duration="60"
-      data-api-base="/r"
-    />
-  )
-}
+<!-- Docs pages don't go through BaseHead. This used to inline the Affonso pixel
+     alone, so a buy click from /docs reached checkout with no seline_vid, no ref
+     and no affonso_referral: unattributed. <Seline /> carries all three. -->
+<Seline />

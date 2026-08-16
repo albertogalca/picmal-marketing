@@ -62,11 +62,13 @@ Pair 16 bit with 44.1 kHz for CD-quality FLAC, or jump to 24 bit + 48 kHz for st
 
 ### Cover art
 
-Picmal can embed album art into your audio output automatically. Turn on **Embed cover art from the source folder** in **Settings → Audio**, and for each track it looks for a cover image in the same folder and writes it into the file. Works for MP3, M4A, ALAC, and FLAC.
+Picmal can embed album art into your audio output automatically. Turn on **Embed cover art from the source folder** in **Settings → Audio**, and for each track it looks for a cover image in the same folder and writes it into the file. It works both when converting and when compressing.
 
-By default it looks for `cover.jpg`, `folder.jpg`, and `front.jpg`, but you can edit that list of filenames to match how your library is organized.
+By default it looks for `cover.jpg`, `folder.jpg`, and `front.jpg`, but you can edit that list of filenames to match how your library is organized. The names have to match exactly, extension included — add `cover.png` or `AlbumArt.jpg` to the list if that's how your library names them. Capitalization doesn't matter, and the image has to sit in the same folder as the track.
 
-Turn on **Skip files that already have artwork** to leave existing covers alone. Picmal only adds art to tracks that don't have any.
+Turn on **Skip files that already have artwork** to leave existing covers alone. Picmal only adds art to tracks that don't have any. Turn it **off** if you want the folder image to replace the artwork a track already carries.
+
+Only some formats can store a picture: **MP3, M4A, M4B, ALAC and FLAC**. WAV, AIFF, OGG and Opus have nowhere to put one, so converting to those leaves the output with no art — Picmal flags the row when that happens. Compressing a track keeps whatever art it already has, unless you also have **Remove metadata** turned on, which strips it along with everything else.
 
 ![Cover art settings in Picmal, with the source-folder filename list and skip-existing toggle](/images/docs/cover_art.png)
 

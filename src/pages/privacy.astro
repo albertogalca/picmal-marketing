@@ -5,7 +5,7 @@ import H2 from "../components/H2.astro";
 const meta = {
   title: "Picmal: Privacy policy",
   description: "Picmal's privacy policy: your files stay on your Mac, no uploads, no tracking, no accounts. Learn how we handle data for our offline image converter.",
-  date: "Last updated: September 8, 2025",
+  date: "Last updated: August 16, 2026",
   noindex: true,
 };
 ---
@@ -74,8 +74,42 @@ const meta = {
   </p>
 
   <p>
+    When someone buys Picmal, that anonymous visitor ID is passed to Stripe with
+    the order so the sale can be matched back to the visit. That's how I know
+    which pages actually lead to sales. The revenue figure and the visitor ID are
+    what I see. Your name, email, and payment details stay with Stripe.
+  </p>
+
+  <p>
     This website analytics data is completely separate from the app's technical
     telemetry.
+  </p>
+
+  <H2>Cookies</H2>
+
+  <p>
+    The website sets a small number of first-party cookies. No advertising
+    cookies, no cross-site tracking, no data brokers.
+  </p>
+
+  <ul>
+    <li>
+      <strong>seline_vid</strong>: anonymous visitor ID for the analytics
+      described above, and for matching a purchase to a visit
+    </li>
+    <li>
+      <strong>ref</strong>: the affiliate code from a referral link, kept for 60
+      days so the affiliate gets credited
+    </li>
+    <li>
+      <strong>affonso_referral</strong>: the same thing on Affonso's side, the
+      service that runs the affiliate program, kept for 60 days
+    </li>
+  </ul>
+
+  <p>
+    You can clear or block these in your browser at any time. Nothing on the site
+    stops working if you do, and the app is not affected at all.
   </p>
 
   <H2>Updates</H2>
@@ -103,6 +137,14 @@ const meta = {
       record) when you purchase Picmal. They collect payment information (like
       credit card details) but I never see this data
     </li>
+    <li>
+      <strong>Affonso</strong>: For running the affiliate program (website only).
+      It records affiliate clicks and the sales that follow them
+    </li>
+    <li>
+      <strong>Loops</strong>: For the newsletter, and only if you sign up. It
+      stores the email address you gave me. Every email has an unsubscribe link
+    </li>
   </ul>
 
   <p>
@@ -115,21 +157,34 @@ const meta = {
 
   <p>
     Picmal has an affiliate program where partners can earn commissions for
-    referring customers. When you click an affiliate link:
+    referring customers. It runs on <strong>Affonso</strong>. When you arrive
+    through an affiliate link:
   </p>
 
   <ul>
     <li>
-      We track the referral using a first-party cookie to ensure affiliates get
-      credited
+      The referral is stored in a first-party cookie for 60 days, so the
+      affiliate still gets credited if you buy later
     </li>
-    <li>No personal information is shared with affiliates</li>
-    <li>The tracking is only used for commission purposes</li>
+    <li>
+      Affonso records the click and, if you buy, the order amount and currency.
+      It receives your IP address and browser user agent to work out the country
+      and to spot fraud
+    </li>
+    <li>
+      Affiliates only ever see counts and commission totals. They don't see who
+      you are, your email, or what you bought
+    </li>
+    <li>The tracking is only used for paying commissions</li>
   </ul>
 
   <p>
-    If you purchase through an affiliate link, the affiliate receives a
-    commission, but your personal information remains private.
+    Affonso's own privacy policy is at <a
+      href="https://affonso.io/privacy"
+      rel="noopener">affonso.io/privacy</a
+    >. The affiliate pixel is served from picmal.app rather than from Affonso
+    directly, because content blockers block their domain. It's the same script
+    either way.
   </p>
 
   <H2>Security</H2>
@@ -160,8 +215,16 @@ const meta = {
   <H2>International users</H2>
 
   <p>
-    Doesn't matter where you are—France, Japan, Brazil, anywhere. Your images
+    Doesn't matter where you are, France, Japan, Brazil, anywhere. Your images
     stay on your Mac, so there's no international data transfer to worry about.
+  </p>
+
+  <p>
+    The website is a different story, and a small one. The services above (Seline,
+    Stripe, Affonso, Loops) run on servers outside the EU, so the little the
+    website does collect, a visitor ID, a referral code, an order amount, is
+    processed there. Cantimplora Studio, LLC is the company behind Picmal and is
+    based in the United States.
   </p>
 
   <H2>Your rights</H2>

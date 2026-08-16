@@ -14,6 +14,21 @@
   )
 }
 
+<!-- Affonso affiliate tracking (hosted mode). The cookie window is set in the
+     Affonso program settings, not here. -->
+{
+  import.meta.env.PROD && (
+    <script
+      is:inline
+      async
+      defer
+      src="https://cdn.affonso.io/js/pixel.min.js"
+      data-affonso="cmsv7goeg000f7f4l751rl9f8"
+      data-cookie_duration="30"
+    />
+  )
+}
+
 <!--
   Affiliate attribution: capture ?ref=CODE into a 60-day first-party cookie, then
   append ref=<code> to every /api/checkout link. licencio resolves the code to an

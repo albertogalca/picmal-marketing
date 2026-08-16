@@ -68,6 +68,12 @@
             "client_reference_id",
             decodeURIComponent(vid[1]),
           );
+        // Affonso attribution: its pixel drops an affonso_referral cookie on
+        // this domain; licencio must copy this param into the Checkout
+        // Session's metadata.affonso_referral for commissions to attribute.
+        var aff = document.cookie.match(/(?:^|;\s*)affonso_referral=([^;]*)/);
+        if (aff)
+          url.searchParams.set("affonso_referral", decodeURIComponent(aff[1]));
         a.href = url.toString();
       } catch (_) {}
     },

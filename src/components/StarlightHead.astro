@@ -29,17 +29,18 @@ const head = route.head.map((entry) => {
 
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
 
-<!-- Affonso affiliate tracking (hosted mode) — docs pages don't go through
-     BaseHead/Seline.astro, and the pixel must load on every page. -->
+<!-- Affonso affiliate tracking (first-party /r proxy, see Seline.astro) —
+     docs pages don't go through BaseHead, and the pixel must load on every page. -->
 {
   import.meta.env.PROD && (
     <script
       is:inline
       async
       defer
-      src="https://cdn.affonso.io/js/pixel.min.js"
+      src="/r/pixel.js"
       data-affonso="cmsv7goeg000f7f4l751rl9f8"
       data-cookie_duration="30"
+      data-api-base="/r"
     />
   )
 }

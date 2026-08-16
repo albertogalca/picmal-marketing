@@ -14,17 +14,20 @@
   )
 }
 
-<!-- Affonso affiliate tracking (hosted mode). The cookie window is set in the
-     Affonso program settings, not here. -->
+<!-- Affonso affiliate tracking, first-party mode: content blockers block
+     *.affonso.io, so the pixel loads and reports through our /r proxy
+     (functions/r/[[path]].js). The cookie window is an Affonso program
+     setting, not something to edit here. -->
 {
   import.meta.env.PROD && (
     <script
       is:inline
       async
       defer
-      src="https://cdn.affonso.io/js/pixel.min.js"
+      src="/r/pixel.js"
       data-affonso="cmsv7goeg000f7f4l751rl9f8"
       data-cookie_duration="30"
+      data-api-base="/r"
     />
   )
 }

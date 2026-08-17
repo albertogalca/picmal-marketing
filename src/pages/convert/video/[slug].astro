@@ -18,6 +18,7 @@ import {
   videoFormats,
   getRelatedVideoConversions,
   isVideoConversionIndexed,
+  labelFor,
 } from "../../../data/videoConversions";
 
 export function getStaticPaths() {
@@ -83,7 +84,7 @@ const faqSchema = {
     <Header />
 
     <ComparisonHero
-      title={`Convert ${from.name} to ${to.name} on Mac`}
+      title={`Convert ${labelFor(from)} to ${labelFor(to)} on Mac`}
       subhead={conversion.whyConvert}
       buyEvent={`buy_clicked_video_${conversion.slug}`}
       defaultTab="convert"

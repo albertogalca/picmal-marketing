@@ -1,0 +1,102 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CTASection from "../../components/CTASection.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import Paragraph from "../../components/Paragraph.astro";
+
+const title = "Picmal: Free image tools";
+const description =
+  "Free browser tools for working out image sizes and formats. No sign-up, nothing uploaded.";
+
+// ponytail: one real tool, so this is a list of one. The old version padded it
+// out with three "coming soon" cards; those were speculative and are gone. Add
+// a second entry here when a second tool actually exists.
+const tools = [
+  {
+    title: "Image file size calculator",
+    description:
+      "Type in pixel dimensions and see how big the file lands in JPG, PNG, WebP, AVIF, HEIC, TIFF and uncompressed.",
+    href: "/tools/image-file-size-calculator",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: title,
+        description,
+        url: "https://picmal.app/tools",
+        mainEntity: tools.map((t) => ({
+          "@type": "WebApplication",
+          name: t.title,
+          description: t.description,
+          url: `https://picmal.app${t.href}`,
+          applicationCategory: "UtilityApplication",
+          operatingSystem: "Any",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        })),
+      })}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content">
+      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+      <Section width="narrow" class="pt-32 sm:pt-32">
+        <SectionHeading
+          level={1}
+          sublead="Free, runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
+        >
+          Free image tools
+        </SectionHeading>
+
+        <div class="flex flex-col gap-4">
+          {
+            tools.map((tool) => (
+              <a
+                href={tool.href}
+                class="group bg-background-subtle/50 border border-border rounded-2xl p-6 transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                <h2 class="text-h3 text-text mb-2">{tool.title}</h2>
+                <Paragraph class="mb-4">{tool.description}</Paragraph>
+                <span class="text-small font-[590] text-accent">
+                  Open the tool <span aria-hidden="true">&rarr;</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section width="narrow" class="text-center">
+        <Paragraph
+          >Looking for the app itself? Picmal <a class="link" href="/compress-images-mac"
+            >compresses images</a
+          >, <a class="link" href="/image-converter-mac">converts formats</a>, and
+          <a class="link" href="/resize-image-mac">resizes in batches</a> on your
+          Mac, fully offline.</Paragraph
+        >
+      </Section>
+    </main>
+
+    <CTASection
+      heading="Use Picmal to convert and compress media on your Mac"
+      analyticsEvent="buy_clicked_tools_index"
+    />
+
+    <Footer />
+  </body>
+</html>

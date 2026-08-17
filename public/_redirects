@@ -14,9 +14,17 @@
 /convert/tiff-to-dng /raw-converter-mac 301
 /convert/gif-to-dng /raw-converter-mac 301
 
+# The press kit is a Google Drive folder now, so the page was removed.
+/press https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing 301
+
 # Old blog placeholders that still pull impressions.
 /blog/tutorial /blog 301
 /blog/guide /blog 301
+
+# best-image-formats-2025 was a thinner second take on the same head term
+# (498 impressions, 0 clicks). Its print/RAW material was merged into the
+# main guide, which now covers web vs print in its own section.
+/blog/best-image-formats-2025 /blog/best-image-formats-for-web 301
 
 # Changelog consolidation: old per-release pages now live as anchors on /changelog.
 # Placeholder forwards the slug to its in-page anchor; falls back to /changelog
@@ -63,19 +71,16 @@
 
 # "Batch" is a feature of image-converter-mac, not a separate intent.
 /batch-image-converter-mac /image-converter-mac 301
-# compress-images-mac was a head-term duplicate of the /compress hub.
-/compress-images-mac /compress 301
 
-# Free tools section removed — forward to the closest converter/compressor page.
+# /compress-images-mac and /tools/image-file-size-calculator were deleted while
+# they still ranked (5.7k impressions, positions 18-20). They are back. /compress
+# stays a format index only, so the two pages don't compete on the head term.
 
-/tools/image-format-support-matrix /image-converter-mac 301
-/tools/image-file-size-calculator /compress 301
+# Free tools: only the file-size calculator earned its keep. The format selector
+# had no query demand, and the support matrix is now /docs/supported-formats.
+
+/tools/image-format-support-matrix /docs/supported-formats 301
 /tools/image-format-selector /image-converter-mac 301
-/tools / 301
-
-# About page removed — content moving to a homepage section.
-
-/about / 301
 
 # Normalize trailing slashes to the canonical no-slash URL (trailingSlash: "never").
 # Cloudflare's default normalization is a 307; force a 301 so link equity passes.

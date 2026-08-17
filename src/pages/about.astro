@@ -1,0 +1,167 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Paragraph from "../components/Paragraph.astro";
+import H2 from "../components/H2.astro";
+
+const title = "Picmal: About Cantimplora Studio, the studio behind the app";
+const description =
+  "Picmal is made by Cantimplora Studio, a one-person Mac software studio run by Alberto Gallego. Who builds it, why it works the way it does, and how to get in touch.";
+
+// The founder letter lives on the home page and stays there. This page covers
+// the studio and the principles, so the two don't compete on the same words.
+const principles = [
+  {
+    title: "Everything runs on your Mac",
+    body: "No uploads, no accounts, no servers holding your files. Not a marketing angle, it's the architecture. Picmal has nowhere to send your photos even if it wanted to.",
+  },
+  {
+    title: "Pay once",
+    body: "One price, updates included, no subscription. A tool you use twice a month shouldn't bill you every month.",
+  },
+  {
+    title: "A real Mac app",
+    body: "Native, not a website in a window. It belongs in Finder, in Quick Actions, in Shortcuts, and it should feel like it came with the machine.",
+  },
+  {
+    title: "You can write to me",
+    body: "Support goes to my inbox, not a ticket queue. Most feature requests in Picmal came from somebody emailing to ask.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Cantimplora Studio, LLC",
+        alternateName: "Cantimplora Studio",
+        url: "https://picmal.app",
+        logo: "https://picmal.app/logo.webp",
+        email: "support@picmal.app",
+        founder: {
+          "@type": "Person",
+          name: "Alberto Gallego",
+          url: "https://albertogalca.com",
+        },
+        makesOffer: {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "SoftwareApplication",
+            name: "Picmal",
+            applicationCategory: "MultimediaApplication",
+            operatingSystem: "macOS",
+          },
+        },
+      })}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content">
+      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+      <Section width="narrow" class="pt-32 sm:pt-32">
+        <SectionHeading
+          level={1}
+          align="left"
+          sublead="Picmal is made by Cantimplora Studio, which is one person: me."
+          subleadClass="max-w-xl"
+        >
+          About Cantimplora Studio
+        </SectionHeading>
+
+        <div class="space-y-5">
+          <Paragraph>
+            I'm <a
+              href="https://albertogalca.com"
+              target="_blank"
+              rel="noreferrer"
+              class="link">Alberto Gallego</a
+            >. Cantimplora Studio, LLC is the company name on the invoice, and
+            there's nobody behind it but me. I design Picmal, write the code,
+            answer the support email, and make the mistakes.
+          </Paragraph>
+          <Paragraph>
+            Picmal started because I was tired of opening a browser every time I
+            needed to convert a handful of files. Upload, wait, download, wait,
+            and hope the site wasn't keeping a copy. My Mac is a fast computer
+            that can do all of that locally in about a second, so it seemed
+            worth building the thing I actually wanted to use.
+          </Paragraph>
+          <Paragraph>
+            It converts and compresses images, video, audio and PDFs. It batches
+            hundreds of files at once. It costs $39 one time. That's the whole
+            pitch, and it hasn't needed to change.
+          </Paragraph>
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-8">What the studio believes</H2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {
+            principles.map((p) => (
+              <Card padding="p-6">
+                <h3 class="text-h4 text-text mb-2">{p.title}</h3>
+                <Paragraph class="text-text-secondary">{p.body}</Paragraph>
+              </Card>
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-4">Getting in touch</H2>
+        <div class="space-y-5">
+          <Paragraph>
+            Bug reports, feature requests, license problems and "does it do
+            this?" all go to <a href="mailto:support@picmal.app" class="link"
+              >support@picmal.app</a
+            >, and they reach me directly. If there's something you've always
+            wished a converter did, I'd genuinely like to hear it. A good number
+            of Picmal's features exist because somebody asked.
+          </Paragraph>
+          <Paragraph>
+            Writing about Picmal? The <a
+              href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+              class="link">press kit</a
+            > has logos and screenshots. There's also an <a
+              href="/affiliate"
+              class="link">affiliate program</a
+            >, and <a href="/education" class="link">student pricing</a> if
+            you're at a university.
+          </Paragraph>
+          <Paragraph>
+            The legal details live in the <a href="/terms" class="link"
+              >terms</a
+            > and the <a href="/privacy" class="link">privacy policy</a>. The
+            short version of the second one: Picmal processes your files on your
+            own Mac, so there's nothing for me to collect.
+          </Paragraph>
+        </div>
+      </Section>
+    </main>
+
+    <CTASection
+      heading="Convert and compress media on your Mac"
+      analyticsEvent="buy_clicked_about"
+    />
+
+    <Footer />
+  </body>
+</html>

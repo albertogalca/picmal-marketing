@@ -123,6 +123,16 @@ That last case is what [Picmal](https://picmal.app) is for. Drag the files in, p
 
 If you're converting other formats too, not just SVG, the [image converter for Mac](/image-converter-mac) page covers the rest of them.
 
+## What about SVG to JPG?
+
+Every method above works for JPG too. Wherever the steps say to pick PNG, pick JPEG instead: Preview's export dialog offers both, `qlmanage -t` writes PNG only so you'd export from Preview or a browser instead, and `rsvg-convert` needs a second step (`rsvg-convert -w 1200 logo.svg | magick png:- logo.jpg`).
+
+The catch is transparency. **JPG has none.** An SVG with a transparent background becomes a JPG with a solid background, usually black or white depending on the tool, and you don't get a say in it from Preview. That's why logos and icons should be PNG or stay SVG.
+
+Pick JPG only when the SVG is a full-bleed illustration with a background already, and the file is going somewhere that won't take PNG or SVG. Otherwise PNG is the right target, and it's why the rest of this guide assumes it.
+
+Going the other direction, from a photo or logo image to a real vector, is a different job: see the [vectorize docs](/docs/vectorize).
+
 ## FAQ
 
 ### Does converting SVG to PNG lose quality?

@@ -1,0 +1,273 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import Paragraph from "../components/Paragraph.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
+import MasonryTestimonials from "../components/MasonryTestimonials.astro";
+import PricingSection from "../components/PricingSection.astro";
+import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
+import ComparisonHero from "../components/ComparisonHero.astro";
+import CardGrid from "../components/CardGrid.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+
+const title =
+  "Picmal: Compress images on Mac, make photos smaller without losing quality";
+const description =
+  "Make a JPEG, PNG, HEIC or WebP smaller on your Mac. Shrink one photo or a whole folder, pick the quality, watch the MB drop. Fully offline, no upload limit. $39 one-time.";
+
+// The queries that land here ask the same thing in a dozen ways: "compress
+// image mac", "how to make a jpeg smaller on mac", "how to reduce mb of photo
+// on mac". The FAQ mirrors that phrasing on purpose.
+const faqs = [
+  {
+    question: "How do I make an image smaller on my Mac?",
+    answer:
+      "Open Picmal, drag the image in (or a whole folder), pick a quality level, and click Compress. The file comes out smaller in the same format, saved next to the original or wherever you choose. Everything runs on your Mac.",
+  },
+  {
+    question: "How do I make a JPEG smaller on Mac without losing quality?",
+    answer:
+      "Set the quality to around 80-85%. That usually cuts a photo by 60-70% with no difference you would notice on screen. Picmal shows you the result before you commit, so you can nudge the slider until the size and the look are both right.",
+  },
+  {
+    question: "How many MB can Picmal cut off a photo?",
+    answer:
+      "It depends on the photo and the setting, but 30-80% is normal. A 6 MB JPEG off a camera often lands around 1.5 MB. Screenshots and PNG graphics compress losslessly, so they get smaller with no change to a single pixel.",
+  },
+  {
+    question: "Does compressing a photo lose quality?",
+    answer:
+      "Only if you ask it to. JPG, WebP and AVIF are lossy, so you choose the trade-off with a slider. PNG and TIFF are lossless: smaller file, identical image. That makes lossless the right pick for screenshots, logos and diagrams.",
+  },
+  {
+    question: "Can I compress an image without changing its format?",
+    answer:
+      "Yes, and that is the default. A JPG stays a JPG, just smaller. Compressing and converting are separate things, and Picmal can do either one or both in the same pass.",
+  },
+  {
+    question: "Can I compress a folder of photos at once?",
+    answer:
+      "Yes. Drop in hundreds of images or a nested folder and apply one setting to all of them. No uploading files one at a time to a website.",
+  },
+  {
+    question: "Which image formats can Picmal compress?",
+    answer:
+      "JPG, PNG, HEIC, WebP, AVIF, GIF, TIFF, SVG and PDF. You can keep the original format or switch it while compressing.",
+  },
+  {
+    question: "Are my photos uploaded anywhere?",
+    answer:
+      "No. Compression runs entirely on your Mac. No upload, no queue, no file-size cap, and your photos never touch anyone else's server. It's a one-time $39, not a subscription.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
+const formats = ["jpg", "png", "gif", "webp", "avif", "tiff", "pdf"];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <ProductSchema url={Astro.site!.href} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <ComparisonHero
+      title="Compress images on your Mac and make photos smaller"
+      subhead="Shrink a JPEG, PNG, HEIC or WebP without losing the quality you care about. Do one photo or a whole folder, watch the MB drop, keep the format. Fully offline, no upload limit."
+      buyEvent="buy_clicked_compress_images_mac"
+      defaultTab="compress"
+    />
+
+    <!-- How It Works -->
+    <CardGrid
+      heading="How to compress an image on your Mac"
+      numbered
+      items={[
+        {
+          title: "Drop your photos in",
+          description:
+            "Drag one image, a hundred, or a whole folder into Picmal.",
+        },
+        {
+          title: "Pick the quality",
+          description:
+            "Move the slider to trade file size against quality. 80-85% is the usual sweet spot.",
+        },
+        {
+          title: "Compress",
+          description:
+            "Click Compress. Your smaller files are ready, in the same format.",
+        },
+      ]}
+    />
+
+    <!-- Controls -->
+    <CardGrid
+      heading="Real control over size and quality"
+      items={[
+        {
+          title: "Quality slider",
+          description:
+            "For JPG, WebP and AVIF you set the quality and see the trade-off. 80-85% usually cuts the file 60-70% with nothing you'd notice on screen.",
+        },
+        {
+          title: "Lossless where it matters",
+          description:
+            "PNG and TIFF get smaller without throwing away a single pixel. Right for screenshots, logos and diagrams.",
+        },
+        {
+          title: "Whole folders at once",
+          description:
+            "Drag in hundreds of images or a nested folder and apply one setting to all of them. No uploading one file at a time.",
+        },
+        {
+          title: "Nothing leaves your Mac",
+          description:
+            "Compression runs locally. No upload, no queue, no file-size cap, and your photos never touch someone else's server.",
+        },
+      ]}
+    />
+
+    <!-- Why compress -->
+    <CardGrid
+      heading="When you actually need this"
+      intro={"Phone and camera photos are enormous now. A single shot off an iPhone can be 5 MB, a RAW file ten times that. Most of the time you just need it small enough to send, upload, or store."}
+      items={[
+        {
+          title: "It won't fit in an email",
+          description:
+            "Most providers cap attachments around 25 MB. Drop the quality until the photos fit, then send. A folder of holiday shots goes from 200 MB to 40 MB in one pass.",
+        },
+        {
+          title: "The upload form rejects it",
+          description:
+            "Job applications, insurance claims and government portals love a 2 MB limit. Shrink the file instead of re-taking the photo.",
+        },
+        {
+          title: "Your website is slow",
+          description:
+            "Unoptimized images are the usual reason. Compress them before upload, and pair it with the right format for the job.",
+        },
+        {
+          title: "Reclaiming disk space",
+          description:
+            "A photo folder eating your SSD compresses down hard, especially screenshots and scans, and you keep every file where it is.",
+        },
+      ]}
+    />
+
+    <!-- Compress vs convert -->
+    <Section width="narrow">
+      <SectionHeading>Compressing isn't the same as converting</SectionHeading>
+      <Paragraph class="mb-4"
+        >It's an easy thing to mix up. <strong class="text-text"
+          >Converting</strong
+        > changes the format, so a HEIC becomes a JPG and a PNG becomes a WebP. <strong
+          class="text-text">Compressing</strong
+        > keeps the format and shrinks the file. A 6&nbsp;MB JPG comes out a 1.5&nbsp;MB
+        JPG. Same format, same extension, smaller on disk.</Paragraph
+      >
+      <Paragraph class="mb-4"
+        >Most of the time, compressing is what you actually want. You're not
+        trying to make a file openable somewhere new, you're trying to make it
+        lighter for email, for a website, or just to claw back disk space. This
+        page stays in that lane: drop images in, they come out smaller, in the
+        format they started in.</Paragraph
+      >
+      <Paragraph
+        >If you do need a different format, that's the <a
+          href="/image-converter-mac"
+          class="link">image converter for Mac</a
+        >. You can also do both in one pass, so a folder of PNGs becomes WebP <em
+          >and</em
+        > drops in quality at the same time.</Paragraph
+      >
+    </Section>
+
+    <!-- Per-format pages -->
+    <Section width="narrow">
+      <SectionHeading sublead="Pick your format for the specifics: what gets thrown away, what stays, and how small it typically gets.">
+        Compress a specific format
+      </SectionHeading>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        {
+          formats.map((format) => (
+            <a
+              href={`/compress/${format}`}
+              class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <span class="text-small font-medium text-text">
+                Compress {format.toUpperCase()}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </Section>
+
+    <!-- Related -->
+    <Section width="narrow" class="text-center">
+      <SectionHeading class="mb-6">Related guides and tools</SectionHeading>
+      <div class="flex flex-col gap-3">
+        <a href="/blog/reduce-image-file-size-mac" class="link"
+          >Guide: how to reduce image file size on Mac &rarr;</a
+        >
+        <a href="/blog/compress-jpeg-mac" class="link"
+          >Guide: how to compress a JPEG on Mac &rarr;</a
+        >
+        <a href="/blog/compress-png-mac" class="link"
+          >Guide: how to compress a PNG on Mac &rarr;</a
+        >
+        <a href="/blog/reduce-photo-library-size-mac" class="link"
+          >Guide: shrink your whole photo library on Mac &rarr;</a
+        >
+        <a href="/tools/image-file-size-calculator" class="link"
+          >Estimate a file size before you compress &rarr;</a
+        >
+        <a href="/resize-image-mac" class="link"
+          >Change the dimensions instead: resize images on Mac &rarr;</a
+        >
+        <a href="/compress-video-mac" class="link"
+          >Need to shrink video instead? Compress video on Mac &rarr;</a
+        >
+      </div>
+    </Section>
+
+    <MasonryTestimonials />
+
+    <PricingSection />
+
+    <Section id="faq" width="narrow">
+      <SectionHeading
+        sublead="Something not covered here? Write to support@picmal.app"
+      >
+        Frequently Asked Questions
+      </SectionHeading>
+      <Card>
+        <FAQ faqs={faqs} />
+      </Card>
+    </Section>
+
+    <Footer />
+    <SupportedFormatsModal />
+  </body>
+</html>

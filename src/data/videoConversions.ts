@@ -3,6 +3,14 @@ export interface VideoFormatInfo {
   extension: string;
   fullName: string;
   description: string;
+  /**
+   * A common name people search instead of the extension, shown in the title
+   * and H1. Only set where the alias is what real queries use: "mp4 to
+   * quicktime" pulls impressions at position 70 because the word appeared
+   * nowhere but the body copy. Most formats don't need this — nobody searches
+   * "mp4 to matroska video".
+   */
+  searchAlias?: string;
 }
 
 export interface VideoConversionPair {
@@ -28,6 +36,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     name: "MOV",
     extension: "mov",
     fullName: "QuickTime Movie",
+    searchAlias: "QuickTime",
     description:
       "Apple's QuickTime container, the native format for footage from iPhones, Macs, and Final Cut Pro. High quality but less portable outside the Apple ecosystem.",
   },
@@ -314,8 +323,15 @@ function buildMetaDescription(
   return `Convert ${from.name} to ${to.name} on Mac — H.264/H.265 with quality control, batch processing, fully offline. No watermark, no file-size limit. One-time $39.`;
 }
 
+/** "MOV" or "MOV (QuickTime)" — see VideoFormatInfo.searchAlias. */
+export function labelFor(format: VideoFormatInfo): string {
+  return format.searchAlias
+    ? `${format.name} (${format.searchAlias})`
+    : format.name;
+}
+
 function buildMetaTitle(from: VideoFormatInfo, to: VideoFormatInfo): string {
-  return `Picmal: Convert ${from.name} to ${to.name} on Mac, fast and offline`;
+  return `Picmal: Convert ${labelFor(from)} to ${labelFor(to)} on Mac, fast and offline`;
 }
 
 export const videoConversions: VideoConversionPair[] = PAIRS.map(

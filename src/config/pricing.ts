@@ -99,11 +99,15 @@ export const MAC_APP_STORE = {
   ],
 };
 
-// Handled by hand today: the buyer pays and their license's max_activations goes
-// 2 → 5 in the licencio admin. No expiry, so buying the $39 plan first is never
-// the wrong call. Automate it (a $30 price + an `upgrade_license_key` branch in
-// the Stripe webhook, mirroring `renew_license_key`) when the emails get boring.
-export const UPGRADE_TO_PRO_PRICE = 30;
+// Self-serve since Aug 2026: licencio's upgrade page takes the license key,
+// picks the pay-the-difference SKU for that key's seat count server-side
+// (Stripe prices with `upgrade_from_seats` metadata: 1→2 $15, 1→5 $40,
+// 2→5 $30, 3→5 $15) and the webhook bumps max_activations on the SAME key.
+export const UPGRADE = {
+  price: 30, // the 2→5 path, the one the pricing FAQ quotes
+  // ?product brands the page (name, logo, accent, key placeholder) before a key is typed.
+  url: `${LICENCIO}/portal/upgrades/new?product=${PRODUCT_SLUG}`,
+};
 
 // The code is never in this bundle. The form posts the address to licencio,
 // which re-runs the same domain check server-side and mails the Stripe

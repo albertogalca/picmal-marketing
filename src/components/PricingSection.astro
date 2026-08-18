@@ -1,6 +1,6 @@
 ---
 import Card from "./Card.astro";
-import { STUDENT_DISCOUNT, UPGRADE_TO_PRO_PRICE } from "../config/pricing";
+import { STUDENT_DISCOUNT, UPGRADE } from "../config/pricing";
 import FAQ from "./FAQ.astro";
 import PricingPlans from "./PricingPlans.astro";
 import Section from "./Section.astro";
@@ -23,7 +23,7 @@ const licenseFaqs = [
   {
     question: "I bought Picmal and now I need more Macs. Can I upgrade?",
     answer:
-      `Yes, for $${UPGRADE_TO_PRO_PRICE}. Email support@picmal.app and I'll send you the link, then your existing key covers 5 Macs. The offer never expires, so starting with the cheaper plan is never the wrong call.`,
+      `Yes, and you only pay the difference: $${UPGRADE.price} takes Picmal to Pro, and older 1-Mac licenses have their own prices. <a class="link" href="${UPGRADE.url}">Enter your license key here</a> and the same key covers more Macs. The offer never expires, so starting with the cheaper plan is never the wrong call.`,
   },
   {
     question: "Should I buy here or on the Mac App Store?",

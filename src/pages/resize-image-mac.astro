@@ -12,6 +12,7 @@ import CardGrid from "../components/CardGrid.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import Paragraph from "../components/Paragraph.astro";
 
 const title =
   "Picmal: Resize images on Mac, batch resize by size or dimensions";
@@ -136,6 +137,32 @@ const faqSchema = {
       linkText="Need to convert between formats too? See the image converter"
       linkHref="/image-converter-mac"
     />
+
+    <!-- Batch resize -->
+    <Section width="narrow">
+      <SectionHeading class="mb-8"
+        >Batch resize a whole folder of images</SectionHeading
+      >
+      <Paragraph class="mb-4"
+        >Preview can resize a batch, and it is free, so use it when that is all
+        you need. Select the files, open them in Preview, then Tools &gt; Adjust
+        Size. Automator can do it too if you are willing to build the workflow
+        once.</Paragraph
+      >
+      <Paragraph class="mb-4"
+        >Where both fall down is anything conditional. Preview applies one width
+        to everything, so a folder mixing portrait and landscape shots comes out
+        wrong half the time. It has no way to say "cap the longest side at 2000
+        px" or "get every file under 500 KB". Picmal has Max Dimensions and Max
+        File Size modes for exactly that, and they apply across the whole batch
+        at once.</Paragraph
+      >
+      <Paragraph
+        >Drop in a folder, pick a mode, click Convert. Each image is written out
+        as its own file, originals untouched. Hundreds at a time, no upload and
+        no per-file limit, because it all runs on your Mac.</Paragraph
+      >
+    </Section>
 
     <MasonryTestimonials />
 

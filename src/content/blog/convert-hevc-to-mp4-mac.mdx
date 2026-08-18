@@ -22,7 +22,7 @@ You exported a video, or pulled one off your iPhone or a drone, and now it won't
 
 Here's the thing most guides skip: **HEVC is a codec, MP4 is a container.** Your HEVC file may already have an `.mp4` extension. Renaming it does nothing. What you actually need is to re-encode the video to H.264, the codec that plays on every phone, browser, TV, and editor made in the last fifteen years.
 
-Below are four ways to do that on your Mac, from the fastest batch tool to the free command line.
+Below are four ways to do that on your Mac. The first three are free, and for a handful of files one of them is almost certainly all you need.
 
 **Quick answer:** To convert HEVC to a widely compatible MP4 on a Mac, re-encode the video to H.264. For one or two files, [HandBrake](https://handbrake.fr) (free) does the job. For a folder of clips, a native batch converter like [Picmal](/convert/video/hevc-to-mp4) re-encodes them all at once, entirely on your Mac with no upload. The methods below cover both.
 
@@ -36,31 +36,7 @@ HEVC is genuinely more efficient. So why downgrade?
 
 If everything you own already plays HEVC, you don't need to convert. This is about the moment something doesn't.
 
-## Method 1: Picmal (fastest for batches)
-
-[Picmal](https://picmal.app) is a native Mac app for converting and compressing video, audio, images, and PDFs. If you have more than a couple of clips, start here.
-
-### Steps:
-
-1. Download Picmal from [picmal.app](https://picmal.app)
-2. Drag your HEVC files (or a whole folder) into the app
-3. Choose **MP4** as the output format
-4. Set a quality level if you want to control file size
-5. Click **Convert**
-
-### Why people reach for it:
-
-- Converts a batch of clips in one pass instead of one at a time
-- Runs entirely on your Mac. Nothing gets uploaded, nothing phones home
-- Uses your Mac's hardware encoder, so it's fast on Apple Silicon
-- Quality control so you decide the size-versus-fidelity trade-off
-- No file size limit and no watermark
-
-### Best for:
-
-Emptying a folder of drone or iPhone footage into a compatible format. Anyone who converts video often enough that clicking through a file at a time gets old.
-
-## Method 2: HandBrake (the free standard)
+## Method 1: HandBrake (the free standard)
 
 [HandBrake](https://handbrake.fr) is the free, open-source workhorse for video conversion. It's more knobs than most people need, but the defaults are sensible.
 
@@ -77,7 +53,7 @@ Emptying a folder of drone or iPhone footage into a compatible format. Anyone wh
 
 HandBrake has a queue, so you can line up several files, but you add them one at a time. The interface is busy. If you just want compatible output without learning what a "constant quality RF" is, leave the preset alone and hit Start.
 
-## Method 3: VLC (already installed for many people)
+## Method 2: VLC (already installed for many people)
 
 VLC plays everything, and it quietly converts too.
 
@@ -93,7 +69,7 @@ VLC plays everything, and it quietly converts too.
 
 VLC's converter is basic and does one file at a time. Progress feedback is minimal, so a long clip can look frozen when it isn't. Fine for the occasional file, frustrating for a batch.
 
-## Method 4: FFmpeg (command line)
+## Method 3: FFmpeg (command line, free)
 
 If you live in the terminal, FFmpeg is the most direct route.
 
@@ -123,14 +99,38 @@ done
 
 Free, and it drops into a Hazel rule or a cron job if you convert video regularly. If "cron job" means nothing to you, one of the apps above is the better call.
 
+## Method 4: Picmal (fastest for batches)
+
+[Picmal](https://picmal.app) is a native Mac app for converting and compressing video, audio, images, and PDFs. If you have more than a couple of clips, start here.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag your HEVC files (or a whole folder) into the app
+3. Choose **MP4** as the output format
+4. Set a quality level if you want to control file size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Converts a batch of clips in one pass instead of one at a time
+- Runs entirely on your Mac. Nothing gets uploaded, nothing phones home
+- Uses your Mac's hardware encoder, so it's fast on Apple Silicon
+- Quality control so you decide the size-versus-fidelity trade-off
+- No file size limit and no watermark
+
+### Best for:
+
+Emptying a folder of drone or iPhone footage into a compatible format. Anyone who converts video often enough that clicking through a file at a time gets old.
+
 ## Side-by-side comparison
 
 | Method    | Speed     | Batch     | Quality control | Ease of use | Price  |
 | --------- | --------- | --------- | --------------- | ----------- | ------ |
-| Picmal    | Very Fast | Excellent | Advanced        | Very Easy   | $39 |
 | HandBrake | Moderate  | Good      | Advanced        | Moderate    | Free   |
 | VLC       | Slow      | None      | Basic           | Easy        | Free   |
 | FFmpeg    | Fast      | Excellent | Advanced        | Technical   | Free   |
+| Picmal    | Very Fast | Excellent | Advanced        | Very Easy   | $39 |
 
 ## Tips for better results
 

@@ -13,13 +13,20 @@ import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import Paragraph from "../components/Paragraph.astro";
 
-const title = "Picmal: Audio converter for Mac, FLAC, M4A, WAV to MP3 & more";
+const title = "Picmal: Audio converter for Mac, batch convert any format";
 const description =
-  "Convert audio on your Mac: FLAC, M4A, WAV, WMA, OGG and Opus to MP3, plus lossless FLAC and ALAC for Apple Music. Bitrate control, batch, fully offline. $39 one-time, no subscription.";
+  "An audio converter for Mac that handles MP3, M4A, WAV, FLAC, ALAC, OGG, Opus, WMA, AIFF and more. Batch a whole folder, control the bitrate, stay offline. $39 one-time, no subscription.";
 
 const toMp3 = audioConversions.filter((c) => c.to === "mp3");
 const other = audioConversions.filter((c) => c.to !== "mp3");
+
+// Every audio format the app reads and writes, split by whether it keeps
+// every sample. Drives the coverage grid below.
+const formatKeys = Object.keys(audioFormats);
+const losslessFormats = formatKeys.filter((k) => audioFormats[k].lossless);
+const lossyFormats = formatKeys.filter((k) => !audioFormats[k].lossless);
 
 const faqs = [
   {
@@ -45,7 +52,22 @@ const faqs = [
   {
     question: "Can I batch convert a whole folder of audio files?",
     answer:
-      "Yes. Drag in many files or an entire folder and Picmal converts them all in one pass, each with its own progress.",
+      "Yes. Drag in many files or an entire folder and Picmal converts them all in one pass, each with its own progress. Bitrate and sample rate apply across the whole batch, so a converted album stays consistent.",
+  },
+  {
+    question: "What is the best audio converter for Mac?",
+    answer:
+      "It depends on what you need. macOS already converts a single file for free: Music can make an MP3, and the afconvert command handles most formats. Picmal is worth it when you have a folder rather than one file, want bitrate and sample-rate control, and would rather not upload the audio anywhere.",
+  },
+  {
+    question: "Can macOS convert audio without an app?",
+    answer:
+      "Yes, for simple cases. Music converts to MP3 or AAC through File > Convert, and afconvert in Terminal covers WAV, AIFF, M4A and more. Neither one handles FLAC, OGG or Opus, and neither batches a folder with consistent settings.",
+  },
+  {
+    question: "Does converting audio lose quality?",
+    answer:
+      "Between lossless formats (FLAC, ALAC, WAV, AIFF) no, the audio is identical. Converting to MP3, AAC or Opus discards detail, so pick your bitrate deliberately. Converting a compressed file back to lossless does not recover anything.",
   },
   {
     question: "Do my files leave my Mac?",
@@ -78,8 +100,8 @@ const faqSchema = {
     <Header />
 
     <ComparisonHero
-      title="Convert audio on your Mac"
-      subhead="FLAC, M4A, WAV, WMA, OGG, Opus and more. Picmal converts to MP3 for universal playback, or to ALAC for lossless Apple Music. Bitrate control, batch, fully offline."
+      title="An audio converter for Mac that does folders, not files"
+      subhead="MP3, M4A, WAV, FLAC, ALAC, OGG, Opus, WMA, AIFF and more. Convert to MP3 for universal playback or to ALAC for lossless Apple Music. Batch a whole folder, control the bitrate, all on your Mac."
       buyEvent="buy_clicked_audio_converter_mac"
       defaultTab="convert"
     />
@@ -121,6 +143,153 @@ const faqSchema = {
         linkText="Just need a smaller file? Compress audio on Mac"
         linkHref="/compress-audio-mac"
       />
+    </Section>
+
+    <!-- Format coverage -->
+    <Section width="narrow">
+      <SectionHeading
+        sublead="Picmal reads and writes all of these, and converts between any two of them."
+      >
+        Every audio format Picmal handles
+      </SectionHeading>
+      <div class="grid gap-6 sm:grid-cols-2">
+        <Card>
+          <h3 class="text-h4 text-text mb-1">Lossless</h3>
+          <Paragraph size="small" class="mb-4"
+            >Keeps every sample. Bigger files, no quality loss, safe to convert
+            again later.</Paragraph
+          >
+          <ul class="flex flex-col gap-3">
+            {
+              losslessFormats.map((key) => (
+                <li>
+                  <span class="text-body text-text font-[590]">
+                    {audioFormats[key].name}
+                  </span>
+                  <span class="text-small text-text-secondary">
+                    {" "}
+                    {audioFormats[key].fullName}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </Card>
+        <Card>
+          <h3 class="text-h4 text-text mb-1">Compressed</h3>
+          <Paragraph size="small" class="mb-4"
+            >Throws away what you are unlikely to hear. Much smaller files, and
+            what every phone and car stereo expects.</Paragraph
+          >
+          <ul class="flex flex-col gap-3">
+            {
+              lossyFormats.map((key) => (
+                <li>
+                  <span class="text-body text-text font-[590]">
+                    {audioFormats[key].name}
+                  </span>
+                  <span class="text-small text-text-secondary">
+                    {" "}
+                    {audioFormats[key].fullName}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </Card>
+      </div>
+    </Section>
+
+    <!-- Batch -->
+    <Section width="narrow">
+      <SectionHeading class="mb-8"
+        >Batch convert a folder of audio files</SectionHeading
+      >
+      <Paragraph class="mb-4"
+        >This is the part most audio converters on the Mac get wrong. They open
+        one file, convert it, and ask you to do the next one. That is fine for a
+        single voice memo. It is not fine for a ripped album or a season of
+        interviews.</Paragraph
+      >
+      <Paragraph class="mb-4"
+        >Drag in a whole folder and Picmal converts every file in one pass, with
+        the same bitrate and sample rate applied across all of them, each with
+        its own progress. Hundreds of files, one click, no queue and no upload
+        limit because nothing is uploading.</Paragraph
+      >
+      <Paragraph
+        >The settings carry too. Set 320 kbps VBR once and it applies to the
+        whole batch, so a converted album stays consistent instead of drifting
+        file to file.</Paragraph
+      >
+    </Section>
+
+    <!-- Lossless vs compressed -->
+    <Section width="narrow">
+      <SectionHeading class="mb-8">Lossless or compressed?</SectionHeading>
+      <Paragraph class="mb-4"
+        >Worth getting right before you convert a library, because you cannot
+        get quality back once it is gone. <strong class="text-text"
+          >Lossless</strong
+        > formats (FLAC, ALAC, WAV, AIFF) keep every sample. Convert between them
+        as many times as you like and the audio is identical. <strong
+          class="text-text">Compressed</strong
+        > formats (MP3, AAC, Opus, OGG) discard detail to save space.</Paragraph
+      >
+      <Paragraph class="mb-4"
+        >The rule I use: archive in lossless, listen in compressed. Keep the
+        FLAC or ALAC copy of anything you ripped or recorded, then make MP3s
+        from it whenever you need something that plays everywhere. Going the
+        other way, MP3 to FLAC, gains you nothing. The detail was thrown away at
+        the first step and a bigger file will not bring it back.</Paragraph
+      >
+      <Paragraph
+        >For an Apple Music library, ALAC is the one you want. It is lossless
+        and it lands as a normal .m4a, so Music treats it like any other track.
+        <a class="link" href="/convert/audio/flac-to-alac">FLAC to ALAC</a> is the
+        usual route.</Paragraph
+      >
+    </Section>
+
+    <!-- Why native -->
+    <Section width="narrow">
+      <SectionHeading class="mb-8"
+        >Why not just use an online audio converter?</SectionHeading
+      >
+      <Paragraph class="mb-4"
+        >You can drop a file on a website and get it back in another format. For
+        one file, that works. It stops working the moment you have an album, or
+        the file is a client recording, an interview, or something under NDA
+        that you would rather not hand to a stranger's server.</Paragraph
+      >
+      <Paragraph class="mb-4"
+        >Online converters upload the audio, process it somewhere you cannot
+        see, and hand it back, usually with a size cap, a queue, and an ad wall.
+        Audio files are big, so you feel every one of those limits. Picmal runs
+        the conversion on your Mac. No upload, no queue, no file-size limit, and
+        the recording never leaves the machine.</Paragraph
+      >
+      <Paragraph
+        >It is $39 once, updates included. Not a subscription you forget to
+        cancel.</Paragraph
+      >
+    </Section>
+
+    <!-- Related guides -->
+    <Section width="narrow" class="text-center">
+      <SectionHeading class="mb-6">Related guides</SectionHeading>
+      <div class="flex flex-col gap-3">
+        <a href="/blog/convert-audio-mac" class="text-accent hover:underline"
+          >How to convert audio on Mac &rarr;</a
+        >
+        <a href="/compress-audio-mac" class="text-accent hover:underline"
+          >Compress audio on Mac without wrecking it &rarr;</a
+        >
+        <a
+          href="/extract-audio-from-video-mac"
+          class="text-accent hover:underline">Extract audio from a video &rarr;</a
+        >
+      </div>
     </Section>
 
     <MasonryTestimonials />

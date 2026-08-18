@@ -1,0 +1,117 @@
+---
+title: "How to Compress Video with HandBrake (The Settings That Actually Matter)"
+description: "A practical guide to HandBrake's compression settings: what RF really does, which encoder to pick, why your file sometimes gets bigger instead of smaller, and the four controls that change the size."
+pubDate: "2026-08-18"
+category: "Guide"
+tags: ["HandBrake", "Video", "Compression", "Guide"]
+faqs:
+  - question: "What are the best HandBrake settings for compressing video?"
+    answer: "Constant Quality mode with RF 22 for H.264, or RF 26 for H.265, plus the Encoder Preset set to Slow. That combination gets most 1080p files down a long way with no visible difference at normal viewing distance. Lower the RF number if you want more quality and a bigger file."
+  - question: "What does RF mean in HandBrake?"
+    answer: "RF is Rate Factor, HandBrake's name for the encoder's constant quality target. It runs 0 to 51 and it is inverted: a lower number means better quality and a bigger file. Useful range is roughly 18 to 28. Each step of about 6 either halves or doubles the file size."
+  - question: "Why did HandBrake make my video file bigger?"
+    answer: "Because the source was already compressed harder than the RF you asked for. If a phone clip or a download is effectively at RF 26 and you encode it at RF 18, HandBrake faithfully spends more bits describing an already-degraded picture. Raise your RF number, or if you only need a different container, remux instead of re-encoding."
+  - question: "Should I use H.264 or H.265 in HandBrake?"
+    answer: "H.264 (x264) if the file has to play anywhere without thought. H.265 (x265) if you want roughly 30 to 50% smaller files at the same quality and you control where it plays. H.265 encodes slower and older browsers and devices will not take it."
+  - question: "How do I compress a video to a specific file size in HandBrake?"
+    answer: "Constant Quality cannot target a size. Switch to Average Bitrate, tick 2-Pass Encoding, and work out the bitrate: target size in megabits divided by duration in seconds. A 25 MB cap on a 3 minute clip is about 1100 kbps total, so set video to roughly 950 kbps and leave the rest for audio."
+---
+
+**The short version: use Constant Quality, set RF to 22 for H.264 or 26 for H.265, and set the Encoder Preset slider to Slow.** That handles most of what people mean by "compress this video" and you can stop reading.
+
+The rest of this is for when that isn't enough, or when HandBrake did something you didn't expect. It is a genuinely good piece of software, free, and maintained by volunteers for two decades. It is also a program that puts about forty controls in front of you and does not say which four matter.
+
+These are the four.
+
+## 1. Constant Quality (RF), not bitrate
+
+HandBrake's Video tab offers two ways to decide how much data to spend.
+
+**Constant Quality** is the one you want almost always. You give the encoder a quality target and it spends whatever bits that takes: more on a fast action scene, fewer on a static talking head. You do not know the final size until it finishes, and that is fine, because "make this smaller and still look good" is the actual goal most of the time.
+
+**Average Bitrate** is for when the size is the requirement, not the quality. Upload limits, email attachments, a form that rejects anything over 25 MB.
+
+The Constant Quality slider is labeled **RF**, for Rate Factor. Two things about it trip people up:
+
+- **It is inverted.** Lower RF means higher quality and a bigger file. RF 18 is not "worse than" RF 24, it is much better and much larger.
+- **It is not linear.** A change of roughly 6 in either direction doubles or halves the file. Nudging from 22 to 23 does very little. Going 22 to 28 is a different file entirely.
+
+Sensible values for **H.264**:
+
+| RF | What you get |
+| :-- | :-- |
+| 18 | Near-transparent. You will not see the difference from the source. Files stay large. |
+| 20 | Excellent. A reasonable archival target for something you care about. |
+| **22** | The default answer. Smaller, and you have to hunt for a difference. |
+| 24 | Clearly smaller. Fine for sharing and web. Slight softening in detailed scenes. |
+| 26+ | Visible artifacts, especially on motion, grain and gradients. |
+
+**H.265 runs about 4 to 6 points cheaper** for the same perceived quality, so the equivalents are roughly RF 24 to 28. Do not carry an H.264 RF number over to H.265 and expect the same result, this is the single most common mix-up.
+
+## 2. The Encoder Preset slider is free size
+
+Underneath the encoder dropdown is a slider from **ultrafast** to **placebo**. It does not change your quality target. It changes how hard the encoder works to hit that target.
+
+Slower settings find more redundancy, so at the same RF you get a smaller file for the same quality. The cost is time, and the returns fall off a cliff at the far end.
+
+- **Very Fast / Faster:** for when you need it done now and do not care much.
+- **Slow:** the sweet spot. Meaningfully smaller than Fast, still finishes.
+- **Slower / Very Slow:** small extra gains for a lot more time. Worth it for something you encode once and keep.
+- **Placebo:** the name is the documentation. Do not.
+
+If your file is "close but not quite small enough", moving the preset one notch slower is usually a better move than raising RF, because it costs you time instead of picture.
+
+## 3. Resolution beats everything
+
+This is the setting people skip, and it moves the number more than any encoder tweak.
+
+Under Dimensions, if the source is 4K and the destination is a website, a phone, or a chat app, **downscale to 1080p**. You are cutting the pixel count by three quarters before the encoder sees a single frame. No RF adjustment comes close.
+
+The same logic applies further down. A screen recording that will be watched in a small embed does not need to be 1080p. 720p is often plenty.
+
+Ask what the video is actually for before you tune anything else.
+
+## 4. Audio is quietly expensive
+
+On a long file, audio adds up. The Audio tab defaults to passing through or re-encoding whatever the source had, and that is sometimes a 5.1 surround track nobody will hear in surround.
+
+- **Passthrough** keeps the original track untouched. Safe, and it costs whatever it costs.
+- **Re-encode to AAC, stereo, 128 to 160 kbps** is transparent for speech and fine for most music. On an hour-long recording this saves real space.
+- Check the track list. HandBrake presets sometimes add a second audio track you did not ask for.
+
+## Why HandBrake made your file bigger
+
+This comes up constantly and it is not a bug.
+
+**The source was already compressed harder than the RF you asked for.** A clip off a phone, a download, or anything that has been through a platform once has already had bits thrown away. If that file sits at an effective RF 26 and you encode it at RF 18, HandBrake does exactly what you told it: it spends a great deal of data very carefully describing a picture that was already degraded. You get a bigger file that looks no better.
+
+The fix is to raise your RF number, not lower it. Start at 22 and go up until the quality is the worst you can accept.
+
+**Or you did not need to transcode at all.** If all you want is MKV in an MP4 container, and the video inside is already H.264, you want a **remux**, not a re-encode: same stream, new wrapper, seconds instead of minutes, no quality loss and no size change. HandBrake is a transcoder. It will always re-encode.
+
+**Or the preset changed something you did not notice.** Check the Summary tab before you hit Start. It tells you the encoder, the RF, the resolution and the audio tracks in one place, and it is the fastest way to catch a preset doing something unexpected.
+
+## A settings cheat sheet
+
+| Goal | Settings |
+| :-- | :-- |
+| Smaller, still looks right | H.264, RF 22, Preset Slow |
+| As small as possible, modern devices only | H.265, RF 26, Preset Slow |
+| Archive quality | H.264, RF 20, Preset Slower |
+| Under a hard size limit | Average Bitrate + 2-Pass, do the arithmetic |
+| 4K source, web destination | Downscale to 1080p first, then RF 22 |
+| Just change the container | Do not use HandBrake. Remux instead. |
+
+## When HandBrake is the wrong tool
+
+It is free, it is very good, and if you compress video regularly you should learn it. Most people reading this should stop here and go use it.
+
+Three cases where it isn't the answer:
+
+**You only need a different container.** Covered above. Remuxing is a different operation and HandBrake does not do it.
+
+**Your files are not video.** HandBrake does video, full stop. It will not touch a folder of photos, an audio file, or a PDF. The number of people searching for "HandBrake but for images" suggests this surprises a lot of them.
+
+**You do this occasionally and resent relearning it every time.** This is the honest one. RF, encoder presets and two-pass bitrate maths are not hard, but they are the kind of knowledge that evaporates between uses. If you are on a Mac, compress video a few times a year, and also deal with images and audio and PDFs, [Picmal](https://picmal.app) covers all of it behind a quality slider and a target-size field, and batches a folder in one pass. It is $39 once, it runs entirely on your Mac with no upload, and it is not trying to replace HandBrake for anyone who has already learned HandBrake.
+
+If you are weighing it up properly, [Picmal vs HandBrake](/alternative/handbrake) is the direct comparison, and [how to compress video on Mac](/blog/how-to-compress-video-mac) covers the built-in macOS options that cost nothing at all.

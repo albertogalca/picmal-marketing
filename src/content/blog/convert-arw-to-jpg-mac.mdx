@@ -1,0 +1,125 @@
+---
+title: "How to Convert ARW to JPG on Mac (3 Free Methods)"
+description: "Three free ways to convert Sony ARW files to JPG on a Mac, no upload needed: Preview, the built-in sips Terminal command, and Photos. Plus how to batch a whole shoot and what the free methods get wrong."
+pubDate: "2026-08-18"
+category: "Tutorial"
+tags: ["ARW", "JPG", "RAW", "Sony", "Conversion", "Mac", "Tutorial"]
+faqs:
+  - question: "Can macOS open ARW files without extra software?"
+    answer: "Yes. macOS has built-in RAW support and Preview, Quick Look, and Photos all open Sony ARW files directly. Run sips --formats in Terminal and you will see com.sony.arw-raw-image listed. A brand new camera model can take a macOS update before its files are recognized."
+  - question: "How do I convert ARW to JPG on a Mac for free?"
+    answer: "Open the file in Preview and choose File > Export, then set Format to JPEG. For a folder, run sips -s format jpeg -s formatOptions 90 photo.ARW --out photo.jpg in Terminal, or loop it over every file. Both ship with macOS and neither uploads anything."
+  - question: "Why does the JPG look different from the preview on my camera?"
+    answer: "Because you are seeing two different renderings of the same sensor data. Your camera applied its own processing, Creative Style, white balance and noise reduction, to make the JPG on the back screen. macOS applies Apple's rendering instead. Neither is wrong, they are just different interpretations of the same RAW file."
+  - question: "Does converting ARW to JPG lose quality?"
+    answer: "Yes, and that is the point. ARW holds the full sensor data in 12 or 14 bits per channel. JPG is 8 bits and lossy. You get a much smaller file that opens everywhere, and you give up the editing headroom. Keep the ARW originals and treat the JPGs as copies."
+  - question: "Can I batch convert a whole folder of ARW files?"
+    answer: "Yes, free. In Terminal: for f in *.ARW; do sips -s format jpeg -s formatOptions 90 \"$f\" --out \"${f%.ARW}.jpg\"; done. Preview can also do it: open all the files, select every thumbnail in the sidebar, then File > Export Selected Images."
+---
+
+**Your Mac already converts ARW to JPG, for free, with nothing to install.** Open the file in Preview, choose File > Export, and set Format to JPEG. That is the whole job for one photo.
+
+The rest of this guide is for the cases where that is not enough: a full card of files, an exact quality setting, or output that looks the way you expected instead of oddly flat.
+
+One thing worth understanding first, because it explains most of the surprises. An ARW is not a picture. It is the raw sensor readout from your Sony camera, and it has to be interpreted before anyone can look at it. Your camera does that interpretation one way. macOS does it another way. That is why the exported JPG rarely matches the image you saw on the back of the camera.
+
+## Method 1: Preview (built in, no install)
+
+Preview handles ARW natively and is the fastest route for a handful of files.
+
+1. Right-click the ARW, choose Open With > Preview.
+2. File > Export.
+3. Set Format to JPEG.
+4. Drag the Quality slider. Somewhere around three quarters is usually indistinguishable from maximum at roughly half the size.
+5. Save.
+
+**To batch it:** select every ARW in Finder, press Return to rename or just drag them all onto the Preview icon, then in Preview press Cmd+A in the thumbnail sidebar and choose File > Export Selected Images. You get one quality setting applied to everything and a destination folder picker.
+
+**Best for:** one shoot, one quality setting, no Terminal.
+
+## Method 2: Terminal with sips (built in, scriptable)
+
+`sips` ships with macOS and reads Sony RAW. Check for yourself:
+
+```bash
+sips --formats | grep -i sony
+```
+
+You should see `com.sony.arw-raw-image`. Convert a single file:
+
+```bash
+sips -s format jpeg -s formatOptions 90 DSC01234.ARW --out DSC01234.jpg
+```
+
+`formatOptions` takes 0 to 100, or the words `low`, `normal`, `high` and `best`. For a whole folder:
+
+```bash
+for f in *.ARW; do
+  sips -s format jpeg -s formatOptions 90 "$f" --out "${f%.ARW}.jpg"
+done
+```
+
+That is two lines and it costs nothing. If your files are lowercase `.arw`, change the pattern to match, or use `*.[aA][rR][wW]` to catch both.
+
+**Best for:** folders, repeatable settings, anything you want to script.
+
+## Method 3: Photos (if the shoot is already imported)
+
+If the ARWs are in your Photos library, you never needed to touch Finder.
+
+1. Select the photos.
+2. File > Export > Export Photos.
+3. Set Photo Kind to JPEG, pick a quality, and choose whether to export the edited version or the unmodified original.
+
+The useful part here is that any adjustments you made in Photos get baked into the JPG. The other two methods ignore your edits and export the untouched RAW.
+
+**Best for:** photos you have already culled and adjusted in Photos.
+
+## What the free methods do not do
+
+All three work and all three are free. Be honest about which situation you are in before paying for anything.
+
+The gap is not conversion, it is control. `sips` gives you a quality number and nothing else. Preview gives you a slider. Neither lets you resize on the way out, cap the file size, or convert to anything other than what the export sheet offers. And none of them give you any say over how the RAW is interpreted, which is the thing photographers usually actually want.
+
+So:
+
+- **One ARW:** use Preview. Do not overthink it.
+- **A card of ARWs, one quality:** the `sips` loop above handles it. Two lines, free.
+- **You need the JPGs resized or under a size limit as well:** the loop grows a second `sips` call and starts to get fiddly.
+- **You do this after every shoot, and you also want WebP, or specific dimensions, or a file-size budget:** this is where the Terminal stops being the cheaper option in anything except money.
+
+That last case is what [Picmal](https://picmal.app) is for. Drag in the card, pick JPG, set quality and dimensions in one pass, convert. It decodes ARW along with CR2, CR3, NEF, RAF, RW2, ORF and PEF, so a mixed-body shoot goes through in one batch. It is $39 once, and if you convert a couple of shoots a year the `sips` loop is genuinely the better answer.
+
+## Which method to choose
+
+| Situation | Method |
+|-----------|--------|
+| One ARW, quick JPG | Preview (free, built in) |
+| A folder, same quality for all | `sips` loop (free, built in) |
+| Already edited in Photos | Photos export (free, built in) |
+| Every shoot, with resizing or a size budget | [Picmal](https://picmal.app) |
+
+If you shoot more than one brand, the [RAW converter for Mac](/raw-converter-mac) page covers the other formats, and [ARW to JPG](/convert/arw-to-jpg) has the format details.
+
+## What about ARW to PNG or TIFF?
+
+Every method above does these too. In Preview, pick PNG or TIFF in the export sheet instead of JPEG. With `sips`, swap the format:
+
+```bash
+sips -s format png DSC01234.ARW --out DSC01234.png
+sips -s format tiff DSC01234.ARW --out DSC01234.tiff
+```
+
+Whether that is a good idea depends on why you are converting.
+
+**TIFF** makes sense as an intermediate. It is lossless, it holds 16 bits per channel, and it is what you hand to an editor or a printer who cannot take your RAW. The files are large.
+
+**PNG** rarely makes sense for a photograph. It is lossless, so the file is big, but unlike TIFF it is 8 bits per channel, so you carry the size penalty without keeping the editing headroom. Use it for screenshots and graphics, not for a photo off a sensor.
+
+**JPG** is the right answer for anything going to a client, a website, or a phone. That is why the rest of this guide assumes it.
+
+## A note on color
+
+If your exported JPGs look flatter or cooler than expected, nothing is broken. Sony cameras apply a Creative Style, white balance, and their own tone curve when they generate the JPG preview. macOS ignores all of that and applies Apple's own RAW rendering.
+
+You have three options. Accept Apple's rendering, which is neutral and perfectly usable. Adjust in Photos before exporting, which is free and gets you most of the way. Or use a dedicated RAW developer like Capture One or Lightroom if matching the in-camera look precisely is part of the job. Converting is not the same as developing, and no converter will make that distinction go away.

@@ -1,13 +1,14 @@
 ---
-title: "How to Bulk Resize Images on Mac (4 Methods)"
+title: "How to Resize an Image on Mac (and Bulk Resize a Whole Folder)"
 heroImage: "../../../public/images/blog/bulk-resize-images-mac/cover.png"
-description: "Resize hundreds of images at once on your Mac using Preview, Automator, Terminal, or a batch resizer. Step-by-step for each method."
+description: "Resize one image on your Mac in about ten seconds with Preview, or resize a whole folder at once with Automator, sips, or a batch resizer. Step by step for each, no upload needed."
 pubDate: "2026-03-28"
+updatedDate: "2026-08-18"
 category: "Tutorial"
 tags: ["Resize", "Batch", "Mac", "Tutorial"]
 faqs:
   - question: "Does resizing reduce image quality?"
-    answer: "Resizing down has no visible quality impact — you're discarding pixels the display wouldn't use. Resizing up always degrades quality because the software invents pixels that weren't there."
+    answer: "Resizing down has no visible quality impact, you're discarding pixels the display wouldn't use. Resizing up always degrades quality because the software invents pixels that weren't there."
   - question: "What width should I use for web images?"
     answer: "Most content areas are 800-1200px wide. For retina, double that: 1600-2400px. A safe default is 1600px. Hero images might go to 2400px; thumbnails 400-600px."
   - question: "Can I resize images to exact dimensions (crop to fit)?"
@@ -16,53 +17,58 @@ faqs:
     answer: "Roughly proportional to pixel reduction. Halving width and height reduces pixel count by 75%, and file size drops similarly. A 4000px JPEG at 8MB becomes ~1.2MB at 1600px."
 ---
 
-You have 200 product photos at 4000px wide and you need them at 1200px for the website. Or 300 conference headshots that need to be 500×500 for the attendee directory. Or a folder of Retina screenshots that need to be halved for documentation.
+**To resize one image on a Mac: open it in Preview, choose Tools > Adjust Size, type a width, and save.** That is the whole thing, it takes about ten seconds, and Preview is already installed. If that is what you came for, you are done.
 
-Resizing one image takes ten seconds. Resizing two hundred takes a workflow.
+Resizing two hundred images is a different problem, and it is the one that actually needs a method. You have 200 product photos at 4000px wide that need to be 1200px for the website. Or 300 conference headshots that need to be 500x500 for the attendee directory. Or a folder of Retina screenshots that need halving for documentation.
 
-## Method 1: Picmal (resize + convert in one step)
+Four ways to do that below, three of them free and built into macOS.
 
-[Picmal](https://picmal.app) lets you set a max width or height during conversion, so resizing happens alongside any format change. One step instead of two.
+## Resize a single image on Mac
 
-1. Drag your images or folders into Picmal
-2. Choose your output format (or keep the same format)
-3. Set the max width or max height in the resize options
-4. Click Convert
+Preview handles this and nothing else is needed.
 
-Images larger than your specified dimension get resized down. Images already smaller are left alone — they won't get stretched up. Folder structure is preserved in the output.
+1. Double-click the image to open it in Preview.
+2. **Tools > Adjust Size.**
+3. Leave **Scale proportionally** ticked so nothing stretches.
+4. Set Width or Height. Switching the unit dropdown to **percent** is easier when you just want it half the size.
+5. Cmd+S to save over it, or **File > Export** to save a copy and keep the original.
 
-**Best for:** Preparing images for web or email. Resizing and format conversion at the same time (e.g., resize to 1200px + convert to WebP). Processing entire folder hierarchies.
+The "Resulting Size" figure at the bottom of that dialog tells you the new file size before you commit, which is handy when you are aiming at an upload limit.
 
-## Method 2: Preview (free, no install)
+Two things worth knowing. **Resample Image** should stay ticked when you want fewer pixels. Untick it and you are only changing the DPI metadata, which alters print size and leaves the pixels exactly as they were. And resizing *up* never really works: the software has to invent detail that was never captured.
+
+For a specific file size rather than a specific width, and for anything involving more than one image, keep reading.
+
+## Method 1: Preview, for a batch (free, no install)
 
 Preview handles batch resizing, though the interface is a bit awkward for large batches.
 
 1. Select all the images in Finder
-2. Right-click → Open With → Preview
+2. Right-click > Open With > Preview
 3. In Preview, press Cmd+A to select all images in the sidebar
-4. Tools → Adjust Size
+4. Tools > Adjust Size
 5. Enter the width you want (make sure "Scale proportionally" is checked)
-6. File → Save All (or File → Export Selected Images for copies)
+6. File > Save All (or File > Export Selected Images for copies)
 
 **Watch out:** If you use "Save All," Preview overwrites the originals. If you want to keep the originals, use Export Selected Images to a different folder.
 
 **Limitation:** Preview applies the exact same pixel size to every image. No "50% of original" or "max 1200px" option, which means a mixed bag of landscape and portrait photos will end up with mismatched effective resizes.
 
-## Method 3: Automator Quick Action
+## Method 2: Automator Quick Action (free)
 
 Create a right-click menu option that resizes any selected images.
 
-1. Open Automator → New → Quick Action
+1. Open Automator > New > Quick Action
 2. Set "Workflow receives" to **image files** in **Finder**
-3. Add action: **Copy Finder Items** (choose a destination folder — this preserves originals)
-4. Add action: **Scale Images** → set the pixel width or "To Percentage"
+3. Add action: **Copy Finder Items** (choose a destination folder, which preserves the originals)
+4. Add action: **Scale Images** > set the pixel width or "To Percentage"
 5. Save with a name like "Resize to 1200px"
 
-Now select images in Finder → right-click → Quick Actions → "Resize to 1200px." Done. The resized copies go to your chosen destination.
+Now select images in Finder > right-click > Quick Actions > "Resize to 1200px." Done. The resized copies go to your chosen destination.
 
 **Best for:** A resize you do repeatedly. Once set up, it's two clicks.
 
-## Method 4: Terminal with sips
+## Method 3: Terminal with sips (free)
 
 `sips` is built into macOS. No installs needed.
 
@@ -78,20 +84,38 @@ for f in *.jpg *.png *.heic; do sips --resampleWidth 1200 "$f"; done
 for f in *.jpg; do sips --resampleHeightWidthMax 1200 "$f"; done
 ```
 
-`--resampleHeightWidthMax` is the useful one — it resizes the longest side to 1200px regardless of orientation, so landscape and portrait images both come out with sensible dimensions.
+`--resampleHeightWidthMax` is the useful one. It resizes the longest side to 1200px regardless of orientation, so landscape and portrait images both come out with sensible dimensions.
 
 **Warning:** `sips` modifies files in place. Copy the folder first if you want to keep originals.
+
+## Method 4: Picmal (resize and convert in one pass)
+
+[Picmal](https://picmal.app) lets you set a max width or height during conversion, so resizing happens alongside any format change. One step instead of two.
+
+1. Drag your images or folders into Picmal
+2. Choose your output format (or keep the same format)
+3. Set the max width or max height in the resize options
+4. Click Convert
+
+Images larger than your specified dimension get resized down. Images already smaller are left alone, they don't get stretched up. Folder structure is preserved in the output.
+
+**Best for:** Preparing images for web or email. Resizing and format conversion at the same time (e.g., resize to 1200px + convert to WebP). Processing entire folder hierarchies.
 
 ## Which method to choose
 
 | Situation | Method |
 |-----------|--------|
-| Resize + convert format at once | [Picmal](https://picmal.app) |
-| Quick one-off batch, no install | Preview |
-| Recurring resize workflow | Automator Quick Action |
-| Scripting or automation pipeline | `sips` in Terminal |
+| One image | Preview, Tools > Adjust Size (free, built in) |
+| Quick one-off batch, no install | Preview (free, built in) |
+| A resize you repeat often | Automator Quick Action (free, built in) |
+| Scripting or automation pipeline | `sips` in Terminal (free, built in) |
+| Mixed orientations, or resize + convert together | [Picmal](https://picmal.app) |
 
 ## FAQ
+
+### How do I resize an image on a Mac without extra software?
+
+Preview does it. Open the image, choose Tools > Adjust Size, tick Scale proportionally, type a width, then Cmd+S to overwrite or File > Export to keep the original. Preview ships with macOS, so there is nothing to install and nothing to upload.
 
 ### Does resizing reduce image quality?
 
@@ -99,12 +123,12 @@ Resizing down has no visible quality impact. You're discarding pixels the displa
 
 ### What width should I use for web images?
 
-For most websites, the content area is 800-1200px wide. For retina displays, double that: 1600-2400px. A safe default is 1600px wide — it looks sharp on retina screens and is a reasonable file size. Hero images might go to 2400px; thumbnails can be 400-600px.
+For most websites, the content area is 800-1200px wide. For retina displays, double that: 1600-2400px. A safe default is 1600px wide. It looks sharp on retina screens and is a reasonable file size. Hero images might go to 2400px; thumbnails can be 400-600px.
 
 ### Can I resize images to exact dimensions (crop to fit)?
 
-Resizing preserves aspect ratio by default — a 4:3 image stays 4:3. If you need exact dimensions like 500×500, that requires cropping, not just resizing. Preview can crop manually (Tools → Crop), but for batch crop-to-fit, you'll need a more specialized tool.
+Resizing preserves aspect ratio by default, so a 4:3 image stays 4:3. If you need exact dimensions like 500x500, that requires cropping, not just resizing. Preview can crop manually (Tools > Crop), but for batch crop-to-fit, you'll need a more specialized tool.
 
 ### How much does resizing reduce file size?
 
-Roughly proportional to the pixel reduction. Halving the width and height (e.g., 4000×3000 → 2000×1500) reduces pixel count by 75%, and file size drops similarly. A 4000px wide JPEG at 8MB → 1600px wide at ~1.2MB is typical.
+Roughly proportional to the pixel reduction. Halving the width and height (e.g., 4000x3000 > 2000x1500) reduces pixel count by 75%, and file size drops similarly. A 4000px wide JPEG at 8MB becomes 1600px wide at about 1.2MB is typical.

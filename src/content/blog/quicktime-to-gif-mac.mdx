@@ -1,0 +1,123 @@
+---
+title: "QuickTime to GIF on Mac: 3 Free Methods (2026)"
+description: "Turn a QuickTime .mov screen recording into an animated GIF on a Mac, without uploading it anywhere: the built-in Shortcuts action, ffmpeg with a proper palette, and gifski. Plus why a GIF is often the wrong answer."
+pubDate: "2026-08-18"
+category: "Tutorial"
+tags: ["QuickTime", "GIF", "MOV", "Video", "Mac", "Tutorial"]
+faqs:
+  - question: "How do I convert a QuickTime file to GIF on a Mac for free?"
+    answer: "The quickest route needs nothing installed: open Shortcuts, make a shortcut with the single action Make GIF, set it to receive files as a Quick Action, and it appears in the Finder right-click menu. For better quality use ffmpeg with a generated palette, or gifski, both free via Homebrew."
+  - question: "Why is my GIF so much bigger than the original video?"
+    answer: "Because GIF is a 1987 format with no interframe compression worth the name and a 256-color palette. A ten second screen recording that is 2 MB as an .mov routinely lands between 10 and 30 MB as a GIF. That is normal and no converter avoids it. Cutting the frame rate and the width is the only real fix."
+  - question: "What frame rate and width should I use for a GIF?"
+    answer: "12 to 15 fps and 600 to 800 pixels wide covers almost every case. GIF stores every frame nearly whole, so halving the frame rate roughly halves the file. Above 15 fps you pay a lot of bytes for motion smoothness most people will not notice in a short loop."
+  - question: "Can QuickTime Player export a GIF directly?"
+    answer: "No. QuickTime Player records and trims but its export options are video only. The old advice to copy a frame into Preview only gets you a still image, not an animation. You need Shortcuts, a command-line tool, or an app."
+  - question: "Should I use a GIF or a video?"
+    answer: "For GitHub, Slack, Notion, chat apps and social, use the GIF because those places expect it. For your own website or documentation, a muted autoplaying MP4 or WebM is usually 5 to 20 times smaller at better quality, and every modern browser plays it. Check where it is going before you convert."
+---
+
+**Your Mac can do this with nothing installed, using Shortcuts.** Build a one-action shortcut called Make GIF, set it to accept files, and it shows up when you right-click a .mov in the Finder. Ten seconds of setup, then it is always there.
+
+That covers most cases. The rest of this is for when the output looks bad, when the file comes out enormous, and for the question worth asking first: whether you want a GIF at all.
+
+One thing to understand up front, because it explains every complaint people have about GIF conversion. **GIF has a 256-color palette and stores nearly every frame in full.** There is no motion compensation the way there is in a video codec. So the output is always much larger than the source video, and the only levers that really matter are frame rate and width. Every method below is a different way of pulling those two levers well.
+
+## Method 1: Shortcuts (built in, no install)
+
+macOS Shortcuts has a **Make GIF** action. It is the fastest route and nothing needs installing.
+
+1. Open **Shortcuts**.
+2. File > New Shortcut.
+3. Search the action list for **Make GIF** and drag it in.
+4. In the shortcut settings (the info panel on the right), tick **Use as Quick Action** and **Finder**.
+5. Name it something like "Make GIF" and close.
+
+Now right-click any .mov in the Finder, go to Quick Actions, and pick it.
+
+Expand the Make GIF action's arrow and you get the controls that matter: **seconds per frame**, **auto size** or a fixed width, and whether the GIF loops. Turning auto size off and setting a width around 700 px is usually the difference between a 30 MB file and a 6 MB one.
+
+**Best for:** almost everyone. It is built in, it is a right-click away, and it is good enough.
+
+## Method 2: ffmpeg with a real palette (best quality, free)
+
+If Shortcuts gives you a banded, dirty-looking GIF, this is why: a naive conversion picks one generic 256-color palette. The fix is to let ffmpeg look at your specific clip and build a palette for it. This is two commands instead of one, and the difference is not subtle.
+
+Install ffmpeg once:
+
+```bash
+brew install ffmpeg
+```
+
+Then generate a palette from the clip, and use it:
+
+```bash
+ffmpeg -i recording.mov -vf "fps=15,scale=720:-1:flags=lanczos,palettegen" palette.png
+
+ffmpeg -i recording.mov -i palette.png \
+  -lavfi "fps=15,scale=720:-1:flags=lanczos [x]; [x][1:v] paletteuse" \
+  recording.gif
+```
+
+Change `fps=15` and `scale=720` in **both** commands, they have to match. Lower the fps first when the file is too big, it is the cheapest saving you can make.
+
+To trim while you convert, add `-ss 5 -t 8` before `-i` to start at 5 seconds and take 8 seconds.
+
+If the result is still too heavy, `gifsicle` squeezes it further:
+
+```bash
+brew install gifsicle
+gifsicle -O3 --lossy=80 recording.gif -o smaller.gif
+```
+
+**Best for:** screen recordings with text and flat UI colors, where banding is obvious, and anything you want to script.
+
+## Method 3: gifski (best for detailed footage)
+
+`gifski` takes a different approach: it builds a palette per frame rather than one for the whole clip, which handles gradients and video footage much better than a single shared palette can.
+
+```bash
+brew install gifski
+gifski --fps 15 --width 720 -o out.gif recording.mov
+```
+
+It is slower than ffmpeg and the files are not always smaller, but on anything with photographic content or smooth gradients it usually looks the best of the three.
+
+**Best for:** camera footage, gradients, anything where the ffmpeg output still bands.
+
+## Should it be a GIF at all?
+
+Worth asking before you convert anything, because a lot of GIFs should not be GIFs.
+
+**Use a GIF when the destination expects one.** GitHub READMEs, Slack, Notion, chat apps, most social platforms. In those places a GIF autoplays and loops with no player chrome and no click, and that is genuinely what you want.
+
+**Use a video when you control the page.** For your own site or documentation, a muted, autoplaying, looping MP4 or WebM does everything a GIF does, plays in every current browser, and is commonly five to twenty times smaller at better quality:
+
+```html
+<video autoplay loop muted playsinline src="demo.mp4"></video>
+```
+
+That single swap will do more for your page weight than any amount of GIF tuning. If you have already made GIFs and regret it, converting the other way, [GIF to MP4](/convert/video/gif-to-mp4), is a real and useful move.
+
+## Which method to choose
+
+| Situation | Method |
+| :-- | :-- |
+| One clip, quickly | Shortcuts Make GIF (free, built in) |
+| Screen recording, flat UI colors | `ffmpeg` with palettegen (free) |
+| Camera footage or gradients | `gifski` (free) |
+| It is still too big | Drop fps to 12, drop width, then `gifsicle --lossy` |
+| Your own website | Do not use GIF. Use a muted looping MP4. |
+| A folder of clips, repeatedly | An app that batches |
+
+## When a free method stops being worth it
+
+All three above are free and all three work. Be honest about which situation you are in.
+
+For one clip, use Shortcuts. For a handful where quality matters, the ffmpeg palette pair is two lines and costs nothing. Neither of those is worth paying to replace.
+
+Where it gets old is a folder of recordings, converted repeatedly, at a consistent size, as part of your actual job. Then the commands need re-running per file, the fps and scale have to be kept in sync in two places, and you are eyeballing every output.
+
+That is what [Picmal](https://picmal.app) is for. Drag in the clips, set frame rate and width once, convert the batch. It also goes the other way and handles [MOV to MP4](/convert/video/mov-to-mp4) and [MP4 to GIF](/convert/video/mp4-to-gif) from the same window, runs entirely on your Mac with no upload and no file-size cap, and is $39 once. If you make a GIF twice a year, the Shortcuts action is genuinely the better answer.
+
+For everything else video on the Mac, the [video converter for Mac](/video-converter-mac) page covers the rest of the formats.

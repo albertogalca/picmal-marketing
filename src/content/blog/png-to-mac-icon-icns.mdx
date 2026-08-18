@@ -1,0 +1,116 @@
+---
+title: "PNG to Mac Icon: How to Make an .icns File (3 Free Ways)"
+description: "Turn a PNG into a macOS .icns icon without uploading it anywhere: the built-in sips and iconutil commands, the Get Info paste trick, and Xcode's single-size app icon. Plus which one you actually need."
+pubDate: "2026-08-18"
+category: "Tutorial"
+tags: ["ICNS", "PNG", "Icons", "macOS", "Mac", "Tutorial"]
+faqs:
+  - question: "How do I convert a PNG to an ICNS file on a Mac?"
+    answer: "Use the two commands macOS already ships with. Make a folder called icon.iconset, fill it with the ten required PNG sizes using sips, then run iconutil -c icns icon.iconset. No download, no upload, no third-party tool."
+  - question: "Do I actually need an .icns file?"
+    answer: "Probably not. If you only want to change how a folder or file looks in the Finder, skip .icns entirely: select the item, press Cmd+I, click the small icon in the top-left, and paste a copied image. You only need a real .icns when you are shipping a Mac app outside Xcode's asset catalog."
+  - question: "What sizes does an .icns file need?"
+    answer: "Ten PNGs: 16, 32, 128, 256 and 512 pixels square, each with a matching @2x version at double the size, up to 1024x1024. The names have to follow Apple's pattern exactly, for example icon_128x128@2x.png, or iconutil refuses the folder."
+  - question: "Why does iconutil say my iconset is invalid?"
+    answer: "Almost always the file names. The folder must end in .iconset, each file must be named icon_WxH.png or icon_WxH@2x.png, and the pixel dimensions have to match the name. A 512 pixel image named icon_256x256.png will fail even though the file is fine."
+  - question: "Can Preview convert a PNG to ICNS?"
+    answer: "No. Preview's export sheet does not offer .icns or .ico, which surprises a lot of people. An .icns is a container holding many sizes at once, not a single image, so a plain export could not produce one anyway."
+---
+
+**Before you convert anything, check which job you actually have.** Two very different things get searched with the same words, and one of them needs no conversion at all.
+
+- **You want a folder or drive to look different in the Finder.** You do not need an .icns. Copy your image, select the item, press Cmd+I, click the tiny icon in the top-left of the Info window, and paste. Done.
+- **You are shipping a Mac app and need a real icon file.** That is the .icns, and the rest of this covers it.
+
+If you are on the first one, stop here. The Get Info trick takes any PNG and needs nothing installed.
+
+## Method 1: sips and iconutil (built in, no install)
+
+macOS ships both halves of this. `sips` resizes, `iconutil` packages. An .icns is not one image, it is a container holding every size the system might need, so the job is really "make ten PNGs, then wrap them".
+
+Start from a **square 1024x1024 PNG**. Anything smaller gets upscaled and will look soft on a Retina display.
+
+```bash
+mkdir icon.iconset
+
+for s in 16 32 128 256 512; do
+  sips -z $s $s icon.png --out "icon.iconset/icon_${s}x${s}.png"
+  sips -z $((s*2)) $((s*2)) icon.png --out "icon.iconset/icon_${s}x${s}@2x.png"
+done
+
+iconutil -c icns icon.iconset
+```
+
+That leaves `icon.icns` next to the folder. The loop writes all ten files Apple expects:
+
+| File | Pixels |
+| :-- | :-- |
+| icon_16x16.png | 16 |
+| icon_16x16@2x.png | 32 |
+| icon_32x32.png | 32 |
+| icon_32x32@2x.png | 64 |
+| icon_128x128.png | 128 |
+| icon_128x128@2x.png | 256 |
+| icon_256x256.png | 256 |
+| icon_256x256@2x.png | 512 |
+| icon_512x512.png | 512 |
+| icon_512x512@2x.png | 1024 |
+
+**If `iconutil` rejects the folder, it is the names.** The directory has to end in `.iconset`, each file has to match `icon_WxH.png` or `icon_WxH@2x.png`, and the actual pixel size has to agree with the name. A 512 px image called `icon_256x256.png` fails even though nothing is wrong with the image.
+
+**Best for:** anyone shipping an app, and anyone who wants this scripted into a build.
+
+## Method 2: Xcode's single-size app icon
+
+If your app is built in Xcode you may not need an .icns at all any more.
+
+Since Xcode 14 a macOS app icon can be a **single 1024x1024 image** dropped into the App Icon set in your asset catalog. Xcode generates the rest at build time. No iconset folder, no `iconutil`, no ten exports to keep in sync when the design changes.
+
+Open `Assets.xcassets`, select AppIcon, and drag the 1024 px PNG into the single well. If your project still shows ten empty slots, the asset was created with the older multi-size layout: add a new macOS App Icon set and pick the single-size option.
+
+**Best for:** Xcode projects, which is most Mac apps.
+
+## Method 3: Get Info paste (for Finder, not for apps)
+
+Worth spelling out because it is what most people searching for this actually want.
+
+1. Open your PNG in Preview and press Cmd+A then Cmd+C.
+2. Select the folder, drive or file in the Finder and press Cmd+I.
+3. Click the small icon in the **top-left corner** of the Info window so it highlights.
+4. Press Cmd+V.
+
+Cmd+Z undoes it, and selecting the icon and pressing Delete restores the original.
+
+This sets a custom icon on that one item. It does not create a reusable file, and it is not how you give an app its icon. But for "my Projects folder should be blue", it is the whole answer.
+
+**Best for:** customizing the Finder. Not for shipping.
+
+## Getting the artwork right
+
+The format is the easy part. Two things matter more:
+
+**Transparency.** Start from a PNG with a real alpha channel. Convert from a JPG and you get a white square behind your icon at every size, and there is no fixing that after the fact.
+
+**Apple's shape.** macOS icons since Big Sur sit on a rounded-square with specific padding, not edge to edge. If you fill the full 1024x1024 canvas your icon will look noticeably larger and heavier than everything beside it in the Dock. Apple's Human Interface Guidelines give the exact grid, and design tools have templates for it.
+
+Neither of these is something a converter can fix for you.
+
+## Which method to choose
+
+| Situation | Method |
+| :-- | :-- |
+| Change a folder's look in the Finder | Get Info, paste (free, built in) |
+| Mac app built in Xcode | Single 1024 px icon in the asset catalog |
+| Need a real .icns file | `sips` + `iconutil` (free, built in) |
+| Windows .ico as well | See below |
+| A set of icons, repeatedly | An app that batches |
+
+## When the free route stops being worth it
+
+The `sips` and `iconutil` loop is nine lines, it is built into every Mac, and if you make an icon occasionally it is genuinely the right answer. There is no reason to upload artwork to a conversion website when the tools are already on the machine.
+
+It stops paying in two places. The loop only makes `.icns`, so a Windows `.ico` and an iOS `.appiconset` mean two more workflows. And it has to be re-run by hand every time the design moves, which during a redesign is often.
+
+[Picmal](https://picmal.app) does all three from one source image in a single pass, macOS `.icns`, Windows `.ico`, and an Xcode-ready iOS `.appiconset`, with every size rendered and packaged. It runs on your Mac with no upload and it is $39 once. If you ship one icon a year, use the loop above.
+
+The [app icon generator for Mac](/app-icon-generator-mac) page has the details, and [resize images on Mac](/resize-image-mac) covers the general case when you just need specific sizes rather than an icon container.

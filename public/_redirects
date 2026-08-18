@@ -93,6 +93,9 @@
 /tools/image-format-support-matrix /docs/supported-formats 301
 /tools/image-format-selector /image-converter-mac 301
 
+# The App Store vs direct comparison lives in the docs now.
+/blog/picmal-mac-app-store-vs-direct /docs/mac-app-store 301
+
 # Normalize trailing slashes to the canonical no-slash URL (trailingSlash: "never").
 # Cloudflare's default normalization is a 307; force a 301 so link equity passes.
 

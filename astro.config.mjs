@@ -97,6 +97,7 @@ export default defineConfig({
           label: "Help",
           items: [
             { label: "License", link: "/docs/license" },
+            { label: "App Store or direct", link: "/docs/mac-app-store" },
             { label: "FAQ and troubleshooting", link: "/docs/faq" },
           ],
         },

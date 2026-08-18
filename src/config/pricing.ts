@@ -94,7 +94,7 @@ export const MAC_APP_STORE = {
     {
       text: "No command line tool, Raycast extension or watched folders. Compare the two builds",
       linkText: "Compare the two builds",
-      href: "/blog/picmal-mac-app-store-vs-direct",
+      href: "/docs/mac-app-store",
     },
   ],
 };

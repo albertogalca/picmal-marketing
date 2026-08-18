@@ -20,21 +20,7 @@ You right-click an image from the web, hit "Save Image As," and get a `.webp` fi
 
 WebP is a great format inside browsers. Outside them, it's still a headache. Here's how to turn those files into JPGs on your Mac.
 
-## Method 1: Picmal (fastest for batch)
-
-If you have more than a handful of WebP files, or this keeps happening, a dedicated converter pays for itself quickly.
-
-1. Download [Picmal](https://picmal.app) if you haven't already
-2. Drag your WebP files into the window (or an entire folder)
-3. Select JPG as the output format
-4. Adjust quality if you want (80% is a good default for web photos)
-5. Click Convert
-
-Picmal preserves folder structure, so if you drag in a folder with subfolders, you get the same structure back with JPGs instead of WebPs. Nothing gets uploaded anywhere — it runs entirely on your Mac.
-
-**Best for:** Batch conversion. Dozens or hundreds of files. Recurring workflows where you're always getting WebP and need JPG.
-
-## Method 2: Preview (free, already on your Mac)
+## Method 1: Preview (free, already on your Mac)
 
 Preview handles single-file conversion without installing anything.
 
@@ -49,7 +35,7 @@ For a few files, this works fine. For 50 files, you'll want something else.
 
 **Batch workaround:** Select multiple WebP files in Finder, right-click, Open With → Preview. Then File → Export Selected Images. Choose JPEG. It works, but you lose control over individual quality settings and the interface gets awkward with many files.
 
-## Method 3: Terminal with sips (power users)
+## Method 2: Terminal with sips (power users)
 
 macOS has a built-in command-line image tool called `sips`. It handles WebP to JPG in one line.
 
@@ -69,13 +55,27 @@ This loops through every `.webp` file in the current directory and creates a `.j
 
 **Limitation:** `sips` doesn't let you set JPEG quality. It uses a default that's usually fine, but if you need control over compression, you'll need another tool.
 
-## Method 4: Online converters (if you don't mind uploading)
+## Method 3: Online converters (if you don't mind uploading)
 
 Tools like CloudConvert and Convertio handle WebP to JPG in the browser. Drag in a file, pick JPG, download the result.
 
 The tradeoff is obvious: your images go to someone else's server. For a random screenshot, fine. For client work or anything confidential, not fine.
 
 CloudConvert gives you 25 free conversions per day. Convertio's free tier caps at 100MB per file and 10 conversions per day.
+
+## Method 4: Picmal (fastest for batch)
+
+If you have more than a handful of WebP files, or this keeps happening, a dedicated converter pays for itself quickly.
+
+1. Download [Picmal](https://picmal.app) if you haven't already
+2. Drag your WebP files into the window (or an entire folder)
+3. Select JPG as the output format
+4. Adjust quality if you want (80% is a good default for web photos)
+5. Click Convert
+
+Picmal preserves folder structure, so if you drag in a folder with subfolders, you get the same structure back with JPGs instead of WebPs. Nothing gets uploaded anywhere — it runs entirely on your Mac.
+
+**Best for:** Batch conversion. Dozens or hundreds of files. Recurring workflows where you're always getting WebP and need JPG.
 
 ## Which method to choose
 
@@ -102,4 +102,4 @@ File size. A WebP photo is typically 25-35% smaller than the same JPG at similar
 
 ### How do I batch convert a folder of WebP files to JPG?
 
-Drag the entire folder into [Picmal](https://picmal.app) and select JPG. It converts everything and preserves the folder structure. Alternatively, use the `sips` for-loop in Terminal (see Method 3 above).
+Drag the entire folder into [Picmal](https://picmal.app) and select JPG. It converts everything and preserves the folder structure. Alternatively, use the `sips` for-loop in Terminal (Method 2 above), which costs nothing.

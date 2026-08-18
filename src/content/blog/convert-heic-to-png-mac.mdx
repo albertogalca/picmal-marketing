@@ -22,20 +22,7 @@ Maybe you're editing the image further and don't want JPEG artifacts accumulatin
 
 Here's how to convert HEIC to PNG on your Mac.
 
-## Method 1: Picmal (batch conversion)
-
-If you have more than a handful of HEIC files or want to combine the conversion with resizing:
-
-1. Drag your HEIC files or folder into [Picmal](https://picmal.app)
-2. Select PNG as the output format
-3. Optionally set a max width (iPhone photos are 4032px wide — you probably don't need all of that)
-4. Click Convert
-
-Folder structure is preserved. Metadata can be stripped if you want. Everything stays on your Mac. If JPG is what you actually need rather than PNG, the [HEIC converter for Mac](/heic-converter-mac) page covers that side of it.
-
-**Best for:** Converting an iPhone photo dump when you need PNGs. Preparing image assets for app development or design.
-
-## Method 2: Preview (free, one at a time)
+## Method 1: Preview (free, one at a time)
 
 1. Double-click the HEIC file to open it in Preview
 2. File → Export
@@ -46,7 +33,7 @@ No quality slider for PNG — it's lossless, so there's nothing to adjust. The f
 
 **Batch:** Select multiple HEIC files → right-click → Open With → Preview → File → Export Selected Images → choose PNG.
 
-## Method 3: Terminal with sips
+## Method 2: Terminal with sips
 
 Built into macOS, no installs needed.
 
@@ -64,7 +51,7 @@ for f in *.heic *.HEIC; do sips -s format png "$f" --out "${f%.*}.png"; done
 
 The `*.HEIC` catches uppercase extensions, which is common with files transferred from iPhones.
 
-## Method 4: Quick Actions in Finder
+## Method 3: Quick Actions in Finder
 
 macOS Monterey and later have a built-in "Convert Image" Quick Action.
 
@@ -77,6 +64,19 @@ macOS Monterey and later have a built-in "Convert Image" Quick Action.
 This creates a new PNG file alongside the original. It handles multiple selected files too.
 
 **Limitation:** The size presets are vague. "Medium" doesn't tell you the actual pixel dimensions, which is unhelpful. For precise control, use Picmal or `sips`.
+
+## Method 4: Picmal (batch conversion)
+
+If you have more than a handful of HEIC files or want to combine the conversion with resizing:
+
+1. Drag your HEIC files or folder into [Picmal](https://picmal.app)
+2. Select PNG as the output format
+3. Optionally set a max width (iPhone photos are 4032px wide — you probably don't need all of that)
+4. Click Convert
+
+Folder structure is preserved. Metadata can be stripped if you want. Everything stays on your Mac. If JPG is what you actually need rather than PNG, the [HEIC converter for Mac](/heic-converter-mac) page covers that side of it.
+
+**Best for:** Converting an iPhone photo dump when you need PNGs. Preparing image assets for app development or design.
 
 ## HEIC to PNG vs HEIC to JPG — which one?
 

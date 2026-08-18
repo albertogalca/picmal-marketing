@@ -20,19 +20,7 @@ You saved an image from the web and got a `.webp` file. You need a PNG: your des
 
 WebP to PNG is straightforward on a Mac. Four ways, depending on volume and whether you want to install anything.
 
-## Method 1: Picmal (batch, keeps transparency)
-
-When you have more than a few files or need to do this regularly:
-
-1. Drag your WebP files into [Picmal](https://picmal.app) (or drop an entire folder)
-2. Select PNG as the output format
-3. Click Convert
-
-Transparency is preserved automatically — if the WebP has an alpha channel, the PNG gets one too. Picmal preserves folder structure, so a folder with subfolders comes out organized the same way.
-
-**Best for:** Downloading a batch of assets from the web. Converting design resources. Anything where you need PNG for downstream editing.
-
-## Method 2: Preview (free, built-in)
+## Method 1: Preview (free, built-in)
 
 1. Right-click the `.webp` file in Finder
 2. Open With → Preview
@@ -44,7 +32,7 @@ Preview handles WebP input well on modern macOS. Transparency carries over to th
 
 **Batch workaround:** Select multiple files → right-click → Open With → Preview → File → Export Selected Images → choose PNG. It works, but Preview doesn't give you options like resizing during the export.
 
-## Method 3: Terminal with sips
+## Method 2: Terminal with sips
 
 macOS has `sips` built in. No installs needed.
 
@@ -62,7 +50,7 @@ for f in *.webp; do sips -s format png "$f" --out "${f%.webp}.png"; done
 
 Fast, simple, scriptable. If you do this often, save the loop as a shell alias.
 
-## Method 4: Online converters
+## Method 3: Online converters
 
 CloudConvert and Convertio both handle WebP to PNG in the browser. Upload, convert, download.
 
@@ -70,6 +58,18 @@ CloudConvert and Convertio both handle WebP to PNG in the browser. Upload, conve
 - Convertio: 100MB file limit, 10 conversions/day on free tier
 
 Both upload your files to their servers. Fine for public images, not great for confidential work.
+
+## Method 4: Picmal (batch, keeps transparency)
+
+When you have more than a few files or need to do this regularly:
+
+1. Drag your WebP files into [Picmal](https://picmal.app) (or drop an entire folder)
+2. Select PNG as the output format
+3. Click Convert
+
+Transparency is preserved automatically — if the WebP has an alpha channel, the PNG gets one too. Picmal preserves folder structure, so a folder with subfolders comes out organized the same way.
+
+**Best for:** Downloading a batch of assets from the web. Converting design resources. Anything where you need PNG for downstream editing.
 
 ## WebP vs PNG — when does this conversion make sense?
 

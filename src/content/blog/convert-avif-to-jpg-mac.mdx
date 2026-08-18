@@ -20,20 +20,7 @@ AVIF is showing up everywhere. Google serves AVIF images. Netflix uses it for th
 
 The problem: most desktop software still doesn't know what to do with an `.avif` file. Preview on older macOS versions won't touch it. Photoshop only added support recently. Email clients pretend it doesn't exist. If you download an AVIF from the web and need to actually *use* it somewhere, you need a JPG.
 
-## Method 1: Picmal (easiest, handles batch)
-
-[Picmal](https://picmal.app) supports AVIF as both an input and output format — which is rare among Mac apps.
-
-1. Drag your AVIF files into Picmal
-2. Select JPG as the output format
-3. Set quality (80% is a solid default)
-4. Click Convert
-
-Works with one file or a folder of hundreds. No internet connection needed.
-
-**Best for:** When you've downloaded a batch of images from a modern website and need them as JPGs. Or when a colleague sends AVIF files and you need them in a format your tools understand.
-
-## Method 2: Preview (macOS Sonoma and newer)
+## Method 1: Preview (macOS Sonoma and newer)
 
 Starting with macOS 14 (Sonoma), Preview supports AVIF natively. If you're on Sonoma or later:
 
@@ -45,7 +32,7 @@ Starting with macOS 14 (Sonoma), Preview supports AVIF natively. If you're on So
 
 **If you're on an older macOS:** Preview won't open AVIF at all. You'll see a generic file icon or an error. Use Picmal or the Terminal method instead.
 
-## Method 3: Terminal with ffmpeg
+## Method 2: Terminal with ffmpeg
 
 If you have `ffmpeg` installed:
 
@@ -68,6 +55,19 @@ for f in *.avif; do ffmpeg -i "$f" -q:v 2 "${f%.avif}.jpg"; done
 ```
 
 `ffmpeg` is the nuclear option for simple image conversion, but if it's already on your machine for video work, it handles AVIF fine.
+
+## Method 3: Picmal (easiest, handles batch)
+
+[Picmal](https://picmal.app) supports AVIF as both an input and output format — which is rare among Mac apps.
+
+1. Drag your AVIF files into Picmal
+2. Select JPG as the output format
+3. Set quality (80% is a solid default)
+4. Click Convert
+
+Works with one file or a folder of hundreds. No internet connection needed.
+
+**Best for:** When you've downloaded a batch of images from a modern website and need them as JPGs. Or when a colleague sends AVIF files and you need them in a format your tools understand.
 
 ## What about online converters?
 

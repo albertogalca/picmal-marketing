@@ -31,7 +31,58 @@ This is what makes MKV different from a plain format swap:
 
 HandBrake and FFmpeg give you this control. Simpler tools just take the defaults.
 
-## Method 1: Picmal (batch, on your Mac)
+## Method 1: HandBrake (best for track and subtitle control)
+
+[HandBrake](https://handbrake.fr) is the free tool to reach for when you care about which tracks survive.
+
+### Steps:
+
+1. Open HandBrake and drag in your MKV
+2. Set format to **MP4**
+3. In the **Audio** tab, pick the track(s) to keep
+4. In the **Subtitles** tab, choose to pass through or **Burn In**
+5. Pick a video preset (H.264) and click **Start**
+
+### Worth knowing:
+
+The most control of any free option, at the cost of a busier interface. One file at a time.
+
+## Method 2: VLC (plays MKV, converts it too)
+
+VLC opens MKV when nothing else will.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your MKV
+3. Choose the **Video - H.264 + MP3 (MP4)** profile
+4. **Save as File**, choose a destination, **Save**
+
+### The catch:
+
+Basic converter, limited track control, one file at a time.
+
+## Method 3: FFmpeg (remux or full control)
+
+```bash
+brew install ffmpeg
+```
+
+### Fast remux (no re-encode, when codecs are compatible):
+
+```bash
+ffmpeg -i input.mkv -c copy output.mp4
+```
+
+If the MKV has subtitles that MP4 can't hold, this may error. Then either drop subtitles:
+
+```bash
+ffmpeg -i input.mkv -c copy -sn output.mp4
+```
+
+or re-encode with them burned in. FFmpeg gives you exact control over every track.
+
+## Method 4: Picmal (batch, on your Mac)
 
 [Picmal](https://picmal.app) converts a folder of MKV files to MP4 at once, entirely offline.
 
@@ -52,65 +103,14 @@ HandBrake and FFmpeg give you this control. Simpler tools just take the defaults
 
 Turning a folder of MKV downloads into MP4s that play in QuickTime and import into editors.
 
-## Method 2: HandBrake (best for track and subtitle control)
-
-[HandBrake](https://handbrake.fr) is the free tool to reach for when you care about which tracks survive.
-
-### Steps:
-
-1. Open HandBrake and drag in your MKV
-2. Set format to **MP4**
-3. In the **Audio** tab, pick the track(s) to keep
-4. In the **Subtitles** tab, choose to pass through or **Burn In**
-5. Pick a video preset (H.264) and click **Start**
-
-### Worth knowing:
-
-The most control of any free option, at the cost of a busier interface. One file at a time.
-
-## Method 3: VLC (plays MKV, converts it too)
-
-VLC opens MKV when nothing else will.
-
-### Steps:
-
-1. Open VLC → **File → Convert / Stream**
-2. Drop in your MKV
-3. Choose the **Video - H.264 + MP3 (MP4)** profile
-4. **Save as File**, choose a destination, **Save**
-
-### The catch:
-
-Basic converter, limited track control, one file at a time.
-
-## Method 4: FFmpeg (remux or full control)
-
-```bash
-brew install ffmpeg
-```
-
-### Fast remux (no re-encode, when codecs are compatible):
-
-```bash
-ffmpeg -i input.mkv -c copy output.mp4
-```
-
-If the MKV has subtitles that MP4 can't hold, this may error. Then either drop subtitles:
-
-```bash
-ffmpeg -i input.mkv -c copy -sn output.mp4
-```
-
-or re-encode with them burned in. FFmpeg gives you exact control over every track.
-
 ## Side-by-side comparison
 
 | Method    | Speed           | Track control | Batch     | Ease of use | Price  |
 | --------- | --------------- | ------------- | --------- | ----------- | ------ |
-| Picmal    | Very Fast       | Automatic     | Excellent | Very Easy   | $39 |
 | HandBrake | Moderate        | Excellent     | Good      | Moderate    | Free   |
 | VLC       | Slow            | Basic         | None      | Easy        | Free   |
 | FFmpeg    | Instant (remux) | Full          | Excellent | Technical   | Free   |
+| Picmal    | Very Fast       | Automatic     | Excellent | Very Easy   | $39 |
 
 ## Tips
 

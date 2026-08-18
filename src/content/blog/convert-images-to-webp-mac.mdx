@@ -22,21 +22,7 @@ The problem is getting your existing images into WebP. Photoshop exports WebP. F
 
 Three ways to do it on your Mac.
 
-## Method 1: Picmal (batch, with compression control)
-
-The fastest way to convert an existing image library to WebP.
-
-1. Drag your images into [Picmal](https://picmal.app) — JPEGs, PNGs, TIFFs, HEIC, whatever you have
-2. Select WebP as the output format
-3. Set quality (80% is the sweet spot for photos — visually identical to the source, 25-50% smaller)
-4. Optionally set a max width if you're resizing for the web at the same time
-5. Click Convert
-
-Picmal accepts 40+ input formats, so whatever your source images are, they'll work. PSD, RAW, HEIC from your iPhone, a weird TIFF from a scanner. Everything comes out as WebP.
-
-**Best for:** Converting an existing image library for a website. Batch processing product photos, blog images, or portfolio shots. Combining conversion with resize in one pass.
-
-## Method 2: Terminal with cwebp
+## Method 1: Terminal with cwebp
 
 Google's official WebP encoder is available via Homebrew.
 
@@ -74,13 +60,27 @@ cwebp -lossless input.png -o output.webp
 
 Lossless WebP is still 20-30% smaller than PNG for most images.
 
-## Method 3: Squoosh (single images, visual comparison)
+## Method 2: Squoosh (single images, visual comparison)
 
 Google's [Squoosh](https://squoosh.app) has a real-time quality comparison slider. Drag the divider across to see the original next to the WebP version as you tweak quality.
 
 Best use: find the right quality setting on one representative image, then apply that setting in Picmal or `cwebp` for the whole batch.
 
 **Limitation:** One image at a time. No batch processing.
+
+## Method 3: Picmal (batch, with compression control)
+
+The fastest way to convert an existing image library to WebP.
+
+1. Drag your images into [Picmal](https://picmal.app) — JPEGs, PNGs, TIFFs, HEIC, whatever you have
+2. Select WebP as the output format
+3. Set quality (80% is the sweet spot for photos — visually identical to the source, 25-50% smaller)
+4. Optionally set a max width if you're resizing for the web at the same time
+5. Click Convert
+
+Picmal accepts 40+ input formats, so whatever your source images are, they'll work. PSD, RAW, HEIC from your iPhone, a weird TIFF from a scanner. Everything comes out as WebP.
+
+**Best for:** Converting an existing image library for a website. Batch processing product photos, blog images, or portfolio shots. Combining conversion with resize in one pass.
 
 ## What quality setting should I use?
 

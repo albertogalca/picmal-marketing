@@ -1,0 +1,84 @@
+---
+title: "How to Convert Video with VLC on Mac (and Why the Output Looks Bad)"
+description: "VLC can convert video on a Mac, and it is free. Here is the exact menu path, the one setting that stops the output looking worse than the original, and how to tell when it has finished."
+pubDate: "2026-08-18"
+category: "Guide"
+tags: ["VLC", "Video", "Conversion", "Mac", "Guide"]
+faqs:
+  - question: "Can VLC convert video?"
+    answer: "Yes. VLC has a built-in converter under File > Convert / Save on macOS, or Media > Convert / Save on Windows and Linux. It handles most common formats and costs nothing, though it converts one file at a time and its default quality settings are conservative."
+  - question: "How do I convert a video with VLC on a Mac?"
+    answer: "Open VLC, choose File > Convert / Save (Shift+Cmd+S), click Browse to pick your input file, choose a Profile such as Video - H.264 + MP3 (MP4), set a destination filename including the extension, then click Save or Start."
+  - question: "Why does my VLC-converted video look worse than the original?"
+    answer: "Because the built-in profiles use a fixed, fairly low bitrate regardless of your source. A 4K clip and a 480p clip get the same allocation. Edit the profile before converting and raise the video bitrate, or leave the video track set to Keep original video track when you only need a different container."
+  - question: "How do I know when VLC has finished converting?"
+    answer: "VLC shows no completion dialog. The playback seek bar doubles as the progress bar and creeps across as it works. When it reaches the end and stops, the conversion is done. The output file exists on disk the whole time and is incomplete until then, so do not open it early and assume it failed."
+  - question: "How do I convert a VLC file to MP4?"
+    answer: "There is no such thing as a .vlc video file. VLC is a player, not a format, so whatever you have is almost certainly MKV, AVI, MOV or similar and VLC simply opened it. Check the real extension in the Finder, then convert that to MP4 with the steps here."
+---
+
+**VLC converts video, it is free, and the menu item is not where most guides say it is.** On a Mac it's **File > Convert / Save…** (Shift+Cmd+S). On Windows and Linux it's Media > Convert / Save. Most of the pages ranking for this are university IT docs written for Windows, which is why the instructions never quite match what you're looking at.
+
+Here's the actual process on macOS, plus the two things that make people give up on it.
+
+## The steps
+
+1. Open VLC.
+2. **File > Convert / Save…** (Shift+Cmd+S).
+3. Click **Browse** and pick your input file. You can add more than one, but VLC processes them one after another with the same settings.
+4. Choose a **Profile**. `Video - H.264 + MP3 (MP4)` is the safe general answer and plays everywhere.
+5. Click **Browse** next to the destination and type a filename. **Include the extension.** VLC will not add `.mp4` for you, and a file with no extension is the single most common "it didn't work" report.
+6. Click **Save**, then **Start**.
+
+That's it. No progress window opens, which brings us to the part nobody explains.
+
+## How to tell when it's finished
+
+VLC gives you no completion dialog and no "done" sound. What it does instead: **the normal playback seek bar becomes the progress bar.** It crawls left to right while the conversion runs, and when it reaches the end and playback stops, you're done.
+
+The output file appears on disk immediately and grows as it goes. So if you check the folder mid-convert, find a file, open it and see a truncated mess, nothing is broken. Wait for the bar.
+
+This one behavior is responsible for a good share of the "VLC conversion failed" posts.
+
+## Why the output looks worse than the original
+
+This is the real complaint. There's a well-upvoted r/VLC thread titled "How can I convert videos in VLC and not have them suck?" and the answer is a setting nobody finds.
+
+**VLC's built-in profiles use a fixed bitrate regardless of your source.** The stock H.264 profile targets a modest bitrate that suits a 720p clip. Feed it 4K footage and it allocates the same budget, so you get a soft, blocky result that looks much worse than what you started with.
+
+To fix it, before you hit Start:
+
+1. In the Convert window, click the **settings or wrench icon** next to the Profile dropdown to edit that profile.
+2. Go to the **Video codec** tab.
+3. Raise the **Bitrate**, or set **Quality/Scale** so it is not downscaling.
+4. Check the **Audio codec** tab too. The default MP3 at 128 kbps is fine for speech and thin for music.
+
+A rough guide for H.264: around 8,000 kbps for 1080p, 2,500 for 720p, and 35,000+ for 4K. Higher costs disk space and nothing else.
+
+**Better still, if you only need a different container:** set the video codec to **Keep original video track** and the audio to keep as well. VLC then rewraps the existing streams instead of re-encoding them. It's near-instant and pixel-identical, because nothing is being compressed again. This is the right move for MKV to MP4 when the video inside is already H.264, and it sidesteps the quality question entirely.
+
+## "How do I convert a VLC file?"
+
+A lot of people search this, so it's worth saying plainly: **there is no .vlc video format.** VLC is a player. If a file opens in VLC, the file is MKV, AVI, MOV, WMV, FLV or similar, and VLC was just the app macOS handed it to.
+
+Select the file in the Finder and press Cmd+I to see the real extension. That's what you're converting.
+
+## Where VLC falls down
+
+It's free, it's already installed on a lot of Macs, and for one file it's a perfectly good answer. Three limits worth knowing before you commit to it:
+
+**One file at a time, effectively.** You can queue several, but they share one profile and run sequentially with no per-file control and no folder structure preserved. A card of clips is a long afternoon.
+
+**Silent failures.** Pick a profile whose audio codec the container can't hold and you get a video with no sound, with no warning at any point. The MP3-in-MP4 combination in the default profile is a frequent source of this.
+
+**No size targeting.** There's no "make this fit under 25 MB". You set a bitrate, convert, check the result, and adjust. HandBrake has proper two-pass encoding for this, and [HandBrake's settings](/blog/compress-video-with-handbrake) are worth learning if compression is the actual goal rather than format conversion.
+
+## When to use something else
+
+For a single file where you just need a different container, use VLC's **Keep original video track** trick. It's free, instant and lossless, and nothing beats it.
+
+For compressing video properly, [HandBrake](/blog/compress-video-with-handbrake) is free and much better at it.
+
+For a folder of files with consistent settings, per-file progress, and no chance of silently losing the audio track, that's where a dedicated converter earns its money. [Picmal](https://picmal.app) handles batches in one pass, keeps folder structure, and runs entirely on your Mac with no upload. It's $39 once. If you convert one video a month, VLC is genuinely the better answer and you should keep using it.
+
+The [video converter for Mac](/video-converter-mac) page covers the format list, and [how to compress video on Mac](/blog/how-to-compress-video-mac) covers the free built-in options.

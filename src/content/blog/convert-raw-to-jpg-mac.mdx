@@ -48,7 +48,70 @@ So the rule is simple: **always keep your RAW originals.** Convert copies to JPG
 
 The methods below work the same regardless of which one you have.
 
-## Method 1: Picmal (fastest for a whole shoot)
+## Method 1: Preview (already on your Mac)
+
+Preview can open and export most RAW files once macOS has support for your camera.
+
+### Steps:
+
+1. Right-click the RAW file → **Open With → Preview**
+2. **File → Export**
+3. Pick **JPEG** from the Format dropdown
+4. Adjust the quality slider
+5. **Save**
+
+### For multiple files:
+
+1. Select the RAW files in Finder
+2. Right-click → Open with Preview
+3. Cmd+A to select all in the sidebar
+4. **File → Export Selected Images**, choose JPEG
+
+### The catch:
+
+Preview's decode can look flatter than your camera intended, since it doesn't always apply the full color profile. It also slows down past a few dozen files and flattens your folders into one pile.
+
+## Method 2: the Photos app
+
+If your RAW files are already imported into Photos, export straight from there.
+
+### Steps:
+
+1. Open **Photos** and select the images
+2. **File → Export → Export [N] Photos**
+3. Set Photo Kind to **JPEG**
+4. Choose quality and size
+5. **Export**
+
+### Upside and downside:
+
+Your edits and albums carry over, and color is generally good. But if the files aren't in Photos yet, you have to import them first, which bloats your library with big RAW files you may not want there.
+
+## Method 3: the command line (dcraw / ImageMagick)
+
+For scripting, `dcraw` or ImageMagick can decode RAW in the terminal.
+
+### Installation:
+
+```bash
+brew install imagemagick dcraw
+```
+
+### Every RAW file in a folder (example for Sony ARW):
+
+```bash
+for f in *.ARW; do
+  magick "$f" "${f%.*}.jpg"
+done
+```
+
+Swap the extension for your camera (`*.CR3`, `*.NEF`, `*.RAF`, and so on).
+
+### Why bother:
+
+Free and scriptable. The downside is color: getting white balance and profiles right on the command line takes real tuning, and the defaults often look dull. For accurate colors with no effort, use Preview or Photos above.
+
+## Method 4: Picmal (fastest for a whole shoot)
 
 [Picmal](https://picmal.app) is a native Mac app that decodes every major RAW format and batch-converts to JPG. If you've got more than a handful of files, start here.
 
@@ -72,77 +135,14 @@ The methods below work the same regardless of which one you have.
 
 Delivering JPGs from a full shoot. Anyone who wants correct colors without opening an editor.
 
-## Method 2: Preview (already on your Mac)
-
-Preview can open and export most RAW files once macOS has support for your camera.
-
-### Steps:
-
-1. Right-click the RAW file → **Open With → Preview**
-2. **File → Export**
-3. Pick **JPEG** from the Format dropdown
-4. Adjust the quality slider
-5. **Save**
-
-### For multiple files:
-
-1. Select the RAW files in Finder
-2. Right-click → Open with Preview
-3. Cmd+A to select all in the sidebar
-4. **File → Export Selected Images**, choose JPEG
-
-### The catch:
-
-Preview's decode can look flatter than your camera intended, since it doesn't always apply the full color profile. It also slows down past a few dozen files and flattens your folders into one pile.
-
-## Method 3: the Photos app
-
-If your RAW files are already imported into Photos, export straight from there.
-
-### Steps:
-
-1. Open **Photos** and select the images
-2. **File → Export → Export [N] Photos**
-3. Set Photo Kind to **JPEG**
-4. Choose quality and size
-5. **Export**
-
-### Upside and downside:
-
-Your edits and albums carry over, and color is generally good. But if the files aren't in Photos yet, you have to import them first, which bloats your library with big RAW files you may not want there.
-
-## Method 4: the command line (dcraw / ImageMagick)
-
-For scripting, `dcraw` or ImageMagick can decode RAW in the terminal.
-
-### Installation:
-
-```bash
-brew install imagemagick dcraw
-```
-
-### Every RAW file in a folder (example for Sony ARW):
-
-```bash
-for f in *.ARW; do
-  magick "$f" "${f%.*}.jpg"
-done
-```
-
-Swap the extension for your camera (`*.CR3`, `*.NEF`, `*.RAF`, and so on).
-
-### Why bother:
-
-Free and scriptable. The downside is color: getting white balance and profiles right on the command line takes real tuning, and the defaults often look dull. For accurate colors with no effort, use Method 1.
-
 ## Side-by-side comparison
 
 | Method       | Speed     | Batch     | Color accuracy | Ease of use | Price  |
 | ------------ | --------- | --------- | -------------- | ----------- | ------ |
-| Picmal       | Very Fast | Excellent | Excellent      | Very Easy   | $39 |
 | Preview      | Moderate  | Limited   | Fair           | Easy        | Free   |
 | Photos App   | Slow      | Good      | Good           | Easy        | Free   |
 | dcraw / CLI  | Fast      | Excellent | Needs tuning   | Technical   | Free   |
+| Picmal       | Very Fast | Excellent | Excellent      | Very Easy   | $39 |
 
 ## Tips for better results
 

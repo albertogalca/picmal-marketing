@@ -31,29 +31,7 @@ This is what makes MOV to MP4 the easy case:
 
 Aim for a remux when you can. Most MOV-to-MP4 jobs qualify.
 
-## Method 1: Picmal (batch, on your Mac)
-
-[Picmal](https://picmal.app) converts MOV to MP4 for a whole folder at once, entirely offline.
-
-### Steps:
-
-1. Download Picmal from [picmal.app](https://picmal.app)
-2. Drag in your MOV files, or a folder
-3. Choose **MP4** as the output
-4. Click **Convert**
-
-### Why people reach for it:
-
-- Batches a folder of clips in one pass
-- Runs entirely on your Mac, nothing uploaded
-- Fast on Apple Silicon
-- No size limit, no watermark, one-time $39
-
-### Best for:
-
-Converting a shoot or a screen-recording folder from MOV to MP4 before sending it on.
-
-## Method 2: FFmpeg (instant remux)
+## Method 1: FFmpeg (instant remux)
 
 If you want the fastest, lossless path for a single file, FFmpeg's stream copy is unbeatable.
 
@@ -77,7 +55,7 @@ for f in *.mov; do ffmpeg -i "$f" -c copy "${f%.*}.mp4"; done
 
 If a file refuses to copy (rare codec), drop `-c copy` to re-encode.
 
-## Method 3: HandBrake (when you also want to compress)
+## Method 2: HandBrake (when you also want to compress)
 
 [HandBrake](https://handbrake.fr) always re-encodes, so use it when you want to shrink the file at the same time, not for a pure lossless convert.
 
@@ -88,13 +66,35 @@ If a file refuses to copy (rare codec), drop `-c copy` to re-encode.
 3. Pick a preset (H.264), adjust quality if you want it smaller
 4. Click **Start**
 
+## Method 3: Picmal (batch, on your Mac)
+
+[Picmal](https://picmal.app) converts MOV to MP4 for a whole folder at once, entirely offline.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your MOV files, or a folder
+3. Choose **MP4** as the output
+4. Click **Convert**
+
+### Why people reach for it:
+
+- Batches a folder of clips in one pass
+- Runs entirely on your Mac, nothing uploaded
+- Fast on Apple Silicon
+- No size limit, no watermark, one-time $39
+
+### Best for:
+
+Converting a shoot or a screen-recording folder from MOV to MP4 before sending it on.
+
 ## Side-by-side comparison
 
 | Method    | Speed        | Quality        | Batch     | Ease of use | Price  |
 | --------- | ------------ | -------------- | --------- | ----------- | ------ |
-| Picmal    | Very Fast    | Preserved      | Excellent | Very Easy   | $39 |
 | FFmpeg    | Instant (remux) | Lossless    | Excellent | Technical   | Free   |
 | HandBrake | Moderate     | Re-encoded     | Good      | Moderate    | Free   |
+| Picmal    | Very Fast    | Preserved      | Excellent | Very Easy   | $39 |
 
 ## Tips
 

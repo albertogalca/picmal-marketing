@@ -1,123 +1,159 @@
 ---
 title: "How to Reduce Image File Size on Mac (Without Losing Quality)"
 heroImage: "../../../public/images/blog/reduce-image-file-size-mac/cover.png"
-description: "Five practical ways to reduce image file sizes on your Mac: resize, compress, convert to a modern format, or strip metadata. With actual before and after numbers."
+description: "How to compress an image on a Mac and make the file smaller: resize, compress, convert to WebP or AVIF, or strip metadata. Covers JPEG, PNG, and web images, with the free built-in tools first."
 pubDate: "2026-03-05"
+updatedDate: "2026-08-18"
 category: "Tutorial"
-tags: ["Compression", "Mac", "Tutorial", "File Size"]
+tags: ["Compression", "Mac", "Tutorial", "File Size", "JPEG", "PNG"]
 faqs:
+  - question: "How do I compress an image on a Mac?"
+    answer: "Open it in Preview, choose File > Export, and drag the Quality slider left. The estimated file size updates as you drag, so you can stop when it is small enough. Preview ships with macOS, so there is nothing to install and nothing to upload."
   - question: "How small can I make an image without it looking bad?"
-    answer: "For photos, 80% JPEG quality is visually indistinguishable from 100% on screens. WebP and AVIF look good at 70-75%. For the web, aim for under 200KB per image. For email, under 500KB."
+    answer: "For photos, 80% JPEG quality is visually indistinguishable from 100% on a screen. WebP and AVIF hold up at 70-75%. For the web aim for under 200KB per image, for email under 500KB."
   - question: "Does resizing reduce quality?"
-    answer: "Resizing down doesn't degrade quality visibly — you're just using fewer pixels. Resizing up degrades quality because the software has to invent pixels that weren't there."
-  - question: "What's the best format for reducing file size?"
-    answer: "AVIF gives the smallest files for photos. WebP is close behind with broader compatibility. JPEG is the safe default. PNG is only smaller for flat colors, text, or transparency."
+    answer: "Resizing down does not degrade quality in any visible way, you are simply using fewer pixels. Resizing up does, because the software has to invent detail that was never captured."
+  - question: "What is the best format for reducing file size?"
+    answer: "AVIF gives the smallest files for photos, WebP is close behind with broader support, and JPEG is the safe default that works everywhere. PNG is only smaller for flat color, text, or transparency. For a photograph, PNG is almost always the largest option."
+  - question: "How do I compress a PNG without losing transparency?"
+    answer: "Every method here preserves the alpha channel. pngquant gives the biggest savings by quantizing the palette, typically 60-80%, and keeps transparency intact. optipng is fully lossless and gets 10-30%. Converting to WebP also keeps transparency and usually beats both."
   - question: "Can I reduce file size without changing the image at all?"
-    answer: "Lossless optimization tools like ImageOptim can squeeze out 10-30% by optimizing the compression algorithm without changing a single pixel."
+    answer: "Yes. Lossless optimizers like ImageOptim or optipng squeeze out 10-30% by improving how the file is encoded, without altering a single pixel. For bigger reductions you have to resize, re-compress, or change format."
 ---
 
 Your image is too big. An email is bouncing, a website is rejecting the upload, or your portfolio site loads like it's 2003.
 
-The question is always the same: how do I shrink this without it looking terrible?
+**The fastest fix, with nothing installed: open the image in Preview, choose File > Export, and drag the Quality slider left.** The estimated size updates as you drag. Stop when it's small enough, save a copy, done.
 
-Whether you call it compressing an image, shrinking a photo, or reducing file size, the fix comes down to four levers. Most guides bury them in 2,000 words of preamble, so here they are up front:
+That solves most cases. If it doesn't, it's because you're pulling only one of the four available levers:
 
-1. **Resize** — fewer pixels = smaller file
-2. **Compress** — same pixels, less data per pixel
-3. **Convert** — some formats are just more efficient than others
-4. **Strip metadata** — EXIF data, color profiles, thumbnails add up
+1. **Resize**, fewer pixels means a smaller file
+2. **Compress**, same pixels but less data per pixel
+3. **Convert**, some formats are simply more efficient
+4. **Strip metadata**, EXIF and color profiles and embedded thumbnails add up
 
-Here's how to pull each lever on your Mac, with actual numbers so you know what to expect.
+Here's how to pull each one on a Mac, plus the format-specific tricks for JPEG and PNG, and what changes when the images are going on a website.
 
 ## 1. Resize the image (biggest impact)
 
 The step most people skip, and the easiest win.
 
-A 4000×3000 photo from your iPhone is 12 million pixels. If it's going on a website where the content area is 800px wide, those extra pixels are pure waste. Resizing to 1600px wide (for retina) cuts the pixel count by 83%.
+A 4000x3000 photo from your iPhone is 12 million pixels. If it's going on a website where the content area is 800px wide, those extra pixels are pure waste. Resizing to 1600px wide, enough for Retina, cuts the pixel count by 83%.
 
-**In Preview:**
+**In Preview:** open the image, Tools > Adjust Size, set the width you actually need (1200-1600px for web, 800px for email), keep "Scale proportionally" ticked, then File > Export.
 
-1. Open the image in Preview
-2. Tools → Adjust Size
-3. Set the width to what you actually need (1200-1600px for web, 800px for email)
-4. Make sure "Scale proportionally" is checked
-5. File → Export
+**In Terminal**, `sips` is built in and handles a whole folder:
 
-**With Picmal:**
+```bash
+for f in *.jpg; do sips --resampleHeightWidthMax 1600 "$f"; done
+```
 
-Drag files in, set a max width in the resize options, and convert. [Picmal](https://picmal.app) applies the resize during conversion, so you can resize and change format in one step.
+`--resampleHeightWidthMax` caps the longest side, so landscape and portrait both come out sensibly. It edits in place, so copy the folder first.
 
-**Typical savings:** A 4000×3000 JPEG at 8MB → 1600×1200 JPEG at ~1.2MB. That's an 85% reduction just from resizing.
+**Typical saving:** a 4000x3000 JPEG at 8MB becomes about 1.2MB at 1600x1200. Roughly 85%, from resizing alone.
 
 ## 2. Compress the image
 
 If the dimensions are already right, compression is the next lever.
 
-For photos, 75-85% quality is the sweet spot. Below that, artifacts show up in gradients and skin tones. Above that, you're storing quality differences nobody can see on a screen.
+For photos, 75-85% quality is the sweet spot. Below that, artifacts show up in gradients and skin tones. Above it, you're storing differences nobody can see on a screen.
 
-**In Preview:**
-
-1. File → Export
-2. Drag the quality slider to the left
-3. Watch the estimated file size change
-4. Save when you're happy with the tradeoff
-
-**With Picmal:**
-
-Drag files in, choose your output format, adjust the quality slider, convert. You see the output file size immediately.
-
-**Typical savings:** JPEG at 100% quality → 80% quality reduces file size by 40-60% with no visible difference in most photos.
-
-## 3. Convert to a modern format
-
-The most underused lever. Format choice matters more than most people realize.
-
-| Format | Typical photo (1600px) | Best for |
-|--------|----------------------|----------|
-| PNG | 3-5MB | Screenshots, text, transparency |
-| JPEG | 800KB-1.5MB | Photos (the default for a reason) |
-| WebP | 300-600KB | Web — 25-35% smaller than JPEG |
-| AVIF | 200-400KB | Web — 50% smaller than JPEG |
-
-If you're serving images on the web and still using JPEG, switching to WebP cuts file sizes by a third with no visible quality loss. AVIF goes further but has slightly less browser support (~93%).
-
-**With Picmal:**
-
-Drag in your images, pick WebP or AVIF as the output format, set quality to 80%, convert. That's it. [Picmal](https://picmal.app) supports both formats plus 40 others.
-
-**With Preview:**
-
-Preview can't export to WebP or AVIF. You'll need a third-party tool for modern formats.
-
-## 4. Strip metadata
-
-Photos carry hidden baggage: GPS coordinates, camera model, lens info, exposure settings, color profiles, embedded thumbnails. A single iPhone photo can have 50-100KB of metadata.
-
-For a few images, that's noise. For a folder of 200 images, that's 10-20MB of data nobody ever looks at.
-
-**In Preview:**
-
-Preview doesn't have a one-click metadata strip. You'd need to export and choose a format that drops it.
-
-**With Picmal:**
-
-Enable "Remove metadata" in the settings. Picmal strips EXIF data during conversion automatically.
+**In Preview:** File > Export, drag the quality slider, watch the estimated size, save when the tradeoff looks right.
 
 **In Terminal:**
 
-If you have `exiftool` installed (via Homebrew):
+```bash
+sips -s formatOptions 80 input.jpg --out compressed.jpg
+```
+
+The `80` is quality, on a 0-100 scale. For a folder, writing to a new directory so the originals survive:
+
+```bash
+mkdir compressed
+for f in *.jpg; do sips -s formatOptions 80 "$f" --out "compressed/$f"; done
+```
+
+**Typical saving:** dropping a JPEG from 100% to 80% quality cuts 40-60% with no visible difference in most photos.
+
+## 3. Convert to a modern format
+
+The most underused lever, and often the largest after resizing.
+
+| Format | Typical photo at 1600px | Best for |
+|--------|----------------------|----------|
+| PNG | 3-5MB | Screenshots, text, transparency |
+| JPEG | 800KB-1.5MB | Photos, the default for a reason |
+| WebP | 300-600KB | Web, 25-35% smaller than JPEG |
+| AVIF | 200-400KB | Web, roughly half of JPEG |
+
+If you're serving images on the web and still using JPEG, moving to WebP cuts a third with no visible quality loss. AVIF goes further with slightly narrower support.
+
+**Preview cannot export WebP or AVIF.** For those you need a command-line tool (`cwebp` and `avifenc`, both via Homebrew) or an app.
+
+## JPEG: what's specific to it
+
+JPEG is lossy every time it's saved, and that's the thing to watch. **Each re-save degrades the image further**, even at the same quality setting. Editing and re-saving the same JPEG five times visibly softens it. Always compress from the original, not from a copy you compressed last week.
+
+`sips -s formatOptions` above is the built-in route. For lossless gains on top, **ImageOptim** is a free Mac app: drop files on it and it strips metadata and re-encodes more efficiently, usually 10-20% with zero pixel change.
+
+A JPEG has no transparency. If your image has a transparent background and you convert it to JPEG, that background becomes solid white or black, and there's no undoing it.
+
+## PNG: what's specific to it
+
+PNG is lossless, so "compressing" it means either encoding smarter or reducing the palette.
+
+**pngquant** cuts the palette to 256 colors or fewer. Technically lossy, but on screenshots and UI assets the difference is invisible and the savings are large:
+
+```bash
+brew install pngquant
+pngquant --quality=65-80 --output compressed.png input.png
+
+# whole folder, in place
+pngquant --quality=65-80 --ext .png --force *.png
+```
+
+**Typical saving:** 60-80%. A 5MB screenshot becomes about 1MB. Transparency survives.
+
+**optipng** is fully lossless, for when every pixel must be identical:
+
+```bash
+brew install optipng
+optipng -o5 *.png
+```
+
+`-o5` balances speed against compression. `-o7` squeezes marginally harder and takes far longer. **Typical saving:** 10-30%.
+
+**Should it be a PNG at all?** For a photograph, no. PNG is for flat color, sharp text and transparency. A photo saved as PNG is routinely 4-5 times the JPEG. If you need transparency *and* small files, WebP does both.
+
+## Images for a website
+
+Three things decide page weight, in this order.
+
+**Format.** A 1400px hero as JPG might be 800KB. The same image as WebP is around 300KB, as AVIF closer to 200KB. WebP has 97%+ browser support and AVIF is around 93%. For photos on the web there's very little reason to still be serving JPEG or PNG.
+
+**Dimensions.** Nobody needs a 4000px image on a webpage. Most content areas are 800-1200px, and even full-bleed heroes rarely need more than 1600px, or 2400px for Retina. Going 4000px to 1600px cuts 75% before compression touches it.
+
+**Quality.** People agonize over the perfect setting. In practice 80% is visually identical to 100% for photos in a browser. Below 70% you get halos on edges and banding in skies and skin. 75-85% is the range, and 80% is a fine default.
+
+**One more thing if you work for clients.** Product photos, unreleased designs, screenshots of internal dashboards. Upload those to a web compressor and they land on someone else's server. Even if the service deletes them afterwards, you still transmitted them, and for healthcare or legal work that's a compliance problem rather than a preference. Everything on this page except the browser-based services runs locally, and "it never leaves my machine" is a much better answer than "I think they delete them after an hour."
+
+## 4. Strip metadata
+
+Photos carry hidden baggage: GPS coordinates, camera model, lens, exposure settings, color profiles, embedded thumbnails. A single iPhone photo can hold 50-100KB of it.
+
+For one image that's noise. For 200 images it's 10-20MB nobody will ever read.
+
+Preview has no one-click strip. In Terminal, with `exiftool` from Homebrew:
 
 ```bash
 exiftool -all= *.jpg
 ```
 
-This strips all metadata from every JPEG in the current folder. Destructive — make copies first.
+That strips everything from every JPEG in the folder. It's destructive, so copy first.
 
-## 5. Combine everything for maximum reduction
+## 5. Stack them
 
-The biggest savings come from stacking these. Real example:
-
-**Starting point:** iPhone photo, 4032×3024, HEIC, 3.8MB
+The real savings come from combining. A worked example on an iPhone photo, 4032x3024 HEIC at 3.8MB:
 
 | Step | Action | Result |
 |------|--------|--------|
@@ -126,31 +162,21 @@ The biggest savings come from stacking these. Real example:
 | 3 | Strip metadata | ~305KB |
 | **Total** | | **92% smaller** |
 
-In Picmal, this is one operation: drag in, set max width to 1600, pick WebP, set quality to 80%, enable strip metadata, convert.
+Order matters a little: resize first, then compress. Compressing a 4000px image and then shrinking it wastes the work.
 
-## FAQ
+## When the free tools stop being worth it
 
-### How small can I make an image without it looking bad?
+Everything above is free, and most of it is already on your Mac. For one image, Preview. For a folder at one quality, the `sips` loop. For PNGs, `pngquant`. None of that is worth paying to replace.
 
-For photos: 80% JPEG quality is visually indistinguishable from 100% on screens. WebP and AVIF look good even at 70-75%. For the web, aim for under 200KB per image. For email attachments, under 500KB.
+Where it gets tedious is doing all four levers at once, repeatedly, across a mixed folder. That means Preview for the resize, a Terminal loop for the quality, a separate tool for WebP because Preview cannot export it, and `exiftool` for the metadata. Four passes, and the settings live in your head.
 
-### Does resizing reduce quality?
-
-Resizing down (making smaller) doesn't degrade quality in any visible way — you're just using fewer pixels. Resizing up (making larger) is where quality degrades because the software has to invent pixels that weren't there.
-
-### What's the best format for reducing file size?
-
-AVIF gives the smallest files for photos. WebP is close behind with broader compatibility. JPEG is the safe default that works everywhere. PNG is only smaller for flat colors, text, or transparency. For photos, PNG is almost always the largest option.
-
-### Can I reduce file size without changing the image at all?
-
-Lossless optimization tools like ImageOptim can squeeze out 10-30% by optimizing the compression algorithm without changing a single pixel. For bigger reductions, you'll need to resize, re-compress, or change format.
+[Picmal](https://picmal.app) does the four in one pass: drop the folder in, set a max width, pick WebP, set quality to 80, tick remove metadata, convert. It reads HEIC and camera RAW too, so a mixed folder goes through together, and it runs entirely on your Mac with no upload and no size cap. It's $39 once. If you compress a couple of images a month, Preview is genuinely the better answer.
 
 ## Related guides
 
-- **Optimizing images for a website specifically?** See [the best way to compress images for a website on Mac](/blog/compress-images-for-website-mac) for the PageSpeed-focused workflow.
-- **Not sure which format to pick?** [The best image formats for the web](/blog/best-image-formats-for-web) compares JPEG, WebP, AVIF, and more.
-- **Switching to a modern format?** [How to convert images to WebP on Mac](/blog/convert-images-to-webp-mac) walks through the full process.
-- **Photos filling your disk?** [How to reduce photo library size on Mac](/blog/reduce-photo-library-size-mac) covers duplicates, screenshots, and iCloud offloading.
-- **Coming from an iPhone?** [How to convert HEIC to JPG on Mac](/blog/how-to-convert-heic-to-jpg-mac) handles Apple's photo format, and the [HEIC converter for Mac](/heic-converter-mac) page covers the app side.
+- **Which format should you pick?** [The best image formats for the web](/blog/best-image-formats-for-web) compares JPEG, WebP, AVIF and the rest.
+- **Moving to a modern format?** [How to convert images to WebP on Mac](/blog/convert-images-to-webp-mac) walks through it.
+- **Photos filling your disk?** [How to reduce photo library size on Mac](/blog/reduce-photo-library-size-mac) is about the Photos library specifically: duplicates, screenshots and iCloud offloading.
+- **Need different dimensions rather than a smaller file?** [How to resize an image on Mac](/blog/bulk-resize-images-mac) covers one image or a whole folder.
+- **Coming from an iPhone?** [How to convert HEIC to JPG on Mac](/blog/how-to-convert-heic-to-jpg-mac) handles Apple's format.
 - **Want the app rather than the walkthrough?** [Compress images on Mac](/compress-images-mac) is the short version.

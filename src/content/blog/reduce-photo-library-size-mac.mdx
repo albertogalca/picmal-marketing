@@ -13,7 +13,7 @@ faqs:
   - question: "How do I reduce image file size on Mac without losing quality?"
     answer: "Export to JPEG or WebP at 80 to 85% quality. At that level the file is 40 to 60% smaller and looks identical on screen. If the image is bigger than you will ever display it, resize the dimensions too. For the full walkthrough see How to Reduce Image File Size on Mac at /blog/reduce-image-file-size-mac."
   - question: "How do I compress a JPEG on my Mac?"
-    answer: "80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via File > Export with the quality slider. The JPEG compression guide at /blog/compress-jpeg-mac breaks down what each quality level actually looks like."
+    answer: "80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via File > Export with the quality slider. The guide at /blog/reduce-image-file-size-mac breaks down what each quality level actually looks like."
 ---
 
 **The short version, all of it free and built into macOS.** Open Photos and use the Duplicates album under Utilities in the sidebar to merge exact and near matches. Then go to System Settings > Apple Account > iCloud > Photos and switch on the setting that keeps full-resolution originals in iCloud and only thumbnails on your Mac. Then deal with your screenshots, because uncompressed PNGs at 3 to 8MB each are usually the hidden bulk. Archive old RAW files to an external drive last.
@@ -48,15 +48,15 @@ For a deeper pass, <a href="https://macpaw.com/gemini" target="_blank">Gemini 2<
 
 After duplicates, go through your screenshots. Sort by date, select everything older than a year. Be honest with yourself. I deleted about 600 screenshots and felt nothing.
 
-## 2. Compress your images
+## 2. Compress the screenshots hiding in your library
 
 This is where the biggest surprise was for me. I had over 2,000 PNG screenshots still in my library, and they were taking up almost 8GB.
 
 PNGs are lossless, which is great if you're inspecting individual pixels and pointless if you're keeping a screenshot of a Slack message from 2022. A 5MB PNG converts to a 200-300KB JPG with no visible difference at normal viewing sizes. Multiply that by 2,000 and you're recovering 7GB+.
 
-I used <a href="https://picmal.app" target="_blank">Picmal</a> for this. Exported the screenshots from Photos, dragged the folder into Picmal, picked JPG, clicked convert. Three minutes for 2,000+ files. Everything runs locally, nothing gets uploaded. (If you want the step-by-step, here's how to [compress images on Mac](https://picmal.app/compress).)
+The library-specific part is getting them out and back: export the screenshots from Photos to a folder, convert them there, then re-import and delete the PNG originals from the library. Do it in batches and empty **Recently Deleted** afterwards, because Photos holds deleted items for 30 days and you will not see the space back until you do.
 
-Same logic applies to any PNGs or TIFFs you're keeping for reference rather than pixel-level accuracy. JPG or WebP at 85% quality looks identical to the original — if you're not sure which to pick, see the [best image formats for the web](https://picmal.app/blog/best-image-formats-for-web).
+For the conversion itself, and for which quality and format to pick, see [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac). That guide covers the settings in full. This one stays on the library.
 
 ## 3. Turn on Optimize Mac Storage with iCloud Photos
 
@@ -128,10 +128,10 @@ Export to JPEG or WebP at 80-85% quality. At that level the file is 40-60% small
 
 ### How do I compress a JPEG on my Mac?
 
-80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via **File > Export** with the quality slider. The [JPEG compression guide](/blog/compress-jpeg-mac) breaks down what each quality level actually looks like.
+80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via **File > Export** with the quality slider. The [guide to reducing image file size](/blog/reduce-image-file-size-mac) breaks down what each quality level actually looks like.
 
 ## Related guides
 
 - **Shrinking one image, not a library?** [How to Reduce Image File Size on Mac](/blog/reduce-image-file-size-mac) covers resize, compress, convert, and strip metadata.
 - **Want to compress images on Mac in batch?** [Compress images on Mac](/compress-images-mac) is the tool page: drop a folder in, pick a quality, done.
-- **Screenshots are the bulk?** [How to Compress PNG Files on Mac](/blog/compress-png-mac) covers the lossless and lossy options for flat-color images.
+- **Screenshots are the bulk?** [How to reduce image file size on Mac](/blog/reduce-image-file-size-mac) covers the lossless and lossy options for flat-color images, PNG included.

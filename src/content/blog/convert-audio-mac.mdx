@@ -45,7 +45,59 @@ One rule saves you from bad conversions:
 
 So: keep lossless originals if you have them, and convert copies to MP3 for everyday use.
 
-## Method 1: Picmal (batch, and every format)
+## Method 1: the Music app (free, built in)
+
+Apple's Music app (formerly iTunes) converts common formats without a download.
+
+### Steps:
+
+1. Open **Music → Settings → Files → Import Settings**
+2. Set **Import Using** to **MP3 Encoder** (or AAC)
+3. Close settings, select the track(s) in your library
+4. **File → Convert → Create MP3 Version**
+
+### The catch:
+
+It won't import FLAC or OGG, and it converts within your library, so you have to add files first. Fine for tracks already in Music, awkward for loose files or unsupported formats.
+
+## Method 2: VLC (free, opens anything)
+
+VLC plays and converts nearly every audio format.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drop in your audio file
+3. Choose an audio profile (for example **Audio - MP3**)
+4. **Save as File**, pick a destination, **Save**
+
+### The catch:
+
+One file at a time, and the interface is utilitarian. Handy when a format won't open anywhere else.
+
+## Method 3: FFmpeg (command line)
+
+For scripting or bulk jobs:
+
+```bash
+brew install ffmpeg
+```
+
+### Convert one file to MP3 at 320 kbps:
+
+```bash
+ffmpeg -i input.m4a -b:a 320k output.mp3
+```
+
+### Every FLAC in a folder to MP3:
+
+```bash
+for f in *.flac; do ffmpeg -i "$f" -b:a 320k "${f%.*}.mp3"; done
+```
+
+Free, and precise about bitrate down to the number. Not the move if the command line isn't for you.
+
+## Method 4: Picmal (batch, and every format)
 
 [Picmal](https://picmal.app) is a native Mac app that converts audio (and video, images, PDFs) in batches, entirely offline.
 
@@ -68,66 +120,14 @@ So: keep lossless originals if you have them, and convert copies to MP3 for ever
 
 Converting a music library, or any batch the built-in tools choke on.
 
-## Method 2: the Music app (free, built in)
-
-Apple's Music app (formerly iTunes) converts common formats without a download.
-
-### Steps:
-
-1. Open **Music → Settings → Files → Import Settings**
-2. Set **Import Using** to **MP3 Encoder** (or AAC)
-3. Close settings, select the track(s) in your library
-4. **File → Convert → Create MP3 Version**
-
-### The catch:
-
-It won't import FLAC or OGG, and it converts within your library, so you have to add files first. Fine for tracks already in Music, awkward for loose files or unsupported formats.
-
-## Method 3: VLC (free, opens anything)
-
-VLC plays and converts nearly every audio format.
-
-### Steps:
-
-1. Open VLC → **File → Convert / Stream**
-2. Drop in your audio file
-3. Choose an audio profile (for example **Audio - MP3**)
-4. **Save as File**, pick a destination, **Save**
-
-### The catch:
-
-One file at a time, and the interface is utilitarian. Handy when a format won't open anywhere else.
-
-## Method 4: FFmpeg (command line)
-
-For scripting or bulk jobs:
-
-```bash
-brew install ffmpeg
-```
-
-### Convert one file to MP3 at 320 kbps:
-
-```bash
-ffmpeg -i input.m4a -b:a 320k output.mp3
-```
-
-### Every FLAC in a folder to MP3:
-
-```bash
-for f in *.flac; do ffmpeg -i "$f" -b:a 320k "${f%.*}.mp3"; done
-```
-
-Free, and precise about bitrate down to the number. Not the move if the command line isn't for you.
-
 ## Side-by-side comparison
 
 | Method    | Speed     | Batch     | Formats        | Ease of use | Price  |
 | --------- | --------- | --------- | -------------- | ----------- | ------ |
-| Picmal    | Very Fast | Excellent | All, incl FLAC | Very Easy   | $39 |
 | Music app | Moderate  | Limited   | Common only    | Easy        | Free   |
 | VLC       | Slow      | None      | Nearly all     | Easy        | Free   |
 | FFmpeg    | Fast      | Excellent | All            | Technical   | Free   |
+| Picmal    | Very Fast | Excellent | All, incl FLAC | Very Easy   | $39 |
 
 ## Tips
 

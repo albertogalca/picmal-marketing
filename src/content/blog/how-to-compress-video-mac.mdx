@@ -34,7 +34,79 @@ Three levers do most of the work. Understanding them means you compress just eno
 
 Frame rate is a fourth lever for screen recordings: 60 fps to 30 fps helps clips that don't need cinematic motion.
 
-## Method 1: Picmal (batch + live size estimate)
+## Method 1: HandBrake (free, powerful)
+
+[HandBrake](https://handbrake.fr) is the free, open-source standard for video compression.
+
+### Steps:
+
+1. Download and open HandBrake
+2. Drag in your video
+3. Pick a preset like **Fast 1080p30**, or **Fast 720p30** for smaller output
+4. Adjust **Constant Quality (RF)** higher for a smaller file (RF 22-26 is a good range)
+5. Click **Start**
+
+### Worth knowing:
+
+Lots of controls, sensible defaults. No live size estimate, so hitting an exact target takes a little trial and error. Converts one file at a time (it has a queue you fill manually).
+
+## Method 2: QuickTime (already on your Mac, simplest)
+
+QuickTime can downscale a video with no download at all.
+
+### Steps:
+
+1. Open the video in **QuickTime Player**
+2. **File → Export As**
+3. Choose a lower resolution (**720p** or **480p**)
+4. Save
+
+### The catch:
+
+It's resolution-only, no bitrate control, so it's blunt. Perfect when you just need something smaller fast and don't care about fine-tuning.
+
+## Method 3: iMovie (free, built in)
+
+If iMovie is installed, it compresses on export.
+
+### Steps:
+
+1. Create a project and drop your clip on the timeline
+2. **File → Share → File**
+3. Set **Resolution** and **Quality** lower
+4. **Next → Save**
+
+### Worth knowing:
+
+Fine for a single clip you're already editing, clumsy if you just want to shrink a file. You have to build a project first, which is overkill for pure compression.
+
+## Method 4: FFmpeg (command line)
+
+For scripting or precise control:
+
+```bash
+brew install ffmpeg
+```
+
+### Compress with H.264 at a chosen quality:
+
+```bash
+ffmpeg -i input.mp4 -c:v libx264 -crf 24 -c:a aac -b:a 128k output.mp4
+```
+
+### Smaller still, with H.265:
+
+```bash
+ffmpeg -i input.mp4 -c:v libx265 -crf 28 -c:a aac output.mp4
+```
+
+Raise the `-crf` number for a smaller file. Batch a whole folder with a `for` loop.
+
+### Why bother:
+
+The most precise option, and free. If you'd rather not open the terminal, use one of the apps above.
+
+## Method 5: Picmal (batch + live size estimate)
 
 [Picmal](https://picmal.app) is a native Mac app for compressing and converting video. If you want to hit a specific size, or you have several clips, start here.
 
@@ -67,87 +139,15 @@ Frame rate is a fourth lever for screen recordings: 60 fps to 30 fps helps clips
 
 Making a clip fit an exact limit, or compressing many videos at once.
 
-## Method 2: HandBrake (free, powerful)
-
-[HandBrake](https://handbrake.fr) is the free, open-source standard for video compression.
-
-### Steps:
-
-1. Download and open HandBrake
-2. Drag in your video
-3. Pick a preset like **Fast 1080p30**, or **Fast 720p30** for smaller output
-4. Adjust **Constant Quality (RF)** higher for a smaller file (RF 22-26 is a good range)
-5. Click **Start**
-
-### Worth knowing:
-
-Lots of controls, sensible defaults. No live size estimate, so hitting an exact target takes a little trial and error. Converts one file at a time (it has a queue you fill manually).
-
-## Method 3: QuickTime (already on your Mac, simplest)
-
-QuickTime can downscale a video with no download at all.
-
-### Steps:
-
-1. Open the video in **QuickTime Player**
-2. **File → Export As**
-3. Choose a lower resolution (**720p** or **480p**)
-4. Save
-
-### The catch:
-
-It's resolution-only, no bitrate control, so it's blunt. Perfect when you just need something smaller fast and don't care about fine-tuning.
-
-## Method 4: iMovie (free, built in)
-
-If iMovie is installed, it compresses on export.
-
-### Steps:
-
-1. Create a project and drop your clip on the timeline
-2. **File → Share → File**
-3. Set **Resolution** and **Quality** lower
-4. **Next → Save**
-
-### Worth knowing:
-
-Fine for a single clip you're already editing, clumsy if you just want to shrink a file. You have to build a project first, which is overkill for pure compression.
-
-## Method 5: FFmpeg (command line)
-
-For scripting or precise control:
-
-```bash
-brew install ffmpeg
-```
-
-### Compress with H.264 at a chosen quality:
-
-```bash
-ffmpeg -i input.mp4 -c:v libx264 -crf 24 -c:a aac -b:a 128k output.mp4
-```
-
-### Smaller still, with H.265:
-
-```bash
-ffmpeg -i input.mp4 -c:v libx265 -crf 28 -c:a aac output.mp4
-```
-
-Raise the `-crf` number for a smaller file. Batch a whole folder with a `for` loop.
-
-### Why bother:
-
-The most precise option, and free. If you'd rather not open the terminal, use one of the apps above.
-
 ## Side-by-side comparison
 
 | Method    | Speed     | Batch     | Size control | Ease of use | Price  |
 | --------- | --------- | --------- | ------------ | ----------- | ------ |
-| Picmal    | Very Fast | Excellent | Live estimate | Very Easy  | $39 |
 | HandBrake | Moderate  | Good      | Advanced     | Moderate    | Free   |
 | QuickTime | Fast      | None      | Basic        | Very Easy   | Free   |
 | iMovie    | Slow      | None      | Basic        | Moderate    | Free   |
 | FFmpeg    | Fast      | Excellent | Advanced     | Technical   | Free   |
+| Picmal    | Very Fast | Excellent | Live estimate | Very Easy  | $39 |
 
 ## How to hit a specific size (like 25 MB for email)
 

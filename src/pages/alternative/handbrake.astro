@@ -49,6 +49,11 @@ const faqs = [
       "No. Picmal is Mac-only. HandBrake runs on Windows and Linux too.",
   },
   {
+    question: "What is the best free HandBrake alternative on Mac?",
+    answer:
+      "Honestly, for pure video encoding there isn't one. ffmpeg does more but lives in the Terminal, and QuickTime and VLC only cover basic exports. If HandBrake's interface is the problem rather than the price, that's the gap paid apps like Picmal fill: simpler, native, and covering images, audio, and PDFs too.",
+  },
+  {
     question: "What if Picmal doesn't work for me?",
     answer:
       "Full refund within 14 days, no questions asked. Just email support@picmal.app.",
@@ -64,7 +69,7 @@ const faqs = [
     />
     <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema />
+    <FAQSchema faqs={faqs} />
   </head>
 
   <body
@@ -84,6 +89,45 @@ const faqs = [
       picmalFor="You're on a Mac and you need images, audio, or PDFs as well as video. Or you just want an app that feels native and works with Shortcuts."
       competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, or Windows and Linux support. And free matters to you."
     />
+
+    <!-- Why people look for an alternative -->
+    <Section width="narrow">
+      <SectionHeading align="left">
+        Why people go looking for a HandBrake alternative
+      </SectionHeading>
+      <div class="space-y-4">
+        <Paragraph>
+          Rarely because HandBrake is bad. It's free, open source, and after two
+          decades it's still the reference tool for video encoding. When people
+          search for an alternative, it's usually one of three things.
+        </Paragraph>
+        <Paragraph>
+          <strong class="text-text">The interface asks a lot.</strong> Presets,
+          CRF values, encoder tuning, filter tabs. If you know video, that
+          depth is the whole point. If you just want this MOV as a smaller MP4,
+          it's a wall of decisions you didn't want to make.
+        </Paragraph>
+        <Paragraph>
+          <strong class="text-text">It only does video.</strong> The same
+          project that produced the screen recording usually comes with
+          screenshots to compress, audio to convert, or a PDF to shrink.
+          HandBrake handles none of that, so you end up with a folder of
+          single-purpose tools.
+        </Paragraph>
+        <Paragraph>
+          <strong class="text-text">It doesn't feel like a Mac app.</strong> No
+          Finder right-click, no Shortcuts actions, no folder watching. It runs
+          fine on a Mac, it just doesn't plug into one.
+        </Paragraph>
+        <Paragraph>
+          If none of those bother you, keep HandBrake, it's excellent. If they
+          do, that's the gap I built <a href="/" class="link">Picmal</a> for:
+          drag files in, pick a format, done, and it covers
+          <a href="/compress-video-mac" class="link">video compression</a>,
+          images, audio, and PDFs in one app.
+        </Paragraph>
+      </div>
+    </Section>
 
     <!-- Comparison Table -->
     <Section width="default">

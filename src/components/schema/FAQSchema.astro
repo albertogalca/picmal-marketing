@@ -65,10 +65,13 @@ export const faqs = [
   },
 ];
 
+// Pages with their own FAQ block pass it in so the schema matches the visible content.
+const pageFaqs = Astro.props.faqs ?? faqs;
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
+  mainEntity: pageFaqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: {

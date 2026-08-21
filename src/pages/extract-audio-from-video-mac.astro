@@ -11,6 +11,7 @@ import ComparisonHero from "../components/ComparisonHero.astro";
 import CardGrid from "../components/CardGrid.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
+import Paragraph from "../components/Paragraph.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 
 const title =
@@ -136,6 +137,21 @@ const faqSchema = {
       linkText="Need to convert or compress audio too? See the audio converter"
       linkHref="/audio-converter-mac"
     />
+
+    <!-- Free methods -->
+    <Section width="narrow">
+      <SectionHeading>Prefer to do it without an app?</SectionHeading>
+      <Paragraph>
+        Your Mac can already pull the audio out of one video: QuickTime Player,
+        File, Export As, Audio Only. It writes an .m4a and that is the whole
+        trick. There is no MP3 option, no WAV, and it opens one file at a time.
+        The guide on <a class="link" href="/blog/how-to-extract-audio-from-video-mac"
+          >how to extract audio from a video on Mac</a
+        > walks through that route plus a Finder Quick Action, VLC and ffmpeg, all
+        free. Picmal is for when you have a folder of them, or need a format the
+        built-in tools will not write.
+      </Paragraph>
+    </Section>
 
     <MasonryTestimonials />
 

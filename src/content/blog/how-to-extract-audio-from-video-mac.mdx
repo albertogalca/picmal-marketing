@@ -1,0 +1,207 @@
+---
+title: "How to Extract Audio From a Video on Mac (4 Free Methods)"
+description: "Pull the audio out of an MP4, MOV or MKV on your Mac and save it as MP3, M4A or WAV. QuickTime, a Finder Quick Action, VLC, ffmpeg, and a batch app. Tested on macOS 27."
+pubDate: "2026-08-21"
+category: "Tutorial"
+tags: ["Audio", "Video", "MP3", "M4A", "Mac", "Tutorial"]
+faqs:
+  - question: "How do I extract audio from a video on a Mac for free?"
+    answer: "Open the video in QuickTime Player, then File, Export As, Audio Only. You get an .m4a of the soundtrack, no download and no upload. For a whole folder at once, build a one action Shortcut with Encode Media and Audio Only switched on, and it appears in the Finder right-click menu."
+  - question: "Can QuickTime export audio as MP3?"
+    answer: "No. QuickTime's Audio Only export always writes AAC in an .m4a container, capped at 256 kbps. If you specifically need MP3, use VLC, ffmpeg, or a converter app. M4A plays everywhere Apple gear does and sounds better than MP3 at the same bitrate, so check whether you actually need MP3 first."
+  - question: "Does extracting audio from a video lose quality?"
+    answer: "It depends on the route. Copying the existing track out with ffmpeg's -c:a copy is lossless, the audio is bit for bit the same file it was inside the video. QuickTime, Shortcuts, VLC and most apps re-encode, so you lose a little. Not much at a sensible bitrate, but the copy route loses nothing at all."
+  - question: "How do I extract audio from a whole folder of videos at once?"
+    answer: "Three ways. A Shortcuts Quick Action running Encode Media over the selection, an ffmpeg for loop in Terminal, or a batch app like Picmal where you drag the folder in and click once. QuickTime and VLC are one file at a time."
+  - question: "Can I extract the audio from a YouTube video?"
+    answer: "Not with these methods, they all work on video files already on your Mac. Download or export the clip first, then any method here pulls the audio out of it."
+  - question: "What format should I save the audio as?"
+    answer: "M4A (AAC) for listening, it is the default on Apple gear and sounds better than MP3 at the same size. MP3 if something old or non-Apple has to play it. WAV or FLAC if the audio is going into an editor, a DAW, or a transcription tool that wants uncompressed input."
+---
+
+You have a video and you only want the sound. A recorded interview you need as an MP3, a lecture for the commute, a music video you want in your library, a screen recording whose narration is going to a transcription tool.
+
+Every Mac can do this already. Nothing needs to be uploaded to a website, and no site needs your recording.
+
+**Quick answer:** Open the video in **QuickTime Player**, then **File → Export As → Audio Only**. That gives you an .m4a of the soundtrack in a few seconds. For a folder of videos, or for MP3 specifically, use one of the other methods below.
+
+## Pick the method that matches the job
+
+| Situation | Use |
+| --------- | --- |
+| One video, want it done now | [QuickTime](#method-1-quicktime-player-free-built-in) |
+| A folder of videos, no Terminal | [Shortcuts Quick Action](#method-2-a-finder-quick-action-free-built-in-batch) |
+| You need MP3 exactly | [VLC](#method-3-vlc-free-and-gives-you-mp3) or [ffmpeg](#method-4-ffmpeg-free-lossless-if-you-want-it) |
+| Zero quality loss | [ffmpeg with `-c:a copy`](#method-4-ffmpeg-free-lossless-if-you-want-it) |
+| Hundreds of files, and MP3, WAV or FLAC | [Picmal](#method-5-picmal-batch-any-format-one-click) |
+
+## Method 1: QuickTime Player (free, built in)
+
+The fastest route, and it is already on your Mac.
+
+### Steps:
+
+1. Right-click the video → **Open With → QuickTime Player**
+2. **File → Export As → Audio Only…**
+3. Name the file, pick a destination, click **Save**
+
+You get an .m4a file containing just the soundtrack.
+
+### The catch:
+
+QuickTime's Audio Only preset is AAC in an .m4a container, capped at 256 kbps. There is no MP3 option, no WAV, and no setting to change. It also handles one video at a time, and it only opens formats macOS understands, so an MKV or a WMV will not open at all.
+
+Good enough for most people, most of the time.
+
+## Method 2: a Finder Quick Action (free, built in, batch)
+
+This is the one almost nobody knows about. macOS Shortcuts has an **Encode Media** action with an **Audio Only** switch, and a Shortcut can live in the Finder right-click menu. Build it once, use it forever, on as many files as you select.
+
+### Steps:
+
+1. Open **Shortcuts** (it is in Applications)
+2. **File → New Shortcut**
+3. In the sidebar toggle **Use as Quick Action** and tick **Finder**
+4. Set **Receive** to **Files**
+5. Search the action list for **Encode Media** and drag it in
+6. Expand it, turn on **Audio Only**, set **Format** to **M4A**
+7. Add a **Save File** action after it, and pick a destination folder
+8. Name the Shortcut something like "Extract Audio" and close it
+
+Now select any number of videos in Finder, right-click, and it is under **Quick Actions**.
+
+### The catch:
+
+Encode Media offers M4A or AIFF, not MP3. AIFF is uncompressed, so those files get large fast. And building it is a five minute job the first time.
+
+Worth it if you do this regularly and would rather not install anything.
+
+## Method 3: VLC (free, and gives you MP3)
+
+If MP3 is the requirement and you want a normal window with buttons, [VLC](https://www.videolan.org) does it and opens formats QuickTime refuses.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream**
+2. Drag the video into the window
+3. Under **Choose Profile**, pick **Audio - MP3**
+4. Click **Save as File**, choose a destination, **Save**
+
+### The catch:
+
+One file per pass, and the profile system is confusing the first time. Check the extension on the output, VLC has a habit of writing an MP3 stream into a file named .mp4 if you rush the dialog.
+
+## Method 4: ffmpeg (free, lossless if you want it)
+
+The one method that can extract the audio without touching it. Install with [Homebrew](https://brew.sh):
+
+```bash
+brew install ffmpeg
+```
+
+### Copy the existing track out, no re-encoding:
+
+```bash
+ffmpeg -i input.mp4 -vn -c:a copy output.m4a
+```
+
+`-vn` drops the video, `-c:a copy` lifts the audio stream out untouched. This is the only genuinely lossless option here, and it is nearly instant because nothing is being encoded.
+
+The container has to accept the codec. MP4 and MOV usually hold AAC, so `.m4a` is the right extension. An MKV might hold Opus, AC3 or almost anything, so run `ffprobe input.mkv` first and match the extension to what is inside.
+
+### Force MP3:
+
+```bash
+ffmpeg -i input.mp4 -vn -b:a 192k output.mp3
+```
+
+### Force WAV for an editor or a transcription tool:
+
+```bash
+ffmpeg -i input.mp4 -vn -ar 16000 -ac 1 output.wav
+```
+
+16 kHz mono is what most speech-to-text models want, and it makes the file far smaller than a stereo 48 kHz WAV.
+
+### Every video in a folder:
+
+```bash
+for f in *.mp4; do ffmpeg -i "$f" -vn -c:a copy "${f%.*}.m4a"; done
+```
+
+### The catch:
+
+It is the Terminal. Precise and free, but not for everyone.
+
+## Method 5: Picmal (batch, any format, one click)
+
+[Picmal](/extract-audio-from-video-mac) is the Mac app I build. Drag videos in, choose an audio format, click once.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your videos, or a whole folder
+3. Set the output format to **MP3**, **M4A**, **WAV** or **FLAC**
+4. Pick a bitrate if you care about size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Every format QuickTime refuses, including MKV, WebM, AVI and WMV
+- MP3, M4A, WAV, AIFF, FLAC, ALAC and Opus out, not just M4A
+- A folder of hundreds in one pass, each saved as its own file
+- Runs entirely on your Mac, nothing is uploaded, no account, no file size cap
+- Sits in the Finder right-click menu and in Shortcuts too
+
+$39 once, updates included, no subscription.
+
+### Best for:
+
+Batches, formats macOS will not open, or wanting MP3 without learning ffmpeg.
+
+## Side-by-side comparison
+
+| Method | Batch | Formats out | Lossless option | Ease of use | Price |
+| ------ | ----- | ----------- | --------------- | ----------- | ----- |
+| QuickTime | No | M4A only | No | Very Easy | Free |
+| Shortcuts | Yes | M4A, AIFF | No | Moderate setup | Free |
+| VLC | No | MP3 and more | No | Moderate | Free |
+| ffmpeg | Yes | All | Yes | Technical | Free |
+| Picmal | Yes | All | Yes | Very Easy | $39 |
+
+## M4A or MP3?
+
+Most people ask for MP3 out of habit. It is worth a second of thought.
+
+**M4A (AAC)** is what QuickTime, Shortcuts and every iPhone produce. At the same file size it sounds better than MP3, and it plays on anything Apple, on Android, in every browser, and in every modern car.
+
+**MP3** is the one to pick when something old or unusual has to play the file. A 2009 car stereo, a gym treadmill, a DJ controller, an upload form that only accepts .mp3.
+
+**WAV or FLAC** when the audio is an ingredient, not a listen. Editing in a DAW, running it through a transcription model, or archiving a master.
+
+If nothing is forcing your hand, M4A is the better file.
+
+## Common problems
+
+**QuickTime will not open the video.** It only handles formats macOS decodes natively. MKV, WMV, FLV and older AVI files are out. Use VLC, ffmpeg or Picmal for those.
+
+**The exported file is silent.** The video probably has more than one audio track and the tool grabbed the wrong one, or the track is in a codec the tool skipped. `ffprobe input.mp4` lists the streams. With ffmpeg you can pick one explicitly with `-map 0:a:1` for the second audio track.
+
+**The file is much bigger than expected.** You exported AIFF or WAV, which are uncompressed. Ten minutes of stereo audio is roughly 100 MB as WAV and roughly 10 MB as a 128 kbps M4A.
+
+**The audio is out of sync with something else.** Extraction does not shift timing. If a separately recorded video and the extracted audio drift apart, the two were recorded at slightly different clock rates, which is an editing problem, not a conversion one.
+
+## The short version
+
+- **One video, right now:** QuickTime, File → Export As → Audio Only
+- **A folder, no Terminal:** a Shortcuts Quick Action with Encode Media
+- **MP3 specifically:** VLC, or ffmpeg with `-b:a 192k`
+- **Not one bit lost:** `ffmpeg -i in.mp4 -vn -c:a copy out.m4a`
+- **Hundreds of files, any format:** [Picmal](/extract-audio-from-video-mac)
+
+## Related guides
+
+- **Want the dedicated tool?** [Extract audio from video on Mac](/extract-audio-from-video-mac) covers the app side, and [MP4 to MP3](/convert/video/mp4-to-mp3) is the single conversion.
+- **The audio is the wrong format now?** [How to convert audio on Mac](/blog/convert-audio-mac) handles M4A, FLAC, WAV and MP3 in both directions.
+- **The extracted file is too big?** [Compress audio on Mac](/compress-audio-mac) shrinks it without a re-listen test.
+- **Converting the video itself too?** [The best video converter for Mac](/blog/best-video-converter-mac-2026) and the [video converter](/video-converter-mac) cover the video side.

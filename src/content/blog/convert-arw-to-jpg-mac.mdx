@@ -1,7 +1,8 @@
 ---
-title: "How to Convert ARW to JPG on Mac (3 Free Methods)"
-description: "Three free ways to convert Sony ARW files to JPG on a Mac, no upload needed: Preview, the built-in sips Terminal command, and Photos. Plus how to batch a whole shoot and what the free methods get wrong."
+title: "How to Convert ARW to JPG on Mac (4 Free Methods)"
+description: "Four free ways to convert Sony ARW files to JPG on a Mac, no upload needed: Preview, Finder's Quick Action, the built-in sips Terminal command, and Photos. Plus how to batch a whole shoot and what the free methods get wrong."
 pubDate: "2026-08-18"
+updatedDate: "2026-08-21"
 category: "Tutorial"
 tags: ["ARW", "JPG", "RAW", "Sony", "Conversion", "Mac", "Tutorial"]
 faqs:
@@ -37,7 +38,22 @@ Preview handles ARW natively and is the fastest route for a handful of files.
 
 **Best for:** one shoot, one quality setting, no Terminal.
 
-## Method 2: Terminal with sips (built in, scriptable)
+## Method 2: Finder's Convert Image Quick Action (fastest, no app opens)
+
+Since macOS Monterey, Finder can convert images without opening anything, and it reads ARW.
+
+1. Select the ARW files in Finder.
+2. Right-click > Quick Actions > Convert Image.
+3. Set Format to JPEG, pick an image size, and choose whether to keep metadata.
+4. Click Convert to JPEG. The copies land next to the originals.
+
+If Convert Image is not in the menu, enable it under System Settings > General > Login Items &amp; Extensions > Extensions > Finder. Automator can also build a custom Quick Action with your own settings baked in, but for ARW to JPG the built-in one already does the job.
+
+**Limitation:** the quality setting is fixed and the size choices are coarse (Small, Medium, Large, Actual Size). You take what Finder gives you.
+
+**Best for:** a handful of files, right now, without opening an app.
+
+## Method 3: Terminal with sips (built in, scriptable)
 
 `sips` ships with macOS and reads Sony RAW. Check for yourself:
 
@@ -63,7 +79,7 @@ That is two lines and it costs nothing. If your files are lowercase `.arw`, chan
 
 **Best for:** folders, repeatable settings, anything you want to script.
 
-## Method 3: Photos (if the shoot is already imported)
+## Method 4: Photos (if the shoot is already imported)
 
 If the ARWs are in your Photos library, you never needed to touch Finder.
 
@@ -95,6 +111,7 @@ That last case is what [Picmal](https://picmal.app) is for. Drag in the card, pi
 | Situation | Method |
 |-----------|--------|
 | One ARW, quick JPG | Preview (free, built in) |
+| A few files, no app, default settings | Finder Quick Action (free, built in) |
 | A folder, same quality for all | `sips` loop (free, built in) |
 | Already edited in Photos | Photos export (free, built in) |
 | Every shoot, with resizing or a size budget | [Picmal](https://picmal.app) |
@@ -123,3 +140,9 @@ Whether that is a good idea depends on why you are converting.
 If your exported JPGs look flatter or cooler than expected, nothing is broken. Sony cameras apply a Creative Style, white balance, and their own tone curve when they generate the JPG preview. macOS ignores all of that and applies Apple's own RAW rendering.
 
 You have three options. Accept Apple's rendering, which is neutral and perfectly usable. Adjust in Photos before exporting, which is free and gets you most of the way. Or use a dedicated RAW developer like Capture One or Lightroom if matching the in-camera look precisely is part of the job. Converting is not the same as developing, and no converter will make that distinction go away.
+
+## Related guides
+
+- **Shooting more than Sony?** [How to convert RAW to JPG on Mac](/blog/convert-raw-to-jpg-mac) covers every brand's format in one guide.
+- **Canon body in the bag too?** [CR3 to JPG](/convert/cr3-to-jpg) and [CR2 to JPG](/convert/cr2-to-jpg) handle Canon's formats, [NEF to JPG](/convert/nef-to-jpg) covers Nikon.
+- **Converting a whole library, not just RAW?** [How to batch convert images on Mac](/blog/batch-convert-images-mac) handles hundreds of mixed files in one pass.

@@ -79,6 +79,8 @@ find . -name "*.heic" -exec sh -c 'magick "$1" "${1%.heic}.jpg"' _ {} \;
 
 Fast, scriptable, handles any volume. But there's no preview, no quality slider, and if you mistype the path you'll stare at an error message for ten minutes wondering what went wrong. Most people reading this post aren't looking for a Terminal solution.
 
+One format the loop above doesn't cover: SVG. Vectors need a rasteriser, not ImageMagick's default path, and macOS ships one built in. See [how to convert SVG to PNG on Mac](/blog/convert-svg-to-png-mac) for that.
+
 ## Picmal, what I built for exactly this
 
 Once the free options above stop fitting, this is the gap I built for. Drag your files in, pick a format, hit convert. Done.

@@ -191,7 +191,9 @@ SVG is the right choice for anything that isn’t a photograph:
 
 Design tools export SVGs full of junk: editor metadata, unused definitions, comments nobody needs. Run them through SVGO before deploying. A 15KB export often compresses to 3KB.
 
-You can embed SVGs directly in your HTML (saves a network request) or use them in `<img>` tags like any other image. For sites with lots of icons, bundle them into a sprite sheet so the browser fetches one file instead of forty. More on SVG workflows and other formats on [our blog](https://picmal.app/blog).
+You can embed SVGs directly in your HTML (saves a network request) or use them in `<img>` tags like any other image. For sites with lots of icons, bundle them into a sprite sheet so the browser fetches one file instead of forty.
+
+Some places still won't take an SVG at all: email clients, most CMS media libraries, social preview images. For those you need a raster copy, and your Mac can make one for free. Here's [how to convert SVG to PNG on Mac](/blog/convert-svg-to-png-mac).
 
 ## 6. GIF: The Enduring Standard for Simple Animation
 

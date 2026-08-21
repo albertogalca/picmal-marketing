@@ -14,16 +14,15 @@ import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
 
-const title =
-  "Picmal: Batch convert HEIC to JPG on Mac, a whole folder at once";
+const title = "Picmal: The HEIC converter for Mac";
 const description =
-  "Batch convert or change HEIC to JPG on Mac. Drop a folder of iPhone photos into Picmal and get JPG, PNG or WebP, with EXIF kept. Hundreds at a time, offline. $39 one-time.";
+  "A native HEIC converter for Mac. Drop a folder of iPhone photos into Picmal and get JPG, PNG or WebP, with EXIF kept. Hundreds at a time, offline. $39 one-time.";
 
 const faqs = [
   {
-    question: "How do I convert HEIC to JPG on a Mac?",
+    question: "How does Picmal convert HEIC to JPG?",
     answer:
-      "Open Picmal, drag your HEIC photos in from Finder or Photos, choose JPG as the output format, and click Convert. You can do one photo or a whole folder at once, and it all happens on your Mac.",
+      "Drag your HEIC photos in from Finder or Photos, choose JPG as the output format, and click Convert. One photo or a whole folder at once, and it all happens on your Mac. If you want the free built-in ways too, see the guide on how to convert HEIC to JPG on Mac.",
   },
   {
     question: "What is HEIC and why do I need to convert it?",
@@ -81,7 +80,7 @@ const faqSchema = {
     <Header />
 
     <ComparisonHero
-      title="Batch convert HEIC to JPG on your Mac"
+      title="The HEIC converter for your Mac"
       subhead="Your iPhone shoots HEIC, but the world runs on JPG. Drop in a whole folder and Picmal changes every one of them to JPG, PNG or WebP, with the location and camera data intact. Hundreds at a time, fully offline."
       buyEvent="buy_clicked_heic_converter_mac"
       defaultTab="convert"
@@ -89,7 +88,7 @@ const faqSchema = {
 
     <!-- How It Works -->
     <CardGrid
-      heading="How to convert HEIC to JPG on your Mac"
+      heading="A whole folder of HEIC to JPG in three steps"
       numbered
       items={[
         {

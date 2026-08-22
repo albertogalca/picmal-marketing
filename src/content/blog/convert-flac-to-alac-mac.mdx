@@ -1,0 +1,218 @@
+---
+title: "How to Convert FLAC to ALAC on Mac (4 Free Methods)"
+description: "Apple Music won't import FLAC. Convert a lossless library to ALAC on your Mac with XLD, the Music app, afconvert, ffmpeg, or a batch app. Tags and album art kept. Tested on macOS 27."
+pubDate: "2026-08-22"
+category: "Tutorial"
+tags: ["Audio", "FLAC", "ALAC", "Apple Music", "Mac", "Tutorial"]
+faqs:
+  - question: "Why won't Apple Music play my FLAC files?"
+    answer: "Apple never added FLAC to the Music app. macOS itself decodes FLAC fine, so QuickTime Player and Finder previews play a .flac without complaint, but drag one into Music and it is refused. Apple's own lossless codec is ALAC, which lives in an .m4a file. Convert FLAC to ALAC and the track imports and syncs like anything else."
+  - question: "Does converting FLAC to ALAC lose quality?"
+    answer: "No. FLAC and ALAC are both lossless, so the conversion decodes to the original samples and re-compresses them. The result is bit-for-bit identical audio. Only the container and the compression math change. You can convert back to FLAC later and get the same samples again."
+  - question: "Is ALAC bigger than FLAC?"
+    answer: "Slightly, usually a few percent. FLAC compresses a little harder than ALAC on most music. On a 500 GB library that is a handful of gigabytes, which is the price of the files actually playing in Apple Music."
+  - question: "Will my tags and album art survive the conversion?"
+    answer: "It depends on the tool. XLD and Picmal map FLAC's Vorbis comments onto the iTunes-style tags in the .m4a and carry the cover art across. ffmpeg keeps the tags but needs an extra flag for the artwork. macOS's built-in afconvert strips everything, so avoid it for a music library."
+  - question: "How do I convert a whole FLAC library at once?"
+    answer: "XLD, an ffmpeg loop in Terminal, or a batch app. XLD takes a folder of files, ffmpeg handles a whole tree with a find loop, and Picmal takes the folder dragged in and keeps the folder structure on output. The Music app route is one album at a time and is not worth it past a few discs."
+  - question: "Should I delete the FLAC files after converting?"
+    answer: "Keep them if you have the space. They are your archive, and both formats are lossless so the two copies hold the same audio. If space is tight, the ALAC copy is a complete lossless master on its own, and you can go back to FLAC from it at any time with no loss."
+---
+
+You ripped your CDs to FLAC, or bought lossless downloads from Bandcamp or Qobuz, and now none of it shows up in Apple Music. Drag a .flac into the Music app and nothing happens.
+
+That is not a bug. Apple has never supported FLAC in Music, on iOS, or in iTunes before it. Their lossless format is ALAC, Apple Lossless, which arrives as an .m4a file.
+
+The good news: both are lossless, so converting between them is bit-perfect. You lose nothing.
+
+**Quick answer:** install **[XLD](https://tmkk.undo.jp/xld/index_e.html)**, set the output format to Apple Lossless, drag your FLAC folder in. It keeps tags and album art, and it is free.
+
+## Wait, macOS plays FLAC fine
+
+It does, and that confuses people. Since macOS High Sierra, Core Audio decodes FLAC, so QuickTime Player opens a .flac, Finder previews it, and Quick Look shows a waveform.
+
+The Music app is the holdout. It has its own list of what may enter the library, and FLAC is not on it. So the file plays on your Mac but cannot live in your library, cannot sync to your iPhone, and cannot be matched to anything.
+
+## Pick the method that matches the job
+
+| Situation | Use |
+| --------- | --- |
+| A whole library, tags and art kept, free | [XLD](#method-1-xld-free-and-built-for-this) |
+| No downloads, no Terminal, a few albums | [The Music app](#method-2-the-music-app-free-built-in-with-a-detour) |
+| One file, one Terminal line, no install | [afconvert](#method-3-afconvert-free-built-in-terminal) |
+| Scripting, or an odd file XLD chokes on | [ffmpeg](#method-4-ffmpeg-free-and-precise) |
+| Hundreds of albums, no Terminal | [Picmal](#method-5-picmal-drag-the-library-in-click-once) |
+
+## Method 1: XLD (free, and built for this)
+
+XLD is a Mac audio tool that has been around forever and does this exact job better than anything else free. It reads FLAC, writes ALAC, and translates the tags properly.
+
+### Steps:
+
+1. Download XLD from [tmkk.undo.jp/xld](https://tmkk.undo.jp/xld/index_e.html)
+2. Open **XLD → Settings → General**
+3. Set **Output format** to **Apple Lossless**
+4. Set the output directory, and turn on **Preserve the directory structure** if you are doing a whole library
+5. Close settings, then drag your FLAC files or folders onto the XLD window
+
+It queues everything and works through it. Tags, track numbers, disc numbers, and embedded cover art all come across.
+
+### The catch:
+
+The interface is from another era, and the settings are scattered across several tabs. It is also unsigned in the usual way, so the first launch needs a right-click → Open. Once it is set up you never touch the settings again.
+
+### Best for:
+
+Anyone converting a real library for free, who does not mind a dated UI.
+
+## Method 2: the Music app (free, built in, with a detour)
+
+There is no direct route here, because Music will not accept the FLAC in the first place. But Music does convert anything already in your library to ALAC, so the trick is getting the audio in as something it accepts.
+
+### Steps:
+
+1. Convert your FLAC files to **AIFF** first. QuickTime cannot do it, so use XLD, ffmpeg, or drag them through any converter. AIFF because it carries tags, unlike WAV.
+2. Open **Music → Settings → Files → Import Settings…**
+3. Set **Import Using** to **Apple Lossless Encoder**, click OK
+4. Drag the AIFF files into your library
+5. Select them, then **File → Convert → Create Apple Lossless Version**
+6. Delete the AIFF originals from the library once the ALAC copies appear
+
+### The catch:
+
+It is two conversions and a temporary pile of AIFF files, which are uncompressed and roughly twice the size of the FLAC. You also need a first tool anyway to make the AIFF, and any tool that makes AIFF can usually make ALAC directly, which makes this the long way round.
+
+### Best for:
+
+Nobody, honestly, unless you already have AIFF or WAV files sitting there. Included because it is the first thing everyone tries.
+
+## Method 3: afconvert (free, built in, Terminal)
+
+macOS ships a converter at `/usr/bin/afconvert`. Nothing to install.
+
+```bash
+afconvert -f m4af -d alac song.flac song.m4a
+```
+
+`-f m4af` is the .m4a container, `-d alac` is Apple Lossless. That is the whole command.
+
+### The catch:
+
+Two real problems, both of which I hit while testing this on macOS 27.
+
+**It throws your tags away.** Title, artist, album, track number, album art, all gone. The output is a nameless lossless file. For a music library that is a dealbreaker.
+
+**It writes 32-bit ALAC.** Feed it a normal 16-bit CD rip and the output comes back 32-bit, which on my test file was six times the size of the FLAC that went in. Same audio, padded out. There is no flag to hold the bit depth.
+
+### Best for:
+
+A one-off file where the tags do not matter, and you do not want to install anything.
+
+## Method 4: ffmpeg (free, and precise)
+
+If you already have ffmpeg, or you want to script the whole library, this is the reliable route.
+
+```bash
+brew install ffmpeg
+```
+
+### One file:
+
+```bash
+ffmpeg -i song.flac -c:a alac -c:v copy -disposition:v attached_pic song.m4a
+```
+
+The `-c:v copy -disposition:v attached_pic` part is not optional in practice. FLAC stores cover art as a video stream, and without those flags ffmpeg tries to re-encode the artwork as H.264, fails, and writes nothing:
+
+```
+Could not find tag for codec h264 in stream #0
+```
+
+That error message is why so many people conclude ffmpeg cannot do ALAC. It can. It just needs to be told to leave the album cover alone.
+
+### A folder:
+
+```bash
+for f in *.flac; do ffmpeg -i "$f" -c:a alac -c:v copy -disposition:v attached_pic "${f%.flac}.m4a"; done
+```
+
+### A whole library, keeping the folder tree:
+
+```bash
+find . -name '*.flac' -exec sh -c \
+  'ffmpeg -i "$1" -c:a alac -c:v copy -disposition:v attached_pic "${1%.flac}.m4a"' _ {} \;
+```
+
+Tags come across on their own. ffmpeg maps FLAC's Vorbis comments onto the .m4a's iTunes atoms without being asked.
+
+### The catch:
+
+It is the Terminal, and one wrong flag either drops your artwork or fails outright. Also, if a file has no cover art at all, `-c:v copy` is harmless, so the command above is safe to run across a mixed library.
+
+## Method 5: Picmal (drag the library in, click once)
+
+[Picmal](/audio-converter-mac) is the Mac app I build. Drag in a folder, pick ALAC, click Convert.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your FLAC files, or the whole music folder
+3. Set the output format to **ALAC**
+4. Click **Convert**
+
+### Why people reach for it:
+
+- Bit-perfect ALAC, verified against the source, not a lossy file wearing a lossless name
+- Tags, track numbers, and embedded art carried across without flags
+- Hundreds of tracks in one pass, folder structure kept, output to a subfolder if you want
+- Runs entirely on your Mac. No upload, no account, no file size cap
+- Sits in the Finder right-click menu, so a folder of FLAC is two clicks from ALAC
+- Handles the rest of the library too, WAV, AIFF, APE, WMA, OGG, all into ALAC
+
+$39 once, updates included, no subscription.
+
+### Best for:
+
+A big library, when you would rather not learn ffmpeg or fight XLD's settings panes.
+
+## Side-by-side comparison
+
+| Method | Batch | Keeps tags | Keeps album art | Ease of use | Price |
+| ------ | ----- | ---------- | --------------- | ----------- | ----- |
+| XLD | Yes | Yes | Yes | Dated UI | Free |
+| Music app | Sort of | Partly | Partly | Two conversions | Free |
+| afconvert | With a loop | No | No | Technical | Free |
+| ffmpeg | Yes | Yes | With a flag | Technical | Free |
+| Picmal | Yes | Yes | Yes | Very Easy | $39 |
+
+## FLAC or ALAC, if you get to choose
+
+Both are lossless. Neither sounds better than the other, because both decode to exactly the source samples. The choice is about where the files have to play.
+
+**ALAC** if your listening happens in Apple Music, on an iPhone, on an Apple TV, or through HomePods. It is the only lossless format that whole chain accepts.
+
+**FLAC** if you use Plex, Roon, a Sonos system, an Android phone, a DAP, or a Linux server. FLAC is the default everywhere outside Apple's fence, and it compresses a few percent smaller.
+
+**Both** is a fine answer too. Keep FLAC as the archive on a drive somewhere, run an ALAC copy into Apple Music. They are the same audio, so nothing is lost by holding two versions.
+
+## Common problems
+
+**The .m4a imports but Music says it is not lossless.** Check what the file actually contains. Some converters quietly write AAC into the .m4a instead of ALAC, because both formats use the same extension. In Music, select the track and press Command-I, then look at the Codec line under the File tab. It should read Apple Lossless, not AAC. If it reads AAC, the conversion was lossy and you need to redo it from the FLAC.
+
+**The album art is missing.** ffmpeg without `-c:v copy -disposition:v attached_pic`, or afconvert at all. Reconvert with the right flags, or use XLD or Picmal, which handle it by default.
+
+**Track numbers are wrong or the album is split.** FLAC's Vorbis comments store disc and track differently from the way iTunes atoms do, and a sloppy converter loses the disc number. That makes Music treat disc 2 as a second album. XLD and Picmal map them correctly. If you already have a mess, select the tracks in Music, Command-I, and set the disc numbers by hand.
+
+**ffmpeg fails with "Could not find tag for codec h264".** The embedded cover art again. See [Method 4](#method-4-ffmpeg-free-and-precise).
+
+**The ALAC files are much bigger than the FLAC.** A few percent bigger is normal. Six times bigger means afconvert padded 16-bit audio out to 32-bit. Reconvert with ffmpeg, XLD, or Picmal.
+
+## The short version
+
+- **Free, whole library, tags kept:** XLD, output format set to Apple Lossless
+- **Free, scripted:** `ffmpeg -i in.flac -c:a alac -c:v copy -disposition:v attached_pic out.m4a`
+- **Built in, one file, tags not needed:** `afconvert -f m4af -d alac in.flac out.m4a`
+- **Skip the Music app route** unless your files are already AIFF or WAV
+- **Hundreds of albums, no Terminal:** [Picmal](/audio-converter-mac), or the [FLAC to ALAC page](/convert/audio/flac-to-alac)
+
+Once the ALAC files are in place, the rest of your audio housekeeping is the same job: [converting audio on a Mac](/blog/convert-audio-mac) covers the other formats, and [compressing audio](/compress-audio-mac) covers the trip back down to something small enough for a phone.

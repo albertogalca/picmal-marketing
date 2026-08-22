@@ -1,37 +1,50 @@
 # Picmal
 
-> Picmal is a native macOS application for batch converting and compressing images, videos, and audio files. It processes files entirely offline for privacy, supports drag-and-drop workflows, and integrates with Finder via right-click context menu options.
+> Picmal is a native macOS application for batch converting and compressing images, videos, audio files, and PDFs. It processes files entirely offline for privacy, supports drag-and-drop workflows, and integrates with Finder via right-click context menu options.
 
-> Last updated: 2026-06-04
+> Last updated: 2026-08-22
 
 Picmal is designed for Mac users who need to convert media files quickly without uploading to cloud services. Key features include:
 
 - Batch processing of thousands of files at once
 - 100% offline processing (no data leaves your Mac)
-- Finder integration via Services menu (right-click to convert/compress)
-- Support for 20+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF
-- Video and audio conversion and compression
-- Burn-in subtitles for video (SRT or VTT) with configurable size, color and position
-- Per-video playback speed (0.25×–4× presets or custom 10–800%) with pitch-preserved audio
+- Finder integration via Quick Actions and the Services menu (right-click to convert/compress)
+- Support for 30+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF, JXL, SVG, ICNS, ICO
+- Video and audio conversion and compression, with hardware H.264/HEVC encoding on any Mac
+- PDF compression that re-encodes only the images inside and keeps text selectable
+- PDF tools: combine PDFs, split by page range, images to PDF, reorder and delete pages
+- Video tools: combine several clips into one (lossless stream copy when they match), and build an MP4 slideshow from a batch of photos
+- Audio tools: merge audio files into one track or a chaptered M4B audiobook, and split a chaptered audiobook into per-chapter files
+- Vectorize: trace raster images into real SVG paths (Logo, Photo, or B&W style per image)
+- Remove Background: cut the subject onto a transparent PNG, entirely on-device
+- App Icons: turn one image into a macOS .icns (with optional Big Sur or Tahoe tile shape), a Windows .ico, and an Xcode-ready iOS icon set
+- Burn-in subtitles for video (SRT or VTT) with configurable size, color and position; existing soft subtitle tracks are preserved
+- Per-video playback speed (0.25x-4x presets or custom 10-800%) with pitch-preserved audio
+- Video resolution cap (2160p, 1440p, 1080p, 720p, 480p, 360p or Original, downscale only)
 - Video watermarks (PNG overlay, 9-anchor positioning, margins, opacity, multiple presets)
-- Command-line tool (`picmal-cli`) for scripting batch conversions, compression, and watched folders with NDJSON output
+- Command-line tool (`picmal-cli`) for scripting conversions, compression, PDF and video tools, watched folders, and saved presets with NDJSON output
+- Raycast extension
 - Clipboard image optimization (compress or convert images copied to the clipboard)
 - Watched folders and hot folder monitoring with per-folder resize and "compress after convert"
 - Shortcuts app integration and menu bar background operation
-- Batch resize with 5 modes (percentage, fixed width/height, max dimensions, exact) — applies to both Convert and Compress
-- Color space conversion (sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, Rec. 2020)
-- DPI metadata control (72–600 or custom)
+- Batch resize with 6 modes (percentage, fixed width, fixed height, max dimensions, exact dimensions, max file size) applied to both Convert and Compress
+- Color space conversion (sRGB, Display P3, Adobe RGB, ProPhoto RGB, Rec. 709, Rec. 2020, Grayscale, CMYK)
+- DPI metadata control (72-600 or custom)
+- Default output format rules per input format, one format for the whole drop, or KEEP to leave a format untouched
 - Before/after preview slider on processed files
 - Adjustable quality and compression settings with six presets plus Custom
-- Metadata preservation modes (strip all, keep essential, keep all)
+- Metadata preservation modes (strip all, keep essential, keep all, or Custom by category) plus your own copyright and ownership tags
 
 ## Pricing
 
-One-time purchase with lifetime license. No subscription required.
-- 1-device license: $19
-- 2-device license: $29
-- 3-device license: $39
-- 5-device license: $59
+One-time purchase with lifetime license. No subscription required. No free trial: the download is the full app, and a license is required to process files.
+
+- Picmal: $39 (one-time, 2 Macs, every feature, free updates forever)
+- Picmal Pro: $69 (one-time, 5 Macs, same features)
+- Mac App Store: $39 (same app and price; no command line tool, Raycast extension or watched folders)
+
+Existing 1/2/3-device license holders can upgrade to 5 devices by paying the difference.
+40% student discount on a verified school email address. Purchasing-power pricing is applied automatically at checkout by country.
 
 14-day money-back guarantee.
 
@@ -39,17 +52,19 @@ Machine-readable pricing: https://picmal.app/pricing.md
 
 ## Supported Formats
 
-**Images:** HEIC, HEIF, HIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, PDF, JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM, PCX, XBM, XPM, QOI, PSD, AI, DNG/RAW
+**Images:** HEIC, HEIF, HIF, JPG, JPEG, PNG, WebP, AVIF, TIFF, BMP, GIF, SVG, ICO, ICNS, PDF, JP2, PICT, QTIF, SGI, TGA, JXL, DDS, EXR, PBM, PGM, PPM, PNM, PCX, XBM, XPM, QOI, PSD, AI, DNG/RAW (plus CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF as input)
 **Video:** MP4, MOV, AVI, MKV, WebM, FLV, WMV, M4V, MPG, MPEG, 3GP, M2TS, MTS, VOB, ASF, OGV, WTV, TS, MJPEG, M2V, HEVC, F4V, MXF
-**Audio:** MP3, WAV, AAC, M4A, FLAC, OGG, OGA, OPUS, M4R, AC3, WV, AU, CAF, SPX, IRCAM, SND, VOC, DTS, TTA, W64, SLN, HCOM, PAF, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, PVF
+**Audio:** MP3, WAV, AAC, M4A, M4B, FLAC, OGG, OGA, OPUS, M4R, AC3, WV, AU, CAF, SPX, IRCAM, SND, VOC, DTS, TTA, W64, SLN, HCOM, PAF, MP2, WVE, NIST, AIFF, AIF, AIFC, AVR, PVF
 
 ## Pages
 
 - [Home](https://picmal.app): Main landing page with features, pricing, and download
 - [Docs](https://picmal.app/docs): Official documentation
-- [Blog](https://picmal.app/blog): Tutorials and guides for image conversion
+- [Blog](https://picmal.app/blog): Tutorials and guides for image, video, audio and PDF conversion
 - [Changelog](https://picmal.app/changelog): Version history and release notes
-- [Affiliate Program](https://picmal.app/affiliate): 25% commission affiliate program
+- [Download](https://picmal.app/download): Direct download of the full app
+- [Education](https://picmal.app/education): 40% student discount
+- [Affiliate Program](https://picmal.app/affiliate): 30% commission affiliate program
 - [Privacy Policy](https://picmal.app/privacy): Privacy policy
 - [Terms of Service](https://picmal.app/terms): Terms of service
 
@@ -60,17 +75,44 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Compressing files](https://picmal.app/docs/compressing-files): Reduce file sizes with presets
 - [Managing the queue](https://picmal.app/docs/managing-the-queue): Priority, pause/resume, and the right-click menu
 - [Supported formats](https://picmal.app/docs/supported-formats): Full list of input and output formats
-- [Image compression](https://picmal.app/docs/image-compression): Per-format quality settings and presets
-- [Audio and video](https://picmal.app/docs/audio-and-video): Codecs, bitrates, subtitle burn-in, playback speed
+- [Image compression](https://picmal.app/docs/image-compression): Per-format quality settings, presets, and how PDF compression works
+- [Audio and video](https://picmal.app/docs/audio-and-video): Codecs, bitrates, resolution cap, subtitle burn-in, playback speed
+- [Video tools](https://picmal.app/docs/video-tools): Combine videos and build photo slideshows
+- [Audio tools](https://picmal.app/docs/audio-tools): Merge audio, build M4B audiobooks, split by chapter
+- [PDF tools](https://picmal.app/docs/pdf-tools): Combine, split, images to PDF, organize pages
+- [App Icons](https://picmal.app/docs/app-icons): .icns, .ico and iOS icon sets from one image
+- [Vectorize](https://picmal.app/docs/vectorize): Trace raster images into real SVG vectors
+- [Remove Background](https://picmal.app/docs/remove-background): Cut the subject onto a transparent PNG
 - [Resize and color space](https://picmal.app/docs/resize-and-color-space): Resize modes (Convert and Compress), DPI, color profiles
+- [Metadata](https://picmal.app/docs/metadata): EXIF, GPS and copyright control, category by category
 - [Watermarks](https://picmal.app/docs/watermarks): PNG overlays for videos
-- [Output and naming](https://picmal.app/docs/output-and-naming): File destinations and naming rules
+- [Output and naming](https://picmal.app/docs/output-and-naming): File destinations, default format rules, and naming
 - [Watched folders](https://picmal.app/docs/watched-folders): Automatic folder processing
 - [Clipboard optimization](https://picmal.app/docs/clipboard-optimization): Auto-compress or convert clipboard images
-- [Integrations](https://picmal.app/docs/integrations): Drag & drop, Finder Services, Shortcuts, menu bar
-- [Command line (picmal-cli)](https://picmal.app/docs/cli): Terminal companion for convert, compress, watched folders, and presets with NDJSON output
-- [License](https://picmal.app/docs/license): Activation and deactivation
+- [Integrations](https://picmal.app/docs/integrations): Drag & drop, Finder Quick Actions and Services, Shortcuts, Raycast, menu bar
+- [Command line (picmal-cli)](https://picmal.app/docs/cli): Terminal companion for convert, compress, PDF and video tools, watched folders, and presets with NDJSON output
+- [App Store or direct](https://picmal.app/docs/mac-app-store): What differs between the two builds
+- [License](https://picmal.app/docs/license): Activation, deactivation, and the self-serve portal
 - [FAQ](https://picmal.app/docs/faq): Common questions and fixes
+
+## Feature Pages
+
+- [Image converter for Mac](https://picmal.app/image-converter-mac)
+- [Video converter for Mac](https://picmal.app/video-converter-mac)
+- [Audio converter for Mac](https://picmal.app/audio-converter-mac)
+- [HEIC converter for Mac](https://picmal.app/heic-converter-mac)
+- [RAW converter for Mac](https://picmal.app/raw-converter-mac)
+- [Compress images on Mac](https://picmal.app/compress-images-mac)
+- [Compress video on Mac](https://picmal.app/compress-video-mac)
+- [Compress audio on Mac](https://picmal.app/compress-audio-mac)
+- [Resize images on Mac](https://picmal.app/resize-image-mac)
+- [Extract audio from video on Mac](https://picmal.app/extract-audio-from-video-mac)
+- [Add a watermark to video on Mac](https://picmal.app/add-watermark-to-video-mac)
+- [Remove metadata from photos on Mac](https://picmal.app/remove-metadata-from-photos-mac)
+- [App icon generator for Mac](https://picmal.app/app-icon-generator-mac)
+- [Merge PDFs on Mac](https://picmal.app/merge-pdf-mac)
+- [Split a PDF on Mac](https://picmal.app/split-pdf-mac)
+- [Images to PDF on Mac](https://picmal.app/images-to-pdf-mac)
 
 ## Conversion Guides
 
@@ -81,6 +123,10 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Convert WebP to JPG](https://picmal.app/convert/webp-to-jpg): Convert WebP images for universal compatibility
 - [Convert JPG to WebP](https://picmal.app/convert/jpg-to-webp): Optimize images for web with WebP format
 - [Convert PNG to WebP](https://picmal.app/convert/png-to-webp): Modern web format conversion
+- [Convert AVIF to JPG](https://picmal.app/convert/avif-to-jpg): Open AVIF images anywhere
+- [Convert TIFF to JPG](https://picmal.app/convert/tiff-to-jpg): Shrink scanned and archival TIFFs
+- [Convert CR2 to JPG](https://picmal.app/convert/cr2-to-jpg): Canon RAW to JPG
+- [Convert ARW to JPG](https://picmal.app/convert/arw-to-jpg): Sony RAW to JPG
 - [All Conversions](https://picmal.app/convert): Full list of supported format conversions
 
 ## Compression Guides
@@ -88,23 +134,33 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Compress JPG](https://picmal.app/compress/jpg): Reduce JPG file sizes
 - [Compress PNG](https://picmal.app/compress/png): Optimize PNG images
 - [Compress WebP](https://picmal.app/compress/webp): Compress WebP files
+- [Compress PDF](https://picmal.app/compress/pdf): Shrink PDFs while keeping text selectable
 - [All Compression Options](https://picmal.app/compress): Full list of compression tools
 
 ## Blog Articles
 
 - [How to Convert HEIC to JPG on Mac](https://picmal.app/blog/how-to-convert-heic-to-jpg-mac): Complete guide with 5 methods
 - [How to Batch Convert Images on Mac](https://picmal.app/blog/batch-convert-images-mac): Efficient batch conversion methods
+- [Reduce Image File Size on Mac](https://picmal.app/blog/reduce-image-file-size-mac): Free and paid ways to shrink images
+- [Bulk Resize Images on Mac](https://picmal.app/blog/bulk-resize-images-mac): Batch resize without a subscription
+- [How to Compress Video on Mac](https://picmal.app/blog/how-to-compress-video-mac): Shrink video files locally
+- [How to Extract Audio from Video on Mac](https://picmal.app/blog/how-to-extract-audio-from-video-mac): Pull an audio track out of a clip
+- [Convert MOV to MP4 on Mac](https://picmal.app/blog/convert-mov-to-mp4-mac): Free methods compared
+- [Convert MKV to MP4 on Mac](https://picmal.app/blog/convert-mkv-to-mp4-mac): Free methods compared
+- [Convert HEVC to MP4 on Mac](https://picmal.app/blog/convert-hevc-to-mp4-mac): Make HEVC clips play anywhere
+- [Convert RAW to JPG on Mac](https://picmal.app/blog/convert-raw-to-jpg-mac): Batch RAW conversion
+- [Convert SVG to PNG on Mac](https://picmal.app/blog/convert-svg-to-png-mac): Rasterize vectors at any size
+- [PNG to Mac Icon (.icns)](https://picmal.app/blog/png-to-mac-icon-icns): Build a macOS app icon from one image
+- [Best Media Converter for Mac 2026](https://picmal.app/blog/best-media-converter-mac-2026): Comparison of Mac conversion tools
+- [Best Video Converter for Mac 2026](https://picmal.app/blog/best-video-converter-mac-2026): Comparison of Mac video tools
 - [Best Image Formats for Web](https://picmal.app/blog/best-image-formats-for-web): Choosing the right format for websites
-- [Best Image Formats in 2025](https://picmal.app/blog/best-image-formats-2025): Modern format recommendations
-- [How to Enable Picmal Right-Click Menu](https://picmal.app/blog/how-to-enable-picmal-right-click-menu): Enable Finder context menu integration
-- [Convert PNG to JPEG on Mac](https://picmal.app/blog/convert-png-to-jpeg-mac): Step-by-step PNG conversion guide
 - [What is an Image File Format](https://picmal.app/blog/what-is-image-file-format): Understanding image formats
-- [Top Batch Image Converters for Mac](https://picmal.app/blog/top-batch-image-converter-mac): Comparison of Mac conversion tools
-- [How to Organize Digital Photos](https://picmal.app/blog/how-to-organize-digital-photos): Photo organization tips
+- [How to Enable Picmal Right-Click Menu](https://picmal.app/blog/how-to-enable-picmal-right-click-menu): Enable Finder context menu integration
 
 ## Tools
 
-- [Image Format Selector](https://picmal.app/tools/image-format-selector): Interactive tool to choose the best format
+- [Image File Size Calculator](https://picmal.app/tools/image-file-size-calculator): Estimate an image's size before you export it
+- [All tools](https://picmal.app/tools)
 
 ## Alternatives
 
@@ -116,8 +172,12 @@ How Picmal compares to other Mac media tools:
 - **Compresto** — image/video compression, but no format conversion. See https://picmal.app/alternative/compresto
 - **Kompressor** — image compression only, no conversion and no video/audio. See https://picmal.app/alternative/kompressor
 - **ffWorks** — FFmpeg front-end for video/audio, no image conversion. See https://picmal.app/alternative/ffworks
+- **ImageOptim** — free lossless image compression, but no conversion, no video/audio, no PDF. See https://picmal.app/alternative/imageoptim
+- **TinyPNG** — web service for PNG/JPG/WebP, so your files are uploaded. See https://picmal.app/alternative/tinypng
+- **CloudConvert** — web service covering many formats, credit-based and upload-based. See https://picmal.app/alternative/cloudconvert
+- **Zipic** — Mac image compressor, no video, audio or PDF. See https://picmal.app/alternative/zipic
 
-Picmal's distinction: one native Mac app for images, video, and audio — both convert and compress — fully offline, batch-first, one-time purchase.
+Picmal's distinction: one native Mac app for images, video, audio, and PDFs — both convert and compress — fully offline, batch-first, one-time purchase.
 
 ## Contact
 

@@ -54,7 +54,9 @@ Each watched folder can have its own resize configuration. Choose from several r
 
 ### Naming
 
-Set a prefix and/or suffix for output files.
+Set a prefix and/or suffix for output files, or write a full naming pattern using the same tokens as **Settings → Output** — `{original}`, `{date}`, `{camera}`, and the rest. See [output and naming](/docs/output-and-naming#tokens) for the full list.
+
+`{sequence}` works a little differently here. A watched folder sees files one at a time rather than as a batch, so instead of restarting at 1 with every file it keeps a running count for that folder. The folder's settings show how many numbers it has handed out and give you a **Reset** button to start again at 1.
 
 ### Additional options
 

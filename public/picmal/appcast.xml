@@ -3,6 +3,32 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.5</title>
+            <pubDate>Sat, 22 Aug 2026 21:32:09 +0300</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>115</sparkle:version>
+            <sparkle:shortVersionString>1.8.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.5/Picmal.dmg" length="87792935" type="application/octet-stream" sparkle:edSignature="d7nR8eQrfBBXGRp896nFSn8pqhnGv9tx43iKEesenibZJnDjXtBR/BB/TQKqdvcGhrCdx36hlsu+KN6YG6mUCg=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Number your files while you rename them.</strong> File naming gains a `{sequence}` token, so a batch can come out as `holiday-001.jpg`, `holiday-002.jpg` and so on. `{sequence:3}` pads to three digits, `{sequence:3+10}` starts the count at 010. A watched folder keeps its own running count as files arrive, and the folder's settings show how far it has got and let you set it back to one.</li>
+<li><strong>`picmal-cli` renames output files.</strong> `convert` and `compress` take a `--pattern` option with the same tokens as the app — `{original}`, `{date}`, `{camera}`, `{sequence}` and the rest — so a whole folder can be renamed and converted in one command.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>PDF compression goes much further on scans and newspaper pages.</strong> A scanned document could only be squeezed so far, because Picmal re-encoded the pictures inside it at their original size and never made them smaller. It now lowers their resolution to match the quality you picked, so a 25 MB scan comes out at 2 MB instead of 10 MB, and the text stays real text you can select and search. Pages that are mostly text are left alone, as before.</li>
+<li><strong>Picmal tells you when links and bookmarks are removed.</strong> Squeezing a PDF that hard rebuilds it, and a rebuilt PDF loses its links, bookmarks and form fields. When that happens, the row now shows a warning saying so, and `picmal-cli` prints the same warning and marks the file `pdf_structure_dropped` in its JSON output. Documents with none of those — scans, photo exports — compress with no warning.</li>
+<li><strong>Compressing a track keeps its album art.</strong> Compression rebuilt the file without the artwork, so a compressed MP3 or M4A came out blank in Music and on your phone. Art now survives, and the cover image in the source folder gets embedded on compression too, not only on conversion. Turning on "Remove metadata" still strips it.</li>
+<li><strong>Picmal tells you when cover art can't be attached.</strong> Only MP3, M4A, M4B, ALAC and FLAC can hold a picture. Picking WAV, AIFF, OGG or Opus with cover art turned on used to drop the image without a word; the row now shows a warning that explains it.</li>
+<li><strong>macOS now says why Picmal is asking for a folder.</strong> The prompts for your Desktop, a network drive or your Music library used to give you one vague line to decide on. Each one now tells you what Picmal reads, what it writes and where.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>A compressed PDF can't come out bigger than it went in.</strong> The DPI setting tags photos, and a PDF has no tag to write — but turning it on quietly switched off the check that keeps a compressed file from growing. PDFs are now left out of it.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.4</title>
             <pubDate>Sat, 15 Aug 2026 09:54:59 +0300</pubDate>
             <link>https://picmal.app/</link>

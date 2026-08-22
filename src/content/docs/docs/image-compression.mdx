@@ -39,7 +39,9 @@ This matters more than it sounds. A web article saved as PDF often *looks* like 
 
 The flip side: a PDF that really is mostly text and fonts has almost nothing to remove. When that happens, Picmal says so — the Saving column shows **Already optimized** and your original is kept byte-for-byte.
 
-Scanned documents (where each page is one big image) are compressed page-by-page instead, at a resolution derived from the quality slider.
+Scanned documents are the other case. There the picture *is* the page, so re-encoding it at its original size only goes so far — Picmal lowers the resolution of the images inside to match the quality you picked. A 25 MB scan typically lands around 2 MB, and because only the pictures are touched, the text stays real text you can select and search.
+
+Squeezing a document that hard means rebuilding it, and a rebuilt PDF loses its links, bookmarks, and form fields. When your file has any of those, Picmal shows a warning on the row rather than dropping them quietly. Scans and photo exports have none, so they compress with no warning at all.
 
 ## Never larger than the original
 

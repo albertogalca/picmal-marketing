@@ -40,8 +40,24 @@ Configure patterns in **Settings → Output**. There are two independent pattern
 | `{day}`       | Capture day from EXIF                      | `15`                     |
 | `{camera}`    | Camera make and model from EXIF            | `FUJIFILM_X-T20`         |
 | `{iso}`       | ISO value from EXIF                        | `400`                    |
+| `{sequence}`  | Position in the batch, starting at 1       | `1`                      |
 
 Click any token in the settings panel to insert it into the focused pattern field. A live preview shows what the output filename will look like.
+
+### Numbering a batch
+
+`{sequence}` numbers files in the order they appear in the list. Two extra forms let you shape the count:
+
+| Form              | Gives you            |
+| ----------------- | -------------------- |
+| `{sequence}`      | `1`, `2`, `3`        |
+| `{sequence:3}`    | `001`, `002`, `003`  |
+| `{sequence+10}`   | `10`, `11`, `12`     |
+| `{sequence:3+10}` | `010`, `011`, `012`  |
+
+So `holiday-{sequence:3}` turns a folder of photos into `holiday-001.jpg`, `holiday-002.jpg`, and so on. Unlike the EXIF tokens, this one always has a value — a file with no metadata still gets its number.
+
+A [watched folder](/docs/watched-folders#naming) counts differently: files arrive one at a time rather than as a batch, so the folder keeps a running count that carries on where it left off.
 
 ### Examples
 

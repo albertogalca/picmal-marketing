@@ -77,6 +77,7 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `-f`, `--format <ext>`    | Target format extension (e.g. `jpg`, `webp`, `mp4`, `mp3`).                  |
 | `-o`, `--output <path>`   | Output file or directory. Defaults to alongside each input.                  |
 | `-w`, `--overwrite`       | Overwrite existing outputs.                                                  |
+| `--pattern <pattern>`     | Rename outputs with a naming pattern (see [naming patterns](#naming-patterns)). |
 | `--quality <n>`           | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`.    |
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
 | `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
@@ -136,8 +137,23 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `--credit <text>`        | Credit line to embed.                                                    |
 | `--contact <text>`       | Contact or URL to embed.                                                 |
 | `-w`, `--overwrite`      | Overwrite existing outputs.                                              |
+| `--pattern <pattern>`    | Rename outputs with a naming pattern (see [naming patterns](#naming-patterns)). |
 
-PDFs are compressed with the same text-preserving engine as the app: only the images inside are re-encoded, and the output is never larger than the input. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
+PDFs are compressed with the same text-preserving engine as the app: only the images inside are re-encoded, and the output is never larger than the input. Compressing a scan hard enough to shrink it means rebuilding the document, which drops its links, bookmarks, and form fields — when that happens `picmal-cli` prints a warning and adds `pdf_structure_dropped` to the file's `notes` in JSON output. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
+
+### Naming patterns
+
+`convert` and `compress` both take `--pattern`, which renames outputs using the same tokens as the app: `{original}`, `{date}`, `{datetime}`, `{year}`, `{month}`, `{day}`, `{camera}`, `{iso}`, and `{sequence}`. See [output and naming](/docs/output-and-naming#tokens) for what each one means.
+
+```bash
+# holiday-001.webp, holiday-002.webp, ...
+picmal-cli convert -i ~/Pics/*.jpg -f webp -o ~/out --pattern 'holiday-{sequence:3}'
+
+# 2026-03-15_IMG_0042.jpg — dated from EXIF
+picmal-cli compress -i ~/Pics -o ~/out --pattern '{date}_{original}'
+```
+
+`{sequence}` numbers files in the order you pass them. Without `--pattern`, `convert` keeps the original name and `compress` appends `_compressed`. A `--output` path that names a file rather than a directory is used verbatim, pattern or not.
 
 If your `--preset` is an audio or video preset and you don't pass `--output`, `picmal-cli` picks the right container for you (Opus → `.opus`, AAC → `.m4a`, FLAC → `.flac`, VP9 → `.webm`). Pass `--output` if you want a specific path.
 
@@ -437,6 +453,8 @@ picmal-cli version
 When stdout isn't a terminal (piped or redirected), `picmal-cli` emits NDJSON: one JSON object per line. Force it with `--json`, force text with `--text`.
 
 Every event carries an `event` discriminator and an RFC 3339 `ts`. Successful file outputs go to **stdout**; errors, warnings, and progress go to **stderr**. The schema version is `1` and is included in the `started` event so consumers can detect breakages early.
+
+A `file` event can also carry a `notes` array when there is something you shouldn't miss. The only value today is `pdf_structure_dropped`, which means deeper PDF compression rebuilt that document and its links, bookmarks, and form fields did not survive. The field is omitted entirely when there is nothing to report, so existing consumers are unaffected.
 
 Example pipeline:
 

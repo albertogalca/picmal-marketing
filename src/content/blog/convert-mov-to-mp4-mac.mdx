@@ -1,51 +1,100 @@
 ---
-title: "How to Convert MOV to MP4 on Mac (Fast, Near-Lossless)"
+title: "How to Convert MOV to MP4 on Mac: 3 Free Ways (2026)"
 heroImage: "../../../public/images/blog/convert-mov-to-mp4-mac/cover.png"
-description: "MOV to MP4 on a Mac is often a fast remux with no quality loss. Convert with Picmal, HandBrake, or FFmpeg, batch a folder, and share anywhere. Step-by-step."
+description: "Convert MOV to MP4 on a Mac for free with iMovie, VLC or ffmpeg, and see why QuickTime can't do it. Often a lossless remux that takes seconds. Tested on macOS 27."
 pubDate: "2026-07-14"
+updatedDate: "2026-08-22"
 category: "Guide"
 tags: ["MOV", "MP4", "Video", "Conversion", "Mac"]
 faqs:
+  - question: "How do I convert MOV to MP4 on a Mac for free?"
+    answer: "Three free routes. iMovie exports MP4 from File, Share, File. VLC does it from File, Convert / Stream with the H.264 + MP3 (MP4) profile. ffmpeg does it in one command, and it is the only free option that repackages the video without re-encoding it. Pick ffmpeg if you care about quality, iMovie if you want no install."
+  - question: "Can QuickTime Player export MP4?"
+    answer: "No. QuickTime's File, Export As menu writes .mov files at 4K, 1080p, 720p and 480p, plus Audio Only and GIF. There is no MP4 option anywhere in it. Renaming the .mov to .mp4 often plays fine because the two containers are close relatives, but it is not a real conversion and strict uploaders reject it."
   - question: "Is MOV the same as MP4?"
-    answer: "Almost. Both are containers based on the same QuickTime format, and both usually hold H.264 or H.265 video. That's why converting MOV to MP4 is often a fast remux (repackaging, not re-encoding) with no quality loss at all."
+    answer: "Almost. Both are containers built on the same underlying format, and both usually hold H.264 or H.265 video. That is why converting MOV to MP4 is often a remux, repackaging the video into a new container without touching it, with no quality loss at all."
   - question: "Will I lose quality converting MOV to MP4?"
-    answer: "Not if the video is remuxed. When the codec inside is already H.264 or H.265, tools can repackage it into MP4 without touching the video, so quality is identical and it's nearly instant. Only a full re-encode introduces loss."
-  - question: "Why convert MOV to MP4 at all?"
-    answer: "MOV is Apple's format and plays perfectly on a Mac, but MP4 is the safer choice for sharing with Windows users, uploading to some web forms, and importing into non-Apple software. MP4 is the universal default."
-  - question: "What's the fastest way to convert many MOV files?"
-    answer: "A batch converter like Picmal, which handles a whole folder at once on your Mac. If the codec allows a remux, conversion is close to instant per file."
+    answer: "Not if it is remuxed. When the codec inside is already H.264 or H.265, the video can be repackaged into MP4 untouched, so quality is identical and it takes seconds. iMovie and VLC both re-encode, so they lose a little. ffmpeg with -c copy and Picmal do not."
+  - question: "How do I convert a whole folder of MOV files at once?"
+    answer: "An ffmpeg for loop in Terminal, or a batch app like Picmal where you drag the folder in and click once. iMovie, VLC and QuickTime are one file at a time."
+  - question: "Why won't my MOV convert with -c copy?"
+    answer: "Usually the audio. Older camera and ProRes MOV files carry uncompressed PCM audio, which MP4 does not hold well. Use ffmpeg -i input.mov -c:v copy -c:a aac output.mp4 to keep the video untouched and convert only the sound."
 ---
 
 MOV plays fine on your Mac, so why convert it? Because the moment you send it to a Windows user, upload it to a form that only accepts MP4, or import it into non-Apple software, MOV starts causing friction. MP4 is the format nobody questions.
 
-The good news: MOV and MP4 are close cousins. Both are containers built on the same underlying QuickTime format, and both usually carry H.264 or H.265 video. That means converting MOV to MP4 is often a **remux**, repackaging the same video into a new container without re-encoding it. No quality loss, and it's nearly instant.
+The good news: MOV and MP4 are close cousins. Both are containers built on the same underlying format, and both usually carry H.264 or H.265 video. So converting MOV to MP4 is often a **remux**, repackaging the same video into a new container without re-encoding it. No quality loss, and it takes seconds.
 
-**Quick answer:** To convert MOV to MP4 on a Mac, remux it (repackage without re-encoding) whenever the video is already H.264 or H.265. [Picmal](/convert/video/mov-to-mp4) does this in a batch on your Mac, and for a single file `ffmpeg -i input.mov -c copy output.mp4` remuxes it in seconds with identical quality.
+**Quick answer:** the fastest free way is `ffmpeg -i input.mov -c copy output.mp4`, which repackages the video without touching it. If you would rather not open Terminal, iMovie and VLC both export MP4 too, they just re-encode along the way.
 
-## Remux vs re-encode (why this one's easy)
+## First, the QuickTime myth
 
-This is what makes MOV to MP4 the easy case:
+Almost every "MOV to MP4 on Mac" answer starts with QuickTime Player. It is wrong.
 
-- **Remux:** repackage the existing video and audio into an MP4 container. No quality change, very fast, tiny CPU use. Possible when the codec inside is already MP4-compatible (H.264/H.265), which most MOV files are.
-- **Re-encode:** decode and re-compress the video. Slower, uses more CPU, introduces some loss. Only needed if the source uses a codec MP4 can't hold (rare for MOV).
+QuickTime's **File → Export As** menu offers 4K, 1080p, 720p, 480p, Audio Only and GIF. Every one of the video options writes a **.mov** file. There is no MP4 setting, no hidden preference, nothing to change. QuickTime converts the resolution, not the container.
 
-Aim for a remux when you can. Most MOV-to-MP4 jobs qualify.
+People get away with renaming the .mov to .mp4 because the containers are so similar that most players shrug and open it. But nothing was converted, the file is still a MOV wearing a different extension, and picky uploaders and editors will reject it. Use one of the three real methods below.
 
-## Method 1: FFmpeg (instant remux)
+## Pick the method that matches the job
 
-If you want the fastest, lossless path for a single file, FFmpeg's stream copy is unbeatable.
+| Situation                          | Use                                                     |
+| ---------------------------------- | ------------------------------------------------------- |
+| One file, nothing to install       | [iMovie](#method-1-imovie-free-already-on-your-mac)      |
+| One file, you already have VLC     | [VLC](#method-2-vlc-free-download)                       |
+| Zero quality loss, seconds per file| [ffmpeg](#method-3-ffmpeg-free-and-lossless)             |
+| A folder of clips, one click       | [Picmal](#method-4-picmal-a-folder-in-one-drag)          |
+
+## Method 1: iMovie (free, already on your Mac)
+
+iMovie is the built-in app that actually writes MP4. It is a video editor, so there is more clicking than the job deserves, but it needs no download.
+
+### Steps:
+
+1. Open **iMovie** → **File → New Movie**
+2. Drag your MOV into the project, then drag it down to the timeline
+3. **File → Share → File…**
+4. Set **Format** to *Video and Audio*, pick a resolution and quality
+5. Click **Next…**, name the file, **Save**
+
+You get an .mp4 with H.264 video.
+
+### The catch:
+
+iMovie re-encodes everything, so the export takes real time and loses a little quality. It also bends the clip to the project's settings, so an unusual frame rate or an odd aspect ratio can come out changed. And it is one clip at a time.
+
+## Method 2: VLC (free download)
+
+If VLC is already on your Mac, it converts without opening an editor.
+
+### Steps:
+
+1. Open VLC → **File → Convert / Stream…**
+2. Drop your MOV into the window
+3. Under **Choose Profile**, pick **Video - H.264 + MP3 (MP4)**
+4. Click **Save as File** → **Browse**
+5. Type a filename ending in **.mp4** and click **Save**, then **Save** again to start
+
+### The catch:
+
+VLC re-encodes too, and it will not add the .mp4 extension for you, so type it yourself or you end up with an extensionless file. Also one file at a time, and the progress bar is famously vague.
+
+More on this route: [how to convert video with VLC on Mac](/blog/convert-video-with-vlc-mac).
+
+## Method 3: ffmpeg (free, and lossless)
+
+This is the right answer if you care about quality. ffmpeg is the only free option here that can repackage the video instead of re-encoding it.
 
 ```bash
 brew install ffmpeg
 ```
 
-### Remux without re-encoding (no quality loss):
+### Remux, no quality loss:
 
 ```bash
 ffmpeg -i input.mov -c copy output.mp4
 ```
 
-The `-c copy` flag repackages the streams as-is. This finishes in seconds even for large files.
+`-c copy` repackages the existing video and audio streams as-is. Identical quality, and it finishes in seconds even on a large file.
 
 ### Every MOV in a folder:
 
@@ -53,63 +102,68 @@ The `-c copy` flag repackages the streams as-is. This finishes in seconds even f
 for f in *.mov; do ffmpeg -i "$f" -c copy "${f%.*}.mp4"; done
 ```
 
-If a file refuses to copy (rare codec), drop `-c copy` to re-encode.
+### If it errors out:
 
-## Method 2: HandBrake (when you also want to compress)
+Usually the audio. Older camera and ProRes recordings carry uncompressed PCM audio, which MP4 does not hold well. Keep the video untouched and convert only the sound:
 
-[HandBrake](https://handbrake.fr) always re-encodes, so use it when you want to shrink the file at the same time, not for a pure lossless convert.
+```bash
+ffmpeg -i input.mov -c:v copy -c:a aac output.mp4
+```
 
-### Steps:
+And if the video itself is ProRes, MP4 cannot hold it at all, so drop `-c copy` entirely and let ffmpeg re-encode to H.264.
 
-1. Open HandBrake and drag in your MOV
-2. Set format to **MP4**
-3. Pick a preset (H.264), adjust quality if you want it smaller
-4. Click **Start**
+### The catch:
 
-## Method 3: Picmal (batch, on your Mac)
+It is Terminal. No window, no preview, and one typo means a cryptic error.
 
-[Picmal](https://picmal.app) converts MOV to MP4 for a whole folder at once, entirely offline.
+## Method 4: Picmal (a folder in one drag)
+
+I built [Picmal](https://picmal.app) because I got tired of the choice above: an editor that re-encodes, or a command line. It converts MOV to MP4 for a whole folder at once, on your Mac.
 
 ### Steps:
 
 1. Download Picmal from [picmal.app](https://picmal.app)
-2. Drag in your MOV files, or a folder
+2. Drag in your MOV files, or the whole folder
 3. Choose **MP4** as the output
 4. Click **Convert**
 
 ### Why people reach for it:
 
-- Batches a folder of clips in one pass
-- Runs entirely on your Mac, nothing uploaded
+- Batches a folder of clips in one pass, not one at a time
+- Runs entirely on your Mac, nothing is uploaded
 - Fast on Apple Silicon
-- No size limit, no watermark, one-time $39
+- No size limit, no watermark, a one-time $39
 
 ### Best for:
 
-Converting a shoot or a screen-recording folder from MOV to MP4 before sending it on.
+A shoot or a screen-recording folder that has to become MP4 before you send it on.
 
-## Side-by-side comparison
+## Side-by-side
 
-| Method    | Speed        | Quality        | Batch     | Ease of use | Price  |
-| --------- | ------------ | -------------- | --------- | ----------- | ------ |
-| FFmpeg    | Instant (remux) | Lossless    | Excellent | Technical   | Free   |
-| HandBrake | Moderate     | Re-encoded     | Good      | Moderate    | Free   |
-| Picmal    | Very Fast    | Preserved      | Excellent | Very Easy   | $39 |
+| Method | Speed           | Quality    | Batch     | Ease of use | Price |
+| ------ | --------------- | ---------- | --------- | ----------- | ----- |
+| iMovie | Slow            | Re-encoded | No        | Moderate    | Free  |
+| VLC    | Moderate        | Re-encoded | No        | Moderate    | Free  |
+| ffmpeg | Instant (remux) | Lossless   | Excellent | Technical   | Free  |
+| Picmal | Very fast       | Preserved  | Excellent | Very easy   | $39   |
 
 ## Tips
 
-- **Remux when you can** for zero quality loss and instant results.
-- **Only re-encode** if you also want to compress, or the codec isn't MP4-compatible.
-- **Keep your originals** until you've confirmed the MP4 plays where you need it.
+- **Remux when you can.** Zero quality loss and instant results beat any re-encode.
+- **Only re-encode** if you also want a smaller file, or the codec is not MP4-compatible.
+- **Keep the originals** until you have confirmed the MP4 plays where you need it.
 
 ## The short version
 
-- **A folder of files, on your Mac:** [Picmal](/convert/video/mov-to-mp4)
-- **One file, instant and lossless:** `ffmpeg -i in.mov -c copy out.mp4`
-- **Convert and compress at once:** HandBrake
+- **Free, no install:** iMovie, File → Share → File
+- **Free, one file, lossless:** `ffmpeg -i in.mov -c copy out.mp4`
+- **A folder at once:** [Picmal](/convert/video/mov-to-mp4)
+- **Not QuickTime.** It only exports .mov.
 
 ## Related guides
 
-- **Coming from HEVC footage?** [How to Convert HEVC to MP4 on Mac](/blog/convert-hevc-to-mp4-mac).
-- **Need it smaller too?** [How to Compress a Video on Mac](/blog/how-to-compress-video-mac).
+- **Need it smaller too?** [How to compress a video on Mac](/blog/how-to-compress-video-mac), or go straight to [compress video on Mac](/compress-video-mac).
+- **Coming from HEVC footage?** [How to convert HEVC to MP4 on Mac](/blog/convert-hevc-to-mp4-mac).
+- **MKV instead?** [How to convert MKV to MP4 on Mac](/blog/convert-mkv-to-mp4-mac).
+- **Only want the sound?** [How to extract audio from a video on Mac](/blog/how-to-extract-audio-from-video-mac).
 - **Other formats?** Browse the [video converter for Mac](/video-converter-mac).

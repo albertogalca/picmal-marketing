@@ -20,6 +20,32 @@ import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 
+// Hero demo reel: stacked clips, swapped by the thumbnail dock.
+// `poster` is the clean opening frame, used only by the clip that loads first.
+// `thumb` is a mid-clip frame chosen so the three dock tiles are told apart at
+// 144px: a full file list, a before/after photo, a white PDF page. Frame 0 of
+// every clip is the same idle drop zone, which made the tiles identical.
+const demos = [
+  {
+    label: "Convert",
+    src: "/convert.mp4",
+    poster: "/convert-poster.webp",
+    thumb: "/demo-thumb-convert.webp",
+  },
+  {
+    label: "Compress",
+    src: "/compress.mp4",
+    poster: "/compress-poster.webp",
+    thumb: "/demo-thumb-compress.webp",
+  },
+  {
+    label: "PDF tools",
+    src: "/pdf.mp4",
+    poster: "/pdf-poster.webp",
+    thumb: "/demo-thumb-pdf.webp",
+  },
+];
+
 const SITE_DESCRIPTION =
   "Convert, compress, and edit your images, video, and audio right on your Mac, instead of trusting sketchy websites. Everything works offline, no subscription.";
 ---
@@ -109,26 +135,66 @@ const SITE_DESCRIPTION =
 
         </div>
 
-        <!-- Demo Video -->
-        <div class="hero-reveal mt-12" style="--d: 240ms">
+        <!-- Demo reel: the video plus a dock of the other demos. The dock
+             floats over the video from sm up, stacks under it on phones. -->
+        <div class="hero-reveal mt-12 relative" style="--d: 240ms">
           <div
             class="rounded-xl overflow-hidden ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06),0_16px_32px_-8px_rgba(0,0,0,0.12)]"
           >
-            <div class="aspect-video bg-background-subtle">
-              <video
-                id="hero-demo-video"
-                class="w-full h-full object-cover"
-                width="1280"
-                height="720"
-                src="/convert.mp4"
-                poster="/convert-poster.webp"
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                aria-label="Picmal convert demo"
-              >
-              </video>
+            <div class="relative aspect-video bg-background-subtle">
+              {
+                demos.map((demo, i) => (
+                  <video
+                    data-demo-video
+                    data-demo-src={demo.src}
+                    data-active={i === 0 ? "" : undefined}
+                    aria-hidden={i === 0 ? undefined : "true"}
+                    class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out motion-reduce:transition-none data-[active]:opacity-100"
+                    width="1280"
+                    height="720"
+                    src={i === 0 ? demo.src : undefined}
+                    poster={demo.poster}
+                    muted
+                    playsinline
+                    preload={i === 0 ? "auto" : "none"}
+                    aria-label={`Picmal demo: ${demo.label}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+
+          <div
+            class="mt-3 flex sm:absolute sm:inset-x-0 sm:bottom-4 sm:mt-0 sm:justify-center"
+          >
+            <!-- Concentric: 8px thumbnails + 8px padding = 16px on the dock. -->
+            <div
+              id="hero-demo-dock"
+              role="group"
+              aria-label="Picmal demos"
+              class="flex gap-2 overflow-x-auto p-2 sm:overflow-visible sm:rounded-[16px] sm:bg-black/40 sm:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_-6px_rgba(0,0,0,0.35)] sm:ring-1 sm:ring-white/15 sm:backdrop-blur-xl"
+            >
+              {
+                demos.map((demo, i) => (
+                  <button
+                    type="button"
+                    aria-pressed={i === 0}
+                    data-demo-tab
+                    class="relative shrink-0 overflow-hidden rounded-lg opacity-70 ring-1 ring-black/10 transition-[opacity,scale,box-shadow] duration-200 ease-out hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 dark:ring-white/10 aria-pressed:opacity-100 aria-pressed:ring-2 aria-pressed:ring-accent"
+                  >
+                    <img
+                      src={demo.thumb}
+                      alt=""
+                      width="288"
+                      height="162"
+                      class="aspect-video w-32 object-cover sm:w-36"
+                    />
+                    <span class="absolute inset-x-0 bottom-0 whitespace-nowrap bg-gradient-to-t from-black/75 to-transparent px-2 pb-1 pt-4 text-center text-caption font-[590] text-white">
+                      {demo.label}
+                    </span>
+                  </button>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -207,17 +273,111 @@ const SITE_DESCRIPTION =
       }
     </style>
 
-    <!-- Hero demo: autoplay the loop unless the user prefers reduced motion
-         (then the poster stays put). -->
+    <!-- Hero demo reel: the clips are stacked and crossfaded, so switching
+         never flashes a poster. Only the first clip loads up front; the next is
+         warmed once the current one is nearly over. Picking a tile hands control
+         over: the reel stops advancing and loops that clip instead. Reduced
+         motion: nothing autoplays and the dock stays a manual picker. -->
     <script>
-      const heroVideo = document.getElementById(
-        "hero-demo-video",
-      ) as HTMLVideoElement | null;
-      if (
-        heroVideo &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        heroVideo.play().catch(() => {});
+      const heroClips = Array.from(
+        document.querySelectorAll<HTMLVideoElement>("[data-demo-video]"),
+      );
+      const heroTabs = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-demo-tab]"),
+      );
+      const heroMotion = !window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (heroClips.length && heroClips.length === heroTabs.length) {
+        let heroCurrent = 0;
+        // The reel cycles on its own until someone picks a clip. After that it
+        // stays on their choice and loops it, instead of moving on mid-watch.
+        let heroAuto = true;
+
+        const heroLoad = (clip: HTMLVideoElement) => {
+          if (!clip.getAttribute("src")) {
+            clip.src = clip.dataset.demoSrc!;
+            clip.preload = "auto";
+            clip.load();
+          }
+          return clip;
+        };
+
+        // readyState >= 2 means a frame is decoded, so the fade lands on video
+        // rather than on the poster. Capped: a clip that stalls (slow link, a
+        // codec the browser refuses) must not strand the dock showing a tile as
+        // selected while the video never changes. On timeout the swap happens
+        // anyway and lands on that clip's poster, which is why every clip keeps
+        // one. The video appears underneath as soon as it can.
+        const heroReady = (clip: HTMLVideoElement) =>
+          clip.readyState >= 2
+            ? Promise.resolve()
+            : new Promise<void>((resolve) => {
+                const done = () => {
+                  window.clearTimeout(timer);
+                  clip.removeEventListener("loadeddata", done);
+                  resolve();
+                };
+                const timer = window.setTimeout(done, 1500);
+                clip.addEventListener("loadeddata", done, { once: true });
+              });
+
+        const showDemo = async (index: number) => {
+          if (index === heroCurrent) return;
+          const previous = heroClips[heroCurrent];
+          const next = heroLoad(heroClips[index]);
+          heroCurrent = index;
+          heroTabs.forEach((tab, i) =>
+            tab.setAttribute("aria-pressed", String(i === index)),
+          );
+
+          await heroReady(next);
+          if (heroCurrent !== index) return; // a later click won the race
+
+          next.currentTime = 0;
+          next.loop = !heroAuto;
+          if (heroMotion) next.play().catch(() => {});
+          next.setAttribute("data-active", "");
+          next.removeAttribute("aria-hidden");
+          previous.removeAttribute("data-active");
+          previous.setAttribute("aria-hidden", "true");
+          window.setTimeout(() => {
+            if (heroClips[heroCurrent] !== previous) {
+              previous.pause();
+              previous.currentTime = 0;
+            }
+          }, 500);
+        };
+
+        heroTabs.forEach((tab, i) =>
+          tab.addEventListener("click", () => {
+            heroAuto = false;
+            heroClips[heroCurrent].loop = false;
+            if (i === heroCurrent) {
+              heroClips[i].loop = true;
+              return;
+            }
+            showDemo(i);
+          }),
+        );
+
+        heroClips.forEach((clip, i) => {
+          clip.addEventListener("ended", () => {
+            if (heroAuto) showDemo((i + 1) % heroClips.length);
+          });
+          // Warm the next clip only once this one is nearly over. Warming at
+          // page load pulled a second video (609KB) that most visitors, who
+          // arrive from search for one specific job, never watch.
+          clip.addEventListener("timeupdate", () => {
+            if (!heroAuto || !clip.duration) return;
+            if (clip.duration - clip.currentTime < 3) {
+              heroLoad(heroClips[(i + 1) % heroClips.length]);
+            }
+          });
+        });
+
+        if (heroMotion) heroClips[0].play().catch(() => {});
       }
     </script>
 

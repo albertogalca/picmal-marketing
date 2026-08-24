@@ -6,14 +6,14 @@ pubDate: "2026-03-31"
 category: "Tutorial"
 tags: ["Storage", "Photos", "Mac", "Tutorial", "Compression"]
 faqs:
-  - question: "How do I reduce the size of a photo on my Mac?"
-    answer: "For a single photo, open it in Preview, choose File > Export, and either switch the format to JPEG or drag the quality slider down. A 5MB PNG screenshot becomes a 200 to 300KB JPEG with no visible difference at normal viewing sizes. For a whole folder, drag it into Picmal, pick JPEG, and convert the batch in one pass. Everything runs on your Mac, nothing gets uploaded."
   - question: "Why are my photos taking up so much space on my Mac?"
     answer: "Usually four culprits: uncompressed PNG screenshots at 3 to 8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25 to 50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check System Settings > General > Storage to see what is actually eating the space."
-  - question: "How do I reduce image file size on Mac without losing quality?"
-    answer: "Export to JPEG or WebP at 80 to 85% quality. At that level the file is 40 to 60% smaller and looks identical on screen. If the image is bigger than you will ever display it, resize the dimensions too. For the full walkthrough see How to Reduce Image File Size on Mac at /blog/reduce-image-file-size-mac."
-  - question: "How do I compress a JPEG on my Mac?"
-    answer: "80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via File > Export with the quality slider. The guide at /blog/reduce-image-file-size-mac breaks down what each quality level actually looks like."
+  - question: "How much space can I free up in the Photos library?"
+    answer: "On my 74GB library the Duplicates album recovered about 6GB, compressing screenshots another 9GB, and turning on Optimize Mac Storage did most of the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead."
+  - question: "Does Optimize Mac Storage delete my original photos?"
+    answer: "No. It keeps every full-resolution original in iCloud and stores a smaller version on your Mac, downloading the original whenever you open or export the photo. The risk is not deletion, it is that you need a connection to get the full file, so archive to an external drive before a trip."
+  - question: "Is it safe to merge duplicates in the Photos app?"
+    answer: "Yes. The Duplicates album under Utilities merges rather than deletes, and it keeps the highest resolution version along with the earliest date and any edits or keywords. The merged copies go to Recently Deleted for 30 days, so you can undo it."
 ---
 
 **The short version, all of it free and built into macOS.** Open Photos and use the Duplicates album under Utilities in the sidebar to merge exact and near matches. Then go to System Settings > Apple Account > iCloud > Photos and switch on the setting that keeps full-resolution originals in iCloud and only thumbnails on your Mac. Then deal with your screenshots, because uncompressed PNGs at 3 to 8MB each are usually the hidden bulk. Archive old RAW files to an external drive last.
@@ -114,21 +114,21 @@ The boring answer is the right one. Delete what you don't need, compress what yo
 
 ## FAQ
 
-### How do I reduce the size of a photo on my Mac?
-
-For a single photo, open it in Preview, choose **File > Export**, and either switch the format to JPEG or drag the quality slider down. A 5MB PNG screenshot becomes a 200-300KB JPEG with no visible difference at normal viewing sizes. For a whole folder, drag it into <a href="https://picmal.app" target="_blank">Picmal</a>, pick JPEG, and convert the batch in one pass. Everything runs on your Mac, nothing gets uploaded.
-
 ### Why are my photos taking up so much space on my Mac?
 
 Usually four culprits: uncompressed PNG screenshots at 3-8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25-50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check **System Settings > General > Storage** to see what's actually eating the space.
 
-### How do I reduce image file size on Mac without losing quality?
+### How much space can I free up in the Photos library?
 
-Export to JPEG or WebP at 80-85% quality. At that level the file is 40-60% smaller and looks identical on screen. If the image is bigger than you'll ever display it, resize the dimensions too. For the full walkthrough see [How to Reduce Image File Size on Mac](/blog/reduce-image-file-size-mac).
+On my 74GB library the Duplicates album recovered about 6GB, compressing screenshots another 9GB, and Optimize Mac Storage did most of the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead. Chasing a single file rather than the library? That's [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac).
 
-### How do I compress a JPEG on my Mac?
+### Does Optimize Mac Storage delete my original photos?
 
-80% quality is the sweet spot. Batch-compress a whole folder with Picmal, or do a single file in Preview via **File > Export** with the quality slider. The [guide to reducing image file size](/blog/reduce-image-file-size-mac) breaks down what each quality level actually looks like.
+No. It keeps every full-resolution original in iCloud and stores a smaller version on your Mac, downloading the original whenever you open or export the photo. The risk isn't deletion, it's that you need a connection to get the full file back, so archive to an external drive before a trip.
+
+### Is it safe to merge duplicates in the Photos app?
+
+Yes. The Duplicates album under Utilities merges rather than deletes, and it keeps the highest-resolution version along with the earliest date and any edits or keywords. The merged copies go to Recently Deleted for 30 days, so you can undo it.
 
 ## Related guides
 

@@ -2667,7 +2667,6 @@ export const INDEXED_CONVERSIONS = new Set<string>([
   "cr2-to-jpg",
   "cr3-to-jpg",
   "nef-to-jpg",
-  "arw-to-jpg",
   "raf-to-jpg",
   "rw2-to-jpg",
   "orf-to-jpg",

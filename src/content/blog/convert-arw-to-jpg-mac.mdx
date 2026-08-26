@@ -2,7 +2,7 @@
 title: "How to Convert ARW to JPG on Mac (4 Free Methods)"
 description: "Four free ways to convert Sony ARW files to JPG on a Mac, no upload needed: Preview, Finder's Quick Action, the built-in sips Terminal command, and Photos. Plus how to batch a whole shoot and what the free methods get wrong."
 pubDate: "2026-08-18"
-updatedDate: "2026-08-21"
+updatedDate: "2026-08-26"
 category: "Tutorial"
 tags: ["ARW", "JPG", "RAW", "Sony", "Conversion", "Mac", "Tutorial"]
 faqs:
@@ -24,36 +24,54 @@ The rest of this guide is for the cases where that is not enough: a full card of
 
 One thing worth understanding first, because it explains most of the surprises. An ARW is not a picture. It is the raw sensor readout from your Sony camera, and it has to be interpreted before anyone can look at it. Your camera does that interpretation one way. macOS does it another way. That is why the exported JPG rarely matches the image you saw on the back of the camera.
 
-## Method 1: Preview (built in, no install)
+**Quick answer:** Preview > **File > Export** > Format **JPEG**. For a folder, `sips -s format jpeg -s formatOptions 90 photo.ARW --out photo.jpg` in Terminal. Both ship with macOS and neither uploads anything.
 
-Preview handles ARW natively and is the fastest route for a handful of files.
+## Pick the method that matches the job
 
-1. Right-click the ARW, choose Open With > Preview.
-2. File > Export.
-3. Set Format to JPEG.
-4. Drag the Quality slider. Somewhere around three quarters is usually indistinguishable from maximum at roughly half the size.
-5. Save.
+| Situation | Use |
+| --------- | --- |
+| One ARW file, want it done now | [Preview](#method-1-preview-free-built-in) |
+| A few files, without opening an app | [Finder Quick Action](#method-2-finder-quick-action-free-built-in) |
+| A folder, one exact quality setting | [sips](#method-3-terminal-with-sips-free-built-in-scriptable) |
+| You already edited them in Photos | [Photos export](#method-4-photos-free-if-the-shoot-is-already-imported) |
+| Every shoot, resized or under a size budget | [Picmal](#method-5-picmal-batch-any-format-one-click) |
 
-**To batch it:** select every ARW in Finder, press Return to rename or just drag them all onto the Preview icon, then in Preview press Cmd+A in the thumbnail sidebar and choose File > Export Selected Images. You get one quality setting applied to everything and a destination folder picker.
+## Method 1: Preview (free, built in)
 
-**Best for:** one shoot, one quality setting, no Terminal.
+Preview reads ARW natively and is the fastest route for a handful of files.
 
-## Method 2: Finder's Convert Image Quick Action (fastest, no app opens)
+### Steps:
 
-Since macOS Monterey, Finder can convert images without opening anything, and it reads ARW.
+1. Right-click the ARW, choose **Open With > Preview**
+2. **File > Export**
+3. Set Format to **JPEG**
+4. Drag the **Quality** slider. Around three quarters is usually indistinguishable from maximum at roughly half the size
+5. **Save**
 
-1. Select the ARW files in Finder.
-2. Right-click > Quick Actions > Convert Image.
-3. Set Format to JPEG, pick an image size, and choose whether to keep metadata.
-4. Click Convert to JPEG. The copies land next to the originals.
+To batch it, select every ARW in Finder and drag them all onto the Preview icon. In Preview press **Cmd+A** in the thumbnail sidebar, then **File > Export Selected Images**. One quality setting gets applied to everything, and you pick a destination folder.
 
-If Convert Image is not in the menu, enable it under System Settings > General > Login Items &amp; Extensions > Extensions > Finder. Automator can also build a custom Quick Action with your own settings baked in, but for ARW to JPG the built-in one already does the job.
+### The catch:
 
-**Limitation:** the quality setting is fixed and the size choices are coarse (Small, Medium, Large, Actual Size). You take what Finder gives you.
+You get a quality slider and nothing else. No resizing on the way out, no file-size cap, and no say in how the RAW is interpreted.
 
-**Best for:** a handful of files, right now, without opening an app.
+## Method 2: Finder Quick Action (free, built in)
 
-## Method 3: Terminal with sips (built in, scriptable)
+Since macOS Monterey, Finder converts images without opening anything, and it reads ARW.
+
+### Steps:
+
+1. Select the ARW files in Finder
+2. Right-click > **Quick Actions > Convert Image**
+3. Set Format to **JPEG**, pick an image size, and choose whether to keep metadata
+4. Click **Convert to JPEG**. The copies land next to the originals
+
+If Convert Image is not in the menu, enable it under **System Settings > General > Login Items &amp; Extensions > Extensions > Finder**. Automator can build a custom Quick Action with your own settings baked in, but for ARW to JPG the built-in one already does the job.
+
+### The catch:
+
+The quality setting is fixed and the size choices are coarse: Small, Medium, Large, Actual Size. You take what Finder gives you.
+
+## Method 3: Terminal with sips (free, built in, scriptable)
 
 `sips` ships with macOS and reads Sony RAW. Check for yourself:
 
@@ -61,7 +79,7 @@ If Convert Image is not in the menu, enable it under System Settings > General >
 sips --formats | grep -i sony
 ```
 
-You should see `com.sony.arw-raw-image`. Convert a single file:
+You should see `com.sony.arw-raw-image`. Convert a single ARW file:
 
 ```bash
 sips -s format jpeg -s formatOptions 90 DSC01234.ARW --out DSC01234.jpg
@@ -77,46 +95,73 @@ done
 
 That is two lines and it costs nothing. If your files are lowercase `.arw`, change the pattern to match, or use `*.[aA][rR][wW]` to catch both.
 
-**Best for:** folders, repeatable settings, anything you want to script.
+Resizing at the same time takes a second flag:
 
-## Method 4: Photos (if the shoot is already imported)
+```bash
+sips -s format jpeg -s formatOptions 85 -Z 2048 DSC01234.ARW --out DSC01234.jpg
+```
 
-If the ARWs are in your Photos library, you never needed to touch Finder.
+`-Z` fits the longest edge to that many pixels and keeps the aspect ratio.
 
-1. Select the photos.
-2. File > Export > Export Photos.
-3. Set Photo Kind to JPEG, pick a quality, and choose whether to export the edited version or the unmodified original.
+### The catch:
 
-The useful part here is that any adjustments you made in Photos get baked into the JPG. The other two methods ignore your edits and export the untouched RAW.
+No progress bar, no undo, and one typo in the `--out` path overwrites files without asking. Test on a copy of a couple of frames before you point it at a card.
 
-**Best for:** photos you have already culled and adjusted in Photos.
+## Method 4: Photos (free, if the shoot is already imported)
 
-## What the free methods do not do
+If the ARWs are already in your Photos library, you never needed to touch Finder.
 
-All three work and all three are free. Be honest about which situation you are in before paying for anything.
+### Steps:
 
-The gap is not conversion, it is control. `sips` gives you a quality number and nothing else. Preview gives you a slider. Neither lets you resize on the way out, cap the file size, or convert to anything other than what the export sheet offers. And none of them give you any say over how the RAW is interpreted, which is the thing photographers usually actually want.
+1. Select the photos
+2. **File > Export > Export Photos**
+3. Set **Photo Kind** to **JPEG**, pick a quality, and choose whether to export the edited version or the unmodified original
 
-So:
+The useful part here is that any adjustments you made in Photos get baked into the JPG. The other three methods ignore your edits and export the untouched RAW.
 
-- **One ARW:** use Preview. Do not overthink it.
-- **A card of ARWs, one quality:** the `sips` loop above handles it. Two lines, free.
-- **You need the JPGs resized or under a size limit as well:** the loop grows a second `sips` call and starts to get fiddly.
-- **You do this after every shoot, and you also want WebP, or specific dimensions, or a file-size budget:** this is where the Terminal stops being the cheaper option in anything except money.
+### The catch:
 
-That last case is what [Picmal](https://picmal.app) is for. Drag in the card, pick JPG, set quality and dimensions in one pass, convert. It decodes ARW along with CR2, CR3, NEF, RAF, RW2, ORF and PEF, so a mixed-body shoot goes through in one batch. It is $39 once, and if you convert a couple of shoots a year the `sips` loop is genuinely the better answer.
+Only works for photos already imported. Importing a card into Photos just to convert it is slower than any other method on this page.
 
-## Which method to choose
+## Method 5: Picmal (batch, any format, one click)
 
-| Situation | Method |
-|-----------|--------|
-| One ARW, quick JPG | Preview (free, built in) |
-| A few files, no app, default settings | Finder Quick Action (free, built in) |
-| A folder, same quality for all | `sips` loop (free, built in) |
-| Already edited in Photos | Photos export (free, built in) |
-| Every shoot, with resizing or a size budget | [Picmal](https://picmal.app) |
+All four methods above work and all four are free. Be honest about which situation you are in before paying for anything.
 
-If you shoot more than one brand, the [RAW converter for Mac](/raw-converter-mac) page covers the other formats, and [ARW to JPG](/convert/arw-to-jpg) has the format details.
+The gap is not conversion, it is control. `sips` gives you a quality number. Preview gives you a slider. Neither lets you resize and cap the file size and convert in one pass without the command growing a tail of flags.
+
+[Picmal](/raw-converter-mac) is the Mac app I build. Drag in the card, pick JPG, convert.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your ARW files, or the whole card
+3. Set the output format to **JPG**
+4. Set quality and dimensions, or a target file size
+5. Click **Convert**
+
+### Why people reach for it:
+
+- Decodes ARW along with CR2, CR3, NEF, RAF, RW2, ORF and PEF, so a mixed-body shoot goes through in one batch
+- Quality, dimensions and a file-size budget in the same pass, not three commands
+- A folder of hundreds at once, each saved as its own file
+- Runs entirely on your Mac, nothing is uploaded, no account, no file size cap
+- Sits in the Finder right-click menu and in Shortcuts too
+
+$39 once, updates included, no subscription.
+
+### Best for:
+
+Every shoot, when the JPGs also need resizing or a size limit. If you convert a couple of shoots a year, the `sips` loop is genuinely the better answer and I would rather you used it.
+
+## Side-by-side comparison
+
+| Method | Batch | Quality control | Resize on export | Uses your edits | Price |
+| ------ | ----- | --------------- | ---------------- | --------------- | ----- |
+| Preview | Yes | Slider | No | No | Free |
+| Finder Quick Action | Yes | Fixed | Coarse presets | No | Free |
+| sips | Yes | 0 to 100 | Yes, with a flag | No | Free |
+| Photos | Yes | Presets | Yes | Yes | Free |
+| Picmal | Yes | 0 to 100 | Yes, plus size cap | No | $39 |
 
 ## What about ARW to PNG or TIFF?
 
@@ -141,8 +186,31 @@ If your exported JPGs look flatter or cooler than expected, nothing is broken. S
 
 You have three options. Accept Apple's rendering, which is neutral and perfectly usable. Adjust in Photos before exporting, which is free and gets you most of the way. Or use a dedicated RAW developer like Capture One or Lightroom if matching the in-camera look precisely is part of the job. Converting is not the same as developing, and no converter will make that distinction go away.
 
+## Common problems
+
+**The ARW file will not open at all.** Usually a brand new camera body. macOS ships RAW support per model, so a body released after your macOS version can take a system update before its files are recognised. Run `sips --formats | grep -i sony` to confirm ARW is supported, then check for a macOS update. Sony's own Imaging Edge will open the file in the meantime.
+
+**The JPG looks flat compared to the camera screen.** Expected, and covered above. You are seeing Apple's rendering instead of Sony's.
+
+**The Quick Action gives no quality option.** It does not have one. Finder picks the quality for you. If you need a specific number, use `sips` or Preview.
+
+**The output JPGs are enormous.** You exported at full sensor resolution with a high quality number. A 61 MP a7R file at quality 100 is a large JPG by design. Drop to `formatOptions 85` and add `-Z 2048` if the files are going to a website.
+
+**The card has files from two different cameras.** `sips` handles mixed RAW formats fine, but the `*.ARW` glob only catches the Sony files. Either run the loop once per extension, or use a tool that takes the whole folder at once.
+
+**The converted files overwrote my originals.** Only possible with `sips` and a wrong `--out` path. There is no undo. Always convert into a separate output folder.
+
+## The short version
+
+- **One ARW, right now:** Preview, File > Export, Format JPEG
+- **A few files, no app:** Finder right-click > Quick Actions > Convert Image
+- **A folder, one exact quality:** the `sips` loop above
+- **Already edited in Photos:** File > Export > Export Photos, Photo Kind JPEG
+- **Every shoot, resized or size-capped:** [Picmal](/raw-converter-mac)
+
 ## Related guides
 
-- **Shooting more than Sony?** [How to convert RAW to JPG on Mac](/blog/convert-raw-to-jpg-mac) covers every brand's format in one guide.
+- **Shooting more than Sony?** [How to convert RAW to JPG on Mac](/blog/convert-raw-to-jpg-mac) covers every brand's format in one guide, and the [RAW converter for Mac](/raw-converter-mac) page has the per-brand details.
 - **Canon body in the bag too?** [CR3 to JPG](/convert/cr3-to-jpg) and [CR2 to JPG](/convert/cr2-to-jpg) handle Canon's formats, [NEF to JPG](/convert/nef-to-jpg) covers Nikon.
 - **Converting a whole library, not just RAW?** [How to batch convert images on Mac](/blog/batch-convert-images-mac) handles hundreds of mixed files in one pass.
+- **The JPGs are still too big?** [How to compress an image on Mac](/blog/reduce-image-file-size-mac) shrinks them without a visible quality drop.

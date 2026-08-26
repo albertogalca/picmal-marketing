@@ -30,7 +30,15 @@ const rawCards = [...RAW_INPUT_FORMATS, "dng"].map((ext) => ({
 
 // Per-format detail blocks. Camera bodies and workflow notes come from the
 // conversions data file so they stay in sync; `blurb` is the Mac-specific line.
-const formatSections = [
+const formatSections: {
+  id: string;
+  navLabel: string;
+  heading: string;
+  exts: string[];
+  blurb: string;
+  detail: string;
+  guide?: { href: string; label: string };
+}[] = [
   {
     id: "arw",
     navLabel: "Sony ARW",
@@ -39,6 +47,10 @@ const formatSections = [
     blurb:
       "Drop a card of ARW files into Picmal, pick JPG, and convert the lot. Picmal reads the white balance your Alpha body recorded, so the JPGs look like the shot you framed, not the flat preview Finder shows you.",
     detail: `ARW stands for ${formats.arw.fullName}, the format written by the ${formats.arw.notableCameras}. ${formats.arw.workflowNote}`,
+    guide: {
+      href: "/blog/convert-arw-to-jpg-mac",
+      label: "How to convert ARW to JPG on Mac",
+    },
   },
   {
     id: "cr2",
@@ -247,6 +259,12 @@ const faqSchema = {
                     <span aria-hidden="true">→</span>
                   </a>
                 ))}
+                {section.guide && (
+                  <a class="link text-small" href={section.guide.href}>
+                    {section.guide.label}{" "}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
               </div>
             </div>
           ))

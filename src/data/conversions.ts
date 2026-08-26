@@ -228,7 +228,7 @@ export const formats: Record<string, FormatInfo> = {
     brand: "Canon",
     notableCameras: "EOS 5D Mark III/IV, 7D, and Rebel series",
     workflowNote:
-      "Canon's free Digital Photo Professional opens CR2, but it's slow for bulk exports — Picmal turns a full card of CR2 captures into JPGs in a single pass.",
+      "Canon's free Digital Photo Professional opens CR2, but it's slow for bulk exports, so Picmal turns a full card of CR2 captures into JPGs in a single pass.",
   },
   cr3: {
     name: "CR3",
@@ -274,7 +274,7 @@ export const formats: Record<string, FormatInfo> = {
     brand: "Nikon",
     notableCameras: "D850, Z6, and Z9",
     workflowNote:
-      "Nikon's free NX Studio reads NEF but processes one image at a time — Picmal batch-renders an entire NEF folder to JPG without the wait.",
+      "Nikon's free NX Studio reads NEF but processes one image at a time, so Picmal batch-renders an entire NEF folder to JPG without the wait.",
   },
   arw: {
     name: "ARW",

@@ -14,6 +14,8 @@ import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import H3 from "../components/H3.astro";
+import Paragraph from "../components/Paragraph.astro";
 
 const title = "Picmal: RAW converter for Mac, convert CR2, NEF, ARW to JPG";
 const description =
@@ -25,6 +27,47 @@ const rawCards = [...RAW_INPUT_FORMATS, "dng"].map((ext) => ({
   name: formats[ext].name,
   brand: formats[ext].brand ?? "Adobe",
 }));
+
+// Per-format detail blocks. Camera bodies and workflow notes come from the
+// conversions data file so they stay in sync; `blurb` is the Mac-specific line.
+const formatSections = [
+  {
+    id: "arw",
+    navLabel: "Sony ARW",
+    heading: "Convert Sony ARW to JPG",
+    exts: ["arw"],
+    blurb:
+      "Drop a card of ARW files into Picmal, pick JPG, and convert the lot. Picmal reads the white balance your Alpha body recorded, so the JPGs look like the shot you framed, not the flat preview Finder shows you.",
+    detail: `ARW stands for ${formats.arw.fullName}, the format written by the ${formats.arw.notableCameras}. ${formats.arw.workflowNote}`,
+  },
+  {
+    id: "cr2",
+    navLabel: "Canon CR2 & CR3",
+    heading: "Convert Canon CR2 and CR3 to JPG",
+    exts: ["cr2", "cr3"],
+    blurb:
+      "Canon uses two raw formats and Picmal converts both to JPG on your Mac. Mix CR2 and CR3 files in the same batch if you shoot a DSLR and a mirrorless body on the same job.",
+    detail: `CR2 is ${formats.cr2.fullName}, written by the ${formats.cr2.notableCameras}. CR3 is ${formats.cr3.fullName}, written by the ${formats.cr3.notableCameras}. ${formats.cr2.workflowNote}`,
+  },
+  {
+    id: "nef",
+    navLabel: "Nikon NEF",
+    heading: "Convert Nikon NEF to JPG",
+    exts: ["nef"],
+    blurb:
+      "Point Picmal at a folder of NEF files and it converts the whole shoot to JPG offline. Your Picture Control settings are read from each file, so skin tones and skies come out the way the camera metered them.",
+    detail: `NEF stands for ${formats.nef.fullName}, written by the ${formats.nef.notableCameras}. ${formats.nef.workflowNote}`,
+  },
+  {
+    id: "dng",
+    navLabel: "Adobe DNG",
+    heading: "Convert Adobe DNG to JPG",
+    exts: ["dng"],
+    blurb:
+      "DNG is the format your phone, your drone, or Adobe's converter writes when it wants a raw file anything can read. Picmal turns a folder of DNG files into JPGs on your Mac, no Lightroom needed.",
+    detail: `DNG stands for ${formats.dng.fullName}, Adobe's open raw standard, and over 50 camera makers and editing tools support it. Because it is documented in public, DNG is the safest raw format to archive, but it is still unreadable to browsers, email, and most apps until you convert it.`,
+  },
+];
 
 const faqs = [
   {
@@ -51,6 +94,16 @@ const faqs = [
     question: "Can Picmal convert a JPG back into a RAW file?",
     answer:
       "No. RAW files contain unprocessed sensor data that only your camera can produce, and no software can rebuild a true RAW file from a JPG. Picmal converts RAW to standard formats like JPG, PNG, and TIFF, not the other way around.",
+  },
+  {
+    question: "How do I open ARW photos on a Mac?",
+    answer:
+      "macOS previews ARW files in Finder and opens them in Preview and Photos, so you can look at a shot without extra software. Sharing them is the problem: most apps and every website reject ARW. Convert the files to JPG first, and Picmal will do a whole card in a single pass.",
+  },
+  {
+    question: "How can I batch convert RAW images to JPG on my Mac?",
+    answer:
+      "Preview can export a selection of RAW files to JPG, which is fine for a few dozen. For hundreds, drag the folder into Picmal, pick JPG, set the quality, and convert. Picmal keeps your folder structure, applies the camera white balance to every file, and works offline.",
   },
   {
     question: "Do my photos leave my Mac?",
@@ -110,27 +163,111 @@ const faqSchema = {
       ]}
     />
 
-    <!-- RAW Format Options -->
-    <Section>
-      <SectionHeading>
-        Convert any camera RAW format
-        <Fragment slot="sublead">
-          Pick your camera's format below. RAW files are input-only. Picmal
-          decodes them to JPG, but no app can turn a JPG back into RAW. For the
-          full walkthrough, see <a
-            class="link"
-            href="/blog/convert-raw-to-jpg-mac">how to convert RAW to JPG on Mac</a
-          >.
-        </Fragment>
+    <!-- The free built-in Mac methods -->
+    <Section width="narrow">
+      <SectionHeading
+        align="left"
+        sublead="macOS can already convert a RAW file. Here is what each built-in method does and where it stops being enough."
+      >
+        The free ways to convert RAW on a Mac
       </SectionHeading>
+
+      <div class="flex flex-col gap-8">
+        <div>
+          <H3 class="text-h4 mb-2">Finder Quick Actions</H3>
+          <Paragraph>
+            Right-click a RAW file, pick Quick Actions, then Convert Image. It is
+            the fastest route for one or two shots. There is no quality setting,
+            every file lands in the same folder, and it crawls on a full memory
+            card.
+          </Paragraph>
+        </div>
+
+        <div>
+          <H3 class="text-h4 mb-2">Preview</H3>
+          <Paragraph>
+            Open the batch in Preview, press Command-A, then File, Export
+            Selected Images. Good for a few dozen files. Past that it gets slow,
+            and Preview often shows the embedded JPEG preview instead of decoding
+            the sensor data, so the colors can come out flat.
+          </Paragraph>
+        </div>
+
+        <div>
+          <H3 class="text-h4 mb-2">Photos</H3>
+          <Paragraph>
+            Import the RAW files, then File, Export, Export Photos. Reliable, but
+            it puts every frame in your Photos library first. On a client shoot,
+            or a card you plan to wipe, that is a lot of cleanup.
+          </Paragraph>
+        </div>
+
+        <div>
+          <H3 class="text-h4 mb-2">Picmal</H3>
+          <Paragraph>
+            I built Picmal for the case those three do not cover: a whole card at
+            once. Drag the folder in, pick JPG, set the quality. Picmal decodes
+            each file with the camera's own white balance, keeps your folder
+            structure, and never uploads anything. It all happens on your Mac.
+            For the step-by-step version of all four, read <a
+              class="link"
+              href="/blog/convert-raw-to-jpg-mac">how to convert RAW to JPG on Mac</a
+            >.
+          </Paragraph>
+        </div>
+      </div>
+    </Section>
+
+    <!-- RAW formats: jump nav, per-format detail, full grid -->
+    <Section>
+      <SectionHeading sublead="Jump to the format your camera writes.">
+        Convert any camera RAW format
+      </SectionHeading>
+
       <ConversionGrid
-        columns={3}
-        links={rawCards.map((card) => ({
-          href: `/convert/${card.slug}`,
-          label: `${card.name} to JPG`,
-          sublabel: card.brand,
+        columns={4}
+        class="mb-12"
+        links={formatSections.map((s) => ({
+          href: `#${s.id}`,
+          label: s.navLabel,
         }))}
       />
+
+      <div class="flex flex-col gap-12">
+        {
+          formatSections.map((section) => (
+            <div id={section.id} class="scroll-mt-28">
+              <H3 class="mb-3">{section.heading}</H3>
+              <Paragraph class="mb-3">{section.blurb}</Paragraph>
+              <Paragraph class="mb-4">{section.detail}</Paragraph>
+              <div class="flex flex-wrap gap-x-5 gap-y-2">
+                {section.exts.map((ext) => (
+                  <a class="link text-small" href={`/convert/${ext}-to-jpg`}>
+                    {formats[ext].name} to JPG details{" "}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-16">
+        <H3 class="text-h4 mb-3 text-center">Every RAW format Picmal reads</H3>
+        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">
+          RAW files are input-only. Picmal decodes them to JPG, PNG or TIFF, but
+          no app can turn a JPG back into a RAW file.
+        </Paragraph>
+        <ConversionGrid
+          columns={3}
+          links={rawCards.map((card) => ({
+            href: `/convert/${card.slug}`,
+            label: `${card.name} to JPG`,
+            sublabel: card.brand,
+          }))}
+        />
+      </div>
     </Section>
 
     <!-- Why Picmal for RAW -->

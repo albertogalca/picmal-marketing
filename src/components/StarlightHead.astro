@@ -9,7 +9,7 @@ function stripHtml(url: string) {
 
 const head = route.head.map((entry) => {
   if (entry.tag === "title") {
-    return { ...entry, content: `Picmal: ${route.entry.data.title}` };
+    return { ...entry, content: `${route.entry.data.title} | Picmal` };
   }
   if (
     entry.tag === "link" &&

@@ -1,22 +1,29 @@
 ---
-title: "How to Reduce Photo Library Size on Mac in 2026 (I Freed 46GB)"
+title: "How to Free Up Storage in Your Mac's Photos Library (I Freed 46GB)"
 heroImage: "../../../public/images/blog/reduce-photo-library-size-mac/cover.png"
-description: "Five free ways to shrink a Photos library on a Mac: the built-in Duplicates album, iCloud storage settings, compressing screenshots, and archiving RAW. What I actually did to go from 74GB to 28GB."
+description: "Your Photos library is eating your disk. How to get the space back on a Mac: the Duplicates album, iCloud Optimize Mac Storage, converting to HEIC, and archiving to an external drive. 74GB down to 28GB."
 pubDate: "2026-03-31"
+updatedDate: "2026-08-26"
 category: "Tutorial"
-tags: ["Storage", "Photos", "Mac", "Tutorial", "Compression"]
+tags: ["Storage", "Photos", "Mac", "Tutorial", "iCloud"]
 faqs:
   - question: "Why are my photos taking up so much space on my Mac?"
-    answer: "Usually four culprits: uncompressed PNG screenshots at 3 to 8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25 to 50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check System Settings > General > Storage to see what is actually eating the space."
+    answer: "Usually four culprits: uncompressed PNG screenshots at 3 to 8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25 to 50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version, so a library where you cropped 200 photos is storing 400 files."
+  - question: "How do I check how big my Photos library is?"
+    answer: "Open your Pictures folder in Finder, right-click Photos Library.photoslibrary and choose Get Info. The Size field is the real number, though Finder can take a minute to finish counting a large library. For the wider picture go to System Settings > General > Storage, where macOS breaks your disk down by category and lists Photos on its own."
   - question: "How much space can I free up in the Photos library?"
-    answer: "On my 74GB library the Duplicates album recovered about 6GB, compressing screenshots another 9GB, and turning on Optimize Mac Storage did most of the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead."
+    answer: "On my 74GB library the Duplicates album recovered about 4GB, the screenshots went from 8GB to under 1GB, archiving pre-2020 photos to an external drive moved another 15GB off the disk, and Optimize Mac Storage did the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead."
   - question: "Does Optimize Mac Storage delete my original photos?"
     answer: "No. It keeps every full-resolution original in iCloud and stores a smaller version on your Mac, downloading the original whenever you open or export the photo. The risk is not deletion, it is that you need a connection to get the full file, so archive to an external drive before a trip."
   - question: "Is it safe to merge duplicates in the Photos app?"
     answer: "Yes. The Duplicates album under Utilities merges rather than deletes, and it keeps the highest resolution version along with the earliest date and any edits or keywords. The merged copies go to Recently Deleted for 30 days, so you can undo it."
+  - question: "Can I move my Photos library to an external drive?"
+    answer: "Yes. Quit Photos, drag Photos Library.photoslibrary from Pictures to the external drive, then hold Option while you launch Photos and pick the library in its new location. Keep the drive connected and format it as APFS or Mac OS Extended. Only delete the original copy once the moved library opens and shows every album."
+  - question: "Does converting my library to HEIC lose quality?"
+    answer: "HEIC is lossy, like JPEG, so a converted copy is not pixel-identical to the original. At high quality the difference is invisible at normal viewing sizes and the file is roughly half the size. The real caveat is compatibility: HEIC is native on Apple devices and awkward everywhere else, so keep JPG for anything you share outside the Apple world."
 ---
 
-**The short version, all of it free and built into macOS.** Open Photos and use the Duplicates album under Utilities in the sidebar to merge exact and near matches. Then go to System Settings > Apple Account > iCloud > Photos and switch on the setting that keeps full-resolution originals in iCloud and only thumbnails on your Mac. Then deal with your screenshots, because uncompressed PNGs at 3 to 8MB each are usually the hidden bulk. Archive old RAW files to an external drive last.
+**The short version, all of it free and built into macOS.** Open Photos and use the Duplicates album under Utilities in the sidebar to merge exact and near matches. Then go to System Settings > Apple Account > iCloud > Photos and switch on Optimize Mac Storage, which keeps full-resolution originals in iCloud and only smaller copies on your Mac. Then deal with your screenshots, because uncompressed PNGs at 3 to 8MB each are usually the hidden bulk. Archive what you want to keep but never open to an external drive last.
 
 That sequence took me from 74GB to about 28GB. Here's what each step actually recovered, and the one piece of advice you'll see everywhere that you should ignore.
 
@@ -24,7 +31,19 @@ Last week my MacBook hit me with the "Storage Almost Full" notification. I check
 
 If you're reading this, you're probably staring at a similar number. Here's how I got it down to under 30GB without losing anything I cared about.
 
-Chasing one file rather than a whole library? To shrink a single image, see [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac). To batch a folder, [compress images on Mac](/compress-images-mac) is the shorter route. This guide is about the Photos library as a whole.
+This guide is about the Photos library as a whole. If you just need one file smaller, that's [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac).
+
+## First, find out what your library actually weighs
+
+Everyone skips this and then has no idea whether anything worked. It takes twenty seconds.
+
+Open **Finder > Pictures**, right-click **Photos Library.photoslibrary**, and choose **Get Info**. The Size field is your real number. Finder counts a large library slowly, so give it a minute before you trust what it says. That single file is not a file at all, it's a package holding every original, every edited version, the thumbnails, and the database that ties them together.
+
+For the wider view, go to **System Settings > General > Storage**. macOS breaks the disk down by category and gives Photos its own row, next to Applications, Documents, and the System Data blob nobody can explain. Hover the Photos bar and you get the same number Finder gave you.
+
+Write both numbers down. You want them again at the end, and "I think it got smaller" is not a result.
+
+One thing that trips people up: if iCloud Photos is already on with Optimize Mac Storage, the number in Finder is what's on your disk right now, not what's in your library. Your actual collection can be four times bigger and living in iCloud. That's the whole point of the setting, and we get to it below.
 
 ## What's actually taking up all that space
 
@@ -34,27 +53,35 @@ Before deleting anything, it helps to understand what's in there. In my case:
 - **Duplicate imports.** Every time I plugged in my iPhone or used AirDrop, some photos snuck in again. Photos.app is worse at catching this than you'd expect.
 - **Old RAW files.** I went through a photography phase in 2021. Those RAW files are 25-50MB each. I haven't opened them since.
 - **Videos hiding among photos.** A few 4K vacation clips, each 500MB to 2GB, quietly inflating the total.
-- **Originals + edited versions.** Photos.app keeps both. Crop 200 photos and you're storing 400.
+- **Originals plus edited versions.** Photos.app keeps both. Crop 200 photos and you're storing 400.
 
 Most people's libraries are some combination of these. The fix depends on which ones apply to you.
 
-## 1. Delete what you don't need
+## 1. Merge the duplicates
 
-Always step one. Costs nothing.
+Always step one. Costs nothing, and it's the only step that removes files you genuinely have two of.
 
-Start with duplicates. On macOS Ventura or later, Photos.app has a built-in Duplicates album under Utilities in the sidebar. It catches exact and near-exact matches. This alone freed 4GB for me.
+On macOS Ventura or later, Photos.app has a built-in **Duplicates** album under **Utilities** in the sidebar. If you don't see it, the library is still being scanned. Photos does that work quietly in the background when the Mac is idle and plugged in, and on a big library it can take a day or two to appear. Leave it alone and check again tomorrow.
 
-For a deeper pass, <a href="https://macpaw.com/gemini" target="_blank">Gemini 2</a> finds similar photos too — three shots of the same sunset where you only need one.
+What it catches: byte-identical copies, and near-identical ones where the same photo came in twice at different sizes or through different apps. The AirDrop-then-import-again pattern is exactly what it's built for. This alone freed 4GB for me.
+
+What it misses: burst shots and three attempts at the same sunset. Those are different photos as far as Photos is concerned, and it will leave every one of them. For that pass you want a dedicated tool like <a href="https://macpaw.com/gemini" target="_blank">Gemini 2</a>, which groups similar photos and lets you pick the keeper.
+
+The word "merge" is doing real work here. Photos does not pick one file and bin the others. It keeps the highest-resolution version, the earliest date, and any edits, keywords, or album membership from all the copies, then folds them into one item. Nothing you tagged gets lost.
+
+The merged copies land in **Recently Deleted** and sit there for 30 days. Until you empty that album, your disk usage will not move at all. This is the single most common reason people say the Duplicates album "did nothing". Select **Recently Deleted** in the sidebar, click **Delete All**, and then re-check the size.
 
 After duplicates, go through your screenshots. Sort by date, select everything older than a year. Be honest with yourself. I deleted about 600 screenshots and felt nothing.
 
-## 2. Compress the screenshots hiding in your library
+## 2. Deal with the screenshots eating your library
 
-This is where the biggest surprise was for me. I had over 2,000 PNG screenshots still in my library, and they were taking up almost 8GB.
+This is where the biggest surprise was for me. I had over 2,000 PNG screenshots still in my library, and they were taking up almost 8GB. That's more than a decade of actual photographs.
 
-PNGs are lossless, which is great if you're inspecting individual pixels and pointless if you're keeping a screenshot of a Slack message from 2022. A 5MB PNG converts to a 200-300KB JPG with no visible difference at normal viewing sizes. Multiply that by 2,000 and you're recovering 7GB+.
+The library-specific part is getting them out and back. Photos will not convert files in place, so the workflow is: select the screenshots, **File > Export > Export Unmodified Originals** to a folder on the desktop, convert them in that folder, drag the converted folder back into Photos, then delete the PNG originals from the library. Do it in batches of a few hundred so you can check each round landed before you delete anything.
 
-The library-specific part is getting them out and back: export the screenshots from Photos to a folder, convert them there, then re-import and delete the PNG originals from the library. Do it in batches and empty **Recently Deleted** afterwards, because Photos holds deleted items for 30 days and you will not see the space back until you do.
+Then empty **Recently Deleted** again. Same 30-day hold, same disappointment if you skip it.
+
+Two things worth knowing before you start. Exporting unmodified originals gives you the file as imported, so any crop or adjustment you made in Photos is not in the exported copy. For screenshots that's almost never a problem. And the re-imported files come in with today's date unless you export with the metadata intact, which matters if you sort by date.
 
 For the conversion itself, and for which quality and format to pick, see [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac). That guide covers the settings in full. This one stays on the library.
 
@@ -62,31 +89,51 @@ For the conversion itself, and for which quality and format to pick, see [how to
 
 The single biggest space saver, if you're willing to rent storage from Apple.
 
-Go to **System Settings > Apple Account > iCloud > Photos** and turn on **Sync this Mac** with **Optimize Mac Storage** enabled. Your Mac keeps thumbnails locally and stores full-resolution originals in iCloud. Open a photo and it downloads the real file on demand.
+Go to **System Settings > Apple Account > iCloud > Photos** and turn on **Sync this Mac** with **Optimize Mac Storage** enabled. Your Mac keeps smaller versions locally and stores full-resolution originals in iCloud. Open a photo and it downloads the real file on demand.
 
 I went from 74GB to about 12GB of local storage after enabling this.
 
 The trade-offs are real:
 
-- **You need iCloud storage.** The free 5GB is a joke. I'm on the 200GB plan ($2.99/month).
-- **No internet, no full-resolution photos.** On a plane or with bad wifi, you get thumbnails.
+- **You need iCloud storage.** The free 5GB is a joke. 50GB is $0.99/month, 200GB is $2.99/month, 2TB is $9.99/month. My 74GB library needed the 200GB tier, and the tier is sized to your whole library, not to what's left after this cleanup. That's the reason to do steps 1 and 2 first: a smaller library can drop you a tier and save you $24 a year.
+- **No internet, no full-resolution photos.** On a plane or with bad wifi, you get the smaller local copies.
 - **The initial sync is slow.** Mine took two days to upload everything.
+
+The part nobody mentions is what happens when you turn it off. Switching Optimize Mac Storage back to **Download Originals to this Mac** does not just flip a preference, it starts pulling every full-resolution file back down to your disk. If your library is bigger than your free space, that fills the drive and stalls. If you ever want out of iCloud Photos, do it with the space available first, not after.
 
 If you can live with those, nothing else on this list moves the needle as much.
 
-## 4. Move old photos to an external drive
+## 4. Convert the library to HEIC
+
+Your iPhone has been shooting HEIC since 2017. Anything older, anything imported from a camera, and anything that came through a website is almost certainly JPG, and that's the pile worth converting.
+
+HEIC gets you roughly half the size at the same visible quality. On a 20GB stack of JPGs that's 10GB back, which is more than most people recover from deleting things they'd rather keep.
+
+Same export-and-reimport dance as the screenshots: export the originals to a folder, convert the folder with a [JPG to HEIC converter](/convert/jpg-to-heic) like <a href="https://picmal.app" target="_blank">Picmal</a>, re-import, delete the JPG originals, empty Recently Deleted.
+
+Two caveats, and they matter more than the space you save.
+
+HEIC is native on Apple devices and awkward everywhere else. Windows needs a codec, plenty of web forms reject it, and older Android phones will not open it. If a photo is ever going to leave the Apple world, leave it as JPG.
+
+And if you're already on iCloud Photos with Optimize Mac Storage, this step is mostly pointless for local disk space: the originals are already off your Mac. It's worth doing for the copies you archive to an external drive, and for libraries that live entirely on the Mac.
+
+## 5. Move old photos to an external drive
 
 Some photos you want to keep forever but don't need on your laptop. Family archives, old travel photos, the photography phase.
 
-Export the originals from Photos.app (File > Export > Export Unmodified Originals), save to an external drive, delete from your library. Verify the files open on the drive before you delete anything.
+There are two ways to do this, and they solve different problems.
 
-I moved about 15GB of pre-2020 photos to a 1TB SSD in a desk drawer. Not elegant. No monthly fee.
+**Move individual photos out.** Select them, use **File > Export > Export Unmodified Originals**, save to an external drive, then delete them from the library. Verify the files open on the drive before you delete anything. This is what I did: about 15GB of pre-2020 photos onto a 1TB SSD in a desk drawer. Not elegant. No monthly fee.
 
-## 5. Convert RAW files you don't need anymore
+**Move the entire library.** If the whole thing is too big for your Mac, relocate the package itself. Quit Photos, drag **Photos Library.photoslibrary** from Pictures to the external drive, wait for the copy to finish, then hold **Option** while you launch Photos. You get a library picker. Choose the one on the drive, let it open, and confirm your albums and People are all there before you delete the copy in Pictures.
+
+Format the drive as APFS or Mac OS Extended. An exFAT or NTFS drive cannot store a Photos library properly and Photos will refuse to open it. And keep the drive connected: Photos will not launch that library without it, and iCloud Photos syncing gets unhappy when the library vanishes mid-session.
+
+## 6. Convert RAW files you don't need anymore
 
 If you shot RAW at some point and you're never going back to edit those files, converting to JPG saves grotesque amounts of space. A single RAW file (ARW, CR2, NEF, DNG) is 25-50MB. The JPG at high quality is 2-5MB. Ninety percent gone.
 
-Batch convert with a dedicated [RAW converter for Mac](/raw-converter-mac) like <a href="https://picmal.app" target="_blank">Picmal</a>: drag in the folder, pick JPG, set quality to 95%, convert. It reads ARW, CR2, CR3, NEF and the rest directly. Keep quality high since you presumably care about these.
+Batch convert with a dedicated [RAW converter for Mac](/raw-converter-mac): drag in the folder, pick JPG, set quality to 95%, convert. It reads ARW, CR2, CR3, NEF and the rest directly. Keep quality high since you presumably care about these.
 
 One thing you can't undo: once it's a JPG, the RAW editing latitude is gone. If there's any chance you'll re-edit a photo in Lightroom, keep the RAW. For the 300 shots from a trip where you already picked your favorites, JPG is fine.
 
@@ -94,11 +141,12 @@ One thing you can't undo: once it's a JPG, the RAW editing latitude is gone. If 
 
 Here's the actual sequence, start to finish:
 
-1. Used the Duplicates album in Photos.app to merge duplicates. Recovered about 4GB.
-2. Exported 2,100+ PNG screenshots, batch converted them to JPG with Picmal. Went from 8GB to under 1GB. Took 3 minutes.
-3. Deleted ~600 old screenshots I'd never look at again.
-4. Moved pre-2020 photo archives to an external SSD. About 15GB.
-5. Turned on Optimize Mac Storage with iCloud Photos.
+1. Checked the library size in Get Info first. 74GB.
+2. Used the Duplicates album in Photos.app to merge duplicates, then emptied Recently Deleted. Recovered about 4GB.
+3. Exported 2,100+ PNG screenshots, converted them, re-imported. Went from 8GB to under 1GB. Took 3 minutes.
+4. Deleted ~600 old screenshots I'd never look at again.
+5. Moved pre-2020 photo archives to an external SSD. About 15GB.
+6. Turned on Optimize Mac Storage with iCloud Photos.
 
 Total time: maybe 45 minutes. Total space recovered: went from 74GB down to about 28GB locally, with everything backed up in iCloud.
 
@@ -110,17 +158,21 @@ Don't install "Mac cleaner" apps that promise to free up space with one click. M
 
 Don't turn off iCloud Photos thinking it will free up space. It does the opposite: your Mac downloads every original locally.
 
-The boring answer is the right one. Delete what you don't need, compress what you're keeping, let iCloud handle the rest.
+The boring answer is the right one. Merge the duplicates, empty Recently Deleted, archive what you never open, and let iCloud handle the rest.
 
 ## FAQ
 
 ### Why are my photos taking up so much space on my Mac?
 
-Usually four culprits: uncompressed PNG screenshots at 3-8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25-50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version. Check **System Settings > General > Storage** to see what's actually eating the space.
+Usually four culprits: uncompressed PNG screenshots at 3-8MB each, duplicate imports from your iPhone and AirDrop, old RAW files at 25-50MB apiece, and 4K videos hiding among the photos. Photos.app also keeps both the original and every edited version, so a library where you cropped 200 photos is storing 400 files.
+
+### How do I check how big my Photos library is?
+
+Open **Finder > Pictures**, right-click **Photos Library.photoslibrary** and choose **Get Info**. The Size field is the real number, though Finder can take a minute to finish counting a large library. For the wider picture go to **System Settings > General > Storage**, where macOS breaks your disk down by category and lists Photos on its own.
 
 ### How much space can I free up in the Photos library?
 
-On my 74GB library the Duplicates album recovered about 6GB, compressing screenshots another 9GB, and Optimize Mac Storage did most of the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead. Chasing a single file rather than the library? That's [how to reduce image file size on Mac](/blog/reduce-image-file-size-mac).
+On my 74GB library the Duplicates album recovered about 4GB, the screenshots went from 8GB to under 1GB, archiving pre-2020 photos to an external drive moved another 15GB off the disk, and Optimize Mac Storage did the rest, ending at roughly 28GB. How much you get back depends on your mix: screenshot-heavy libraries shrink the most, RAW-heavy ones need an external drive instead.
 
 ### Does Optimize Mac Storage delete my original photos?
 
@@ -130,8 +182,15 @@ No. It keeps every full-resolution original in iCloud and stores a smaller versi
 
 Yes. The Duplicates album under Utilities merges rather than deletes, and it keeps the highest-resolution version along with the earliest date and any edits or keywords. The merged copies go to Recently Deleted for 30 days, so you can undo it.
 
+### Can I move my Photos library to an external drive?
+
+Yes. Quit Photos, drag **Photos Library.photoslibrary** from Pictures to the external drive, then hold **Option** while you launch Photos and pick the library in its new location. Keep the drive connected and format it as APFS or Mac OS Extended. Only delete the original copy once the moved library opens and shows every album.
+
+### Does converting my library to HEIC lose quality?
+
+HEIC is lossy, like JPEG, so a converted copy is not pixel-identical to the original. At high quality the difference is invisible at normal viewing sizes and the file is roughly half the size. The real caveat is compatibility: HEIC is native on Apple devices and awkward everywhere else, so keep JPG for anything you share outside the Apple world.
+
 ## Related guides
 
-- **Shrinking one image, not a library?** [How to Reduce Image File Size on Mac](/blog/reduce-image-file-size-mac) covers resize, compress, convert, and strip metadata.
-- **Want to compress images on Mac in batch?** [Compress images on Mac](/compress-images-mac) is the tool page: drop a folder in, pick a quality, done.
-- **Screenshots are the bulk?** [How to reduce image file size on Mac](/blog/reduce-image-file-size-mac) covers the lossless and lossy options for flat-color images, PNG included.
+- **Shrinking one image, not a library?** [How to reduce image file size on Mac](/blog/reduce-image-file-size-mac) covers resize, quality settings, format choice, and stripping metadata.
+- **Photos scattered across folders too?** [How to organize digital photos](/blog/how-to-organize-digital-photos) covers the naming and folder structure that stops the mess coming back.

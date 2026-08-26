@@ -1,28 +1,48 @@
 ---
-title: "How to Convert WebP to JPG on Mac (4 Methods)"
+title: "How to Convert WEBP to JPG on Mac (5 Free Methods)"
 heroImage: "../../../public/images/blog/convert-webp-to-jpg-mac/cover.png"
-description: "Convert WebP images to JPG on your Mac using Preview, Terminal, online tools, or a dedicated converter. Step-by-step guide with batch conversion options."
+description: "Convert WEBP to JPG on Mac with Finder Quick Actions, Preview, or Terminal. Free built-in methods plus batch conversion for whole folders."
 pubDate: "2026-02-24"
+updatedDate: "2026-08-26"
 category: "Tutorial"
 tags: ["WebP", "JPG", "Conversion", "Mac", "Tutorial"]
 faqs:
-  - question: "Does converting WebP to JPG lose quality?"
-    answer: "Yes, slightly. WebP and JPG are both lossy formats. Converting between them re-encodes the image, introducing a small amount of additional compression. At 80-90% JPG quality, the difference is invisible for most purposes."
-  - question: "Can I convert WebP to JPG without installing anything?"
-    answer: "Yes. Preview (already on your Mac) and sips (built into Terminal) both handle it. Neither requires a download."
-  - question: "Why do websites use WebP instead of JPG?"
-    answer: "File size. A WebP photo is typically 25-35% smaller than the same JPG at similar visual quality. For sites serving millions of images, that's faster loads and lower bandwidth bills."
-  - question: "How do I batch convert a folder of WebP files to JPG?"
-    answer: "Drag the entire folder into Picmal and select JPG. It converts everything and preserves the folder structure. Alternatively, use the sips for-loop in Terminal."
+  - question: "How do I turn a WEBP into a JPG on Mac?"
+    answer: "Right-click the .webp file in Finder, choose Quick Actions, then Convert Image. Pick JPEG as the format and click Convert. It takes three clicks, needs no app, and works on several files at once. Your original stays where it is."
+  - question: "Can you turn a WEBP file into a JPG without losing quality?"
+    answer: "Not exactly. WEBP and JPG are both lossy formats for photos, so converting re-encodes the image and adds a small amount of compression. At 80-90% JPG quality the difference is invisible for most purposes. If you need pixel-perfect preservation, convert to PNG instead."
+  - question: "Why are my images saving as WEBP instead of JPG?"
+    answer: "Because the site served them that way. WEBP files are roughly 25-35% smaller than the same JPG, so most sites now serve WEBP to save bandwidth. Save Image As keeps whatever format the browser received, and Chrome, Safari and Firefox all behave the same way. You are not doing anything wrong, you just have to convert after the fact."
+  - question: "How do I open a WEBP file on my Mac?"
+    answer: "Double-click it. Preview has read WEBP since macOS Monterey, so it opens like any other image. If it opens in a browser instead, right-click the file, choose Open With, and pick Preview."
+  - question: "How do I batch convert a folder of WEBP files to JPG?"
+    answer: "Select all the files in Finder, right-click, and use Quick Actions then Convert Image. That handles a whole selection for free. For a folder with subfolders, drag it into Picmal and select JPG, which preserves the folder structure. In Terminal, a sips for-loop does the same job."
+  - question: "Can I convert WEBP to JPG for free on Mac?"
+    answer: "Yes. Finder Quick Actions, Preview and the sips command are all built into macOS. Nothing to download, nothing to upload, no account. Paid tools only start to matter when you convert hundreds of files regularly or need control over JPEG quality."
 ---
 
 You right-click an image from the web, hit "Save Image As," and get a `.webp` file. Your email client won't attach it. Your client's CMS rejects it. Photoshop opens it but your coworker's older version can't.
 
-WebP is a great format inside browsers. Outside them, it's still a headache. Here's how to turn those files into JPGs on your Mac.
+WEBP is a great format inside browsers. Outside them, it's still a headache. The fastest fix is already on your Mac: a right-click in Finder. Here are five ways to turn those files into JPGs, from three clicks to full batch runs.
 
-## Method 1: Preview (free, already on your Mac)
+## Method 1: Finder Quick Action (fastest, no app needed)
 
-Preview handles single-file conversion without installing anything.
+macOS converts images from the right-click menu. No app to open, nothing to install.
+
+1. Select the `.webp` file in Finder (or select several at once)
+2. Right-click the selection
+3. Choose Quick Actions → Convert Image
+4. Set Format to JPEG
+5. Pick an image size (Actual Size keeps the original dimensions)
+6. Click Convert
+
+The JPGs appear next to the originals, and the originals stay where they are. Because it works on a whole selection, this is also the free way to batch convert: select 200 files, one right-click, done.
+
+**Requires:** macOS Monterey or later. If you don't see Convert Image, your Mac is on an older version, so use Preview instead.
+
+## Method 2: Preview (when you want a quality slider)
+
+Preview costs you a few more clicks, but it lets you set the JPEG quality, which the Quick Action doesn't.
 
 1. Right-click the `.webp` file in Finder
 2. Open With → Preview
@@ -33,11 +53,11 @@ Preview handles single-file conversion without installing anything.
 
 For a few files, this works fine. For 50 files, you'll want something else.
 
-**Batch workaround:** Select multiple WebP files in Finder, right-click, Open With → Preview. Then File → Export Selected Images. Choose JPEG. It works, but you lose control over individual quality settings and the interface gets awkward with many files.
+**Batch workaround:** Select multiple WEBP files in Finder, right-click, Open With → Preview. Then File → Export Selected Images. Choose JPEG. It works, but you lose control over individual quality settings and the interface gets awkward with many files.
 
-## Method 2: Terminal with sips (power users)
+## Method 3: Terminal with sips (power users)
 
-macOS has a built-in command-line image tool called `sips`. It handles WebP to JPG in one line.
+macOS has a built-in command-line image tool called `sips`. It handles WEBP to JPG in one line.
 
 **Single file:**
 
@@ -55,51 +75,67 @@ This loops through every `.webp` file in the current directory and creates a `.j
 
 **Limitation:** `sips` doesn't let you set JPEG quality. It uses a default that's usually fine, but if you need control over compression, you'll need another tool.
 
-## Method 3: Online converters (if you don't mind uploading)
+## Method 4: Online converters (if you don't mind uploading)
 
-Tools like CloudConvert and Convertio handle WebP to JPG in the browser. Drag in a file, pick JPG, download the result.
+Tools like CloudConvert and Convertio handle WEBP to JPG in the browser. Drag in a file, pick JPG, download the result.
 
 The tradeoff is obvious: your images go to someone else's server. For a random screenshot, fine. For client work or anything confidential, not fine.
 
 CloudConvert gives you 25 free conversions per day. Convertio's free tier caps at 100MB per file and 10 conversions per day.
 
-## Method 4: Picmal (fastest for batch)
+## Method 5: Picmal (fastest for repeat batch work)
 
-If you have more than a handful of WebP files, or this keeps happening, a dedicated converter pays for itself quickly.
+If this keeps happening, or you need quality control across hundreds of files, a dedicated converter pays for itself quickly.
 
 1. Download [Picmal](https://picmal.app) if you haven't already
-2. Drag your WebP files into the window (or an entire folder)
+2. Drag your WEBP files into the window (or an entire folder)
 3. Select JPG as the output format
 4. Adjust quality if you want (80% is a good default for web photos)
 5. Click Convert
 
-Picmal preserves folder structure, so if you drag in a folder with subfolders, you get the same structure back with JPGs instead of WebPs. Nothing gets uploaded anywhere — it runs entirely on your Mac.
+Picmal preserves folder structure, so if you drag in a folder with subfolders, you get the same structure back with JPGs instead of WEBPs. Nothing gets uploaded anywhere, it runs entirely on your Mac.
 
-**Best for:** Batch conversion. Dozens or hundreds of files. Recurring workflows where you're always getting WebP and need JPG.
+**Best for:** Nested folders, quality control, and recurring workflows where you're always getting WEBP and need JPG.
 
 ## Which method to choose
 
 | Situation | Method |
 |-----------|--------|
-| 1-3 images, right now | Preview |
-| 10+ images, or you do this regularly | [Picmal](https://picmal.app) |
+| 1 image, right now | Quick Action |
+| A folder of images, no app, free | Quick Action (select all) |
+| You need a quality slider | Preview |
+| Nested folders, or you do this weekly | [Picmal](https://picmal.app) |
 | You live in the terminal | `sips` |
 | You're on someone else's Mac | Online converter |
 
 ## FAQ
 
-### Does converting WebP to JPG lose quality?
+### How do I turn a WEBP into a JPG on Mac?
 
-Yes, slightly. WebP and JPG are both lossy formats (for photos). Converting between them means the image gets re-encoded, which introduces a small amount of additional compression. At 80-90% JPG quality, the difference is invisible for most purposes. If you need pixel-perfect preservation, convert to PNG instead.
+Right-click the file in Finder, choose Quick Actions → Convert Image, pick JPEG, and click Convert. Three clicks, no app, and it works on several files at once. Your original stays where it is.
 
-### Can I convert WebP to JPG without installing anything?
+### Can you turn a WEBP file into a JPG without losing quality?
 
-Yes. Preview (already on your Mac) and `sips` (built into Terminal) both handle it. Preview gives you a GUI; `sips` gives you a command line. Neither requires a download.
+Not exactly. WEBP and JPG are both lossy formats (for photos). Converting between them means the image gets re-encoded, which introduces a small amount of additional compression. At 80-90% JPG quality, the difference is invisible for most purposes. If you need pixel-perfect preservation, [convert to PNG instead](/blog/convert-webp-to-png-mac).
 
-### Why do websites use WebP instead of JPG?
+### Why are my images saving as WEBP instead of JPG?
 
-File size. A WebP photo is typically 25-35% smaller than the same JPG at similar visual quality. For sites serving millions of images, that's faster loads and lower bandwidth bills. Google developed WebP specifically for this.
+Because the site served them that way. A WEBP photo is typically 25-35% smaller than the same JPG at similar visual quality, so most sites now serve WEBP to save bandwidth. "Save Image As" keeps whatever format the browser received, and Chrome, Safari and Firefox all behave the same way. You're not doing anything wrong, you just have to convert after the fact.
 
-### How do I batch convert a folder of WebP files to JPG?
+### How do I open a WEBP file on my Mac?
 
-Drag the entire folder into [Picmal](https://picmal.app) and select JPG. It converts everything and preserves the folder structure. Alternatively, use the `sips` for-loop in Terminal (Method 2 above), which costs nothing.
+Double-click it. Preview has read WEBP since macOS Monterey, so it opens like any other image. If it opens in a browser instead, right-click the file, choose Open With, and pick Preview.
+
+### How do I batch convert a folder of WEBP files to JPG?
+
+Select all the files in Finder, right-click, Quick Actions → Convert Image. That handles a whole selection for free. For a folder with subfolders, drag it into [Picmal](/image-converter-mac) and select JPG, which preserves the structure. In Terminal, the `sips` for-loop in Method 3 does the same job.
+
+### Can I convert WEBP to JPG for free on Mac?
+
+Yes. Finder Quick Actions, Preview and `sips` are all built into macOS. Nothing to download, nothing to upload, no account. Paid tools only start to matter when you're converting hundreds of files regularly or you need control over JPEG quality.
+
+## Related guides
+
+- **Need PNG instead of JPG?** See [how to convert WEBP to PNG on Mac](/blog/convert-webp-to-png-mac), which keeps transparency.
+- **Going the other way?** Here's [how to convert images to WEBP on Mac](/blog/convert-images-to-webp-mac) for your own site.
+- **Lots of formats at once?** [How to batch convert images on Mac](/blog/batch-convert-images-mac) covers mixed folders.

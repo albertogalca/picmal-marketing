@@ -37,7 +37,7 @@ The "Resulting Size" figure at the bottom of that dialog tells you the new file 
 
 Two things worth knowing. **Resample Image** should stay ticked when you want fewer pixels. Untick it and you are only changing the DPI metadata, which alters print size and leaves the pixels exactly as they were. And resizing *up* never really works: the software has to invent detail that was never captured.
 
-For a specific file size rather than a specific width, and for anything involving more than one image, keep reading.
+For a specific file size rather than a specific width, resizing is only one of the levers: [compress an image on Mac](/blog/reduce-image-file-size-mac) covers quality, format and metadata too. For anything involving more than one image, keep reading.
 
 ## Method 1: Preview, for a batch (free, no install)
 
@@ -131,4 +131,4 @@ Resizing preserves aspect ratio by default, so a 4:3 image stays 4:3. If you nee
 
 ### How much does resizing reduce file size?
 
-Roughly proportional to the pixel reduction. Halving the width and height (e.g., 4000x3000 > 2000x1500) reduces pixel count by 75%, and file size drops similarly. A 4000px wide JPEG at 8MB becomes 1600px wide at about 1.2MB is typical.
+Roughly proportional to the pixel reduction. Halving the width and height (e.g., 4000x3000 > 2000x1500) reduces pixel count by 75%, and file size drops similarly. A 4000px wide JPEG at 8MB typically lands around 1.2MB once it is 1600px wide. To go smaller than that you also have to [compress an image on Mac](/blog/reduce-image-file-size-mac), not just resize it.

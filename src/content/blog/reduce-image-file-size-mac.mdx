@@ -1,9 +1,9 @@
 ---
-title: "How to Reduce Image File Size on Mac (Without Losing Quality)"
+title: "How to Compress an Image on Mac (5 Free Ways to Reduce File Size)"
 heroImage: "../../../public/images/blog/reduce-image-file-size-mac/cover.png"
 description: "How to compress an image on a Mac and make the file smaller: resize, compress, convert to WebP or AVIF, or strip metadata. Covers JPEG, PNG, and web images, with the free built-in tools first."
 pubDate: "2026-03-05"
-updatedDate: "2026-08-18"
+updatedDate: "2026-08-26"
 category: "Tutorial"
 tags: ["Compression", "Mac", "Tutorial", "File Size", "JPEG", "PNG"]
 faqs:
@@ -15,15 +15,21 @@ faqs:
     answer: "Resizing down does not degrade quality in any visible way, you are simply using fewer pixels. Resizing up does, because the software has to invent detail that was never captured."
   - question: "What is the best format for reducing file size?"
     answer: "AVIF gives the smallest files for photos, WebP is close behind with broader support, and JPEG is the safe default that works everywhere. PNG is only smaller for flat color, text, or transparency. For a photograph, PNG is almost always the largest option."
+  - question: "Does re-compressing a JPEG degrade quality?"
+    answer: "Yes, every single time. JPEG is lossy on every save, so opening a compressed JPEG, changing it, and saving again softens it further, even at the same quality setting. Always compress from the original, not from a copy you compressed last week."
   - question: "How do I compress a PNG without losing transparency?"
     answer: "Every method here preserves the alpha channel. pngquant gives the biggest savings by quantizing the palette, typically 60-80%, and keeps transparency intact. optipng is fully lossless and gets 10-30%. Converting to WebP also keeps transparency and usually beats both."
+  - question: "What is the maximum compression I can get on a PNG?"
+    answer: "Around 60-80% with pngquant, which cuts the palette to 256 colors or fewer. Fully lossless tools like optipng get 10-30%. If you need more than that, the answer is not PNG at all: convert to WebP, which keeps transparency and usually beats both."
+  - question: "Should I compress images before emailing them?"
+    answer: "Yes. Most mail servers reject attachments over 20-25MB, and Gmail stops at 25MB. Resize to 800px wide and export at 80% quality, and a typical iPhone photo drops from 3.8MB to under 300KB. That is small enough to send a dozen at once."
   - question: "Can I reduce file size without changing the image at all?"
     answer: "Yes. Lossless optimizers like ImageOptim or optipng squeeze out 10-30% by improving how the file is encoded, without altering a single pixel. For bigger reductions you have to resize, re-compress, or change format."
 ---
 
 Your image is too big. An email is bouncing, a website is rejecting the upload, or your portfolio site loads like it's 2003.
 
-**The fastest fix, with nothing installed: open the image in Preview, choose File > Export, and drag the Quality slider left.** The estimated size updates as you drag. Stop when it's small enough, save a copy, done.
+**The fastest way to compress an image on a Mac, with nothing installed: open it in Preview, choose File > Export, and drag the Quality slider left.** The estimated size updates as you drag. Stop when it's small enough, save a copy, done.
 
 That solves most cases. If it doesn't, it's because you're pulling only one of the four available levers:
 
@@ -32,7 +38,7 @@ That solves most cases. If it doesn't, it's because you're pulling only one of t
 3. **Convert**, some formats are simply more efficient
 4. **Strip metadata**, EXIF and color profiles and embedded thumbnails add up
 
-Here's how to pull each one on a Mac, plus the format-specific tricks for JPEG and PNG, and what changes when the images are going on a website.
+Here's how to pull each one on a Mac, then how to stack all four in a single pass, plus the format-specific tricks for JPEG and PNG and what changes when the images are going on a website.
 
 ## 1. Resize the image (biggest impact)
 
@@ -90,53 +96,6 @@ If you're serving images on the web and still using JPEG, moving to WebP cuts a 
 
 **Preview cannot export WebP or AVIF.** For those you need a command-line tool (`cwebp` and `avifenc`, both via Homebrew) or an app.
 
-## JPEG: what's specific to it
-
-JPEG is lossy every time it's saved, and that's the thing to watch. **Each re-save degrades the image further**, even at the same quality setting. Editing and re-saving the same JPEG five times visibly softens it. Always compress from the original, not from a copy you compressed last week.
-
-`sips -s formatOptions` above is the built-in route. For lossless gains on top, **ImageOptim** is a free Mac app: drop files on it and it strips metadata and re-encodes more efficiently, usually 10-20% with zero pixel change.
-
-A JPEG has no transparency. If your image has a transparent background and you convert it to JPEG, that background becomes solid white or black, and there's no undoing it.
-
-## PNG: what's specific to it
-
-PNG is lossless, so "compressing" it means either encoding smarter or reducing the palette.
-
-**pngquant** cuts the palette to 256 colors or fewer. Technically lossy, but on screenshots and UI assets the difference is invisible and the savings are large:
-
-```bash
-brew install pngquant
-pngquant --quality=65-80 --output compressed.png input.png
-
-# whole folder, in place
-pngquant --quality=65-80 --ext .png --force *.png
-```
-
-**Typical saving:** 60-80%. A 5MB screenshot becomes about 1MB. Transparency survives.
-
-**optipng** is fully lossless, for when every pixel must be identical:
-
-```bash
-brew install optipng
-optipng -o5 *.png
-```
-
-`-o5` balances speed against compression. `-o7` squeezes marginally harder and takes far longer. **Typical saving:** 10-30%.
-
-**Should it be a PNG at all?** For a photograph, no. PNG is for flat color, sharp text and transparency. A photo saved as PNG is routinely 4-5 times the JPEG. If you need transparency *and* small files, WebP does both.
-
-## Images for a website
-
-Three things decide page weight, in this order.
-
-**Format.** A 1400px hero as JPG might be 800KB. The same image as WebP is around 300KB, as AVIF closer to 200KB. WebP has 97%+ browser support and AVIF is around 93%. For photos on the web there's very little reason to still be serving JPEG or PNG.
-
-**Dimensions.** Nobody needs a 4000px image on a webpage. Most content areas are 800-1200px, and even full-bleed heroes rarely need more than 1600px, or 2400px for Retina. Going 4000px to 1600px cuts 75% before compression touches it.
-
-**Quality.** People agonize over the perfect setting. In practice 80% is visually identical to 100% for photos in a browser. Below 70% you get halos on edges and banding in skies and skin. 75-85% is the range, and 80% is a fine default.
-
-**One more thing if you work for clients.** Product photos, unreleased designs, screenshots of internal dashboards. Upload those to a web compressor and they land on someone else's server. Even if the service deletes them afterwards, you still transmitted them, and for healthcare or legal work that's a compliance problem rather than a preference. Everything on this page except the browser-based services runs locally, and "it never leaves my machine" is a much better answer than "I think they delete them after an hour."
-
 ## 4. Strip metadata
 
 Photos carry hidden baggage: GPS coordinates, camera model, lens, exposure settings, color profiles, embedded thumbnails. A single iPhone photo can hold 50-100KB of it.
@@ -164,6 +123,53 @@ The real savings come from combining. A worked example on an iPhone photo, 4032x
 
 Order matters a little: resize first, then compress. Compressing a 4000px image and then shrinking it wastes the work.
 
+## How to compress a JPEG on Mac
+
+JPEG is lossy every time it's saved, and that's the thing to watch. **Each re-save degrades the image further**, even at the same quality setting. Editing and re-saving the same JPEG five times visibly softens it. Always compress from the original, not from a copy you compressed last week.
+
+`sips -s formatOptions` above is the built-in route. For lossless gains on top, **ImageOptim** is a free Mac app: drop files on it and it strips metadata and re-encodes more efficiently, usually 10-20% with zero pixel change.
+
+A JPEG has no transparency. If your image has a transparent background and you convert it to JPEG, that background becomes solid white or black, and there's no undoing it.
+
+## How to compress a PNG on Mac (without losing transparency)
+
+PNG is lossless, so "compressing" it means either encoding smarter or reducing the palette.
+
+**pngquant** cuts the palette to 256 colors or fewer. Technically lossy, but on screenshots and UI assets the difference is invisible and the savings are large:
+
+```bash
+brew install pngquant
+pngquant --quality=65-80 --output compressed.png input.png
+
+# whole folder, in place
+pngquant --quality=65-80 --ext .png --force *.png
+```
+
+**Typical saving:** 60-80%. A 5MB screenshot becomes about 1MB. Transparency survives.
+
+**optipng** is fully lossless, for when every pixel must be identical:
+
+```bash
+brew install optipng
+optipng -o5 *.png
+```
+
+`-o5` balances speed against compression. `-o7` squeezes marginally harder and takes far longer. **Typical saving:** 10-30%.
+
+**Should it be a PNG at all?** For a photograph, no. PNG is for flat color, sharp text and transparency. A photo saved as PNG is routinely 4-5 times the JPEG. If you need transparency *and* small files, WebP does both.
+
+## How to compress images for a website
+
+Three things decide page weight, in this order.
+
+**Format.** A 1400px hero as JPG might be 800KB. The same image as WebP is around 300KB, as AVIF closer to 200KB. WebP has 97%+ browser support and AVIF is around 93%. For photos on the web there's very little reason to still be serving JPEG or PNG.
+
+**Dimensions.** Nobody needs a 4000px image on a webpage. Most content areas are 800-1200px, and even full-bleed heroes rarely need more than 1600px, or 2400px for Retina. Going 4000px to 1600px cuts 75% before compression touches it.
+
+**Quality.** People agonize over the perfect setting. In practice 80% is visually identical to 100% for photos in a browser. Below 70% you get halos on edges and banding in skies and skin. 75-85% is the range, and 80% is a fine default.
+
+**One more thing if you work for clients.** Product photos, unreleased designs, screenshots of internal dashboards. Upload those to a web compressor and they land on someone else's server. Even if the service deletes them afterwards, you still transmitted them, and for healthcare or legal work that's a compliance problem rather than a preference. Everything on this page except the browser-based services runs locally, and "it never leaves my machine" is a much better answer than "I think they delete them after an hour."
+
 ## When the free tools stop being worth it
 
 Everything above is free, and most of it is already on your Mac. For one image, Preview. For a folder at one quality, the `sips` loop. For PNGs, `pngquant`. None of that is worth paying to replace.
@@ -171,6 +177,44 @@ Everything above is free, and most of it is already on your Mac. For one image, 
 Where it gets tedious is doing all four levers at once, repeatedly, across a mixed folder. That means Preview for the resize, a Terminal loop for the quality, a separate tool for WebP because Preview cannot export it, and `exiftool` for the metadata. Four passes, and the settings live in your head.
 
 [Picmal](https://picmal.app) does the four in one pass: drop the folder in, set a max width, pick WebP, set quality to 80, tick remove metadata, convert. It reads HEIC and camera RAW too, so a mixed folder goes through together, and it runs entirely on your Mac with no upload and no size cap. It's $39 once. If you compress a couple of images a month, Preview is genuinely the better answer.
+
+## FAQ
+
+### How do I compress an image on a Mac?
+
+Open it in Preview, choose File > Export, and drag the Quality slider left. The estimated file size updates as you drag, so you can stop when it is small enough. Preview ships with macOS, so there is nothing to install and nothing to upload.
+
+### How small can I make an image without it looking bad?
+
+For photos, 80% JPEG quality is visually indistinguishable from 100% on a screen. WebP and AVIF hold up at 70-75%. For the web aim for under 200KB per image, for email under 500KB.
+
+### Does resizing reduce quality?
+
+Resizing down does not degrade quality in any visible way, you are simply using fewer pixels. Resizing up does, because the software has to invent detail that was never captured.
+
+### What is the best format for reducing file size?
+
+AVIF gives the smallest files for photos, WebP is close behind with broader support, and JPEG is the safe default that works everywhere. PNG is only smaller for flat color, text, or transparency. For a photograph, PNG is almost always the largest option.
+
+### Does re-compressing a JPEG degrade quality?
+
+Yes, every single time. JPEG is lossy on every save, so opening a compressed JPEG, changing it, and saving again softens it further, even at the same quality setting. Always compress from the original, not from a copy you compressed last week.
+
+### How do I compress a PNG without losing transparency?
+
+Every method here preserves the alpha channel. pngquant gives the biggest savings by quantizing the palette, typically 60-80%, and keeps transparency intact. optipng is fully lossless and gets 10-30%. Converting to WebP also keeps transparency and usually beats both.
+
+### What is the maximum compression I can get on a PNG?
+
+Around 60-80% with pngquant, which cuts the palette to 256 colors or fewer. Fully lossless tools like optipng get 10-30%. If you need more than that, the answer is not PNG at all: convert to WebP, which keeps transparency and usually beats both.
+
+### Should I compress images before emailing them?
+
+Yes. Most mail servers reject attachments over 20-25MB, and Gmail stops at 25MB. Resize to 800px wide and export at 80% quality, and a typical iPhone photo drops from 3.8MB to under 300KB. That is small enough to send a dozen at once.
+
+### Can I reduce file size without changing the image at all?
+
+Yes. Lossless optimizers like ImageOptim or optipng squeeze out 10-30% by improving how the file is encoded, without altering a single pixel. For bigger reductions you have to resize, re-compress, or change format.
 
 ## Related guides
 

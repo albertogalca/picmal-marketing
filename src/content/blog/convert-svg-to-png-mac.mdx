@@ -131,6 +131,7 @@ The three failures people actually hit, and the fix for each:
 - **Blank or black output.** The SVG references an external stylesheet or image that the renderer can't load. Open it in a browser (which can load those) and export from there, or inline the styles into the file.
 - **Missing text, wrong font.** The SVG uses a font that isn't installed on your Mac, so the renderer substitutes or drops it. Install the font, or ask whoever made the file to export with text converted to outlines.
 - **Gradients, filters, or masks render oddly.** That's Preview and `qlmanage` hitting the limits of Apple's SVG engine. Use the browser method or `rsvg-convert`, both handle the full spec far better.
+- **The PNG is enormous.** An SVG is a few KB of text, but a PNG at 2x or 3x is real pixels, and a full-page illustration can land at several MB. Export at the size you actually need, then [compress an image on Mac](/blog/reduce-image-file-size-mac) to get it down further without touching the dimensions.
 
 If a file fails in one tool, try another before assuming the SVG is broken. The four methods above use three different rendering engines, and one of them almost always gets it right.
 

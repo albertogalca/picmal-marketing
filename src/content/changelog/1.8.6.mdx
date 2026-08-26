@@ -1,0 +1,14 @@
+---
+version: "1.8.6"
+title: "Settings changes take effect, every time"
+description: "Changing a quality preset now re-runs your files instead of silently skipping them, picking a video codec in Compress actually changes the codec, and the Settings window is no longer dimmed in Light mode."
+pubDate: 2026-08-26
+---
+
+A small release that closes a frustrating gap: changing a setting after a run could quietly do nothing. Pick a different preset, hit run again, get the same files back. Both of those paths now do what you asked.
+
+### Bug fixes
+
+- **Fixed a quality preset change doing nothing after a run.** Picking a different preset or moving a slider left your files marked as done, so the next run silently skipped them. They now go back to waiting, and a re-run uses the new settings. Settings also spells out where presets apply: the Compress tool, and Convert only when "Compress while converting" is on.
+- **Fixed picking a video codec in Compress not changing the codec.** Compressing a VP9 video with H.264 selected gave you back a file that was still VP9. The re-encode ran fine, but the safety check that stops a compressed file from growing saw the H.264 version was bigger and quietly put the original back. When you ask for a different codec, Picmal now keeps the converted file even if it's larger — and the codec check reads the actual footage, not the embedded cover art, so videos carrying a thumbnail get the right answer too.
+- **Fixed the Settings window looking dimmed in Light mode.** Every tab sat on a semi-transparent gray backdrop. It's back to a normal opaque background.

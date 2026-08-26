@@ -3,6 +3,21 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.6</title>
+            <pubDate>Wed, 26 Aug 2026 17:52:34 +0300</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>117</sparkle:version>
+            <sparkle:shortVersionString>1.8.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.6/Picmal.dmg" length="87805902" type="application/octet-stream" sparkle:edSignature="lpI4HYZvVQXze1dC2dxFTVx8Jz2l6MaMLZfvg1WWfrM5+P4L4TOC+J2irTgXvwo5jOPQKUqew2D5iqXK6jf/AQ=="/>
+        <description><![CDATA[<div><h3>Bug Fixes</h3>
+<ul>
+<li><strong>Changing a quality preset re-runs your files.</strong> Picking a different preset or moving a slider after a run used to change nothing: the files were still marked as done, so the next run quietly skipped them. They now go back to waiting, and a re-run uses the new settings. Settings also spells out where presets apply: the Compress tool, and Convert only when "Compress while converting" is on.</li>
+<li><strong>Picking a video codec in Compress now actually changes the codec.</strong> Compressing a VP9 video with H.264 selected gave you back a file that was still VP9. The re-encode ran fine, but the safety check that stops a compressed file from growing saw the H.264 version was bigger and quietly put the original back. When you ask for a different codec, Picmal now keeps the converted file even if it's larger. VP9 compresses very well, so at the same quality it usually is. The codec check also reads the actual footage now, not the embedded cover art, so videos carrying a thumbnail get the right answer too.</li>
+<li><strong>Settings is no longer gray in Light mode.</strong> Every tab sat on a semi-transparent gray backdrop that made the whole window look dimmed. It's back to a normal opaque background.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.5</title>
             <pubDate>Sat, 22 Aug 2026 21:32:09 +0300</pubDate>
             <link>https://picmal.app/</link>

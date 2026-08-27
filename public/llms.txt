@@ -41,7 +41,6 @@ One-time purchase with lifetime license. No subscription required. No free trial
 
 - Picmal: $39 (one-time, 2 Macs, every feature, free updates forever)
 - Picmal Pro: $69 (one-time, 5 Macs, same features)
-- Mac App Store: $39 (same app and price; no command line tool, Raycast extension or watched folders)
 
 Existing 1/2/3-device license holders can upgrade to 5 devices by paying the difference.
 40% student discount on a verified school email address. Purchasing-power pricing is applied automatically at checkout by country.
@@ -91,7 +90,6 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Clipboard optimization](https://picmal.app/docs/clipboard-optimization): Auto-compress or convert clipboard images
 - [Integrations](https://picmal.app/docs/integrations): Drag & drop, Finder Quick Actions and Services, Shortcuts, Raycast, menu bar
 - [Command line (picmal-cli)](https://picmal.app/docs/cli): Terminal companion for convert, compress, PDF and video tools, watched folders, and presets with NDJSON output
-- [App Store or direct](https://picmal.app/docs/mac-app-store): What differs between the two builds
 - [License](https://picmal.app/docs/license): Activation, deactivation, and the self-serve portal
 - [FAQ](https://picmal.app/docs/faq): Common questions and fixes
 

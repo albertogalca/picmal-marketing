@@ -7,19 +7,12 @@ Picmal is a native macOS app for batch converting and compressing images, videos
 ### Picmal
 - Price: $39 (one-time, lifetime)
 - Devices: 2 Macs
-- Includes: Every feature, no add-ons. Free updates forever. Command line tool, Raycast extension and watched folders. Updates ship the day they are released, with no App Store review wait.
+- Includes: Every feature, no add-ons. Free updates forever. Command line tool, Raycast extension and watched folders. Updates ship the day they are released.
 
 ### Picmal Pro
 - Price: $69 (one-time, lifetime)
 - Devices: 5 Macs
 - Includes: Everything in Picmal. One license for a studio, a family, or a desk and a laptop.
-
-### Mac App Store
-- Price: $39 (one-time, lifetime)
-- Devices: Family Sharing, no license key
-- Includes: All conversion and compression features, same engines, same quality. Free updates forever. Purchases, updates and refunds handled by Apple.
-- Not included: command line tool, Raycast extension, watched folders, camera EXIF on RAW. See https://picmal.app/docs/mac-app-store
-- Link: https://apps.apple.com/app/id6800392871
 
 ## Discounts and upgrades
 - Student discount: 40% off with a verified school email address — https://picmal.app/education
@@ -70,4 +63,4 @@ Picmal is a native macOS app for batch converting and compressing images, videos
 - 30% commission, paid once per sale (Picmal is a one-time purchase, so nothing recurs)
 - Program: https://picmal.app/affiliate
 
-Last updated: 2026-08-22
+Last updated: 2026-08-27

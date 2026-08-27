@@ -95,7 +95,7 @@ export const ossBundled: OssEntry[] = [
     sourceUrl:
       "https://github.com/Exiv2/exiv2/releases/download/v0.28.8/exiv2-0.28.8-Source.tar.gz",
     notes:
-      "Used as a separate executable for image metadata (EXIF/IPTC/XMP) editing. Direct download build only — the Mac App Store version writes metadata with Apple's ImageIO instead.",
+      "Used as a separate executable for image metadata (EXIF/IPTC/XMP) editing.",
   },
   {
     name: "Gifsicle",
@@ -106,7 +106,7 @@ export const ossBundled: OssEntry[] = [
     licenseUrl: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     sourceUrl: "https://www.lcdf.org/gifsicle/gifsicle-1.96.tar.gz",
     notes:
-      "Used as a separate executable for GIF optimization. Direct download build only — the Mac App Store version uses ImageMagick for GIFs.",
+      "Used as a separate executable for GIF optimization.",
   },
   {
     name: "pngquant",
@@ -117,6 +117,6 @@ export const ossBundled: OssEntry[] = [
     licenseUrl: "https://www.gnu.org/licenses/gpl-3.0.html",
     sourceUrl: "https://pngquant.org/pngquant-src.tar.gz",
     notes:
-      "Used as a separate executable for lossy PNG quantization. Direct download build only — the Mac App Store version quantizes with ImageMagick + oxipng.",
+      "Used as a separate executable for lossy PNG quantization.",
   },
 ];

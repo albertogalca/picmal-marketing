@@ -13,8 +13,8 @@ const PRODUCT_SLUG = "picmal";
 const checkoutUrl = (priceId: string): string =>
   `${LICENCIO}/api/checkout?product_slug=${PRODUCT_SLUG}&price_id=${encodeURIComponent(priceId)}`;
 
-/** A plain bullet, or one with a link on `linkText` (a substring of `text`). */
-export type Feature = string | { text: string; linkText: string; href: string };
+/** A plain bullet. */
+export type Feature = string;
 
 export interface Plan {
   id: "standard" | "pro";
@@ -46,9 +46,7 @@ const RAW: Omit<Plan, "checkoutUrl">[] = [
       "Free updates forever",
       "Use on 2 {mac}",
       "Command line tool, Raycast extension and watched folders",
-      // Was "Instant updates via Sparkle". Sparkle means nothing to a buyer;
-      // what they actually get is the update without Apple's review queue.
-      "Updates land the day I ship them, with no App Store review wait",
+      "Updates land the day I ship them",
     ],
   },
   {
@@ -75,29 +73,6 @@ export const PLANS: Plan[] = RAW.map((p) => ({
 // What every bare <Button> charges. Keep it matching the price written on those
 // buttons ("Get Picmal for $39").
 export const DEFAULT_PLAN = PLANS[0];
-
-// Third buying channel, not a third tier. Same price as the direct license, but
-// Apple's sandbox costs it the CLI, Raycast, watched folders and camera EXIF on
-// RAW. The link only resolves once the app clears review (App Store Connect id
-// 6800392871), so this site does not go out before it does.
-export const MAC_APP_STORE = {
-  price: 39,
-  url: "https://apps.apple.com/app/id6800392871",
-  features: [
-    "All conversion and compression features, same engines, same quality",
-    "Free updates forever",
-    "Purchases, updates and refunds handled by Apple",
-    "Family Sharing, no license key",
-    // Was "Some things work differently on the App Store", which left the buyer
-    // guessing what they give up at the exact moment they pick a channel. Name
-    // the three missing tools, and keep the link for the long version.
-    {
-      text: "No command line tool, Raycast extension or watched folders. Compare the two builds",
-      linkText: "Compare the two builds",
-      href: "/docs/mac-app-store",
-    },
-  ],
-};
 
 // Self-serve since Aug 2026: licencio's upgrade page takes the license key,
 // picks the pay-the-difference SKU for that key's seat count server-side

@@ -2,6 +2,7 @@
 import H2 from "./H2.astro";
 import Paragraph from "./Paragraph.astro";
 import Button from "./Button.astro";
+import { DEFAULT_TIER } from "../config/pricing";
 
 interface Props {
   heading: string;
@@ -23,7 +24,7 @@ const { heading, analyticsEvent } = Astro.props;
       </Paragraph>
       <div class="flex flex-col items-center gap-3">
         <Button
-          text="Get Picmal for $39"
+          text={`Get Picmal for $${DEFAULT_TIER.price}`}
           onclick={import.meta.env.PROD
             ? `window.seline?.track('${analyticsEvent}')`
             : undefined}

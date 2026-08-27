@@ -1,6 +1,6 @@
 ---
 import { cn } from "../utils/cn";
-import { DEFAULT_PLAN } from "../config/pricing";
+import { DEFAULT_TIER } from "../config/pricing";
 
 export interface Props {
   class?: string;
@@ -23,7 +23,7 @@ export interface Props {
 
 const {
   class: className = "",
-  href = DEFAULT_PLAN.checkoutUrl,
+  href = DEFAULT_TIER.checkoutUrl,
   text = "",
   size = "normal",
   variant = "primary",

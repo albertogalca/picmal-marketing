@@ -3,15 +3,20 @@ export interface Segment {
   id: string;
   label: string;
   href?: string;
+  /** Accessible name, when the visible label is too terse to stand alone
+   *  (e.g. label "5" reading as "5 Macs, $89"). Must contain the label. */
+  ariaLabel?: string;
 }
 
 interface Props {
   segments: Segment[];
   activeId: string;
   ariaLabel: string;
-  /** "tabs" renders <button role="tab"> with data-segment for client-side switching.
+  /** "radio" renders <button role="radio"> with data-segment for client-side
+   *  switching: a segmented control picks one value, it does not swap panels,
+   *  so radiogroup is the honest role and arrow keys are the expected input.
    *  "links" renders <a> for navigation between pages. */
-  mode?: "tabs" | "links";
+  mode?: "radio" | "links";
   /** Class to put on each segment so external scripts can hook in (e.g. ".press-tab"). */
   segmentClass?: string;
 }
@@ -23,22 +28,34 @@ const {
   mode = "links",
   segmentClass = "",
 } = Astro.props;
+
+// A page-navigation strip is a landmark; a radiogroup is not.
+const Wrapper = mode === "links" ? "nav" : "div";
 ---
 
-<nav class="segmented-control-wrapper" aria-label={ariaLabel}>
-  <div class="segmented-control" role={mode === "tabs" ? "tablist" : undefined}>
+<Wrapper
+  class="segmented-control-wrapper"
+  aria-label={mode === "links" ? ariaLabel : undefined}
+>
+  <div
+    class="segmented-control"
+    role={mode === "radio" ? "radiogroup" : undefined}
+    aria-label={mode === "radio" ? ariaLabel : undefined}
+  >
     {
       segments.map((s) => {
         const isActive = s.id === activeId;
         const classes = `segment ${segmentClass} ${isActive ? "active" : ""}`;
 
-        return mode === "tabs" ? (
+        return mode === "radio" ? (
           <button
             type="button"
-            role="tab"
+            role="radio"
             data-segment={s.id}
             class={classes}
-            aria-selected={isActive ? "true" : "false"}
+            aria-checked={isActive ? "true" : "false"}
+            aria-label={s.ariaLabel}
+            tabindex={isActive ? 0 : -1}
           >
             {s.label}
           </button>
@@ -54,7 +71,7 @@ const {
       })
     }
   </div>
-</nav>
+</Wrapper>
 
 <style>
   .segmented-control-wrapper {
@@ -120,7 +137,7 @@ const {
   }
 
   .segment:focus-visible {
-    outline: 2px solid rgba(0, 122, 255, 0.6);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
 
@@ -138,3 +155,49 @@ const {
     }
   }
 </style>
+
+<script>
+  // Radio mode owns its own keyboard contract so every segmented control on the
+  // site behaves the same: roving tabindex, arrow keys wrap, click or arrow both
+  // commit. Consumers listen for `segment-change` and do their own work.
+  document.querySelectorAll<HTMLElement>('[role="radiogroup"]').forEach((group) => {
+    const radios = Array.from(
+      group.querySelectorAll<HTMLButtonElement>('[role="radio"]'),
+    );
+
+    const select = (radio: HTMLButtonElement | undefined, focus = false) => {
+      if (!radio || radio.getAttribute("aria-checked") === "true") return;
+
+      radios.forEach((r) => {
+        const active = r === radio;
+        r.classList.toggle("active", active);
+        r.setAttribute("aria-checked", active ? "true" : "false");
+        r.tabIndex = active ? 0 : -1;
+      });
+      if (focus) radio.focus();
+
+      group.dispatchEvent(
+        new CustomEvent("segment-change", {
+          detail: { id: radio.dataset.segment },
+          bubbles: true,
+        }),
+      );
+    };
+
+    radios.forEach((radio, i) => {
+      radio.addEventListener("click", () => select(radio));
+
+      radio.addEventListener("keydown", (event) => {
+        const step =
+          event.key === "ArrowRight" || event.key === "ArrowDown"
+            ? 1
+            : event.key === "ArrowLeft" || event.key === "ArrowUp"
+              ? -1
+              : 0;
+        if (!step) return;
+        event.preventDefault();
+        select(radios[(i + step + radios.length) % radios.length], true);
+      });
+    });
+  });
+</script>

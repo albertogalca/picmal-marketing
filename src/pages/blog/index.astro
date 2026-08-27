@@ -79,7 +79,7 @@ const blogListSchema = {
                 segments={segments}
                 activeId="All"
                 ariaLabel="Blog categories"
-                mode="tabs"
+                mode="radio"
                 segmentClass="blog-cat-tab"
               />
             </div>
@@ -155,14 +155,11 @@ const blogListSchema = {
         document.querySelectorAll<HTMLElement>("article[data-category]");
       const empty = document.getElementById("blog-empty");
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const cat = tab.dataset.segment;
-          tabs.forEach((b) => {
-            const active = b === tab;
-            b.classList.toggle("active", active);
-            b.setAttribute("aria-selected", active ? "true" : "false");
-          });
+      // SegmentedControl owns selection and keyboard; this owns the filtering.
+      tabs[0]?.closest('[role="radiogroup"]')?.addEventListener(
+        "segment-change",
+        (event) => {
+          const cat = (event as CustomEvent<{ id?: string }>).detail?.id;
           let visible = 0;
           articles.forEach((a) => {
             const show = cat === "All" || a.dataset.category === cat;
@@ -170,8 +167,8 @@ const blogListSchema = {
             if (show) visible++;
           });
           if (empty) empty.hidden = visible !== 0;
-        });
-      });
+        },
+      );
     </script>
   </body>
 </html>

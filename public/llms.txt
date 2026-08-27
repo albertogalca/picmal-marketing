@@ -39,10 +39,14 @@ Picmal is designed for Mac users who need to convert media files quickly without
 
 One-time purchase with lifetime license. No subscription required. No free trial: the download is the full app, and a license is required to process files.
 
-- Picmal: $39 (one-time, 2 Macs, every feature, free updates forever)
-- Picmal Pro: $69 (one-time, 5 Macs, same features)
+One license, priced by how many Macs it activates on. Same features at every tier.
 
-Existing 1/2/3-device license holders can upgrade to 5 devices by paying the difference.
+- 1 Mac: $29
+- 2 Macs: $39
+- 5 Macs: $89
+- 10 Macs: $149
+
+Any tier can upgrade to any larger tier by paying the difference, on the same license key (1 to 2 is $10, 2 to 5 is $50, 5 to 10 is $60). Legacy 3-Mac licenses can move to 5 or 10.
 40% student discount on a verified school email address. Purchasing-power pricing is applied automatically at checkout by country.
 
 14-day money-back guarantee.

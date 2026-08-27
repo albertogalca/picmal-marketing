@@ -1,125 +1,205 @@
 ---
-import { Icon } from "astro-icon/components";
 import Button from "./Button.astro";
 import Card from "./Card.astro";
-import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
-import type { Feature } from "../config/pricing";
-import { PLANS } from "../config/pricing";
+import SegmentedControl from "./SegmentedControl.astro";
+import {
+  DEFAULT_TIER,
+  FEATURES,
+  SUPPORT_EMAIL,
+  TIERS,
+  savings,
+} from "../config/pricing";
 
 const CHECK =
   "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z";
 
-const [standard, pro] = PLANS;
+/** "1 Mac" / "5 Macs". The `{macs}` token in FEATURES becomes this. */
+const macLabel = (macs: number): string => `${macs} Mac${macs === 1 ? "" : "s"}`;
 
-// One shape for both columns so the card markup stays a single loop.
-interface PlanCard {
-  key: string;
-  name: string;
-  price: number;
-  features: Feature[];
-  cta: {
-    text: string;
-    href: string;
-    variant: "primary" | "secondary";
-    event: string;
-  };
-}
+/**
+ * The ladder argument under the price, spelled out rather than left as an
+ * exercise. The 1-Mac tier has nothing to save against, so it points at the
+ * next rung instead: every tier says something, which keeps the card a fixed
+ * height across the picker without reserving a blank line to do it.
+ */
+const ladderLine = (tier: (typeof TIERS)[number]): string => {
+  const saved = savings(tier);
+  return saved
+    ? `Save $${saved} versus ${tier.macs} one-Mac licenses`
+    : `${TIERS[1].macs} Macs is $${TIERS[1].price - tier.price} more`;
+};
 
-// No highlight ring on the default plan: the filled button is the only emphasis
-// the grid needs.
-//
-// Feature bullets are split on the `{mac}` token, which becomes a laptop glyph
-// (the word "Macs" stays in the accessibility tree).
-const cards: PlanCard[] = [
-  {
-    key: standard.id,
-    name: standard.name,
-    price: standard.price,
-    features: standard.features,
-    cta: {
-      text: `Get Picmal for $${standard.price}`,
-      href: standard.checkoutUrl,
-      variant: "primary",
-      event: "buy_clicked",
-    },
-  },
-  {
-    key: pro.id,
-    name: pro.name,
-    price: pro.price,
-    features: pro.features,
-    cta: {
-      text: `Get Picmal Pro for $${pro.price}`,
-      href: pro.checkoutUrl,
-      variant: "secondary",
-      event: "buy_clicked_pro",
-    },
-  },
-];
+const segments = TIERS.map((t) => ({
+  id: String(t.macs),
+  label: String(t.macs),
+  ariaLabel: `${macLabel(t.macs)}, $${t.price}`,
+}));
+
+// Everything the client script needs to rewrite the card in place.
+const tierData = TIERS.map((t) => ({
+  macs: t.macs,
+  price: t.price,
+  macLabel: macLabel(t.macs),
+  ladderLine: ladderLine(t),
+  href: t.checkoutUrl,
+}));
 ---
 
-<div class="grid gap-6 md:grid-cols-2 items-stretch max-w-3xl mx-auto">
-  {
-    cards.map((card) => (
-      <Card padding="p-6" class="flex flex-col">
-        <H3 class="text-h4 mb-1">{card.name}</H3>
+<div
+  class="max-w-lg mx-auto"
+  data-pricing
+  data-default-macs={DEFAULT_TIER.macs}
+  data-tiers={JSON.stringify(tierData)}
+>
+  <Paragraph size="small" class="text-center mb-3">How many Macs?</Paragraph>
 
-        <div class="flex items-baseline gap-1.5 mb-6">
-          <span class="text-h2 font-semibold text-text tabular-nums">
-            ${card.price}
-          </span>
-          <span class="text-small text-text-secondary">one-time</span>
-        </div>
+  <div class="mb-6">
+    <SegmentedControl
+      segments={segments}
+      activeId={String(DEFAULT_TIER.macs)}
+      ariaLabel="Number of Macs"
+      mode="radio"
+      segmentClass="seat-tab"
+    />
+  </div>
 
-        <ul class="space-y-2.5 flex-1">
-          {card.features.map((feature) => (
-            <li class="flex items-start gap-2.5">
-              <svg
-                class="w-4 h-4 text-text-secondary shrink-0 mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path fill-rule="evenodd" d={CHECK} clip-rule="evenodd" />
-              </svg>
-              <Paragraph size="small">
-                {feature.split("{mac}").map((part, i) => (
-                  <Fragment>
-                    {i > 0 && (
-                      <Fragment>
-                        <Icon
-                          name="ph:laptop"
-                          class="inline w-4 h-4 align-[-0.2em]"
-                          aria-hidden="true"
-                        />
-                        <span class="sr-only">Macs</span>
-                      </Fragment>
-                    )}
-                    {part}
-                  </Fragment>
-                ))}
-              </Paragraph>
-            </li>
-          ))}
-        </ul>
+  <Card padding="p-6 md:p-8" class="flex flex-col">
+    <span
+      class="text-h2 font-semibold text-text tabular-nums block price-swap"
+      data-price
+    >
+      ${DEFAULT_TIER.price}
+    </span>
 
-        <Button
-          text={card.cta.text}
-          href={card.cta.href}
-          variant={card.cta.variant}
-          class="w-full mt-6"
-          onclick={
-            import.meta.env.PROD
-              ? `window.seline?.track('${card.cta.event}')`
-              : undefined
-          }
-        />
-      </Card>
-    ))
-  }
+    <p
+      class="text-small text-text font-medium tabular-nums mt-1 mb-6 price-swap"
+      data-ladder
+    >
+      {ladderLine(DEFAULT_TIER)}
+    </p>
+
+    <ul class="space-y-2.5 flex-1">
+      {
+        FEATURES.map((feature) => (
+          <li class="flex items-start gap-2.5">
+            <svg
+              class="w-4 h-4 text-text-secondary shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path fill-rule="evenodd" d={CHECK} clip-rule="evenodd" />
+            </svg>
+            <Paragraph size="small">
+              {feature.split("{macs}").map((part, i) => (
+                <Fragment>
+                  {i > 0 && (
+                    <span class="tabular-nums" data-macs>
+                      {macLabel(DEFAULT_TIER.macs)}
+                    </span>
+                  )}
+                  {part}
+                </Fragment>
+              ))}
+            </Paragraph>
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button
+      id="pricing-cta"
+      text={`Get Picmal for $${DEFAULT_TIER.price}`}
+      href={DEFAULT_TIER.checkoutUrl}
+      variant="primary"
+      class="w-full mt-6"
+    />
+
+    <Paragraph size="small" class="text-center mt-3">
+      14-day refund, no questions asked.
+    </Paragraph>
+  </Card>
+
+  <Paragraph size="small" class="text-center mt-4">
+    More than {TIERS[TIERS.length - 1].macs} Macs? <a
+      class="link"
+      href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`Picmal for more than ${TIERS[TIERS.length - 1].macs} Macs`)}`}
+      >Email me</a
+    >.
+  </Paragraph>
+
+  <Paragraph size="small" class="text-center mt-2">
+    Prices in USD, tax added at checkout, paid securely via Stripe.
+  </Paragraph>
 </div>
 
-<Paragraph size="small" class="text-center mt-4">
-  Prices in USD. Any tax is added at checkout. Secure payment via Stripe.
-</Paragraph>
+<script>
+  // Progressive enhancement. The default tier is server-rendered and buyable on
+  // its own, so this only ever rewrites it: no JS means no picker, not a broken
+  // card. SegmentedControl owns selection and keyboard; this owns the card.
+  const root = document.querySelector<HTMLElement>("[data-pricing]");
+
+  if (root) {
+    const tiers: {
+      macs: number;
+      price: number;
+      macLabel: string;
+      ladderLine: string;
+      href: string;
+    }[] = JSON.parse(root.dataset.tiers ?? "[]");
+
+    const priceEl = root.querySelector<HTMLElement>("[data-price]");
+    const ladderEl = root.querySelector<HTMLElement>("[data-ladder]");
+    const macsEls = root.querySelectorAll<HTMLElement>("[data-macs]");
+    const cta = root.querySelector<HTMLAnchorElement>("#pricing-cta");
+    const swapEls = root.querySelectorAll<HTMLElement>(".price-swap");
+
+    let current =
+      tiers.find((t) => String(t.macs) === root.dataset.defaultMacs) ?? tiers[0];
+
+    // The price and the line under it are the whole point of the picker, so the
+    // change gets marked. A transient animation only: the resting style is
+    // untouched, so the text is never hidden if this never runs.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const markChange = () => {
+      if (reduced.matches) return;
+      swapEls.forEach((el) =>
+        el.animate(
+          [
+            { opacity: 0.4, transform: "translateY(2px)" },
+            { opacity: 1, transform: "none" },
+          ],
+          { duration: 180, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        ),
+      );
+    };
+
+    root.addEventListener("segment-change", (event) => {
+      const id = (event as CustomEvent<{ id?: string }>).detail?.id;
+      const tier = tiers.find((t) => String(t.macs) === id);
+      if (!tier) return;
+      current = tier;
+      markChange();
+
+      if (priceEl) priceEl.textContent = `$${tier.price}`;
+      if (ladderEl) ladderEl.textContent = tier.ladderLine;
+      macsEls.forEach((el) => {
+        el.textContent = tier.macLabel;
+      });
+      if (cta) {
+        cta.href = tier.href;
+        // No icon on this button, so the label is the anchor's only child.
+        cta.textContent = `Get Picmal for $${tier.price}`;
+      }
+    });
+
+    // One buy event carrying the seat count. The old buy_clicked /
+    // buy_clicked_pro pair could not describe four tiers.
+    cta?.addEventListener("click", () => {
+      if (import.meta.env.PROD) {
+        window.seline?.track("buy_clicked", { macs: current.macs });
+      }
+    });
+  }
+</script>

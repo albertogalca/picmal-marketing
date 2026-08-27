@@ -2,22 +2,23 @@
 
 Picmal is a native macOS app for batch converting and compressing images, videos, audio files, and PDFs. One-time purchase with a lifetime license — no subscription.
 
-## Plans
+## Licenses
 
-### Picmal
-- Price: $39 (one-time, lifetime)
-- Devices: 2 Macs
-- Includes: Every feature, no add-ons. Free updates forever. Command line tool, Raycast extension and watched folders. Updates ship the day they are released.
+Same app at every tier. The only difference is how many Macs the license activates on.
 
-### Picmal Pro
-- Price: $69 (one-time, lifetime)
-- Devices: 5 Macs
-- Includes: Everything in Picmal. One license for a studio, a family, or a desk and a laptop.
+| Macs | Price (one-time, lifetime) | Per Mac |
+| ---- | -------------------------- | ------- |
+| 1    | $29                        | $29.00  |
+| 2    | $39                        | $19.50  |
+| 5    | $89                        | $17.80  |
+| 10   | $149                       | $14.90  |
+
+Every license includes: every feature, no add-ons. Free updates forever. Command line tool, Raycast extension and watched folders. Updates ship the day they are released.
 
 ## Discounts and upgrades
 - Student discount: 40% off with a verified school email address — https://picmal.app/education
 - Purchasing-power pricing: applied automatically at checkout based on the buyer's country
-- Upgrade: existing 1, 2 or 3-device license holders pay only the difference to move to 5 devices
+- Upgrade: any tier can move to any larger tier for the difference in price, on the same license key. 1 to 2 is $10, 2 to 5 is $50, 5 to 10 is $60, and the other jumps work the same way. Legacy 3-Mac licenses can move to 5 or 10.
 
 ## Guarantee
 - 14-day money-back guarantee

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { TIERS } from "../../config/pricing";
 
 interface Props {
   url: string;
@@ -31,9 +32,13 @@ const productSchema = {
     "All-in-one media tool for Mac. Batch convert, compress, and create images, videos, audio, and PDF files offline on your Mac.",
   applicationCategory: "MultimediaApplication",
   operatingSystem: "macOS 15.0 or later",
+  // AggregateOffer, not a single Offer: the ladder runs from 1 to 10 Macs, so a
+  // lone "39" would misreport both the entry price and the ceiling.
   offers: {
-    "@type": "Offer",
-    price: "39",
+    "@type": "AggregateOffer",
+    lowPrice: String(TIERS[0].price),
+    highPrice: String(TIERS[TIERS.length - 1].price),
+    offerCount: TIERS.length,
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
     url: new URL("/", url).href,

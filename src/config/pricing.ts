@@ -4,7 +4,7 @@
 // happens in licencio via the checkout.session.completed webhook.
 //
 // Prices live on Stripe product prod_Upt9NufoSBShSV (acct_1TqD3o4RpfcAQYty),
-// metadata.seats == devices. Price IDs below drive the checkout URL per tier.
+// metadata.seats == macs. Price IDs below drive the checkout URL per tier.
 
 // licencio prod host + product slug. checkoutUrl(priceId) is the buy link;
 // Seline.astro appends &client_reference_id=<seline_vid cookie> at click time.
@@ -13,73 +13,81 @@ const PRODUCT_SLUG = "picmal";
 const checkoutUrl = (priceId: string): string =>
   `${LICENCIO}/api/checkout?product_slug=${PRODUCT_SLUG}&price_id=${encodeURIComponent(priceId)}`;
 
+/** Where every "talk to a human" link on a pricing surface points. */
+export const SUPPORT_EMAIL = "support@picmal.app";
+
 /** A plain bullet. */
 export type Feature = string;
 
-export interface Plan {
-  id: "standard" | "pro";
-  name: string;
+export interface Tier {
+  macs: number;
   price: number; // display price in USD, tax-exclusive (tax handled at Stripe Checkout)
-  devices: number;
   priceId: string; // Stripe Price ID
   checkoutUrl: string; // licencio buy link → 302 to Stripe Checkout
-  features: Feature[];
 }
 
-// Repriced Aug 2026. The 1/2/3/5 seat ladder collapsed into two named plans:
-// the seat stepper made buyers do arithmetic before they knew what the app was.
-// Pro is the same app with 5 seats instead of 2, so nobody has to guess which
-// features they lose by paying less. Support is not a tier.
-const RAW: Omit<Plan, "checkoutUrl">[] = [
-  {
-    id: "standard",
-    // Named "Picmal", not "Picmal Standard": the buy button, the licence FAQ and
-    // the terms page all call the cheap plan "Picmal", so a card heading that
-    // says "Standard" makes the Pro bullet "Everything in Picmal" ambiguous.
-    name: "Picmal",
-    price: 39,
-    devices: 2,
-    priceId: "price_1U3rbv4RpfcAQYtyDdjCARJC",
-    // `{mac}` is swapped for a laptop glyph at render time (PricingPlans).
-    features: [
-      "Every feature, no add-ons",
-      "Free updates forever",
-      "Use on 2 {mac}",
-      "Command line tool, Raycast extension and watched folders",
-      "Updates land the day I ship them",
-    ],
-  },
-  {
-    id: "pro",
-    name: "Picmal Pro",
-    price: 69,
-    devices: 5,
-    priceId: "price_1U3rby4RpfcAQYty3Tzatrg0",
-    // No support tier here on purpose: everyone gets the same answer from the
-    // same person, so promising "priority" would be a lie.
-    features: [
-      "Everything in Picmal",
-      "Use on 5 {mac}",
-      "One license for a studio, a family, or a desk and a laptop",
-    ],
-  },
+// Back to a seat ladder, Aug 2026. The two named plans replaced it for three
+// weeks and converted worse: "Picmal" vs "Picmal Pro" made people hunt for the
+// feature they were losing by paying less, when the only difference was a
+// number. A ladder says the number out loud.
+//
+// $39 for 2 Macs is the anchor and did not move, so every "$39" already written
+// across the site is still true for the tier it always described.
+const RAW: Omit<Tier, "checkoutUrl">[] = [
+  { macs: 1, price: 29, priceId: "price_1U8z2i4RpfcAQYtyooQlXFGq" },
+  { macs: 2, price: 39, priceId: "price_1U8z2v4RpfcAQYtyiYqXZPaP" },
+  { macs: 5, price: 89, priceId: "price_1U8z384RpfcAQYtyHgZLc0GV" },
+  { macs: 10, price: 149, priceId: "price_1U8z3L4RpfcAQYtykDvUzs21" },
 ];
 
-export const PLANS: Plan[] = RAW.map((p) => ({
-  ...p,
-  checkoutUrl: checkoutUrl(p.priceId),
+export const TIERS: Tier[] = RAW.map((t) => ({
+  ...t,
+  checkoutUrl: checkoutUrl(t.priceId),
 }));
 
-// What every bare <Button> charges. Keep it matching the price written on those
-// buttons ("Get Picmal for $39").
-export const DEFAULT_PLAN = PLANS[0];
+// What every bare <Button> charges, and the tier the seat picker opens on.
+// 1 Mac: it is the cheapest true price, the one the rest of the site quotes,
+// and the picker climbs from it. Opening on a higher tier quotes a price the
+// buyer did not ask for.
+export const DEFAULT_TIER = TIERS[0];
+
+// One list for every tier: the app is identical, only the seat count changes.
+// `{macs}` is swapped at render time (PricingPlans) for the tier's seat count
+// and its noun, "1 Mac" or "5 Macs".
+//
+// Rewritten Aug 2026, when Picmal came off the Mac App Store. Two bullets only
+// ever meant anything as contrasts with that build: "Every feature" answered a
+// restricted sandboxed version, and "Updates land the day I ship them" answered
+// the review queue. With direct as the only channel they argue against nothing,
+// so the line they were spending goes to what the app actually does and to the
+// local-and-private throughline the card never stated.
+export const FEATURES: Feature[] = [
+  "Convert, compress and edit images, video, audio and PDFs",
+  "Everything runs on your Mac, nothing gets uploaded",
+  "Use it on {macs}",
+  "Command line tool, Raycast extension and watched folders",
+  "Free updates forever, no subscription",
+];
+
+/**
+ * What a tier saves against buying that many 1-Mac licenses. This is the whole
+ * argument for climbing the ladder, so the card says it out loud. 0 on the
+ * 1-Mac tier itself, where there is nothing to compare against.
+ */
+export const savings = (tier: Tier): number =>
+  TIERS[0].price * tier.macs - tier.price;
+
+/** Pay-the-difference, derived so it can never drift from TIERS. */
+export const upgradePrice = (from: number, to: number): number =>
+  TIERS.find((t) => t.macs === to)!.price -
+  TIERS.find((t) => t.macs === from)!.price;
 
 // Self-serve since Aug 2026: licencio's upgrade page takes the license key,
 // picks the pay-the-difference SKU for that key's seat count server-side
-// (Stripe prices with `upgrade_from_seats` metadata: 1→2 $15, 1→5 $40,
-// 2→5 $30, 3→5 $15) and the webhook bumps max_activations on the SAME key.
+// (Stripe prices carrying `upgrade_from_seats` + `seats`) and the webhook bumps
+// max_activations on the SAME key. Every tier can reach every larger tier, and
+// legacy 3-Mac keys have their own two SKUs.
 export const UPGRADE = {
-  price: 30, // the 2→5 path, the one the pricing FAQ quotes
   // ?product brands the page (name, logo, accent, key placeholder) before a key is typed.
   url: `${LICENCIO}/portal/upgrades/new?product=${PRODUCT_SLUG}`,
 };
@@ -92,18 +100,20 @@ export const STUDENT_DISCOUNT = {
   percentOff: 40,
   endpoint: `${LICENCIO}/api/students/discount`,
   productSlug: PRODUCT_SLUG,
-  contact: "support@picmal.app",
+  contact: SUPPORT_EMAIL,
 };
 
 // Purchasing-power pricing is decided at checkout from the buyer's country, by
 // two mechanisms that compose. 62 currencies carry a hand-set PPP amount in the
-// price's currency_options (India 0.35×, Brazil 0.45×, Japan 0.80× — see
-// picmal/scripts/stripe-ppp-pricing.py); everywhere else Stripe's Adaptive
-// Pricing just FX-converts the USD price. Euro countries can only be in the
-// second group: currency_options keys on currency, not country, so discounting
-// Portugal would discount Germany too.
+// price's currency_options (India 0.35×, Brazil 0.45×, Japan 0.80×); everywhere
+// else Stripe's Adaptive Pricing just FX-converts the USD price. Euro countries
+// can only be in the second group: currency_options keys on currency, not
+// country, so discounting Portugal would discount Germany too.
+//
+// The four ladder prices were minted by scaling the $39 tier's table, so every
+// tier carries the same per-country ratio the site has always charged.
 //
 // Deliberately not listed band by band here: a stale table on the site would be
 // a broken promise. The amounts are frozen at the rates of the day they were
-// set — currency_options entries are write-once, so re-running that script
-// mints new prices and the two priceIds above have to change with them.
+// set, so repricing a tier means minting a new price and changing its priceId
+// above.

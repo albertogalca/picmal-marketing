@@ -1,29 +1,22 @@
 ---
 import Card from "./Card.astro";
-import { STUDENT_DISCOUNT, UPGRADE } from "../config/pricing";
+import { STUDENT_DISCOUNT, UPGRADE, upgradePrice } from "../config/pricing";
 import FAQ from "./FAQ.astro";
+import Paragraph from "./Paragraph.astro";
 import PricingPlans from "./PricingPlans.astro";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
-
-const pricingBlurb =
-  "One purchase includes all updates. If you change your mind, you can ask for a refund within 14 days.";
 
 const licenseFaqs = [
   {
     question: "How does the license work?",
     answer:
-      "You pay once and keep it. No renewals, no subscriptions. Picmal activates on 2 Macs, Picmal Pro on 5, and you can move a license to another Mac whenever you want.",
-  },
-  {
-    question: "What is the difference between Picmal and Picmal Pro?",
-    answer:
-      "The app is identical, and so is the support: one person answers every email, and that person is me. Pro covers 5 Macs instead of 2.",
+      "You pay once and keep it. No renewals, no subscriptions. Your license activates on the number of Macs you bought it for, and you can move it to another Mac whenever you want.",
   },
   {
     question: "I bought Picmal and now I need more Macs. Can I upgrade?",
     answer:
-      `Yes, and you only pay the difference: $${UPGRADE.price} takes Picmal to Pro, and older 1-Mac licenses have their own prices. <a class="link" href="${UPGRADE.url}">Enter your license key here</a> and the same key covers more Macs. The offer never expires, so starting with the cheaper plan is never the wrong call.`,
+      `Yes, and you only pay the difference. Going from 1 Mac to 2 is $${upgradePrice(1, 2)}, 2 to 5 is $${upgradePrice(2, 5)}, 5 to 10 is $${upgradePrice(5, 10)}, and every other jump works the same way. <a class="link" href="${UPGRADE.url}">Enter your license key here</a> and the same key covers more Macs. The offer never expires, so starting small is never the wrong call.`,
   },
   {
     question: "What happens if I get a new Mac?",
@@ -35,18 +28,21 @@ const licenseFaqs = [
     answer:
       `Yes. I want Picmal to be affordable wherever you are. Students and educators get ${STUDENT_DISCOUNT.percentOff}% off: verify your school email on the <a class="link" href="/education">education page</a> and the code lands in your inbox. If the price is steep for your country, checkout already adjusts it for you. If it still doesn't work, email <a class="link" href="mailto:support@picmal.app">support@picmal.app</a> and tell me where you are, and I'll send a code.`,
   },
-  {
-    question: "Can I get a refund?",
-    answer:
-      "14 days, no questions asked. Email support@picmal.app.",
-  },
 ];
 ---
 
 <Section id="pricing" width="medium" bg="subtle">
-  <SectionHeading sublead={pricingBlurb}>
+  <SectionHeading class="mb-4">
     Pay once and you're all set
   </SectionHeading>
+
+  {/* Reads as a note under the heading, not a second CTA: only the action is
+      accented, so it never competes with the buy button below. */}
+  <Paragraph size="lead" class="text-center mb-10">
+    Already own Picmal? <a class="link" href={UPGRADE.url}
+      >Add more Macs <span aria-hidden="true">&rarr;</span></a
+    >
+  </Paragraph>
 
   <PricingPlans />
 

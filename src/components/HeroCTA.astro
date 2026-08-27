@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro";
+import { DEFAULT_TIER } from "../config/pricing";
 
 interface Props {
   /** PostHog event fired on the buy click, e.g. "buy_clicked_video_converter_mac" */
@@ -24,7 +25,7 @@ const DOWNLOAD_URL = "/download";
 
 <div class:list={["flex flex-col items-center gap-3", className]}>
   <Button
-    text="Get Picmal for $39"
+    text={`Get Picmal for $${DEFAULT_TIER.price}`}
     class="w-full sm:w-auto"
     onclick={import.meta.env.PROD ? `window.seline?.track('${buyEvent}')` : undefined}
   />

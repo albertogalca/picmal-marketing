@@ -1,0 +1,68 @@
+---
+title: "Picmal in August 2026: PDF compression that keeps your text, Slideshow, and one output format"
+description: "August's Picmal releases: rebuilt PDF compression, the Slideshow tool, a single default output format, working SVG conversion, and a seat-ladder price."
+pubDate: "2026-08-31"
+heroImage: "../../../public/images/blog/picmal-august-2026/cover.png"
+category: "Newsletter"
+tags: ["Newsletter", "PDF", "Video", "Compression"]
+---
+
+_This went out to the Picmal newsletter on August 31, 2026. [Sign up](#newsletter-form) to get the next one._
+
+Hello!
+
+July was 9 releases and a new tool almost every week. August was quieter on the sidebar and busier under the floorboards.
+
+5 releases, and most of the work went into one thing that had been nagging at me for months.
+
+Let's get to it.
+
+## What's new
+
+### PDF compression that keeps your text
+
+Compressing a PDF used to flatten every page into a photo. Your text stopped being text. Links died, vector graphics went soft, and you couldn't search a single word of it.
+
+Worse: on text-heavy documents the "compressed" file often came out bigger than the original, so Picmal quietly handed the original back and said nothing about it. (Silently doing nothing is the one failure I really can't stand.)
+
+So I tore it out and [rebuilt it](/docs/image-compression#how-pdf-compression-works). Picmal now re-encodes only the images inside a PDF and leaves everything else alone. A web article saved as PDF drops 60 to 80%. A 25 MB scan of a lease comes out around 2 MB. Every word stays selectable.
+
+### Turn a folder of photos into a video
+
+The new [Slideshow](/docs/video-tools#slideshow) tool takes a batch of images, mixed sizes and HEICs included, and builds an MP4. You pick how long each photo sits on screen and the frame size. Nothing gets cropped.
+
+### One output format for the whole drop
+
+Telling Picmal what to convert to meant writing a rule per input format, which is tedious and I should've fixed it sooner. Now there's [one switch](/docs/output-and-naming#default-format-conversion): pick a format, everything you drop comes out as that. There's a KEEP option too, so you can send HEIC to WebP and leave your PNGs alone.
+
+## What I improved
+
+### Converting to SVG now gives you an SVG
+
+SVG had been broken since the day I added the option. The tracer it needs was never bundled, so every attempt failed. Convert now uses the same tracer as the [Vectorize](/docs/vectorize) tool, and a PNG comes out as real vector paths.
+
+### Changing a setting after a run actually re-runs your files
+
+Pick a different quality preset, hit run again, get the same files back. That was the bug. Your files stayed marked as done, so the next run skipped them.
+
+Same thing with video: asking for H.264 on a VP9 file handed you back the VP9 file. Both fixed.
+
+### Other small things
+
+- Filename patterns can [number a batch](/docs/output-and-naming) with `{sequence}`, and `picmal-cli` can rename while it converts.
+- Video always encodes on your Mac's hardware media engine now, on Intel as well as Apple Silicon.
+- Picmal saves next to an existing file as `photo_converted 2.jpg` instead of overwriting it.
+- Compressing a track keeps its album art.
+- The app is about 100 MB lighter, because I stripped out 2 bundled engines and used Apple's frameworks instead.
+- Pricing is a seat ladder now: $29 for 1 Mac, $39 for 2, $89 for 5. Nothing changes for a license you already own.
+
+If you want every detail, the full changelog is [here](/changelog).
+
+And if you'd like to know how any of this works, the docs are [here](/docs).
+
+One reminder, since a few of you have asked: if you've run out of Macs, you don't need to buy Picmal again. [Add seats to the key you already own](https://licenses.albertogalca.com/portal/upgrades/new?product=picmal) and pay the difference.
+
+As always, if something feels off or you have a use case I haven't thought of, write to me at support@picmal.app. I read all of it.
+
+Talk to you soon,
+Alberto

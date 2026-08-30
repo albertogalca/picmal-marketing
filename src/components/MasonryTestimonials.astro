@@ -121,40 +121,11 @@ const aggregateRatingSchema = {
       ))
     }
   </div>
-
-  <div class="marquee-controls mt-8 flex justify-center">
-    <button
-      type="button"
-      data-marquee-toggle
-      aria-pressed="false"
-      aria-label="Pause the scrolling reviews"
-      class="inline-flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-text-secondary hover:text-text border bg-background border-border shadow-xs hover:bg-background-subtle dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] dark:hover:bg-white/[0.10] transition-[color,scale,background-color,border-color] duration-200 ease-out motion-reduce:transition-none active:scale-[0.96] motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-    >
-      <svg
-        class="icon-pause w-4 h-4"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <rect x="7" y="5" width="3.5" height="14" rx="1.25"></rect>
-        <rect x="13.5" y="5" width="3.5" height="14" rx="1.25"></rect>
-      </svg>
-      <svg
-        class="icon-play w-4 h-4 hidden"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M8 5.5a1 1 0 0 1 1.53-.85l9 6.5a1 1 0 0 1 0 1.7l-9 6.5A1 1 0 0 1 8 18.5v-13Z"
-        ></path>
-      </svg>
-    </button>
-  </div>
 </Section>
 
 <style>
   .marquee {
-    max-height: 740px;
+    max-height: 900px;
     /* `clip`, not `hidden`: a focused card near the edge would otherwise scroll
        this box and knock the loop out of alignment. */
     overflow: clip;
@@ -190,15 +161,13 @@ const aggregateRatingSchema = {
   }
 
   /* Reading a quote shouldn't be a moving target: hover and keyboard focus both
-     hold the wall still. The button sets animation-play-state inline (a
-     runtime-only class gets pruned from Astro's scoped sheet). */
+     hold the wall still. */
   .marquee:hover .marquee-track,
   .marquee:focus-within .marquee-track {
     animation-play-state: paused;
   }
 
-  /* No motion: a plain scrollable wall, with the duplicate copies and the
-     pause control (which would then do nothing) dropped. */
+  /* No motion: a plain scrollable wall, with the duplicate copies dropped. */
   @media (prefers-reduced-motion: reduce) {
     .marquee {
       overflow-y: auto;
@@ -209,8 +178,7 @@ const aggregateRatingSchema = {
       will-change: auto;
     }
 
-    .marquee-dup,
-    .marquee-controls {
+    .marquee-dup {
       display: none;
     }
   }
@@ -224,36 +192,14 @@ const aggregateRatingSchema = {
 </style>
 
 <script>
-  const marquee = document.querySelector<HTMLElement>("[data-marquee]");
-  const toggle = document.querySelector<HTMLButtonElement>(
-    "[data-marquee-toggle]",
-  );
-
-  const tracks = marquee
-    ? [...marquee.querySelectorAll<HTMLElement>(".marquee-track")]
-    : [];
-  let paused = false;
-
-  toggle?.addEventListener("click", () => {
-    paused = !paused;
-    tracks.forEach((track) => {
-      track.style.animationPlayState = paused ? "paused" : "";
-    });
-    toggle.setAttribute("aria-pressed", String(paused));
-    toggle.setAttribute(
-      "aria-label",
-      paused ? "Resume the scrolling reviews" : "Pause the scrolling reviews",
-    );
-    toggle.querySelector(".icon-pause")?.classList.toggle("hidden", paused);
-    toggle.querySelector(".icon-play")?.classList.toggle("hidden", !paused);
-  });
-
   // Focusing a card near the clipped edge would otherwise scroll this box and
   // knock the loop out of alignment. (Reduced motion turns it into a real
   // scroll area, so leave that alone.)
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    marquee?.addEventListener("scroll", () => {
-      marquee.scrollTop = 0;
-    });
+    document
+      .querySelector<HTMLElement>("[data-marquee]")
+      ?.addEventListener("scroll", (e) => {
+        (e.currentTarget as HTMLElement).scrollTop = 0;
+      });
   }
 </script>

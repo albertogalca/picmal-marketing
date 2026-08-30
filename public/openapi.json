@@ -1,0 +1,64 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "picmal.app machine-readable endpoints",
+    "version": "1.0.0",
+    "description": "Picmal is a native macOS app; all file conversion and compression runs locally on the user's Mac and there is no hosted processing API. picmal.app is the marketing and documentation site. This spec documents the site's machine-readable endpoints so agents can discover its content. For prose, start at /llms.txt.",
+    "contact": { "email": "support@picmal.app", "url": "https://picmal.app" }
+  },
+  "servers": [{ "url": "https://picmal.app" }],
+  "paths": {
+    "/llms.txt": {
+      "get": {
+        "summary": "Site summary for LLMs",
+        "description": "Plain-text overview of Picmal: what it does, features, pricing, and links to every important page.",
+        "operationId": "getLlmsTxt",
+        "responses": {
+          "200": {
+            "description": "Markdown-formatted plain text",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/sitemap-index.xml": {
+      "get": {
+        "summary": "Sitemap index",
+        "description": "Index of the XML sitemaps listing every indexable page.",
+        "operationId": "getSitemapIndex",
+        "responses": {
+          "200": {
+            "description": "Sitemap index XML",
+            "content": { "application/xml": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/rss.xml": {
+      "get": {
+        "summary": "Blog feed",
+        "description": "RSS 2.0 feed of Picmal blog posts.",
+        "operationId": "getRssFeed",
+        "responses": {
+          "200": {
+            "description": "RSS feed",
+            "content": { "application/rss+xml": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/robots.txt": {
+      "get": {
+        "summary": "Crawler rules",
+        "description": "Robots exclusion rules and the sitemap pointer.",
+        "operationId": "getRobotsTxt",
+        "responses": {
+          "200": {
+            "description": "robots.txt",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  }
+}

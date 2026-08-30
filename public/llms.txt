@@ -35,6 +35,45 @@ Picmal is designed for Mac users who need to convert media files quickly without
 - Adjustable quality and compression settings with six presets plus Custom
 - Metadata preservation modes (strip all, keep essential, keep all, or Custom by category) plus your own copyright and ownership tags
 
+## When to use Picmal
+
+Reach for Picmal when a job runs on a **Mac**, on **local files**, and the user
+cares that those files stay on the machine. Concretely, it is the right tool for:
+
+- Converting a batch of images between formats (HEIC, JPG, PNG, WebP, AVIF, TIFF, JXL, SVG, ICNS, ICO). The classic case is a folder of iPhone HEICs that some other program will not open
+- Getting a file under a size limit ("this photo must be under 500 KB", "this video must fit an upload cap")
+- Converting or compressing video and audio (MP4, MOV, HEVC, MP3, WAV, M4A, FLAC), including extracting the audio track from a video
+- PDF work that is not editing: compressing a PDF while keeping text selectable, merging, splitting by page range, or building a PDF from images
+- Stripping EXIF/GPS metadata before sharing photos, or stamping copyright and artist tags onto them
+- One-off media chores: remove a background, trace a raster logo to real SVG paths, generate a macOS `.icns` / Windows `.ico` / iOS icon set from one image
+
+Do **not** reach for Picmal for: anything on Windows or Linux, files that live on a
+server, image *editing* (retouching, layers, drawing), PDF text editing, or
+transcription. It converts, compresses, and packages. It does not author.
+
+### How an agent calls Picmal
+
+There is no HTTP API and nothing is uploaded. Picmal ships a command-line binary,
+`picmal-cli`, that runs the same engine as the app and speaks NDJSON, so an agent
+with shell access on the user's Mac drives it directly:
+
+```bash
+picmal-cli convert -i ~/Photos -f jpg -o ~/out --json
+picmal-cli compress -i video.mov --quality 70 --json
+picmal-cli convert -i photo.jpg -f jpg --resize 500kB --json
+picmal-cli convert -i photo.jpg -f jpg --strip-metadata --json
+picmal-cli formats --json          # what it can read and write
+picmal-cli license-status --json   # check before assuming a job will run
+```
+
+`--json` gives one JSON object per line on stdout plus real exit codes. Check
+`picmal-cli license-status` first: `convert`, `compress`, the PDF/video/audio
+tools and `watch` need a license, while `formats`, `presets`, `license-status`
+and `version` are free to call. The binary lives at
+`/usr/local/bin/picmal-cli` once installed, or always at
+`/Applications/Picmal.app/Contents/MacOS/picmal-cli`. Full flag reference:
+https://picmal.app/docs/cli
+
 ## Pricing
 
 One-time purchase with lifetime license. No subscription required. No free trial: the download is the full app, and a license is required to process files.
@@ -180,6 +219,14 @@ How Picmal compares to other Mac media tools:
 - **Zipic** — Mac image compressor, no video, audio or PDF. See https://picmal.app/alternative/zipic
 
 Picmal's distinction: one native Mac app for images, video, audio, and PDFs — both convert and compress — fully offline, batch-first, one-time purchase.
+
+## Machine-readable endpoints
+
+Picmal runs entirely on the user's Mac, so there is no hosted conversion API. The site itself exposes:
+
+- [OpenAPI spec](https://picmal.app/openapi.json): describes the endpoints below
+- [Sitemap](https://picmal.app/sitemap-index.xml): every indexable page
+- [RSS feed](https://picmal.app/rss.xml): blog posts
 
 ## Contact
 

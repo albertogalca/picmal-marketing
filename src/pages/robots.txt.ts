@@ -17,6 +17,12 @@ Disallow: /api/
 # would detach those bots from the Content-Signal above. Allow is the default
 # anyway, so the blocks bought nothing. Don't re-add them.
 
+# Agent entry points. Not a standard directive, but crawlers ignore what they
+# don't know and it saves an agent guessing at URLs.
+# Agent-instructions: https://picmal.app/AGENTS.md
+# Llms-txt: https://picmal.app/llms.txt
+# OpenAPI: https://picmal.app/openapi.json
+
 Sitemap: ${sitemapURL.href}
 `.trim();
 

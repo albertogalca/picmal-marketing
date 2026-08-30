@@ -45,6 +45,20 @@ const { title, description, image = FallbackImage, ogType = "website", published
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<!-- Machine-readable entry points, so an agent that lands on any page can find
+     the spec and the agent guide without guessing at URLs. -->
+<link
+  rel="service-desc"
+  type="application/vnd.oai.openapi+json;version=3.1"
+  href="/openapi.json"
+/>
+<link
+  rel="describedby"
+  type="text/markdown"
+  title="AGENTS.md"
+  href="/AGENTS.md"
+/>
+<link rel="describedby" type="text/plain" title="llms.txt" href="/llms.txt" />
 <script is:inline>
   (function () {
     const theme = localStorage.getItem("theme") || "light";

@@ -19,6 +19,35 @@ const organizationSchema = {
     name: "Alberto Gallego",
     url: "https://albertogalca.com/",
   },
+  // Legal entity, registered address and support inbox. Same details already
+  // published on /terms, /privacy and /contact: this is the machine-readable
+  // copy so an agent can verify the business without parsing a legal page.
+  legalName: "Cantimplora Studio, LLC",
+  email: "support@picmal.app",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 N Gould St Ste R",
+    addressLocality: "Sheridan",
+    addressRegion: "WY",
+    postalCode: "82801",
+    addressCountry: "US",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "support@picmal.app",
+      url: new URL("/contact", url).href,
+      availableLanguage: ["English", "Spanish"],
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "support@picmal.app",
+      url: new URL("/contact", url).href,
+      availableLanguage: ["English", "Spanish"],
+    },
+  ],
 };
 ---
 

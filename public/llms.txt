@@ -2,7 +2,7 @@
 
 > Picmal is a native macOS application for batch converting and compressing images, videos, audio files, and PDFs. It processes files entirely offline for privacy, supports drag-and-drop workflows, and integrates with Finder via right-click context menu options.
 
-> Last updated: 2026-08-22
+> Last updated: 2026-08-30
 
 Picmal is designed for Mac users who need to convert media files quickly without uploading to cloud services. Key features include:
 
@@ -107,6 +107,8 @@ Machine-readable pricing: https://picmal.app/pricing.md
 - [Download](https://picmal.app/download): Direct download of the full app
 - [Education](https://picmal.app/education): 40% student discount
 - [Affiliate Program](https://picmal.app/affiliate): 30% commission affiliate program
+- [About](https://picmal.app/about): The studio behind Picmal
+- [Contact](https://picmal.app/contact): How to reach Alberto, and the company details
 - [Privacy Policy](https://picmal.app/privacy): Privacy policy
 - [Terms of Service](https://picmal.app/terms): Terms of service
 
@@ -224,11 +226,27 @@ Picmal's distinction: one native Mac app for images, video, audio, and PDFs — 
 
 Picmal runs entirely on the user's Mac, so there is no hosted conversion API. The site itself exposes:
 
-- [OpenAPI spec](https://picmal.app/openapi.json): describes the endpoints below
+- [AGENTS.md](https://picmal.app/AGENTS.md): when to use Picmal, when not to, and how to call picmal-cli
+- [OpenAPI spec](https://picmal.app/openapi.json): describes every endpoint here
+- [Pricing](https://picmal.app/pricing.md): current tiers, discounts and upgrade paths
 - [Sitemap](https://picmal.app/sitemap-index.xml): every indexable page
 - [RSS feed](https://picmal.app/rss.xml): blog posts
+
+### Markdown content negotiation
+
+The site follows acceptmarkdown.com. Send `Accept: text/markdown` and the home
+page, every blog post and every docs page answer with
+`text/markdown; charset=utf-8`; pages without a markdown twin answer with HTML.
+Every response carries `Vary: Accept, Accept-Encoding`. The same documents are
+also addressable directly by appending `.md`, e.g.
+https://picmal.app/docs/cli.md or https://picmal.app/index.md.
+
+Missing paths return a real 404 (never a 200 shell) with a markdown or JSON body
+depending on `Accept`. Errors are `{"error": {code, status, message, hints}}`.
 
 ## Contact
 
 - Support: support@picmal.app
+- Contact page: https://picmal.app/contact
+- Company: Cantimplora Studio, LLC, 30 N Gould St Ste R, Sheridan, WY 82801, United States
 - Website: https://picmal.app

@@ -124,8 +124,12 @@ export default defineConfig({
     icon(),
     sitemap({
       lastmod: new Date(),
+      // The .md twins are the same content for machines (see the Worker's
+      // Accept negotiation), so they stay out of the sitemap: one URL per page.
       filter: (page) =>
-        !noindexConvertUrls.has(page) && !noindexLegalUrls.has(page),
+        !page.endsWith(".md") &&
+        !noindexConvertUrls.has(page) &&
+        !noindexLegalUrls.has(page),
     }),
   ],
   vite: {

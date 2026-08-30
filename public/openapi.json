@@ -2,63 +2,319 @@
   "openapi": "3.1.0",
   "info": {
     "title": "picmal.app machine-readable endpoints",
-    "version": "1.0.0",
-    "description": "Picmal is a native macOS app; all file conversion and compression runs locally on the user's Mac and there is no hosted processing API. picmal.app is the marketing and documentation site. This spec documents the site's machine-readable endpoints so agents can discover its content. For prose, start at /llms.txt.",
-    "contact": { "email": "support@picmal.app", "url": "https://picmal.app" }
+    "version": "1.1.0",
+    "summary": "Read-only endpoints for discovering Picmal's content as an agent.",
+    "description": "Picmal is a native macOS app; all file conversion and compression runs locally on the user's Mac and there is no hosted processing API. picmal.app is the marketing and documentation site. This spec documents the site's machine-readable endpoints so agents can discover its content and read any page as markdown.\n\nEvery operation is an unauthenticated HTTP GET. There are no credentials, no quotas and no rate limit beyond Cloudflare's standard DDoS protection; be polite and cache what you fetch.\n\nTo drive Picmal itself, use the `picmal-cli` binary on the user's Mac, documented at https://picmal.app/docs/cli and summarised at https://picmal.app/AGENTS.md. Start prose discovery at https://picmal.app/llms.txt.",
+    "contact": {
+      "name": "Picmal support",
+      "email": "support@picmal.app",
+      "url": "https://picmal.app/contact"
+    },
+    "license": {
+      "name": "Site content is copyright Cantimplora Studio, LLC",
+      "url": "https://picmal.app/terms"
+    }
   },
-  "servers": [{ "url": "https://picmal.app" }],
+  "servers": [{ "url": "https://picmal.app", "description": "Production" }],
+  "tags": [
+    {
+      "name": "discovery",
+      "description": "Files that tell an agent what this site holds."
+    },
+    {
+      "name": "content",
+      "description": "Page content in markdown, via URL or Accept negotiation."
+    }
+  ],
   "paths": {
     "/llms.txt": {
       "get": {
+        "tags": ["discovery"],
         "summary": "Site summary for LLMs",
-        "description": "Plain-text overview of Picmal: what it does, features, pricing, and links to every important page.",
+        "description": "Markdown-formatted overview of Picmal: what it does, when to use it, every feature, pricing, supported formats, and a link to every important page. The best single fetch for an agent that knows nothing about Picmal.",
         "operationId": "getLlmsTxt",
         "responses": {
           "200": {
-            "description": "Markdown-formatted plain text",
-            "content": { "text/plain": { "schema": { "type": "string" } } }
+            "description": "Site summary",
+            "content": {
+              "text/plain": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "/AGENTS.md": {
+      "get": {
+        "tags": ["discovery"],
+        "summary": "Agent instructions and when-to-use guidance",
+        "description": "Names the jobs Picmal is the right tool for, the jobs it is not, and how an agent invokes the picmal-cli binary on the user's Mac. Read this before recommending or driving Picmal.",
+        "operationId": "getAgentInstructions",
+        "responses": {
+          "200": {
+            "description": "Agent instructions",
+            "content": {
+              "text/markdown": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "tags": ["discovery"],
+        "summary": "This specification",
+        "description": "The OpenAPI 3.1 description of every endpoint listed here. Also linked from each page as <link rel=\"service-desc\">.",
+        "operationId": "getOpenApiSpec",
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.1 document",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "/pricing.md": {
+      "get": {
+        "tags": ["discovery"],
+        "summary": "Machine-readable pricing",
+        "description": "Current license tiers and prices, discounts, upgrade paths, and what every license includes. Quote prices from here rather than from a cached page.",
+        "operationId": "getPricing",
+        "responses": {
+          "200": {
+            "description": "Pricing in markdown",
+            "content": {
+              "text/markdown": { "schema": { "type": "string" } }
+            }
           }
         }
       }
     },
     "/sitemap-index.xml": {
       "get": {
+        "tags": ["discovery"],
         "summary": "Sitemap index",
-        "description": "Index of the XML sitemaps listing every indexable page.",
+        "description": "Index of the XML sitemaps listing every indexable page. Use it to enumerate the site; pages excluded here are deliberately not indexed.",
         "operationId": "getSitemapIndex",
         "responses": {
           "200": {
             "description": "Sitemap index XML",
-            "content": { "application/xml": { "schema": { "type": "string" } } }
+            "content": {
+              "application/xml": { "schema": { "type": "string" } }
+            }
           }
         }
       }
     },
     "/rss.xml": {
       "get": {
+        "tags": ["discovery"],
         "summary": "Blog feed",
-        "description": "RSS 2.0 feed of Picmal blog posts.",
+        "description": "RSS 2.0 feed of Picmal blog posts, newest first. Poll this to notice new guides.",
         "operationId": "getRssFeed",
         "responses": {
           "200": {
             "description": "RSS feed",
-            "content": { "application/rss+xml": { "schema": { "type": "string" } } }
+            "content": {
+              "application/rss+xml": { "schema": { "type": "string" } }
+            }
           }
         }
       }
     },
     "/robots.txt": {
       "get": {
+        "tags": ["discovery"],
         "summary": "Crawler rules",
-        "description": "Robots exclusion rules and the sitemap pointer.",
+        "description": "Robots exclusion rules, the Content-Signal declaration, and pointers to the sitemap and the agent files.",
         "operationId": "getRobotsTxt",
         "responses": {
           "200": {
             "description": "robots.txt",
-            "content": { "text/plain": { "schema": { "type": "string" } } }
+            "content": {
+              "text/plain": { "schema": { "type": "string" } }
+            }
           }
         }
       }
+    },
+    "/index.md": {
+      "get": {
+        "tags": ["content"],
+        "summary": "Home page as markdown",
+        "description": "What Picmal is, what it does, and what it costs, in about forty lines. Equivalent to requesting https://picmal.app/ with `Accept: text/markdown`.",
+        "operationId": "getHomeMarkdown",
+        "responses": {
+          "200": { "$ref": "#/components/responses/Markdown" },
+          "406": { "$ref": "#/components/responses/NotAcceptable" }
+        }
+      }
+    },
+    "/blog/{slug}.md": {
+      "get": {
+        "tags": ["content"],
+        "summary": "Blog post as markdown",
+        "description": "The full source of one blog post as markdown, with its title and description on top. Slugs come from /rss.xml or /sitemap-index.xml.",
+        "operationId": "getBlogPostMarkdown",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Post slug, exactly as it appears in the page URL.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$",
+              "examples": ["how-to-convert-heic-to-jpg-mac", "convert-mov-to-mp4-mac"]
+            }
+          }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/Markdown" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/docs/{slug}.md": {
+      "get": {
+        "tags": ["content"],
+        "summary": "Documentation page as markdown",
+        "description": "The full source of one documentation page as markdown. The docs index (/docs) has no markdown twin; every other page listed in the sidebar does.",
+        "operationId": "getDocsPageMarkdown",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Docs page slug, exactly as it appears in the page URL after /docs/.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$",
+              "examples": ["cli", "supported-formats", "faq"]
+            }
+          }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/Markdown" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/{path}": {
+      "get": {
+        "tags": ["content"],
+        "summary": "Any page, negotiated by Accept",
+        "description": "Every page answers content negotiation per acceptmarkdown.com. Send `Accept: text/markdown` and pages with a markdown twin (the home page, blog posts, docs pages) return `text/markdown; charset=utf-8`; pages without one return HTML. Every response carries `Vary: Accept, Accept-Encoding`. A client that accepts neither HTML nor an available type gets a 406 with a JSON body. A path that does not exist gets a real 404, as markdown or JSON depending on Accept.",
+        "operationId": "getPage",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "description": "Any site path without the leading slash, e.g. `docs/cli` or `blog/convert-mov-to-mp4-mac`.",
+            "schema": {
+              "type": "string",
+              "examples": ["docs/cli", "compress/pdf", "heic-converter-mac"]
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "description": "Preferred media type. `text/markdown` returns markdown where a twin exists; q-values are honoured, so `text/html;q=0.8, text/markdown` prefers markdown and `text/markdown;q=0.9, text/html` prefers HTML.",
+            "schema": {
+              "type": "string",
+              "default": "text/html",
+              "examples": ["text/markdown", "text/html", "application/json"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The page, as HTML or markdown depending on Accept",
+            "headers": {
+              "Vary": {
+                "description": "Always `Accept, Accept-Encoding`.",
+                "schema": { "type": "string" }
+              }
+            },
+            "content": {
+              "text/html": { "schema": { "type": "string" } },
+              "text/markdown": { "schema": { "type": "string" } }
+            }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "406": { "$ref": "#/components/responses/NotAcceptable" }
+        }
+      }
     }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "description": "Machine-readable error, returned to any client that asked for JSON or that cannot accept HTML.",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "status", "message", "hints"],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Stable, machine-comparable error code.",
+                "enum": ["not_found", "not_acceptable"]
+              },
+              "status": {
+                "type": "integer",
+                "description": "HTTP status code, repeated in the body.",
+                "enum": [404, 406]
+              },
+              "message": {
+                "type": "string",
+                "description": "One sentence naming what went wrong, including the path."
+              },
+              "hints": {
+                "type": "array",
+                "description": "Ordered resolution hints: where to look instead.",
+                "items": { "type": "string", "format": "uri-reference" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "Markdown": {
+        "description": "Markdown document",
+        "headers": {
+          "Vary": {
+            "description": "Always `Accept, Accept-Encoding`.",
+            "schema": { "type": "string" }
+          }
+        },
+        "content": {
+          "text/markdown": { "schema": { "type": "string" } }
+        }
+      },
+      "NotFound": {
+        "description": "No resource exists at this path. Body is markdown or JSON depending on Accept; HTML clients get the 404 page.",
+        "content": {
+          "application/json": { "schema": { "$ref": "#/components/schemas/Error" } },
+          "text/markdown": { "schema": { "type": "string" } }
+        }
+      },
+      "NotAcceptable": {
+        "description": "The requested media type cannot be produced and the client refused HTML.",
+        "content": {
+          "application/json": { "schema": { "$ref": "#/components/schemas/Error" } }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "url": "https://picmal.app/AGENTS.md",
+    "description": "When to use Picmal, and how to drive the picmal-cli binary."
   }
 }

@@ -1,0 +1,217 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Paragraph from "../components/Paragraph.astro";
+import H2 from "../components/H2.astro";
+
+const title = "Picmal: Contact";
+const description =
+  "Write to Alberto about Picmal. Support, license problems, refunds, press and business all reach the same inbox: support@picmal.app.";
+
+// One inbox, four reasons to use it. Split so people (and agents) can see which
+// details to include before they write, which is most of what saves a round trip.
+const reasons = [
+  {
+    title: "Support and bugs",
+    body: "Something crashed, a file came out wrong, or a format won't open. Tell me your macOS version, the Picmal version (Picmal > About), and what the file was. A screenshot of the queue helps more than anything else.",
+  },
+  {
+    title: "Licenses and refunds",
+    body: "Lost key, a Mac you need to deactivate, an upgrade to more Macs, or a refund inside 14 days. Send the email address you bought with and I'll find the order. Most of it you can also do yourself in the license portal.",
+  },
+  {
+    title: "Feature requests",
+    body: "A good number of Picmal's features exist because somebody emailed to ask. Describe the job you're trying to finish rather than the button you want, and it usually ends up in a release.",
+  },
+  {
+    title: "Press and business",
+    body: "Reviews, bundles, affiliate questions, education licenses for a lab or a classroom. Say what you need and I'll answer myself. There's no PR desk in between.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        name: "Contact Picmal",
+        url: "https://picmal.app/contact",
+        description,
+        mainEntity: {
+          "@type": "Organization",
+          name: "Cantimplora Studio, LLC",
+          alternateName: "Picmal",
+          url: "https://picmal.app",
+          logo: "https://picmal.app/logo.webp",
+          email: "support@picmal.app",
+          founder: {
+            "@type": "Person",
+            name: "Alberto Gallego",
+            url: "https://albertogalca.com",
+          },
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "30 N Gould St Ste R",
+            addressLocality: "Sheridan",
+            addressRegion: "WY",
+            postalCode: "82801",
+            addressCountry: "US",
+          },
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "support@picmal.app",
+              url: "https://picmal.app/contact",
+              availableLanguage: ["English", "Spanish"],
+            },
+            {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              email: "support@picmal.app",
+              url: "https://picmal.app/contact",
+              availableLanguage: ["English", "Spanish"],
+            },
+          ],
+        },
+      })}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content">
+      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+      <Section width="narrow" class="pt-32 sm:pt-32">
+        <SectionHeading
+          level={1}
+          align="left"
+          subleadClass="max-w-xl"
+        >
+          Contact
+          <Fragment slot="sublead">
+            Everything about Picmal goes to <a
+              href="mailto:support@picmal.app"
+              class="link">support@picmal.app</a
+            >, and it reaches me, not a ticket queue.
+          </Fragment>
+        </SectionHeading>
+
+        <div class="space-y-5">
+          <Paragraph>
+            I'm Alberto Gallego. I design Picmal, write the code, and answer the
+            email. There's one address for all of it because there's one person
+            behind all of it. I read everything and reply to almost everything,
+            usually within a day or two on weekdays. If a week goes by with
+            nothing, the mail went missing, so please send it again.
+          </Paragraph>
+          <Paragraph>
+            Picmal runs entirely on your own Mac, so I can't see your files,
+            your queue, or anything that happened on your machine. That means
+            the details you put in the email are all I have to work with. The
+            more specific you are, the shorter the conversation.
+          </Paragraph>
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-8">What to write about</H2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {
+            reasons.map((r) => (
+              <Card padding="p-6">
+                <h3 class="text-h4 text-text mb-2">{r.title}</h3>
+                <Paragraph class="text-text-secondary">{r.body}</Paragraph>
+              </Card>
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-4">Before you write</H2>
+        <div class="space-y-5">
+          <Paragraph>
+            A lot of questions already have an answer written down. The <a
+              href="/docs/faq"
+              class="link">FAQ and troubleshooting page</a
+            > covers the common ones, the <a href="/docs" class="link">docs</a> explain
+            every setting, and the <a href="/docs/license" class="link"
+              >license page</a
+            > has the self-serve portal for activating and deactivating Macs.
+            The <a href="/changelog" class="link">changelog</a> is worth a look
+            too, since a fair number of bugs are already fixed in a newer
+            version.
+          </Paragraph>
+          <Paragraph>
+            Writing about Picmal? The <a
+              href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+              class="link">press kit</a
+            > has logos and screenshots. There's an <a
+              href="/affiliate"
+              class="link">affiliate program</a
+            > at 30% commission, and <a href="/education" class="link"
+              >student pricing</a
+            > at 40% off. More about the studio on the <a
+              href="/about"
+              class="link">about page</a
+            >.
+          </Paragraph>
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-4">Company details</H2>
+        <div class="space-y-5">
+          <Paragraph>
+            Picmal is made and sold by Cantimplora Studio, LLC, registered in
+            Wyoming, United States. The mailing address, if you need it on an
+            invoice or in a legal notice:
+          </Paragraph>
+          <Card padding="p-6">
+            <address class="not-italic text-body text-text-secondary">
+              Cantimplora Studio, LLC<br />
+              Alberto Gallego Castro<br />
+              30 N Gould St Ste R<br />
+              Sheridan, WY 82801<br />
+              United States
+            </address>
+            <Paragraph size="small" class="mt-4">
+              Email: <a href="mailto:support@picmal.app" class="link"
+                >support@picmal.app</a
+              >
+            </Paragraph>
+          </Card>
+          <Paragraph>
+            The legal fine print lives in the <a href="/terms" class="link"
+              >terms</a
+            > and the <a href="/privacy" class="link">privacy policy</a>. Short
+            version of the second one: Picmal processes your files on your own
+            Mac, so there's nothing for me to collect.
+          </Paragraph>
+        </div>
+      </Section>
+    </main>
+
+    <CTASection
+      heading="Convert and compress media on your Mac"
+      analyticsEvent="buy_clicked_contact"
+    />
+
+    <Footer />
+  </body>
+</html>

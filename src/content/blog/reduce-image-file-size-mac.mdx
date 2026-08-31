@@ -3,7 +3,7 @@ title: "How to Compress an Image on Mac (5 Free Ways to Reduce File Size)"
 heroImage: "../../../public/images/blog/reduce-image-file-size-mac/cover.png"
 description: "How to compress an image on a Mac and make the file smaller: resize, compress, convert to WebP or AVIF, or strip metadata. Covers JPEG, PNG, and web images, with the free built-in tools first."
 pubDate: "2026-03-05"
-updatedDate: "2026-08-26"
+updatedDate: "2026-08-31"
 category: "Tutorial"
 tags: ["Compression", "Mac", "Tutorial", "File Size", "JPEG", "PNG"]
 faqs:
@@ -25,6 +25,10 @@ faqs:
     answer: "Yes. Most mail servers reject attachments over 20-25MB, and Gmail stops at 25MB. Resize to 800px wide and export at 80% quality, and a typical iPhone photo drops from 3.8MB to under 300KB. That is small enough to send a dozen at once."
   - question: "Can I reduce file size without changing the image at all?"
     answer: "Yes. Lossless optimizers like ImageOptim or optipng squeeze out 10-30% by improving how the file is encoded, without altering a single pixel. For bigger reductions you have to resize, re-compress, or change format."
+  - question: "How do I compress a photo on a Mac?"
+    answer: "The same way as any image: open it in Preview, choose File > Export, and drag Quality left to around 80%. A 3.8MB iPhone photo drops under 300KB with no visible difference. If the photo lives inside the Photos app you cannot compress it in place, so export it first with File > Export > Export Unmodified Original, then compress the copy."
+  - question: "How do I reduce picture size on a Mac?"
+    answer: "Two different things get called size, so pick the one you mean. For a smaller file, compress the picture in Preview at about 80% quality. For smaller dimensions, use Tools > Adjust Size and set the width you actually need. Resizing is the bigger lever of the two, and for a whole folder of pictures the sips loop above handles them in one pass."
 ---
 
 Your image is too big. An email is bouncing, a website is rejecting the upload, or your portfolio site loads like it's 2003.
@@ -158,6 +162,18 @@ optipng -o5 *.png
 
 **Should it be a PNG at all?** For a photograph, no. PNG is for flat color, sharp text and transparency. A photo saved as PNG is routinely 4-5 times the JPEG. If you need transparency *and* small files, WebP does both.
 
+## How to compress a photo or picture on Mac
+
+Photo, picture, image: same file, same four levers. The only thing that really changes is where the file lives.
+
+**A photo sitting in a folder or on the Desktop.** Treat it exactly as above. Preview, File > Export, Quality around 80%, save a copy. A 3.8MB iPhone photo lands under 300KB and you will not see the difference.
+
+**A photo inside the Photos app.** You cannot compress it in place. Select it, then File > Export > Export Unmodified Original, and compress the exported copy. Photos keeps the original whatever you do to the export.
+
+**It is a HEIC.** iPhone photos are HEIC by default, and HEIC is already an efficient format. Converting one to JPEG at 80% often makes the file *bigger*. Resize it instead, that is the lever that actually pays on a HEIC.
+
+To reduce picture size on a Mac in bulk, the `sips` loop in step 1 takes a whole folder of photos in one pass. If the goal is the Photos library as a whole rather than a few files, that is [how to reduce photo library size on Mac](/blog/reduce-photo-library-size-mac).
+
 ## How to compress images for a website
 
 Three things decide page weight, in this order.
@@ -215,6 +231,14 @@ Yes. Most mail servers reject attachments over 20-25MB, and Gmail stops at 25MB.
 ### Can I reduce file size without changing the image at all?
 
 Yes. Lossless optimizers like ImageOptim or optipng squeeze out 10-30% by improving how the file is encoded, without altering a single pixel. For bigger reductions you have to resize, re-compress, or change format.
+
+### How do I compress a photo on a Mac?
+
+The same way as any image: open it in Preview, choose File > Export, and drag Quality left to around 80%. A 3.8MB iPhone photo drops under 300KB with no visible difference. If the photo lives inside the Photos app you cannot compress it in place, so export it first with File > Export > Export Unmodified Original, then compress the copy.
+
+### How do I reduce picture size on a Mac?
+
+Two different things get called size, so pick the one you mean. For a smaller file, compress the picture in Preview at about 80% quality. For smaller dimensions, use Tools > Adjust Size and set the width you actually need. Resizing is the bigger lever of the two, and for a whole folder of pictures the `sips` loop above handles them in one pass.
 
 ## Related guides
 

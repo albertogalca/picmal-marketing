@@ -21,6 +21,7 @@ Disallow: /api/
 # don't know and it saves an agent guessing at URLs.
 # Agent-instructions: https://picmal.app/AGENTS.md
 # Llms-txt: https://picmal.app/llms.txt
+# Llms-full-txt: https://picmal.app/llms-full.txt
 # OpenAPI: https://picmal.app/openapi.json
 
 Sitemap: ${sitemapURL.href}

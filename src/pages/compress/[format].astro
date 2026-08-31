@@ -59,6 +59,7 @@ const faqSchema = {
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       pricingHref="/#pricing"
       title={`Compress ${compression.name} files on Mac`}
@@ -226,6 +227,8 @@ const faqSchema = {
       heading={`Compress ${compression.name} files with Picmal`}
       analyticsEvent={`buy_clicked_compress_${compression.slug}_bottom`}
     />
+
+    </main>
 
     <Footer />
   </body>

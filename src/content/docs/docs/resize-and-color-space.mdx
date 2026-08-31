@@ -20,6 +20,12 @@ Turn on resizing to change image dimensions. The same settings apply in both **C
 
 Type a target size (in KB or MB) and Picmal scales each image down until it fits. It searches for the largest size that still lands under your budget, so you keep as much detail as possible. Images already under the target are left at full size. This mode is for images only — it isn't available for audio or video.
 
+### Trim borders
+
+Turn on **Trim borders** and Picmal removes a solid-color border from each image before it's resized and encoded — the white space around a screenshot, the black bars around an exported logo. It reads the corner color and trims what matches, with a 5% tolerance for backgrounds that aren't perfectly uniform.
+
+It applies in both Convert and Compress, and to images only. For another tolerance, for a specific margin, or for PDFs, use the [Crop](/docs/crop) tool.
+
 ### Aspect ratio
 
 By default Picmal keeps the original aspect ratio. In **Exact Dimensions** mode you can override that and stretch the image to fit, if you really want squashed faces.

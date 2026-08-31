@@ -117,3 +117,39 @@ export const STUDENT_DISCOUNT = {
 // a broken promise. The amounts are frozen at the rates of the day they were
 // set, so repricing a tier means minting a new price and changing its priceId
 // above.
+
+/** One licensing FAQ, rendered by both PricingSection and /pricing. */
+export interface LicenseFaq {
+  question: string;
+  answer: string;
+}
+
+/**
+ * The licensing questions, in one place so the homepage band and the pricing
+ * page can never drift apart on what an upgrade costs. Answers carry inline
+ * HTML; both call sites render them through FAQ.astro, which expects that.
+ * Kept next to `upgradePrice` on purpose: the numbers in the second answer are
+ * derived, so changing TIERS rewrites the copy for free.
+ */
+export const licenseFaqs: LicenseFaq[] = [
+  {
+    question: "How does the license work?",
+    answer:
+      "You pay once and keep it. No renewals, no subscriptions. Your license activates on the number of Macs you bought it for, and you can move it to another Mac whenever you want.",
+  },
+  {
+    question: "I bought Picmal and now I need more Macs. Can I upgrade?",
+    answer:
+      `Yes, and you only pay the difference. Going from 1 Mac to 2 is $${upgradePrice(1, 2)}, 2 to 5 is $${upgradePrice(2, 5)}, 5 to 10 is $${upgradePrice(5, 10)}, and every other jump works the same way. <a class="link" href="${UPGRADE.url}">Enter your license key here</a> and the same key covers more Macs. The offer never expires, so starting small is never the wrong call.`,
+  },
+  {
+    question: "What happens if I get a new Mac?",
+    answer:
+      "Open Picmal on your old Mac, go to Picmal → Register license to deactivate, then activate on the new one. Takes about ten seconds.",
+  },
+  {
+    question: "Do you offer student or country discounts?",
+    answer:
+      `Yes. I want Picmal to be affordable wherever you are. Students and educators get ${STUDENT_DISCOUNT.percentOff}% off: verify your school email on the <a class="link" href="/education">education page</a> and the code lands in your inbox. If the price is steep for your country, checkout already adjusts it for you. If it still doesn't work, email <a class="link" href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a> and tell me where you are, and I'll send a code.`,
+  },
+];

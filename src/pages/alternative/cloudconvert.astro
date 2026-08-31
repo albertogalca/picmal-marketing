@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -67,7 +66,6 @@ const faqs = [
       title="Picmal: The CloudConvert alternative that never uploads your files"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
   </head>
@@ -77,6 +75,7 @@ const faqs = [
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       title="The CloudConvert alternative that never uploads your files"
       subhead="CloudConvert is a good web service. It also means every file you convert goes to someone else's server, 10 a day for free and credits after that. Picmal does images, video, audio, and PDFs on your Mac for $29 once."
@@ -404,6 +403,8 @@ const faqs = [
         <FAQ faqs={faqs} />
       </Card>
     </Section>
+
+    </main>
 
     <Footer />
 

@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -62,7 +61,6 @@ const faqs = [
       title="Picmal: The TinyPNG alternative with no upload and no 5MB limit"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
   </head>
@@ -72,6 +70,7 @@ const faqs = [
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       title="The TinyPNG alternative with no upload and no 5MB limit"
       subhead="TinyPNG is great until you hit 20 images at a time, 5MB each, all going to someone else's server. Picmal compresses images, video, audio, and PDFs on your Mac, in batches of hundreds, for $29 once."
@@ -396,6 +395,8 @@ const faqs = [
         <FAQ faqs={faqs} />
       </Card>
     </Section>
+
+    </main>
 
     <Footer />
 

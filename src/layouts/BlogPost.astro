@@ -6,6 +6,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import ArticleSchema from "../components/schema/ArticleSchema.astro";
 import BlogFAQSchema from "../components/schema/BlogFAQSchema.astro";
+import BlogItemListSchema from "../components/schema/BlogItemListSchema.astro";
 import CTASection from "../components/CTASection.astro";
 import H1 from "../components/H1.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
@@ -18,6 +19,13 @@ type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
   tags?: string[];
   faqs?: { question: string; answer: string }[];
+  itemList?: {
+    name: string;
+    description?: string;
+    url?: string;
+    price?: string;
+    operatingSystem?: string;
+  }[];
 };
 
 const {
@@ -30,6 +38,7 @@ const {
   slug,
   tags,
   faqs,
+  itemList,
 } = Astro.props;
 ---
 
@@ -61,6 +70,11 @@ const {
       )
     }
     {faqs && faqs.length > 0 && <BlogFAQSchema faqs={faqs} />}
+    {
+      itemList && itemList.length > 0 && (
+        <BlogItemListSchema name={title} items={itemList} />
+      )
+    }
   </head>
 
   <body

@@ -4,6 +4,7 @@ import type { ImageMetadata } from "astro";
 import FallbackImage from "../../public/og.png";
 import { SITE_TITLE } from "../consts";
 import Seline from "./Seline.astro";
+import OrganizationSchema from "./schema/OrganizationSchema.astro";
 
 interface Props {
   title: string;
@@ -27,6 +28,12 @@ const { title, description, image = FallbackImage, ogType = "website", published
 ---
 
 {noindex && <meta name="robots" content="noindex, follow" />}
+
+<!-- Site-wide entity graph. It lives here, not on individual pages, because
+     ProductSchema and ArticleSchema now reference the Organization and Person
+     by @id: 23 feature pages and every blog post emit those refs, and a ref
+     whose node is not on the same page resolves to nothing. -->
+<OrganizationSchema url={Astro.site!.href} />
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />

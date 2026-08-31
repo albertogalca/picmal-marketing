@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import { TIERS } from "../../config/pricing";
+import testimonials from "../../data/testimonials.json";
+import { softwareId, personRef, orgRef } from "../../utils/schemaIds";
 
 interface Props {
   url: string;
@@ -23,9 +25,22 @@ const dateModified = (latestRelease?.data.pubDate ?? new Date("2024-01-15"))
   .toISOString()
   .split("T")[0];
 
+// Reviews on our own product page are ineligible for review rich results
+// (Google treats self-collected reviews about yourself as self-serving), so the
+// individual Review bodies are not marked up at all. The aggregate stays: it is
+// a legitimate property of a SoftwareApplication and the quotes are still on
+// the page as visible content, which is where they do their real work.
+const reviewCount = testimonials.filter((t) => t.type !== "press").length;
+
+// One SoftwareApplication for the whole site, addressed by @id. This used to be
+// two nodes: this one carried offers and description, MasonryTestimonials
+// emitted a second one carrying only the rating. Neither had an @id, so nothing
+// obliged a crawler to merge them, and the price and the rating could be read
+// as belonging to two different products.
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": softwareId(url),
   name: "Picmal",
   url: new URL("/", url).href,
   description:
@@ -44,19 +59,11 @@ const productSchema = {
     url: new URL("/", url).href,
     priceValidUntil: "2026-12-31",
   },
-  author: {
-    "@type": "Person",
-    name: "Alberto Gallego",
-    url: "https://albertogalca.com",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Picmal",
-    logo: {
-      "@type": "ImageObject",
-      url: new URL("/logo.webp", url).href,
-    },
-  },
+  // References, not copies. OrganizationSchema defines both nodes in full;
+  // re-declaring them here made a second Alberto and a second Picmal that
+  // nothing tied back to the originals.
+  author: personRef(url),
+  publisher: orgRef(url),
   softwareVersion,
   datePublished: "2024-01-15",
   dateModified,
@@ -67,18 +74,35 @@ const productSchema = {
   installUrl:
     "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg",
   softwareRequirements: "macOS 15.0 or later",
+  // Keep this list true and in sync with the FAQ (FAQSchema.astro), the feature
+  // grid and llms.txt. It is the copy a model reads first and a human never
+  // sees, so a stale or overstated line here is the one that gets quoted back.
+  // Two things it used to get wrong: it claimed lossless compression, which the
+  // FAQ correctly contradicts (video is H.264, audio is AAC, and the quality
+  // slider is a size/fidelity tradeoff), and it applied the image-only "30+"
+  // count to every media type.
   featureList: [
-    "Batch convert images, videos, and audio files",
-    "Compress media files without quality loss",
-    "Offline processing for privacy",
-    "Support for 30+ image, video, and audio formats",
+    "Batch convert images, video, audio and PDFs",
+    "Adjustable-quality compression for images, video, audio and PDF",
+    "Offline processing, nothing is uploaded",
+    "Over 100 formats across images, video, audio, RAW and PDF",
+    "PDF tools: combine, split by page range, images to PDF, reorder pages",
+    "Video tools: combine clips, crop, watermark, burn-in subtitles",
     "Folder watching for automatic conversion",
-    "Shortcuts integration",
+    "Finder, Shortcuts and Raycast integration",
+    "Command-line tool (picmal-cli) for scripting and automation",
     "Color space conversion",
-    "Metadata preservation",
+    "Metadata control: strip all, keep essential, or keep all",
   ],
   keywords:
     "image converter, video converter, audio converter, Mac app, batch conversion, offline converter, HEIC converter, media compression",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: String(reviewCount),
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 ---
 

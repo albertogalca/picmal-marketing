@@ -1,0 +1,388 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CTASection from "../../components/CTASection.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+import Paragraph from "../../components/Paragraph.astro";
+import H1 from "../../components/H1.astro";
+import H2 from "../../components/H2.astro";
+import FAQ from "../../components/FAQ.astro";
+import FileDropZone from "../../components/FileDropZone.astro";
+
+const title = "Picmal: Free EXIF viewer, see the hidden data in a photo";
+const description =
+  "Drop a photo and see its EXIF data: camera, lens, settings, timestamps and GPS coordinates. Runs in your browser, nothing is uploaded. Works with JPG, HEIC, PNG and TIFF.";
+
+const faqs = [
+  {
+    question: "What is EXIF data?",
+    answer:
+      "Metadata your camera writes into the photo file itself. Camera make and model, lens, shutter speed, aperture, ISO, the date and time it was taken, and on a phone almost always the GPS coordinates of where you were standing.",
+  },
+  {
+    question: "Is my photo uploaded anywhere?",
+    answer:
+      "No. The file is read in your browser and never leaves your machine. Open your browser's Network tab and drop another photo in: nothing goes out.",
+  },
+  {
+    question: "Which formats work?",
+    answer:
+      "JPG and HEIC carry the most, and both work here. PNG, TIFF, WebP and AVIF are read too, though they usually hold much less. Camera RAW files are TIFF underneath, so CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF and DNG usually read fine as well.",
+  },
+  {
+    question: "Why does my photo have GPS coordinates in it?",
+    answer:
+      "Phones write your location into every photo by default. It stays in the file when you email it, upload it, or send it anywhere that doesn't strip metadata, which is most places.",
+  },
+  {
+    question: "How do I remove EXIF data from my photos?",
+    answer:
+      "This tool only reads. To strip metadata from a photo, or from a few thousand at once, Picmal does it on your Mac in a single pass, with a choice of removing everything or keeping only the parts you want. There's a longer write-up on <a class=\"link\" href=\"/remove-metadata-from-photos-mac\">removing photo metadata</a>.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "EXIF viewer",
+        description,
+        url: "https://picmal.app/tools/exif-viewer",
+        applicationCategory: "UtilityApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Runs entirely client-side. No upload, no account.",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      })}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      })}
+    />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content">
+      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge and the
+           heading tucks under the fixed header. Same trick as the calculator. -->
+      <Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0 text-center">
+        <H1 class="mb-4">EXIF viewer</H1>
+        <Paragraph size="lead" class="max-w-2xl mx-auto">
+          Drop a photo and see everything hidden inside it: the camera, the
+          settings, the timestamp, and usually the exact spot on earth where it
+          was taken. It's read in your browser and never uploaded.
+        </Paragraph>
+      </Section>
+
+      <Section width="narrow">
+        <FileDropZone
+          id="exif-drop"
+          accept="image/*,.heic,.heif,.cr2,.cr3,.nef,.arw,.raf,.rw2,.orf,.pef,.dng"
+          label="Drop a photo, or click to choose one"
+          hint="JPG, HEIC, PNG, TIFF, WebP and most camera RAW. Nothing is uploaded."
+        />
+
+        <p
+          id="exif-status"
+          class="mt-4 text-small text-text-secondary text-center"
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+
+        {/* No cards. The results were four stacked panels of identical weight,
+            which made the GPS alert a visual peer of a raw tag dump. Flat
+            sections separated by a hairline and generous space, with exactly
+            one lifted surface: the alert. That is the site's own
+            Flat-By-Default rule, where depth is a response and not a
+            container. Sections carry their own top spacing rather than a
+            `space-y` on the parent, because any of them can be hidden. */}
+        <div id="exif-results" hidden class="mt-10">
+          <!-- File summary. Leads, so no separator above it. -->
+          <div>
+            <h2 class="text-h3 text-text mb-3" id="exif-filename"></h2>
+            <dl
+              id="exif-file-facts"
+              class="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 text-small border-t border-border pt-4"
+            >
+            </dl>
+          </div>
+
+          <!-- The hook, and the only raised surface in the results. -->
+          <div
+            id="exif-gps"
+            hidden
+            class="mt-10 rounded-2xl border border-warning/25 bg-warning-surface p-6 sm:p-8"
+          >
+            <h2 class="text-h3 text-text mb-2">
+              This photo knows where you were
+            </h2>
+            <Paragraph class="mb-4">
+              It carries GPS coordinates. Anyone you send the original to can
+              read them.
+            </Paragraph>
+            <p class="text-body tabular-nums text-text mb-3" id="exif-coords">
+            </p>
+            <a
+              id="exif-map"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              class="link text-small"
+            >
+              Open the location in OpenStreetMap
+            </a>
+            <p class="mt-2 text-small text-text-secondary">
+              That link is the only thing on this page that leaves your browser,
+              and only if you click it.
+            </p>
+          </div>
+
+          <!-- Camera. Secondary to the alert, so h4 rather than h3. -->
+          <section
+            id="exif-camera-card"
+            hidden
+            class="mt-10 border-t border-border pt-8"
+          >
+            <h2 class="text-h4 text-text mb-4">Camera and settings</h2>
+            <dl
+              id="exif-camera"
+              class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-3 text-small"
+            >
+            </dl>
+          </section>
+
+          <!-- Everything else -->
+          <section
+            id="exif-all-card"
+            hidden
+            class="mt-10 border-t border-border pt-8"
+          >
+            <h2 class="text-h4 text-text mb-4">Everything else in the file</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-small">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th scope="col" class="text-left font-[590] text-text py-2 pr-4">Tag</th
+                    >
+                    <th scope="col" class="text-left font-[590] text-text py-2">Value</th>
+                  </tr>
+                </thead>
+                <tbody id="exif-all"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </Section>
+
+      <Section width="narrow">
+        <H2 class="mb-8">Questions</H2>
+        <Card>
+          <FAQ faqs={faqs} />
+        </Card>
+      </Section>
+
+      <CTASection
+        heading="Strip metadata from every photo at once"
+        analyticsEvent="buy_clicked_exif_viewer"
+      />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+  // exifr's `module` entry is already the full build (dist/full.esm.mjs), which
+  // is what this page wants: the interesting stuff for a tool like this lives
+  // outside baseline EXIF, in IPTC captions, XMP and the ICC profile. Importing
+  // the bare name rather than the deep path keeps the package's types. ~74KB,
+  // loaded only on this route.
+  import exifr from "exifr";
+
+  const zone = document.getElementById("exif-drop");
+  const status = document.getElementById("exif-status");
+  const results = document.getElementById("exif-results");
+  if (!zone || !status || !results) throw new Error("exif-viewer: markup gone");
+
+  const el = (id: string) => document.getElementById(id)!;
+
+  const bytes = (n: number) =>
+    n < 1024
+      ? `${n} B`
+      : n < 1024 * 1024
+        ? `${(n / 1024).toFixed(0)} KB`
+        : `${(n / 1024 / 1024).toFixed(1)} MB`;
+
+  // EXIF values arrive as numbers, Dates, arrays, byte buffers and the odd
+  // object. Everything reaching the DOM goes through here first.
+  const show = (value: unknown): string => {
+    if (value === null || value === undefined) return "";
+    if (value instanceof Date) return value.toLocaleString();
+    if (value instanceof Uint8Array || value instanceof ArrayBuffer)
+      return "(binary)";
+    if (Array.isArray(value)) return value.map(show).join(", ");
+    if (typeof value === "number")
+      return Number.isInteger(value) ? String(value) : value.toFixed(4);
+    if (typeof value === "object") return "(object)";
+    return String(value).slice(0, 300);
+  };
+
+  // Everything below lands in innerHTML, and EXIF is attacker-controlled:
+  // Artist, Copyright, ImageDescription, Software and anything out of XMP come
+  // straight from the file. An <img src=x onerror=...> in a crafted Artist tag
+  // would otherwise execute. Escape at the boundary rather than trusting the
+  // source, and escape the tag names too, since XMP can invent its own.
+  const ESCAPES: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
+  const esc = (value: string): string =>
+    value.replace(/[&<>"']/g, (char) => ESCAPES[char]);
+
+  // `term` is always a literal from this file; `value` never is.
+  const row = (term: string, value: string) =>
+    `<div><dt class="text-text-secondary">${term}</dt><dd class="text-text font-[590] tabular-nums break-words">${esc(value)}</dd></div>`;
+
+  // Pulled out of the dump and given nicer labels; whatever is left falls
+  // through to the big table so nothing is silently hidden.
+  const CAMERA: [string, string, ((v: any) => string)?][] = [
+    ["Make", "Make"],
+    ["Model", "Model"],
+    ["LensModel", "Lens"],
+    ["FocalLength", "Focal length", (v) => `${Math.round(v)} mm`],
+    ["FNumber", "Aperture", (v) => `f/${v}`],
+    ["ExposureTime", "Shutter", (v) => (v >= 1 ? `${v} s` : `1/${Math.round(1 / v)} s`)],
+    ["ISO", "ISO"],
+    ["DateTimeOriginal", "Taken"],
+    ["Software", "Software"],
+    ["Orientation", "Orientation"],
+  ];
+
+  const SKIP = new Set([
+    ...CAMERA.map(([key]) => key),
+    "latitude",
+    "longitude",
+    "GPSLatitude",
+    "GPSLongitude",
+    "GPSLatitudeRef",
+    "GPSLongitudeRef",
+  ]);
+
+  const dimensions = async (file: File, tags: Record<string, any>) => {
+    const w = tags.ExifImageWidth ?? tags.ImageWidth;
+    const h = tags.ExifImageHeight ?? tags.ImageHeight;
+    if (w && h) return `${w} x ${h}`;
+    // No dimensions in the metadata, so ask the browser to decode it. HEIC
+    // throws almost everywhere outside Safari, which is fine: it just means
+    // this line stays blank.
+    try {
+      const bitmap = await createImageBitmap(file);
+      const size = `${bitmap.width} x ${bitmap.height}`;
+      bitmap.close();
+      return size;
+    } catch {
+      return "";
+    }
+  };
+
+  const render = async (file: File) => {
+    status.textContent = "Reading…";
+    results.hidden = true;
+
+    let tags: Record<string, any> | undefined;
+    try {
+      tags = await exifr.parse(file, {
+        tiff: true,
+        exif: true,
+        gps: true,
+        iptc: true,
+        xmp: true,
+        icc: true,
+        jfif: true,
+        ihdr: true,
+        mergeOutput: true,
+      });
+    } catch {
+      status.textContent =
+        "Couldn't read that one. It may not be an image, or the file may be damaged.";
+      return;
+    }
+
+    const found = tags ?? {};
+    const hasTags = Object.keys(found).length > 0;
+
+    el("exif-filename").textContent = file.name;
+    el("exif-file-facts").innerHTML = [
+      row("Size", bytes(file.size)),
+      row("Type", file.type || "unknown"),
+      row("Dimensions", (await dimensions(file, found)) || "–"),
+      row("Modified", new Date(file.lastModified).toLocaleDateString()),
+    ].join("");
+
+    // GPS
+    const { latitude, longitude } = found;
+    const gps = el("exif-gps");
+    if (typeof latitude === "number" && typeof longitude === "number") {
+      el("exif-coords").textContent = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+      el("exif-map").setAttribute(
+        "href",
+        `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=16/${latitude}/${longitude}`,
+      );
+      gps.hidden = false;
+    } else {
+      gps.hidden = true;
+    }
+
+    // Camera
+    const cameraRows = CAMERA.filter(([key]) => found[key] !== undefined).map(
+      ([key, label, format]) =>
+        row(label, format ? format(found[key]) : show(found[key])),
+    );
+    el("exif-camera").innerHTML = cameraRows.join("");
+    el("exif-camera-card").hidden = cameraRows.length === 0;
+
+    // Everything else
+    const rest = Object.entries(found)
+      .filter(([key, value]) => !SKIP.has(key) && show(value) !== "")
+      .sort(([a], [b]) => a.localeCompare(b));
+    el("exif-all").innerHTML = rest
+      .map(
+        ([key, value]) =>
+          `<tr class="border-b border-border/60"><td class="py-2 pr-4 text-text-secondary align-top">${esc(key)}</td><td class="py-2 text-text break-words">${esc(show(value))}</td></tr>`,
+      )
+      .join("");
+    el("exif-all-card").hidden = rest.length === 0;
+
+    results.hidden = false;
+    status.textContent = hasTags
+      ? "Read on your machine."
+      : "No metadata in this one. Either it never had any, or something already stripped it.";
+  };
+
+  zone.addEventListener("picmal:file", (event) => {
+    const { file } = (event as CustomEvent<{ file: File }>).detail;
+    void render(file);
+  });
+</script>

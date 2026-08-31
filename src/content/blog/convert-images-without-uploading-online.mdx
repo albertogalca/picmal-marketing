@@ -5,6 +5,19 @@ description: "Every way to convert images offline on your Mac, with no uploads a
 pubDate: "2026-03-31"
 category: "Tutorial"
 tags: ["Privacy", "Image Conversion", "Mac", "Tutorial", "Offline"]
+faqs:
+  - question: "How do I convert images on a Mac without uploading them?"
+    answer: "Five ways, all local. Preview exports one file at a time through File > Export. Finder Quick Actions convert a small selection to JPG, PNG or HEIF from the right-click menu. Automator runs a Folder Action that converts anything dropped into a watched folder. ImageMagick handles nearly every format from Terminal. Picmal is a native app that batches hundreds of files and adds AVIF, WebP, TIFF and RAW."
+  - question: "Can macOS convert images without extra software?"
+    answer: "Yes, within limits. Preview and Finder Quick Actions are built into macOS and convert between JPG, PNG and HEIF without installing anything. Neither one exports AVIF or WebP, neither gives you quality control, and Preview handles one file at a time."
+  - question: "Are online image converters safe?"
+    answer: "It depends what is in the image. Your file lands on a server you do not control, EXIF data including GPS coordinates travels with it unless it is stripped first, and retention policies vary from one hour to unstated. That is fine for a meme and a real problem for client work, scanned documents, medical images or anything under NDA."
+  - question: "Do online converters keep my files?"
+    answer: "Most say they delete uploads after an hour or a day, but the policy is the only guarantee you get and some services do not state one at all. Several terms of service also grant a broad licence to use uploaded content for service improvement without defining it."
+  - question: "How do I batch convert images offline on a Mac?"
+    answer: "Finder Quick Actions cover small selections. Automator can watch a folder and convert automatically, though a wrong destination will overwrite your originals with no undo. ImageMagick batches a whole folder with one mogrify command. Picmal does batch folders with a visual queue and per-file progress."
+  - question: "Does converting an image offline remove EXIF data?"
+    answer: "Not on its own. Conversion and metadata are separate steps, and most tools carry EXIF across unless you tell them not to. Strip it explicitly if the file is going to someone else, because GPS coordinates and timestamps travel inside the image."
 ---
 
 You Google "convert HEIC to JPG." The first result is a free online tool. You drag your photos in, click convert, download the results. It works. But in the thirty seconds between upload and download, your photos sat on someone else's server, processed by software you can't inspect, governed by a privacy policy you didn't read.

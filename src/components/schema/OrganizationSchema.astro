@@ -1,24 +1,27 @@
 ---
+import { orgId, personNode } from "../../utils/schemaIds";
+
 interface Props {
   url: string;
 }
 
 const { url } = Astro.props;
 
+// This component owns the one full Person definition for the site. Everything
+// else references it by @id (see src/utils/schemaIds.ts).
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": orgId(url),
   name: "Picmal",
+  // The studio name only lived in about.astro's own duplicate node. Kept here
+  // so removing that duplicate lost nothing.
+  alternateName: "Cantimplora Studio",
   url: url,
   logo: new URL("/logo.webp", url).href,
-  sameAs: ["https://albertogalca.com/", "https://github.com/albertogalca"],
   description:
     "All-in-one media tool for Mac. Batch convert, compress, and create images, videos, audio, and PDF files offline on your Mac.",
-  founder: {
-    "@type": "Person",
-    name: "Alberto Gallego",
-    url: "https://albertogalca.com/",
-  },
+  founder: personNode(url),
   // Legal entity, registered address and support inbox. Same details already
   // published on /terms, /privacy and /contact: this is the machine-readable
   // copy so an agent can verify the business without parsing a legal page.

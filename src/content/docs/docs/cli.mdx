@@ -19,7 +19,7 @@ If you'd rather invoke the binary directly without installing it, it lives insid
 /Applications/Picmal.app/Contents/MacOS/picmal-cli
 ```
 
-`convert`, `compress`, `combine`, `combine-videos`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, `remove-background`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
+`convert`, `compress`, `crop`, `combine-pdfs`, `combine-videos`, `split-pdf`, `images-to-pdf`, `merge-audio`, `split-chapters`, `remove-background`, and `watch` need a valid Picmal license. The read-only commands (`presets`, `formats`, `license-status`, `version`) work without one.
 
 ## Synopsis
 
@@ -31,7 +31,8 @@ picmal-cli <subcommand> [options]
 | ---------------- | ------------------------------------------------- |
 | `convert`        | Convert files to a target format                  |
 | `compress`       | Compress files keeping the same format            |
-| `combine`        | Combine two or more PDFs into one                 |
+| `crop`           | Crop margins off images and PDF pages             |
+| `combine-pdfs`   | Combine two or more PDFs into one                 |
 | `split-pdf`      | Split a PDF into one document per page range      |
 | `images-to-pdf`  | Create a multi-page PDF from images               |
 | `merge-audio`    | Merge two or more audio files into one            |
@@ -81,6 +82,8 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--quality <n>`           | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`.    |
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
 | `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
+| `--trim`                  | Trim a solid-color border off each image before resizing (5% tolerance; use [`crop --fuzz`](#crop) for another one). |
+| `--audio-quality <n>`     | Audio quality 1–100 for video outputs, mapped to 48–320 kbps. Only used when the soundtrack is re-encoded. |
 | `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`, `cmyk`.                              |
 | `--metadata <mode>`       | Preset: `stripall`, `essential`, or `keepall`. See [Metadata](#metadata).    |
 | `--keep <categories>`     | Comma-separated categories to keep; everything else is stripped.             |
@@ -131,6 +134,8 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `-o`, `--output <path>`  | Output file or directory.                                                 |
 | `--quality <n>`          | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`. |
 | `--preset <name>`        | Apply a saved preset by name (see [Presets](#presets)).                   |
+| `--trim`                 | Trim a solid-color border off each image before encoding (5% tolerance).  |
+| `--audio-quality <n>`    | Audio quality 1–100 for video outputs, mapped to 48–320 kbps. Only used when the soundtrack is re-encoded. |
 | `-s`, `--strip-metadata` | Strip EXIF/IPTC/XMP from output.                                          |
 | `--copyright <text>`     | Copyright notice to embed (EXIF, IPTC, and XMP). Written even with `--strip-metadata`. |
 | `--artist <text>`        | Artist / creator name to embed.                                          |
@@ -157,13 +162,40 @@ picmal-cli compress -i ~/Pics -o ~/out --pattern '{date}_{original}'
 
 If your `--preset` is an audio or video preset and you don't pass `--output`, `picmal-cli` picks the right container for you (Opus → `.opus`, AAC → `.m4a`, FLAC → `.flac`, VP9 → `.webm`). Pass `--output` if you want a specific path.
 
-## combine
+## crop
 
-Combine two or more PDFs into a single document. Inputs are merged in the order you pass them.
+Crop margins off images and PDF pages, or auto-trim a solid-color border from images. Margins are **pixels for images** and **millimeters for PDFs**. PDF pages keep their text, links, and form fields — only the page boxes change.
 
 ```bash
-picmal-cli combine a.pdf b.pdf
-picmal-cli combine chapter*.pdf -o book.pdf
+picmal-cli crop photo.png --auto-trim
+picmal-cli crop scan.jpg --top 40 --bottom 40
+picmal-cli crop report.pdf --top 20 --bottom 20     # 20 mm off each page
+picmal-cli crop *.pdf --left 15 -o out/
+```
+
+| Flag                    | Description                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `<inputs...>`           | Image or PDF files to crop (positional, at least one).                             |
+| `--top <n>`             | Margin to remove from the top. Default `0`.                                        |
+| `--bottom <n>`          | Margin to remove from the bottom. Default `0`.                                     |
+| `--left <n>`            | Margin to remove from the left. Default `0`.                                       |
+| `--right <n>`           | Margin to remove from the right. Default `0`.                                      |
+| `--auto-trim`           | Images only: remove a solid-color border by reading the corner color.              |
+| `--fuzz <n>`            | Auto-trim color tolerance, 0–50%. Default `5`.                                     |
+| `-o`, `--output <dir>`  | Output directory. Default: next to each input, as `<basename>_cropped.<ext>`.       |
+| `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
+
+Pass a margin, `--auto-trim`, or both — with neither, the command refuses rather than writing a byte-identical copy. `--auto-trim` on a PDF is an error for the same reason: give PDFs explicit margins. See [Crop](/docs/crop).
+
+For a border trim as part of a normal conversion, `convert` and `compress` take `--trim` instead.
+
+## combine-pdfs
+
+Combine two or more PDFs into a single document. Inputs are merged in the order you pass them. Also available as `combine`, its name before 1.8.7.
+
+```bash
+picmal-cli combine-pdfs a.pdf b.pdf
+picmal-cli combine-pdfs chapter*.pdf -o book.pdf
 ```
 
 | Flag                    | Description                                                                       |
@@ -191,7 +223,7 @@ picmal-cli split-pdf *.pdf --pages 1-2 -o out/
 | `-o`, `--output <dir>`  | Output directory. Default: next to each input, as `<basename>-1.pdf`, `<basename>-2.pdf`, … |
 | `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
 
-Like `combine`, it uses PDFKit and copies pages losslessly; password-protected inputs are refused — unlock them first.
+Like `combine-pdfs`, it uses PDFKit and copies pages losslessly; password-protected inputs are refused — unlock them first.
 
 ## images-to-pdf
 
@@ -212,15 +244,17 @@ picmal-cli images-to-pdf report.png --password secret
 | `-o`, `--output <path>` | Output file or directory. Default: `<first basename>.pdf` next to the first input. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                            |
 
-## app-icon
+## app-icons
 
 Turn a single image into ready-to-ship app icons: a macOS `.icns`, a Windows `.ico`, and an iOS `.appiconset` you can drag into Xcode. Pass no format flag to generate all three. A non-square source is fit into the square without cropping, and the iOS icon is flattened onto an opaque background.
 
 ```bash
-picmal-cli app-icon logo.png                 # all three formats
-picmal-cli app-icon logo.png --macos         # just .icns
-picmal-cli app-icon logo.png --ios --windows -o icons/
+picmal-cli app-icons logo.png                 # all three formats
+picmal-cli app-icons logo.png --macos         # just .icns
+picmal-cli app-icons logo.png --ios --windows -o icons/
 ```
+
+Also available as `app-icon`, its name before 1.8.7.
 
 | Flag                    | Description                                                                              |
 | ----------------------- | ---------------------------------------------------------------------------------------- |
@@ -387,6 +421,7 @@ Manage Picmal's watched folders from the terminal. The host app does the actual 
 
 ```bash
 picmal-cli watch add ~/Screenshots --format webp --strip-metadata
+picmal-cli watch add ~/Scans --action images-to-pdf
 picmal-cli watch list
 picmal-cli watch remove ~/Screenshots --yes
 ```
@@ -398,8 +433,11 @@ picmal-cli watch remove ~/Screenshots --yes
 | `<folder>`               | Folder path to watch (positional).                  |
 | `-o`, `--output <dir>`   | Output destination. Defaults to the watched folder. |
 | `-f`, `--format <ext>`   | Target format extension. Implies convert mode.      |
+| `--action <name>`        | `compress`, `convert`, `images-to-pdf`, or `combine-pdf`. Default: `compress`, or `convert` when `--format` is given. |
 | `-r`, `--recurse`        | Watch subfolders recursively.                       |
 | `-s`, `--strip-metadata` | Strip metadata from processed files.                |
+
+The batch actions collect what arrives instead of processing file by file: `images-to-pdf` turns the images that land within ten seconds of each other into one PDF, and `combine-pdf` merges the PDFs that land together into one, both in Finder name order. Page size, quality, and naming come from the folder's settings in the app. See [watched folders](/docs/watched-folders#actions).
 
 ### watch list
 

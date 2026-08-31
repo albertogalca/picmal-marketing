@@ -31,6 +31,28 @@
   );
   --color-border: light-dark(rgba(237, 237, 237, 0.85), rgba(48, 48, 48, 1));
 
+  /* Status: the first semantic state axis on the site, added for the /tools
+     verdict chips (opens / needs a plugin / won't open).
+
+     The surfaces are opaque on purpose. The chips started life as
+     `bg-amber-500/15`, and an alpha tint means the effective contrast changes
+     with whatever sits behind it: the same chip measured differently on the
+     page ground and inside a Card. Flattened, the ratio is a property of the
+     token instead of the context.
+
+     Every pair clears WCAG AA 4.5:1 against its own surface, measured, with
+     the three states kept at a similar ratio so they read as one system:
+       success  6.47:1 light · 6.34:1 dark
+       warning  6.13:1 light · 7.01:1 dark
+       danger   6.62:1 light · 7.00:1 dark
+     Warning ink is amber-800, not amber-700; 700 measured 4.34:1 and failed. */
+  --color-success: light-dark(#065f46, #34d399);
+  --color-success-surface: light-dark(#d8f1e9, #213a32);
+  --color-warning: light-dark(#92400e, #fbbf24);
+  --color-warning-surface: light-dark(#faedd7, #433620);
+  --color-danger: light-dark(#991b1b, #fca5a5);
+  --color-danger-surface: light-dark(#f9e0e0, #422929);
+
   /* Type tokens */
   --font-sans:
     ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
@@ -74,12 +96,10 @@
   --text-h4--letter-spacing: -0.01em;
   --text-h4--font-weight: 600;
 
-  /* Body big / large body (hero subheads): 18px → 20px */
   --text-body-big: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
   --text-body-big--line-height: 1.6;
   --text-body-big--letter-spacing: -0.011em;
 
-  /* Body: 16px */
   --text-body: 1rem;
   --text-body--line-height: 1.6;
   --text-body--letter-spacing: -0.011em;
@@ -281,7 +301,10 @@ html.dark pre:not(.sl-markdown-content pre) span {
 }
 
 code:not(pre code):not(.sl-markdown-content code) {
-  background: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08)) !important;
+  background: light-dark(
+    rgba(0, 0, 0, 0.05),
+    rgba(255, 255, 255, 0.08)
+  ) !important;
   color: var(--color-text) !important;
   padding: 0.125rem 0.35rem !important;
   border-radius: var(--radius-sm) !important;
@@ -296,8 +319,7 @@ blockquote {
   background: transparent !important;
   padding: 0 0 0 1rem !important;
   margin: 1.5rem 0 !important;
-  border-left: 2px solid
-    color-mix(in oklab, var(--color-text) 20%, transparent) !important;
+  border-left: 2px solid color-mix(in oklab, var(--color-text) 20%, transparent) !important;
   border-radius: 0 !important;
   font-style: normal !important;
 }

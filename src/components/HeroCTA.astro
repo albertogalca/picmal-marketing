@@ -78,7 +78,11 @@ const APPLE_ICON =
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
       <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
     </svg>
-    {`$${DEFAULT_TIER.price} once, updates included. No uploads, no account, works offline. `}
+    {/* "No uploads" used to live here. The H1 says "Nothing gets uploaded"
+        and the sublead says "while a website would still be uploading", so
+        this was the third time in one screen. The line's job is the terms, so
+        it keeps the ones nothing else states. */}
+    {`$${DEFAULT_TIER.price} once, updates included. No account, no subscription, works offline. `}
     <a href={pricingHref} class="link">Need 2, 5 or 10 Macs?</a>
   </p>
 </div>

@@ -5,8 +5,8 @@ import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
+import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 
 const title = "Picmal: Contact";
@@ -22,11 +22,11 @@ const reasons = [
   },
   {
     title: "Licenses and refunds",
-    body: "Lost key, a Mac you need to deactivate, an upgrade to more Macs, or a refund inside 14 days. Send the email address you bought with and I'll find the order. Most of it you can also do yourself in the license portal.",
+    body: "Lost key, a Mac you need to deactivate, an upgrade to more Macs, or a refund inside 14 days. The first two you can do yourself in the license portal, no email needed. For the rest, send the address you bought with and I'll find the order.",
   },
   {
     title: "Feature requests",
-    body: "A good number of Picmal's features exist because somebody emailed to ask. Describe the job you're trying to finish rather than the button you want, and it usually ends up in a release.",
+    body: "Features get added because somebody emailed to ask. Describe the job you're trying to finish rather than the button you want, and it usually ends up in a release.",
   },
   {
     title: "Press and business",
@@ -93,29 +93,31 @@ const reasons = [
     <Header />
 
     <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-      <Section width="narrow" class="pt-32 sm:pt-32">
-        <SectionHeading
-          level={1}
-          align="left"
-          subleadClass="max-w-xl"
-        >
-          Contact
-          <Fragment slot="sublead">
-            Everything about Picmal goes to <a
-              href="mailto:support@picmal.app"
-              class="link">support@picmal.app</a
-            >, and it reaches me, not a ticket queue.
-          </Fragment>
-        </SectionHeading>
+      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge.
+           The bottom is pulled in so the intro prose stays attached to the
+           hero instead of floating between two equal 80px gaps. -->
+      <Section width="narrow" class="pt-32 sm:pt-32 pb-10 sm:pb-12">
+        <!-- Not SectionHeading here: the address is the reason people open
+             this page, so it has to sit directly under the title as the second
+             strongest thing on it, and that primitive only holds a sublead. -->
+        <H1 class="mb-3">Contact</H1>
+        <a href="mailto:support@picmal.app" class="link text-h2 inline-block">
+          support@picmal.app
+        </a>
 
-        <div class="space-y-5">
+        <!-- One measure for every line of prose on the page (~72ch at body
+             size). The lead used to be narrower than the paragraphs under it,
+             which read as two columns fighting on the same axis. -->
+        <div class="mt-10 max-w-xl space-y-5">
+          <Paragraph size="lead">
+            That's the only address, and it reaches me, not a ticket queue.
+          </Paragraph>
           <Paragraph>
             I'm Alberto Gallego. I design Picmal, write the code, and answer the
-            email. There's one address for all of it because there's one person
-            behind all of it. I read everything and reply to almost everything,
-            usually within a day or two on weekdays. If a week goes by with
-            nothing, the mail went missing, so please send it again.
+            email. One address, because there's one person behind all of it. I
+            read everything and reply to almost everything, usually within a day
+            or two on weekdays. If a week goes by with nothing, the mail went
+            missing, so please send it again.
           </Paragraph>
           <Paragraph>
             Picmal runs entirely on your own Mac, so I can't see your files,
@@ -128,32 +130,38 @@ const reasons = [
 
       <Section width="narrow">
         <H2 class="mb-8">What to write about</H2>
-        <div class="grid sm:grid-cols-2 gap-4">
+        <!-- gap-5 so the space between cards beats the 24px inside them;
+             at gap-4 the four panels read as one block with hairlines. The
+             grid keeps the full 768px, which is the deliberate break from the
+             prose measure: it's a lookup table, not something you read
+             straight through. -->
+        <div class="grid sm:grid-cols-2 gap-5">
           {
             reasons.map((r) => (
               <Card padding="p-6">
                 <h3 class="text-h4 text-text mb-2">{r.title}</h3>
-                <Paragraph class="text-text-secondary">{r.body}</Paragraph>
+                <Paragraph>{r.body}</Paragraph>
               </Card>
             ))
           }
         </div>
       </Section>
 
-      <Section width="narrow">
+      <!-- pt-0: this is the same chapter as the grid above it (both answer
+           "how do I write a useful email"), so it sits one gap away, not two. -->
+      <Section width="narrow" class="pt-0 sm:pt-0">
         <H2 class="mb-4">Before you write</H2>
-        <div class="space-y-5">
+        <div class="max-w-xl space-y-5">
           <Paragraph>
-            A lot of questions already have an answer written down. The <a
-              href="/docs/faq"
-              class="link">FAQ and troubleshooting page</a
-            > covers the common ones, the <a href="/docs" class="link">docs</a> explain
+            Most of what people email about is already written down somewhere.
+            The <a href="/docs/faq" class="link">FAQ and troubleshooting page</a>
+            covers the common ones, the <a href="/docs" class="link">docs</a> explain
             every setting, and the <a href="/docs/license" class="link"
               >license page</a
             > has the self-serve portal for activating and deactivating Macs.
-            The <a href="/changelog" class="link">changelog</a> is worth a look
-            too, since a fair number of bugs are already fixed in a newer
-            version.
+            Check the <a href="/changelog" class="link">changelog</a> too, since
+            plenty of bugs are already fixed in a version you haven't installed
+            yet.
           </Paragraph>
           <Paragraph>
             Writing about Picmal? The <a
@@ -176,13 +184,15 @@ const reasons = [
 
       <Section width="narrow">
         <H2 class="mb-4">Company details</H2>
-        <div class="space-y-5">
+        <div class="max-w-xl space-y-5">
           <Paragraph>
             Picmal is made and sold by Cantimplora Studio, LLC, registered in
             Wyoming, United States. The mailing address, if you need it on an
             invoice or in a legal notice:
           </Paragraph>
-          <Card padding="p-6">
+          <!-- Sized to its contents. Five short lines in a 768px box was a
+               mostly empty panel; an address should be the size of a plaque. -->
+          <Card padding="p-6" class="max-w-sm">
             <address class="not-italic text-body text-text-secondary">
               Cantimplora Studio, LLC<br />
               Alberto Gallego Castro<br />
@@ -205,12 +215,12 @@ const reasons = [
           </Paragraph>
         </div>
       </Section>
-    </main>
 
-    <CTASection
-      heading="Convert and compress media on your Mac"
-      analyticsEvent="buy_clicked_contact"
-    />
+      <CTASection
+        heading="Convert and compress media on your Mac"
+        analyticsEvent="buy_clicked_contact"
+      />
+    </main>
 
     <Footer />
   </body>

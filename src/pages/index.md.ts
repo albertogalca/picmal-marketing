@@ -5,7 +5,7 @@ import { markdown } from "../utils/markdownResponse";
 // `Accept: text/markdown`. Hand-written on purpose: index.astro is a visual
 // page, and a tag-stripped version of it reads worse than a short summary.
 // ponytail: keep it short, so it drifts slowly. Depth lives in /llms.txt.
-const body = `# Picmal: your Mac's media toolkit
+const body = `# Picmal: convert and compress media on your Mac, offline
 
 > Convert, compress, and edit images, video, audio, and PDFs on your Mac,
 > instead of trusting sketchy websites with them.

@@ -154,6 +154,18 @@ const today = new Date();
               >Image file size calculator</a
             >
           </li>
+          <li>
+            <a
+              href="/tools/exif-viewer"
+              class="transition-colors hover:text-text">EXIF viewer</a
+            >
+          </li>
+          <li>
+            <a
+              href="/tools/file-format-checker"
+              class="transition-colors hover:text-text">Will this file open?</a
+            >
+          </li>
         </ul>
       </div>
       <div>
@@ -251,17 +263,8 @@ const today = new Date();
             >
           </li>
           <li>
-            <a
-              href="mailto:support@picmal.app"
-              class="transition-colors hover:text-text">Get in touch</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
-              target="_blank"
-              rel="noopener"
-              class="transition-colors hover:text-text">Press kit</a
+            <a href="/press-kit" class="transition-colors hover:text-text"
+              >Press kit</a
             >
           </li>
           <li>
@@ -277,6 +280,13 @@ const today = new Date();
         </ul>
       </div>
     </div>
+
+    {/* Above the legal bar, not below it. These are directory backlinks, not
+        social proof, and as the last element on every page they closed the
+        site on TinyLaunch and LaunchIgniter right after MacStories and
+        TheSweetBits had done the real vouching. Still visible, still linked,
+        just no longer the final word. */}
+    <FeaturedOn />
 
     <div
       class="mt-12 pt-8 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-2 text-body text-text-secondary"
@@ -325,8 +335,6 @@ const today = new Date();
         >
       </nav>
     </div>
-
-    <FeaturedOn />
   </div>
 </footer>
 

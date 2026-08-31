@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
 import WebSiteSchema from "../components/schema/WebSiteSchema.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import FAQSchema, { faqs } from "../components/schema/FAQSchema.astro";
@@ -16,47 +15,86 @@ import CompressFormatsModal from "../components/CompressFormatsModal.astro";
 import PricingSection from "../components/PricingSection.astro";
 import FounderLetter from "../components/FounderLetter.astro";
 import FeaturedReview from "../components/FeaturedReview.astro";
+import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import H3 from "../components/H3.astro";
+import Paragraph from "../components/Paragraph.astro";
+import { getCollection } from "astro:content";
 
 // Hero demo reel: stacked clips, swapped by the thumbnail dock.
 // `poster` is the clean opening frame, used only by the clip that loads first.
 // `thumb` is a mid-clip frame chosen so the three dock tiles are told apart at
 // 144px: a full file list, a before/after photo, a white PDF page. Frame 0 of
 // every clip is the same idle drop zone, which made the tiles identical.
+//
+// `still` is that same idea applied to the poster, but only for people who
+// never see the clip run. Frame 0 is an empty drop zone: correct for the
+// autoplay path, since the video takes over in a few hundred ms and any other
+// frame would pop, and useless for someone on prefers-reduced-motion, who sits
+// on that empty window forever. The script swaps in `still` for exactly that
+// case, so reduced motion gets the finished batch (files, sizes, Done) instead
+// of an app doing nothing. Motion users never fetch these.
 const demos = [
   {
     label: "Convert",
     src: "/convert.mp4",
     poster: "/convert-poster.webp",
+    still: "/convert-still.webp",
     thumb: "/demo-thumb-convert.webp",
   },
   {
     label: "Compress",
     src: "/compress.mp4",
     poster: "/compress-poster.webp",
+    still: "/compress-still.webp",
     thumb: "/demo-thumb-compress.webp",
   },
   {
     label: "PDF tools",
     src: "/pdf.mp4",
     poster: "/pdf-poster.webp",
+    still: "/pdf-still.webp",
     thumb: "/demo-thumb-pdf.webp",
   },
 ];
 
+// The guides that earn their own traffic, linked from the highest-authority
+// page on the site. Before this block the home page passed 11 links to
+// /alternative/* and 3 to /blog, which is backwards: the "N free methods"
+// guides rank on page one while the programmatic pages sit in the 40s.
+//
+// An explicit slug list, not "the 6 newest": newest would surface the monthly
+// newsletter posts, which are the wrong thing to hand a first-time visitor.
+// Titles and descriptions still come from the collection, so editing a post
+// never leaves a stale card behind. Swap the slugs as Search Console moves.
+const FEATURED_GUIDES = [
+  "reduce-image-file-size-mac",
+  "how-to-convert-heic-to-jpg-mac",
+  "how-to-compress-video-mac",
+  "how-to-extract-audio-from-video-mac",
+  "batch-convert-images-mac",
+  "best-media-converter-mac-2026",
+];
+
+const allPosts = await getCollection("blog");
+const guides = allPosts
+  .filter((post) => FEATURED_GUIDES.includes(post.id))
+  .sort(
+    (a, b) => FEATURED_GUIDES.indexOf(a.id) - FEATURED_GUIDES.indexOf(b.id),
+  );
+
 const SITE_DESCRIPTION =
-  "Convert, compress, and edit your images, video, and audio right on your Mac, instead of trusting sketchy websites. Everything works offline, no subscription.";
+  "Convert, compress, and edit images, video, audio, and PDFs right on your Mac, instead of trusting sketchy websites. Works offline, no account, no subscription.";
 ---
 
 <html lang="en">
   <head>
     <BaseHead
-      title="Picmal: your Mac's media toolkit to convert & compress"
+      title="Picmal: convert and compress media on your Mac, offline"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <WebSiteSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
@@ -67,9 +105,15 @@ const SITE_DESCRIPTION =
   >
     <Header />
 
-    <!-- Hero Section -->
-    <main id="main-content" class="relative z-10 pt-32 pb-20">
-      <div class="max-w-7xl mx-auto px-6 xl:px-0">
+    <main id="main-content">
+      {/* The hero used to be `<main class="relative z-10 pt-32 pb-20">` with a
+          hand-rolled `max-w-7xl mx-auto px-6 xl:px-0` inside, which is exactly
+          what `Section width="wide"` renders. Section calls itself the single
+          source of truth for section rhythm, and the hero was the one block
+          opting out, which is why its padding never matched the rest.
+          `pt-32` for header clearance is the same override every other page
+          uses. */}
+      <Section width="wide" class="pt-32 sm:pt-32">
         <div class="max-w-3xl">
           <div class="hero-reveal" style="--d: 0ms">
             <ReleaseBadge class="mb-6" />
@@ -82,10 +126,36 @@ const SITE_DESCRIPTION =
               headingClass="mb-6"
               subleadClass="max-w-xl"
             >
-              Your Mac's media toolkit
+              {/* H1 under test. Live line is A3.
+
+                  A3 moves the category INTO the H1. A2c had better rhythm, but
+                  it named an interaction and an absence and never said what
+                  the software is, which left the whole category load on the
+                  sublead: the largest element on the page carried none of it.
+                  Most arrivals here are cold, off a format query, and they
+                  read one line before deciding.
+
+                  With the category in the H1, the sublead is free to stop
+                  repeating it. Its job now is proof, not definition: the media
+                  types, and the batch/speed claim that beats a web uploader.
+                  Do not let both lines name the category again.
+
+                  A2a  Upload, wait, download, wait. Or drag, click, done.
+                  A2b  Online: upload, wait, download, wait. Picmal: drag, click, done.
+                  A2c  Drag, click, done. Nothing gets uploaded.
+                  A2d  Done before a website finishes uploading.
+                  A3   Convert and compress anything on your Mac. Nothing gets uploaded.
+
+                  A2c is the one to revert to if A3 tests worse: it was picked
+                  deliberately, not by default.
+
+                  Earlier bets, if the upload angle is not the one: privacy,
+                  breadth, pay-once, batch size, native-app craft.
+              */}
+              Convert and compress anything on your Mac. Nothing gets uploaded.
               <Fragment slot="sublead">
-                Convert, compress, and edit images, video, audio, and PDFs on
-                your Mac, instead of trusting sketchy websites with them.
+                Images, video, audio and PDFs. Batch hundreds at once, in the
+                time a website would still be uploading.
               </Fragment>
             </SectionHeading>
           </div>
@@ -104,6 +174,7 @@ const SITE_DESCRIPTION =
                   <video
                     data-demo-video
                     data-demo-src={demo.src}
+                    data-demo-still={demo.still}
                     data-active={i === 0 ? "" : undefined}
                     aria-hidden={i === 0 ? undefined : "true"}
                     class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out motion-reduce:transition-none data-[active]:opacity-100"
@@ -161,57 +232,95 @@ const SITE_DESCRIPTION =
         <div class="hero-reveal mt-16" style="--d: 320ms">
           <FeaturedReview publication="MacStories" />
         </div>
-      </div>
+      </Section>
+
+      <!-- Testimonials -->
+      <MasonryTestimonials
+        heading="Tired of uploading your files to a website, waiting, then downloading them again?"
+        showTrustBar={true}
+        trustSuffix=" Mac users too"
+      />
+
+      <!-- Features -->
+      <FeatureGrid />
+
+      <!-- Pricing -->
+      <PricingSection />
+
+      <!-- Second featured review, placed right after the price: this is where
+           "is this a legit app?" gets asked, so an outside voice answers it.
+
+           Padding is deliberately tighter than Section's py-16 sm:py-20. This
+           is one centered quote between PricingSection and FounderLetter, both
+           of which bring their own full rhythm, so the default left ~250px of
+           empty page on each side and the section read as "the page ended".
+           An interstitial gets interstitial spacing. -->
+      <Section id="press" width="default" class="py-8 sm:py-10">
+        <FeaturedReview publication="TheSweetBits" />
+      </Section>
+
+      <!-- Founder letter -->
+      <FounderLetter />
+
+      <Section id="guides" width="default">
+        <SectionHeading class="mb-10">
+          Free ways to convert and compress without Picmal
+          <Fragment slot="sublead">
+            The guides walk you through the free path on your Mac, and say where
+            it stops being worth the effort. <a class="link" href="/blog"
+              >See all of them</a
+            >.
+          </Fragment>
+        </SectionHeading>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            guides.map((post) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="block h-full rounded-2xl border border-border bg-background-subtle/50 p-6 transition-[border-color,background-color,scale] duration-200 ease-out hover:border-accent/30 hover:bg-accent/[0.03] active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                <H3 class="text-h4 mb-2">
+                  {post.data.title}
+                </H3>
+                <Paragraph size="small" class="text-text-secondary">
+                  {post.data.description}
+                </Paragraph>
+              </a>
+            ))
+          }
+        </div>
+      </Section>
+
+      <Section id="faq" width="narrow">
+        <SectionHeading>
+          Questions
+          <Fragment slot="sublead">
+            Something not covered here? Write to <a
+              class="link"
+              href="mailto:support@picmal.app">support@picmal.app</a
+            >
+          </Fragment>
+        </SectionHeading>
+        <Card>
+          <FAQ faqs={faqs} />
+        </Card>
+      </Section>
+
+      <!-- The homepage was the one page with no closing ask: it went from the
+           FAQ straight into the footer. A reader who opened every answer has
+           already decided; give them the button instead of a sitemap. -->
+      <CTASection
+        heading="Stop uploading your files"
+        analyticsEvent="buy_clicked_home_bottom"
+      />
     </main>
-
-    <!-- Testimonials -->
-    <MasonryTestimonials
-      heading="Tired of having to go online, upload your files, wait for the process to finish, then download them again?"
-      showTrustBar={true}
-      trustSuffix=" people too"
-    />
-
-    <!-- Features -->
-    <FeatureGrid />
-
-    <!-- Pricing -->
-    <PricingSection />
-
-    <!-- Second featured review, placed right after the price: this is where
-         "is this a legit app?" gets asked, so an outside voice answers it. -->
-
-    <!-- Second featured review, placed right after the price: this is where
-         "is this a legit app?" gets asked, so an outside voice answers it. -->
-    <Section id="press" width="default">
-      <FeaturedReview publication="TheSweetBits" />
-    </Section>
-
-    <!-- Founder letter -->
-    <FounderLetter />
-
-    <!-- FAQ Section -->
-    <Section id="faq" width="narrow">
-      <SectionHeading>
-        Frequently Asked Questions
-        <Fragment slot="sublead">
-          Something not covered here? Write to <a
-            class="link"
-            href="mailto:support@picmal.app">support@picmal.app</a
-          >
-        </Fragment>
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
 
     <Footer />
 
-    <!-- Modal rendered at page level to avoid z-index issues -->
+    <!-- Modals sit outside main on purpose: page-level overlays, not content. -->
     <SupportedFormatsModal />
     <CompressFormatsModal />
-
-    
 
     <!-- Hero demo reel: the clips are stacked and crossfaded, so switching
          never flashes a poster. Only the first clip loads up front; the next is
@@ -316,7 +425,17 @@ const SITE_DESCRIPTION =
           });
         });
 
-        if (heroMotion) heroClips[0].play().catch(() => {});
+        if (heroMotion) {
+          heroClips[0].play().catch(() => {});
+        } else {
+          // Nothing autoplays under reduced motion and the dock becomes a
+          // manual picker, so every clip stays on its poster. Show the frame
+          // that has something in it.
+          heroClips.forEach((clip) => {
+            const still = clip.dataset.demoStill;
+            if (still) clip.poster = still;
+          });
+        }
       }
     </script>
   </body>

@@ -32,7 +32,15 @@ async function fetchCustomerCount(): Promise<number> {
     // Round down to nearest 10 for privacy/cleanliness (e.g. 672 -> 670).
     return Math.floor(customers / 10) * 10;
   } catch (error) {
-    console.error("Failed to fetch customer count from licencio:", error);
-    return 150; // Fallback value
+    // Fail the build rather than ship a wrong number. This used to log and
+    // return 150, which is the dev placeholder: a single failed fetch would
+    // quietly print "150+ Mac users" across the whole site while the real
+    // figure was several times that, and nothing but a console line said so.
+    // A red build is cheap; understating the strongest proof number on every
+    // page for a week is not.
+    throw new Error(
+      `Failed to fetch customer count from licencio (${STATS_URL}). ` +
+        `Refusing to build with the placeholder count. Cause: ${error}`,
+    );
   }
 }

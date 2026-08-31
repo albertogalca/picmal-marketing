@@ -62,12 +62,14 @@ export default defineConfig({
           items: [
             { label: "Converting files", link: "/docs/converting-files" },
             { label: "Compressing files", link: "/docs/compressing-files" },
+            { label: "Crop", link: "/docs/crop" },
             { label: "Audio tools", link: "/docs/audio-tools" },
             { label: "Video tools", link: "/docs/video-tools" },
             { label: "PDF tools", link: "/docs/pdf-tools" },
             { label: "App Icons", link: "/docs/app-icons" },
             { label: "Vectorize", link: "/docs/vectorize" },
             { label: "Remove Background", link: "/docs/remove-background" },
+            { label: "Download Video", link: "/docs/download-video" },
             { label: "Managing the queue", link: "/docs/managing-the-queue" },
             { label: "Watched folders", link: "/docs/watched-folders" },
             {

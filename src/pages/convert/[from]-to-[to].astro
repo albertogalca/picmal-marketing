@@ -64,10 +64,10 @@ const blogGuides: Record<string, { title: string; slug: string }> = {
     title: "How to Convert AVIF to JPG on Mac (3 Methods)",
     slug: "convert-avif-to-jpg-mac",
   },
-  "png-to-jpg": {
-    title: "How to Convert PNG to JPEG on Mac",
-    slug: "convert-png-to-jpeg-mac",
-  },
+  // No png-to-jpg entry on purpose. The guide it pointed at was a 95% copy of
+  // /blog/what-is-image-file-format wearing a conversion title, it took zero
+  // impressions in 90 days, and this page already ranks for the intent
+  // (position 9 on "batch convert png to jpg mac"). It now 301s here.
   "arw-to-jpg": {
     title: "How to Convert ARW to JPG on Mac (4 Free Methods)",
     slug: "convert-arw-to-jpg-mac",
@@ -114,6 +114,7 @@ const faqSchema = {
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       pricingHref="/#pricing"
       title={`Convert ${from.name} to ${to.name} on Mac`}
@@ -439,6 +440,8 @@ const faqSchema = {
       heading={`Convert ${from.name} to ${to.name} with Picmal`}
       analyticsEvent={`buy_clicked_convert_${conversion.slug}_bottom`}
     />
+
+    </main>
 
     <Footer />
   </body>

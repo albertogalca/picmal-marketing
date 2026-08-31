@@ -1,15 +1,23 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import { STUDENT_DISCOUNT } from "../config/pricing";
+import { DEFAULT_TIER, STUDENT_DISCOUNT } from "../config/pricing";
+
+// Derived, so the page can never quote a student price the ladder no longer
+// charges. $29 minus 40% is the only number a student actually cares about.
+const studentPrice = (
+  DEFAULT_TIER.price *
+  (1 - STUDENT_DISCOUNT.percentOff / 100)
+).toFixed(2);
 
 const title = "Picmal for Education";
-const description = `Students and educators get ${STUDENT_DISCOUNT.percentOff}% off any Picmal license. Verify your school email and the code is sent straight to it.`;
+const description = `Students and teachers get ${STUDENT_DISCOUNT.percentOff}% off Picmal, so $${DEFAULT_TIER.price} becomes $${studentPrice}. Verify your school email and I'll send the code.`;
 ---
 
 <html lang="en">
@@ -26,61 +34,80 @@ const description = `Students and educators get ${STUDENT_DISCOUNT.percentOff}% 
       <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge and the
            title tucks under the fixed header. -->
       <Section width="narrow" class="pt-32 sm:pt-32">
-        <SectionHeading level={1} class="mb-10">
-          Picmal for Education
+        <!-- One column, one measure: the sublead is pulled in to the width of
+             the form below it so the page reads as a single stack instead of a
+             wide title over a narrow field. -->
+        <SectionHeading
+          level={1}
+          class="mb-10"
+          subleadClass="max-w-md mx-auto"
+        >
+          {STUDENT_DISCOUNT.percentOff}% off for students and teachers
           <Fragment slot="sublead">
-            Students and educators get {STUDENT_DISCOUNT.percentOff}% off any
-            license. Verify your school email to continue.
+            Picmal is ${DEFAULT_TIER.price} for one Mac. With a verified school
+            email it's ${studentPrice}, and the bigger licenses drop {
+              STUDENT_DISCOUNT.percentOff
+            }% too.
           </Fragment>
         </SectionHeading>
 
-        <form
-          id="student-form"
-          class="max-w-md mx-auto"
-          novalidate
-          data-endpoint={STUDENT_DISCOUNT.endpoint}
-          data-slug={STUDENT_DISCOUNT.productSlug}
-          data-contact={STUDENT_DISCOUNT.contact}
-        >
-          <label
-            for="student-email"
-            class="block text-small font-semibold text-text mb-2"
-          >
-            School email
-          </label>
-          <input
-            id="student-email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-            placeholder="your.name@university.edu"
-            class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          />
-          <Button
-            id="student-submit"
-            type="submit"
-            text="Send me the code"
-            class="w-full mt-3"
-          />
-        </form>
+        <div class="max-w-md mx-auto">
+          <!-- The form gets a surface so the input has something to sit on:
+               `bg-background` on `bg-background` was an outline floating in
+               space. The card is the only thing to do on the page. -->
+          <Card>
+            <form
+              id="student-form"
+              novalidate
+              data-endpoint={STUDENT_DISCOUNT.endpoint}
+              data-slug={STUDENT_DISCOUNT.productSlug}
+              data-contact={STUDENT_DISCOUNT.contact}
+            >
+              <label
+                for="student-email"
+                class="block text-small font-semibold text-text mb-2"
+              >
+                School email
+              </label>
+              <input
+                id="student-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="your.name@university.edu"
+                class="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              />
+              <Button
+                id="student-submit"
+                type="submit"
+                text="Send me the code"
+                class="w-full mt-3"
+              />
+            </form>
 
-        <!-- Self-closed so `:empty` still matches before the first submit and
-             the block doesn't carry a phantom margin. -->
-        <p
-          id="student-result"
-          class="mt-4 text-small text-center max-w-md mx-auto empty:mt-0"
-          role="status"
-          aria-live="polite"
-        />
+            <!-- Feedback belongs to the form, so it lives with it. Self-closed
+                 so `:empty` still matches before the first submit and the block
+                 doesn't carry a phantom margin. -->
+            <p
+              id="student-result"
+              class="mt-3 text-small text-center empty:mt-0"
+              role="status"
+              aria-live="polite"
+            />
+          </Card>
 
-        <Paragraph size="small" class="text-center max-w-md mx-auto mt-12">
-          Some universities use a plain national domain that I can't recognise
-          automatically. If yours does, email <a
-            class="link"
-            href={`mailto:${STUDENT_DISCOUNT.contact}`}>{STUDENT_DISCOUNT.contact}</a
-          > from it and I'll send the code by hand.
-        </Paragraph>
+          <!-- Tight to the card: it's the footnote for the field above, not a
+               separate section. -->
+          <Paragraph size="small" class="text-center mt-4">
+            Some universities use a plain national domain that I can't recognize
+            automatically. If yours does, email <a
+              class="link"
+              href={`mailto:${STUDENT_DISCOUNT.contact}`}
+              >{STUDENT_DISCOUNT.contact}</a
+            > from it and I'll send the code by hand.
+          </Paragraph>
+        </div>
       </Section>
     </main>
 
@@ -104,9 +131,12 @@ const description = `Students and educators get ${STUDENT_DISCOUNT.percentOff}% 
   // national-domain case, so repeating it here would say it twice on one screen.
   const REJECTED = "That doesn't look like a school email.";
 
+  // Swaps only the colour, so the layout classes stay in the markup where they
+  // can be read next to everything else on the page.
   function show(message: string, tone: "text" | "text-secondary") {
     if (!result) return;
-    result.className = `mt-4 text-small text-center max-w-md mx-auto text-${tone}`;
+    result.classList.toggle("text-text", tone === "text");
+    result.classList.toggle("text-text-secondary", tone === "text-secondary");
     result.innerHTML = message;
   }
 
@@ -131,7 +161,9 @@ const description = `Students and educators get ${STUDENT_DISCOUNT.percentOff}% 
       });
 
       if (response.ok) {
-        show(`Sent. Check ${email} for your code.`, "text");
+        // Says what to do with the code, because the page never gets another
+        // chance to: it's a Stripe promotion code, typed at checkout.
+        show(`Sent. Check ${email}, then paste the code at checkout.`, "text");
         (window as any).seline?.track("student_code_requested");
       } else if (response.status === 422) {
         show(REJECTED, "text");

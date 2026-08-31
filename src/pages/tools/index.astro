@@ -7,14 +7,26 @@ import Section from "../../components/Section.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import Paragraph from "../../components/Paragraph.astro";
 
-const title = "Picmal: Free image tools";
+const title = "Picmal: Free file and image tools";
 const description =
-  "Free browser tools for working out image sizes and formats. No sign-up, nothing uploaded.";
+  "Free browser tools for reading image metadata and working out file sizes. No sign-up, nothing uploaded, everything runs on your own machine.";
 
-// ponytail: one real tool, so this is a list of one. The old version padded it
-// out with three "coming soon" cards; those were speculative and are gone. Add
-// a second entry here when a second tool actually exists.
+// Only tools that exist. An earlier version padded this out with "coming soon"
+// cards; they were speculative and are gone. Add an entry when the page ships,
+// not when it is planned.
 const tools = [
+  {
+    title: "EXIF viewer",
+    description:
+      "Drop a photo and read everything hidden inside it: camera, lens, settings, timestamps, and the GPS coordinates most phones write into every shot.",
+    href: "/tools/exif-viewer",
+  },
+  {
+    title: "Will this file open?",
+    description:
+      "Check whether a format opens on macOS, Windows or in a browser before you send it, and what to convert it to when the answer is no.",
+    href: "/tools/file-format-checker",
+  },
   {
     title: "Image file size calculator",
     description:
@@ -60,7 +72,7 @@ const tools = [
           level={1}
           sublead="Free, runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
         >
-          Free image tools
+          Free file and image tools
         </SectionHeading>
 
         <div class="flex flex-col gap-4">
@@ -81,7 +93,11 @@ const tools = [
         </div>
       </Section>
 
-      <Section width="narrow" class="text-center">
+      {/* A one-line footnote, not a section. At Section's own py-16 sm:py-20 it
+          sat in ~170px of empty page on both sides and read as the end of the
+          document. Interstitial spacing, same as the press quote on the home
+          page. */}
+      <Section width="narrow" class="py-8 sm:py-10 text-center">
         <Paragraph
           >Looking for the app itself? Picmal <a class="link" href="/compress-images-mac"
             >compresses images</a
@@ -90,12 +106,12 @@ const tools = [
           Mac, fully offline.</Paragraph
         >
       </Section>
-    </main>
 
-    <CTASection
-      heading="Use Picmal to convert and compress media on your Mac"
-      analyticsEvent="buy_clicked_tools_index"
-    />
+      <CTASection
+        heading="Use Picmal to convert and compress media on your Mac"
+        analyticsEvent="buy_clicked_tools_index"
+      />
+    </main>
 
     <Footer />
   </body>

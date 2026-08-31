@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -62,7 +61,6 @@ const faqs = [
       title="Picmal: The simple ffWorks alternative for Mac"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
   </head>
@@ -72,6 +70,7 @@ const faqs = [
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       title="The simple ffWorks alternative for Mac"
       subhead="ffWorks gives you 450 FFmpeg options. Picmal gives you one window. Drop in your files, pick a format, and go. No codec knowledge needed, and it works for images, video, audio, and PDFs."
@@ -419,6 +418,8 @@ const faqs = [
         <FAQ faqs={faqs} />
       </Card>
     </Section>
+
+    </main>
 
     <Footer />
 

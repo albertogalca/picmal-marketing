@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -67,7 +66,6 @@ const faqs = [
       title="Picmal: The ImageOptim alternative that also converts formats"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
   </head>
@@ -77,6 +75,7 @@ const faqs = [
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       title="The ImageOptim alternative that also converts formats"
       subhead="ImageOptim is free, local, and good at what it does. It just can't convert a HEIC to a JPG, touch a video, or compress a PDF. Picmal does all of that on your Mac for $29 once."
@@ -389,6 +388,8 @@ const faqs = [
         <FAQ faqs={faqs} />
       </Card>
     </Section>
+
+    </main>
 
     <Footer />
 

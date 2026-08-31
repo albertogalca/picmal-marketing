@@ -14,8 +14,10 @@
 /convert/tiff-to-dng /raw-converter-mac 301
 /convert/gif-to-dng /raw-converter-mac 301
 
-# The press kit is a Google Drive folder now, so the page was removed.
-/press https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing 301
+# /press-kit is a real page again: the Drive folder holds the asset downloads
+# but nothing in it is crawlable, citable or linkable, so the facts a writer
+# needs now live on-site and the folder is just the download button.
+/press /press-kit 301
 
 # Old blog placeholders that still pull impressions.
 /blog/tutorial /blog 301
@@ -25,6 +27,13 @@
 # (498 impressions, 0 clicks). Its print/RAW material was merged into the
 # main guide, which now covers web vs print in its own section.
 /blog/best-image-formats-2025 /blog/best-image-formats-for-web 301
+
+# convert-png-to-jpeg-mac was a 95% copy of what-is-image-file-format with a
+# conversion title bolted on: same four H2s, same order, and a body that never
+# answered its own title. Zero impressions in 90 days, while /convert/png-to-jpg
+# already holds the intent (position 9 on "batch convert png to jpg mac"). Sent
+# to the page that ranks, not to the twin it was copied from.
+/blog/convert-png-to-jpeg-mac /convert/png-to-jpg 301
 
 # Changelog consolidation: old per-release pages now live as anchors on /changelog.
 # Placeholder forwards the slug to its in-page anchor; falls back to /changelog

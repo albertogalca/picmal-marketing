@@ -1,6 +1,7 @@
 ---
 import ReleaseBadge from "./ReleaseBadge.astro";
 import HeroCTA from "./HeroCTA.astro";
+import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
@@ -29,58 +30,59 @@ const {
 } = Astro.props;
 ---
 
-<!-- Hero Section — mirrors the landing page hero (src/pages/index.astro) -->
-<main id="main-content" class="relative z-10 pt-32 pb-20">
-  <div class="max-w-7xl mx-auto px-6 xl:px-0">
-    <slot name="breadcrumb" />
-    <div class="max-w-3xl">
-      <div class="hero-reveal" style="--d: 0ms">
-        <ReleaseBadge class="mb-6" />
-      </div>
-      <div class="hero-reveal" style="--d: 80ms">
-        <SectionHeading
-          level={1}
-          align="left"
-          class="mb-8"
-          headingClass="mb-6"
-          subleadClass="max-w-xl"
-        >
-          {title}
-          <Fragment slot="sublead">{subhead}</Fragment>
-        </SectionHeading>
-      </div>
-      <HeroCTA
-        buyEvent={buyEvent}
-        downloadEvent={downloadEvent}
-        pricingHref={pricingHref}
-      />
+{/* Mirrors the landing page hero. This used to open its own <main> and close
+    it 50 lines later, which meant the 33 pages using it had their hero inside
+    the landmark and everything after it outside. The landmark belongs to the
+    page; this is a section like any other. */}
+<Section width="wide" class="pt-32 sm:pt-32">
+  <slot name="breadcrumb" />
+  <div class="max-w-3xl">
+    <div class="hero-reveal" style="--d: 0ms">
+      <ReleaseBadge class="mb-6" />
     </div>
-
-    <!-- Demo Video -->
-    <div class="hero-reveal mt-12" style="--d: 240ms">
-      <div
-        class="rounded-xl overflow-hidden ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06),0_16px_32px_-8px_rgba(0,0,0,0.12)]"
+    <div class="hero-reveal" style="--d: 80ms">
+      <SectionHeading
+        level={1}
+        align="left"
+        class="mb-8"
+        headingClass="mb-6"
+        subleadClass="max-w-xl"
       >
-        <div class="aspect-video bg-background-subtle">
-          <video
-            id="hero-demo-video"
-            class="w-full h-full object-cover"
-            width="1280"
-            height="720"
-            src={`/${defaultTab}.mp4`}
-            poster={`/${defaultTab}-poster.webp`}
-            loop
-            muted
-            playsinline
-            preload="metadata"
-            aria-label="Picmal demo"
-          >
-          </video>
-        </div>
+        {title}
+        <Fragment slot="sublead">{subhead}</Fragment>
+      </SectionHeading>
+    </div>
+    <HeroCTA
+      buyEvent={buyEvent}
+      downloadEvent={downloadEvent}
+      pricingHref={pricingHref}
+    />
+  </div>
+
+  <!-- Demo Video -->
+  <div class="hero-reveal mt-12" style="--d: 240ms">
+    <div
+      class="rounded-xl overflow-hidden ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06),0_16px_32px_-8px_rgba(0,0,0,0.12)]"
+    >
+      <div class="aspect-video bg-background-subtle">
+        <video
+          id="hero-demo-video"
+          class="w-full h-full object-cover"
+          width="1280"
+          height="720"
+          src={`/${defaultTab}.mp4`}
+          poster={`/${defaultTab}-poster.webp`}
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          aria-label="Picmal demo"
+        >
+        </video>
       </div>
     </div>
   </div>
-</main>
+</Section>
 
 <!-- Hero demo: autoplay the loop unless the user prefers reduced motion. -->
 <script>

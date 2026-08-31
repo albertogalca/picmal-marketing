@@ -1,0 +1,54 @@
+---
+// ItemList for "best X for Mac" round-ups. Google builds its comparison
+// carousels from this, and a listicle that only has BlogPosting markup is
+// invisible to that surface no matter how good the table is.
+//
+// Mirrors the `faqs` pattern: optional `itemList` frontmatter on the post,
+// rendered only when present. Keep the order identical to the order the
+// products appear in the article, because position is part of the claim.
+interface Props {
+  name: string;
+  items: {
+    name: string;
+    description?: string;
+    url?: string;
+    price?: string;
+    operatingSystem?: string;
+  }[];
+}
+
+const { name, items } = Astro.props;
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name,
+  numberOfItems: items.length,
+  itemListOrder: "https://schema.org/ItemListOrderAscending",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "SoftwareApplication",
+      name: item.name,
+      ...(item.description ? { description: item.description } : {}),
+      ...(item.url ? { url: item.url } : {}),
+      applicationCategory: "MultimediaApplication",
+      operatingSystem: item.operatingSystem ?? "macOS",
+      // A free tool needs price "0" rather than an omitted offer: leaving the
+      // offer out reads as "price unknown", not "free".
+      ...(item.price !== undefined
+        ? {
+            offers: {
+              "@type": "Offer",
+              price: item.price,
+              priceCurrency: "USD",
+            },
+          }
+        : {}),
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />

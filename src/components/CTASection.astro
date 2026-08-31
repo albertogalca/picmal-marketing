@@ -7,9 +7,18 @@ import { DEFAULT_TIER } from "../config/pricing";
 interface Props {
   heading: string;
   analyticsEvent: string;
+  /** The line under the heading. Defaults to the terms, which is the right
+      answer on a page that has not already spent itself saying them. On
+      /pricing it has, so that page passes something the reader has not read
+      six times by the time they get here. */
+  note?: string;
 }
 
-const { heading, analyticsEvent } = Astro.props;
+const {
+  heading,
+  analyticsEvent,
+  note = "One-time purchase · No subscription · 14-day money-back guarantee",
+} = Astro.props;
 ---
 
 <section class="relative z-10 py-20">
@@ -18,10 +27,7 @@ const { heading, analyticsEvent } = Astro.props;
       class="bg-background-subtle border border-border rounded-2xl p-8 md:p-12 text-center"
     >
       <H2 class="mb-6">{heading}</H2>
-      <Paragraph class="mb-10 max-w-2xl mx-auto">
-        One-time purchase &middot; No subscription &middot; 14-day money-back
-        guarantee
-      </Paragraph>
+      <Paragraph class="mb-10 max-w-2xl mx-auto">{note}</Paragraph>
       <div class="flex flex-col items-center gap-3">
         <Button
           text={`Get Picmal for $${DEFAULT_TIER.price}`}

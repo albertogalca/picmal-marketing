@@ -1,0 +1,102 @@
+---
+/**
+ * The drop target every /tools page shares.
+ *
+ * It only *selects* a file. What happens next is the page's business, so this
+ * dispatches `picmal:file` with the File on `detail` and stops there. Nothing
+ * in here reads, uploads or fetches anything: the tools that use it are the
+ * argument for the app, so the network tab has to stay empty under inspection.
+ */
+interface Props {
+  /** Element id, and the handle the page listens on. */
+  id: string;
+  /** `accept` for the input, e.g. "image/*". Omit to take any file: the
+      attribute has no "everything" token, and a bare "*" is invalid. */
+  accept?: string;
+  /** The line inside the box. */
+  label: string;
+  /** Smaller line under it. Formats, limits, that sort of thing. */
+  hint?: string;
+  class?: string;
+}
+
+const { id, accept, label, hint, class: className = "" } = Astro.props;
+---
+
+<div
+  id={id}
+  data-dropzone
+  class:list={["not-prose", className]}
+>
+  {/* label + hidden input: keyboard and screen-reader support for free, and
+      the whole box becomes the hit area without a click handler. */}
+  <label
+    data-dropzone-target
+    class="flex flex-col items-center justify-center gap-2 px-6 py-12 text-center cursor-pointer rounded-2xl border border-dashed border-border bg-background-subtle/50 transition-[border-color,background-color,scale] duration-200 ease-out hover:border-accent/40 hover:bg-accent/[0.03] active:scale-[0.99] motion-reduce:transition-none motion-reduce:active:scale-100 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent data-[dragging]:border-accent data-[dragging]:bg-accent/[0.06]"
+  >
+    <input
+      type="file"
+      accept={accept}
+      class="sr-only"
+      data-dropzone-input
+    />
+    <svg
+      class="w-6 h-6 text-text-secondary"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    <span class="text-body font-[590] text-text">{label}</span>
+    {hint && <span class="text-small text-text-secondary">{hint}</span>}
+  </label>
+</div>
+
+<script>
+  // One listener set per zone. Queried rather than scoped so a page can mount
+  // more than one without this script being bundled twice.
+  document.querySelectorAll<HTMLElement>("[data-dropzone]").forEach((zone) => {
+    const target = zone.querySelector<HTMLElement>("[data-dropzone-target]");
+    const input = zone.querySelector<HTMLInputElement>("[data-dropzone-input]");
+    if (!target || !input) return;
+
+    const emit = (file: File | undefined) => {
+      if (!file) return;
+      zone.dispatchEvent(
+        new CustomEvent("picmal:file", { detail: { file }, bubbles: true }),
+      );
+    };
+
+    input.addEventListener("change", () => emit(input.files?.[0]));
+
+    // dragenter/dragover both need preventDefault or the browser navigates to
+    // the file instead of handing it over.
+    ["dragenter", "dragover"].forEach((name) =>
+      target.addEventListener(name, (event) => {
+        event.preventDefault();
+        target.dataset.dragging = "";
+      }),
+    );
+
+    // dragleave fires when crossing onto a child, so only clear the state when
+    // the pointer has actually left the box.
+    target.addEventListener("dragleave", (event) => {
+      const next = (event as DragEvent).relatedTarget as Node | null;
+      if (next && target.contains(next)) return;
+      delete target.dataset.dragging;
+    });
+
+    target.addEventListener("drop", (event) => {
+      event.preventDefault();
+      delete target.dataset.dragging;
+      emit((event as DragEvent).dataTransfer?.files?.[0]);
+    });
+  });
+</script>

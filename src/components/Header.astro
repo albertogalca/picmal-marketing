@@ -19,16 +19,25 @@ const navItems: NavItem[] = [
     iconPath: "M13 10V3L4 14h7v7l9-11h-7z",
   },
   {
-    href: "/#pricing",
+    // The page, not the homepage anchor. /pricing is the indexable, linkable
+    // answer to "what does Picmal cost"; the homepage band stays at #pricing
+    // for every in-page CTA that already points there.
+    href: "/pricing",
     label: "Pricing",
     iconPath:
       "M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z",
   },
   {
-    href: "/#testimonials",
-    label: "Testimonials",
+    // Replaced the #testimonials anchor. Testimonials are a section people
+    // scroll past anyway, and the free tools were reachable only from the
+    // footer, which is a bad place to keep the one thing a stranger can use
+    // before paying. Six items is already the ceiling here, so this is a swap
+    // rather than an addition.
+    href: "/tools",
+    label: "Tools",
+    routePrefix: "/tools",
     iconPath:
-      "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+      "M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409",
   },
   {
     href: "/#faq",

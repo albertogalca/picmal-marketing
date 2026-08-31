@@ -16,10 +16,30 @@ Watched folders process files as soon as they show up. Drop something in, and Pi
 
 Each watched folder has its own settings:
 
-### Processing mode
+### Actions
 
-- **Convert** — Convert files to a specific format
-- **Compress** — Compress files in their original format
+Pick what the folder does with the files that arrive:
+
+| Action        | What happens                                                              |
+| ------------- | ------------------------------------------------------------------------- |
+| Compress      | Each file is compressed in its original format.                            |
+| Convert       | Each file is converted to a format you pick.                               |
+| Images to PDF | The images that arrive together become one multi-page PDF.                 |
+| Combine PDFs  | The PDFs that arrive together are merged into one.                         |
+
+Compress and Convert are per-file: one file in, one file out. **Images to PDF** and **Combine PDFs** are batch actions — they wait for the folder to go quiet, then collapse everything that landed into a single document.
+
+#### Images to PDF
+
+Drop any number of images into the folder and, ten seconds after the last one lands, Picmal writes a single PDF with one page per image, in Finder name order. Pick **Fit to Image**, **A4**, or **US Letter** pages and the JPEG quality for the embedded images in the folder's settings, name the PDF with the usual [naming tokens](/docs/output-and-naming#tokens), and turn on **Delete originals** if you want the images cleared once the PDF exists.
+
+Great for a scanner that drops one file per page, or a phone-photo folder you want filed as documents.
+
+#### Combine PDFs
+
+Same idea, for PDFs: everything that arrives inside the ten-second window is merged into one document, in name order.
+
+From the terminal, `picmal-cli watch add --action images-to-pdf` and `--action combine-pdf` set these up. See [Command line](/docs/cli#watch-add).
 
 ### Output destination
 
@@ -64,7 +84,7 @@ Set a prefix and/or suffix for output files, or write a full naming pattern usin
 | ---------------------- | --------------------------------------------------- |
 | Process subfolders     | Also watch files in subdirectories                  |
 | Delete originals       | Remove source files after processing                |
-| Process existing files | Process files already in the folder when you add it |
+| Process existing files | Queue every supported file already in the folder when you add it. The Edit sheet also has a **Process Existing Files Now** button to run it whenever you like |
 | Min file size          | Skip files smaller than this (KB)                   |
 | Max file size          | Skip files larger than this (MB)                    |
 | Remove metadata        | Strip metadata from processed files                 |
@@ -84,3 +104,4 @@ When a watched folder finishes processing, Picmal posts a native macOS notificat
 - Use watched folders with your Downloads folder to auto-compress screenshots and photos
 - Set up a "web export" folder that converts everything to WebP
 - Combine with cloud sync folders (iCloud, Dropbox) for automatic optimization
+- Point your scanner at an **Images to PDF** folder and get one filed document per scanning session

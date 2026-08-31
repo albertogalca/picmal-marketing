@@ -7,6 +7,7 @@ import Paragraph from "../components/Paragraph.astro";
 import Button from "../components/Button.astro";
 import TrustBar from "../components/TrustBar.astro";
 import CardGrid from "../components/CardGrid.astro";
+import ProductSchema from "../components/schema/ProductSchema.astro";
 
 const DMG_URL =
   "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
@@ -35,8 +36,14 @@ const steps = [
     <BaseHead
       title="Picmal: Download for Mac"
       description="Download Picmal for Mac. Free to install, one payment of $29 to unlock. Batch convert and compress images, video, audio, and PDFs, all offline."
-      noindex={true}
     />
+    {/* Was noindex. This is the page that answers "download picmal for mac",
+        and a noindexed page cannot rank for it or carry a rich result, so the
+        query went to the homepage or nowhere. ProductSchema already holds the
+        downloadUrl, fileSize, softwareVersion and offers this page is about,
+        so it is reused rather than hand-rolled: same #software node, one
+        entity, no second definition to drift. */}
+    <ProductSchema url={Astro.site!.href} />
   </head>
 
   <body
@@ -75,7 +82,15 @@ const steps = [
           <TrustBar />
         </div>
 
+        <!-- The download is a DMG from GitHub, outside the App Store. Saying
+             it is notarized answers the "will macOS block this?" question at
+             the exact moment it gets asked. Verified via notarytool on every
+             release; see the "publish outside the App Store" post. -->
         <p class="mt-6 text-small text-text-secondary">
+          Signed and notarized by Apple, so it opens without security warnings.
+        </p>
+
+        <p class="mt-2 text-small text-text-secondary">
           Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel
         </p>
       </div>

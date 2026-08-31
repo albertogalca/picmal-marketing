@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { personRef, orgRef } from "../../utils/schemaIds";
 
 interface Props {
   post: CollectionEntry<"blog">["data"];
@@ -17,19 +18,10 @@ const articleSchema = {
   image: post.heroImage
     ? new URL(post.heroImage.src, url).href
     : new URL("/og.png", url).href,
-  author: {
-    "@type": "Person",
-    name: "Alberto Gallego",
-    url: "https://albertogalca.com/",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Picmal",
-    logo: {
-      "@type": "ImageObject",
-      url: new URL("/logo.webp", url).href,
-    },
-  },
+  // Same two nodes the rest of the site uses, referenced by @id rather than
+  // redefined per post. 45 posts each minting their own Alberto is 45 people.
+  author: personRef(url),
+  publisher: orgRef(url),
   datePublished: post.pubDate.toISOString(),
   dateModified: post.updatedDate
     ? post.updatedDate.toISOString()

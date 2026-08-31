@@ -22,6 +22,20 @@ const blog = defineCollection({
           }),
         )
         .optional(),
+      // Round-up posts only ("best X for Mac"). Emits ItemList so the article
+      // is eligible for Google's comparison carousels. Keep the order the same
+      // as the article's own order.
+      itemList: z
+        .array(
+          z.object({
+            name: z.string(),
+            description: z.string().optional(),
+            url: z.string().optional(),
+            price: z.string().optional(),
+            operatingSystem: z.string().optional(),
+          }),
+        )
+        .optional(),
     }),
 });
 

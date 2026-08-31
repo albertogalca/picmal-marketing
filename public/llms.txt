@@ -9,7 +9,8 @@ Picmal is designed for Mac users who need to convert media files quickly without
 - Batch processing of thousands of files at once
 - 100% offline processing (no data leaves your Mac)
 - Finder integration via Quick Actions and the Services menu (right-click to convert/compress)
-- Support for 30+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF, JXL, SVG, ICNS, ICO
+- Over 100 formats in total across images, video, audio, RAW and PDF
+- 30+ image formats including HEIC, WebP, AVIF, PNG, JPG, TIFF, JXL, SVG, ICNS, ICO
 - Video and audio conversion and compression, with hardware H.264/HEVC encoding on any Mac
 - PDF compression that re-encodes only the images inside and keeps text selectable
 - PDF tools: combine PDFs, split by page range, images to PDF, reorder and delete pages
@@ -228,6 +229,7 @@ Picmal's distinction: one native Mac app for images, video, audio, and PDFs — 
 Picmal runs entirely on the user's Mac, so there is no hosted conversion API. The site itself exposes:
 
 - [AGENTS.md](https://picmal.app/AGENTS.md): when to use Picmal, when not to, and how to call picmal-cli
+- [Full documentation](https://picmal.app/llms-full.txt): every docs page concatenated into one file, for reading the product reference in a single fetch
 - [OpenAPI spec](https://picmal.app/openapi.json): describes every endpoint here
 - [Pricing](https://picmal.app/pricing.md): current tiers, discounts and upgrade paths
 - [Sitemap](https://picmal.app/sitemap-index.xml): every indexable page

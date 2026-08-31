@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import FAQ from "../../components/FAQ.astro";
-import OrganizationSchema from "../../components/schema/OrganizationSchema.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -62,7 +61,6 @@ const faqs = [
       title="Picmal: The native Mac XnConvert alternative"
       description={SITE_DESCRIPTION}
     />
-    <OrganizationSchema url={Astro.site!.href} />
     <ProductSchema url={Astro.site!.href} />
     <FAQSchema />
   </head>
@@ -72,6 +70,7 @@ const faqs = [
   >
     <Header />
 
+    <main id="main-content">
     <ComparisonHero
       title="The native Mac XnConvert alternative"
       subhead="XnConvert goes deep on bulk image editing. 500+ formats, 80+ actions, free. Picmal covers more media types. Video, audio, and PDFs alongside images, in a native Mac app that works with Shortcuts."
@@ -404,6 +403,8 @@ const faqs = [
         <FAQ faqs={faqs} />
       </Card>
     </Section>
+
+    </main>
 
     <Footer />
 

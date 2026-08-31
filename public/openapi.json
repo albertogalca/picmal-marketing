@@ -43,6 +43,22 @@
         }
       }
     },
+    "/llms-full.txt": {
+      "get": {
+        "tags": ["discovery"],
+        "summary": "Full documentation in one file",
+        "description": "Every Picmal documentation page concatenated into a single markdown document, in reading order. Use this when llms.txt has told you what Picmal is and you need the actual reference: CLI flags, watched folders, PDF tools, metadata handling, supported formats. Roughly 144 KB.",
+        "operationId": "getLlmsFullTxt",
+        "responses": {
+          "200": {
+            "description": "Full documentation",
+            "content": {
+              "text/plain": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
     "/AGENTS.md": {
       "get": {
         "tags": ["discovery"],

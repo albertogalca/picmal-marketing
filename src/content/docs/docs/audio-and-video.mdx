@@ -86,6 +86,13 @@ See [compressing files](/docs/compressing-files#audio-presets) for the full pres
 | H.265 (HEVC) | Good          | Better      | ~50% smaller than H.264 at same quality     |
 | VP9          | Good          | Better      | Google's codec, great for WebM              |
 | AV1          | Growing       | Best        | Newest, best compression, slowest to encode |
+| Copy         | —             | None        | Carries the existing picture and sound over untouched |
+
+#### Copy (no re-encode)
+
+Pick **Copy** when you only want to change the container. Picmal moves the existing video and audio streams into the new file without touching them, so a clip that would take minutes to re-encode is done in about a second, at the original quality.
+
+Copy needs the target container to be able to hold the streams it's given, and it needs nothing else about the picture to change. Ask for a resize, a frame-rate change, a playback-speed change, or a watermark and there's nothing to copy — Picmal encodes with H.264 instead. It's a Convert setting: compressing a video always means re-encoding it, so Compress falls back to H.264 too.
 
 ### Encoding speed
 
@@ -110,6 +117,14 @@ CRF controls quality on a 0–51 scale. **Lower = better quality, larger file.**
 | 24–26     | Balanced                            |
 | 27–28     | Noticeable compression, small files |
 | 29+       | Heavy compression                   |
+
+### Audio quality for video
+
+**Settings → Video → Advanced** has its own **Audio quality** slider, shown in kbps (48–320). It's separate from the video quality slider: push it up for a music clip, pull it down for a talking head.
+
+It only applies when the soundtrack is actually re-encoded. A plain container change copies the audio across untouched, which is what keeps that path fast.
+
+From the terminal, `--audio-quality` on `convert` and `compress` does the same thing on a 1–100 scale. See [Command line](/docs/cli#convert).
 
 ### Frame rate
 

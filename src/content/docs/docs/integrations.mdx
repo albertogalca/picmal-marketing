@@ -34,6 +34,8 @@ To enable these services:
 
 Once enabled, select files in Finder, right-click, and find them under **Services** (or **Quick Actions**).
 
+Picmal's services only appear for files it can actually handle — images, audio, video, and PDFs. Select a folder, an archive, or an application and they stay out of the menu.
+
 ![Picmal services in the Finder right-click menu](/images/docs/quick_actions.png)
 
 ### Services use your current settings
@@ -54,7 +56,7 @@ You don't need Picmal open. **Picmal — Compress**, **Picmal — Convert**, **P
 
 ## Shortcuts app
 
-Picmal provides nine actions for Apple's Shortcuts app, so you can build automated workflows.
+Picmal provides ten actions for Apple's Shortcuts app, so you can build automated workflows.
 
 ![Picmal actions in the Shortcuts app](/images/docs/shortcuts.png)
 
@@ -75,6 +77,17 @@ Picmal provides nine actions for Apple's Shortcuts app, so you can build automat
 | Custom quality  | Quality value (1–100) when using Custom preset |
 | Remove metadata | Strip metadata from output                     |
 
+### Crop Files
+
+| Parameter          | Description                                                        |
+| ------------------ | ------------------------------------------------------------------ |
+| Files              | The images or PDFs to crop                                         |
+| Auto-Trim Borders  | Images only: remove a solid-color border by reading the corner color |
+| Auto-Trim Tolerance| How much the border color may vary, 0–50% (default 5)              |
+| Top / Bottom / Left / Right | Margin to remove from each edge — pixels for images, millimeters for PDFs |
+
+Returns the cropped files, ready for a "Save File" action or the next step. See [Crop](/docs/crop).
+
 ### Combine PDFs
 
 | Parameter | Description                                  |
@@ -92,7 +105,7 @@ Returns the merged PDF, ready for a "Save File" action or the next step in your 
 
 Returns the split PDFs as a list of files, ready for a "Save File" action or the next step.
 
-### Make PDF from Images
+### Images to PDF
 
 | Parameter | Description                                                    |
 | --------- | --------------------------------------------------------------- |
@@ -119,7 +132,7 @@ Returns the merged track, ready for a "Save File" action or the next step. Same-
 
 Returns the combined video, ready for a "Save File" action or the next step. Matching clips are joined losslessly; mismatched ones are scaled and re-encoded to match the first. See [Video tools](/docs/video-tools).
 
-### Generate App Icons
+### App Icons
 
 | Parameter | Description                                          |
 | --------- | ---------------------------------------------------- |
@@ -144,7 +157,7 @@ Ready-made shortcuts to get you started. Click any link to add it to your Shortc
 - [Convert file (with Picmal)](https://www.icloud.com/shortcuts/00bf8518dd414c20b0ce31d9da8415e3)
 - [Compress file (with Picmal)](https://www.icloud.com/shortcuts/16566c74e2554dd7aacd2078b4c864c6)
 - [Combine PDFs (with Picmal)](https://www.icloud.com/shortcuts/c43669db2eb446619afb33e47efda649)
-- [Make PDF from Images (with Picmal)](https://www.icloud.com/shortcuts/ec32a8c7305c44c89f37a39785c46b23)
+- [Images to PDF (with Picmal)](https://www.icloud.com/shortcuts/ec32a8c7305c44c89f37a39785c46b23)
 
 ## Raycast
 
@@ -183,7 +196,7 @@ Click the icon to open the menu, or drop files directly onto it to process them.
 
 | Item                | Shortcut | Action                                                        |
 | ------------------- | -------- | ------------------------------------------------------------- |
-| Optimize File…      | ⇧⌘O      | Pick a file with the system file picker and run it through the clipboard pipeline |
+| Add Files…          | ⇧⌘O      | Pick a file with the system file picker and run it through the clipboard pipeline |
 | Optimize Clipboard  | —        | Toggle [clipboard optimization](/docs/clipboard-optimization) on or off |
 | On Copy             | —        | Choose what happens when you copy: Compress, Convert, or both. Greyed out when monitoring is off |
 | Target Format       | —        | When the action involves conversion, pick the output format. Hidden in Compress-only mode |

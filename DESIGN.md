@@ -7,11 +7,24 @@ colors:
   system-blue-dark: "#3b82f6"
   paper: "#fbfbfb"
   ink: "#000000d9"
-  ink-muted: "#00000080"
+  ink-muted: "#00000099"
   surface-subtle: "#f5f5f5d9"
   hairline: "#edededd9"
   ink-dark: "#ffffffd9"
+  ink-muted-dark: "#ffffff99"
   paper-dark: "#242424"
+  success: "#065f46"
+  success-surface: "#d8f1e9"
+  success-dark: "#34d399"
+  success-surface-dark: "#213a32"
+  warning: "#92400e"
+  warning-surface: "#faedd7"
+  warning-dark: "#fbbf24"
+  warning-surface-dark: "#433620"
+  danger: "#991b1b"
+  danger-surface: "#f9e0e0"
+  danger-dark: "#fca5a5"
+  danger-surface-dark: "#422929"
 typography:
   display:
     fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif"
@@ -45,11 +58,18 @@ typography:
     letterSpacing: "-0.011em"
   label:
     fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif"
-    fontSize: "0.875rem"
+    fontSize: "clamp(0.875rem, 0.815rem + 0.24vw, 0.9375rem)"
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "-0.006em"
+  caption:
+    fontFamily: "ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 400
+    lineHeight: 1.3
+    letterSpacing: "0em"
 rounded:
+  chip: "4px"
   action: "8px"
   panel: "8px"
   full: "9999px"
@@ -120,11 +140,22 @@ A near-monochrome system palette carried by one saturated blue. Neutrals are pur
 ### Neutral
 - **Paper** (`#fbfbfb` light / `#242424` dark): The page background. A true off-white at zero chroma, never a warm cream or tinted paper.
 - **Ink** (`rgba(0,0,0,0.85)` light / `rgba(255,255,255,0.85)` dark): Primary body and heading text. Set at 85% opacity of pure black/white so it reads as near-ink without the harshness of full black.
-- **Ink Muted** (`rgba(0,0,0,0.5)` light / `rgba(255,255,255,0.6)` dark): Secondary text, metadata, idle nav links. Note: at 50% on paper this sits near the AA floor; reserve it for large or non-essential text, and never drop lower.
+- **Ink Muted** (`rgba(0,0,0,0.6)` light / `rgba(255,255,255,0.6)` dark): Secondary text, metadata, idle nav links. The light value was 0.5 and was raised to 0.6 so ordinary secondary copy clears WCAG AA on paper; it measures 5.68:1 light and 6.48:1 dark, and is still visibly secondary against 0.85 ink. Do not lower it.
 - **Surface Subtle** (`rgba(245,245,245,0.85)` light / `rgba(42,42,42,0.85)` dark): Card and panel fills, the subtle section band. Applied at ~50% alpha over paper for a barely-there lift.
 - **Hairline** (`rgba(237,237,237,0.85)` light / `rgb(48,48,48)` dark): Every border and divider. One near-invisible line does the structural work shadows would otherwise do.
 
+### Status
+Added for the `/tools` verdict chips, the first thing on the site that needed to say "this is fine" and "this is not" at a glance. Three states, each an ink plus its own flat surface.
+
+- **Success** (`#065f46` on `#d8f1e9` light / `#34d399` on `#213a32` dark): the affirmative verdict.
+- **Warning** (`#92400e` on `#faedd7` light / `#fbbf24` on `#433620` dark): works, but conditionally.
+- **Danger** (`#991b1b` on `#f9e0e0` light / `#fca5a5` on `#422929` dark): the negative verdict.
+
+The surfaces are opaque rather than an alpha tint on purpose. As `bg-amber-500/15` the same chip measured differently on the page ground than inside a `Card`, so contrast was a property of wherever it happened to sit. Flattened, it belongs to the token. Every pair is measured and clears AA with room (6.1–6.6:1 light, 6.3–7.0:1 dark) and the three are kept close so they read as one system.
+
 ### Named Rules
+**The Status-Is-Not-Accent Rule.** These are the only hues on the site besides System Blue, and they are strictly semantic: they report a state the user is reading about, never an action they can take. Blue stays the only interactive colour. Never use a status colour for emphasis, decoration, or a category tag, and never introduce a fourth state; if something needs a colour and is not success, warning, or danger, it does not need a colour.
+
 **The One Voice Rule.** Blue is the only hue on the page and appears on a small fraction of any screen: the primary CTA, links, active nav, focus. Its rarity is what makes it read as "action." Never tint neutrals toward blue, and never introduce a second accent hue. One sanctioned exception: the testimonial key-phrase highlight uses System Blue at ~15% alpha as a text mark, a deliberate brand touch that stays the same single hue at low intensity. It is the only non-action use of blue; don't extend blue emphasis anywhere else.
 
 **The Pure Neutral Rule.** Neutrals are chroma-zero black and white at varying opacity. No warm cream, no cool slate, no tinted "paper." Warmth in this brand comes from the copy and the founder letter, never from the background.
@@ -140,9 +171,10 @@ A near-monochrome system palette carried by one saturated blue. Neutrals are pur
 ### Hierarchy
 - **Display / H1** (600, `clamp(36px → 56px)`, lh 1.12, tracking -0.025em): Hero headline. `text-balance` for even lines.
 - **Headline / H2** (600, `clamp(24px → 32px)`, lh 1.15, tracking -0.02em): Section headings.
-- **Title / H3** (600, `clamp(20px → 24px)`, lh 1.2, tracking -0.015em): Sub-section and card headings. H4 is the same size (18→20px) at lh 1.3 for the smallest headings.
+- **Title / H3** (600, `clamp(19.2px → 20px)`, lh 1.2, tracking -0.015em): Sub-section and card headings. H4 lands at almost the same size (18→20px) at lh 1.3; the two are separated by line-height and semantics, not scale, so pick by document structure rather than by how big you want it.
 - **Body** (400, 16px, lh 1.6, tracking -0.011em): Default paragraph. Long-form prose capped at 68ch for a comfortable measure; `text-pretty` to reduce orphans. Body-big (18→20px) for hero subheads.
-- **Label / Small** (400, 14px, lh 1.55, tracking -0.006em): Metadata, secondary UI, captions. Prices, counts, and stats add `tabular-nums`.
+- **Label / Small** (400, `clamp(14px → 15px)`, lh 1.55, tracking -0.006em): Metadata, secondary UI, verdict chips. Prices, counts, and stats add `tabular-nums`.
+- **Caption** (400, 12px, lh 1.3, tracking 0): The step below small, for labels sitting on media where 14px wraps (the hero demo dock). Never body copy.
 
 ### Named Rules
 **The Semantic Scale Rule.** Always use the `text-h1 … text-small` tokens (or the `H1`–`H4` / `Paragraph` components), never raw `text-lg`/`text-xl`. Tune sizes only in the `@theme` block. Uppercase and color live on the consuming component, never on the type token.
@@ -199,6 +231,7 @@ Calm and native: components feel like macOS itself, hairline borders, system typ
 - **Do** keep neutrals pure black/white at opacity, and let System Blue be the only hue, on a small fraction of any screen.
 - **Do** keep every corner at 8px (`rounded-lg/xl/2xl` all render 8px); only `rounded-full` and explicit app-icon squircles escape.
 - **Do** design light and dark at once via `light-dark()` tokens; verify body text hits 4.5:1 in both themes.
+- **Do** use the status tokens (`text-success` / `bg-warning-surface` / …) for state, and measure any new pair against its own surface before adding it. Raw palette utilities like `text-amber-700` carry no light/dark pair and no verified contrast; one of them shipped at 4.34:1.
 - **Do** give press feedback (`active:scale-[0.96]`) and a `focus-visible` accent ring to every interactive element, and gate entrance motion behind `prefers-reduced-motion: no-preference`.
 - **Do** outline filled images with `ring-1 ring-black/10 dark:ring-white/10`; use `drop-shadow` for transparent cutouts.
 

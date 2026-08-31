@@ -1,0 +1,46 @@
+---
+title: Crop
+description: Trim margins off images and PDFs on your Mac — type the pixels or millimeters to remove from each edge, or auto-trim a solid-color border, in one batch.
+---
+
+Picmal's sidebar has a **Crop** tool that removes margins from images and PDF pages. Type how much to take off each edge and Picmal saves a cropped copy next to each original. Everything runs on your Mac.
+
+Images are measured in **pixels**, PDFs in **millimeters**. The unit label above the margin fields follows whatever you've dropped in.
+
+## Crop a batch
+
+1. Select **Crop** in the sidebar
+2. Drop images, PDFs, or both into the window
+3. Open **Crop Options** and set the margins to remove
+4. Click **Crop**
+
+![Picmal's Crop tool with a three-page PDF queued, and two Preview windows side by side comparing the original page against the cropped copy with its white margins gone](/images/docs/crop.webp)
+
+Each file is written next to its source as `<name>_cropped.<ext>`. The **After crop** column shows the size you'll get before you run anything, so you can check the numbers against the original.
+
+## Auto-trim borders
+
+Turn on **Auto-trim borders** in the options popover and Picmal reads the corner color of each image and removes the matching border around it — the white space around a screenshot, the black bars around an exported logo. No measuring, no per-file fiddling.
+
+**Tolerance** (0–50%, default 5%) sets how much the border color may vary before Picmal stops trimming. Raise it for a JPEG whose "white" background isn't quite uniform; lower it when a light part of the subject is being eaten.
+
+Auto-trim is images only. PDFs need explicit margins.
+
+## PDFs keep their content
+
+Cropping a PDF changes the page boxes, nothing else. Text stays selectable and searchable, links keep working, form fields keep working, and vector graphics stay sharp — the page is just smaller. Picmal sets both the crop box and the media box, so the new size holds in Preview, in a browser, and at the print shop.
+
+The same margin is applied to every page in the document.
+
+## Trim borders in Convert and Compress
+
+You don't need the Crop tool for a plain border trim. **Settings → Resize** has a **Trim borders** switch that removes a solid-color border from each image before it's resized and encoded, at the same 5% tolerance. Turn it on when every screenshot in a batch carries the same margin. See [resize and color space](/docs/resize-and-color-space#trim-borders).
+
+For another tolerance, or for PDFs, use the Crop tool or `picmal-cli crop --fuzz`.
+
+## Use it from Shortcuts and the terminal
+
+- In Shortcuts, the **Crop Files** action takes files, margins, and an auto-trim toggle, and returns the cropped files. See [Integrations](/docs/integrations#crop-files).
+- From the terminal, `picmal-cli crop` takes `--top`, `--bottom`, `--left`, `--right`, `--auto-trim`, and `--fuzz`. See [Command line](/docs/cli#crop).
+
+Like Convert and Compress, Crop requires an active [license](/docs/license).

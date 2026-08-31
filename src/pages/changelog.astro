@@ -85,10 +85,8 @@ const softwareSchema = {
         >
           Changelog
         </SectionHeading>
-      </div>
 
-      <div class="max-w-3xl mx-auto px-6 mb-16">
-        <Card class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+        <Card class="mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <Paragraph class="mb-0 flex-1">
             As an indie developer, Picmal grows through word of mouth. A review
             only takes a minute and makes a huge difference.
@@ -100,33 +98,30 @@ const softwareSchema = {
             class="w-full sm:w-auto whitespace-nowrap"
           />
         </Card>
-      </div>
-
-      <div class="max-w-5xl mx-auto px-6 pb-20">
         {
           rows.map((row) => (
             <article
               id={row.slug}
-              class="scroll-mt-28 border-t border-border first:border-t-0 py-10 first:pt-0"
+              class="scroll-mt-28 border-t border-border first:border-t-0 pt-12 pb-16 first:pt-0 last:pb-0"
             >
               {/* version anchor preserved for legacy #v<version> deep links */}
               <span id={`v${row.version}`} class="block scroll-mt-28" />
 
-              <div class="flex flex-col sm:flex-row gap-3 sm:gap-12">
+              <div class="flex flex-col gap-3 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-x-10">
                 {/* Left: metadata */}
-                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:w-[200px] sm:shrink-0 sm:pt-1">
+                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:sticky sm:top-28 sm:self-start sm:pt-2">
+                  <span class="inline-block text-small font-semibold leading-none px-2 py-0.5 rounded-xl bg-accent/10 text-accent">
+                    v{row.version}
+                  </span>
                   {row.pubDate && (
-                    <span class="text-small text-text-secondary order-2 sm:order-1">
+                    <span class="text-small text-text-secondary">
                       <FormattedDate date={row.pubDate} />
                     </span>
                   )}
-                  <span class="inline-block text-small font-semibold leading-none px-2 py-0.5 rounded-xl bg-accent/10 text-accent order-1 sm:order-2">
-                    v{row.version}
-                  </span>
                   {row.hasDownload && (
                     <a
                       href={row.downloadUrl}
-                      class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent order-3"
+                      class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +145,7 @@ const softwareSchema = {
                 </div>
 
                 {/* Right: title + full release notes */}
-                <div class="flex-1 min-w-0">
+                <div class="min-w-0">
                   <h2 class="text-h2 text-text text-balance mb-3">
                     <a
                       href={`#${row.slug}`}
@@ -160,7 +155,7 @@ const softwareSchema = {
                     </a>
                   </h2>
                   <div
-                    class="prose max-w-none
+                    class="release-notes prose max-w-none
                       prose-headings:text-text prose-headings:font-semibold
                       prose-p:text-text-secondary prose-p:leading-relaxed
                       prose-strong:text-text
@@ -180,5 +175,19 @@ const softwareSchema = {
     </main>
 
     <Footer />
+
+    <style>
+      /* Release notes read at a comfortable measure while the app screenshots
+         keep the full column. 56ch lands at ~75 characters here: `ch` is the
+         width of "0", which runs wider than the average glyph in SF Pro Text.
+         Children come from the MDX collection, so they need :global() to
+         escape Astro's scoping. */
+      .release-notes :global(:is(p, li, h2, h3, h4, blockquote)) {
+        max-width: 56ch;
+      }
+      .release-notes :global(:is(p, li):has(> img)) {
+        max-width: none;
+      }
+    </style>
   </body>
 </html>

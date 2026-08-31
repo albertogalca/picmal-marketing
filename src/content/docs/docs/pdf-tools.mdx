@@ -94,6 +94,10 @@ Each page shows up as a thumbnail in a list. Drag to reorder, select pages and p
 
 Unlike the other three tools, Organize Pages is available in the app only for now — there's no Finder, Shortcuts, or command-line equivalent yet.
 
+## Cropping a PDF
+
+Trimming margins off a document isn't one of these four tools either — use [Crop](/docs/crop). Type the millimeters to take off each edge and Picmal writes a cropped copy next to the original. The text stays selectable and the links keep working; only the page size changes.
+
 ## Making a PDF smaller
 
 Shrinking a PDF isn't one of these four tools — drop the file into **Compress** instead. Picmal re-encodes only the images inside the document, so text stays selectable and vector graphics stay sharp. Scans get their images downsampled as well, which is what makes a 25 MB scan come out around 2 MB; that route rebuilds the document, so if yours has links or bookmarks Picmal warns you on the row. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
@@ -103,7 +107,7 @@ Shrinking a PDF isn't one of these four tools — drop the file into **Compress*
 These tools are available beyond the app window:
 
 - In Finder, right-click a PDF selection and choose **Picmal — Combine PDFs**, or an image selection and choose **Picmal — Images to PDF**. Both run with your saved settings, in selection order, even with Picmal closed. See [Integrations](/docs/integrations#finder-services-right-click-menu).
-- In Shortcuts, the **Combine PDFs**, **Split PDF**, and **Make PDF from Images** actions take files in and return the finished PDF. See [Integrations](/docs/integrations#shortcuts-app).
-- From the terminal, use `picmal-cli combine`, `picmal-cli split-pdf`, and `picmal-cli images-to-pdf`. See [Command line](/docs/cli#split-pdf).
+- In Shortcuts, the **Combine PDFs**, **Split PDF**, and **Images to PDF** actions take files in and return the finished PDF. See [Integrations](/docs/integrations#shortcuts-app).
+- From the terminal, use `picmal-cli combine-pdfs`, `picmal-cli split-pdf`, and `picmal-cli images-to-pdf`. See [Command line](/docs/cli#split-pdf).
 
 Like Convert and Compress, all three tools require an active [license](/docs/license).

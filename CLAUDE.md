@@ -130,3 +130,9 @@ and press kit are the reference.
 ## Conventions
 
 - Don't add hover effects to elements that are not clickable. It doesn't make sense.
+- Count the pitch before you write it. Every page ends in `CTASection` and most
+  carry a `FAQ`, and both of those already state the product pitch. Add a prose
+  section that also pitches and it's been made three times before you noticed.
+  Read the CTA heading and the FAQ answers first. If the point is already there,
+  link to it or fold the link into the FAQ answer (`FAQ.astro` renders answers
+  with `set:html`, so inline `<a class="link">` works) instead of restating it.

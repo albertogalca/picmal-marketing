@@ -29,7 +29,7 @@ HandBrake's Video tab offers two ways to decide how much data to spend.
 
 **Constant Quality** is the one you want almost always. You give the encoder a quality target and it spends whatever bits that takes: more on a fast action scene, fewer on a static talking head. You do not know the final size until it finishes, and that is fine, because "make this smaller and still look good" is the actual goal most of the time.
 
-**Average Bitrate** is for when the size is the requirement, not the quality. Upload limits, email attachments, a form that rejects anything over 25 MB.
+**Average Bitrate** is for when the size is the requirement, not the quality. Upload limits, email attachments, a form that rejects anything over 25 MB. HandBrake makes you do that arithmetic yourself, which is the one place a tool built to [compress video on Mac](/compress-video-mac) beats it: you watch a live size estimate move while you drag the slider.
 
 The Constant Quality slider is labeled **RF**, for Rate Factor. Two things about it trip people up:
 
@@ -112,6 +112,6 @@ Three cases where it isn't the answer:
 
 **Your files are not video.** HandBrake does video, full stop. It will not touch a folder of photos, an audio file, or a PDF. The number of people searching for "HandBrake but for images" suggests this surprises a lot of them.
 
-**You do this occasionally and resent relearning it every time.** This is the honest one. RF, encoder presets and two-pass bitrate maths are not hard, but they are the kind of knowledge that evaporates between uses. If you are on a Mac, compress video a few times a year, and also deal with images and audio and PDFs, [Picmal](https://picmal.app) covers all of it behind a quality slider and a target-size field, and batches a folder in one pass. It is $29 once, it runs entirely on your Mac with no upload, and it is not trying to replace HandBrake for anyone who has already learned HandBrake.
+**You do this occasionally and resent relearning it every time.** This is the honest one. RF, encoder presets and two-pass bitrate maths are not hard, but they are the kind of knowledge that evaporates between uses. If you are on a Mac, compress video a few times a year, and also deal with images and audio and PDFs, [Picmal](/compress-video-mac) covers all of it behind a quality slider and a target-size field, and batches a folder in one pass. It is $29 once, it runs entirely on your Mac with no upload, and it is not trying to replace HandBrake for anyone who has already learned HandBrake.
 
 If you are weighing it up properly, [Picmal vs HandBrake](/alternative/handbrake) is the direct comparison, and [how to compress video on Mac](/blog/how-to-compress-video-mac) covers the built-in macOS options that cost nothing at all.

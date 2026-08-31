@@ -254,27 +254,7 @@ const affiliateFaqs = [
 
     <Footer />
 
-    <!-- One-time hero entrance, staggered; opacity + transform only, gated on
-         prefers-reduced-motion. Matches the reference hero. -->
-    <style>
-      @media (prefers-reduced-motion: no-preference) {
-        .hero-reveal {
-          opacity: 0;
-          animation: hero-reveal 0.6s cubic-bezier(0.2, 0, 0, 1) both;
-          animation-delay: var(--d, 0ms);
-        }
-        @keyframes hero-reveal {
-          from {
-            opacity: 0;
-            transform: translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      }
-    </style>
+    
 
     <!-- Hero demo: autoplay the loop unless the user prefers reduced motion
          (then the poster stays put). Same as the homepage hero. -->

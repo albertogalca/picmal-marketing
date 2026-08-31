@@ -62,10 +62,17 @@
 
 /getting-started /docs 301
 
-# Consolidate cannibalized pages into programmatic SEO pages
+# HEIC cluster, one page per intent (Aug 2026).
+# GSC over 90 days: the guide took 1172 impressions on head and how-to terms,
+# /heic-converter-mac 197, /blog/batch-convert-images-mac 166 (but at position
+# 10-12, the best in the cluster), /convert/heic-to-jpg 2 at position 84.
+# So: the guide owns "heic to jpg mac" and every how-to phrasing, the batch post
+# owns batch queries, /heic-converter-mac owns app and download intent, and
+# /blog/convert-heic-to-pdf-mac owns "heic to pdf". These two head-term slugs
+# used to land on /convert/heic-to-jpg, the weakest page of the four.
 
-/heic-to-jpg-mac /convert/heic-to-jpg 301
-/convert-heic-to-jpg-mac /convert/heic-to-jpg 301
+/heic-to-jpg-mac /blog/how-to-convert-heic-to-jpg-mac 301
+/convert-heic-to-jpg-mac /blog/how-to-convert-heic-to-jpg-mac 301
 
 /media-converter-mac /image-converter-mac 301
 

@@ -3,7 +3,7 @@ title: "How to Convert HEIC to JPG on Mac: 6 Free Ways (2026)"
 heroImage: "../../../public/images/blog/how-to-convert-heic-to-jpg-mac/cover.png"
 description: "How to convert (or change) a HEIC to JPG on your Mac or MacBook in seconds, free, using Quick Actions or Preview. Six methods compared, how to keep your EXIF data, and what to do with a whole folder."
 pubDate: "Sep 30 2025"
-updatedDate: "2026-08-24"
+updatedDate: "2026-08-31"
 category: "Tutorial"
 tags: ["HEIC", "JPG", "Conversion", "Mac", "Tutorial"]
 faqs:
@@ -12,7 +12,7 @@ faqs:
   - question: "Can I keep the metadata (location, camera info) when converting HEIC to JPG?"
     answer: "Picmal, the Photos app and the built-in sips command all preserve EXIF metadata. Preview is unreliable and may strip some of it. ImageMagick preserves it by default but can drop it if you tell it to."
   - question: "What's the fastest way to convert thousands of HEIC files to JPG on Mac?"
-    answer: "Picmal or ImageMagick. The built-in tools (Preview, Photos, Quick Actions) start to groan past a few hundred images, while Picmal batch-converts thousands while keeping folder structure intact."
+    answer: "That's a batch job rather than a conversion, and it has its own guide: how to batch convert HEIC photos on Mac. Short answer, Picmal or ImageMagick, because the built-in tools start to groan past a few hundred images."
   - question: "How do I convert HEIC images to JPG using the Mac terminal?"
     answer: 'Use sips, which is already on your Mac, so there is nothing to install. For one file: sips -s format jpeg input.heic --out output.jpg. For a whole folder, loop over it: for f in *.heic; do sips -s format jpeg "$f" --out "${f%.heic}.jpg"; done. Add -s formatOptions 80 to set the JPEG quality. sips keeps EXIF data and writes new files, so your originals stay as they are.'
   - question: "Can I convert HEIC to JPG on Mac for free?"
@@ -168,9 +168,9 @@ Scriptable. You can wire either one into a cron job, a shell alias, or a Hazel r
 
 If "shell alias" means nothing to you, this isn't your method. Use Method 3.
 
-## Method 6: Picmal (fastest for batch conversion)
+## Method 6: Picmal (when the built-in tools stop fitting)
 
-[Picmal](https://picmal.app) is a native Mac app built for image conversion. If you have dozens or thousands of HEIC files, this is where you start.
+[Picmal](https://picmal.app) is a native Mac app built for image conversion. Same three steps as everything else here, minus the ceilings.
 
 ### Steps:
 
@@ -191,7 +191,6 @@ If "shell alias" means nothing to you, this isn't your method. Use Method 3.
 
 ### Why people reach for it:
 
-- Handles thousands of images without slowing down
 - Runs entirely on your Mac. Nothing uploaded, nothing phoned home
 - Keeps metadata and folder structure intact
 - Quality slider so you control the output size
@@ -199,18 +198,20 @@ If "shell alias" means nothing to you, this isn't your method. Use Method 3.
 
 ### Best for:
 
-Dumping your entire iPhone photo library into it after a trip. Photographers who shoot HEIC and deliver JPG. Anyone who'd rather not route their vacation photos through someone else's server.
+Anyone who'd rather not route their vacation photos through someone else's server, and who wants the quality control Preview doesn't give you.
+
+**Got a whole camera roll rather than a few photos?** That's a different job with different tools, and it has its own guide: [how to batch convert HEIC photos on Mac](/blog/batch-convert-images-mac).
 
 ## Side-by-side comparison
 
-| Method        | Speed     | Batch Processing | Quality Control | Ease of Use | Price  |
-| ------------- | --------- | ---------------- | --------------- | ----------- | ------ |
-| Preview       | Moderate  | Limited          | Basic           | Easy        | Free   |
-| Photos App    | Slow      | Good             | Basic           | Easy        | Free   |
-| Quick Actions | Fast      | Good             | Limited         | Very Easy   | Free   |
-| Automator     | Fast      | Good             | Basic           | Easy        | Free   |
-| Terminal (sips) | Fast    | Excellent        | Advanced        | Technical   | Free   |
-| Picmal        | Very Fast | Excellent        | Advanced        | Very Easy   | $29 |
+| Method        | Speed     | Keeps EXIF | Quality Control | Ease of Use | Price  |
+| ------------- | --------- | ---------- | --------------- | ----------- | ------ |
+| Preview       | Moderate  | Unreliable | Basic           | Easy        | Free   |
+| Photos App    | Slow      | Yes        | Basic           | Easy        | Free   |
+| Quick Actions | Fast      | Yes        | Limited         | Very Easy   | Free   |
+| Automator     | Fast      | Yes        | Basic           | Easy        | Free   |
+| Terminal (sips) | Fast    | Yes        | Advanced        | Technical   | Free   |
+| Picmal        | Very Fast | Yes        | Advanced        | Very Easy   | $29 |
 
 ## Tips for better results
 
@@ -244,32 +245,42 @@ Close Chrome. Yes, really. It's eating your RAM. For large batches, use a dedica
 
 ## Frequently asked questions
 
-**Q: Do I lose quality when converting HEIC to JPG?**
-A: Technically, yes. HEIC and JPG compress differently, so any conversion introduces some loss. In practice, at 90% quality or above, you'd need to pixel-peep to spot it.
+**Q: Why won't my Mac open a HEIC file at all?**
+A: Almost always macOS Sierra or older, which predates HEIC. Everything from High Sierra on reads it natively. If a single file refuses to open on a current Mac, it's the file, not the format, and it probably didn't finish copying off the phone.
 
-**Q: Can I keep the metadata (location, camera info)?**
-A: Picmal, Photos and sips preserve it. Preview is unreliable. ImageMagick preserves it by default but can strip it if you ask.
+**Q: Does converting change the original file?**
+A: No. Every method here writes a new JPG and leaves the HEIC alone. The one thing to watch is Preview's File > Save, which overwrites; use File > Export instead.
 
-**Q: What's the fastest way to convert thousands of files?**
-A: Picmal or ImageMagick. The built-in tools start to groan past a few hundred images.
+**Q: Can I convert HEIC to JPG without installing anything?**
+A: Yes, three ways: Quick Actions in Finder, Preview's export, and the sips command. All three ship with macOS.
 
-**Q: Should I keep the original HEIC files?**
-A: Yes. They're smaller than the JPGs you're creating, so they cost you almost nothing to keep around. And format support only gets better over time.
+**Q: Why is my JPG bigger than the HEIC it came from?**
+A: That's normal and it's the whole tradeoff. HEIC compresses roughly twice as efficiently as JPG at the same visible quality, so a JPG copy of it is usually larger. Drop the quality to 80% if the size matters more than the last few percent of detail.
 
 ## The short version
 
-If you're converting a few files, right-click → Quick Actions and you're done in seconds. If your HEIC files are already in Photos, export from there. For anything bigger, [Picmal](https://picmal.app) or ImageMagick will save you real time.
+Right-click → Quick Actions and you're done in seconds. If your HEIC files are already in Photos, export from there instead.
 
-Pick based on how many files you have and how often you'll do this:
+Pick based on what you're doing:
 
-- **One-off, small batch:** Quick Actions or Preview
+- **A photo or a handful:** Quick Actions or Preview
 - **Already in Photos:** Export from Photos
-- **Hundreds or thousands of files:** Picmal
+- **You want the quality slider:** [Picmal](https://picmal.app)
 - **Want to script it:** the Terminal, with sips
+- **A whole camera roll:** that's [the batch guide](/blog/batch-convert-images-mac), not this one
+
+## Change HEIC to JPG on a MacBook
+
+Changing, converting and saving as JPG all describe the same operation, and the steps don't differ by machine. On a MacBook Air, a MacBook Pro, an iMac or a Mac mini: select the file in Finder, right-click, choose Quick Actions, then Convert Image, pick JPEG and click Convert.
+
+The only real difference a laptop makes is heat. Converting a few hundred files with Preview or Automator will spin the fans on a MacBook and throttle partway through. sips and Picmal both handle the same job without pinning every core.
+
+If you'd rather stop the problem at the source, change the camera format on the iPhone itself: Settings → Camera → Formats → Most Compatible. Every photo shoots as JPG from then on, at roughly double the file size.
 
 ## Related guides
 
-- **Converting a whole library at once?** See [How to Batch Convert Images on Mac](/blog/batch-convert-images-mac) for handling hundreds or thousands of HEIC files in one pass.
+- **Converting a whole camera roll at once?** See [How to Batch Convert HEIC Photos on Mac](/blog/batch-convert-images-mac) for handling hundreds or thousands of files in one pass.
+- **Need a PDF instead?** [How to Convert HEIC to PDF on Mac](/blog/convert-heic-to-pdf-mac) covers both one PDF per photo and one document from the whole set.
 - **Need PNG instead of JPG?** See [How to Convert HEIC to PNG on Mac](/blog/convert-heic-to-png-mac), useful when you need lossless quality or transparency.
 - **Looking for alternatives to ImageOptim?** Our [ImageOptim alternatives guide](/blog/imageoptim-alternatives-mac) compares 7 Mac tools for image compression and conversion.
 - **Want to reduce file size further?** Check out [How to Reduce Image File Size on Mac](/blog/reduce-image-file-size-mac) for resizing, format conversion, and compression tips.

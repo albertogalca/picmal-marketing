@@ -1,7 +1,7 @@
 ---
-title: "How to Convert SVG to PNG on Mac: 4 Free Methods (2026)"
+title: "Convert SVG to PNG on Mac: 4 Free Ways, No Upload"
 heroImage: "../../../public/images/blog/convert-svg-to-png-mac/cover.png"
-description: "Four free ways to convert SVG to PNG on a Mac, no upload required: Preview, the built-in qlmanage Terminal command, your browser, and rsvg-convert. Plus how to batch hundreds at a set size."
+description: "Four free offline ways to turn SVG into PNG on your Mac: Preview, the qlmanage Terminal command, your browser, and rsvg-convert. Plus batching a folder."
 pubDate: "2026-03-16"
 updatedDate: "2026-08-21"
 category: "Tutorial"
@@ -15,8 +15,12 @@ faqs:
     answer: "For web: 1x or 2x the display size. For app icons: 1024x1024 for the App Store. For print: 300 DPI at the physical print size."
   - question: "Can I batch convert SVGs to PNG at multiple sizes?"
     answer: "Yes, and for free. Run a shell loop once per size: for f in *.svg; do qlmanage -t -s 512 -o . \"$f\"; done, then repeat with a different -s value. rsvg-convert works the same way with -w. Picmal does it without the Terminal, but the loop costs nothing."
-  - question: "Can I convert SVG to PNG on a Mac without any software?"
+  - question: "Can I convert SVG to PNG on a Mac without installing anything?"
     answer: "Yes. Preview is already installed and exports SVG to PNG via File > Export. For a specific pixel width, the built-in Terminal command qlmanage -t -s 1024 -o . icon.svg does it with nothing to install. You never need to upload an SVG to a website."
+  - question: "How do I save an SVG as a PNG?"
+    answer: "Saving and exporting are the same thing here. Preview just labels the command Export. Open the SVG in Preview, choose File > Export, set Format to PNG, pick a folder and save. Preview has no Save As option that changes the format, so Export is the one you want."
+  - question: "How do I convert a PNG back to an SVG on a Mac?"
+    answer: "That's vectorizing, not a format swap. A PNG is pixels and an SVG is shapes, so something has to trace the pixels and guess at the shapes. It works well on flat logos and line art, and badly on photos. Picmal has a Vectorize tool for it."
 ---
 
 **Your Mac can already do this, for free, in about ten seconds.** Right-click the SVG, open it with Preview, then choose File > Export and set Format to PNG. If you want a specific pixel width, run `qlmanage -t -s 1024 -o . icon.svg` in Terminal instead. Neither needs an app, an upload, or an account.
@@ -35,7 +39,7 @@ Preview is already on your Mac and handles most SVGs fine. Its SVG support is ba
 4. Adjust the resolution if needed (default is 72 DPI, bump to 144 for retina, 300 for print)
 5. Save
 
-**Limitation:** Preview renders the SVG at its default viewport size. If the SVG is defined as 100×100, you get a 100×100 PNG. There's no straightforward way to upscale during export without changing the resolution setting.
+**Limitation:** Preview renders the SVG at its default viewport size. If the SVG is defined as 100×100, you get a 100×100 PNG. There's no clean way to upscale during export without changing the resolution setting.
 
 **Best for:** One file, no particular size requirement.
 
@@ -153,7 +157,7 @@ Not if you convert at the right size. SVGs are vector, infinitely scalable. Conv
 
 ### How do I keep the transparent background?
 
-PNG supports transparency natively. If your SVG has a transparent background (no background rectangle), the PNG will too. All methods listed here preserve transparency. Make sure to choose PNG, not JPEG — JPEG doesn't support transparency and will fill the background with white.
+PNG supports transparency natively. If your SVG has a transparent background (no background rectangle), the PNG will too. All methods listed here preserve transparency. Make sure to choose PNG, not JPEG. JPEG doesn't support transparency and will fill the background with white.
 
 ### What size should I export the PNG at?
 
@@ -174,8 +178,18 @@ for f in *.svg; do qlmanage -t -s 1024 -o . "$f"; done
 
 Yes. Preview ships with macOS and exports SVG to PNG through File > Export. For an exact pixel width, `qlmanage -t -s 1024 -o . icon.svg` in Terminal is also built in. There's no reason to upload an SVG to a conversion website.
 
+### How do I save an SVG as a PNG?
+
+Saving and exporting are the same thing here. Preview just labels the command Export. Open the SVG in Preview, choose File > Export, set Format to PNG, pick a folder, and save. That's Method 1 above, in full.
+
+If you went looking for a Save As option that changes the format and couldn't find one, that's why. Preview doesn't have one. Export is what you wanted.
+
+### How do I convert a PNG back to an SVG on a Mac?
+
+That's a different job, called vectorizing, and it isn't a format swap. A PNG is pixels. An SVG is shapes. So something has to trace the pixels and guess at the shapes underneath. It works well on flat logos and line art, and badly on photos. Picmal has a [Vectorize tool](/docs/vectorize) for it.
+
 ## Related guides
 
 - **Making a Mac app icon?** [How to convert a PNG to a Mac icon (.icns)](/blog/png-to-mac-icon-icns) picks up where the PNG export ends.
-- **Converting more than SVGs?** [How to batch convert images on Mac](/blog/batch-convert-images-mac) covers HEIC, JPG, PNG and the rest in bulk.
+- **Converting more than SVGs?** [The batch image converters for Mac, compared](/blog/top-batch-image-converter-mac) covers the apps that handle mixed folders.
 - **Not sure PNG is the right target?** [The best image formats for the web](/blog/best-image-formats-for-web) compares them all, including when to just ship the SVG.

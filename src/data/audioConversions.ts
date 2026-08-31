@@ -305,7 +305,7 @@ function buildMetaDescription(
 }
 
 function buildMetaTitle(from: AudioFormatInfo, to: AudioFormatInfo): string {
-  return `Picmal: Convert ${from.name} to ${to.name} on Mac, fast and offline`;
+  return `Convert ${from.name} to ${to.name} on Mac, offline and in batches`;
 }
 
 export const audioConversions: AudioConversionPair[] = PAIRS.map(

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
@@ -12,6 +11,7 @@ import H1 from "../components/H1.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 import RelatedConversions from "../components/RelatedConversions.astro";
+import { DEFAULT_TIER } from "../config/pricing";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -69,7 +69,7 @@ const {
     <Header />
 
     <!-- Article -->
-    <article class="relative z-10 px-6 pt-44 pb-20">
+    <article class="relative z-10 px-6 pt-32 pb-20">
       <div class="max-w-3xl mx-auto">
         <!-- Breadcrumb -->
         <div class="article-breadcrumb">
@@ -83,20 +83,7 @@ const {
         </div>
 
         <!-- Header -->
-        <header class="mb-8 article-header">
-          {
-            heroImage && (
-              <div class="mb-6">
-                <Image
-                  src={heroImage}
-                  alt={title}
-                  width={1600}
-                  height={900}
-                  class="w-full h-auto rounded-xl border border-border"
-                />
-              </div>
-            )
-          }
+        <header class="mb-10 article-header">
           <div class="flex items-center gap-3 mb-8 text-small">
             <a
               href="https://albertogalca.com/"
@@ -133,6 +120,26 @@ const {
           <H1 id="article-title" class="mb-4">
             {title}
           </H1>
+
+          <!-- The post answers the question for free, so the buy line stays one
+               quiet sentence. Until Aug 2026 the only CTA sat at 84% scroll
+               depth, well past where a 30-second visit ever gets.
+               Wording has to hold for all 44 posts, how-tos and comparisons
+               alike, so it names no steps the post might not have. -->
+          <p class="mt-6 text-small text-text-secondary">
+            {"Picmal does this on your Mac: drag, click, done. "}
+            <a
+              href={DEFAULT_TIER.checkoutUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link"
+              onclick={import.meta.env.PROD
+                ? `window.seline?.track('buy_clicked_blog_top_${slug || "post"}', { macs: ${DEFAULT_TIER.macs}, source: 'blog_top' })`
+                : undefined}
+            >
+              {`Get Picmal for $${DEFAULT_TIER.price}`}
+            </a>
+          </p>
         </header>
 
         <!-- Content -->

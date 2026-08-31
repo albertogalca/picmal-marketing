@@ -195,10 +195,14 @@ const tierData = TIERS.map((t) => ({
     });
 
     // One buy event carrying the seat count. The old buy_clicked /
-    // buy_clicked_pro pair could not describe four tiers.
+    // buy_clicked_pro pair could not describe four tiers. `source` separates
+    // this from the hero button, which fires the same name.
     cta?.addEventListener("click", () => {
       if (import.meta.env.PROD) {
-        window.seline?.track("buy_clicked", { macs: current.macs });
+        window.seline?.track("buy_clicked", {
+          macs: current.macs,
+          source: "pricing",
+        });
       }
     });
   }

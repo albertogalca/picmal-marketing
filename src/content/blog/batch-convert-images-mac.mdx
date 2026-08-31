@@ -3,8 +3,24 @@ title: "How to Batch Convert HEIC Photos on Mac (Without Uploading Them)"
 heroImage: "../../../public/images/blog/batch-convert-images-mac/cover.png"
 description: "The fastest ways to batch convert hundreds of HEIC photos on your Mac, offline and with no file size limits. Covers Preview, Automator, the sips command line, and when an app is worth it."
 pubDate: "2025-07-09"
+updatedDate: "2026-08-31"
 category: "Tutorial"
 tags: ["HEIC", "Batch Convert", "Mac", "Tutorial", "Privacy"]
+faqs:
+  - question: "How do I batch convert HEIC to JPG on a Mac?"
+    answer: "Select every HEIC file in Finder, right-click, choose Quick Actions then Convert Image, pick JPEG and a size, and click Convert. It handles the whole selection in one pass and it's free. Past a few hundred files, or if you need the folder structure kept, use Picmal or the sips command instead."
+  - question: "What's the best batch converter for HEIC to JPG on Mac?"
+    answer: "For a one-off, nothing beats the Quick Actions menu that's already in Finder. For anything you do weekly, a dedicated app earns its keep: Picmal keeps nested folders and EXIF data intact and doesn't slow down at a thousand files. ImageMagick is the free equivalent if you're comfortable in Terminal."
+  - question: "How many HEIC files can I convert at once?"
+    answer: "Quick Actions and Preview are comfortable to a few hundred, then they get slow or hang. sips and ImageMagick have no real ceiling but run one file at a time. Picmal converts in parallel, so a thousand files finishes in about the time the free tools take on a hundred."
+  - question: "Can I batch convert HEIC to JPG in Photoshop?"
+    answer: "Yes, through File then Scripts then Image Processor, which points at a folder and writes JPGs to a destination of your choice. It works, but Photoshop is slow to open a large batch and it's a lot of app for one conversion. Anything on this page is faster."
+  - question: "How do I batch convert HEIC to JPG with ImageMagick?"
+    answer: "Install it with Homebrew, then run: mogrify -format jpg -quality 90 *.heic. For a nested folder, use: find . -name '*.heic' -exec magick {} {}.jpg \\;. ImageMagick keeps EXIF data by default."
+  - question: "Does batch converting HEIC to JPG lose quality?"
+    answer: "A little, because JPG is lossy. At quality 90 or above you won't see it without pixel-peeping. Keep the HEIC originals either way, they're smaller than the JPGs you're making."
+  - question: "Will batch conversion strip my photo location and camera data?"
+    answer: "sips, ImageMagick and Picmal all keep EXIF data. Preview is unreliable and can drop some of it. If GPS coordinates matter to you, check one converted file before you run the whole batch."
 ---
 
 **The free way, built into macOS:** select every HEIC file in Finder, right-click, choose Quick Actions > Convert Image, pick JPEG and a size, then click Convert. It handles the whole selection at once and costs nothing. For a folder from Terminal, `sips -s format jpeg *.heic --out ./jpgs` does the same thing.
@@ -97,7 +113,7 @@ If you do this regularly (uploading to a CMS, sending files to clients, archivin
 
 If you don't, use Quick Actions. It's free, it's already there, and it's the right answer for most people reading this.
 
-## Which method to use
+## Which batch converter for HEIC to JPG should you use?
 
 | | Small batch (&lt;20 files) | Medium batch (20-200) | Large batch (200+) |
 |---|---|---|---|
@@ -106,6 +122,11 @@ If you don't, use Quick Actions. It's free, it's already there, and it's the rig
 | **Automator** | Overkill | Decent if set up | No folder structure |
 | **Command line** | Overkill | Good if you know it | Great if you know it |
 | **Picmal** | Instant | Instant | Still instant |
+
+Short version: the free batch converter is already on your Mac, and for one
+camera roll it's the right answer. A dedicated batch converter earns its place
+at the point where you're doing this every week, or where a nested folder of
+albums has to come out the other side still nested.
 
 ## A note on online converters
 
@@ -122,3 +143,11 @@ You can also tell your iPhone to stop shooting HEIC entirely. Go to Settings →
 The tradeoff: your photos will be roughly twice the size. If your 128GB phone is already at 90%, that's a problem.
 
 The better approach is to keep shooting HEIC (it really is a better format for storage) and convert when you need to share. That's the workflow Picmal was built for: keep the originals on your phone, convert copies on your Mac when someone actually needs a JPG.
+
+## Related guides
+
+- [How to Convert HEIC to JPG on Mac](/blog/how-to-convert-heic-to-jpg-mac) — the six free methods, for one photo or a handful
+- [How to Convert HEIC to PDF on Mac](/blog/convert-heic-to-pdf-mac) — when you need a document instead of photos
+- [How to Convert HEIC to PNG on Mac](/blog/convert-heic-to-png-mac) — for screenshots and anything needing transparency
+- [Top 5 Batch Image Converter Software for Mac](/blog/top-batch-image-converter-mac) — the apps compared, not just HEIC
+- [HEIC converter for Mac](/heic-converter-mac) — what Picmal does, if you've already decided

@@ -182,8 +182,9 @@ Machine-readable pricing: https://picmal.app/pricing.md
 
 ## Blog Articles
 
-- [How to Convert HEIC to JPG on Mac](https://picmal.app/blog/how-to-convert-heic-to-jpg-mac): Complete guide with 5 methods
-- [How to Batch Convert Images on Mac](https://picmal.app/blog/batch-convert-images-mac): Efficient batch conversion methods
+- [How to Convert HEIC to JPG on Mac](https://picmal.app/blog/how-to-convert-heic-to-jpg-mac): Complete guide with 6 free methods
+- [How to Convert HEIC to PDF on Mac](https://picmal.app/blog/convert-heic-to-pdf-mac): 5 free ways, one PDF from many photos or one per photo
+- [How to Batch Convert HEIC Photos on Mac](https://picmal.app/blog/batch-convert-images-mac): Batch converting a whole camera roll of HEIC to JPG
 - [Reduce Image File Size on Mac](https://picmal.app/blog/reduce-image-file-size-mac): Free and paid ways to shrink images
 - [Bulk Resize Images on Mac](https://picmal.app/blog/bulk-resize-images-mac): Batch resize without a subscription
 - [How to Compress Video on Mac](https://picmal.app/blog/how-to-compress-video-mac): Shrink video files locally

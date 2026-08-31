@@ -5,8 +5,6 @@ import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
 import { getCustomerCount } from "../utils/customers";
 
-// `prefix`/`suffix` bracket the bold count so callers can reframe the line,
-// e.g. suffix=" people (including me) too". Defaults keep the original copy.
 interface Props {
   prefix?: string;
   suffix?: string;
@@ -36,6 +34,7 @@ const customerCount = await getCustomerCount();
 
   <!-- Text -->
   <Paragraph size="small" class="text-text-secondary">
-    {prefix}<span class="font-semibold text-text">{customerCount}+{suffix}</span>
+    {prefix}<span class="font-semibold text-text">{customerCount}+{suffix}</span
+    >
   </Paragraph>
 </div>

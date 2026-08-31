@@ -331,7 +331,7 @@ export function labelFor(format: VideoFormatInfo): string {
 }
 
 function buildMetaTitle(from: VideoFormatInfo, to: VideoFormatInfo): string {
-  return `Picmal: Convert ${labelFor(from)} to ${labelFor(to)} on Mac, fast and offline`;
+  return `Convert ${labelFor(from)} to ${labelFor(to)} on Mac, offline and in batches`;
 }
 
 export const videoConversions: VideoConversionPair[] = PAIRS.map(

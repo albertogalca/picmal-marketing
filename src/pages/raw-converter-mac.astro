@@ -17,9 +17,9 @@ import ConversionGrid from "../components/ConversionGrid.astro";
 import H3 from "../components/H3.astro";
 import Paragraph from "../components/Paragraph.astro";
 
-const title = "Picmal: RAW converter for Mac, convert CR2, NEF, ARW to JPG";
+const title = "ARW, CR2, NEF to JPG on Mac: Batch RAW Converter";
 const description =
-  "Convert camera RAW files to JPG on your Mac: CR2, CR3, NEF, ARW, RAF, RW2, ORF, PEF and DNG. Batch process entire shoots offline with correct white balance. $29 one-time, no Lightroom subscription.";
+  "Convert camera RAW to JPG on your Mac: ARW, CR2, CR3, NEF, RAF, RW2, ORF, PEF and DNG. Batch a whole shoot offline, white balance intact. $29 one-time.";
 
 // Build the RAW format cards from the source of truth (8 camera formats + DNG).
 const rawCards = [...RAW_INPUT_FORMATS, "dng"].map((ext) => ({

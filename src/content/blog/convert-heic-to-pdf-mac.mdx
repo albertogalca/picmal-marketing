@@ -1,0 +1,144 @@
+---
+title: "How to Convert HEIC to PDF on Mac (5 Free Ways)"
+description: "How to convert HEIC to PDF on your Mac, free, using Quick Actions or Preview. Covers making one PDF from a set of photos and one PDF per photo, plus the Terminal command."
+pubDate: "2026-08-31"
+category: "Tutorial"
+tags: ["HEIC", "PDF", "Mac", "Tutorial"]
+faqs:
+  - question: "How do I convert a HEIC to PDF on a Mac?"
+    answer: "Select the HEIC files in Finder, right-click, choose Quick Actions, then Create PDF. macOS writes a PDF next to the originals. It's built in, it's free, and it takes about three seconds. If you want one PDF per photo instead of one document, use Preview's File then Export as PDF, or the sips command."
+  - question: "How do I combine several HEIC photos into one PDF?"
+    answer: "Select them all in Finder, then right-click and choose Quick Actions, then Create PDF. Every selected photo becomes a page, in the order Finder is sorting them. Sort by name first if the order matters, or open the result in Preview afterwards and drag the thumbnails around."
+  - question: "Can I convert HEIC to PDF without any software?"
+    answer: "Yes. Quick Actions, Preview and the Print dialog all ship with macOS and all three write PDFs. You don't need to download anything, and you don't need to upload your photos to a website."
+  - question: "How do I convert HEIC to PDF from the Terminal?"
+    answer: "Use sips, which is already installed: sips -s format pdf photo.heic --out photo.pdf. For a whole folder, loop over it: for f in *.heic; do sips -s format pdf \"$f\" --out \"${f%.heic}.pdf\"; done. That gives you one single-page PDF per photo. sips can't merge them into one document, so use Quick Actions for that."
+  - question: "Why is my PDF so much bigger than the HEIC?"
+    answer: "It usually isn't, but it can be. HEIC is a very efficient format, and a PDF wraps a re-encoded copy of the image plus page structure. In testing a 26MB HEIC came out as an 8.8MB PDF, so it often shrinks. If yours grew, the image was re-encoded at a higher quality than the original."
+  - question: "Does converting HEIC to PDF keep the photo's location and camera data?"
+    answer: "Mostly no. PDF isn't built to carry photo EXIF the way JPG is, so GPS coordinates and camera settings generally don't survive the trip. Keep the HEIC originals if that data matters to you."
+  - question: "Can I password protect a PDF made from HEIC photos?"
+    answer: "Yes. Open the PDF in Preview, go to File then Export, tick Encrypt and set a password. Picmal can set the password while it builds the PDF, which saves the extra step."
+  - question: "My HEIC photos came out sideways in the PDF. How do I fix that?"
+    answer: "That's the EXIF orientation flag being ignored. Open the PDF in Preview and rotate the pages, or rotate the HEIC files in Preview before converting. Tools that read orientation properly, including Quick Actions and Picmal, upright them automatically."
+---
+
+**The fastest free way:** select your HEIC files in Finder, right-click, choose Quick Actions > Create PDF. macOS writes a single PDF next to the originals, one photo per page. It's built in, it takes about three seconds, and nothing gets uploaded anywhere.
+
+That covers most of what people mean by this. But "convert HEIC to PDF" is really two different jobs, and picking the wrong method is why people end up with 40 separate files when they wanted one document.
+
+## First, which job is this?
+
+**One PDF from many photos.** Scanned receipts, a set of documents you photographed with your phone, pages of a contract. You want a single file you can email. Quick Actions does this natively.
+
+**One PDF per photo.** Each image as its own standalone document, usually because something downstream expects one file per record. Preview's export and the `sips` command both do this.
+
+Everything below is sorted by which of those two you're after.
+
+## Method 1: Quick Actions (one PDF, and it's already on your Mac)
+
+Since macOS Monterey there's a Create PDF option hiding in the right-click menu, and most people never find it.
+
+1. Select every HEIC file in Finder
+2. Right-click, choose Quick Actions, then Create PDF
+3. A PDF appears next to the originals, one photo per page
+
+The pages come out in whatever order Finder is currently sorting by, not the order you clicked. Sort by name before you select, or fix it afterwards in Preview.
+
+**Where it breaks:** no quality setting, no page size, no way to fit a tall photo onto A4 without it filling the whole page edge to edge. It's fast and it's free, and that's the deal.
+
+## Method 2: Preview (when you need to reorder or drop pages)
+
+Preview is the right tool when the order matters or you want to throw out a few shots before you commit.
+
+1. Select the HEIC files, right-click and Open With > Preview
+2. Show the thumbnail sidebar (View > Thumbnails)
+3. Drag the thumbnails into the order you want, delete the ones you don't
+4. Select all of them in the sidebar
+5. File > Print, then click the PDF dropdown at the bottom left and choose Save as PDF
+
+For a single photo as its own PDF, it's shorter: File > Export, then pick PDF from the Format menu.
+
+**Where it breaks:** Preview gets sluggish somewhere around a couple of hundred images, and it's fiddly with a large selection. It also has the classic trap where File > Save overwrites the original. Use Export.
+
+## Method 3: the Print dialog (from anywhere)
+
+Any Mac app that can print can write a PDF, which includes Photos. Select your images, hit Cmd+P, then use the PDF dropdown in the bottom left of the print sheet and choose Save as PDF.
+
+This is the one to reach for when the photos live in the Photos app rather than in a folder, because you skip exporting them first.
+
+You also get real page size control here, which Quick Actions doesn't give you. Set the paper size in the print sheet and the photos get laid out on A4 or US Letter properly.
+
+## Method 4: the Terminal (one PDF per photo, scriptable)
+
+`sips` is already installed on every Mac. For a single file:
+
+```bash
+sips -s format pdf photo.heic --out photo.pdf
+```
+
+For a whole folder:
+
+```bash
+for f in *.heic; do sips -s format pdf "$f" --out "${f%.heic}.pdf"; done
+```
+
+That gives you one single-page PDF per photo. `sips` has no merge, so if you want one document out the other end, use Quick Actions instead.
+
+Worth knowing: the output is often smaller than the input. A 26MB HEIC from the macOS wallpaper set came out as an 8.8MB PDF in testing. That surprises people who expect PDFs to bloat.
+
+**Where it breaks:** no quality flag that works reliably for PDF output, no page sizing, and it processes one file at a time so a big folder takes a while.
+
+## Method 5: Picmal (both jobs, with the knobs)
+
+I built [Picmal](https://picmal.app) because the free tools each do one half of this and neither does it with any control. It handles both jobs, and which one you get depends on which tool you open.
+
+**Images to PDF** builds one multi-page document from a whole selection. Drag the pages into order in the list, pick a page size (fit to image, A4, US Letter, or a custom size in millimetres), set the quality anywhere from 40 to 100%, and add an open password if the thing is going in an email. Photos get uprighted from their EXIF orientation, so nothing lands sideways.
+
+**Convert** goes the other way: drop in HEIC files, pick PDF as the output, and each one comes out as its own single-page PDF. Same as the `sips` loop, minus the Terminal.
+
+Everything runs on your Mac. No upload, no account. $29 one-time.
+
+If you're doing this once, use Quick Actions. It's free and it's already there.
+
+## Side-by-side
+
+| Method | One PDF or many? | Page size | Quality control | Reorder pages | Price |
+| --- | --- | --- | --- | --- | --- |
+| Quick Actions | One document | No | No | No | Free |
+| Preview | Either | Via Print | Basic | Yes | Free |
+| Print dialog | One document | Yes | Basic | No | Free |
+| Terminal (sips) | One per photo | No | No | N/A | Free |
+| Picmal | Either | Yes | 40-100% | Yes | $29 |
+
+## Troubleshooting
+
+### The pages are in the wrong order
+
+Quick Actions uses Finder's current sort order, not your click order. Sort the folder by name first. Photos straight off an iPhone usually sort correctly by name already, since the filenames are sequential.
+
+### The photos came out rotated
+
+That's the EXIF orientation flag being ignored. Open the PDF in Preview and rotate the pages, or rotate the originals before you convert.
+
+### The PDF is enormous
+
+Check what you fed it. A modern iPhone shoots 12 megapixels and a set of 40 of those makes a large document no matter what wraps them. Resize the images first, or drop the quality setting if your tool has one.
+
+### My location data is gone
+
+Expected. PDF doesn't carry photo EXIF the way JPG does. Keep the HEIC originals, they're small.
+
+## The short version
+
+Right-click, Quick Actions, Create PDF. That's the answer for most people, and it's free.
+
+Reach past it when you need the pages in a specific order (Preview), a real paper size (the Print dialog), one file per photo (`sips`), or a password and a quality setting (Picmal).
+
+## Related guides
+
+- [How to Convert HEIC to JPG on Mac](/blog/how-to-convert-heic-to-jpg-mac) — six free methods, for when JPG is what you actually needed
+- [How to Batch Convert HEIC Photos on Mac](/blog/batch-convert-images-mac) — a whole camera roll in one pass
+- [How to Convert HEIC to PNG on Mac](/blog/convert-heic-to-png-mac) — for transparency and screenshots
+- [Combine images into a PDF on Mac](/images-to-pdf-mac) — the same job for JPG and PNG, not just HEIC
+- [HEIC converter for Mac](/heic-converter-mac) — what Picmal does, if you've already decided

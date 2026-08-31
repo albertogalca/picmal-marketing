@@ -13,6 +13,7 @@ import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import { isConversionIndexed } from "../data/conversions";
 
 const title = "Picmal: The HEIC converter for Mac";
 const description =
@@ -22,7 +23,7 @@ const faqs = [
   {
     question: "How does Picmal convert HEIC to JPG?",
     answer:
-      "Drag your HEIC photos in from Finder or Photos, choose JPG as the output format, and click Convert. One photo or a whole folder at once, and it all happens on your Mac. If you want the free built-in ways too, see the guide on how to convert HEIC to JPG on Mac.",
+      "Drag your HEIC photos in from Finder or Photos, choose JPG as the output format, and click Convert. One photo or a whole folder at once, and it all happens on your Mac. If you want the free built-in ways too, the <a class=\"link\" href=\"/blog/how-to-convert-heic-to-jpg-mac\">guide on how to convert HEIC to JPG on Mac</a> walks through all six.",
   },
   {
     question: "What is HEIC and why do I need to convert it?",
@@ -32,7 +33,7 @@ const faqs = [
   {
     question: "What formats can I convert HEIC to?",
     answer:
-      "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF, DNG, and any other image format you need.",
+      "Picmal converts HEIC to JPG, PNG, WebP, AVIF, TIFF, GIF and PDF, plus most other image formats. PDF works two ways: convert gives you one PDF per photo, and the Images to PDF tool combines a whole selection into a single multi-page document.",
   },
   {
     question: "Can I batch convert all my iPhone photos at once?",
@@ -116,7 +117,15 @@ const faqSchema = {
             class="link"
             href="/blog/how-to-convert-heic-to-jpg-mac"
             >how to convert HEIC to JPG on Mac</a
-          >. Going the other way to save disk space? See <a
+          >. Got a whole camera roll to get through? Read <a
+            class="link"
+            href="/blog/batch-convert-images-mac"
+            >how to batch convert HEIC photos on Mac</a
+          >. Need a document instead of photos? <a
+            class="link"
+            href="/blog/convert-heic-to-pdf-mac"
+            >Converting HEIC to PDF on Mac</a
+          > covers both ways round. Going the other way to save disk space? See <a
             class="link"
             href="/blog/reduce-photo-library-size-mac"
             >how to free up storage in your Photos library</a
@@ -132,10 +141,13 @@ const faqSchema = {
           "heic-to-avif",
           "heic-to-tiff",
           "heic-to-gif",
-        ].map((slug) => ({
-          href: `/convert/${slug}`,
-          label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
-        }))}
+        ]
+          // Don't link to noindexed pairs (same rule as getRelatedConversions).
+          .filter(isConversionIndexed)
+          .map((slug) => ({
+            href: `/convert/${slug}`,
+            label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
+          }))}
       />
     </Section>
 

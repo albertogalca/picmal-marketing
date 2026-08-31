@@ -82,7 +82,7 @@ const fromCompress = compressions.find((c) => c.format === conversion.from);
 const toCompress = compressions.find((c) => c.format === conversion.to);
 
 const title =
-  conversion.metaTitle || `Picmal: Convert ${from.name} to ${to.name} on Mac`;
+  conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac, offline and in batches`;
 const description = conversion.metaDescription;
 
 // Low-demand templated pairs are de-indexed to concentrate site quality on winners.
@@ -115,6 +115,7 @@ const faqSchema = {
     <Header />
 
     <ComparisonHero
+      pricingHref="/#pricing"
       title={`Convert ${from.name} to ${to.name} on Mac`}
       subhead={conversion.whyConvert}
       buyEvent={`buy_clicked_convert_${conversion.slug}`}

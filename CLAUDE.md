@@ -1,5 +1,10 @@
 # Picmal Marketing Website
 
+@PRODUCT.md
+
+Brand, audience and copy rules: PRODUCT.md here, and the company layer at
+~/Projects/cantimplora/studio/ which loads in every session. Do not restate either one below.
+
 Marketing website for Picmal (a macOS image/video/audio/PDF conversion &
 compression app), built with Astro 5. Programmatic SEO conversion pages, MDX
 blog/changelog, Stripe affiliate program. Structure, deps, and commands are

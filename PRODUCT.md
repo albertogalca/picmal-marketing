@@ -1,5 +1,8 @@
 # Product
 
+Inherits ~/Projects/cantimplora/studio/ (values, voice, taste, standard, brand). Only what is
+specific to Picmal lives here.
+
 ## Register
 
 brand

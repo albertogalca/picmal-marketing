@@ -9,12 +9,12 @@ import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H2 from "../components/H2.astro";
 
-const title = "Picmal: About Cantimplora Studio, the studio behind the app";
+const title = "Picmal: About Alberto Gallego, the person behind the app";
 const description =
-  "Picmal is made by Cantimplora Studio, a one-person Mac software studio run by Alberto Gallego. Who builds it, why it works the way it does, and how to get in touch.";
+  "Picmal is made by Alberto Gallego, one person, in Córdoba, Spain. Who builds it, why it works the way it does, and how to get in touch.";
 
 // The founder letter lives on the home page and stays there. This page covers
-// the studio and the principles, so the two don't compete on the same words.
+// the person and the principles, so the two don't compete on the same words.
 const principles = [
   {
     title: "Everything runs on your Mac",
@@ -65,10 +65,10 @@ const principles = [
         <SectionHeading
           level={1}
           align="left"
-          sublead="Picmal is made by Cantimplora Studio, which is one person: me."
+          sublead="Picmal is made by one person. That's me."
           subleadClass="max-w-xl"
         >
-          About Cantimplora Studio
+          About Alberto Gallego
         </SectionHeading>
 
         <div class="space-y-5">
@@ -98,7 +98,7 @@ const principles = [
       </Section>
 
       <Section width="narrow">
-        <H2 class="mb-8">What the studio believes</H2>
+        <H2 class="mb-8">What I believe</H2>
         <div class="grid sm:grid-cols-2 gap-4">
           {
             principles.map((p) => (

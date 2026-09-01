@@ -26,6 +26,19 @@ export function getStaticPaths() {
 }
 
 const { conversion } = Astro.props;
+
+// Blog post cross-links for audio conversion pages
+const blogGuides: Record<string, { title: string; slug: string }> = {
+  "flac-to-alac": {
+    title: "How to Convert FLAC to ALAC on Mac (4 Free Methods)",
+    slug: "convert-flac-to-alac-mac",
+  },
+  "wav-to-mp3": {
+    title: "How to Convert WAV to MP3 on Mac (3 Free Methods)",
+    slug: "convert-wav-to-mp3-mac",
+  },
+};
+const blogGuide = blogGuides[conversion.slug];
 const from = audioFormats[conversion.from];
 const to = audioFormats[conversion.to];
 const related = getRelatedAudioConversions(conversion.slug, 6);
@@ -107,6 +120,28 @@ const faqSchema = {
         <FAQ faqs={conversion.faqs} />
       </Card>
     </Section>
+
+    {
+      blogGuide && (
+        <Section width="narrow">
+          <Card>
+            <SectionHeading
+              align="left"
+              class="mb-6"
+              sublead="Step-by-step instructions with the free methods alongside Picmal."
+            >
+              In-depth guide
+            </SectionHeading>
+            <a
+              href={`/blog/${blogGuide.slug}`}
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+            >
+              Read: {blogGuide.title} &rarr;
+            </a>
+          </Card>
+        </Section>
+      )
+    }
 
     <!-- Related audio conversions -->
     <Section>

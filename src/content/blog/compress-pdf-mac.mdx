@@ -1,0 +1,230 @@
+---
+title: "How to Compress a PDF on Mac (4 Free Methods)"
+description: "Reduce PDF size on your Mac without an upload. Preview's Quartz filter, a custom ColorSync filter, an Automator batch action, Ghostscript, and a batch app."
+pubDate: "2026-09-01"
+category: "Tutorial"
+tags: ["PDF", "Compression", "Mac", "Preview", "Tutorial"]
+faqs:
+  - question: "How do I compress a PDF on a Mac for free?"
+    answer: "Open the PDF in Preview, then File, Export, and pick Reduce File Size from the Quartz Filter menu before saving. It takes about ten seconds and nothing is uploaded. The catch is that Apple's filter is aggressive: it halves the resolution of every image and caps the longest side at 512 pixels, so photos and scans often come out unreadable. If that happens, make your own filter in ColorSync Utility with sensible numbers and use that instead."
+  - question: "Why does Preview's Reduce File Size make my PDF blurry?"
+    answer: "Because of what the filter is set to. Apple's Reduce File Size scales images to 50% and limits the longest side to 512 pixels, which is smaller than a phone screenshot. On a scanned page the picture is the page, so the whole document turns to mush. Duplicate the filter in ColorSync Utility, set the max to something like 1280 and the JPEG quality to around 0.75, and the same machinery gives you a readable file."
+  - question: "How do I make a PDF smaller without losing quality?"
+    answer: "Something has to give, because almost all the size in a big PDF is image data. The honest version is losing as little as possible: re-encode the embedded photos and leave the text, fonts, links and vector graphics alone. Preview's Save images as JPEG and Optimize images for screen checkboxes do a mild version of this, a custom Quartz filter does a controlled version, and Picmal does it while promising the output is never larger than what you started with."
+  - question: "How do I compress a folder of PDFs at once on a Mac?"
+    answer: "Build an Automator Quick Action with the Apply Quartz Filter to PDF Documents action and it appears in the Finder right-click menu for any number of selected PDFs. Be careful, that action rewrites files in place, so put a Copy Finder Items action before it. A Ghostscript for loop in Terminal or a batch app like Picmal will also do a folder in one pass."
+  - question: "Does compressing a PDF break the text or the links?"
+    answer: "It depends on the method. Filters and tools that only re-encode the embedded images leave the text selectable and searchable. Anything that rebuilds the document from scratch, which is what Ghostscript does and what a hard squeeze on a scan requires, can drop links, bookmarks and form fields. Check a compressed contract before you send it."
+  - question: "How small can a PDF get?"
+    answer: "It depends entirely on what is inside. A web article saved as PDF or a slide export usually drops 60 to 80%, because the photos in it were stored losslessly. A 25 MB scan can land near 2 MB. A PDF that really is text and fonts has almost nothing to remove, and a good tool will tell you so rather than writing you a worse copy of the same file."
+---
+
+You have a PDF that will not go through. The email bounces at 25 MB, the upload form caps at 10, the portal says "file too large" and offers no other help. The document itself is fine, it is just fat.
+
+Every Mac can already fix this. Nothing needs to be uploaded to a website, which matters, because the PDF that will not fit is usually a contract, a passport scan, or a portfolio.
+
+**Quick answer:** Open the file in **Preview**, then **File → Export**, pick **Reduce File Size** in the **Quartz Filter** menu, and save. It takes ten seconds. If the result looks like a fax from 1994, that is expected, and Method 2 is the fix.
+
+## Pick the method that matches the job
+
+| Situation | Use |
+| --------- | --- |
+| One PDF, needs to be smaller now | [Preview](#method-1-preview-free-built-in) |
+| Preview turned it to mush | [A custom Quartz filter](#method-2-a-custom-quartz-filter-free-built-in-keeps-the-quality) |
+| A folder of PDFs, no Terminal | [An Automator Quick Action](#method-3-an-automator-quick-action-free-built-in-batch) |
+| You want to name the exact DPI | [Ghostscript](#method-4-ghostscript-free-the-most-control) |
+| Hundreds of files, text must stay selectable | [Picmal](#method-5-picmal-batch-text-stays-text) |
+
+## Method 1: Preview (free, built in)
+
+Already on your Mac, and the answer for most people most of the time.
+
+### Steps:
+
+1. Open the PDF in **Preview**
+2. **File → Export…**
+3. In the **Quartz Filter** pop-up menu, choose **Reduce File Size**
+4. Name the file, pick a destination, click **Save**
+
+Save it under a new name. You want the original when this goes wrong.
+
+The same Export sheet has three checkboxes worth knowing about: **Create Linearized PDF**, **Optimize images for screen**, and **Save images as JPEG**. Ticking the last two is a much gentler squeeze than the Reduce File Size filter, and on an image-heavy document it often gets you most of the way with nothing visibly ruined. Try those first if the file only needs to lose a third of its weight.
+
+### The catch:
+
+Apple's Reduce File Size filter is set for 2005. It scales every image to 50% and caps the longest side at **512 pixels**, which is narrower than a phone screenshot. On a photo-heavy report it looks soft. On a scanned page, where the picture *is* the page, the text stops being readable.
+
+Real numbers from a demo by MacMost: a 6.8 MB PDF came out at 55 KB. That is a 99% saving, and the file was useless.
+
+## Method 2: a custom Quartz filter (free, built in, keeps the quality)
+
+The same machinery, with numbers you choose. This is the classic fix, it lives in an app you already have, and once it is made it shows up in Preview's Quartz Filter menu forever.
+
+### Steps:
+
+1. Open **ColorSync Utility** (Applications → Utilities)
+2. Click **Filters** in the toolbar
+3. Find **Reduce File Size**, click the arrow-in-a-circle button on its right, choose **Duplicate Filter**
+4. Rename the copy something like "Reduce File Size (readable)"
+5. Expand **Image Sampling** and set **Scale** to around 75%, **Max** to 1280 pixels
+6. Expand **Image Compression** and set **Quality** to around 0.75
+7. Close ColorSync Utility
+
+Now open the PDF in Preview, **File → Export**, and your filter is in the Quartz Filter menu next to Apple's.
+
+For a scan you want to stay legible, push **Max** higher, 2048 or more. Text survives resolution loss far worse than a photograph does.
+
+### The catch:
+
+Five minutes of setup, and the settings are trial and error the first time. Filters are saved to `~/Library/Filters` as `.qfilter` files, so if you would rather edit the numbers as text than fight the sliders, they are plain XML.
+
+<!-- VERIFY: exact ColorSync Utility control labels on macOS 27. Confirmed as "Image Sampling" / "Image Compression" with Scale, Max and Quality in third-party writeups; Apple's own doc only covers applying a filter, not duplicating one. Worth one look in the app. -->
+
+## Method 3: an Automator Quick Action (free, built in, batch)
+
+Preview does one file at a time. Automator turns your filter into a right-click menu item that takes as many PDFs as you can select.
+
+### Steps:
+
+1. Open **Automator** (it is in Applications)
+2. **File → New**, choose **Quick Action**
+3. Set **Workflow receives current** to **PDF files**, and **in** to **Finder**
+4. Add a **Copy Finder Items** action first, pointing at a folder like Desktop
+5. Search the action list for "quartz", drag in **Apply Quartz Filter to PDF Documents**
+6. Pick your custom filter from its pop-up menu
+7. Save it as something like "Compress PDF"
+
+Select any number of PDFs in Finder, right-click, and it is under **Quick Actions**.
+
+### The catch:
+
+**Apply Quartz Filter to PDF Documents rewrites the file in place.** No copy, no undo, no "(compressed)" suffix. That is why step 4 exists, and skipping it is how people lose originals. Automator does warn you when you drag the action in and offers to add the copy step for you. Say yes.
+
+## Method 4: Ghostscript (free, the most control)
+
+For when you want to say "150 dpi" and have something listen. Install with [Homebrew](https://brew.sh):
+
+```bash
+brew install ghostscript
+```
+
+### The standard compression pass:
+
+```bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
+   -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf big.pdf
+```
+
+`-dPDFSETTINGS` is the only lever most people need. It is a bundle of settings, and the part that matters is the resolution it downsamples color images to:
+
+| Preset | Images downsampled to | Use for |
+| ------ | --------------------- | ------- |
+| `/screen` | 72 dpi | Smallest file, screen only |
+| `/ebook` | 150 dpi | The sensible default |
+| `/printer` | 300 dpi | Something that gets printed |
+| `/prepress` | 300 dpi | Print production, color preserved |
+
+### Set the resolution yourself:
+
+```bash
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
+   -dDownsampleColorImages=true -dColorImageResolution=200 \
+   -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf big.pdf
+```
+
+### Every PDF in a folder:
+
+```bash
+for f in *.pdf; do
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
+     -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${f%.pdf}-small.pdf" "$f"
+done
+```
+
+### The catch:
+
+Ghostscript rebuilds the document rather than editing it. Text usually stays text, but bookmarks, form fields and some annotations can go missing, and complex layouts occasionally shift. Check the output before you send a signed anything. It is also the Terminal, which rules it out for a lot of people.
+
+## Method 5: Picmal (batch, text stays text)
+
+[Picmal](/compress/pdf) is the Mac app I build. Drag PDFs in, pick a quality, click once.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Switch to the **Compress** tab
+3. Drag in your PDFs, or a whole folder
+4. Pick a preset, or set the quality yourself
+5. Click **Compress**
+
+### Why people reach for it:
+
+- It re-encodes only the images inside the document. Text stays selectable, links keep working, vector graphics stay sharp
+- The result is never larger than the original. If a PDF cannot shrink, the Saving column says **Already optimized** and your file is left byte-for-byte alone
+- Scans get their embedded images downsampled too, which is what takes a 25 MB lease to roughly 2 MB
+- That harder squeeze rebuilds the document, so if yours has links, bookmarks or form fields, Picmal warns you on the row instead of dropping them quietly
+- A folder of hundreds in one pass, roughly 50 PDFs in two minutes on Apple Silicon
+- Everything runs on your Mac. No upload, no account, no file size cap
+- Also in the Finder right-click menu, in Shortcuts, and as `picmal-cli compress`
+
+$29 once, updates included, no subscription.
+
+### Best for:
+
+Batches, scans that have to stay searchable, and not wanting to find out afterwards that the filter ate your contract.
+
+## Side-by-side comparison
+
+| Method | Batch | Quality control | Text stays selectable | Ease of use | Price |
+| ------ | ----- | --------------- | --------------------- | ----------- | ----- |
+| Preview | No | None | Yes | Very easy | Free |
+| Custom Quartz filter | No | Good | Yes | Moderate setup | Free |
+| Automator | Yes | Good | Yes | Moderate setup | Free |
+| Ghostscript | Yes | Exact | Usually | Technical | Free |
+| Picmal | Yes | Good | Yes | Very easy | $29 |
+
+## What actually makes a PDF big
+
+Worth thirty seconds, because it explains why one 40 MB file drops to 3 MB and another refuses to move at all.
+
+**Embedded images at print resolution.** This is nearly always the whole story. A full A4 page of photo at 300 dpi is about 2480 by 3508 pixels, and if it was stored losslessly that single page can be 20 MB or more. As a JPEG at reasonable quality the same page is under 1 MB. Browsers store photos losslessly when they print to PDF, so a three-page web article can carry one photo that is 97% of the file.
+
+**Scanned pages.** A scan has no text in it at all, only a picture of text. The picture is the page, so the only lever is resolution and JPEG quality, and pushing either too far is exactly what makes a scan unreadable.
+
+**Fonts.** Embedded font subsets are tens to a few hundred KB. Real, but rarely the problem. If your PDF is 400 KB, this is why, and no compressor is going to help.
+
+**Everything nobody looks at.** Attachments, revision history, page thumbnails, unused objects from whatever app exported it.
+
+So: the methods above are all doing the same thing to the same thing. They re-encode the pictures. Apple's Reduce File Size does it at 512 pixels, which is why your scan turned to mush. A custom filter and Ghostscript do it at a number you pick. Picmal does it while leaving the text layer untouched, which is why a compressed contract is still searchable.
+
+If a PDF really is mostly text, none of this will help, and any tool promising otherwise is about to hand you a rasterized copy of a perfectly good document.
+
+## Common problems
+
+**The compressed file is bigger than the original.** This happens with re-encoding tools when the source images were already compressed hard. Keep the original. It is also the reason Picmal compares the two and keeps the smaller one.
+
+**The text is no longer selectable.** Something rasterized your pages, turning real text into a picture of text. Older PDF compressors did this by default, and printing to PDF from some apps does it too. Go back to the original and use a method that only touches the embedded images.
+
+**Preview's Quartz Filter menu is empty or only has Apple's filters.** Filters live in `~/Library/Filters`. If you made one in ColorSync Utility and it is not showing, quit and reopen Preview.
+
+**The scan is still 30 MB.** Check the scanner, not the compressor. Many default to 600 dpi in color for documents that only ever needed 300 dpi grayscale. Rescanning at sane settings beats compressing a bad scan.
+
+**"Print to PDF" made it larger.** Printing to PDF re-renders the document and can inflate it rather than shrink it, depending on the app. It is not a compression method.
+
+<!-- VERIFY: the print-to-PDF-makes-it-bigger claim is widely reported but I could not find a clean authoritative source. Soften or cut if you would rather not assert it. -->
+
+## The short version
+
+- **One PDF, right now:** Preview, File → Export, Quartz Filter → Reduce File Size
+- **Preview ruined it:** duplicate the filter in ColorSync Utility, Max 1280, Quality 0.75
+- **A folder, no Terminal:** an Automator Quick Action, with Copy Finder Items in front of it
+- **You want to name the DPI:** `gs -dPDFSETTINGS=/ebook`
+- **Hundreds of files, text stays text:** [Picmal](/compress/pdf)
+
+## Related guides
+
+- **Want the dedicated tool?** [Compress PDF on Mac](/compress/pdf) covers the app side, and the docs explain [how PDF compression works](/docs/image-compression#how-pdf-compression-works) and the never-bigger-than-the-original rule.
+- **Splitting, merging or reordering instead of shrinking?** The [PDF tools](/docs/pdf-tools) combine, split, and reorder pages locally.
+- **Making the PDF in the first place?** [How to convert HEIC to PDF on Mac](/blog/convert-heic-to-pdf-mac) and [combine images into a PDF](/images-to-pdf-mac) cover the way in.
+- **The images are the real problem?** [How to reduce image file size on Mac](/blog/reduce-image-file-size-mac) handles the photos before they ever reach a document.
+- **Same job, different file?** [How to compress video on Mac](/blog/how-to-compress-video-mac) and [compress audio on Mac](/compress-audio-mac).

@@ -1,0 +1,198 @@
+---
+title: "How to Convert WAV to MP3 on Mac (3 Free Methods)"
+description: "Turn a WAV into an MP3 on your Mac with the Music app, ffmpeg or Audacity, plus a batch app for a whole folder. No upload, no website. Tested on macOS 27."
+pubDate: "2026-09-01"
+category: "Tutorial"
+tags: ["Audio", "WAV", "MP3", "Mac", "Tutorial"]
+faqs:
+  - question: "How do I convert WAV to MP3 on a Mac for free?"
+    answer: "Use the Music app, it is already installed. Open Music, Settings, Files, Import Settings, set Import Using to MP3 Encoder, click OK. Drag the WAV into your library, select it, then File, Convert, Create MP3 Version. The MP3 appears next to the original, and File, Show in Finder tells you where it landed."
+  - question: "Can afconvert convert WAV to MP3 in Terminal?"
+    answer: "No. Core Audio, which afconvert is built on, ships with no MP3 encoder. afconvert reads MP3 fine and writes AAC, ALAC, AIFF and WAV, but it cannot write an MP3 no matter which flags you pass. Use ffmpeg with libmp3lame instead, or the Music app."
+  - question: "Does converting WAV to MP3 lose quality?"
+    answer: "Yes. WAV is uncompressed PCM and MP3 throws data away to get small. At 256 or 320 kbps almost nobody hears the difference on normal gear, at 128 kbps most people do on headphones. The loss is permanent, so keep the WAV if the file is a master."
+  - question: "What bitrate should I use for MP3?"
+    answer: "For music, 192 to 256 kbps for everyday listening and 320 kbps if it is going to a client, a store, or an upload form. For speech, 96 to 128 kbps mono is plenty and halves the size again. Variable bitrate at quality 2 in ffmpeg lands around 190 kbps and usually beats a fixed 192."
+  - question: "How much smaller is an MP3 than a WAV?"
+    answer: "A 3 minute stereo WAV at 16 bit and 44.1 kHz is about 31 MB. The same audio is about 7 MB at 320 kbps, about 4 MB at 192 kbps, and about 3 MB at 128 kbps. So roughly a quarter of the size at the top bitrate, roughly a tenth at the bottom."
+  - question: "How do I convert a whole folder of WAV files at once?"
+    answer: "Two practical routes. An ffmpeg loop in Terminal, or a batch app like Picmal where you drag the folder in and click once. The Music app converts a selection at a time inside your library, and Audacity handles one file per export unless you set up its Macros feature."
+---
+
+You recorded something and it came out as a WAV. Now it is 400 MB, the upload form has a 25 MB limit, and the person waiting for it does not care about bit depth.
+
+Your Mac converts WAV to MP3 already, with no download and no website in the middle. Three free ways, and one paid one for when it is a folder of two hundred files rather than one.
+
+**Quick answer:** Open the **Music** app, go to **Music → Settings → Files → Import Settings**, set **Import Using** to **MP3 Encoder**, click **OK**. Drag your WAV into the library, select it, then **File → Convert → Create MP3 Version**.
+
+## Pick the method that matches the job
+
+| Situation | Use |
+| --------- | --- |
+| One file, nothing installed | [the Music app](#method-1-the-music-app-free-built-in) |
+| You want an exact bitrate | [ffmpeg](#method-2-ffmpeg-free-and-exact) |
+| You want to trim or normalize first | [Audacity](#method-3-audacity-free-with-a-window) |
+| A folder of hundreds, no Terminal | [Picmal](#method-4-picmal-a-folder-at-a-time-one-click) |
+| You were about to try `afconvert` | [read this first](#common-problems) |
+
+## Method 1: the Music app (free, built in)
+
+Apple's Music app still carries the old iTunes encoder, and it reads WAV without complaint.
+
+### Steps:
+
+1. Open **Music**, then **Music → Settings → Files → Import Settings…**
+2. Set **Import Using** to **MP3 Encoder**
+3. Under **Setting**, pick a quality, or choose **Custom…** to go up to 320 kbps <!-- VERIFY: the Setting dropdown offers Good 128 / High 160 / Higher 192 / Custom on macOS 27; wording taken from long-standing iTunes behaviour, not re-checked in 27 -->
+4. Click **OK**, then **OK** again
+5. Drag the WAV from Finder into your Music library
+6. Select the track, then **File → Convert → Create MP3 Version**
+
+The MP3 shows up next to the original in your library. To find the actual file, select it and choose **File → Show in Finder**.
+
+### The catch:
+
+Everything happens inside your library, so a loose WAV has to be imported before it can be converted, and afterwards you have two entries cluttering your music. The bitrate is a global setting, not a per-file choice, so changing your mind means going back into Import Settings.
+
+WAV files usually carry no tags either, so the MP3 comes out named after the filename with no artist and no album art.
+
+## Method 2: ffmpeg (free, and exact)
+
+When you need a specific bitrate, or the same conversion run over sixty files, this is the shortest path. Install it with [Homebrew](https://brew.sh):
+
+```bash
+brew install ffmpeg
+```
+
+### A good default:
+
+```bash
+ffmpeg -i input.wav -c:a libmp3lame -q:a 2 output.mp3
+```
+
+`-q:a 2` is variable bitrate, which spends more bits on the busy parts and less on the quiet ones. It averages around 190 kbps and sounds better than a fixed 192.
+
+### A fixed bitrate, when something demands one:
+
+```bash
+ffmpeg -i input.wav -c:a libmp3lame -b:a 320k output.mp3
+```
+
+### Speech, half the size again:
+
+```bash
+ffmpeg -i input.wav -c:a libmp3lame -b:a 128k -ac 1 output.mp3
+```
+
+`-ac 1` collapses it to mono. On an interview or a voice memo nobody notices, and the file halves.
+
+### Every WAV in a folder:
+
+```bash
+for f in *.wav; do ffmpeg -i "$f" -c:a libmp3lame -q:a 2 "${f%.*}.mp3"; done
+```
+
+### The catch:
+
+It is the Terminal, and `libmp3lame` is the part people forget. Leave `-c:a` off and ffmpeg still writes an MP3 (it picks the encoder from the extension), but you have given up the control you came for.
+
+## Method 3: Audacity (free, with a window)
+
+Reach for [Audacity](https://www.audacityteam.org) when the WAV needs work before it becomes an MP3: a silent intro trimmed off, a quiet recording brought up, a cough cut out.
+
+### Steps:
+
+1. Open Audacity, then **File → Open** and pick your WAV
+2. Edit if you need to, trim the ends, **Effect → Volume and Compression → Normalize**
+3. **File → Export Audio…**
+4. Set **Format** to **MP3 Files**
+5. Choose **Bit Rate Mode** (Preset, Variable, Average or Constant) and the quality
+6. Click **Export**
+
+MP3 export works out of the box. Audacity has bundled the LAME encoder since version 2.3.2, so the separate LAME download that every old tutorial insists on is no longer a thing on Mac.
+
+### The catch:
+
+It is a full audio editor for a two second job, and it opens one file at a time. Its Macros feature can batch a folder, but setting that up takes longer than learning the ffmpeg line above.
+
+## Method 4: Picmal (a folder at a time, one click)
+
+[Picmal](/convert/audio/wav-to-mp3) is the Mac app I build. Drag WAVs in, set the output to MP3, click once.
+
+### Steps:
+
+1. Download Picmal from [picmal.app](https://picmal.app)
+2. Drag in your WAV files, or a whole folder
+3. Set the output format to **MP3**
+4. Open the audio options to pick a bitrate, VBR, ABR or CBR, and force mono if it is speech
+5. Click **Convert**
+
+### Why people reach for it:
+
+- A folder of hundreds in one pass, each saved as its own MP3
+- Bitrate mode, sample rate, bit depth and force mono in one panel instead of a global preference
+- It can pull `cover.jpg` out of the source folder and write it into the MP3, which is worth knowing because a WAV has nowhere to store artwork in the first place
+- Runs entirely on your Mac, nothing uploaded, no account, no file size cap
+- Sits in the Finder right-click menu, in Shortcuts, and in Raycast, and there is a CLI if you want one
+
+$29 once, updates included, no subscription.
+
+### Best for:
+
+A folder rather than a file, or wanting per-job bitrate control without a Terminal window open.
+
+## Side-by-side comparison
+
+| Method | Batch | Bitrate control | Edit first | Ease of use | Price |
+| ------ | ----- | --------------- | ---------- | ----------- | ----- |
+| Music app | Selection at a time | Global setting | No | Very Easy | Free |
+| ffmpeg | Yes | Exact | No | Technical | Free |
+| Audacity | With Macros | Full | Yes | Moderate | Free |
+| Picmal | Yes | Per job | Trim and merge | Very Easy | $29 |
+
+## Why the file gets so much smaller
+
+A WAV holds raw PCM samples. Nothing is compressed, nothing is modelled, the numbers off the converter are simply written to disk. CD standard stereo, 16 bit at 44.1 kHz, works out at 1,411 kbps, and the size is pure arithmetic.
+
+A 3 minute stereo WAV is about **31 MB**. The same three minutes as MP3:
+
+| Bitrate | Size | Sounds like |
+| ------- | ---- | ----------- |
+| 320 kbps | about 7 MB | indistinguishable to most ears |
+| 256 kbps | about 6 MB | fine for anything you listen to |
+| 192 kbps | about 4 MB | the everyday sweet spot |
+| 128 kbps | about 3 MB | audible on decent headphones |
+
+So the top MP3 bitrate is roughly a quarter of the WAV, and the bottom one roughly a tenth.
+
+**Which bitrate to pick.** For music, 192 to 256 kbps covers everyday listening, and 320 is for when it goes to a client, a store, or someone who will complain. For speech, a podcast, an interview, a lecture, 96 to 128 kbps in mono is plenty, and mono halves the file before the bitrate does anything.
+
+**Keep the WAV.** MP3 discards audio it decides you cannot hear, and that decision is permanent. Convert the MP3 back to WAV and you get a 31 MB file that sounds exactly like the 4 MB one, because the missing data is gone. So the WAV is the master and the MP3 is a copy for sending. Archive the master somewhere, or shrink it to FLAC, which is lossless and roughly half the size.
+
+## Common problems
+
+**`afconvert` refuses to write an MP3.** It is not your flags. macOS Core Audio ships with no MP3 encoder at all, so `afconvert` can read MP3 and write AAC, ALAC, AIFF and WAV, and never the one you want. Every Terminal answer that tells you otherwise is wrong. Use ffmpeg.
+
+**Shortcuts looks like it should do this.** The **Encode Media** action has an Audio Only switch, which raises hopes, and then offers M4A or AIFF. No MP3. AIFF is uncompressed like WAV, so it solves nothing. A Run Shell Script action calling ffmpeg is the way to get a Shortcut that actually outputs MP3.
+
+**The Music app will not import the WAV.** Usually a 24 bit or 32 bit float file at 96 kHz out of a DAW. Export a 16 bit 44.1 kHz version first, or skip Music and use ffmpeg, which does not care.
+
+**The MP3 has no title or artist.** WAV has no proper tag standard, so there was nothing to carry over. Whatever tool you used had to invent the name from the filename. Fix the tags after the conversion, in Music or in the app you keep your library in.
+
+**The MP3 came out bigger than expected.** You probably converted at 320 kbps out of caution. Drop to 192 and listen once. If you cannot tell, you just saved half.
+
+## The short version
+
+- **One file, nothing installed:** Music → Settings → Files → Import Settings → MP3 Encoder, then File → Convert → Create MP3 Version
+- **Exact control:** `ffmpeg -i input.wav -c:a libmp3lame -q:a 2 output.mp3`
+- **Trim or normalize first:** Audacity, File → Export Audio, Format MP3
+- **Do not bother with:** `afconvert` and the Shortcuts Encode Media action, neither writes MP3
+- **A folder of hundreds:** [Picmal](/convert/audio/wav-to-mp3)
+
+## Related guides
+
+- **Other formats to sort out too?** [How to convert audio on Mac](/blog/convert-audio-mac) covers M4A, FLAC, OGG and WAV in both directions, and the [audio converter for Mac](/audio-converter-mac) does a folder in one pass.
+- **Going the other way?** [MP3 to WAV](/convert/audio/mp3-to-wav) is the conversion for getting a file into a DAW, though it will not restore what the MP3 dropped.
+- **The WAV came out of a video?** [How to extract audio from a video on Mac](/blog/how-to-extract-audio-from-video-mac) covers QuickTime, a Finder Quick Action, VLC and ffmpeg.
+- **Keeping the master, but smaller?** [How to convert FLAC to ALAC on Mac](/blog/convert-flac-to-alac-mac) covers lossless libraries, tags and album art included.
+- **The MP3 is still too big?** [Compress audio on Mac](/compress-audio-mac) takes it down further without a re-listen test.

@@ -36,6 +36,15 @@ const relatedConversions = conversions
   .filter((c) => c.from === compression.format)
   .slice(0, 4);
 
+// Blog post cross-links for compress pages
+const blogGuides: Record<string, { title: string; slug: string }> = {
+  pdf: {
+    title: "How to Compress a PDF on Mac (4 Free Methods)",
+    slug: "compress-pdf-mac",
+  },
+};
+const blogGuide = blogGuides[compression.slug];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -204,6 +213,28 @@ const faqSchema = {
         <FAQ faqs={compression.faqs} />
       </Card>
     </Section>
+
+    {
+      blogGuide && (
+        <Section width="narrow">
+          <Card>
+            <SectionHeading
+              align="left"
+              class="mb-6"
+              sublead="Step-by-step instructions with the free methods alongside Picmal."
+            >
+              In-depth guide
+            </SectionHeading>
+            <a
+              href={`/blog/${blogGuide.slug}`}
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
+            >
+              Read: {blogGuide.title} &rarr;
+            </a>
+          </Card>
+        </Section>
+      )
+    }
 
     <!-- Related Conversions -->
     {

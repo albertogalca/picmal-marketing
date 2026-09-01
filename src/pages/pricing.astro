@@ -92,7 +92,15 @@ const top = TIERS[TIERS.length - 1];
           <Paragraph class="mb-3">
             What most converters charge for, and this doesn't:
           </Paragraph>
-          <ul class="space-y-2">
+          {/* A hand-rolled &ndash; marker used to stand in for the bullet here,
+              and it was the only list on the site wearing one: everything else
+              is either the icon idiom (`flex gap-3` + an SVG check, ~20 lists
+              across /alternative/* and the pricing card) or a plain prose
+              disc. This block is prose, a lead-in sentence and four phrases
+              under it, sitting on a page that doesn't use `.prose`, so it now
+              wears the disc the reader already knows from every post and every
+              legal page. Spacing matches `.prose ul li` (0.5rem). */}
+          <ul class="list-disc pl-5 space-y-2 marker:text-text-secondary">
             {
               [
                 "Credits that run out mid-batch",
@@ -100,12 +108,7 @@ const top = TIERS[TIERS.length - 1];
                 "An account you have to make before it will touch your file",
                 "A watermark you pay to remove",
               ].map((item) => (
-                <li class="flex gap-3">
-                  <span aria-hidden="true" class="text-text-secondary">
-                    &ndash;
-                  </span>
-                  <Paragraph class="text-text-secondary">{item}</Paragraph>
-                </li>
+                <li class="text-body text-text-secondary text-pretty">{item}</li>
               ))
             }
           </ul>

@@ -42,14 +42,19 @@ const {
 
 const isIconOnly = !!icon && !text;
 
+// `small` renders ~38px tall and `normal` ~49px. The pseudo-element carries the
+// small variants up to a 44px hit area without changing what anyone sees; the
+// bleed is vertical only, so it never eats a neighbour's click.
+const HIT_AREA = "relative before:absolute before:content-['']";
+
 const sizeClasses = {
-  small: "text-small py-2 px-4 gap-1.5",
+  small: `text-small py-2 px-4 gap-1.5 ${HIT_AREA} before:inset-x-0 before:-inset-y-[3px]`,
   normal: "text-body py-3 px-6 gap-2",
 };
 
 // Icon-only buttons: square, sized to meet/approach a 44px touch target.
 const iconOnlySizeClasses = {
-  small: "p-0 w-10 h-10",
+  small: `p-0 w-10 h-10 ${HIT_AREA} before:-inset-[2px]`,
   normal: "p-0 w-12 h-12",
 };
 
@@ -61,8 +66,10 @@ const iconSizeClasses = {
 const variantClasses = {
   primary: cn(
     "text-white font-semibold rounded-lg",
-    "bg-[linear-gradient(180deg,#0A8FFF_14%,#0F5CF1_81.56%)] hover:bg-[linear-gradient(180deg,#0980E6_14%,#0D52D9_81.56%)]",
-    "dark:bg-[linear-gradient(180deg,#0A8FFF_14%,#0F5CF1_81.56%)] dark:hover:bg-[linear-gradient(180deg,#0980E6_14%,#0D52D9_81.56%)]",
+    // Stops live in @theme beside the other measured contrast pairs. The dark:
+    // copy of this line was byte-identical to the light one and emitted nothing.
+    "bg-[linear-gradient(180deg,var(--color-cta)_14%,var(--color-cta-deep)_81.56%)]",
+    "hover:bg-[linear-gradient(180deg,var(--color-cta-hover)_14%,var(--color-cta-hover-deep)_81.56%)]",
     "shadow-[0_1px_2px_rgba(0,0,0,0.12),0_5px_14px_-3px_rgba(10,114,255,0.35),inset_0_1px_0_rgba(255,255,255,0.22)]",
     "hover:shadow-[0_2px_5px_rgba(0,0,0,0.14),0_10px_22px_-4px_rgba(10,114,255,0.45),inset_0_1px_0_rgba(255,255,255,0.28)]",
     "dark:shadow-[0_1px_2px_rgba(0,0,0,0.45),0_5px_16px_-3px_rgba(59,130,246,0.5),inset_0_1px_0_rgba(255,255,255,0.18)]",

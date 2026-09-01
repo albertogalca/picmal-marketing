@@ -31,6 +31,52 @@ const head = route.head.map((entry) => {
 
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
 
+<!-- Theme sync. Docs pages do not go through BaseHead, and Starlight ships its
+     own theme system on its own localStorage key ("starlight-theme"), so until
+     now the two halves of the site were simply unrelated: choosing Light on the
+     marketing site left /docs dark, because Starlight never looked at "theme"
+     and fell back to the OS.
+
+     There are two orphaned files under src/components/starlight/ that appear to
+     do this. They are not registered anywhere and never ran, which is what kept
+     this hidden.
+
+     "theme" stays the single source of truth and holds an explicit choice only:
+     absent means the visitor has not chosen, so both halves follow the OS. This
+     writes Starlight's key, which is a derived cache, and never writes "theme"
+     on a page view. Both the key and data-theme are set, so the order this runs
+     in relative to Starlight's own inline script does not matter. -->
+<script is:inline>
+  (function () {
+    const stored = localStorage.getItem("theme");
+    const theme =
+      stored ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    localStorage.setItem("starlight-theme", theme);
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+
+    // And back the other way, so a toggle inside the docs is still in force when
+    // the reader returns to the marketing site. Delegated, because Starlight's
+    // picker is not in the DOM yet while this runs. Starlight's own "auto" means
+    // "follow the OS", which is exactly our absent-key state.
+    document.addEventListener("change", function (event) {
+      const select = event.target;
+      if (!select || !select.closest || !select.closest("starlight-theme-select")) return;
+      if (select.value === "light" || select.value === "dark") {
+        localStorage.setItem("theme", select.value);
+      } else {
+        localStorage.removeItem("theme");
+      }
+    });
+  })();
+</script>
+
 <!-- Docs pages don't go through BaseHead. This used to inline the Affonso pixel
      alone, so a buy click from /docs reached checkout with no seline_vid, no ref
      and no affonso_referral: unattributed. <Seline /> carries all three. -->

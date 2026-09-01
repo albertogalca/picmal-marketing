@@ -97,7 +97,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
         </a>
       </div>
 
-      <div class="hidden md:flex items-center space-x-6 2md:space-x-8">
+      <div class="hidden md:flex items-center space-x-6">
         {
           navItems.map((item) => (
             <a
@@ -129,7 +129,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
 
         <button
           id="mobile-menu-button"
-          class={`md:hidden inline-flex items-center justify-center p-2 rounded-xl text-text-secondary hover:text-text hover:bg-background-subtle transition-[color,background-color,scale] active:scale-[0.96] motion-reduce:transition-none ${focusRing}`}
+          class={`md:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-text-secondary hover:text-text hover:bg-background-subtle transition-[color,background-color,scale] active:scale-[0.96] motion-reduce:transition-none ${focusRing}`}
           aria-controls="mobile-menu"
           aria-expanded="false"
         >

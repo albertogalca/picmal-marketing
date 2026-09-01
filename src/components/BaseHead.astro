@@ -68,7 +68,16 @@ const { title, description, image = FallbackImage, ogType = "website", published
 <link rel="describedby" type="text/plain" title="llms.txt" href="/llms.txt" />
 <script is:inline>
   (function () {
-    const theme = localStorage.getItem("theme") || "light";
+    // No stored choice means the visitor has not chosen, so follow the OS. The
+    // whole token layer is light-dark(), so dark costs nothing extra, and this
+    // is a Mac-first audience on a site arguing that it feels native. An
+    // explicit choice still wins: localStorage is read first.
+    const stored = localStorage.getItem("theme");
+    const theme =
+      stored ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
     const root = document.documentElement;
 
     root.classList.remove("light", "dark");

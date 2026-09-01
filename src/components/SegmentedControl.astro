@@ -114,6 +114,16 @@ const Wrapper = mode === "links" ? "nav" : "div";
     white-space: nowrap;
   }
 
+  /* The pill is ~36px tall and this is the seat-ladder picker: the one control
+     a buyer thumbs to move between $29 / $39 / $89 / $149, so a mis-tap sends
+     them to Stripe with the wrong seat count. Extend the hit area to 44px
+     without growing the pill. Vertical only, so neighbours never overlap. */
+  .segment::before {
+    content: "";
+    position: absolute;
+    inset: -4px 0;
+  }
+
   .segment:hover:not(.active) {
     color: light-dark(rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.95));
     background: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08));

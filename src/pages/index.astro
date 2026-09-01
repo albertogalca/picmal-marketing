@@ -101,7 +101,7 @@ const SITE_DESCRIPTION =
   </head>
 
   <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+    class="min-h-dvh transition-colors duration-300 bg-background text-text"
   >
     <Header />
 
@@ -181,7 +181,8 @@ const SITE_DESCRIPTION =
                     width="1280"
                     height="720"
                     src={i === 0 ? demo.src : undefined}
-                    poster={demo.poster}
+                    poster={i === 0 ? demo.poster : undefined}
+                    data-demo-poster={demo.poster}
                     muted
                     playsinline
                     preload={i === 0 ? "auto" : "none"}
@@ -189,6 +190,48 @@ const SITE_DESCRIPTION =
                   />
                 ))
               }
+
+              <!-- WCAG 2.2.2 (Level A). The three clips run 10.8s, 18.3s and
+                   32.7s and auto-advance forever, which is 62s a lap of motion
+                   beside the H1 and the buy button. Reduced motion is a system
+                   setting, not a mechanism on the page, so it does not satisfy
+                   2.2.2 on its own. This is the mechanism. It sits on the frame
+                   rather than in the dock so the dock keeps its concentric
+                   8px-thumbnail geometry.
+
+                   The label is the only state channel, the way a native player
+                   does it: no aria-pressed, because "Play the demo" plus
+                   "pressed" reads as two answers to the same question.
+
+                   White outline, not accent: outline-offset puts the ring on
+                   whatever video frame is playing, and blue on arbitrary footage
+                   is not a contrast anyone controls. The pseudo-element carries
+                   the 40px button to a 44px target. -->
+              <button
+                id="hero-demo-toggle"
+                type="button"
+                aria-label="Pause the demo"
+                class="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-black/40 text-white ring-1 ring-white/15 backdrop-blur-xl transition-[background-color,scale] duration-200 ease-out hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 before:absolute before:-inset-[2px] before:content-['']"
+              >
+                <svg
+                  class="hero-icon-pause h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+                  <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+                </svg>
+                <svg
+                  class="hero-icon-play hidden h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"
+                  ></path>
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -342,9 +385,20 @@ const SITE_DESCRIPTION =
         // The reel cycles on its own until someone picks a clip. After that it
         // stays on their choice and loops it, instead of moving on mid-watch.
         let heroAuto = true;
+        // Reduced motion starts paused, so this one flag carries both "the OS
+        // asked for stillness" and "the visitor pressed pause". Nothing plays
+        // unless it is false.
+        let heroPaused = !heroMotion;
 
         const heroLoad = (clip: HTMLVideoElement) => {
           if (!clip.getAttribute("src")) {
+            // Attached here, not in the markup: three <video> elements each
+            // carrying a poster meant three WebP fetches on every page load for
+            // two frames sitting behind `opacity-0`. This runs before
+            // heroReady, so its 1500ms timeout still lands on a poster.
+            if (!clip.poster && clip.dataset.demoPoster) {
+              clip.poster = clip.dataset.demoPoster;
+            }
             clip.src = clip.dataset.demoSrc!;
             clip.preload = "auto";
             clip.load();
@@ -385,7 +439,7 @@ const SITE_DESCRIPTION =
 
           next.currentTime = 0;
           next.loop = !heroAuto;
-          if (heroMotion) next.play().catch(() => {});
+          if (!heroPaused) next.play().catch(() => {});
           next.setAttribute("data-active", "");
           next.removeAttribute("aria-hidden");
           previous.removeAttribute("data-active");
@@ -397,6 +451,38 @@ const SITE_DESCRIPTION =
             }
           }, 500);
         };
+
+        const heroToggle = document.getElementById("hero-demo-toggle");
+
+        const heroSyncToggle = () => {
+          if (!heroToggle) return;
+          heroToggle.setAttribute(
+            "aria-label",
+            heroPaused ? "Play the demo" : "Pause the demo",
+          );
+          heroToggle
+            .querySelector(".hero-icon-pause")
+            ?.classList.toggle("hidden", heroPaused);
+          heroToggle
+            .querySelector(".hero-icon-play")
+            ?.classList.toggle("hidden", !heroPaused);
+        };
+
+        heroToggle?.addEventListener("click", () => {
+          heroPaused = !heroPaused;
+          const clip = heroClips[heroCurrent];
+          if (heroPaused) {
+            // Stop advancing too, or the reel would resume on its own the
+            // moment the current clip ran out.
+            heroAuto = false;
+            clip.pause();
+          } else {
+            // An explicit press wins over the OS setting: someone on reduced
+            // motion who asks to watch the demo gets to watch it.
+            clip.play().catch(() => {});
+          }
+          heroSyncToggle();
+        });
 
         heroTabs.forEach((tab, i) =>
           tab.addEventListener("click", () => {
@@ -425,7 +511,9 @@ const SITE_DESCRIPTION =
           });
         });
 
-        if (heroMotion) {
+        heroSyncToggle();
+
+        if (!heroPaused) {
           heroClips[0].play().catch(() => {});
         } else {
           // Nothing autoplays under reduced motion and the dock becomes a

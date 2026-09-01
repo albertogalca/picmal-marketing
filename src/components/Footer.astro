@@ -301,7 +301,7 @@ const today = new Date();
       <span>&copy; {today.getFullYear()} Picmal - All rights reserved.</span>
       <button
         onclick="toggleTheme()"
-        class="flex items-center gap-2 py-2 -my-2 rounded-xl hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        class="flex items-center gap-2 py-2 -my-2 rounded-xl hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         type="button"
         aria-label="Toggle color theme"
       >
@@ -348,16 +348,28 @@ const today = new Date();
 <script>
   const html = document.documentElement;
 
-  function setTheme(theme) {
+  // `persist` is the whole point of the split. initTheme used to call a setter
+  // that always wrote to localStorage, so the first page view stamped "light"
+  // in permanently and the OS preference could never win again, on any later
+  // visit. Only an actual toggle is a choice worth storing.
+  function applyTheme(theme) {
     html.classList.remove("light", "dark");
     html.classList.add(theme);
     html.style.colorScheme = theme;
+  }
+
+  function setTheme(theme) {
+    applyTheme(theme);
     localStorage.setItem("theme", theme);
   }
 
   function initTheme() {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
+    applyTheme(
+      localStorage.getItem("theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"),
+    );
   }
 
   window.toggleTheme = function toggleTheme() {

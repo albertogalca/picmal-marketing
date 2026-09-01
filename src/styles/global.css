@@ -53,6 +53,25 @@
   --color-danger: light-dark(#991b1b, #fca5a5);
   --color-danger-surface: light-dark(#f9e0e0, #422929);
 
+  /* Primary button face. Its own pair, not --color-accent: the accent is a
+     text/stroke color on the page ground, this is a filled surface carrying
+     white text, and the two have different contrast jobs.
+
+     White-on-gradient, measured across the whole run (top stop -> bottom stop):
+       rest   4.69 · 4.88 · 5.08 · 5.28 · 5.50
+       hover  5.57 · 5.78 · 6.00 · 6.22 · 6.45
+
+     The old top stop was #0A8FFF and measured 3.29:1. The label is vertically
+     centered, so the glyphs sat across a 3.29-4.84 band and the button only
+     cleared WCAG AA 1.4.3 in its bottom third. The minimum on this gradient is
+     always the top stop; keep it at or above 4.5:1 or the button fails again.
+     One face for both themes on purpose: it is the same physical button, and
+     only the shadow under it changes with the theme. */
+  --color-cta: #0d6cf5;
+  --color-cta-deep: #0f5cf1;
+  --color-cta-hover: #0c61dd;
+  --color-cta-hover-deep: #0e53d9;
+
   /* Type tokens */
   --font-sans:
     ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
@@ -131,8 +150,15 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
+  /* `light dark`, not `light`: with JS off there is no class on <html>, and a
+     hard `light` here pinned every light-dark() token to its light value even
+     on a dark desktop. The two class rules below still pin an explicit choice. */
+  color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
+}
+
+html.light {
+  color-scheme: light;
 }
 
 html.dark {

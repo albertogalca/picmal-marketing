@@ -20,7 +20,7 @@ const { faqs, size = "base" } = Astro.props;
     faqs.map((faq) => (
       <div class="border-b transition-colors border-background-subtle last:border-0">
         <details class="group">
-          <summary class="w-full py-4 flex items-center justify-between text-left cursor-pointer list-none">
+          <summary class="w-full py-4 flex items-center justify-between text-left cursor-pointer list-none rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
             <H3 class="pr-4">{faq.question}</H3>
             <div
               class="flex-shrink-0 transition-transform duration-200 group-open:rotate-180"

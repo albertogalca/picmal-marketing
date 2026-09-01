@@ -134,6 +134,10 @@ and press kit are the reference.
 
 ## Conventions
 
+- Pricing facts come from `src/config/pricing.ts` and from Stripe through the Stripe
+  MCP (active prices, and a charge's Checkout Session line item for what was actually
+  sold). Never from memory, old copy, or the amount alone. The ladder has changed
+  four times since July and every old price still shows up in charges.
 - Don't add hover effects to elements that are not clickable. It doesn't make sense.
 - Count the pitch before you write it. Every page ends in `CTASection` and most
   carry a `FAQ`, and both of those already state the product pitch. Add a prose

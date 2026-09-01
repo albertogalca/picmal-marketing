@@ -5,8 +5,6 @@ import { DEFAULT_TIER } from "../config/pricing";
 interface Props {
   /** Seline event fired on the buy click, e.g. "buy_clicked_video_converter_mac" */
   buyEvent: string;
-  /** Seline event fired on the download click */
-  downloadEvent?: string;
   /** Where "Need 2, 5 or 10 Macs?" points. Same-page anchor by default; pages
       without their own PricingSection pass "/#pricing". */
   pricingHref?: string;
@@ -18,7 +16,6 @@ interface Props {
 
 const {
   buyEvent,
-  downloadEvent = "download_clicked",
   pricingHref = "#pricing",
   source = "hero",
   class: className = "",
@@ -29,11 +26,18 @@ const {
 // button pointed at /#pricing: every recorded buy_clicked was a scroll, and the
 // checkout link three screens down got zero clicks in W35.
 //
-// Download stays secondary and routes through /download, which sets license
-// expectations before the DMG.
-const DOWNLOAD_URL = "/download";
-const APPLE_ICON =
-  "M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 14.25 3.51 5.71 9.05 5.43c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 3.97l.01-.01zM12.03 5.38c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z";
+// The Download button that used to sit beside it is gone (Sep 2026). There is
+// no trial: the app installs and opens, and converts nothing until a key goes
+// in. Six months of Seline said the button was not serving the buyers it was
+// built for. download_dmg fired 48 times: 39 on /download, before anyone had
+// paid, against 9 on /thank-you. Four out of five downloads were strangers
+// installing an app that could not do the job they came for, and the hero was
+// offering them that as the peer of the buy button, 62 clicks against 101.
+//
+// So the hero asks for one thing. /download still exists, still ranks for
+// "download picmal for mac", and is still linked from the bottom of every page
+// through CTASection, where a reader has already seen the price. The door is
+// after the pitch now, instead of in place of it.
 ---
 
 <div class={className || undefined}>
@@ -45,22 +49,10 @@ const APPLE_ICON =
         ? `window.seline?.track('${buyEvent}', { macs: ${DEFAULT_TIER.macs}, source: '${source}' })`
         : undefined}
     />
-    <Button
-      text="Download"
-      href={DOWNLOAD_URL}
-      variant="secondary"
-      target="_self"
-      icon={APPLE_ICON}
-      iconType="fill"
-      class="w-full sm:w-auto"
-      onclick={import.meta.env.PROD
-        ? `window.seline?.track('${downloadEvent}')`
-        : undefined}
-    />
   </div>
 
   <!-- What it costs and where the files stay, in one line. Muted so it
-       supports the CTAs without competing. -->
+       supports the button without competing. -->
   <p
     class="hero-reveal mt-5 text-small text-text-secondary"
     style="--d: 200ms"

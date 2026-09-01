@@ -11,8 +11,6 @@ interface Props {
   subhead: string;
   /** PostHog event fired on the buy click, e.g. "buy_clicked_compresto_comparison" */
   buyEvent: string;
-  /** PostHog event fired on the download click */
-  downloadEvent?: string;
   /** Which demo video to show (default: convert) */
   defaultTab?: "convert" | "compress" | "pdf";
   /** Where the seat-ladder link points. Most of these pages render their own
@@ -24,7 +22,6 @@ const {
   title,
   subhead,
   buyEvent,
-  downloadEvent = "download_clicked",
   defaultTab = "convert",
   pricingHref = "#pricing",
 } = Astro.props;
@@ -52,11 +49,7 @@ const {
         <Fragment slot="sublead">{subhead}</Fragment>
       </SectionHeading>
     </div>
-    <HeroCTA
-      buyEvent={buyEvent}
-      downloadEvent={downloadEvent}
-      pricingHref={pricingHref}
-    />
+    <HeroCTA buyEvent={buyEvent} pricingHref={pricingHref} />
   </div>
 
   <!-- Demo Video -->

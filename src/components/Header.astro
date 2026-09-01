@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import Paragraph from "./Paragraph.astro";
+import { DEFAULT_TIER } from "../config/pricing";
 
 const currentPage = Astro.url.pathname;
 
@@ -110,14 +111,19 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
       </div>
 
       <div class="flex items-center space-x-3">
+        {/* Was "Buy for Mac" -> /#pricing, sitting next to a "Pricing" nav
+            item that already went to /pricing: two links to two different
+            price lists, one of them labelled buy. It now does what it says
+            and goes straight to checkout, the same as every other buy button.
+            See HeroCTA: pointing a buy button at #pricing turned every
+            recorded buy_clicked into a scroll. */}
         <Button
           class="hidden md:block m-0"
           size="small"
-          text="Buy for Mac"
-          href="/#pricing"
-          target="_self"
+          text={`Buy for $${DEFAULT_TIER.price}`}
+          href={DEFAULT_TIER.checkoutUrl}
           onclick={import.meta.env.PROD
-            ? "window.seline?.track('pricing_nav_clicked')"
+            ? `window.seline?.track('buy_clicked', { macs: ${DEFAULT_TIER.macs}, source: 'header' })`
             : undefined}
         />
 
@@ -189,6 +195,18 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
             })
           }
         </div>
+
+        {/* The desktop buy button is `hidden md:block`, so on a phone the menu
+            was six links and no CTA. It renders an <a>, which the menu's own
+            click handler already catches, so picking it closes the menu. */}
+        <Button
+          class="mt-6 w-full"
+          text={`Buy for $${DEFAULT_TIER.price}`}
+          href={DEFAULT_TIER.checkoutUrl}
+          onclick={import.meta.env.PROD
+            ? `window.seline?.track('buy_clicked', { macs: ${DEFAULT_TIER.macs}, source: 'header_mobile' })`
+            : undefined}
+        />
       </div>
     </div>
   </div>

@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FAQ from "../../components/FAQ.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -10,13 +7,13 @@ import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
-import H3 from "../../components/H3.astro";
-import Paragraph from "../../components/Paragraph.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
+import FAQSection from "../../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Looking for an ImageOptim alternative? ImageOptim is free and good at lossless image compression. Picmal adds format conversion, video, audio, and PDFs, with active development. $29 once.";
@@ -60,339 +57,167 @@ const faqs = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: The ImageOptim alternative that also converts formats"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: The ImageOptim alternative that also converts formats"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema />
-  </head>
+        <FAQSchema />
+  </Fragment>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="The ImageOptim alternative that also converts formats"
+    subhead="ImageOptim is free, local, and good at what it does. It just can't convert a HEIC to a JPG, touch a video, or compress a PDF. Picmal does all of that on your Mac for $29 once."
+    buyEvent="buy_clicked_imageoptim_comparison"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="The ImageOptim alternative that also converts formats"
-      subhead="ImageOptim is free, local, and good at what it does. It just can't convert a HEIC to a JPG, touch a video, or compress a PDF. Picmal does all of that on your Mac for $29 once."
-      buyEvent="buy_clicked_imageoptim_comparison"
-    />
+  <ComparisonVerdict
+    competitor="ImageOptim"
+    summary="ImageOptim is free, open source, runs entirely on your Mac, and squeezes PNG and JPEG about as hard as anything out there. Its limits are that it only compresses, only images, and development has been quiet for years. Picmal ($29, pay once) converts formats too, covers video, audio, and PDFs, and is actively maintained."
+    picmalFor="You need to convert formats, not just compress. Or you've got video, audio, and PDFs to deal with and would rather not collect four apps."
+    competitorFor="You compress PNGs and JPEGs for the web, you want the smallest possible file, and free and open source matters to you. It's a good tool, keep it."
+  />
 
-    <ComparisonVerdict
+  <!-- Comparison Table -->
+  <Section width="default">
+    <SectionHeading>
+      Picmal vs ImageOptim at a glance
+      <Fragment slot="sublead">
+        Both are Mac apps that keep your files on your Mac. ImageOptim
+        compresses images. Picmal converts and compresses images, video, audio,
+        and PDFs.
+      </Fragment>
+    </SectionHeading>
+    <ComparisonTable
       competitor="ImageOptim"
-      summary="ImageOptim is free, open source, runs entirely on your Mac, and squeezes PNG and JPEG about as hard as anything out there. Its limits are that it only compresses, only images, and development has been quiet for years. Picmal ($29, pay once) converts formats too, covers video, audio, and PDFs, and is actively maintained."
-      picmalFor="You need to convert formats, not just compress. Or you've got video, audio, and PDFs to deal with and would rather not collect four apps."
-      competitorFor="You compress PNGs and JPEGs for the web, you want the smallest possible file, and free and open source matters to you. It's a good tool, keep it."
+      rows={[
+      {
+        feature: "Price",
+        picmal: "$29 one-time",
+        competitor: "Free, open source",
+      },
+      {
+        feature: "Privacy",
+        picmal: "100% offline",
+        competitor: "100% offline",
+      },
+      {
+        feature: "Image compression",
+        picmal: "Yes",
+        competitor: "Yes, its speciality",
+      },
+      {
+        feature: "Image conversion",
+        picmal: "Yes. HEIC, JPG, PNG, WebP, AVIF, and more",
+        competitor: "No",
+      },
+      {
+        feature: "Video",
+        picmal: "Convert &amp; compress",
+        competitor: "No",
+      },
+      {
+        feature: "Audio",
+        picmal: "Convert &amp; compress",
+        competitor: "No",
+      },
+      {
+        feature: "PDF",
+        picmal: "Compress, merge, split, images to PDF",
+        competitor: "No",
+      },
+      {
+        feature: "Resize",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Metadata removal",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Batch processing",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Folder monitoring",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Shortcuts integration",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Raycast extension",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Finder right-click",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Actively updated",
+        picmal: "Yes",
+        competitor: "Rarely",
+      },
+      {
+        feature: "macOS",
+        picmal: "15+",
+        competitor: "13+",
+      },
+    ]}
     />
+  </Section>
 
-    <!-- Comparison Table -->
-    <Section width="default">
-      <SectionHeading>
-        Picmal vs ImageOptim at a glance
-        <Fragment slot="sublead">
-          Both are Mac apps that keep your files on your Mac. ImageOptim
-          compresses images. Picmal converts and compresses images, video, audio,
-          and PDFs.
-        </Fragment>
-      </SectionHeading>
-      <Card padding="p-4 md:p-8">
-        <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
-            <thead>
-              <tr class="border-b border-border">
-                <th class="text-left p-4 font-semibold text-text">Feature</th>
-                <th class="text-left p-4 font-semibold text-text">Picmal</th>
-                <th class="text-left p-4 font-semibold text-text">ImageOptim</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-border">
-              <tr>
-                <td class="p-4 text-text-secondary">Price</td>
-                <td class="p-4 text-text tabular-nums">$29 one-time</td>
-                <td class="p-4 text-text">Free, open source</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Privacy</td>
-                <td class="p-4 text-text">100% offline</td>
-                <td class="p-4 text-text">100% offline</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Image compression</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">Yes, its speciality</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Image conversion</td>
-                <td class="p-4 text-text"
-                  >Yes. HEIC, JPG, PNG, WebP, AVIF, and more</td
-                >
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Video</td>
-                <td class="p-4 text-text">Convert &amp; compress</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Audio</td>
-                <td class="p-4 text-text">Convert &amp; compress</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">PDF</td>
-                <td class="p-4 text-text"
-                  >Compress, merge, split, images to PDF</td
-                >
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Resize</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Metadata removal</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">Yes</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Batch processing</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">Yes</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Folder monitoring</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Shortcuts integration</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Raycast extension</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">No</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Finder right-click</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">Yes</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">Actively updated</td>
-                <td class="p-4 text-text">Yes</td>
-                <td class="p-4 text-text">Rarely</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-text-secondary">macOS</td>
-                <td class="p-4 text-text tabular-nums">15+</td>
-                <td class="p-4 text-text tabular-nums">13+</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </Card>
-    </Section>
+  <!-- Who each is for -->
+  <AlternativeVerdict
+    sublead="Here's where each one makes more sense."
+    picmal={{
+      heading: "Choose Picmal",
+      lead: "Compression alone isn't the job",
+      items: [
+        "You need to convert formats, HEIC to JPG being the usual one",
+        "You want newer formats like AVIF and JXL, not just PNG and JPEG",
+        "Video, audio, or PDFs are part of the same pile of work",
+        "You'd rather use something that's still being maintained",
+      ],
+    }}
+    rival={{
+      heading: "Stay with ImageOptim",
+      lead: "Free, open source, and it does the job",
+      items: [
+        "You only ever compress PNG and JPEG for the web",
+        "You want the last few percent of file size and nothing else",
+        "Free and open source is the point, not a compromise",
+      ],
+    }}
+  />
 
-    <!-- Who each is for -->
-    <Section width="default">
-      <SectionHeading>
-        Which one is right for you?
-        <Fragment slot="sublead">
-          Here's where each one makes more sense.
-        </Fragment>
-      </SectionHeading>
+  <FeatureGrid
+    heading="Everything else Picmal does"
+    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+  />
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <Card>
-          <div class="mb-6">
-            <H3 class="mb-2">Choose Picmal</H3>
-            <Paragraph color="secondary">
-              Compression alone isn't the job
-            </Paragraph>
-          </div>
+  <MasonryTestimonials />
 
-          <ul class="space-y-4">
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                You need to convert formats, HEIC to JPG being the usual one
-              </span>
-            </li>
+  <PricingSection />
 
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                You want newer formats like AVIF and JXL, not just PNG and JPEG
-              </span>
-            </li>
+  <FounderLetter />
 
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                Video, audio, or PDFs are part of the same pile of work
-              </span>
-            </li>
+  <FAQSection
+    faqs={faqs}
+    heading="Frequently asked questions"
+    sublead="Can't find what you're looking for? Email support@picmal.app"
+  />
 
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                You'd rather use something that's still being maintained
-              </span>
-            </li>
-          </ul>
-        </Card>
-
-        <Card>
-          <div class="mb-6">
-            <H3 class="mb-2">Stay with ImageOptim</H3>
-            <Paragraph color="secondary">
-              Free, open source, and it does the job
-            </Paragraph>
-          </div>
-
-          <ul class="space-y-4">
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                You only ever compress PNG and JPEG for the web
-              </span>
-            </li>
-
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                You want the last few percent of file size and nothing else
-              </span>
-            </li>
-
-            <li class="flex gap-3 items-start">
-              <svg
-                class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-text">
-                Free and open source is the point, not a compromise
-              </span>
-            </li>
-          </ul>
-        </Card>
-      </div>
-    </Section>
-
-    <FeatureGrid
-      heading="Everything else Picmal does"
-      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-    />
-
-    <MasonryTestimonials />
-
-    <PricingSection />
-
-    <FounderLetter />
-
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Can't find what you're looking for? Email support@picmal.app"
-      >
-        Frequently asked questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
-
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

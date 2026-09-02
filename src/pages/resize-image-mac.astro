@@ -1,18 +1,16 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title =
   "Picmal: Resize images on Mac, batch resize by size or dimensions";
@@ -56,133 +54,112 @@ const faqs = [
       "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Resize images on your Mac"
+    subhead="Resize by percentage, by exact dimensions, or down to a target file size like 500 KB. Batch a whole folder in one pass. Works with JPG, PNG, HEIC, WebP and more. Offline, no upload."
+    buyEvent="buy_clicked_resize_image_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Resize images on your Mac"
-      subhead="Resize by percentage, by exact dimensions, or down to a target file size like 500 KB. Batch a whole folder in one pass. Works with JPG, PNG, HEIC, WebP and more. Offline, no upload."
-      buyEvent="buy_clicked_resize_image_mac"
-      defaultTab="convert"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Resize images in 3 steps"
+    items={[
+      {
+        title: "Drop your images",
+        description: "Drag in one photo or a whole folder of them.",
+      },
+      {
+        title: "Pick a resize mode",
+        description:
+          "Choose Percentage, dimensions, or a target file size, then set your value.",
+      },
+      {
+        title: "Convert",
+        description:
+          "Click Convert and Picmal saves the resized images. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Resize images in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your images",
-          description: "Drag in one photo or a whole folder of them.",
-        },
-        {
-          title: "Pick a resize mode",
-          description:
-            "Choose Percentage, dimensions, or a target file size, then set your value.",
-        },
-        {
-          title: "Convert",
-          description:
-            "Click Convert and Picmal saves the resized images. It all runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="Everything Preview's resize can't do"
+    items={[
+      {
+        icon: "ph:frame-corners-duotone",
+        title: "Six resize modes",
+        description:
+          "Percentage, Fixed Width, Fixed Height, Max Dimensions, Exact Dimensions, and Max File Size, all in one place.",
+      },
+      {
+        icon: "ph:target-duotone",
+        title: "Resize to a target size",
+        description:
+          "Type a budget like 500 KB or 2 MB and Picmal scales the image down until it fits. Perfect for upload limits.",
+      },
+      {
+        icon: "ph:folders-duotone",
+        title: "Batch a whole folder",
+        description:
+          "Resize dozens of images in one pass with the same settings, each saved as its own file.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Stays on your Mac",
+        description:
+          "JPG, PNG, HEIC, WebP and more. No uploads, no per-file limits, nothing leaves your machine.",
+      },
+    ]}
+    linkText="Need to convert between formats too? See the image converter"
+    linkHref="/image-converter-mac"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="Everything Preview's resize can't do"
-      items={[
-        {
-          title: "Six resize modes",
-          description:
-            "Percentage, Fixed Width, Fixed Height, Max Dimensions, Exact Dimensions, and Max File Size, all in one place.",
-        },
-        {
-          title: "Resize to a target size",
-          description:
-            "Type a budget like 500 KB or 2 MB and Picmal scales the image down until it fits. Perfect for upload limits.",
-        },
-        {
-          title: "Batch a whole folder",
-          description:
-            "Resize dozens of images in one pass with the same settings, each saved as its own file.",
-        },
-        {
-          title: "Stays on your Mac",
-          description:
-            "JPG, PNG, HEIC, WebP and more. No uploads, no per-file limits, nothing leaves your machine.",
-        },
-      ]}
-      linkText="Need to convert between formats too? See the image converter"
-      linkHref="/image-converter-mac"
-    />
+  <!-- Batch resize -->
+  <Section width="narrow">
+    <SectionHeading class="mb-8"
+      >Batch resize a whole folder of images</SectionHeading
+    >
+    <Paragraph class="mb-4"
+      >Preview can resize a batch, and it is free, so use it when that is all
+      you need. Select the files, open them in Preview, then Tools &gt; Adjust
+      Size. Automator can do it too if you are willing to build the workflow
+      once.</Paragraph
+    >
+    <Paragraph class="mb-4"
+      >Where both fall down is anything conditional. Preview applies one width
+      to everything, so a folder mixing portrait and landscape shots comes out
+      wrong half the time. It has no way to say "cap the longest side at 2000
+      px" or "get every file under 500 KB". Picmal has Max Dimensions and Max
+      File Size modes for exactly that, and they apply across the whole batch
+      at once.</Paragraph
+    >
+    <Paragraph
+      >Drop in a folder, pick a mode, click Convert. Each image is written out
+      as its own file, originals untouched. Hundreds at a time, no upload and
+      no per-file limit, because it all runs on your Mac.</Paragraph
+    >
+  </Section>
 
-    <!-- Batch resize -->
-    <Section width="narrow">
-      <SectionHeading class="mb-8"
-        >Batch resize a whole folder of images</SectionHeading
-      >
-      <Paragraph class="mb-4"
-        >Preview can resize a batch, and it is free, so use it when that is all
-        you need. Select the files, open them in Preview, then Tools &gt; Adjust
-        Size. Automator can do it too if you are willing to build the workflow
-        once.</Paragraph
-      >
-      <Paragraph class="mb-4"
-        >Where both fall down is anything conditional. Preview applies one width
-        to everything, so a folder mixing portrait and landscape shots comes out
-        wrong half the time. It has no way to say "cap the longest side at 2000
-        px" or "get every file under 500 KB". Picmal has Max Dimensions and Max
-        File Size modes for exactly that, and they apply across the whole batch
-        at once.</Paragraph
-      >
-      <Paragraph
-        >Drop in a folder, pick a mode, click Convert. Each image is written out
-        as its own file, originals untouched. Hundreds at a time, no upload and
-        no per-file limit, because it all runs on your Mac.</Paragraph
-      >
-    </Section>
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
+    </div>
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

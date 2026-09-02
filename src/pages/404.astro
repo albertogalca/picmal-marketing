@@ -1,57 +1,44 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import H1 from "../components/H1.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Button from "../components/Button.astro";
+
+
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: Page not found"
-      description="The page you're looking for doesn't exist. Browse Picmal's tools, blog, or head back to the homepage."
-    />
-  </head>
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
+<MarketingLayout
+  title="Picmal: Page not found"
+  description="The page you're looking for doesn't exist. Browse Picmal's tools, blog, or head back to the homepage."
+  mainClass="relative z-10 pt-32 pb-20"
+>
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <p class="text-8xl font-bold text-accent mb-6">404</p>
+    <H1 class="mb-4">Page not found</H1>
+    <Paragraph class="mb-10 max-w-lg mx-auto">
+      The page you're looking for doesn't exist or has been moved.
+    </Paragraph>
 
-    <Header />
+    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+      <Button href="/" text="Back to home" target="_self" />
+      <a
+        href="/blog"
+        class="block rounded-xl transition-[background-color,border-color] duration-200 motion-reduce:transition-none text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/70"
+      >
+        Read the blog
+      </a>
+    </div>
 
-    <main class="relative z-10 pt-32 pb-20">
-      <div class="max-w-2xl mx-auto px-6 text-center">
-        <p class="text-8xl font-bold text-accent mb-6">404</p>
-        <H1 class="mb-4">Page not found</H1>
-        <Paragraph class="mb-10 max-w-lg mx-auto">
-          The page you're looking for doesn't exist or has been moved.
-        </Paragraph>
+    <Paragraph size="small" class="mt-10">
+      Looking for something specific? Try the <a class="link" href="/docs"
+        >docs</a
+      > or the <a class="link" href="/blog">blog</a>.
+    </Paragraph>
 
-        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
-          <Button href="/" text="Back to home" target="_self" />
-          <a
-            href="/blog"
-            class="block rounded-xl transition-[background-color,border-color] duration-200 motion-reduce:transition-none text-center cursor-pointer font-semibold px-6 text-body py-3 bg-background-subtle text-text hover:bg-background border border-border hover:border-border/70"
-          >
-            Read the blog
-          </a>
-        </div>
-
-        <Paragraph size="small" class="mt-10">
-          Looking for something specific? Try the <a class="link" href="/docs"
-            >docs</a
-          > or the <a class="link" href="/blog">blog</a>.
-        </Paragraph>
-
-        <!-- Agents: this path also answers `Accept: text/markdown` and
-             `Accept: application/json` with a machine-readable body, and
-             /llms.txt + /sitemap-index.xml are both live. Kept out of the
-             visible copy: a person who mistyped a URL was being handed
-             content-negotiation headers as their closing line. -->
-      </div>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+    <!-- Agents: this path also answers `Accept: text/markdown` and
+         `Accept: application/json` with a machine-readable body, and
+         /llms.txt + /sitemap-index.xml are both live. Kept out of the
+         visible copy: a person who mistyped a URL was being handed
+         content-negotiation headers as their closing line. -->
+  </div>
+</MarketingLayout>

@@ -1,17 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Compress Audio on Mac: Shrink MP3, M4A, WAV, FLAC";
 const description =
@@ -49,106 +45,84 @@ const faqs = [
       "No. All compression happens locally on your Mac. No uploads, no per-file limits. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Compress audio on your Mac"
+    subhead="Shrink MP3, M4A, WAV, FLAC and more with bitrate control, force mono, and sample-rate options. Perfect for podcasts, voice memos, and audiobooks. Batch, offline, no upload limit."
+    buyEvent="buy_clicked_compress_audio_mac"
+    defaultTab="compress"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Compress audio on your Mac"
-      subhead="Shrink MP3, M4A, WAV, FLAC and more with bitrate control, force mono, and sample-rate options. Perfect for podcasts, voice memos, and audiobooks. Batch, offline, no upload limit."
-      buyEvent="buy_clicked_compress_audio_mac"
-      defaultTab="compress"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Compress audio in 3 steps"
+    items={[
+      {
+        title: "Drop your audio",
+        description: "Drag in one file or a whole folder of recordings.",
+      },
+      {
+        title: "Pick bitrate & mode",
+        description:
+          "Choose a bitrate and VBR/ABR/CBR mode, or force mono for voice.",
+      },
+      {
+        title: "Compress",
+        description: "Click Compress. Everything runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Compress audio in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your audio",
-          description: "Drag in one file or a whole folder of recordings.",
-        },
-        {
-          title: "Pick bitrate & mode",
-          description:
-            "Choose a bitrate and VBR/ABR/CBR mode, or force mono for voice.",
-        },
-        {
-          title: "Compress",
-          description: "Click Compress. Everything runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Controls -->
+  <BlockGrid
+    heading="Tuned for every kind of audio"
+    items={[
+      {
+        icon: "ph:equalizer-duotone",
+        title: "Bitrate & VBR/ABR/CBR",
+        description:
+          "Target an exact bitrate or let VBR allocate bits where they matter for the best quality per megabyte.",
+      },
+      {
+        icon: "ph:microphone-duotone",
+        title: "Force mono",
+        description:
+          "Collapse stereo to mono for podcasts and voice memos, roughly half the size, no audible loss.",
+      },
+      {
+        icon: "ph:waveform-duotone",
+        title: "Sample rate & bit depth",
+        description:
+          "From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit, match the source to the use.",
+      },
+      {
+        icon: "ph:seal-check-duotone",
+        title: "Lossless option",
+        description:
+          "Need to shrink without any loss? Compress to FLAC for roughly half the size of WAV, bit-for-bit identical.",
+      },
+    ]}
+    linkText="Need to convert audio formats too? See the audio converter"
+    linkHref="/audio-converter-mac"
+  />
 
-    <!-- Controls -->
-    <CardGrid
-      heading="Tuned for every kind of audio"
-      items={[
-        {
-          title: "Bitrate & VBR/ABR/CBR",
-          description:
-            "Target an exact bitrate or let VBR allocate bits where they matter for the best quality per megabyte.",
-        },
-        {
-          title: "Force mono",
-          description:
-            "Collapse stereo to mono for podcasts and voice memos, roughly half the size, no audible loss.",
-        },
-        {
-          title: "Sample rate & bit depth",
-          description:
-            "From 8 kHz telephony up to 96 kHz hi-res, 16/24/32-bit, match the source to the use.",
-        },
-        {
-          title: "Lossless option",
-          description:
-            "Need to shrink without any loss? Compress to FLAC for roughly half the size of WAV, bit-for-bit identical.",
-        },
-      ]}
-      linkText="Need to convert audio formats too? See the audio converter"
-      linkHref="/audio-converter-mac"
-    />
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

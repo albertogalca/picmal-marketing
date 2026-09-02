@@ -1,0 +1,28 @@
+---
+import { cn } from "../utils/cn";
+
+interface Props {
+  href: string;
+  /** Extra classes on the anchor */
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+{/* The whole-card link: same panel surface as Card, plus the hover and press
+    feedback every clickable surface on the site carries. One definition, so
+    the three grids that use it cannot drift apart again. */}
+<a
+  href={href}
+  class={cn(
+    "group block h-full bg-background-subtle/50 border border-border rounded-2xl p-6",
+    "transition-[color,border-color,background-color,scale] duration-200 ease-out motion-reduce:transition-none",
+    "hover:border-accent/30 hover:bg-accent/[0.03]",
+    "active:scale-[0.98] motion-reduce:active:scale-100",
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+    className,
+  )}
+>
+  <slot />
+</a>

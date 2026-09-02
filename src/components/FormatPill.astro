@@ -1,0 +1,27 @@
+---
+/**
+ * FormatPill - the mono chip carrying a file extension (.jpg, .mov).
+ * Four spellings existed across three pages: three different backgrounds,
+ * tracking on half of them, a hover transition on one. This is the one.
+ */
+interface Props {
+  /** Extension without the dot. */
+  ext: string;
+  /** `accent` marks the output format in a from/to pair. */
+  variant?: "default" | "accent";
+}
+
+const { ext, variant = "default" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-flex items-center justify-center px-3 py-1 rounded-xl",
+    "text-small font-mono font-medium tracking-wide",
+    variant === "accent"
+      ? "bg-accent/10 border border-accent/20 text-accent"
+      : "bg-background-subtle border border-border text-text",
+  ]}
+>
+  .{ext}
+</span>

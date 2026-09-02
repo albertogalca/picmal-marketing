@@ -1,0 +1,52 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+/**
+ * MarketingLayout - the page shell every marketing page shares.
+ *
+ * It owns <html>, <head>, the body class, Header, <main>, and Footer. Before
+ * this, 49 pages hand-rolled all of it and the body class had drifted into
+ * five spellings, one of which still used min-h-screen (wrong on iOS once the
+ * browser chrome moves) and three of which rendered <main> with no id, so the
+ * skip link on those pages went nowhere.
+ *
+ * Slots:
+ *   head   schema components and inline JSON-LD, rendered inside <head>
+ *   (default)  the page, inside <main id="main-content">
+ *   after  modals and page scripts, after the footer
+ */
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  /** Extra classes on <main>, for the few pages that set their own rhythm. */
+  mainClass?: string;
+}
+
+const { title, description, noindex, mainClass } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} noindex={noindex} />
+    <slot name="head" />
+  </head>
+
+  <body
+    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
+  >
+    <Header />
+
+    <main id="main-content" class:list={[mainClass]}>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <slot name="after" />
+  </body>
+</html>

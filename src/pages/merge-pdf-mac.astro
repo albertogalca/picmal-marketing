@@ -1,17 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Picmal: Merge PDF files on Mac, combine PDFs in order";
 const description =
@@ -54,107 +50,85 @@ const faqs = [
       "Preview works for a couple of files but gets fiddly fast. Picmal lets you drag many PDFs in at once, reorder them clearly, and combine them in one click, plus batch straight from Finder or Shortcuts.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Merge PDF files on your Mac"
+    subhead="Combine multiple PDFs into one, in the exact order you choose. Drag them into place, click once, done. Lossless, offline, no upload."
+    buyEvent="buy_clicked_merge_pdf_mac"
+    defaultTab="pdf"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Merge PDF files on your Mac"
-      subhead="Combine multiple PDFs into one, in the exact order you choose. Drag them into place, click once, done. Lossless, offline, no upload."
-      buyEvent="buy_clicked_merge_pdf_mac"
-      defaultTab="pdf"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Merge PDFs in 3 steps"
+    items={[
+      {
+        title: "Drop your PDFs",
+        description: "Drag in a few files or a whole folder of PDFs.",
+      },
+      {
+        title: "Set the order",
+        description:
+          "Drag the files up or down until they're in the order you want.",
+      },
+      {
+        title: "Combine",
+        description:
+          "Click Combine and Picmal saves one merged PDF. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Merge PDFs in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your PDFs",
-          description: "Drag in a few files or a whole folder of PDFs.",
-        },
-        {
-          title: "Set the order",
-          description:
-            "Drag the files up or down until they're in the order you want.",
-        },
-        {
-          title: "Combine",
-          description:
-            "Click Combine and Picmal saves one merged PDF. It all runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="One file, in your order"
+    items={[
+      {
+        icon: "ph:arrows-down-up-duotone",
+        title: "Any order you want",
+        description:
+          "Drag files into place before you merge, so the pages land in the exact order you need.",
+      },
+      {
+        icon: "ph:seal-check-duotone",
+        title: "Lossless every time",
+        description:
+          "Pages are copied across untouched. Text stays selectable, images stay sharp, nothing is re-encoded.",
+      },
+      {
+        icon: "ph:folder-open-duotone",
+        title: "Merge from Finder",
+        description:
+          "Right-click your PDFs in Finder or fire a Shortcuts action, no need to open the app first.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Stays on your Mac",
+        description:
+          "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+      },
+    ]}
+    linkText="Need a smaller file too? Compress PDF on Mac"
+    linkHref="/compress/pdf"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="One file, in your order"
-      items={[
-        {
-          title: "Any order you want",
-          description:
-            "Drag files into place before you merge, so the pages land in the exact order you need.",
-        },
-        {
-          title: "Lossless every time",
-          description:
-            "Pages are copied across untouched. Text stays selectable, images stay sharp, nothing is re-encoded.",
-        },
-        {
-          title: "Merge from Finder",
-          description:
-            "Right-click your PDFs in Finder or fire a Shortcuts action, no need to open the app first.",
-        },
-        {
-          title: "Stays on your Mac",
-          description:
-            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
-        },
-      ]}
-      linkText="Need a smaller file too? Compress PDF on Mac"
-      linkHref="/compress/pdf"
-    />
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

@@ -1,0 +1,30 @@
+---
+import Card from "./Card.astro";
+import FAQ from "./FAQ.astro";
+import Section from "./Section.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+/**
+ * FAQSection - the questions block at the foot of a page. One structure for
+ * the 33 pages that used to hand-roll Section + SectionHeading + Card + FAQ,
+ * with the wording still owned by the page.
+ */
+interface Props {
+  faqs: { question: string; answer: string }[];
+  heading?: string;
+  sublead?: string;
+}
+
+const {
+  faqs,
+  heading = "Frequently Asked Questions",
+  sublead = "Something not covered here? Write to support@picmal.app",
+} = Astro.props;
+---
+
+<Section id="faq" width="narrow">
+  <SectionHeading sublead={sublead}>{heading}</SectionHeading>
+  <Card>
+    <FAQ faqs={faqs} />
+  </Card>
+</Section>

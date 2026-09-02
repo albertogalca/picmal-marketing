@@ -1,0 +1,341 @@
+---
+import { cn } from "../utils/cn";
+import MediaFrame from "./MediaFrame.astro";
+
+/**
+ * DemoReel — the stacked demo clips plus the thumbnail dock that swaps them.
+ *
+ * Lifted out of index.astro so more than one page can show the app actually
+ * working. The clip list lives here, not at the call site: the posters, stills
+ * and thumbnails are chosen together and only make sense as a set.
+ *
+ * The root carries `relative` because the dock positions against it from `sm`
+ * up. Entrance animation belongs to the caller, not here, so the homepage wraps
+ * this in its own `.hero-reveal` element.
+ */
+interface Props {
+  class?: string;
+  /** Which clip opens the reel. Comparison and feature pages each arrive from a
+      different search intent, so a PDF page opens on PDF tools rather than
+      making the reader find it in the dock. The other two still load lazily. */
+  start?: "convert" | "compress" | "pdf";
+}
+
+const { class: className, start = "convert" } = Astro.props;
+
+// `poster` is the clean opening frame, used only by the clip that loads first.
+// `thumb` is a mid-clip frame chosen so the three dock tiles are told apart at
+// 144px: a full file list, a before/after photo, a white PDF page. Frame 0 of
+// every clip is the same idle drop zone, which made the tiles identical.
+//
+// `still` is that same idea applied to the poster, but only for people who
+// never see the clip run. Frame 0 is an empty drop zone: correct for the
+// autoplay path, since the video takes over in a few hundred ms and any other
+// frame would pop, and useless for someone on prefers-reduced-motion, who sits
+// on that empty window forever. The script swaps in `still` for exactly that
+// case, so reduced motion gets the finished batch (files, sizes, Done) instead
+// of an app doing nothing. Motion users never fetch these.
+const demos = [
+  {
+    slug: "convert",
+    label: "Convert",
+    src: "/convert.mp4",
+    poster: "/convert-poster.webp",
+    still: "/convert-still.webp",
+    thumb: "/demo-thumb-convert.webp",
+  },
+  {
+    slug: "compress",
+    label: "Compress",
+    src: "/compress.mp4",
+    poster: "/compress-poster.webp",
+    still: "/compress-still.webp",
+    thumb: "/demo-thumb-compress.webp",
+  },
+  {
+    slug: "pdf",
+    label: "PDF tools",
+    src: "/pdf.mp4",
+    poster: "/pdf-poster.webp",
+    still: "/pdf-still.webp",
+    thumb: "/demo-thumb-pdf.webp",
+  },
+];
+
+// Fall back to the first clip rather than rendering a reel with nothing active.
+const startIndex = Math.max(
+  0,
+  demos.findIndex((d) => d.slug === start),
+);
+---
+
+<div data-demo-reel class={cn("relative", className)}>
+  <MediaFrame>
+    {
+      demos.map((demo, i) => (
+        <video
+          data-demo-video
+          data-demo-src={demo.src}
+          data-demo-still={demo.still}
+          data-active={i === startIndex ? "" : undefined}
+          aria-hidden={i === startIndex ? undefined : "true"}
+          class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out motion-reduce:transition-none data-[active]:opacity-100"
+          width="1280"
+          height="720"
+          src={i === startIndex ? demo.src : undefined}
+          poster={i === startIndex ? demo.poster : undefined}
+          data-demo-poster={demo.poster}
+          muted
+          playsinline
+          preload={i === startIndex ? "auto" : "none"}
+          aria-label={`Picmal demo: ${demo.label}`}
+        />
+      ))
+    }
+
+    <!-- WCAG 2.2.2 (Level A). The three clips run 10.8s, 18.3s and 32.7s and
+         auto-advance forever, which is 62s a lap of motion beside whatever
+         the page is asking for. Reduced motion is a system setting, not a
+         mechanism on the page, so it does not satisfy 2.2.2 on its own. This
+         is the mechanism. It sits on the frame rather than in the dock so the
+         dock keeps its concentric 8px-thumbnail geometry.
+
+         The label is the only state channel, the way a native player does it:
+         no aria-pressed, because "Play the demo" plus "pressed" reads as two
+         answers to the same question.
+
+         White outline, not accent: outline-offset puts the ring on whatever
+         video frame is playing, and blue on arbitrary footage is not a
+         contrast anyone controls. The pseudo-element carries the 40px button
+         to a 44px target. -->
+    <button
+      data-demo-toggle
+      type="button"
+      aria-label="Pause the demo"
+      class="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-black/40 text-white ring-1 ring-white/15 backdrop-blur-xl transition-[background-color,scale] duration-200 ease-out hover:bg-black/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 before:absolute before:-inset-[2px] before:content-['']"
+    >
+      <svg
+        data-demo-icon-pause
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+        <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+      </svg>
+      <svg
+        data-demo-icon-play
+        class="hidden h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"
+        ></path>
+      </svg>
+    </button>
+  </MediaFrame>
+
+  <div
+    class="mt-3 flex sm:absolute sm:inset-x-0 sm:bottom-4 sm:mt-0 sm:justify-center"
+  >
+    <!-- Concentric: 8px thumbnails + 8px padding = 16px on the dock. -->
+    <div
+      role="group"
+      aria-label="Picmal demos"
+      class="flex gap-2 overflow-x-auto p-2 sm:overflow-visible sm:rounded-[16px] sm:bg-black/40 sm:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_-6px_rgba(0,0,0,0.35)] sm:ring-1 sm:ring-white/15 sm:backdrop-blur-xl"
+    >
+      {
+        demos.map((demo, i) => (
+          <button
+            type="button"
+            aria-pressed={i === startIndex}
+            data-demo-tab
+            class="relative shrink-0 overflow-hidden rounded-lg opacity-70 ring-1 ring-black/10 transition-[opacity,scale,box-shadow] duration-200 ease-out hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 dark:ring-white/10 aria-pressed:opacity-100 aria-pressed:ring-2 aria-pressed:ring-accent"
+          >
+            <img
+              src={demo.thumb}
+              alt=""
+              width="288"
+              height="162"
+              class="aspect-video w-32 object-cover sm:w-36"
+            />
+            <span class="absolute inset-x-0 bottom-0 whitespace-nowrap bg-gradient-to-t from-black/75 to-transparent px-2 pb-1 pt-4 text-center text-caption font-[590] text-white">
+              {demo.label}
+            </span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scoped per root rather than per page, so two reels on one page would each
+  // drive their own clips. Everything below was module-level in index.astro.
+  document
+    .querySelectorAll<HTMLElement>("[data-demo-reel]")
+    .forEach((root) => {
+      const clips = Array.from(
+        root.querySelectorAll<HTMLVideoElement>("[data-demo-video]"),
+      );
+      const tabs = Array.from(
+        root.querySelectorAll<HTMLButtonElement>("[data-demo-tab]"),
+      );
+      const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)")
+        .matches;
+
+      if (!clips.length || clips.length !== tabs.length) return;
+
+      // Read the opening clip out of the markup rather than assuming index 0:
+      // `start` can put any of the three first.
+      let current = Math.max(
+        0,
+        clips.findIndex((c) => c.hasAttribute("data-active")),
+      );
+      // The reel cycles on its own until someone picks a clip. After that it
+      // stays on their choice and loops it, instead of moving on mid-watch.
+      let auto = true;
+      // Reduced motion starts paused, so this one flag carries both "the OS
+      // asked for stillness" and "the visitor pressed pause". Nothing plays
+      // unless it is false.
+      let paused = !motionOk;
+
+      const load = (clip: HTMLVideoElement) => {
+        if (!clip.getAttribute("src")) {
+          // Attached here, not in the markup: three <video> elements each
+          // carrying a poster meant three WebP fetches on every page load for
+          // two frames sitting behind `opacity-0`. This runs before `ready`,
+          // so its 1500ms timeout still lands on a poster.
+          if (!clip.poster && clip.dataset.demoPoster) {
+            clip.poster = clip.dataset.demoPoster;
+          }
+          clip.src = clip.dataset.demoSrc!;
+          clip.preload = "auto";
+          clip.load();
+        }
+        return clip;
+      };
+
+      // readyState >= 2 means a frame is decoded, so the fade lands on video
+      // rather than on the poster. Capped: a clip that stalls (slow link, a
+      // codec the browser refuses) must not strand the dock showing a tile as
+      // selected while the video never changes. On timeout the swap happens
+      // anyway and lands on that clip's poster, which is why every clip keeps
+      // one. The video appears underneath as soon as it can.
+      const ready = (clip: HTMLVideoElement) =>
+        clip.readyState >= 2
+          ? Promise.resolve()
+          : new Promise<void>((resolve) => {
+              const done = () => {
+                window.clearTimeout(timer);
+                clip.removeEventListener("loadeddata", done);
+                resolve();
+              };
+              const timer = window.setTimeout(done, 1500);
+              clip.addEventListener("loadeddata", done, { once: true });
+            });
+
+      const show = async (index: number) => {
+        if (index === current) return;
+        const previous = clips[current];
+        const next = load(clips[index]);
+        current = index;
+        tabs.forEach((tab, i) =>
+          tab.setAttribute("aria-pressed", String(i === index)),
+        );
+
+        await ready(next);
+        if (current !== index) return; // a later click won the race
+
+        next.currentTime = 0;
+        next.loop = !auto;
+        if (!paused) next.play().catch(() => {});
+        next.setAttribute("data-active", "");
+        next.removeAttribute("aria-hidden");
+        previous.removeAttribute("data-active");
+        previous.setAttribute("aria-hidden", "true");
+        window.setTimeout(() => {
+          if (clips[current] !== previous) {
+            previous.pause();
+            previous.currentTime = 0;
+          }
+        }, 500);
+      };
+
+      const toggle = root.querySelector<HTMLElement>("[data-demo-toggle]");
+
+      const syncToggle = () => {
+        if (!toggle) return;
+        toggle.setAttribute(
+          "aria-label",
+          paused ? "Play the demo" : "Pause the demo",
+        );
+        toggle
+          .querySelector("[data-demo-icon-pause]")
+          ?.classList.toggle("hidden", paused);
+        toggle
+          .querySelector("[data-demo-icon-play]")
+          ?.classList.toggle("hidden", !paused);
+      };
+
+      toggle?.addEventListener("click", () => {
+        paused = !paused;
+        const clip = clips[current];
+        if (paused) {
+          // Stop advancing too, or the reel would resume on its own the moment
+          // the current clip ran out.
+          auto = false;
+          clip.pause();
+        } else {
+          // An explicit press wins over the OS setting: someone on reduced
+          // motion who asks to watch the demo gets to watch it.
+          clip.play().catch(() => {});
+        }
+        syncToggle();
+      });
+
+      tabs.forEach((tab, i) =>
+        tab.addEventListener("click", () => {
+          auto = false;
+          clips[current].loop = false;
+          if (i === current) {
+            clips[i].loop = true;
+            return;
+          }
+          show(i);
+        }),
+      );
+
+      clips.forEach((clip, i) => {
+        clip.addEventListener("ended", () => {
+          if (auto) show((i + 1) % clips.length);
+        });
+        // Warm the next clip only once this one is nearly over. Warming at page
+        // load pulled a second video (609KB) that most visitors, who arrive
+        // from search for one specific job, never watch.
+        clip.addEventListener("timeupdate", () => {
+          if (!auto || !clip.duration) return;
+          if (clip.duration - clip.currentTime < 3) {
+            load(clips[(i + 1) % clips.length]);
+          }
+        });
+      });
+
+      syncToggle();
+
+      if (!paused) {
+        clips[current].play().catch(() => {});
+      } else {
+        // Nothing autoplays under reduced motion and the dock becomes a manual
+        // picker, so every clip stays on its poster. Show the frame that has
+        // something in it.
+        clips.forEach((clip) => {
+          const still = clip.dataset.demoStill;
+          if (still) clip.poster = still;
+        });
+      }
+    });
+</script>

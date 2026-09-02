@@ -1,18 +1,15 @@
 ---
-import { Icon } from "astro-icon/components";
-import H3 from "./H3.astro";
-import Paragraph from "./Paragraph.astro";
+import BlockGrid from "./BlockGrid.astro";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
 
-// App icons (public/*.png) shown for the "Fits your workflow" feature. Each
-// links to the integrations docs.
+// App icons (public/*.png) shown for the "Fits your workflow" feature.
+// BlockGrid renders an `apps` row as links to the integrations docs.
 const workflowApps = [
   { name: "Finder", src: "/finder.png" },
   { name: "Shortcuts", src: "/shortcuts.png" },
   { name: "Raycast", src: "/raycast.png" },
 ];
-const INTEGRATIONS_HREF = "/docs/integrations";
 
 // Heading + sublead copy. Defaults answer the landing page's testimonials
 // question ("Tired of going online...") that sits directly above this section;
@@ -29,55 +26,104 @@ const features: {
   icon?: string;
   apps?: typeof workflowApps;
   title: string;
-  desc: string;
+  description: string;
   modalId?: string;
 }[] = [
   {
     icon: "ph:selection-plus-duotone",
     title: "Convert between formats",
-    desc: "Over 100 formats across images, video, audio, RAW, and PDF. HEIC to JPG, MOV to MP4, FLAC to ALAC. Drop it in, pick the output, done.",
+    description: "Over 100 formats across images, video, audio, RAW, and PDF. HEIC to JPG, MOV to MP4, FLAC to ALAC. Drop it in, pick the output, done.",
     modalId: "open-formats-modal-bento",
   },
   {
     icon: "ph:trend-down-duotone",
     title: "Compress and save space",
-    desc: "Get under an email limit or a slow upload, without the quality drop you'd actually notice. No browser, no waiting.",
+    description: "Get under an email limit or a slow upload, without the quality drop you'd actually notice. No browser, no waiting.",
     modalId: "open-compress-formats-modal-bento",
   },
   {
     icon: "ph:file-dashed-duotone",
     title: "Split and organize PDFs",
-    desc: "Break a PDF apart, or drag pages around to reorder, rotate, and delete. Your documents never leave your Mac.",
+    description: "Break a PDF apart, or drag pages around to reorder, rotate, and delete. Your documents never leave your Mac.",
   },
   {
     icon: "ph:film-strip-duotone",
     title: "Combine videos",
-    desc: "Stitch a pile of clips into one video. Drag to reorder, pick the format, export in a single pass.",
+    description: "Stitch a pile of clips into one video. Drag to reorder, pick the format, export in a single pass.",
   },
   {
     icon: "ph:waveform-duotone",
     title: "Merge and split audio",
-    desc: "Join tracks into one file, or split a long recording by its chapters. Podcasts and audiobooks, sorted.",
+    description: "Join tracks into one file, or split a long recording by its chapters. Podcasts and audiobooks, sorted.",
   },
   {
     icon: "ph:images-duotone",
     title: "Images to PDF",
-    desc: "Turn a folder of photos into a multi-page PDF. A4, Letter, or custom, with a password if you want one.",
+    description: "Turn a folder of photos into a multi-page PDF. A4, Letter, or custom, with a password if you want one.",
   },
   {
     icon: "ph:file-pdf-duotone",
     title: "Combine PDFs",
-    desc: "Merge a stack of PDFs into one file. Put the pages in the right order, set the size, and save it out.",
+    description: "Merge a stack of PDFs into one file. Put the pages in the right order, set the size, and save it out.",
+  },
+  // Added Sep 2026 after 1.8.7. Download Video and Crop are that release; the
+  // rest were already shipping and had simply never made it onto the home page.
+  // They sit above the workflow/CLI pair on purpose: those two answer "how does
+  // it fit my day", which only lands once the reader knows what the app does.
+  {
+    icon: "ph:download-simple-duotone",
+    title: "Download videos from the web",
+    description: "Paste a link and Picmal fetches the clip. Sites hand out AV1 and VP9 that QuickTime refuses to open, so it rewraps them to play on your Mac.",
+  },
+  {
+    icon: "ph:crop-duotone",
+    title: "Crop images and PDFs",
+    description: "Type the margin to trim off each edge, or let auto-trim strip a solid border for you. PDF pages keep their text, links and forms.",
+  },
+  {
+    icon: "ph:folder-open-duotone",
+    title: "Watch a folder",
+    description: "Point Picmal at a folder and whatever lands in it gets converted, compressed, or built into a PDF on its own. Set it once.",
+  },
+  {
+    icon: "ph:scissors-duotone",
+    title: "Remove backgrounds",
+    description: "Cut the subject out onto a transparent PNG with Apple's on-device Vision framework. No credits to buy, no upload, no watermark.",
+  },
+  {
+    icon: "ph:bezier-curve-duotone",
+    title: "Trace to SVG",
+    description: "Vectorize turns a logo or a piece of line art into real paths, not a bitmap wrapped in an SVG. Scale it as far as you like.",
+  },
+  {
+    icon: "ph:squares-four-duotone",
+    title: "App icons",
+    description: "One image in, a macOS .icns, a Windows .ico and an Xcode-ready iOS set out. Art that isn't square is fit without cropping.",
+  },
+  {
+    icon: "ph:drop-duotone",
+    title: "Watermark videos",
+    description: "Stamp a logo or a PNG over a clip while it converts. Useful for marking a preview as a draft before it leaves your Mac.",
+  },
+  {
+    icon: "ph:clipboard-text-duotone",
+    title: "Optimize your clipboard",
+    description: "Copy a screenshot and Picmal compresses it in the background, so the version you paste is already the lighter one.",
+  },
+  {
+    icon: "ph:map-pin-duotone",
+    title: "Strip metadata",
+    description: "Take GPS coordinates, camera model and timestamps out of a photo before you send it. Or keep them, and add your own copyright.",
   },
   {
     apps: workflowApps,
     title: "Fits your workflow",
-    desc: "Finder, Shortcuts, and Raycast. A conversion is never more than a right-click away.",
+    description: "Finder, Shortcuts, and Raycast. A conversion is never more than a right-click away.",
   },
   {
     icon: "ph:terminal-window-duotone",
     title: "Picmal CLI",
-    desc: "Script it, drop it in a cron job, or hand it to a coding agent. The same engine as the app, right from your terminal.",
+    description: "Script it, drop it in a cron job, or hand it to a coding agent. The same engine as the app, right from your terminal.",
   },
 ];
 ---
@@ -93,50 +139,5 @@ const features: {
     </Fragment>
   </SectionHeading>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-    {
-      features.map((f) => (
-        <div>
-          {f.apps ? (
-            <div class="flex items-center gap-3 mb-4">
-              {f.apps.map((app) => (
-                <a
-                  href={INTEGRATIONS_HREF}
-                  title={app.name}
-                  aria-label={app.name}
-                  class="rounded-[22%] transition-[opacity,scale] duration-200 ease-out hover:opacity-80 active:scale-[0.96] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  <img
-                    src={app.src}
-                    alt={app.name}
-                    width="56"
-                    height="56"
-                    class="w-10 h-10 rounded-[22%] ring-1 ring-black/10 dark:ring-white/10"
-                    loading="lazy"
-                  />
-                </a>
-              ))}
-            </div>
-          ) : (
-            <Icon name={f.icon!} class="w-10 h-10 mb-4 text-text" />
-          )}
-          <div class="flex items-center gap-1.5 mb-1">
-            <H3 class="text-h4">{f.title}</H3>
-            {f.modalId && (
-              <button
-                id={f.modalId}
-                type="button"
-                aria-label="See all supported formats"
-                title="See all supported formats"
-                class="relative shrink-0 cursor-pointer text-text-secondary transition-[color,scale] duration-200 hover:text-text active:scale-[0.92] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-full before:absolute before:-inset-3 before:content-['']"
-              >
-                <Icon name="ph:info" class="w-4 h-4" />
-              </button>
-            )}
-          </div>
-          <Paragraph>{f.desc}</Paragraph>
-        </div>
-      ))
-    }
-  </div>
+  <BlockGrid items={features} />
 </Section>

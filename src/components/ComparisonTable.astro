@@ -1,0 +1,79 @@
+---
+import Card from "./Card.astro";
+
+/**
+ * ComparisonTable - the three-column feature table on the /alternative pages.
+ *
+ * `tabular-nums` is applied wherever a cell starts with a digit, so prices,
+ * limits and version numbers line up in every column. Four of the eleven pages
+ * used to set it by hand and seven did not, which is exactly the kind of thing
+ * a component should decide once.
+ */
+interface Row {
+  feature: string;
+  picmal: string;
+  competitor: string;
+}
+
+interface Props {
+  competitor: string;
+  rows: Row[];
+}
+
+const { competitor, rows } = Astro.props;
+
+// A cell holding a figure ($29, 5MB, macOS 15+) gets lining numerals.
+const numeric = (value: string) => /\d/.test(value);
+---
+
+<Card padding="p-4 md:p-8">
+  {/* A scrollable region is unreachable by keyboard unless it can hold focus.
+      tabindex plus a name gives it a tab stop and something to announce. */}
+  <div
+    class="overflow-x-auto"
+    tabindex="0"
+    role="region"
+    aria-label={`Picmal compared with ${competitor}`}
+  >
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="border-b border-border">
+          <th scope="col" class="text-left p-4 font-semibold text-text">
+            Feature
+          </th>
+          <th scope="col" class="text-left p-4 font-semibold text-text">
+            Picmal
+          </th>
+          <th scope="col" class="text-left p-4 font-semibold text-text">
+            {competitor}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border">
+        {
+          rows.map((row) => (
+            <tr>
+              <th
+                scope="row"
+                class="p-4 text-left font-normal text-text-secondary"
+              >
+                {row.feature}
+              </th>
+              <td class:list={["p-4 text-text", numeric(row.picmal) && "tabular-nums"]}>
+                {row.picmal}
+              </td>
+              <td
+                class:list={[
+                  "p-4 text-text",
+                  numeric(row.competitor) && "tabular-nums",
+                ]}
+              >
+                {row.competitor}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Card>

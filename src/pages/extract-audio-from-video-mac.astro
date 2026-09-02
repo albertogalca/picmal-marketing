@@ -1,18 +1,16 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import Paragraph from "../components/Paragraph.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Extract Audio from Video on Mac: MP3, M4A, WAV";
 const description =
@@ -55,122 +53,100 @@ const faqs = [
       "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Extract audio from any video on your Mac"
+    subhead="Pull the sound out of MP4, MOV, MKV and more, and save it as MP3, M4A, WAV or FLAC. Great for grabbing music, interviews, or a podcast track from a recording. Batch, offline, no upload."
+    buyEvent="buy_clicked_extract_audio_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Extract audio from any video on your Mac"
-      subhead="Pull the sound out of MP4, MOV, MKV and more, and save it as MP3, M4A, WAV or FLAC. Great for grabbing music, interviews, or a podcast track from a recording. Batch, offline, no upload."
-      buyEvent="buy_clicked_extract_audio_mac"
-      defaultTab="convert"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Extract audio in 3 steps"
+    items={[
+      {
+        title: "Drop your video",
+        description: "Drag in one clip or a whole folder of recordings.",
+      },
+      {
+        title: "Pick an audio format",
+        description:
+          "Choose MP3, M4A, WAV, FLAC or another output as the target.",
+      },
+      {
+        title: "Convert",
+        description:
+          "Click Convert and Picmal saves just the audio. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Extract audio in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your video",
-          description: "Drag in one clip or a whole folder of recordings.",
-        },
-        {
-          title: "Pick an audio format",
-          description:
-            "Choose MP3, M4A, WAV, FLAC or another output as the target.",
-        },
-        {
-          title: "Convert",
-          description:
-            "Click Convert and Picmal saves just the audio. It all runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="Any video in, just the sound out"
+    items={[
+      {
+        icon: "ph:video-camera-duotone",
+        title: "Any video in",
+        description:
+          "MP4, MOV, MKV, WebM, AVI, iPhone .mov and more, Picmal reads them all and writes out the sound.",
+      },
+      {
+        icon: "ph:music-notes-duotone",
+        title: "Any audio out",
+        description:
+          "MP3 and M4A for sharing, WAV and AIFF for editing, FLAC or ALAC when you want it lossless.",
+      },
+      {
+        icon: "ph:folders-duotone",
+        title: "Batch a whole folder",
+        description:
+          "Grab the audio from dozens of clips in one pass, each saved as its own file.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Stays on your Mac",
+        description:
+          "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+      },
+    ]}
+    linkText="Need to convert or compress audio too? See the audio converter"
+    linkHref="/audio-converter-mac"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="Any video in, just the sound out"
-      items={[
-        {
-          title: "Any video in",
-          description:
-            "MP4, MOV, MKV, WebM, AVI, iPhone .mov and more, Picmal reads them all and writes out the sound.",
-        },
-        {
-          title: "Any audio out",
-          description:
-            "MP3 and M4A for sharing, WAV and AIFF for editing, FLAC or ALAC when you want it lossless.",
-        },
-        {
-          title: "Batch a whole folder",
-          description:
-            "Grab the audio from dozens of clips in one pass, each saved as its own file.",
-        },
-        {
-          title: "Stays on your Mac",
-          description:
-            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
-        },
-      ]}
-      linkText="Need to convert or compress audio too? See the audio converter"
-      linkHref="/audio-converter-mac"
-    />
+  <!-- Free methods -->
+  <Section width="narrow">
+    <SectionHeading>Prefer to do it without an app?</SectionHeading>
+    <Paragraph>
+      Your Mac can already pull the audio out of one video: QuickTime Player,
+      File, Export As, Audio Only. It writes an .m4a and that is the whole
+      trick. There is no MP3 option, no WAV, and it opens one file at a time.
+      The guide on <a class="link" href="/blog/how-to-extract-audio-from-video-mac"
+        >how to extract audio from a video on Mac</a
+      > walks through that route plus a Finder Quick Action, VLC and ffmpeg, all
+      free. Picmal is for when you have a folder of them, or need a format the
+      built-in tools will not write.
+    </Paragraph>
+  </Section>
 
-    <!-- Free methods -->
-    <Section width="narrow">
-      <SectionHeading>Prefer to do it without an app?</SectionHeading>
-      <Paragraph>
-        Your Mac can already pull the audio out of one video: QuickTime Player,
-        File, Export As, Audio Only. It writes an .m4a and that is the whole
-        trick. There is no MP3 option, no WAV, and it opens one file at a time.
-        The guide on <a class="link" href="/blog/how-to-extract-audio-from-video-mac"
-          >how to extract audio from a video on Mac</a
-        > walks through that route plus a Finder Quick Action, VLC and ffmpeg, all
-        free. Picmal is for when you have a folder of them, or need a format the
-        built-in tools will not write.
-      </Paragraph>
-    </Section>
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

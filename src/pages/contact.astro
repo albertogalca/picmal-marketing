@@ -1,7 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
@@ -35,193 +33,185 @@ const reasons = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        name: "Contact Picmal",
-        url: "https://picmal.app/contact",
-        description,
-        mainEntity: {
-          "@type": "Organization",
-          name: "Cantimplora Studio, LLC",
-          alternateName: "Picmal",
-          url: "https://picmal.app",
-          logo: "https://picmal.app/logo.webp",
-          email: "support@picmal.app",
-          founder: {
-            "@type": "Person",
-            name: "Alberto Gallego",
-            url: "https://albertogalca.com",
-          },
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "30 N Gould St Ste R",
-            addressLocality: "Sheridan",
-            addressRegion: "WY",
-            postalCode: "82801",
-            addressCountry: "US",
-          },
-          contactPoint: [
-            {
-              "@type": "ContactPoint",
-              contactType: "customer support",
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Picmal",
+            url: "https://picmal.app/contact",
+            description,
+            mainEntity: {
+              "@type": "Organization",
+              name: "Cantimplora Studio, LLC",
+              alternateName: "Picmal",
+              url: "https://picmal.app",
+              logo: "https://picmal.app/logo.webp",
               email: "support@picmal.app",
-              url: "https://picmal.app/contact",
-              availableLanguage: ["English", "Spanish"],
+              founder: {
+                "@type": "Person",
+                name: "Alberto Gallego",
+                url: "https://albertogalca.com",
+              },
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "30 N Gould St Ste R",
+                addressLocality: "Sheridan",
+                addressRegion: "WY",
+                postalCode: "82801",
+                addressCountry: "US",
+              },
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  email: "support@picmal.app",
+                  url: "https://picmal.app/contact",
+                  availableLanguage: ["English", "Spanish"],
+                },
+                {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: "support@picmal.app",
+                  url: "https://picmal.app/contact",
+                  availableLanguage: ["English", "Spanish"],
+                },
+              ],
             },
-            {
-              "@type": "ContactPoint",
-              contactType: "sales",
-              email: "support@picmal.app",
-              url: "https://picmal.app/contact",
-              availableLanguage: ["English", "Spanish"],
-            },
-          ],
-        },
-      })}
-    />
-  </head>
+          })}
+        />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge.
+       The bottom is pulled in so the intro prose stays attached to the
+       hero instead of floating between two equal 80px gaps. -->
+  <Section width="narrow" class="pt-32 sm:pt-32 pb-10 sm:pb-12">
+    <!-- Not SectionHeading here: the address is the reason people open
+         this page, so it has to sit directly under the title as the second
+         strongest thing on it, and that primitive only holds a sublead. -->
+    <H1 class="mb-3">Contact</H1>
+    <a href="mailto:support@picmal.app" class="link text-h2 inline-block">
+      support@picmal.app
+    </a>
 
-    <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge.
-           The bottom is pulled in so the intro prose stays attached to the
-           hero instead of floating between two equal 80px gaps. -->
-      <Section width="narrow" class="pt-32 sm:pt-32 pb-10 sm:pb-12">
-        <!-- Not SectionHeading here: the address is the reason people open
-             this page, so it has to sit directly under the title as the second
-             strongest thing on it, and that primitive only holds a sublead. -->
-        <H1 class="mb-3">Contact</H1>
-        <a href="mailto:support@picmal.app" class="link text-h2 inline-block">
-          support@picmal.app
-        </a>
+    <!-- One measure for every line of prose on the page (~72ch at body
+         size). The lead used to be narrower than the paragraphs under it,
+         which read as two columns fighting on the same axis. -->
+    <div class="mt-10 max-w-xl space-y-5">
+      <Paragraph size="lead">
+        That's the only address, and it reaches me, not a ticket queue.
+      </Paragraph>
+      <Paragraph>
+        I'm Alberto Gallego. I design Picmal, write the code, and answer the
+        email. One address, because there's one person behind all of it. I
+        read everything and reply to almost everything, usually within a day
+        or two on weekdays. If a week goes by with nothing, the mail went
+        missing, so please send it again.
+      </Paragraph>
+      <Paragraph>
+        Picmal runs entirely on your own Mac, so I can't see your files,
+        your queue, or anything that happened on your machine. That means
+        the details you put in the email are all I have to work with. The
+        more specific you are, the shorter the conversation.
+      </Paragraph>
+    </div>
+  </Section>
 
-        <!-- One measure for every line of prose on the page (~72ch at body
-             size). The lead used to be narrower than the paragraphs under it,
-             which read as two columns fighting on the same axis. -->
-        <div class="mt-10 max-w-xl space-y-5">
-          <Paragraph size="lead">
-            That's the only address, and it reaches me, not a ticket queue.
-          </Paragraph>
-          <Paragraph>
-            I'm Alberto Gallego. I design Picmal, write the code, and answer the
-            email. One address, because there's one person behind all of it. I
-            read everything and reply to almost everything, usually within a day
-            or two on weekdays. If a week goes by with nothing, the mail went
-            missing, so please send it again.
-          </Paragraph>
-          <Paragraph>
-            Picmal runs entirely on your own Mac, so I can't see your files,
-            your queue, or anything that happened on your machine. That means
-            the details you put in the email are all I have to work with. The
-            more specific you are, the shorter the conversation.
-          </Paragraph>
-        </div>
-      </Section>
-
-      <Section width="narrow">
-        <H2 class="mb-8">What to write about</H2>
-        <!-- gap-5 so the space between cards beats the 24px inside them;
-             at gap-4 the four panels read as one block with hairlines. The
-             grid keeps the full 768px, which is the deliberate break from the
-             prose measure: it's a lookup table, not something you read
-             straight through. -->
-        <div class="grid sm:grid-cols-2 gap-5">
-          {
-            reasons.map((r) => (
-              <Card padding="p-6">
-                <h3 class="text-h4 text-text mb-2">{r.title}</h3>
-                <Paragraph>{r.body}</Paragraph>
-              </Card>
-            ))
-          }
-        </div>
-      </Section>
-
-      <!-- pt-0: this is the same chapter as the grid above it (both answer
-           "how do I write a useful email"), so it sits one gap away, not two. -->
-      <Section width="narrow" class="pt-0 sm:pt-0">
-        <H2 class="mb-4">Before you write</H2>
-        <div class="max-w-xl space-y-5">
-          <Paragraph>
-            Most of what people email about is already written down somewhere.
-            The <a href="/docs/faq" class="link">FAQ and troubleshooting page</a>
-            covers the common ones, the <a href="/docs" class="link">docs</a> explain
-            every setting, and the <a href="/docs/license" class="link"
-              >license page</a
-            > has the self-serve portal for activating and deactivating Macs.
-            Check the <a href="/changelog" class="link">changelog</a> too, since
-            plenty of bugs are already fixed in a version you haven't installed
-            yet.
-          </Paragraph>
-          <Paragraph>
-            Writing about Picmal? The <a
-              href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
-              target="_blank"
-              rel="noreferrer"
-              class="link">press kit</a
-            > has logos and screenshots. There's an <a
-              href="/affiliate"
-              class="link">affiliate program</a
-            > at 30% commission, and <a href="/education" class="link"
-              >student pricing</a
-            > at 40% off. More about who makes Picmal on the <a
-              href="/about"
-              class="link">about page</a
-            >.
-          </Paragraph>
-        </div>
-      </Section>
-
-      <Section width="narrow">
-        <H2 class="mb-4">Company details</H2>
-        <div class="max-w-xl space-y-5">
-          <Paragraph>
-            Picmal is made and sold by Cantimplora Studio, LLC, registered in
-            Wyoming, United States. The mailing address, if you need it on an
-            invoice or in a legal notice:
-          </Paragraph>
-          <!-- Sized to its contents. Five short lines in a 768px box was a
-               mostly empty panel; an address should be the size of a plaque. -->
-          <Card padding="p-6" class="max-w-sm">
-            <address class="not-italic text-body text-text-secondary">
-              Cantimplora Studio, LLC<br />
-              Alberto Gallego Castro<br />
-              30 N Gould St Ste R<br />
-              Sheridan, WY 82801<br />
-              United States
-            </address>
-            <Paragraph size="small" class="mt-4">
-              Email: <a href="mailto:support@picmal.app" class="link"
-                >support@picmal.app</a
-              >
-            </Paragraph>
+  <Section width="narrow">
+    <H2 class="mb-8">What to write about</H2>
+    <!-- gap-5 so the space between cards beats the 24px inside them;
+         at gap-4 the four panels read as one block with hairlines. The
+         grid keeps the full 768px, which is the deliberate break from the
+         prose measure: it's a lookup table, not something you read
+         straight through. -->
+    <div class="grid sm:grid-cols-2 gap-5">
+      {
+        reasons.map((r) => (
+          <Card padding="p-6">
+            <h3 class="text-h4 text-text mb-2">{r.title}</h3>
+            <Paragraph>{r.body}</Paragraph>
           </Card>
-          <Paragraph>
-            The legal fine print lives in the <a href="/terms" class="link"
-              >terms</a
-            > and the <a href="/privacy" class="link">privacy policy</a>. Short
-            version of the second one: Picmal processes your files on your own
-            Mac, so there's nothing for me to collect.
-          </Paragraph>
-        </div>
-      </Section>
+        ))
+      }
+    </div>
+  </Section>
 
-      <CTASection
-        heading="Convert and compress media on your Mac"
-        analyticsEvent="buy_clicked_contact"
-      />
-    </main>
+  <!-- pt-0: this is the same chapter as the grid above it (both answer
+       "how do I write a useful email"), so it sits one gap away, not two. -->
+  <Section width="narrow" class="pt-0 sm:pt-0">
+    <H2 class="mb-4">Before you write</H2>
+    <div class="max-w-xl space-y-5">
+      <Paragraph>
+        Most of what people email about is already written down somewhere.
+        The <a href="/docs/faq" class="link">FAQ and troubleshooting page</a>
+        covers the common ones, the <a href="/docs" class="link">docs</a> explain
+        every setting, and the <a href="/docs/license" class="link"
+          >license page</a
+        > has the self-serve portal for activating and deactivating Macs.
+        Check the <a href="/changelog" class="link">changelog</a> too, since
+        plenty of bugs are already fixed in a version you haven't installed
+        yet.
+      </Paragraph>
+      <Paragraph>
+        Writing about Picmal? The <a
+          href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
+          target="_blank"
+          rel="noreferrer"
+          class="link">press kit</a
+        > has logos and screenshots. There's an <a
+          href="/affiliate"
+          class="link">affiliate program</a
+        > at 30% commission, and <a href="/education" class="link"
+          >student pricing</a
+        > at 40% off. More about who makes Picmal on the <a
+          href="/about"
+          class="link">about page</a
+        >.
+      </Paragraph>
+    </div>
+  </Section>
 
-    <Footer />
-  </body>
-</html>
+  <Section width="narrow">
+    <H2 class="mb-4">Company details</H2>
+    <div class="max-w-xl space-y-5">
+      <Paragraph>
+        Picmal is made and sold by Cantimplora Studio, LLC, registered in
+        Wyoming, United States. The mailing address, if you need it on an
+        invoice or in a legal notice:
+      </Paragraph>
+      <!-- Sized to its contents. Five short lines in a 768px box was a
+           mostly empty panel; an address should be the size of a plaque. -->
+      <Card padding="p-6" class="max-w-sm">
+        <address class="not-italic text-body text-text-secondary">
+          Cantimplora Studio, LLC<br />
+          Alberto Gallego Castro<br />
+          30 N Gould St Ste R<br />
+          Sheridan, WY 82801<br />
+          United States
+        </address>
+        <Paragraph size="small" class="mt-4">
+          Email: <a href="mailto:support@picmal.app" class="link"
+            >support@picmal.app</a
+          >
+        </Paragraph>
+      </Card>
+      <Paragraph>
+        The legal fine print lives in the <a href="/terms" class="link"
+          >terms</a
+        > and the <a href="/privacy" class="link">privacy policy</a>. Short
+        version of the second one: Picmal processes your files on your own
+        Mac, so there's nothing for me to collect.
+      </Paragraph>
+    </div>
+  </Section>
+
+  <CTASection
+    heading="Convert and compress media on your Mac"
+    analyticsEvent="buy_clicked_contact"
+  />
+</MarketingLayout>

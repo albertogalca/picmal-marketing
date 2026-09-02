@@ -1,17 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title =
   "Picmal: Remove metadata (EXIF & GPS) from photos on Mac";
@@ -55,109 +51,87 @@ const faqs = [
       "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine, unlike the sketchy websites you'd otherwise paste private photos into. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Remove metadata from your photos on Mac"
+    subhead="Strip the EXIF and GPS location out of your photos before you share them. Wipe everything, keep only the essentials, or choose exactly what stays. Batch a whole folder, offline, no upload."
+    buyEvent="buy_clicked_remove_metadata_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Remove metadata from your photos on Mac"
-      subhead="Strip the EXIF and GPS location out of your photos before you share them. Wipe everything, keep only the essentials, or choose exactly what stays. Batch a whole folder, offline, no upload."
-      buyEvent="buy_clicked_remove_metadata_mac"
-      defaultTab="convert"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Remove metadata in 3 steps"
+    items={[
+      {
+        title: "Drop your photos",
+        description: "Drag in one photo or a whole folder.",
+      },
+      {
+        title: "Pick what to strip",
+        description:
+          "Strip all metadata, keep the essentials, or choose which categories stay.",
+      },
+      {
+        title: "Save",
+        description:
+          "Click and Picmal writes clean copies. It all runs on your Mac.",
+      },
+    ]}
+    linkText="Cleaning up the whole library? See how to free up storage in your Photos library"
+    linkHref="/blog/reduce-photo-library-size-mac"
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Remove metadata in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your photos",
-          description: "Drag in one photo or a whole folder.",
-        },
-        {
-          title: "Pick what to strip",
-          description:
-            "Strip all metadata, keep the essentials, or choose which categories stay.",
-        },
-        {
-          title: "Save",
-          description:
-            "Click and Picmal writes clean copies. It all runs on your Mac.",
-        },
-      ]}
-      linkText="Cleaning up the whole library? See how to free up storage in your Photos library"
-      linkHref="/blog/reduce-photo-library-size-mac"
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="What Picmal strips, and what it keeps"
+    items={[
+      {
+        icon: "ph:map-pin-duotone",
+        title: "Kill the location",
+        description:
+          "Drop the GPS coordinates so a photo stops telling everyone where it was taken.",
+      },
+      {
+        icon: "ph:sliders-duotone",
+        title: "Choose what stays",
+        description:
+          "Strip all, keep essentials, or pick per category: location, camera, date, copyright, color profile and more.",
+      },
+      {
+        icon: "ph:copyright-duotone",
+        title: "Keep your credit",
+        description:
+          "Stamp copyright and author into the file while everything else gets wiped.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Stays on your Mac",
+        description:
+          "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+      },
+    ]}
+    linkText="Need to convert or compress images too? See the image converter"
+    linkHref="/image-converter-mac"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="What Picmal strips, and what it keeps"
-      items={[
-        {
-          title: "Kill the location",
-          description:
-            "Drop the GPS coordinates so a photo stops telling everyone where it was taken.",
-        },
-        {
-          title: "Choose what stays",
-          description:
-            "Strip all, keep essentials, or pick per category: location, camera, date, copyright, color profile and more.",
-        },
-        {
-          title: "Keep your credit",
-          description:
-            "Stamp copyright and author into the file while everything else gets wiped.",
-        },
-        {
-          title: "Stays on your Mac",
-          description:
-            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
-        },
-      ]}
-      linkText="Need to convert or compress images too? See the image converter"
-      linkHref="/image-converter-mac"
-    />
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

@@ -1,6 +1,6 @@
 ---
 import Button from "./Button.astro";
-import { DEFAULT_TIER } from "../config/pricing";
+import { DEFAULT_TIER, type Tier } from "../config/pricing";
 
 interface Props {
   /** Seline event fired on the buy click, e.g. "buy_clicked_video_converter_mac" */
@@ -12,6 +12,15 @@ interface Props {
   source?: string;
   /** Extra classes for the wrapper */
   class?: string;
+  /** Which licence the hero sells. Defaults to the entry tier, which is right
+      for every page written for one person with one Mac. A page written for an
+      audience that arrives needing several (studios, education) passes its own
+      tier so the hero, the header and the closing CTA all quote one number. */
+  tier?: Tier;
+  /** The trailing link in the terms line. The default sends a single-Mac reader
+      up the ladder; a page that is already about the ladder sends them the
+      other way. */
+  linkText?: string;
 }
 
 const {
@@ -19,7 +28,16 @@ const {
   pricingHref = "#pricing",
   source = "hero",
   class: className = "",
+  tier = DEFAULT_TIER,
+  linkText = "Need 2, 5 or 10 Macs?",
 } = Astro.props;
+
+// "$29 once" on the entry tier, "$89 once for 5 Macs" on a team tier: the seat
+// count only earns its words when it is not 1.
+const priceLine =
+  tier.macs === 1
+    ? `$${tier.price} once`
+    : `$${tier.price} once for ${tier.macs} Macs`;
 
 // The buy button carries no href, so Button falls back to
 // DEFAULT_TIER.checkoutUrl and the click lands on Stripe. Until Aug 2026 this
@@ -43,10 +61,11 @@ const {
 <div class={className || undefined}>
   <div class="hero-reveal flex flex-col sm:flex-row gap-3" style="--d: 160ms">
     <Button
-      text={`Get Picmal for $${DEFAULT_TIER.price}`}
+      text={`Get Picmal for $${tier.price}`}
+      href={tier.checkoutUrl}
       class="w-full sm:w-auto"
       onclick={import.meta.env.PROD
-        ? `window.seline?.track('${buyEvent}', { macs: ${DEFAULT_TIER.macs}, source: '${source}' })`
+        ? `window.seline?.track('${buyEvent}', { macs: ${tier.macs}, source: '${source}' })`
         : undefined}
     />
   </div>
@@ -74,7 +93,7 @@ const {
         and the sublead says "while a website would still be uploading", so
         this was the third time in one screen. The line's job is the terms, so
         it keeps the ones nothing else states. */}
-    {`$${DEFAULT_TIER.price} once, updates included. No account, no subscription, works offline. `}
-    <a href={pricingHref} class="link">Need 2, 5 or 10 Macs?</a>
+    {`${priceLine}, updates included. No account, no subscription, works offline. `}
+    <a href={pricingHref} class="link">{linkText}</a>
   </p>
 </div>

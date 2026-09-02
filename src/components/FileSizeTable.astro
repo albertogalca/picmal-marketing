@@ -1,0 +1,108 @@
+---
+/**
+ * FileSizeTable - the before/after table on the compress and convert pages.
+ *
+ * The last column carries `tabular-nums`. The convert copy of this table used
+ * to leave it off, so its savings figures jittered between rows while the
+ * compress ones sat still.
+ */
+interface Row {
+  label: string;
+  originalSize: string;
+  compressedSize: string;
+  savings: string;
+}
+
+interface Props {
+  /** Column headings for the two size columns and the last column. */
+  columns: [string, string, string];
+  rows: Row[];
+  /** Optional footnote under the table. */
+  speed?: string;
+}
+
+const { columns, rows, speed } = Astro.props;
+const cell = "px-6 py-4 text-small text-right";
+---
+
+<div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
+  {/* Four columns of file sizes do not fit a phone, and the body carries
+      overflow-x-hidden, so without this the table has nowhere to go. Same
+      wrapper ComparisonTable uses. */}
+  <div
+    class="overflow-x-auto"
+    tabindex="0"
+    role="region"
+    aria-label="File size comparison"
+  >
+    <table class="w-full">
+      <thead>
+        <tr class="border-b border-border">
+          <th
+            scope="col"
+            class="text-left text-small font-medium text-text-secondary px-6 py-4"
+          >
+            File type
+          </th>
+          {
+            columns.map((c) => (
+              <th
+                scope="col"
+                class="text-right text-small font-medium text-text-secondary px-6 py-4"
+              >
+                {c}
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((row, i) => (
+            <tr class={i < rows.length - 1 ? "border-b border-border/50" : ""}>
+              <th
+                scope="row"
+                class="px-6 py-4 text-small text-left font-normal text-text"
+              >
+                {row.label}
+              </th>
+              <td class={`${cell} text-text-secondary font-mono`}>
+                {row.originalSize}
+              </td>
+              <td class={`${cell} text-text font-mono font-medium`}>
+                {row.compressedSize}
+              </td>
+              <td class={`${cell} text-accent tabular-nums`}>{row.savings}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  {
+    speed && (
+      <div class="px-6 py-4 border-t border-border bg-background/50">
+        <div class="flex items-center gap-2 text-small text-text-secondary">
+          <svg
+            class="w-4 h-4 text-accent flex-shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
+          </svg>
+          <span>
+            Speed: <strong class="text-text">{speed}</strong>
+          </span>
+        </div>
+      </div>
+    )
+  }
+</div>

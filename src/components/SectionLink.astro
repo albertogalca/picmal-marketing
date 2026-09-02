@@ -1,0 +1,21 @@
+---
+interface Props {
+  text: string;
+  href: string;
+}
+
+const { text, href } = Astro.props;
+---
+
+{/* The trailing "and here's the neighbouring page" link under a grid. One
+    definition so the three grids that offer it stay identical. */}
+<div class="text-center mt-8">
+  {/* The visible link is 17px tall. `before:` carries it to a 44px target
+      without inflating the type, the way DESIGN.md asks for small pills. */}
+  <a
+    href={href}
+    class="link text-small relative inline-block before:absolute before:-inset-y-3 before:-inset-x-2 before:content-['']"
+  >
+    {text} <span aria-hidden="true">&rarr;</span>
+  </a>
+</div>

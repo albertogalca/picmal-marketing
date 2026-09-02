@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FAQ from "../../components/FAQ.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -10,13 +7,13 @@ import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
-import H3 from "../../components/H3.astro";
-import Paragraph from "../../components/Paragraph.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
+import FAQSection from "../../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Looking for a Compresto alternative? Picmal is one Mac app for convert, compress, and edit across images, video, audio, and PDFs. Pay once, $29, not $49. Works with Shortcuts and folder monitoring. 14-day refund.";
@@ -55,336 +52,162 @@ const faqs = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: The affordable Compresto alternative for Mac"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: The affordable Compresto alternative for Mac"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema />
-  </head>
+        <FAQSchema />
+  </Fragment>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="The affordable Compresto alternative for Mac"
+    subhead="Compresto compresses well. If you also need to convert formats, work with video and audio, or handle PDFs, Picmal does all of it for $29, not $49. Files never leave your Mac."
+    buyEvent="buy_clicked_compresto_comparison"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="The affordable Compresto alternative for Mac"
-      subhead="Compresto compresses well. If you also need to convert formats, work with video and audio, or handle PDFs, Picmal does all of it for $29, not $49. Files never leave your Mac."
-      buyEvent="buy_clicked_compresto_comparison"
-    />
+  <ComparisonVerdict
+    competitor="Compresto"
+    summary="Compresto squeezes files as small as they'll go, up to 90% reduction. Picmal ($29, pay once) does real compression too. It also converts formats, covers video and audio, handles PDFs, has its own Raycast extension, and costs $20 less."
+    picmalFor="You need more than compression. Formats to convert, video and audio to process, PDFs to shrink or combine, and you'd rather not pay $49 for it."
+    competitorFor="You compress files all day and want the smallest possible output, whatever it costs."
+  />
 
-    <ComparisonVerdict
+  <!-- Comparison Table -->
+  <Section width="default">
+    <SectionHeading>
+      Picmal vs Compresto at a glance
+      <Fragment slot="sublead">
+        Compresto is built for one thing: squeezing files as small as possible.
+        Picmal does more. Convert, compress, and edit across images, video,
+        audio, and PDFs. Both run offline, both handle batches.
+      </Fragment>
+    </SectionHeading>
+    <ComparisonTable
       competitor="Compresto"
-      summary="Compresto squeezes files as small as they'll go, up to 90% reduction. Picmal ($29, pay once) does real compression too. It also converts formats, covers video and audio, handles PDFs, has its own Raycast extension, and costs $20 less."
-      picmalFor="You need more than compression. Formats to convert, video and audio to process, PDFs to shrink or combine, and you'd rather not pay $49 for it."
-      competitorFor="You compress files all day and want the smallest possible output, whatever it costs."
+      rows={[
+      {
+        feature: "Price",
+        picmal: "$29 one-time",
+        competitor: "$49 one-time (or $7/mo)",
+      },
+      {
+        feature: "What it's for",
+        picmal: "Convert, compress &amp; edit",
+        competitor: "File compression",
+      },
+      {
+        feature: "Privacy",
+        picmal: "100% offline",
+        competitor: "100% offline",
+      },
+      {
+        feature: "Image conversion",
+        picmal: "Yes. HEIC, JPG, PNG, WebP, and more",
+        competitor: "Compression only",
+      },
+      {
+        feature: "Video conversion",
+        picmal: "Yes. MP4, MOV, MKV, and more",
+        competitor: "Compression only",
+      },
+      {
+        feature: "Audio conversion",
+        picmal: "Yes. MP3, WAV, FLAC, and more",
+        competitor: "No",
+      },
+      {
+        feature: "PDF support",
+        picmal: "Yes. Compress, combine, images to PDF",
+        competitor: "Yes. Compression",
+      },
+      {
+        feature: "Compression",
+        picmal: "Yes. Images, video, audio, PDF",
+        competitor: "Up to 90% reduction",
+      },
+      {
+        feature: "Metadata removal",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Folder monitoring",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Shortcuts integration",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Raycast extension",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Finder right-click",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "macOS",
+        picmal: "15+",
+        competitor: "13+",
+      },
+    ]}
     />
+  </Section>
 
-    <!-- Comparison Table -->
-    <Section width="default">
-      <SectionHeading>
-        Picmal vs Compresto at a glance
-        <Fragment slot="sublead">
-          Compresto is built for one thing: squeezing files as small as possible.
-          Picmal does more. Convert, compress, and edit across images, video,
-          audio, and PDFs. Both run offline, both handle batches.
-        </Fragment>
-      </SectionHeading>
-      <Card padding="p-4 md:p-8">
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse">
-              <thead>
-                <tr class="border-b border-border">
-                  <th class="text-left p-4 font-semibold text-text">Feature</th>
-                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
-                  <th class="text-left p-4 font-semibold text-text"
-                    >Compresto</th
-                  >
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border">
-                <tr>
-                  <td class="p-4 text-text-secondary">Price</td>
-                  <td class="p-4 text-text">$29 one-time</td>
-                  <td class="p-4 text-text">$49 one-time (or $7/mo)</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">What it's for</td>
-                  <td class="p-4 text-text">Convert, compress &amp; edit</td>
-                  <td class="p-4 text-text">File compression</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Privacy</td>
-                  <td class="p-4 text-text">100% offline</td>
-                  <td class="p-4 text-text">100% offline</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Image conversion</td>
-                  <td class="p-4 text-text">Yes. HEIC, JPG, PNG, WebP, and more</td>
-                  <td class="p-4 text-text">Compression only</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes. MP4, MOV, MKV, and more</td>
-                  <td class="p-4 text-text">Compression only</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes. MP3, WAV, FLAC, and more</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">PDF support</td>
-                  <td class="p-4 text-text"
-                    >Yes. Compress, combine, images to PDF</td
-                  >
-                  <td class="p-4 text-text">Yes. Compression</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Compression</td>
-                  <td class="p-4 text-text"
-                    >Yes. Images, video, audio, PDF</td
-                  >
-                  <td class="p-4 text-text">Up to 90% reduction</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Metadata removal</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Yes</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Folder monitoring</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Yes</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Raycast extension</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Yes</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Finder right-click</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">macOS</td>
-                  <td class="p-4 text-text">15+</td>
-                  <td class="p-4 text-text">13+</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      </Card>
-    </Section>
+  <!-- Who Picmal Is For / Who Should Stick with Compresto -->
+  <AlternativeVerdict
+    sublead="Here's where each one makes more sense."
+    picmal={{
+      heading: "Choose Picmal",
+      lead: "You need more than just compression",
+      items: [
+        "You want one app to convert, compress, and edit your media",
+        "You use Apple Shortcuts for automation",
+        "You need to convert or compress video, audio, and PDFs too",
+        "You don't want to pay $49 for a single-purpose app",
+      ],
+    }}
+    rival={{
+      heading: "Choose Compresto",
+      lead: "Compression is your only job",
+      items: [
+        "Your focus is compression, not format conversion",
+        "You need up to 90% file size reduction",
+        "You want one app that only compresses, and does it hard",
+      ],
+    }}
+  />
 
-    <!-- Who Picmal Is For / Who Should Stick with Compresto -->
-    <Section width="default">
-      <SectionHeading>
-        Which one is right for you?
-        <Fragment slot="sublead">
-            Here's where each one makes more sense.
-        </Fragment>
-      </SectionHeading>
+  <!-- Features -->
+  <FeatureGrid
+    heading="Everything else Picmal does"
+    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+  />
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Picmal Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose Picmal
-              </H3>
-              <Paragraph color="secondary">
-                You need more than just compression
-              </Paragraph>
-            </div>
+  <!-- Testimonials Section -->
+  <MasonryTestimonials />
 
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want one app to convert, compress, and edit your media
-                </span>
-              </li>
+  <!-- Pricing -->
+  <PricingSection />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You use Apple Shortcuts for automation
-                </span>
-              </li>
+  <!-- Founder letter -->
+  <FounderLetter />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need to convert or compress video, audio, and PDFs too
-                </span>
-              </li>
+  <!-- FAQ Section -->
+  <FAQSection
+    faqs={faqs}
+    heading="Frequently asked questions"
+    sublead="Can't find what you're looking for? Email support@picmal.app"
+  />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You don't want to pay $49 for a single-purpose app
-                </span>
-              </li>
-            </ul>
-          </Card>
-
-          <!-- Compresto Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose Compresto
-              </H3>
-              <Paragraph color="secondary">
-                Compression is your only job
-              </Paragraph>
-            </div>
-
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  Your focus is compression, not format conversion
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need up to 90% file size reduction
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want one app that only compresses, and does it hard
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </div>
-    </Section>
-
-    <!-- Features -->
-    <FeatureGrid
-      heading="Everything else Picmal does"
-      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-    />
-
-    <!-- Testimonials Section -->
-    <MasonryTestimonials />
-
-    <!-- Pricing -->
-    <PricingSection />
-
-    <!-- Founder letter -->
-    <FounderLetter />
-
-    <!-- FAQ Section -->
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Can't find what you're looking for? Email support@picmal.app"
-      >
-        Frequently asked questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
-
+  <Fragment slot="after">
     <SupportedFormatsModal />
-
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

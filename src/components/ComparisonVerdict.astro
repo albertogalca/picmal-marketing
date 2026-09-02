@@ -1,4 +1,6 @@
 ---
+import Card from "./Card.astro";
+
 interface Props {
   competitor: string;
   summary: string;
@@ -11,7 +13,7 @@ const { competitor, summary, picmalFor, competitorFor } = Astro.props;
 
 <section class="relative z-10 px-6 pt-8 pb-4" aria-label={`Picmal vs ${competitor} quick answer`}>
   <div class="max-w-3xl mx-auto">
-    <div class="bg-background-subtle/50 border border-border rounded-2xl p-6 md:p-8">
+    <Card>
       <div class="flex items-baseline gap-2 mb-4">
         <span class="text-small font-mono font-medium text-accent">TL;DR</span>
         <span class="text-small text-text-secondary">Picmal vs {competitor}</span>
@@ -27,6 +29,6 @@ const { competitor, summary, picmalFor, competitorFor } = Astro.props;
           <dd class="text-small text-text">{competitorFor}</dd>
         </div>
       </dl>
-    </div>
+    </Card>
   </div>
 </section>

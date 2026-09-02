@@ -1,15 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import Section from "../components/Section.astro";
+import DemoReel from "../components/DemoReel.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import Card from "../components/Card.astro";
-import H3 from "../components/H3.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
-import FAQ from "../components/FAQ.astro";
 import FeaturedReview from "../components/FeaturedReview.astro";
+import FAQSection from "../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Earn 30% commission on every Picmal sale you refer. 60-day cookie, $10 payout threshold, no quotas.";
@@ -21,15 +19,17 @@ const SIGNIN_URL = "https://picmal.affonso.io/";
 const steps = [
   {
     title: "Sign up",
-    body: "Sign up and get your affiliate link.",
+    description: "Sign up and get your affiliate link.",
   },
   {
     title: "Share your link",
-    body: "Put it in a blog post, a video description, a newsletter, a tweet. Wherever it fits.",
+    description:
+      "Put it in a blog post, a video description, a newsletter, a tweet. Wherever it fits.",
   },
   {
     title: "Earn commission",
-    body: "Clicks and sales show up in your dashboard. Payouts go out monthly.",
+    description:
+      "Clicks and sales show up in your dashboard. Payouts go out monthly.",
   },
 ];
 
@@ -62,206 +62,146 @@ const affiliateFaqs = [
 ];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: Affiliate program"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: Affiliate program"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: "Picmal Affiliate Program",
-        description: SITE_DESCRIPTION,
-        speakable: {
-          "@type": "SpeakableSpecification",
-          cssSelector: ["#main-content h1", "#main-content p"],
-        },
-      })}
-    />
-  </head>
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Picmal Affiliate Program",
+            description: SITE_DESCRIPTION,
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["#main-content h1", "#main-content p"],
+            },
+          })}
+        />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
-
-    <main id="main-content">
-      <!-- Hero — same rhythm as the reference hero (index.astro), but centered:
-           heading → CTA → quiet proof line, then the framed demo below.
-           sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-      <Section width="wide" class="pt-32 sm:pt-32">
-        <div class="max-w-3xl mx-auto">
-          <div class="hero-reveal" style="--d: 0ms">
-            <SectionHeading
-              level={1}
-              class="mb-8"
-              headingClass="mb-6"
-              subleadClass="max-w-xl"
-            >
-              Become an affiliate and earn 30% on each sale
-              <Fragment slot="sublead">
-                That's $9 to $45 a sale, depending on how many Macs the buyer
-                needs. Clicks stay tracked for 60 days, so you still get credit
-                when someone comes back a month later to buy.
-              </Fragment>
-            </SectionHeading>
-          </div>
-
-          <div
-            class="hero-reveal flex flex-col items-center gap-3"
-            style="--d: 80ms"
-          >
-            <Button
-              href={SIGNUP_URL}
-              text="Become an affiliate"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full sm:w-auto"
-            />
-            <a
-              href={SIGNIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link inline-block py-1 text-small text-text-secondary"
-            >
-              Already an affiliate? Sign in
-            </a>
-          </div>
-
-          <p
-            class="hero-reveal mt-6 flex items-center justify-center gap-2 text-small text-text-secondary"
-            style="--d: 160ms"
-          >
-            <svg
-              class="w-4 h-4 shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M20 6 9 17l-5-5"></path>
-            </svg>
-            Free to join, no quotas. I read every application myself.
-          </p>
-        </div>
-
-        <!-- The product they'd promote, shown working — same framed demo
-             video as the homepage hero, so the page doesn't just tell. -->
-        <div class="hero-reveal mt-12" style="--d: 240ms">
-          <div
-            class="rounded-xl overflow-hidden ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06),0_16px_32px_-8px_rgba(0,0,0,0.12)]"
-          >
-            <div class="aspect-video bg-background-subtle">
-              <video
-                id="hero-demo-video"
-                class="w-full h-full object-cover"
-                width="1280"
-                height="720"
-                src="/convert.mp4"
-                poster="/convert-poster.webp"
-                loop
-                muted
-                playsinline
-                preload="metadata"
-                aria-label="Picmal convert demo"
-              >
-              </video>
-            </div>
-          </div>
-        </div>
-
-        <!-- Outside voice: proof the app is a legit, easy recommendation. -->
-        <div class="hero-reveal mt-16" style="--d: 320ms">
-          <FeaturedReview publication="MacStories" />
-        </div>
-      </Section>
-
-      <!-- How It Works — an ordered flow, not a feature list, so it gets
-           numbers and a shared top rule instead of the FeatureGrid's
-           icon-above-a-heading shape. Three columns at every size above
-           mobile: `sm:grid-cols-2` orphaned step 3, the payoff, on tablets. -->
-      <Section width="wide">
-        <SectionHeading align="left" subleadClass="max-w-xl">
-          How it works
+  <!-- Hero — the same geometry as index.astro and /studios: Section `wide`,
+       a max-w-3xl measure, left aligned, staggered reveal. Centering this
+       one was the only thing making it read as a different product.
+       sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+  <Section width="wide" class="pt-32 sm:pt-32">
+    <div class="max-w-3xl">
+      <div class="hero-reveal" style="--d: 0ms">
+        <SectionHeading
+          level={1}
+          align="left"
+          class="mb-8"
+          headingClass="mb-6"
+          subleadClass="max-w-xl"
+        >
+          Become an affiliate and earn 30% on each sale
           <Fragment slot="sublead">
-            Three steps, and the setup takes about two minutes.
+            That's $9 to $45 a sale, depending on how many Macs the buyer
+            needs. Clicks stay tracked for 60 days, so you still get credit
+            when someone comes back a month later to buy.
           </Fragment>
         </SectionHeading>
-        <ol class="grid sm:grid-cols-3 gap-x-8 gap-y-10">
-          {
-            steps.map((step, i) => (
-              <li class="border-t border-border pt-5">
-                <span class="block text-h4 tabular-nums text-text-secondary mb-2">
-                  {i + 1}
-                </span>
-                <H3 class="text-h4 mb-1">{step.title}</H3>
-                <Paragraph>{step.body}</Paragraph>
-              </li>
-            ))
-          }
-        </ol>
-      </Section>
+      </div>
 
-      <!-- FAQ -->
-      <Section id="faq" width="narrow">
-        <SectionHeading>Frequently asked questions</SectionHeading>
-        <Card>
-          <FAQ faqs={affiliateFaqs} />
-        </Card>
-      </Section>
+      <div
+        class="hero-reveal flex flex-col items-start gap-3"
+        style="--d: 80ms"
+      >
+        <Button
+          href={SIGNUP_URL}
+          text="Become an affiliate"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto"
+        />
+        <a
+          href={SIGNIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link inline-block py-1 text-small text-text-secondary"
+        >
+          Already an affiliate? Sign in
+        </a>
+      </div>
 
-      <!-- Closing CTA — one action, plus a plain first-person reassurance.
-           The numbers already live in the hero and the FAQ; don't repeat them here. -->
-      <Section bg="subtle">
-        <SectionHeading>
-          Get your affiliate link
-          <Fragment slot="sublead">
-            It's just me, Alberto, behind Picmal and this program. Sign up and
-            I'll take a look.
-          </Fragment>
-        </SectionHeading>
-        <div class="flex justify-center">
-          <Button
-            href={SIGNUP_URL}
-            text="Become an affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
-        </div>
-        <Paragraph size="small" class="text-center mt-8">
-          Questions? Email me at <a class="link" href="mailto:support@picmal.app"
-            >support@picmal.app</a
-          >, or grab the <a
-            class="link"
-            href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
-            target="_blank"
-            rel="noopener">press kit</a
-          >.
-        </Paragraph>
-      </Section>
-    </main>
+      <p
+        class="hero-reveal mt-6 flex items-center gap-2 text-small text-text-secondary"
+        style="--d: 160ms"
+      >
+        <svg
+          class="w-4 h-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+        Free to join, no quotas. I read every application myself.
+      </p>
+    </div>
 
-    <Footer />
+    <!-- The product they'd promote, shown working. The same reel the
+         homepage and /studios run, so an affiliate sees exactly what their
+         audience will land on. -->
+    <div class="hero-reveal mt-12" style="--d: 240ms">
+      <DemoReel />
+    </div>
 
-    <!-- Hero demo: autoplay the loop unless the user prefers reduced motion
-         (then the poster stays put). Same as the homepage hero. -->
-    <script>
-      const heroVideo = document.getElementById(
-        "hero-demo-video",
-      ) as HTMLVideoElement | null;
-      if (
-        heroVideo &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        heroVideo.play().catch(() => {});
-      }
-    </script>
-  </body>
-</html>
+    <!-- Outside voice: proof the app is a legit, easy recommendation. -->
+    <div class="hero-reveal mt-16" style="--d: 320ms">
+      <FeaturedReview publication="MacStories" />
+    </div>
+  </Section>
+
+  <!-- How It Works — an ordered flow, not a feature list, so it uses the
+       shared BlockGrid, ordered, instead of the FeatureGrid shape. No heading
+       prop: this Section already supplies the padding and the heading. -->
+  <Section width="wide">
+    <SectionHeading align="left" subleadClass="max-w-xl">
+      How it works
+      <Fragment slot="sublead">
+        Three steps, and the setup takes about two minutes.
+      </Fragment>
+    </SectionHeading>
+    <BlockGrid ordered items={steps} />
+  </Section>
+
+  <!-- FAQ -->
+  <FAQSection faqs={affiliateFaqs} heading="Frequently asked questions" />
+
+  <!-- Closing CTA — one action, plus a plain first-person reassurance.
+       The numbers already live in the hero and the FAQ; don't repeat them here. -->
+  <Section bg="subtle">
+    <SectionHeading>
+      Get your affiliate link
+      <Fragment slot="sublead">
+        It's just me, Alberto, behind Picmal and this program. Sign up and
+        I'll take a look.
+      </Fragment>
+    </SectionHeading>
+    <div class="flex justify-center">
+      <Button
+        href={SIGNUP_URL}
+        text="Become an affiliate"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    </div>
+    <Paragraph size="small" class="text-center mt-8">
+      Questions? Email me at <a class="link" href="mailto:support@picmal.app"
+        >support@picmal.app</a
+      >, or grab the <a
+        class="link"
+        href="https://drive.google.com/drive/folders/1Ee9FqH7g9tTqiOd529iSceHyo9J-PYYC?usp=sharing"
+        target="_blank"
+        rel="noopener">press kit</a
+      >.
+    </Paragraph>
+  </Section>
+</MarketingLayout>

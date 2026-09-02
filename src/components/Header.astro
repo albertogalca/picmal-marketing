@@ -2,7 +2,17 @@
 import { Image } from "astro:assets";
 import Button from "./Button.astro";
 import Paragraph from "./Paragraph.astro";
-import { DEFAULT_TIER } from "../config/pricing";
+import { DEFAULT_TIER, type Tier } from "../config/pricing";
+
+interface Props {
+  /** Which licence the header button buys. Defaults to the entry tier. A page
+      written for one audience passes the tier that audience came for, so the
+      most prominent button on screen is not arguing against the page under
+      it. */
+  tier?: Tier;
+}
+
+const { tier = DEFAULT_TIER } = Astro.props;
 
 const currentPage = Astro.url.pathname;
 
@@ -120,10 +130,10 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
         <Button
           class="hidden md:block m-0"
           size="small"
-          text={`Buy for $${DEFAULT_TIER.price}`}
-          href={DEFAULT_TIER.checkoutUrl}
+          text={`Buy for $${tier.price}`}
+          href={tier.checkoutUrl}
           onclick={import.meta.env.PROD
-            ? `window.seline?.track('buy_clicked', { macs: ${DEFAULT_TIER.macs}, source: 'header' })`
+            ? `window.seline?.track('buy_clicked', { macs: ${tier.macs}, source: 'header' })`
             : undefined}
         />
 
@@ -201,10 +211,10 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
             click handler already catches, so picking it closes the menu. */}
         <Button
           class="mt-6 w-full"
-          text={`Buy for $${DEFAULT_TIER.price}`}
-          href={DEFAULT_TIER.checkoutUrl}
+          text={`Buy for $${tier.price}`}
+          href={tier.checkoutUrl}
           onclick={import.meta.env.PROD
-            ? `window.seline?.track('buy_clicked', { macs: ${DEFAULT_TIER.macs}, source: 'header_mobile' })`
+            ? `window.seline?.track('buy_clicked', { macs: ${tier.macs}, source: 'header_mobile' })`
             : undefined}
         />
       </div>

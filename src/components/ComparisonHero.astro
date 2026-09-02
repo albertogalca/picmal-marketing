@@ -2,6 +2,7 @@
 import ReleaseBadge from "./ReleaseBadge.astro";
 import HeroCTA from "./HeroCTA.astro";
 import Section from "./Section.astro";
+import DemoReel from "./DemoReel.astro";
 import SectionHeading from "./SectionHeading.astro";
 
 interface Props {
@@ -52,40 +53,11 @@ const {
     <HeroCTA buyEvent={buyEvent} pricingHref={pricingHref} />
   </div>
 
-  <!-- Demo Video -->
+  <!-- The same reel the homepage runs, opened on whichever clip matches this
+       page's search intent. These pages used to show one static clip with no
+       dock and no pause control, which was the only thing separating them from
+       the home page. -->
   <div class="hero-reveal mt-12" style="--d: 240ms">
-    <div
-      class="rounded-xl overflow-hidden ring-1 ring-black/[0.08] dark:ring-white/10 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06),0_16px_32px_-8px_rgba(0,0,0,0.12)]"
-    >
-      <div class="aspect-video bg-background-subtle">
-        <video
-          id="hero-demo-video"
-          class="w-full h-full object-cover"
-          width="1280"
-          height="720"
-          src={`/${defaultTab}.mp4`}
-          poster={`/${defaultTab}-poster.webp`}
-          loop
-          muted
-          playsinline
-          preload="metadata"
-          aria-label="Picmal demo"
-        >
-        </video>
-      </div>
-    </div>
+    <DemoReel start={defaultTab} />
   </div>
 </Section>
-
-<!-- Hero demo: autoplay the loop unless the user prefers reduced motion. -->
-<script>
-  const heroVideo = document.getElementById(
-    "hero-demo-video",
-  ) as HTMLVideoElement | null;
-  if (
-    heroVideo &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ) {
-    heroVideo.play().catch(() => {});
-  }
-</script>

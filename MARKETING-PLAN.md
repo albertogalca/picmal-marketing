@@ -87,7 +87,7 @@ BundleHunt sold **604 licenses for $1,510 in eight weeks**. That single campaign
 
 Q4 line-up:
 
-- **BundleHunt** — pitch again for a Q4 slot.
+- **BundleHunt** — LIVE since ~1 Sep 2026, 1 sale so far. Do not re-pitch, measure it.
 - **Black Friday roundups** — Michael Tsai's annual post is the priority; he publishes ~21–25 Nov, so pitch mid-November. Use the standard outreach email verbatim.
 - **StackSocial / DealMirror** — lower quality, but incremental.
 - **Own Black Friday sale** — 30% off the new $29 tier for one week.

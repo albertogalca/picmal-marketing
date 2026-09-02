@@ -1,11 +1,10 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import Paragraph from "../../components/Paragraph.astro";
+import LinkCard from "../../components/LinkCard.astro";
 
 const title = "Picmal: Free file and image tools";
 const description =
@@ -36,83 +35,72 @@ const tools = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        name: title,
-        description,
-        url: "https://picmal.app/tools",
-        mainEntity: tools.map((t) => ({
-          "@type": "WebApplication",
-          name: t.title,
-          description: t.description,
-          url: `https://picmal.app${t.href}`,
-          applicationCategory: "UtilityApplication",
-          operatingSystem: "Any",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        })),
-      })}
-    />
-  </head>
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: title,
+            description,
+            url: "https://picmal.app/tools",
+            mainEntity: tools.map((t) => ({
+              "@type": "WebApplication",
+              name: t.title,
+              description: t.description,
+              url: `https://picmal.app${t.href}`,
+              applicationCategory: "UtilityApplication",
+              operatingSystem: "Any",
+              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            })),
+          })}
+        />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+  <Section width="narrow" class="pt-32 sm:pt-32">
+    <SectionHeading
+      level={1}
+      sublead="Free, runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
+    >
+      Free file and image tools
+    </SectionHeading>
 
-    <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-      <Section width="narrow" class="pt-32 sm:pt-32">
-        <SectionHeading
-          level={1}
-          sublead="Free, runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
-        >
-          Free file and image tools
-        </SectionHeading>
+    <div class="flex flex-col gap-4">
+      {
+        tools.map((tool) => (
+          <LinkCard href={tool.href}>
+            <h2 class="text-h3 text-text mb-2">{tool.title}</h2>
+            <Paragraph class="mb-4">{tool.description}</Paragraph>
+            <span class="text-small font-[590] text-accent">
+              Open the tool <span aria-hidden="true">&rarr;</span>
+            </span>
+          </LinkCard>
+        ))
+      }
+    </div>
+  </Section>
 
-        <div class="flex flex-col gap-4">
-          {
-            tools.map((tool) => (
-              <a
-                href={tool.href}
-                class="group bg-background-subtle/50 border border-border rounded-2xl p-6 transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
-                <h2 class="text-h3 text-text mb-2">{tool.title}</h2>
-                <Paragraph class="mb-4">{tool.description}</Paragraph>
-                <span class="text-small font-[590] text-accent">
-                  Open the tool <span aria-hidden="true">&rarr;</span>
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </Section>
+  {/* A one-line footnote, not a section. At Section's own py-16 sm:py-20 it
+      sat in ~170px of empty page on both sides and read as the end of the
+      document. Interstitial spacing, same as the press quote on the home
+      page. */}
+  <Section width="narrow" class="py-8 sm:py-10 text-center">
+    <Paragraph
+      >Looking for the app itself? Picmal <a class="link" href="/compress-images-mac"
+        >compresses images</a
+      >, <a class="link" href="/image-converter-mac">converts formats</a>, and
+      <a class="link" href="/resize-image-mac">resizes in batches</a> on your
+      Mac, fully offline.</Paragraph
+    >
+  </Section>
 
-      {/* A one-line footnote, not a section. At Section's own py-16 sm:py-20 it
-          sat in ~170px of empty page on both sides and read as the end of the
-          document. Interstitial spacing, same as the press quote on the home
-          page. */}
-      <Section width="narrow" class="py-8 sm:py-10 text-center">
-        <Paragraph
-          >Looking for the app itself? Picmal <a class="link" href="/compress-images-mac"
-            >compresses images</a
-          >, <a class="link" href="/image-converter-mac">converts formats</a>, and
-          <a class="link" href="/resize-image-mac">resizes in batches</a> on your
-          Mac, fully offline.</Paragraph
-        >
-      </Section>
-
-      <CTASection
-        heading="Use Picmal to convert and compress media on your Mac"
-        analyticsEvent="buy_clicked_tools_index"
-      />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <CTASection
+    heading="Use Picmal to convert and compress media on your Mac"
+    analyticsEvent="buy_clicked_tools_index"
+  />
+</MarketingLayout>

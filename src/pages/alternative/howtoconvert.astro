@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FAQ from "../../components/FAQ.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -10,13 +7,13 @@ import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
-import H3 from "../../components/H3.astro";
-import Paragraph from "../../components/Paragraph.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
+import FAQSection from "../../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Want a How To Convert alternative on your Mac? Picmal converts, compresses, and edits images, video, and audio, plus PDF tools, all on your Mac. Nothing gets uploaded. $29 once, no subscription. 14-day refund.";
@@ -50,389 +47,161 @@ const faqs = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: A native Mac alternative to How To Convert"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: A native Mac alternative to How To Convert"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema />
-  </head>
+        <FAQSchema />
+  </Fragment>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="A native Mac alternative to How To Convert"
+    subhead="How To Convert does documents, emails, and three platforms. Picmal does media, so images, video, audio, and PDFs, on the Mac only, with a native interface, Shortcuts, and folder monitoring."
+    buyEvent="buy_clicked_howtoconvert_comparison"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="A native Mac alternative to How To Convert"
-      subhead="How To Convert does documents, emails, and three platforms. Picmal does media, so images, video, audio, and PDFs, on the Mac only, with a native interface, Shortcuts, and folder monitoring."
-      buyEvent="buy_clicked_howtoconvert_comparison"
-    />
+  <ComparisonVerdict
+    competitor="How To Convert"
+    summary="How To Convert handles documents, emails, and media across Windows, Mac, and Linux. Picmal ($29, paid once) is Mac only and sticks to media, so images, video, audio, and PDFs, with a native interface, Shortcuts, and folder monitoring."
+    picmalFor="You're on a Mac and mostly work with media files. You want something that feels native, with Shortcuts, folder monitoring, and a command line tool, and you don't need Windows or Linux."
+    competitorFor="You convert documents or emails, or you need the same app on Windows or Linux too."
+  />
 
-    <ComparisonVerdict
+  <!-- Comparison Table -->
+  <Section width="default">
+    <SectionHeading>
+      Picmal vs How To Convert at a glance
+      <Fragment slot="sublead">
+        How To Convert is broad. It supports thousands of format combinations
+        across five categories. But if you're on a Mac and you live in media,
+        converting, compressing, and editing images, video, and audio, Picmal
+        is the more focused, native pick.
+      </Fragment>
+    </SectionHeading>
+    <ComparisonTable
       competitor="How To Convert"
-      summary="How To Convert handles documents, emails, and media across Windows, Mac, and Linux. Picmal ($29, paid once) is Mac only and sticks to media, so images, video, audio, and PDFs, with a native interface, Shortcuts, and folder monitoring."
-      picmalFor="You're on a Mac and mostly work with media files. You want something that feels native, with Shortcuts, folder monitoring, and a command line tool, and you don't need Windows or Linux."
-      competitorFor="You convert documents or emails, or you need the same app on Windows or Linux too."
+      rows={[
+      {
+        feature: "Price",
+        picmal: "$29 one-time",
+        competitor: "$29 one-time",
+      },
+      {
+        feature: "Platforms",
+        picmal: "macOS only",
+        competitor: "Mac, Windows, Linux",
+      },
+      {
+        feature: "Privacy",
+        picmal: "100% offline",
+        competitor: "100% offline",
+      },
+      {
+        feature: "Interface",
+        picmal: "Native macOS, single window",
+        competitor: "Cross-platform wrapper",
+      },
+      {
+        feature: "Image formats",
+        picmal: "20+",
+        competitor: "40+",
+      },
+      {
+        feature: "Video formats",
+        picmal: "20+",
+        competitor: "50+",
+      },
+      {
+        feature: "Document conversions",
+        picmal: "No",
+        competitor: "Yes (DOCX, PDF, MD, etc.)",
+      },
+      {
+        feature: "Email conversions",
+        picmal: "No",
+        competitor: "Yes (EML, MSG)",
+      },
+      {
+        feature: "Metadata removal",
+        picmal: "Yes, strip location data before sharing",
+        competitor: "No",
+      },
+      {
+        feature: "Finder right-click",
+        picmal: "Yes, convert without opening the app",
+        competitor: "No",
+      },
+      {
+        feature: "Shortcuts integration",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Folder monitoring",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Device license",
+        picmal: "2 Macs, 5 with Pro",
+        competitor: "5 devices",
+      },
+    ]}
     />
+  </Section>
 
-    <!-- Comparison Table -->
-    <Section width="default">
-      <SectionHeading>
-        Picmal vs How To Convert at a glance
-        <Fragment slot="sublead">
-          How To Convert is broad. It supports thousands of format combinations
-          across five categories. But if you're on a Mac and you live in media,
-          converting, compressing, and editing images, video, and audio, Picmal
-          is the more focused, native pick.
-        </Fragment>
-      </SectionHeading>
-      <Card padding="p-4 md:p-8">
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse">
-              <thead>
-                <tr class="border-b border-border">
-                  <th class="text-left p-4 font-semibold text-text">Feature</th>
-                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
-                  <th class="text-left p-4 font-semibold text-text"
-                    >How To Convert</th
-                  >
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border">
-                <tr>
-                  <td class="p-4 text-text-secondary">Price</td>
-                  <td class="p-4 text-text">$29 one-time</td>
-                  <td class="p-4 text-text">$29 one-time</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Platforms</td>
-                  <td class="p-4 text-text">macOS only</td>
-                  <td class="p-4 text-text">Mac, Windows, Linux</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Privacy</td>
-                  <td class="p-4 text-text">100% offline</td>
-                  <td class="p-4 text-text">100% offline</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Interface</td>
-                  <td class="p-4 text-text">Native macOS, single window</td>
-                  <td class="p-4 text-text">Cross-platform wrapper</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Image formats</td>
-                  <td class="p-4 text-text">20+</td>
-                  <td class="p-4 text-text">40+</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video formats</td>
-                  <td class="p-4 text-text">20+</td>
-                  <td class="p-4 text-text">50+</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Document conversions</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes (DOCX, PDF, MD, etc.)</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Email conversions</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes (EML, MSG)</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Metadata removal</td>
-                  <td class="p-4 text-text"
-                    >Yes, strip location data before sharing</td
-                  >
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Finder right-click</td>
-                  <td class="p-4 text-text"
-                    >Yes, convert without opening the app</td
-                  >
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Folder monitoring</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Device license</td>
-                  <td class="p-4 text-text">2 Macs, 5 with Pro</td>
-                  <td class="p-4 text-text">5 devices</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      </Card>
-    </Section>
+  <!-- Who Picmal Is For / Who Should Stick with How To Convert -->
+  <AlternativeVerdict
+    sublead="Here's where each one makes more sense."
+    picmal={{
+      heading: "Choose Picmal",
+      lead: "Best for Mac users who care about design and automation",
+      items: [
+        "You want an app that feels native to macOS, not a cross-platform wrapper",
+        "You need system integrations like Shortcuts or folder monitoring",
+        "You convert, compress, and edit images, video, and audio, plus PDF tools, and you don't need documents",
+        "You'd rather have a focused tool from one developer who builds for one platform",
+        "You want a Mac app, not a cross-platform one",
+      ],
+    }}
+    rival={{
+      heading: "Choose How To Convert",
+      lead: "Best for cross-platform users with a wide range of formats",
+      items: [
+        "You work on Windows or Linux (or all three)",
+        "You need document conversions (Word, PDF, Markdown, ebooks)",
+        "You need email format conversions (EML, MSG)",
+        "You want the cheaper one and can live without the Mac integrations",
+        "Format variety matters more than native feel",
+      ],
+    }}
+  />
 
-    <!-- Who Picmal Is For / Who Should Stick with How To Convert -->
-    <Section width="default">
-      <SectionHeading>
-        Which one is right for you?
-        <Fragment slot="sublead">
-            Here's where each one makes more sense.
-        </Fragment>
-      </SectionHeading>
+  <!-- Features -->
+  <FeatureGrid
+    heading="Everything else Picmal does"
+    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+  />
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Picmal Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose Picmal
-              </H3>
-              <Paragraph color="secondary">
-                Best for Mac users who care about design and automation
-              </Paragraph>
-            </div>
+  <!-- Testimonials Section -->
+  <MasonryTestimonials />
 
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want an app that feels native to macOS, not a
-                  cross-platform wrapper
-                </span>
-              </li>
+  <!-- Pricing -->
+  <PricingSection />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need system integrations like Shortcuts or folder
-                  monitoring
-                </span>
-              </li>
+  <!-- Founder letter -->
+  <FounderLetter />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You convert, compress, and edit images, video, and audio,
-                  plus PDF tools, and you don't need documents
-                </span>
-              </li>
+  <!-- FAQ Section -->
+  <FAQSection
+    faqs={faqs}
+    heading="Frequently asked questions"
+    sublead="Can't find what you're looking for? Email support@picmal.app"
+  />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You'd rather have a focused tool from one developer who
-                  builds for one platform
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text"> You want a Mac app, not a cross-platform one </span>
-              </li>
-            </ul>
-          </Card>
-
-          <!-- How To Convert Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose How To Convert
-              </H3>
-              <Paragraph color="secondary">
-                Best for cross-platform users with a wide range of formats
-              </Paragraph>
-            </div>
-
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You work on Windows or Linux (or all three)
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need document conversions (Word, PDF, Markdown, ebooks)
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need email format conversions (EML, MSG)
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want the cheaper one and can live without the Mac
-                  integrations
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  Format variety matters more than native feel
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </div>
-    </Section>
-
-    <!-- Features -->
-    <FeatureGrid
-      heading="Everything else Picmal does"
-      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-    />
-
-    <!-- Testimonials Section -->
-    <MasonryTestimonials />
-
-    <!-- Pricing -->
-    <PricingSection />
-
-    <!-- Founder letter -->
-    <FounderLetter />
-
-    <!-- FAQ Section -->
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Can't find what you're looking for? Email support@picmal.app"
-      >
-        Frequently asked questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
-
+  <Fragment slot="after">
     <SupportedFormatsModal />
-
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

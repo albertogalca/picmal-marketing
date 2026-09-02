@@ -1,0 +1,35 @@
+---
+import Card from "./Card.astro";
+import PillLink from "./PillLink.astro";
+import Section from "./Section.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+/**
+ * GuideCrossLink - the "there's a longer guide for this" panel on the convert
+ * and compress pages. Two of the four copies used a SectionHeading and two used
+ * a bare H2 plus a paragraph, so the same block had two rhythms and two heading
+ * semantics. This is the SectionHeading one.
+ */
+interface Props {
+  href: string;
+  title: string;
+  sublead?: string;
+}
+
+const {
+  href,
+  title,
+  sublead = "Step-by-step instructions with the free methods alongside Picmal.",
+} = Astro.props;
+---
+
+<Section width="narrow">
+  <Card>
+    <SectionHeading align="left" class="mb-6" sublead={sublead}>
+      In-depth guide
+    </SectionHeading>
+    <PillLink href={href}>
+      Read: {title} &rarr;
+    </PillLink>
+  </Card>
+</Section>

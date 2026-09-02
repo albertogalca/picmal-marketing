@@ -1,17 +1,14 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title =
   "Picmal: App icon generator for Mac, make .icns, .ico & iOS icons";
@@ -55,122 +52,104 @@ const faqs = [
       "Everything happens locally on your Mac. Your source art never gets uploaded, there are no per-file limits, and nothing leaves your machine. It's a one-time $29, not a subscription, updates included.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Generate app icons on your Mac"
+    subhead="Turn one source image into a full icon set, macOS .icns, Windows .ico, and an Xcode-ready iOS .appiconset. Every size rendered and packaged in one pass. Offline, no upload, no web tool."
+    buyEvent="buy_clicked_app_icon_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Generate app icons on your Mac"
-      subhead="Turn one source image into a full icon set, macOS .icns, Windows .ico, and an Xcode-ready iOS .appiconset. Every size rendered and packaged in one pass. Offline, no upload, no web tool."
-      buyEvent="buy_clicked_app_icon_mac"
-      defaultTab="convert"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Generate an icon set in 3 steps"
+    items={[
+      {
+        title: "Drop your image",
+        description:
+          "Start from a square PNG at 1024x1024 or larger for the sharpest result.",
+      },
+      {
+        title: "Pick your platforms",
+        description:
+          "Choose macOS .icns, Windows .ico, iOS .appiconset, or all three at once.",
+      },
+      {
+        title: "Generate",
+        description:
+          "Picmal renders every size and packages it, ready to ship. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Generate an icon set in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your image",
-          description:
-            "Start from a square PNG at 1024x1024 or larger for the sharpest result.",
-        },
-        {
-          title: "Pick your platforms",
-          description:
-            "Choose macOS .icns, Windows .ico, iOS .appiconset, or all three at once.",
-        },
-        {
-          title: "Generate",
-          description:
-            "Picmal renders every size and packages it, ready to ship. It all runs on your Mac.",
-        },
-      ]}
-    />
-
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="One image, every icon you ship"
-      items={[
-        {
-          title: "Every platform in one pass",
-          description:
-            "A macOS .icns, a Windows .ico, and an iOS .appiconset from the same source, all sizes rendered for you.",
-        },
-        {
-          title: "Drops straight into Xcode",
-          description:
-            "The .appiconset comes with its Contents.json and every required size, ready for your asset catalog. iOS icons flattened to opaque, per App Store rules.",
-        },
-        {
-          title: "Handles any source",
-          description:
-            "Non-square art fits without cropping. Pick a Big Sur squircle, Tahoe, or None for the macOS tile shape.",
-        },
-        {
-          title: "Scriptable and local",
-          description:
-            "Run it from the app, a Shortcuts action, or the command line. Nothing gets uploaded, nothing leaves your Mac.",
-        },
-      ]}
-      linkText="Just need to resize or convert an image? See the image converter"
-      linkHref="/image-converter-mac"
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="One image, every icon you ship"
+    items={[
+      {
+        icon: "ph:squares-four-duotone",
+        title: "Every platform in one pass",
+        description:
+          "A macOS .icns, a Windows .ico, and an iOS .appiconset from the same source, all sizes rendered for you.",
+      },
+      {
+        icon: "ph:app-store-logo-duotone",
+        title: "Drops straight into Xcode",
+        description:
+          "The .appiconset comes with its Contents.json and every required size, ready for your asset catalog. iOS icons flattened to opaque, per App Store rules.",
+      },
+      {
+        icon: "ph:image-duotone",
+        title: "Handles any source",
+        description:
+          "Non-square art fits without cropping. Pick a Big Sur squircle, Tahoe, or None for the macOS tile shape.",
+      },
+      {
+        icon: "ph:terminal-window-duotone",
+        title: "Scriptable and local",
+        description:
+          "Run it from the app, a Shortcuts action, or the command line. Nothing gets uploaded, nothing leaves your Mac.",
+      },
+    ]}
+    linkText="Just need to resize or convert an image? See the image converter"
+    linkHref="/image-converter-mac"
+  />
 
 
-    <!-- Related guides -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a href="/blog/png-to-mac-icon-icns" class="text-accent hover:underline"
-          >PNG to Mac icon: how to make an .icns file &rarr;</a
-        >
-        <a href="/resize-image-mac" class="text-accent hover:underline"
-          >Resize images on Mac by size or dimensions &rarr;</a
-        >
-      </div>
-    </Section>
+  <!-- Related guides -->
+  <RelatedGrid
+    heading="Related guides"
+    links={[
+      {
+        href: "/blog/png-to-mac-icon-icns",
+        label: "PNG to Mac icon: how to make an .icns file",
+      },
+      {
+        href: "/resize-image-mac",
+        label: "Resize images on Mac by size or dimensions",
+        description:
+          "Resize by pixels, by percentage, or down to a file size you have to hit.",
+      },
+    ]}
+  />
 
-    <MasonryTestimonials />
+  <MasonryTestimonials />
 
-    <PricingSection />
+  <PricingSection />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
+  <FAQSection faqs={faqs} />
 
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

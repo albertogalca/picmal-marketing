@@ -1,5 +1,6 @@
 ---
 import { cn } from "../utils/cn";
+import SectionLink from "./SectionLink.astro";
 
 /**
  * ConversionGrid — the one canonical grid of "simple pill" link cards used for
@@ -41,7 +42,7 @@ const cols =
     links.map((l) => (
       <a
         href={l.href}
-        class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[border-color,scale] duration-150 hover:border-accent/30 active:scale-[0.97] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[border-color,scale] duration-200 ease-out hover:border-accent/30 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         <span class="block text-small font-medium text-text">{l.label}</span>
         {l.sublabel && (
@@ -53,12 +54,4 @@ const cols =
     ))
   }
 </div>
-{
-  linkText && linkHref && (
-    <div class="text-center mt-6">
-      <a href={linkHref} class="text-small text-accent hover:underline">
-        {linkText} <span aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
-  )
-}
+{linkText && linkHref && <SectionLink text={linkText} href={linkHref} />}

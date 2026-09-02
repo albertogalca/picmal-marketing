@@ -1,7 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
@@ -10,6 +8,7 @@ import ProductSchema from "../../components/schema/ProductSchema.astro";
 import Section from "../../components/Section.astro";
 import ConversionGrid from "../../components/ConversionGrid.astro";
 import { formats, conversions } from "../../data/conversions";
+import FormatPill from "../../components/FormatPill.astro";
 
 const title = "Picmal: Convert images on Mac, all formats supported";
 const description =
@@ -23,61 +22,50 @@ const groupedBySource = formatKeys.map((key) => ({
 }));
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-  </head>
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    pricingHref="/#pricing"
+    title="Convert any image format on Mac"
+    subhead="Picmal converts between all major image formats, HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
+    buyEvent="buy_clicked_convert_hub"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      pricingHref="/#pricing"
-      title="Convert any image format on Mac"
-      subhead="Picmal converts between all major image formats, HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
-      buyEvent="buy_clicked_convert_hub"
-      defaultTab="convert"
-    />
+  <!-- All Conversions Grid -->
+  <Section>
+    <div class="space-y-12 sm:space-y-16">
+      {
+        groupedBySource.map((group) => (
+          <section>
+            <div class="flex items-center gap-3 mb-2">
+              <FormatPill ext={group.format.extension} />
+              <H2 class="text-h3">Convert from {group.format.name}</H2>
+            </div>
+            <Paragraph class="mb-6 max-w-2xl">
+              {group.format.description}
+            </Paragraph>
+            <ConversionGrid
+              columns={4}
+              links={group.conversions.map((c) => ({
+                href: `/convert/${c.slug}`,
+                label: `${formats[c.from].name} to ${formats[c.to].name}`,
+              }))}
+            />
+          </section>
+        ))
+      }
+    </div>
+  </Section>
 
-    <!-- All Conversions Grid -->
-    <Section>
-      <div class="space-y-12 sm:space-y-16">
-        {
-          groupedBySource.map((group) => (
-            <section>
-              <div class="flex items-center gap-3 mb-2">
-                <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background-subtle border border-border text-small font-mono font-medium text-text">
-                  .{group.format.extension}
-                </span>
-                <H2 class="text-h3">Convert from {group.format.name}</H2>
-              </div>
-              <Paragraph class="mb-6 max-w-2xl">
-                {group.format.description}
-              </Paragraph>
-              <ConversionGrid
-                columns={4}
-                links={group.conversions.map((c) => ({
-                  href: `/convert/${c.slug}`,
-                  label: `${formats[c.from].name} to ${formats[c.to].name}`,
-                }))}
-              />
-            </section>
-          ))
-        }
-      </div>
-    </Section>
-
-    <CTASection
-      heading="Convert any image format with Picmal"
-      analyticsEvent="buy_clicked_convert_hub_bottom"
-    />
-
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <CTASection
+    heading="Convert any image format with Picmal"
+    analyticsEvent="buy_clicked_convert_hub_bottom"
+  />
+</MarketingLayout>

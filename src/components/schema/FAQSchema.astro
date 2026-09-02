@@ -68,6 +68,15 @@ export const faqs = [
 // Pages with their own FAQ block pass it in so the schema matches the visible content.
 const pageFaqs = Astro.props.faqs ?? faqs;
 
+// FAQ.astro renders answers with set:html, so some answers carry an <a>.
+// Schema wants the text, not the markup.
+const stripHtml = (html: string) =>
+  html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -76,7 +85,7 @@ const faqSchema = {
     name: faq.question,
     acceptedAnswer: {
       "@type": "Answer",
-      text: faq.answer,
+      text: stripHtml(faq.answer),
     },
   })),
 };

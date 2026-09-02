@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import Paragraph from "../components/Paragraph.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
@@ -11,9 +8,11 @@ import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Picmal: Image converter for Mac, convert any format";
 const description =
@@ -51,112 +50,98 @@ const faqs = [
       "Yes. Picmal can compress images in their current format without converting. Adjust the quality slider to reduce file size while keeping the original format.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="The image converter for Mac that just works"
+    subhead="Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, and 20+ other formats. Batch processing, offline, no subscription."
+    buyEvent="buy_clicked_image_converter_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="The image converter for Mac that just works"
-      subhead="Convert between HEIC, JPG, PNG, WebP, AVIF, TIFF, and 20+ other formats. Batch processing, offline, no subscription."
-      buyEvent="buy_clicked_image_converter_mac"
-      defaultTab="convert"
+  <FeatureGrid
+    heading="More than an image converter"
+    subleadIntro="Convert, compress, and organize just about anything on your Mac."
+  />
+
+  <!-- Popular Conversions -->
+  <Section>
+    <SectionHeading sublead="Convert between any image format with a few clicks.">
+      Popular conversions
+    </SectionHeading>
+    <ConversionGrid
+      columns={4}
+      links={[
+        "heic-to-jpg",
+        "heic-to-png",
+        "heic-to-webp",
+        "jpg-to-png",
+        "jpg-to-webp",
+        "png-to-webp",
+        "webp-to-jpg",
+        "avif-to-jpg",
+        "tiff-to-jpg",
+        "dng-to-jpg",
+        "gif-to-png",
+        "png-to-avif",
+      ].map((slug) => ({
+        href: `/convert/${slug}`,
+        label: slug.replace("-to-", " to ").toUpperCase(),
+      }))}
     />
-
-    <FeatureGrid
-      heading="More than an image converter"
-      subleadIntro="Convert, compress, and organize just about anything on your Mac."
-    />
-
-    <!-- Popular Conversions -->
-    <Section>
-      <SectionHeading sublead="Convert between any image format with a few clicks.">
-        Popular conversions
-      </SectionHeading>
-      <ConversionGrid
-        columns={4}
-        links={[
-          "heic-to-jpg",
-          "heic-to-png",
-          "heic-to-webp",
-          "jpg-to-png",
-          "jpg-to-webp",
-          "png-to-webp",
-          "webp-to-jpg",
-          "avif-to-jpg",
-          "tiff-to-jpg",
-          "dng-to-jpg",
-          "gif-to-png",
-          "png-to-avif",
-        ].map((slug) => ({
-          href: `/convert/${slug}`,
-          label: slug.replace("-to-", " to ").toUpperCase(),
-        }))}
-      />
-      <div class="text-center mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 items-center justify-center">
-        <a href="/convert" class="text-small text-accent hover:underline"
-          >View all conversions &rarr;</a
-        >
-        <a href="/raw-converter-mac" class="text-small text-accent hover:underline"
-          >Convert camera RAW (CR2, NEF, ARW) &rarr;</a
-        >
-        <a href="/video-converter-mac" class="text-small text-accent hover:underline"
-          >Convert video (MOV to MP4) &rarr;</a
-        >
-        <a href="/audio-converter-mac" class="text-small text-accent hover:underline"
-          >Convert audio (FLAC, M4A to MP3) &rarr;</a
-        >
-      </div>
-    </Section>
-
-    <!-- Why a native app -->
-    <Section width="narrow">
-      <SectionHeading class="mb-8">Why not just use an online converter?</SectionHeading>
-      <Paragraph class="mb-4"
-        >You can drag a file onto a website and get it back in another format.
-        For one or two files, that's fine. It stops being fine the moment you
-        have a folder of them, or the file is something you'd rather not hand to
-        a stranger's server.</Paragraph
+    <div class="text-center mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 items-center justify-center">
+      <a href="/convert" class="link text-small"
+        >View all conversions &rarr;</a
       >
-      <Paragraph class="mb-4"
-        >Online converters upload your image, convert it somewhere you can't
-        see, and hand it back, often with a size cap, a queue, a watermark, or
-        an ad wall. Your photos sit on their machine for as long as they decide
-        to keep them. Picmal does the whole thing on your Mac. Nothing uploads,
-        nothing is queued, there's no file-size limit, and your files never
-        leave the device.</Paragraph
+      <a href="/raw-converter-mac" class="link text-small"
+        >Convert camera RAW (CR2, NEF, ARW) &rarr;</a
       >
-      <Paragraph
-        >Drop in a few hundred HEIC photos from a trip and convert them to JPG in
-        one pass, folder structure intact. And it's a one-time $29, not a
-        subscription you forget to cancel.</Paragraph
+      <a href="/video-converter-mac" class="link text-small"
+        >Convert video (MOV to MP4) &rarr;</a
       >
-    </Section>
+      <a href="/audio-converter-mac" class="link text-small"
+        >Convert audio (FLAC, M4A to MP3) &rarr;</a
+      >
+    </div>
+  </Section>
 
-    <!-- Convert vs compress -->
-    <Section width="narrow">
+  <!-- Why a native app -->
+  <Section width="narrow">
+    <SectionHeading class="mb-8">Why not just use an online converter?</SectionHeading>
+    <Paragraph class="mb-4"
+      >You can drag a file onto a website and get it back in another format.
+      For one or two files, that's fine. It stops being fine the moment you
+      have a folder of them, or the file is something you'd rather not hand to
+      a stranger's server.</Paragraph
+    >
+    <Paragraph class="mb-4"
+      >Online converters upload your image, convert it somewhere you can't
+      see, and hand it back, often with a size cap, a queue, a watermark, or
+      an ad wall. Your photos sit on their machine for as long as they decide
+      to keep them. Picmal does the whole thing on your Mac. Nothing uploads,
+      nothing is queued, there's no file-size limit, and your files never
+      leave the device.</Paragraph
+    >
+    <Paragraph
+      >Drop in a few hundred HEIC photos from a trip and convert them to JPG in
+      one pass, folder structure intact. And it's a one-time $29, not a
+      subscription you forget to cancel.</Paragraph
+    >
+  </Section>
+
+  <!-- Convert vs compress -->
+  <Section width="narrow">
       <SectionHeading class="mb-8">Convert or compress?</SectionHeading>
-      <Paragraph class="mb-4"
+      <Paragraph
         >Worth knowing the difference. <strong class="text-text"
           >Converting</strong
         > changes the format so a file opens where it didn't before. HEIC to JPG
@@ -168,61 +153,46 @@ const faqSchema = {
         >Picmal does both, and can do them at once. If your goal is purely a
         smaller file in the same format, start on the <a
           href="/compress"
-          class="text-accent hover:underline">compress images page</a
+          class="link">compress images page</a
         > instead.</Paragraph
       >
-    </Section>
+  </Section>
 
-    <!-- Related guides -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a
-          href="/blog/how-to-convert-heic-to-jpg-mac"
-          class="text-accent hover:underline"
-          >How to convert HEIC to JPG on Mac &rarr;</a
-        >
-        <a
-          href="/blog/best-image-formats-for-web"
-          class="text-accent hover:underline"
-          >Best image formats for the web (and when to use each) &rarr;</a
-        >
-        <a
-          href="/blog/batch-convert-images-mac"
-          class="text-accent hover:underline"
-          >How to batch convert HEIC photos on Mac &rarr;</a
-        >
-        <a
-          href="/blog/convert-webp-to-jpg-mac"
-          class="text-accent hover:underline"
-          >How to convert WEBP to JPG on Mac &rarr;</a
-        >
-        <a
-          href="/blog/convert-svg-to-png-mac"
-          class="text-accent hover:underline"
-          >How to convert SVG to PNG on Mac &rarr;</a
-        >
-      </div>
-    </Section>
+  <!-- Related guides -->
+  <RelatedGrid
+      heading="Related guides"
+      links={[
+        {
+          href: "/blog/how-to-convert-heic-to-jpg-mac",
+          label: "How to convert HEIC to JPG on Mac",
+        },
+        {
+          href: "/blog/best-image-formats-for-web",
+          label: "Best image formats for the web (and when to use each)",
+        },
+        {
+          href: "/blog/batch-convert-images-mac",
+          label: "How to batch convert HEIC photos on Mac",
+        },
+        {
+          href: "/blog/convert-webp-to-jpg-mac",
+          label: "How to convert WEBP to JPG on Mac",
+        },
+        {
+          href: "/blog/convert-svg-to-png-mac",
+          label: "How to convert SVG to PNG on Mac",
+        },
+      ]}
+  />
 
-    <MasonryTestimonials />
+  <MasonryTestimonials />
 
-    <PricingSection />
+  <PricingSection />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
+  <FAQSection faqs={faqs} />
 
-    </main>
-
-    <Footer />
-    <SupportedFormatsModal />
-  </body>
-</html>
+  <Fragment slot="after">
+      <SupportedFormatsModal />
+    </div>
+  </Fragment>
+</MarketingLayout>

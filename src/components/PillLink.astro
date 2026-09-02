@@ -1,0 +1,26 @@
+---
+/**
+ * PillLink - the small bordered link that points at a neighbouring page.
+ * Quieter than a Button, louder than an inline link, and now written once
+ * instead of six times.
+ */
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border",
+    "text-small font-medium text-text",
+    "transition-[color,border-color,background-color,scale] duration-200 ease-out motion-reduce:transition-none",
+    "hover:border-accent/30 hover:bg-accent/[0.03]",
+    "active:scale-[0.98] motion-reduce:active:scale-100",
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+  ]}
+>
+  <slot />
+</a>

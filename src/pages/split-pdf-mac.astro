@@ -1,17 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Picmal: Split PDF on Mac, by page ranges or every page";
 const description =
@@ -54,107 +50,85 @@ const faqs = [
       "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Split a PDF on your Mac"
+    subhead="Break a PDF into pieces by page ranges, or burst every page into its own file. Great for pulling one section out of a long document or splitting a scan into single pages. Batch, offline, no upload."
+    buyEvent="buy_clicked_split_pdf_mac"
+    defaultTab="pdf"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Split a PDF on your Mac"
-      subhead="Break a PDF into pieces by page ranges, or burst every page into its own file. Great for pulling one section out of a long document or splitting a scan into single pages. Batch, offline, no upload."
-      buyEvent="buy_clicked_split_pdf_mac"
-      defaultTab="pdf"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Split a PDF in 3 steps"
+    items={[
+      {
+        title: "Drop your PDF",
+        description: "Drag in one file or a whole folder of documents.",
+      },
+      {
+        title: "Choose how to split",
+        description:
+          "Enter page ranges like 1-3,5,8- or pick burst to get one file per page.",
+      },
+      {
+        title: "Split",
+        description:
+          "Click Split and Picmal writes the new PDFs. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Split a PDF in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your PDF",
-          description: "Drag in one file or a whole folder of documents.",
-        },
-        {
-          title: "Choose how to split",
-          description:
-            "Enter page ranges like 1-3,5,8- or pick burst to get one file per page.",
-        },
-        {
-          title: "Split",
-          description:
-            "Click Split and Picmal writes the new PDFs. It all runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="Split by range, or burst the whole thing"
+    items={[
+      {
+        icon: "ph:scissors-duotone",
+        title: "Split by page ranges",
+        description:
+          "Type ranges like 1-3,5,8- and get one PDF per range. Pull out exactly the sections you need.",
+      },
+      {
+        icon: "ph:files-duotone",
+        title: "Burst into single pages",
+        description:
+          "Turn a PDF into one file per page, numbered in order, in a single pass.",
+      },
+      {
+        icon: "ph:folders-duotone",
+        title: "Batch a whole folder",
+        description:
+          "Split dozens of PDFs at once, each set of output files saved next to its source.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Stays on your Mac",
+        description:
+          "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
+      },
+    ]}
+    linkText="Need to combine PDFs instead? Merge PDF on Mac"
+    linkHref="/merge-pdf-mac"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="Split by range, or burst the whole thing"
-      items={[
-        {
-          title: "Split by page ranges",
-          description:
-            "Type ranges like 1-3,5,8- and get one PDF per range. Pull out exactly the sections you need.",
-        },
-        {
-          title: "Burst into single pages",
-          description:
-            "Turn a PDF into one file per page, numbered in order, in a single pass.",
-        },
-        {
-          title: "Batch a whole folder",
-          description:
-            "Split dozens of PDFs at once, each set of output files saved next to its source.",
-        },
-        {
-          title: "Stays on your Mac",
-          description:
-            "No uploads, no per-file limits, nothing leaves your machine. Just drag, click, done.",
-        },
-      ]}
-      linkText="Need to combine PDFs instead? Merge PDF on Mac"
-      linkHref="/merge-pdf-mac"
-    />
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

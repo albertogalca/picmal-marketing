@@ -1,8 +1,6 @@
 ---
-import { getPublishedPosts } from "../utils/posts";
-import { Image } from "astro:assets";
-import FormattedDate from "./FormattedDate.astro";
-import ogImage from "../../public/og.png";
+import { getPublishedPosts, postCover } from "../utils/posts";
+import PostCard from "./PostCard.astro";
 
 interface Props {
   currentSlug: string;
@@ -12,6 +10,7 @@ interface Props {
 }
 
 const { currentSlug, category, tags = [], limit = 2 } = Astro.props;
+
 
 // Get all blog posts
 const allPosts = await getPublishedPosts();
@@ -75,45 +74,14 @@ const postsToShow =
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {postsToShow.map((post) => (
-          <article class="group">
-            <a
-              href={`/blog/${post.id}`}
-              class="block rounded-xl border border-border bg-background-subtle hover:border-border/60 transition-[border-color] duration-200 motion-reduce:transition-none overflow-hidden h-full"
-            >
-              <div class="aspect-video overflow-hidden bg-background-subtle">
-                <Image
-                  src={post.data.heroImage || ogImage}
-                  alt={post.data.title}
-                  width={400}
-                  height={225}
-                  class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-
-              <div class="p-5">
-                {post.data.category && (
-                  <span class="inline-block px-2 py-1 text-small font-medium bg-accent/10 text-accent rounded-xl mb-3">
-                    {post.data.category}
-                  </span>
-                )}
-
-                <h3 class="text-body-big font-semibold text-text mb-2 group-hover:text-accent transition-colors line-clamp-2">
-                  {post.data.title}
-                </h3>
-
-                <p class="text-small text-text-secondary mb-3 line-clamp-2">
-                  {post.data.description}
-                </p>
-
-                <time
-                  datetime={post.data.pubDate.toISOString()}
-                  class="text-small text-text-secondary"
-                >
-                  <FormattedDate date={post.data.pubDate} />
-                </time>
-              </div>
-            </a>
-          </article>
+          <PostCard
+            href={`/blog/${post.id}`}
+            label={post.data.title}
+            description={post.data.description}
+            image={postCover(post)}
+            category={post.data.category}
+            date={post.data.pubDate}
+          />
         ))}
       </div>
     </section>

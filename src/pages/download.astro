@@ -1,16 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import { DMG_URL } from "../config/download";
 import H1 from "../components/H1.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Button from "../components/Button.astro";
 import TrustBar from "../components/TrustBar.astro";
-import CardGrid from "../components/CardGrid.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 
-const DMG_URL =
-  "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
 
 const steps = [
   {
@@ -31,75 +28,64 @@ const steps = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: Download for Mac"
-      description="Download Picmal for Mac. Free to install, one payment of $29 to unlock. Batch convert and compress images, video, audio, and PDFs, all offline."
-    />
+<MarketingLayout
+  title="Picmal: Download for Mac"
+  description="Download Picmal for Mac. Free to install, one payment of $29 to unlock. Batch convert and compress images, video, audio, and PDFs, all offline."
+  mainClass="relative z-10 pt-32 pb-16 sm:pb-20"
+>
+  <Fragment slot="head">
     {/* Was noindex. This is the page that answers "download picmal for mac",
-        and a noindexed page cannot rank for it or carry a rich result, so the
-        query went to the homepage or nowhere. ProductSchema already holds the
-        downloadUrl, fileSize, softwareVersion and offers this page is about,
-        so it is reused rather than hand-rolled: same #software node, one
-        entity, no second definition to drift. */}
-    <ProductSchema url={Astro.site!.href} />
-  </head>
+            and a noindexed page cannot rank for it or carry a rich result, so the
+            query went to the homepage or nowhere. ProductSchema already holds the
+            downloadUrl, fileSize, softwareVersion and offers this page is about,
+            so it is reused rather than hand-rolled: same #software node, one
+            entity, no second definition to drift. */}
+        <ProductSchema url={Astro.site!.href} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text"
-  >
-    <Header />
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <H1 class="mb-6">Download Picmal for Mac</H1>
+    <Paragraph size="lead" class="mb-8 max-w-xl mx-auto">
+      Picmal is free to install and look around. To start converting you
+      need a license, which is a single $29 payment. Don't like it? Full
+      refund within 14 days.
+    </Paragraph>
 
-    <main id="main-content" class="relative z-10 pt-32 pb-16 sm:pb-20">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-        <H1 class="mb-6">Download Picmal for Mac</H1>
-        <Paragraph size="lead" class="mb-8 max-w-xl mx-auto">
-          Picmal is free to install and look around. To start converting you
-          need a license, which is a single $29 payment. Don't like it? Full
-          refund within 14 days.
-        </Paragraph>
+    <div class="flex flex-col items-center gap-3">
+      <Button
+        href={DMG_URL}
+        text="Download Picmal (.dmg)"
+        class="w-full sm:w-auto"
+        onclick={import.meta.env.PROD
+          ? "window.seline?.track('download_dmg')"
+          : undefined}
+      />
+      <a
+        href="/#pricing"
+        class="inline-flex items-center gap-1.5 text-small text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        or get a license for $29
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
 
-        <div class="flex flex-col items-center gap-3">
-          <Button
-            href={DMG_URL}
-            text="Download Picmal (.dmg)"
-            class="w-full sm:w-auto"
-            onclick={import.meta.env.PROD
-              ? "window.seline?.track('download_dmg')"
-              : undefined}
-          />
-          <a
-            href="/#pricing"
-            class="inline-flex items-center gap-1.5 text-small text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            or get a license for $29
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+    <div class="mt-6">
+      <TrustBar />
+    </div>
 
-        <div class="mt-6">
-          <TrustBar />
-        </div>
+    <!-- The download is a DMG from GitHub, outside the App Store. Saying
+         it is notarized answers the "will macOS block this?" question at
+         the exact moment it gets asked. Verified via notarytool on every
+         release; see the "publish outside the App Store" post. -->
+    <p class="mt-6 text-small text-text-secondary">
+      Signed and notarized by Apple, so it opens without security warnings.
+    </p>
 
-        <!-- The download is a DMG from GitHub, outside the App Store. Saying
-             it is notarized answers the "will macOS block this?" question at
-             the exact moment it gets asked. Verified via notarytool on every
-             release; see the "publish outside the App Store" post. -->
-        <p class="mt-6 text-small text-text-secondary">
-          Signed and notarized by Apple, so it opens without security warnings.
-        </p>
+    <p class="mt-2 text-small text-text-secondary">
+      Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel
+    </p>
+  </div>
 
-        <p class="mt-2 text-small text-text-secondary">
-          Requires macOS 15.0 (Sequoia) or later · Apple Silicon &amp; Intel
-        </p>
-      </div>
-
-      <!-- Install steps -->
-      <CardGrid heading="Installing Picmal" numbered items={steps} />
-    </main>
-
-    <Footer />
-
-  </body>
-</html>
+  <!-- Install steps -->
+  <BlockGrid ordered heading="Installing Picmal" items={steps} />
+</MarketingLayout>

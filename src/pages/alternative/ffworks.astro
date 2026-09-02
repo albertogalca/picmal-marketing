@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FAQ from "../../components/FAQ.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -10,13 +7,13 @@ import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
-import H3 from "../../components/H3.astro";
-import Paragraph from "../../components/Paragraph.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
+import FAQSection from "../../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Want a simpler ffWorks alternative? Picmal is one Mac app that converts, compresses, and edits images, video, audio, and PDFs. No 450 options to learn. $29 once, 14-day refund.";
@@ -55,375 +52,183 @@ const faqs = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: The simple ffWorks alternative for Mac"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: The simple ffWorks alternative for Mac"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema />
-  </head>
+        <FAQSchema />
+  </Fragment>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="The simple ffWorks alternative for Mac"
+    subhead="ffWorks gives you 450 FFmpeg options. Picmal gives you one window. Drop in your files, pick a format, and go. No codec knowledge needed, and it works for images, video, audio, and PDFs."
+    buyEvent="buy_clicked_ffworks_comparison"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="The simple ffWorks alternative for Mac"
-      subhead="ffWorks gives you 450 FFmpeg options. Picmal gives you one window. Drop in your files, pick a format, and go. No codec knowledge needed, and it works for images, video, audio, and PDFs."
-      buyEvent="buy_clicked_ffworks_comparison"
-    />
+  <ComparisonVerdict
+    competitor="ffWorks"
+    summary="ffWorks is a professional FFmpeg frontend: 450 encoding options, 60 video filters, VMAF quality metrics. Picmal ($29, paid once) skips the configuration and handles images, video, audio, and PDFs in one window, no codec knowledge needed."
+    picmalFor="You want to drag in files and get a result without configuring codecs, and you also work with images, RAW files, and PDFs."
+    competitorFor="You need full FFmpeg control: CRF tuning, VMAF, custom filter chains, professional 4K/8K workflows."
+  />
 
-    <ComparisonVerdict
+  <!-- Comparison Table -->
+  <Section width="default">
+    <SectionHeading>
+      Picmal vs ffWorks at a glance
+      <Fragment slot="sublead">
+        ffWorks is a professional FFmpeg GUI with hundreds of options. Picmal
+        is a simpler app that covers more file types: images, video, audio,
+        and PDFs in one window, no codec knowledge needed.
+      </Fragment>
+    </SectionHeading>
+    <ComparisonTable
       competitor="ffWorks"
-      summary="ffWorks is a professional FFmpeg frontend: 450 encoding options, 60 video filters, VMAF quality metrics. Picmal ($29, paid once) skips the configuration and handles images, video, audio, and PDFs in one window, no codec knowledge needed."
-      picmalFor="You want to drag in files and get a result without configuring codecs, and you also work with images, RAW files, and PDFs."
-      competitorFor="You need full FFmpeg control: CRF tuning, VMAF, custom filter chains, professional 4K/8K workflows."
+      rows={[
+      {
+        feature: "Price",
+        picmal: "$29 one-time",
+        competitor: "\u20ac22 (~$24) one-time",
+      },
+      {
+        feature: "Primary purpose",
+        picmal: "Convert, compress &amp; edit",
+        competitor: "Professional FFmpeg GUI",
+      },
+      {
+        feature: "Privacy",
+        picmal: "100% offline",
+        competitor: "100% offline",
+      },
+      {
+        feature: "Interface complexity",
+        picmal: "Single window, minimal options",
+        competitor: "450 options, 60 filters",
+      },
+      {
+        feature: "Image conversion",
+        picmal: "Yes. 20+ formats",
+        competitor: "No",
+      },
+      {
+        feature: "Video conversion",
+        picmal: "Yes. Common formats",
+        competitor: "Yes. Full FFmpeg support",
+      },
+      {
+        feature: "Audio conversion",
+        picmal: "Yes. MP3, WAV, FLAC, and more",
+        competitor: "Yes. Full FFmpeg support",
+      },
+      {
+        feature: "Compression",
+        picmal: "Images, video, audio &amp; PDF (\"never bigger\")",
+        competitor: "Via encoding settings",
+      },
+      {
+        feature: "PDF tools",
+        picmal: "Compress, combine, images\u2192PDF, PDF\u2192PNG",
+        competitor: "No",
+      },
+      {
+        feature: "RAW decode",
+        picmal: "Yes. CR2, CR3, NEF, ARW, and more",
+        competitor: "No",
+      },
+      {
+        feature: "Video filters",
+        picmal: "Basic",
+        competitor: "60 filters (color, crop, overlay)",
+      },
+      {
+        feature: "Quality metrics",
+        picmal: "No",
+        competitor: "Yes. VMAF, PSNR, SSIM",
+      },
+      {
+        feature: "Hardware acceleration",
+        picmal: "Yes",
+        competitor: "Yes. VideoToolbox",
+      },
+      {
+        feature: "Metadata removal",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Shortcuts integration",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Folder monitoring",
+        picmal: "Yes",
+        competitor: "Drop zones",
+      },
+      {
+        feature: "Finder right-click",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "macOS",
+        picmal: "15+",
+        competitor: "10.13+",
+      },
+    ]}
     />
+  </Section>
 
-    <!-- Comparison Table -->
-    <Section width="default">
-      <SectionHeading>
-        Picmal vs ffWorks at a glance
-        <Fragment slot="sublead">
-          ffWorks is a professional FFmpeg GUI with hundreds of options. Picmal
-          is a simpler app that covers more file types: images, video, audio,
-          and PDFs in one window, no codec knowledge needed.
-        </Fragment>
-      </SectionHeading>
-      <Card padding="p-4 md:p-8">
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse">
-              <thead>
-                <tr class="border-b border-border">
-                  <th class="text-left p-4 font-semibold text-text">Feature</th>
-                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
-                  <th class="text-left p-4 font-semibold text-text">ffWorks</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border">
-                <tr>
-                  <td class="p-4 text-text-secondary">Price</td>
-                  <td class="p-4 text-text">$29 one-time</td>
-                  <td class="p-4 text-text">€22 (~$24) one-time</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Primary purpose</td>
-                  <td class="p-4 text-text">Convert, compress &amp; edit</td>
-                  <td class="p-4 text-text">Professional FFmpeg GUI</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Privacy</td>
-                  <td class="p-4 text-text">100% offline</td>
-                  <td class="p-4 text-text">100% offline</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Interface complexity</td>
-                  <td class="p-4 text-text">Single window, minimal options</td>
-                  <td class="p-4 text-text">450 options, 60 filters</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Image conversion</td>
-                  <td class="p-4 text-text">Yes. 20+ formats</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes. Common formats</td>
-                  <td class="p-4 text-text">Yes. Full FFmpeg support</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes. MP3, WAV, FLAC, and more</td>
-                  <td class="p-4 text-text">Yes. Full FFmpeg support</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Compression</td>
-                  <td class="p-4 text-text"
-                    >Images, video, audio &amp; PDF ("never bigger")</td
-                  >
-                  <td class="p-4 text-text">Via encoding settings</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">PDF tools</td>
-                  <td class="p-4 text-text"
-                    >Compress, combine, images→PDF, PDF→PNG</td
-                  >
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">RAW decode</td>
-                  <td class="p-4 text-text">Yes. CR2, CR3, NEF, ARW, and more</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video filters</td>
-                  <td class="p-4 text-text">Basic</td>
-                  <td class="p-4 text-text"
-                    >60 filters (color, crop, overlay)</td
-                  >
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Quality metrics</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes. VMAF, PSNR, SSIM</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Hardware acceleration</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Yes. VideoToolbox</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Metadata removal</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Yes</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Folder monitoring</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Drop zones</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Finder right-click</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">macOS</td>
-                  <td class="p-4 text-text">15+</td>
-                  <td class="p-4 text-text">10.13+</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      </Card>
-    </Section>
+  <!-- Who Picmal Is For / Who Should Stick with ffWorks -->
+  <AlternativeVerdict
+    sublead="Here's where each one makes more sense."
+    picmal={{
+      heading: "Choose Picmal",
+      lead: "You don't want to configure codecs",
+      items: [
+        "You work with images, RAW files, video, audio, and PDFs and want one app for all of them",
+        "You want a simple interface with Shortcuts integration",
+        "Your files stay on your Mac. Nothing uploads anywhere",
+        "You don't need 450 encoding options",
+      ],
+    }}
+    rival={{
+      heading: "Choose ffWorks",
+      lead: "Best for professional video encoding",
+      items: [
+        "You want full FFmpeg power with 450 options and 60 filters",
+        "You only work with video and need professional-grade control",
+        "You need quality metrics like VMAF, PSNR, and SSIM",
+        "You need advanced video filters and color adjustments",
+      ],
+    }}
+  />
 
-    <!-- Who Picmal Is For / Who Should Stick with ffWorks -->
-    <Section width="default">
-      <SectionHeading>
-        Which one is right for you?
-        <Fragment slot="sublead">
-            Here's where each one makes more sense.
-        </Fragment>
-      </SectionHeading>
+  <!-- Features -->
+  <FeatureGrid
+    heading="Everything else Picmal does"
+    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+  />
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Picmal Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose Picmal
-              </H3>
-              <Paragraph color="secondary">
-                You don't want to configure codecs
-              </Paragraph>
-            </div>
+  <!-- Testimonials Section -->
+  <MasonryTestimonials />
 
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You work with images, RAW files, video, audio, and PDFs and
-                  want one app for all of them
-                </span>
-              </li>
+  <!-- Pricing -->
+  <PricingSection />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want a simple interface with Shortcuts integration
-                </span>
-              </li>
+  <!-- Founder letter -->
+  <FounderLetter />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  Your files stay on your Mac. Nothing uploads anywhere
-                </span>
-              </li>
+  <!-- FAQ Section -->
+  <FAQSection
+    faqs={faqs}
+    heading="Frequently asked questions"
+    sublead="Can't find what you're looking for? Email support@picmal.app"
+  />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You don't need 450 encoding options
-                </span>
-              </li>
-            </ul>
-          </Card>
-
-          <!-- ffWorks Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose ffWorks
-              </H3>
-              <Paragraph color="secondary">
-                Best for professional video encoding
-              </Paragraph>
-            </div>
-
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want full FFmpeg power with 450 options and 60 filters
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You only work with video and need professional-grade control
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need quality metrics like VMAF, PSNR, and SSIM
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need advanced video filters and color adjustments
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </div>
-    </Section>
-
-    <!-- Features -->
-    <FeatureGrid
-      heading="Everything else Picmal does"
-      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-    />
-
-    <!-- Testimonials Section -->
-    <MasonryTestimonials />
-
-    <!-- Pricing -->
-    <PricingSection />
-
-    <!-- Founder letter -->
-    <FounderLetter />
-
-    <!-- FAQ Section -->
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Can't find what you're looking for? Email support@picmal.app"
-      >
-        Frequently asked questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
-
+  <Fragment slot="after">
     <SupportedFormatsModal />
-
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

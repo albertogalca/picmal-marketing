@@ -1,15 +1,14 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import Card from "../../components/Card.astro";
 import Paragraph from "../../components/Paragraph.astro";
-import H1 from "../../components/H1.astro";
 import H2 from "../../components/H2.astro";
 import FAQ from "../../components/FAQ.astro";
 import FileDropZone from "../../components/FileDropZone.astro";
+import ToolHero from "../../components/ToolHero.astro";
+
 import {
   formatSupport,
   SUPPORT_LABELS as LABELS,
@@ -56,371 +55,238 @@ const faqs = [
 const sourced = formatSupport.filter((f) => f.source);
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        name: "File format compatibility checker",
-        description,
-        url: "https://picmal.app/tools/file-format-checker",
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "Any",
-        browserRequirements:
-          "Runs entirely client-side. The file is never read, only its extension.",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      })}
-    />
-    {/* The table is the point of the page, so it is declared as a dataset
-        rather than left as decoration an extractor has to guess at. */}
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Dataset",
-        name: "File format compatibility on macOS, Windows and browsers",
-        description: `Whether each of ${formatSupport.length} image, audio and video formats opens on current macOS, on Windows 11, and in current browsers, with the extension or codec required where one is.`,
-        url: "https://picmal.app/tools/file-format-checker",
-        license: "https://picmal.app/terms",
-        creator: { "@type": "Organization", name: "Picmal" },
-        variableMeasured: ["macOS support", "Windows support", "Browser support"],
-        citation: sourced.map((f) => f.source),
-      })}
-    />
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
-        })),
-      })}
-    />
-  </head>
-
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
-
-    <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-      <Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0 text-center">
-        <H1 class="mb-4">Will this file open?</H1>
-        <Paragraph size="lead" class="max-w-2xl mx-auto">
-          Before you send something to someone, check whether their machine can
-          actually open it. Drop the file in or just type the extension.
-        </Paragraph>
-      </Section>
-
-      <Section width="narrow">
-        <FileDropZone
-          id="format-drop"
-          label="Drop a file, or click to choose one"
-          hint="Only the extension is read. The file itself is never opened."
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "File format compatibility checker",
+            description,
+            url: "https://picmal.app/tools/file-format-checker",
+            applicationCategory: "UtilityApplication",
+            operatingSystem: "Any",
+            browserRequirements:
+              "Runs entirely client-side. The file is never read, only its extension.",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          })}
         />
+        {/* The table is the point of the page, so it is declared as a dataset
+            rather than left as decoration an extractor has to guess at. */}
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Dataset",
+            name: "File format compatibility on macOS, Windows and browsers",
+            description: `Whether each of ${formatSupport.length} image, audio and video formats opens on current macOS, on Windows 11, and in current browsers, with the extension or codec required where one is.`,
+            url: "https://picmal.app/tools/file-format-checker",
+            license: "https://picmal.app/terms",
+            creator: { "@type": "Organization", name: "Picmal" },
+            variableMeasured: ["macOS support", "Windows support", "Browser support"],
+            citation: sourced.map((f) => f.source),
+          })}
+        />
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          })}
+        />
+  </Fragment>
 
-        <div class="mt-4">
-          <label for="format-input" class="sr-only">File extension</label>
-          <input
-            type="text"
-            id="format-input"
-            placeholder="or type an extension, like heic"
-            autocomplete="off"
-            spellcheck="false"
-            class="w-full px-4 py-3 bg-background border border-border rounded-lg text-body text-text placeholder:text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          />
-        </div>
+  <ToolHero title="Will this file open?">
+    Before you send something to someone, check whether their machine can
+    actually open it. Drop the file in or just type the extension.
+  </ToolHero>
 
+  <Section width="narrow">
+    <FileDropZone
+      id="format-drop"
+      label="Drop a file, or click to choose one"
+      hint="Only the extension is read. The file itself is never opened."
+    />
+
+    <div class="mt-4">
+      <label for="format-input" class="sr-only">File extension</label>
+      <input
+        type="text"
+        id="format-input"
+        placeholder="or type an extension, like heic"
+        autocomplete="off"
+        spellcheck="false"
+        class="field"
+      />
+    </div>
+
+    <p
+      id="format-status"
+      class="mt-4 text-small text-text-secondary text-center"
+      role="status"
+      aria-live="polite"
+    >
+    </p>
+
+    <div id="format-result" hidden class="mt-8 space-y-4">
+      <Card padding="p-6">
+        <h2 class="text-h3 text-text mb-1" id="format-name"></h2>
         <p
-          id="format-status"
-          class="mt-4 text-small text-text-secondary text-center"
-          role="status"
-          aria-live="polite"
+          class="text-body text-text-secondary text-pretty mb-6"
+          id="format-what"
         >
         </p>
 
-        <div id="format-result" hidden class="mt-8 space-y-4">
-          <Card padding="p-6">
-            <h2 class="text-h3 text-text mb-1" id="format-name"></h2>
-            <p
-              class="text-body text-text-secondary text-pretty mb-6"
-              id="format-what"
-            >
-            </p>
+        <div class="grid gap-3 sm:grid-cols-3" id="format-verdicts"></div>
+      </Card>
 
-            <div class="grid gap-3 sm:grid-cols-3" id="format-verdicts"></div>
-          </Card>
+      <div
+        id="format-advice"
+        hidden
+        class="rounded-2xl border border-border bg-background-subtle/50 p-6"
+      >
+        <h2 class="text-h4 text-text mb-2" id="format-advice-title"></h2>
+        <p
+          class="text-body text-text-secondary text-pretty"
+          id="format-advice-body"
+        >
+        </p>
+      </div>
 
-          <div
-            id="format-advice"
-            hidden
-            class="rounded-2xl border border-border bg-background-subtle/50 p-6"
-          >
-            <h2 class="text-h4 text-text mb-2" id="format-advice-title"></h2>
-            <p
-              class="text-body text-text-secondary text-pretty"
-              id="format-advice-body"
-            >
-            </p>
-          </div>
+      <p class="text-small text-text-secondary" id="format-source"></p>
+    </div>
+  </Section>
 
-          <p class="text-small text-text-secondary" id="format-source"></p>
-        </div>
-      </Section>
+  <Section width="default">
+    <H2 class="mb-4">Every format, and where it opens</H2>
+    <Paragraph class="mb-8 max-w-2xl">
+      macOS means a current Mac with what Apple ships. Windows means Windows
+      11 with its stock Photos and Media Player. Browsers means current
+      Chrome, Safari, Firefox and Edge. VLC opens almost everything on this
+      list, so "won't open" means without installing anything.
+    </Paragraph>
 
-      <Section width="default">
-        <H2 class="mb-4">Every format, and where it opens</H2>
-        <Paragraph class="mb-8 max-w-2xl">
-          macOS means a current Mac with what Apple ships. Windows means Windows
-          11 with its stock Photos and Media Player. Browsers means current
-          Chrome, Safari, Firefox and Edge. VLC opens almost everything on this
-          list, so "won't open" means without installing anything.
-        </Paragraph>
-
-        {
-          kinds.map((kind) => (
-            <div class="mb-12 last:mb-0">
-              <h3 class="text-h4 text-text mb-4">{kind.label}</h3>
-              <div class="overflow-x-auto">
-                {/* One table, two layouts. Below 40rem the CSS at the bottom of
-                    this file stacks every cell, because five columns (two of
-                    them carrying wrapped prose) is a sideways scroll on a
-                    phone. Each cell carries its own `.fmt-label`, visible only
-                    below sm, since `display: block` drops the implicit table
-                    roles and the hidden thead takes the real headers with it.
-                    The roles are declared explicitly for the same reason. */}
-                <table role="table" class="fmt-table w-full table-fixed text-small border-collapse">
-                  {/* Auto layout sized the columns by content, so macOS, which
-                      almost never carries a note, took ~280px of whitespace
-                      while Windows wrapped its prose in half that, and the
-                      "Send instead" header broke across two lines. Fixed
-                      widths give the three platform columns the same weight,
-                      which is what the comparison is asking the eye to do. */}
-                  <colgroup>
-                    <col style="width: 14%" />
-                    <col style="width: 23%" />
-                    <col style="width: 23%" />
-                    <col style="width: 23%" />
-                    <col style="width: 17%" />
-                  </colgroup>
-                  <thead>
-                    <tr role="row" class="border-b border-border">
-                      <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
-                        Format
-                      </th>
-                      <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
-                        macOS
-                      </th>
-                      <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
-                        Windows
-                      </th>
-                      <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
-                        Browsers
-                      </th>
-                      <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3">
-                        Send instead
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {formatSupport
-                      .filter((f) => f.kind === kind.key)
-                      .map((f) => (
-                        <tr role="row" class="border-b border-border/60 align-top">
-                          <td role="cell" class="fmt-name py-3 pr-4 font-[590] text-text whitespace-nowrap">
-                            {f.name}
-                          </td>
-                          {[
-                            { p: f.macos, label: "macOS" },
-                            { p: f.windows, label: "Windows" },
-                            { p: f.browsers, label: "Browsers" },
-                          ].map(({ p, label }) => (
-                            <td role="cell" class="py-3 pr-4">
-                              {/* Real text, not a ::before. Below sm the thead
-                                  is display:none, which takes the column
-                                  headers out of the accessibility tree as well
-                                  as off the screen, so the label has to live
-                                  inside the cell to survive. */}
-                              <span class="fmt-label block mb-1 text-text-secondary sm:hidden">
-                                {label}
-                              </span>
-                              <span
-                                class={`inline-block rounded-full px-2 py-0.5 text-small font-[590] whitespace-nowrap ${LABELS[p.level].class}`}
-                              >
-                                {LABELS[p.level].text}
-                              </span>
-                              {p.note && (
-                                <span class="fmt-note block mt-1 text-text-secondary max-w-xs">
-                                  {p.note}
-                                </span>
-                              )}
-                            </td>
-                          ))}
-                          <td
-                            role="cell"
-                            class="py-3 text-text-secondary whitespace-nowrap"
+    {
+      kinds.map((kind) => (
+        <div class="mb-12 last:mb-0">
+          <h3 class="text-h4 text-text mb-4">{kind.label}</h3>
+          <div class="overflow-x-auto">
+            {/* One table, two layouts. Below 40rem the CSS at the bottom of
+                this file stacks every cell, because five columns (two of
+                them carrying wrapped prose) is a sideways scroll on a
+                phone. Each cell carries its own `.fmt-label`, visible only
+                below sm, since `display: block` drops the implicit table
+                roles and the hidden thead takes the real headers with it.
+                The roles are declared explicitly for the same reason. */}
+            <table role="table" class="fmt-table w-full table-fixed text-small border-collapse">
+              {/* Auto layout sized the columns by content, so macOS, which
+                  almost never carries a note, took ~280px of whitespace
+                  while Windows wrapped its prose in half that, and the
+                  "Send instead" header broke across two lines. Fixed
+                  widths give the three platform columns the same weight,
+                  which is what the comparison is asking the eye to do. */}
+              <colgroup>
+                <col style="width: 14%" />
+                <col style="width: 23%" />
+                <col style="width: 23%" />
+                <col style="width: 23%" />
+                <col style="width: 17%" />
+              </colgroup>
+              <thead>
+                <tr role="row" class="border-b border-border">
+                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                    Format
+                  </th>
+                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                    macOS
+                  </th>
+                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                    Windows
+                  </th>
+                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                    Browsers
+                  </th>
+                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3">
+                    Send instead
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {formatSupport
+                  .filter((f) => f.kind === kind.key)
+                  .map((f) => (
+                    <tr role="row" class="border-b border-border/60 align-top">
+                      <td role="cell" class="fmt-name py-3 pr-4 font-[590] text-text whitespace-nowrap">
+                        {f.name}
+                      </td>
+                      {[
+                        { p: f.macos, label: "macOS" },
+                        { p: f.windows, label: "Windows" },
+                        { p: f.browsers, label: "Browsers" },
+                      ].map(({ p, label }) => (
+                        <td role="cell" class="py-3 pr-4">
+                          {/* Real text, not a ::before. Below sm the thead
+                              is display:none, which takes the column
+                              headers out of the accessibility tree as well
+                              as off the screen, so the label has to live
+                              inside the cell to survive. */}
+                          <span class="fmt-label block mb-1 text-text-secondary sm:hidden">
+                            {label}
+                          </span>
+                          <span
+                            class={`inline-block rounded-full px-2 py-0.5 text-small font-[590] whitespace-nowrap ${LABELS[p.level].class}`}
                           >
-                            <span class="fmt-label block mb-1 sm:hidden">
-                              Send instead
+                            {LABELS[p.level].text}
+                          </span>
+                          {p.note && (
+                            <span class="fmt-note block mt-1 text-text-secondary max-w-xs">
+                              {p.note}
                             </span>
-                            {f.convertTo ?? (
-                              <>
-                                <span class="sr-only">Nothing, it opens everywhere</span>
-                                <span aria-hidden="true">&ndash;</span>
-                              </>
-                            )}
-                          </td>
-                        </tr>
+                          )}
+                        </td>
                       ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))
-        }
-      </Section>
-
-      <Section width="narrow">
-        <H2 class="mb-8">Questions</H2>
-        <Card>
-          <FAQ faqs={faqs} />
-        </Card>
-      </Section>
-
-      <CTASection
-        heading="Convert a whole folder at once, on your Mac"
-        analyticsEvent="buy_clicked_format_checker"
-      />
-    </main>
-
-    <Footer />
-  </body>
-</html>
-
-<style>
-  /* Stacked layout for the compatibility table on phones. 40rem matches
-     Tailwind's `sm`, so this and the utility classes agree on the breakpoint. */
-  @media (max-width: 39.99rem) {
-    .fmt-table,
-    .fmt-table tbody,
-    .fmt-table tr,
-    .fmt-table td {
-      display: block;
-      width: 100%;
+                      <td
+                        role="cell"
+                        class="py-3 text-text-secondary whitespace-nowrap"
+                      >
+                        <span class="fmt-label block mb-1 sm:hidden">
+                          Send instead
+                        </span>
+                        {f.convertTo ?? (
+                          <>
+                            <span class="sr-only">Nothing, it opens everywhere</span>
+                            <span aria-hidden="true">&ndash;</span>
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))
     }
+  </Section>
 
-    /* Each cell carries its own .fmt-label instead. */
-    .fmt-table thead {
-      display: none;
-    }
+  <Section width="narrow">
+    <H2 class="mb-8">Questions</H2>
+    <Card>
+      <FAQ faqs={faqs} />
+    </Card>
+  </Section>
 
-    .fmt-table tr {
-      padding-block: 0.75rem;
-    }
-
-    .fmt-table td {
-      padding: 0;
-    }
-
-    .fmt-table td + td {
-      margin-top: 0.5rem;
-    }
-
-    /* The format name leads the block, so it gets no label of its own. */
-    .fmt-table .fmt-name {
-      font-size: var(--text-body);
-      margin-bottom: 0.5rem;
-      white-space: normal;
-    }
-
-    /* Notes are the reason five columns did not fit; let them use the width. */
-    .fmt-table .fmt-note {
-      max-width: none;
-    }
-  }
-</style>
-
-<script>
-  import {
-    findFormat,
-    SUPPORT_LABELS as LABELS,
-    type FormatSupport,
-  } from "../../data/formatSupport";
-
-  const zone = document.getElementById("format-drop");
-  const input = document.getElementById("format-input") as HTMLInputElement;
-  const status = document.getElementById("format-status");
-  const result = document.getElementById("format-result");
-  if (!zone || !input || !status || !result)
-    throw new Error("format-checker: markup gone");
-
-  const el = (id: string) => document.getElementById(id)!;
-
-  const verdict = (
-    place: string,
-    support: { level: string; note?: string },
-  ) => `
-    <div class="rounded-xl border border-border p-4">
-      <p class="text-small text-text-secondary mb-2">${place}</p>
-      <span class="inline-block rounded-full px-2 py-0.5 text-small font-[590] ${LABELS[support.level].class}">${LABELS[support.level].text}</span>
-      ${support.note ? `<p class="mt-2 text-small text-text-secondary">${support.note}</p>` : ""}
-    </div>`;
-
-  const render = (format: FormatSupport) => {
-    el("format-name").textContent = format.name;
-    el("format-what").textContent = format.what;
-    el("format-verdicts").innerHTML = [
-      verdict("On a Mac", format.macos),
-      verdict("On Windows", format.windows),
-      verdict("In a browser", format.browsers),
-    ].join("");
-
-    const advice = el("format-advice");
-    if (format.convertTo) {
-      el("format-advice-title").textContent = `Send a ${format.convertTo} instead`;
-      el("format-advice-body").textContent = format.why ?? "";
-      advice.hidden = false;
-    } else {
-      advice.hidden = true;
-    }
-
-    el("format-source").innerHTML = format.source
-      ? `Checked against <a class="link" href="${format.source}" target="_blank" rel="noreferrer">the documentation</a>.`
-      : "";
-
-    result.hidden = false;
-    status.textContent = "";
-  };
-
-  const lookup = (raw: string) => {
-    if (!raw.trim()) {
-      result.hidden = true;
-      status.textContent = "";
-      return;
-    }
-    const format = findFormat(raw);
-    if (!format) {
-      result.hidden = true;
-      status.textContent = `No entry for "${raw.trim()}" yet. The table below has everything covered so far.`;
-      return;
-    }
-    render(format);
-  };
-
-  // Only the name is touched. The File itself is never read, which is the
-  // claim the page makes, so keep it true.
-  zone.addEventListener("picmal:file", (event) => {
-    const { file } = (event as CustomEvent<{ file: File }>).detail;
-    input.value = file.name.split(".").pop() ?? "";
-    lookup(file.name);
-  });
-
-  input.addEventListener("input", () => lookup(input.value));
-</script>
+  <CTASection
+    heading="Convert a whole folder at once, on your Mac"
+    analyticsEvent="buy_clicked_format_checker"
+  />
+</MarketingLayout>

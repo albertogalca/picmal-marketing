@@ -1,17 +1,14 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title =
   "Compress Video on Mac, Offline and Without Losing Quality | Picmal";
@@ -55,189 +52,169 @@ const faqs = [
       "No. Picmal compresses entirely on your Mac. No uploads, no queues, no watermark, and no file-size cap. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Compress Video on Mac without losing quality"
+    subhead="Shrink MP4, MOV, MKV and more with a quality slider and a live size estimate. Make a clip small enough to email, or batch-compress a whole folder. Offline, no watermark, no upload limit."
+    buyEvent="buy_clicked_compress_video_mac"
+    defaultTab="compress"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Compress Video on Mac without losing quality"
-      subhead="Shrink MP4, MOV, MKV and more with a quality slider and a live size estimate. Make a clip small enough to email, or batch-compress a whole folder. Offline, no watermark, no upload limit."
-      buyEvent="buy_clicked_compress_video_mac"
-      defaultTab="compress"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="How to compress a video on your Mac"
+    items={[
+      {
+        title: "Drop your video",
+        description: "Drag in one clip or a whole folder of videos.",
+      },
+      {
+        title: "Set quality & codec",
+        description:
+          "Pick a CRF level and codec (H.264/H.265). Watch the size estimate update live.",
+      },
+      {
+        title: "Compress",
+        description: "Click Compress. Everything runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="How to compress a video on your Mac"
-      numbered
-      items={[
-        {
-          title: "Drop your video",
-          description: "Drag in one clip or a whole folder of videos.",
-        },
-        {
-          title: "Set quality & codec",
-          description:
-            "Pick a CRF level and codec (H.264/H.265). Watch the size estimate update live.",
-        },
-        {
-          title: "Compress",
-          description: "Click Compress. Everything runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Controls -->
+  <BlockGrid
+    heading="Real control over the trade-off"
+    items={[
+      {
+        icon: "ph:sliders-horizontal-duotone",
+        title: "CRF quality slider",
+        description:
+          "0–51 scale. CRF 18–20 is visually lossless; push higher for smaller files when you need them.",
+      },
+      {
+        icon: "ph:film-strip-duotone",
+        title: "Modern codecs",
+        description:
+          "H.264 for compatibility, H.265/HEVC for ~50% smaller files, VP9 and AV1 for the web.",
+      },
+      {
+        icon: "ph:gauge-duotone",
+        title: "Frame-rate reduction",
+        description:
+          "Drop 60 fps to 30 fps to shrink screen recordings and tutorials that don't need cinematic motion.",
+      },
+      {
+        icon: "ph:calculator-duotone",
+        title: "Size estimate first",
+        description:
+          "See the projected output size before you encode, perfect for hitting an email or upload limit.",
+      },
+    ]}
+    linkText="Need to convert video formats too? See the video converter"
+    linkHref="/video-converter-mac"
+  />
 
-    <!-- Controls -->
-    <CardGrid
-      heading="Real control over the trade-off"
-      items={[
-        {
-          title: "CRF quality slider",
-          description:
-            "0–51 scale. CRF 18–20 is visually lossless; push higher for smaller files when you need them.",
-        },
-        {
-          title: "Modern codecs",
-          description:
-            "H.264 for compatibility, H.265/HEVC for ~50% smaller files, VP9 and AV1 for the web.",
-        },
-        {
-          title: "Frame-rate reduction",
-          description:
-            "Drop 60 fps to 30 fps to shrink screen recordings and tutorials that don't need cinematic motion.",
-        },
-        {
-          title: "Size estimate first",
-          description:
-            "See the projected output size before you encode, perfect for hitting an email or upload limit.",
-        },
-      ]}
-      linkText="Need to convert video formats too? See the video converter"
-      linkHref="/video-converter-mac"
-    />
+  <!-- Why compress -->
+  <BlockGrid
+    heading="When you actually need this"
+    intro={"Modern phones and cameras produce enormous files. A two-minute 4K clip can be over 1 GB. Most of the time you just need it small enough to send or store."}
+    items={[
+      {
+        icon: "ph:envelope-simple-duotone",
+        title: "It won't fit in an email",
+        description:
+          "Gmail and most providers cap attachments around 25 MB. Drop the CRF and resolution until the live size estimate fits, then send.",
+      },
+      {
+        icon: "ph:cloud-arrow-up-duotone",
+        title: "Upload limits and slow uploads",
+        description:
+          "Discord, Slack, and form uploads reject big files or crawl. A smaller H.265 file uploads in a fraction of the time.",
+      },
+      {
+        icon: "ph:monitor-play-duotone",
+        title: "Screen recordings",
+        description:
+          "Tutorials and demos don't need 60 fps or full resolution. Halving both can shrink a recording by 80% with no real loss.",
+      },
+      {
+        icon: "ph:hard-drives-duotone",
+        title: "Reclaiming disk space",
+        description:
+          "Old vacation clips eating your SSD? Re-encode to H.265 and cut the file size roughly in half.",
+      },
+    ]}
+  />
 
-    <!-- Why compress -->
-    <CardGrid
-      heading="When you actually need this"
-      intro={"Modern phones and cameras produce enormous files. A two-minute 4K clip can be over 1 GB. Most of the time you just need it small enough to send or store."}
-      items={[
-        {
-          title: "It won't fit in an email",
-          description:
-            "Gmail and most providers cap attachments around 25 MB. Drop the CRF and resolution until the live size estimate fits, then send.",
-        },
-        {
-          title: "Upload limits and slow uploads",
-          description:
-            "Discord, Slack, and form uploads reject big files or crawl. A smaller H.265 file uploads in a fraction of the time.",
-        },
-        {
-          title: "Screen recordings",
-          description:
-            "Tutorials and demos don't need 60 fps or full resolution. Halving both can shrink a recording by 80% with no real loss.",
-        },
-        {
-          title: "Reclaiming disk space",
-          description:
-            "Old vacation clips eating your SSD? Re-encode to H.265 and cut the file size roughly in half.",
-        },
-      ]}
-    />
+  <!-- Related -->
+  <RelatedGrid
+    heading="Related guides and tools"
+    links={[
+      {
+        href: "/blog/how-to-compress-video-mac",
+        label: "Guide: how to compress a video on Mac (5 ways)",
+      },
+      {
+        href: "/blog/compress-video-with-handbrake",
+        label: "How to compress video with HandBrake",
+      },
+      {
+        href: "/blog/convert-video-with-vlc-mac",
+        label: "Converting video with VLC, and why it looks bad",
+      },
+      {
+        href: "/blog/convert-mov-to-mp4-mac",
+        label: "How to convert MOV to MP4 on Mac, 3 free ways",
+      },
+      {
+        href: "/video-converter-mac",
+        label: "Convert video formats (MOV to MP4, and more)",
+        description:
+          "Change the container or the codec. MOV, MP4, MKV, WebM and AVI, all on your Mac.",
+      },
+      {
+        href: "/compress-audio-mac",
+        label: "Compress audio on Mac",
+        description:
+          "Bitrate, VBR or CBR, mono for a voice. Recordings without the bloat.",
+      },
+      {
+        href: "/compress-images-mac",
+        label: "Compress images on Mac",
+        description:
+          "Photos and screenshots batched down to something you can actually send.",
+      },
+      {
+        href: "/compress",
+        label: "All compression options",
+        description:
+          "Every format Picmal compresses, a page each, with what it throws away.",
+      },
+      {
+        href: "/alternative/handbrake",
+        label: "Coming from HandBrake? Picmal vs HandBrake compared",
+        description:
+          "Where HandBrake still wins, and where you would rather not fight a preset list.",
+      },
+    ]}
+  />
 
-    <!-- Related -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related tools</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a href="/blog/how-to-compress-video-mac" class="text-accent hover:underline"
-          >Guide: how to compress a video on Mac (5 ways) &rarr;</a
-        >
-        <a href="/video-converter-mac" class="text-accent hover:underline"
-          >Convert video formats (MOV to MP4, and more) &rarr;</a
-        >
-        <a href="/compress-images-mac" class="text-accent hover:underline"
-          >Compress images on Mac &rarr;</a
-        >
-        <a href="/compress-audio-mac" class="text-accent hover:underline"
-          >Compress audio on Mac &rarr;</a
-        >
-        <a href="/compress" class="text-accent hover:underline"
-          >All compression options &rarr;</a
-        >
-      </div>
-    </Section>
+  <MasonryTestimonials />
 
+  <PricingSection />
 
-    <!-- Related guides -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a
-          href="/blog/compress-video-with-handbrake"
-          class="text-accent hover:underline"
-          >How to compress video with HandBrake &rarr;</a
-        >
-        <a
-          href="/blog/how-to-compress-video-mac"
-          class="text-accent hover:underline"
-          >How to compress video on Mac (free methods) &rarr;</a
-        >
-        <a
-          href="/blog/convert-video-with-vlc-mac"
-          class="text-accent hover:underline"
-          >Converting video with VLC, and why it looks bad &rarr;</a
-        >
-        <a
-          href="/blog/convert-mov-to-mp4-mac"
-          class="text-accent hover:underline"
-          >How to convert MOV to MP4 on Mac, 3 free ways &rarr;</a
-        >
-        <a
-          href="/alternative/handbrake"
-          class="text-accent hover:underline"
-          >Coming from HandBrake? Picmal vs HandBrake compared &rarr;</a
-        >
-      </div>
-    </Section>
+  <FAQSection faqs={faqs} />
 
-    <MasonryTestimonials />
-
-    <PricingSection />
-
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

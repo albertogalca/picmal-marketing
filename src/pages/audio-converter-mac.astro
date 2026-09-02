@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
@@ -10,10 +7,13 @@ import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import { audioConversions, audioFormats } from "../data/audioConversions";
 import ComparisonHero from "../components/ComparisonHero.astro";
 import Section from "../components/Section.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
 import Paragraph from "../components/Paragraph.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Audio Converter for Mac: Batch MP3, M4A, WAV, FLAC";
 const description =
@@ -75,160 +75,146 @@ const faqs = [
       "No. All conversion happens locally. Picmal works completely offline. Your audio never touches a server.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="An audio converter for Mac that does folders, not files"
+    subhead="MP3, M4A, WAV, FLAC, ALAC, OGG, Opus, WMA, AIFF and more. Convert to MP3 for universal playback or to ALAC for lossless Apple Music. Batch a whole folder, control the bitrate, all on your Mac."
+    buyEvent="buy_clicked_audio_converter_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="An audio converter for Mac that does folders, not files"
-      subhead="MP3, M4A, WAV, FLAC, ALAC, OGG, Opus, WMA, AIFF and more. Convert to MP3 for universal playback or to ALAC for lossless Apple Music. Batch a whole folder, control the bitrate, all on your Mac."
-      buyEvent="buy_clicked_audio_converter_mac"
-      defaultTab="convert"
+  <!-- Convert to MP3 -->
+  <Section>
+    <SectionHeading>
+      Convert any audio to MP3
+      <Fragment slot="sublead">
+        MP3 plays on every device, app, and player. Pick your source format
+        below, or read the full guide on <a
+          class="link"
+          href="/blog/convert-audio-mac">how to convert audio on Mac</a
+        >.
+      </Fragment>
+    </SectionHeading>
+    <ConversionGrid
+      columns={4}
+      links={toMp3.map((c) => ({
+        href: `/convert/audio/${c.slug}`,
+        label: `${audioFormats[c.from].name} to MP3`,
+      }))}
     />
+  </Section>
 
-    <!-- Convert to MP3 -->
-    <Section>
-      <SectionHeading>
-        Convert any audio to MP3
-        <Fragment slot="sublead">
-          MP3 plays on every device, app, and player. Pick your source format
-          below, or read the full guide on <a
-            class="link"
-            href="/blog/convert-audio-mac">how to convert audio on Mac</a
-          >.
-        </Fragment>
-      </SectionHeading>
-      <ConversionGrid
-        columns={4}
-        links={toMp3.map((c) => ({
-          href: `/convert/audio/${c.slug}`,
-          label: `${audioFormats[c.from].name} to MP3`,
-        }))}
-      />
-    </Section>
+  <!-- Lossless, Apple Music & ringtones -->
+  <Section>
+    <SectionHeading
+      sublead="Make editable WAV, lossless FLAC/ALAC for Apple Music, or a custom iPhone ringtone."
+    >
+      Lossless, Apple Music & ringtones
+    </SectionHeading>
+    <ConversionGrid
+      columns={3}
+      links={other.map((c) => ({
+        href: `/convert/audio/${c.slug}`,
+        label: `${audioFormats[c.from].name} to ${audioFormats[c.to].name}`,
+      }))}
+      linkText="Just need a smaller file? Compress audio on Mac"
+      linkHref="/compress-audio-mac"
+    />
+  </Section>
 
-    <!-- Lossless, Apple Music & ringtones -->
-    <Section>
-      <SectionHeading
-        sublead="Make editable WAV, lossless FLAC/ALAC for Apple Music, or a custom iPhone ringtone."
-      >
-        Lossless, Apple Music & ringtones
-      </SectionHeading>
-      <ConversionGrid
-        columns={3}
-        links={other.map((c) => ({
-          href: `/convert/audio/${c.slug}`,
-          label: `${audioFormats[c.from].name} to ${audioFormats[c.to].name}`,
-        }))}
-        linkText="Just need a smaller file? Compress audio on Mac"
-        linkHref="/compress-audio-mac"
-      />
-    </Section>
+  <!-- Format coverage -->
+  <Section width="narrow">
+    <SectionHeading
+      sublead="Picmal reads and writes all of these, and converts between any two of them."
+    >
+      Every audio format Picmal handles
+    </SectionHeading>
+    <div class="grid gap-6 sm:grid-cols-2">
+      <Card>
+        <h3 class="text-h4 text-text mb-1">Lossless</h3>
+        <Paragraph size="small" class="mb-4"
+          >Keeps every sample. Bigger files, no quality loss, safe to convert
+          again later.</Paragraph
+        >
+        <ul class="flex flex-col gap-3">
+          {
+            losslessFormats.map((key) => (
+              <li>
+                <span class="text-body text-text font-[590]">
+                  {audioFormats[key].name}
+                </span>
+                <span class="text-small text-text-secondary">
+                  {" "}
+                  {audioFormats[key].fullName}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </Card>
+      <Card>
+        <h3 class="text-h4 text-text mb-1">Compressed</h3>
+        <Paragraph size="small" class="mb-4"
+          >Throws away what you are unlikely to hear. Much smaller files, and
+          what every phone and car stereo expects.</Paragraph
+        >
+        <ul class="flex flex-col gap-3">
+          {
+            lossyFormats.map((key) => (
+              <li>
+                <span class="text-body text-text font-[590]">
+                  {audioFormats[key].name}
+                </span>
+                <span class="text-small text-text-secondary">
+                  {" "}
+                  {audioFormats[key].fullName}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </Card>
+    </div>
+  </Section>
 
-    <!-- Format coverage -->
-    <Section width="narrow">
-      <SectionHeading
-        sublead="Picmal reads and writes all of these, and converts between any two of them."
-      >
-        Every audio format Picmal handles
-      </SectionHeading>
-      <div class="grid gap-6 sm:grid-cols-2">
-        <Card>
-          <h3 class="text-h4 text-text mb-1">Lossless</h3>
-          <Paragraph size="small" class="mb-4"
-            >Keeps every sample. Bigger files, no quality loss, safe to convert
-            again later.</Paragraph
-          >
-          <ul class="flex flex-col gap-3">
-            {
-              losslessFormats.map((key) => (
-                <li>
-                  <span class="text-body text-text font-[590]">
-                    {audioFormats[key].name}
-                  </span>
-                  <span class="text-small text-text-secondary">
-                    {" "}
-                    {audioFormats[key].fullName}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </Card>
-        <Card>
-          <h3 class="text-h4 text-text mb-1">Compressed</h3>
-          <Paragraph size="small" class="mb-4"
-            >Throws away what you are unlikely to hear. Much smaller files, and
-            what every phone and car stereo expects.</Paragraph
-          >
-          <ul class="flex flex-col gap-3">
-            {
-              lossyFormats.map((key) => (
-                <li>
-                  <span class="text-body text-text font-[590]">
-                    {audioFormats[key].name}
-                  </span>
-                  <span class="text-small text-text-secondary">
-                    {" "}
-                    {audioFormats[key].fullName}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </Card>
-      </div>
-    </Section>
+  <!-- Batch -->
+  <Section width="narrow">
+    <SectionHeading class="mb-8"
+      >Batch convert a folder of audio files</SectionHeading
+    >
+    <Paragraph class="mb-4"
+      >This is the part most audio converters on the Mac get wrong. They open
+      one file, convert it, and ask you to do the next one. That is fine for a
+      single voice memo. It is not fine for a ripped album or a season of
+      interviews.</Paragraph
+    >
+    <Paragraph class="mb-4"
+      >Drag in a whole folder and Picmal converts every file in one pass, with
+      the same bitrate and sample rate applied across all of them, each with
+      its own progress. Hundreds of files, one click, no queue and no upload
+      limit because nothing is uploading.</Paragraph
+    >
+    <Paragraph
+      >The settings carry too. Set 320 kbps VBR once and it applies to the
+      whole batch, so a converted album stays consistent instead of drifting
+      file to file.</Paragraph
+    >
+  </Section>
 
-    <!-- Batch -->
-    <Section width="narrow">
-      <SectionHeading class="mb-8"
-        >Batch convert a folder of audio files</SectionHeading
-      >
-      <Paragraph class="mb-4"
-        >This is the part most audio converters on the Mac get wrong. They open
-        one file, convert it, and ask you to do the next one. That is fine for a
-        single voice memo. It is not fine for a ripped album or a season of
-        interviews.</Paragraph
-      >
-      <Paragraph class="mb-4"
-        >Drag in a whole folder and Picmal converts every file in one pass, with
-        the same bitrate and sample rate applied across all of them, each with
-        its own progress. Hundreds of files, one click, no queue and no upload
-        limit because nothing is uploading.</Paragraph
-      >
-      <Paragraph
-        >The settings carry too. Set 320 kbps VBR once and it applies to the
-        whole batch, so a converted album stays consistent instead of drifting
-        file to file.</Paragraph
-      >
-    </Section>
-
-    <!-- Lossless vs compressed -->
-    <Section width="narrow">
+  <!-- Lossless vs compressed -->
+  <Section width="narrow">
       <SectionHeading class="mb-8">Lossless or compressed?</SectionHeading>
-      <Paragraph class="mb-4"
+      <Paragraph
         >Worth getting right before you convert a library, because you cannot
         get quality back once it is gone. <strong class="text-text"
           >Lossless</strong
@@ -237,7 +223,7 @@ const faqSchema = {
           class="text-text">Compressed</strong
         > formats (MP3, AAC, Opus, OGG) discard detail to save space.</Paragraph
       >
-      <Paragraph class="mb-4"
+      <Paragraph
         >The rule I use: archive in lossless, listen in compressed. Keep the
         FLAC or ALAC copy of anything you ripped or recorded, then make MP3s
         from it whenever you need something that plays everywhere. Going the
@@ -250,20 +236,20 @@ const faqSchema = {
         <a class="link" href="/convert/audio/flac-to-alac">FLAC to ALAC</a> is the
         usual route.</Paragraph
       >
-    </Section>
+  </Section>
 
-    <!-- Why native -->
-    <Section width="narrow">
+  <!-- Why native -->
+  <Section width="narrow">
       <SectionHeading class="mb-8"
         >Why not just use an online audio converter?</SectionHeading
       >
-      <Paragraph class="mb-4"
+      <Paragraph
         >You can drop a file on a website and get it back in another format. For
         one file, that works. It stops working the moment you have an album, or
         the file is a client recording, an interview, or something under NDA
         that you would rather not hand to a stranger's server.</Paragraph
       >
-      <Paragraph class="mb-4"
+      <Paragraph
         >Online converters upload the audio, process it somewhere you cannot
         see, and hand it back, usually with a size cap, a queue, and an ad wall.
         Audio files are big, so you feel every one of those limits. Picmal runs
@@ -274,48 +260,44 @@ const faqSchema = {
         >It is $29 once, updates included. Not a subscription you forget to
         cancel.</Paragraph
       >
-    </Section>
+  </Section>
 
-    <!-- Related guides -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a href="/blog/convert-audio-mac" class="text-accent hover:underline"
-          >How to convert audio on Mac &rarr;</a
-        >
-        <a href="/compress-audio-mac" class="text-accent hover:underline"
-          >Compress audio on Mac without wrecking it &rarr;</a
-        >
-        <a
-          href="/extract-audio-from-video-mac"
-          class="text-accent hover:underline">Extract audio from a video &rarr;</a
-        >
-        <a
-          href="/blog/convert-flac-to-alac-mac"
-          class="text-accent hover:underline"
-          >Convert FLAC to ALAC for Apple Music &rarr;</a
-        >
-      </div>
-    </Section>
+  <!-- Related guides -->
+  <RelatedGrid
+      heading="Related guides"
+      links={[
+        {
+          href: "/blog/convert-audio-mac",
+          label: "How to convert audio on Mac",
+        },
+        {
+          href: "/compress-audio-mac",
+          label: "Compress audio on Mac without wrecking it",
+          description:
+            "The bitrate and the mode are yours to pick, mono when it is just a voice. Smaller files that still sound right.",
+        },
+        {
+          href: "/extract-audio-from-video-mac",
+          label: "Extract audio from a video",
+          description:
+            "Pull the sound out of an MP4 or a MOV and save it as MP3, M4A or WAV.",
+        },
+        {
+          href: "/blog/convert-flac-to-alac-mac",
+          label: "Convert FLAC to ALAC for Apple Music",
+        },
+      ]}
+  />
 
-    <MasonryTestimonials />
+  <MasonryTestimonials />
 
-    <PricingSection />
+  <PricingSection />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
+  <FAQSection faqs={faqs} />
 
-    </main>
+  <Fragment slot="after">
+      <SupportedFormatsModal />
+  </Fragment>
+</MarketingLayout>
 
-    <Footer />
-    <SupportedFormatsModal />
-  </body>
-</html>
+    </div>

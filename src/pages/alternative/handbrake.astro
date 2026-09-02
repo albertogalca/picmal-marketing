@@ -1,8 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FAQ from "../../components/FAQ.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
@@ -10,13 +7,15 @@ import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
 import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
-import H3 from "../../components/H3.astro";
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
+import FAQSection from "../../components/FAQSection.astro";
 
 const SITE_DESCRIPTION =
   "Want a HandBrake alternative on Mac? Picmal handles images, video, audio, and PDFs in one native Mac app. Convert, compress, and edit, with Shortcuts and folder monitoring. Files never leave your Mac. Pay $29 once.";
@@ -60,426 +59,234 @@ const faqs = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Picmal: The HandBrake alternative for Mac, no presets"
-      description={SITE_DESCRIPTION}
-    />
+<MarketingLayout
+  title="Picmal: The HandBrake alternative for Mac, no presets"
+  description={SITE_DESCRIPTION}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema faqs={faqs} />
-  </head>
+        <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-screen transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="A native Mac HandBrake alternative"
+    subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs, and you want something that feels like a proper Mac app, Picmal handles all of it for $29."
+    buyEvent="buy_clicked_handbrake_comparison"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="A native Mac HandBrake alternative"
-      subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs, and you want something that feels like a proper Mac app, Picmal handles all of it for $29."
-      buyEvent="buy_clicked_handbrake_comparison"
-    />
+  <ComparisonVerdict
+    competitor="HandBrake"
+    summary="HandBrake is free, open source, and runs on Windows, Linux, and Mac with serious encoding controls. Picmal is Mac only and costs $29 once. It handles images, audio, and PDFs alongside video, and it feels at home on your Mac. Neither one uploads your files."
+    picmalFor="You're on a Mac and you need images, audio, or PDFs as well as video. Or you just want an app that feels native and works with Shortcuts."
+    competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, or Windows and Linux support. And free matters to you."
+  />
 
-    <ComparisonVerdict
+  <!-- Why people look for an alternative -->
+  <Section width="narrow">
+    <SectionHeading align="left">
+      Why people go looking for a HandBrake alternative
+    </SectionHeading>
+    <div class="space-y-4">
+      <Paragraph>
+        Rarely because HandBrake is bad. It's free, open source, and after two
+        decades it's still the reference tool for video encoding. When people
+        search for an alternative, it's usually one of three things.
+      </Paragraph>
+      <Paragraph>
+        <strong class="text-text">The interface asks a lot.</strong> Presets,
+        CRF values, encoder tuning, filter tabs. If you know video, that
+        depth is the whole point. If you just want this MOV as a smaller MP4,
+        it's a wall of decisions you didn't want to make.
+      </Paragraph>
+      <Paragraph>
+        <strong class="text-text">It only does video.</strong> The same
+        project that produced the screen recording usually comes with
+        screenshots to compress, audio to convert, or a PDF to shrink.
+        HandBrake handles none of that, so you end up with a folder of
+        single-purpose tools.
+      </Paragraph>
+      <Paragraph>
+        <strong class="text-text">It doesn't feel like a Mac app.</strong> No
+        Finder right-click, no Shortcuts actions, no folder watching. It runs
+        fine on a Mac, it just doesn't plug into one.
+      </Paragraph>
+      <Paragraph>
+        If none of those bother you, keep HandBrake, it's excellent. If they
+        do, that's the gap I built <a href="/" class="link">Picmal</a> for:
+        drag files in, pick a format, done, and it covers
+        <a href="/compress-video-mac" class="link">video compression</a>,
+        images, audio, and PDFs in one app.
+      </Paragraph>
+    </div>
+  </Section>
+
+  <!-- Comparison Table -->
+  <Section width="default">
+    <SectionHeading>
+      Picmal vs HandBrake at a glance
+      <Fragment slot="sublead">
+        HandBrake is a free video encoder with serious encoding controls.
+        Picmal is a paid Mac app that handles images, audio, and PDFs as well
+        as video, with a simpler interface. Different tradeoffs, so pick the
+        one that fits.
+      </Fragment>
+    </SectionHeading>
+    <ComparisonTable
       competitor="HandBrake"
-      summary="HandBrake is free, open source, and runs on Windows, Linux, and Mac with serious encoding controls. Picmal is Mac only and costs $29 once. It handles images, audio, and PDFs alongside video, and it feels at home on your Mac. Neither one uploads your files."
-      picmalFor="You're on a Mac and you need images, audio, or PDFs as well as video. Or you just want an app that feels native and works with Shortcuts."
-      competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, or Windows and Linux support. And free matters to you."
+      rows={[
+      {
+        feature: "Price",
+        picmal: "$29 one-time",
+        competitor: "Free (open source)",
+      },
+      {
+        feature: "Platforms",
+        picmal: "macOS only",
+        competitor: "Windows, Mac, Linux",
+      },
+      {
+        feature: "Privacy",
+        picmal: "100% offline",
+        competitor: "100% offline",
+      },
+      {
+        feature: "Interface",
+        picmal: "Native macOS, clean UI",
+        competitor: "Cross-platform, gets the job done",
+      },
+      {
+        feature: "Image conversion",
+        picmal: "Yes, 20+ formats",
+        competitor: "No",
+      },
+      {
+        feature: "Video conversion",
+        picmal: "Yes, common formats",
+        competitor: "Yes, advanced encoding options",
+      },
+      {
+        feature: "Audio conversion",
+        picmal: "Yes, MP3, WAV, FLAC, and more",
+        competitor: "Audio within video only",
+      },
+      {
+        feature: "Compression",
+        picmal: "Images, video, audio &amp; PDF",
+        competitor: "Video encoding only",
+      },
+      {
+        feature: "PDF tools",
+        picmal: "Yes, compress, combine, images&rarr;PDF",
+        competitor: "No",
+      },
+      {
+        feature: "DVD/BluRay ripping",
+        picmal: "No",
+        competitor: "Yes (unprotected)",
+      },
+      {
+        feature: "Device presets",
+        picmal: "No",
+        competitor: "Yes, Apple, Android, web, and more",
+      },
+      {
+        feature: "Video filters",
+        picmal: "Basic",
+        competitor: "Advanced (deinterlace, denoise, HDR)",
+      },
+      {
+        feature: "Subtitle support",
+        picmal: "No",
+        competitor: "Yes, SRT, SSA, VobSub, CEA-608",
+      },
+      {
+        feature: "Metadata removal",
+        picmal: "Yes",
+        competitor: "Limited",
+      },
+      {
+        feature: "Shortcuts integration",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Folder monitoring",
+        picmal: "Yes",
+        competitor: "No",
+      },
+      {
+        feature: "Finder right-click",
+        picmal: "Yes",
+        competitor: "No",
+      },
+    ]}
     />
+  </Section>
 
-    <!-- Why people look for an alternative -->
-    <Section width="narrow">
-      <SectionHeading align="left">
-        Why people go looking for a HandBrake alternative
-      </SectionHeading>
-      <div class="space-y-4">
-        <Paragraph>
-          Rarely because HandBrake is bad. It's free, open source, and after two
-          decades it's still the reference tool for video encoding. When people
-          search for an alternative, it's usually one of three things.
-        </Paragraph>
-        <Paragraph>
-          <strong class="text-text">The interface asks a lot.</strong> Presets,
-          CRF values, encoder tuning, filter tabs. If you know video, that
-          depth is the whole point. If you just want this MOV as a smaller MP4,
-          it's a wall of decisions you didn't want to make.
-        </Paragraph>
-        <Paragraph>
-          <strong class="text-text">It only does video.</strong> The same
-          project that produced the screen recording usually comes with
-          screenshots to compress, audio to convert, or a PDF to shrink.
-          HandBrake handles none of that, so you end up with a folder of
-          single-purpose tools.
-        </Paragraph>
-        <Paragraph>
-          <strong class="text-text">It doesn't feel like a Mac app.</strong> No
-          Finder right-click, no Shortcuts actions, no folder watching. It runs
-          fine on a Mac, it just doesn't plug into one.
-        </Paragraph>
-        <Paragraph>
-          If none of those bother you, keep HandBrake, it's excellent. If they
-          do, that's the gap I built <a href="/" class="link">Picmal</a> for:
-          drag files in, pick a format, done, and it covers
-          <a href="/compress-video-mac" class="link">video compression</a>,
-          images, audio, and PDFs in one app.
-        </Paragraph>
-      </div>
-    </Section>
+  <!-- Who Picmal Is For / Who Should Stick with HandBrake -->
+  <AlternativeVerdict
+    sublead="Here's where each one makes more sense."
+    picmal={{
+      heading: "Choose Picmal",
+      lead: "Mac-native. Images, audio, PDFs, and video in one place.",
+      items: [
+        "You want to convert, compress, and edit images, video, audio, and PDFs without juggling five apps",
+        "You automate things with Apple Shortcuts",
+        "You want an app that actually looks and feels like a Mac app",
+        "You want folder monitoring and a Finder right-click",
+      ],
+    }}
+    rival={{
+      heading: "Choose HandBrake",
+      lead: "Free, powerful video encoding, runs everywhere.",
+      items: [
+        "Video transcoding and encoding is all you need",
+        "You're on Windows or Linux",
+        "You'd rather not pay for an app",
+        "You need DVD or Blu-ray ripping, or subtitle tracks",
+      ],
+    }}
+  />
 
-    <!-- Comparison Table -->
-    <Section width="default">
-      <SectionHeading>
-        Picmal vs HandBrake at a glance
-        <Fragment slot="sublead">
-          HandBrake is a free video encoder with serious encoding controls.
-          Picmal is a paid Mac app that handles images, audio, and PDFs as well
-          as video, with a simpler interface. Different tradeoffs, so pick the
-          one that fits.
-        </Fragment>
-      </SectionHeading>
-      <Card padding="p-4 md:p-8">
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse">
-              <thead>
-                <tr class="border-b border-border">
-                  <th class="text-left p-4 font-semibold text-text">Feature</th>
-                  <th class="text-left p-4 font-semibold text-text">Picmal</th>
-                  <th class="text-left p-4 font-semibold text-text"
-                    >HandBrake</th
-                  >
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border">
-                <tr>
-                  <td class="p-4 text-text-secondary">Price</td>
-                  <td class="p-4 text-text">$29 one-time</td>
-                  <td class="p-4 text-text">Free (open source)</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Platforms</td>
-                  <td class="p-4 text-text">macOS only</td>
-                  <td class="p-4 text-text">Windows, Mac, Linux</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Privacy</td>
-                  <td class="p-4 text-text">100% offline</td>
-                  <td class="p-4 text-text">100% offline</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Interface</td>
-                  <td class="p-4 text-text">Native macOS, clean UI</td>
-                  <td class="p-4 text-text">Cross-platform, gets the job done</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Image conversion</td>
-                  <td class="p-4 text-text">Yes, 20+ formats</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video conversion</td>
-                  <td class="p-4 text-text">Yes, common formats</td>
-                  <td class="p-4 text-text">Yes, advanced encoding options</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Audio conversion</td>
-                  <td class="p-4 text-text">Yes, MP3, WAV, FLAC, and more</td>
-                  <td class="p-4 text-text">Audio within video only</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Compression</td>
-                  <td class="p-4 text-text">Images, video, audio &amp; PDF</td>
-                  <td class="p-4 text-text">Video encoding only</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">PDF tools</td>
-                  <td class="p-4 text-text"
-                    >Yes, compress, combine, images&rarr;PDF</td
-                  >
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">DVD/BluRay ripping</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes (unprotected)</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Device presets</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes, Apple, Android, web, and more</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Video filters</td>
-                  <td class="p-4 text-text">Basic</td>
-                  <td class="p-4 text-text"
-                    >Advanced (deinterlace, denoise, HDR)</td
-                  >
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Subtitle support</td>
-                  <td class="p-4 text-text">No</td>
-                  <td class="p-4 text-text">Yes, SRT, SSA, VobSub, CEA-608</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Metadata removal</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">Limited</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Shortcuts integration</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Folder monitoring</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-                <tr>
-                  <td class="p-4 text-text-secondary">Finder right-click</td>
-                  <td class="p-4 text-text">Yes</td>
-                  <td class="p-4 text-text">No</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      </Card>
-    </Section>
+  <!-- Features -->
+  <FeatureGrid
+    heading="Everything else Picmal does"
+    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
+  />
 
-    <!-- Who Picmal Is For / Who Should Stick with HandBrake -->
-    <Section width="default">
-      <SectionHeading>
-        Which one is right for you?
-        <Fragment slot="sublead">
-            Here's where each one makes more sense.
-        </Fragment>
-      </SectionHeading>
+  <!-- Testimonials Section -->
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Picmal Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose Picmal
-              </H3>
-              <Paragraph color="secondary">
-                Mac-native. Images, audio, PDFs, and video in one place.
-              </Paragraph>
-            </div>
+  <!-- Related guides -->
+  <RelatedGrid
+    heading="Related guides"
+    links={[
+      {
+        href: "/blog/compress-video-with-handbrake",
+        label: "HandBrake settings for compressing video",
+      },
+      {
+        href: "/blog/best-media-converter-mac-2026",
+        label: "The best media converter for Mac in 2026",
+      },
+    ]}
+  />
 
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want to convert, compress, and edit images, video, audio,
-                  and PDFs without juggling five apps
-                </span>
-              </li>
+  <MasonryTestimonials />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You automate things with Apple Shortcuts
-                </span>
-              </li>
+  <!-- Pricing -->
+  <PricingSection />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want an app that actually looks and feels like a Mac app
-                </span>
-              </li>
+  <!-- Founder letter -->
+  <FounderLetter />
 
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-accent flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You want folder monitoring and a Finder right-click
-                </span>
-              </li>
-            </ul>
-          </Card>
+  <!-- FAQ Section -->
+  <FAQSection
+    faqs={faqs}
+    heading="Frequently asked questions"
+    sublead="Can't find what you're looking for? Email support@picmal.app"
+  />
 
-          <!-- HandBrake Column -->
-          <Card>
-            <div class="mb-6">
-              <H3 class="mb-2">
-                Choose HandBrake
-              </H3>
-              <Paragraph color="secondary">
-                Free, powerful video encoding, runs everywhere.
-              </Paragraph>
-            </div>
-
-            <ul class="space-y-4">
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  Video transcoding and encoding is all you need
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text"> You're on Windows or Linux </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You'd rather not pay for an app
-                </span>
-              </li>
-
-              <li class="flex gap-3 items-start">
-                <svg
-                  class="w-6 h-6 text-text-secondary flex-shrink-0 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-text">
-                  You need DVD or Blu-ray ripping, or subtitle tracks
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </div>
-    </Section>
-
-    <!-- Features -->
-    <FeatureGrid
-      heading="Everything else Picmal does"
-      subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-    />
-
-    <!-- Testimonials Section -->
-
-    <!-- Related guides -->
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a
-          href="/blog/compress-video-with-handbrake"
-          class="text-accent hover:underline"
-          >HandBrake settings for compressing video &rarr;</a
-        >
-        <a
-          href="/blog/best-media-converter-mac-2026"
-          class="text-accent hover:underline"
-          >The best media converter for Mac in 2026 &rarr;</a
-        >
-      </div>
-    </Section>
-
-    <MasonryTestimonials />
-
-    <!-- Pricing -->
-    <PricingSection />
-
-    <!-- Founder letter -->
-    <FounderLetter />
-
-    <!-- FAQ Section -->
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Can't find what you're looking for? Email support@picmal.app"
-      >
-        Frequently asked questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
-
+  <Fragment slot="after">
     <SupportedFormatsModal />
-
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

@@ -1,7 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
@@ -69,157 +67,149 @@ const coverage = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        name: title,
-        description,
-        url: "https://picmal.app/press-kit",
-        mainEntity: { "@id": "https://picmal.app/#software" },
-        publisher: { "@id": "https://picmal.app/#organization" },
-      })}
-    />
-  </head>
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: title,
+            description,
+            url: "https://picmal.app/press-kit",
+            mainEntity: { "@id": "https://picmal.app/#software" },
+            publisher: { "@id": "https://picmal.app/#organization" },
+          })}
+        />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <Section width="narrow" class="pt-32 sm:pt-32">
+    <SectionHeading
+      level={1}
+      sublead="Everything you need to write about Picmal. Copy any of it as is, no permission needed. If you want something that isn't here, email me and I'll send it."
+    >
+      Press kit
+    </SectionHeading>
 
-    <main id="main-content">
-      <Section width="narrow" class="pt-32 sm:pt-32">
-        <SectionHeading
-          level={1}
-          sublead="Everything you need to write about Picmal. Copy any of it as is, no permission needed. If you want something that isn't here, email me and I'll send it."
-        >
-          Press kit
-        </SectionHeading>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <Button href={DRIVE_URL} text="Download logos and screenshots" />
+      <a
+        href="mailto:support@picmal.app"
+        class="text-small text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >or email me directly</a
+      >
+    </div>
+  </Section>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Button href={DRIVE_URL} text="Download logos and screenshots" />
-          <a
-            href="mailto:support@picmal.app"
-            class="text-small text-text-secondary hover:text-text transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >or email me directly</a
-          >
-        </div>
-      </Section>
+  <Section width="narrow" bg="subtle">
+    <H2 class="mb-8">The facts</H2>
+    <Card>
+      <dl class="flex flex-col gap-4">
+        {
+          facts.map((fact) => (
+            <div class="flex flex-col sm:flex-row sm:gap-6">
+              <dt class="text-small text-text-secondary sm:w-40 sm:shrink-0">
+                {fact.label}
+              </dt>
+              <dd class="text-body text-text">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </Card>
+  </Section>
 
-      <Section width="narrow" bg="subtle">
-        <H2 class="mb-8">The facts</H2>
-        <Card>
-          <dl class="flex flex-col gap-4">
-            {
-              facts.map((fact) => (
-                <div class="flex flex-col sm:flex-row sm:gap-6">
-                  <dt class="text-small text-text-secondary sm:w-40 sm:shrink-0">
-                    {fact.label}
-                  </dt>
-                  <dd class="text-body text-text">{fact.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
-        </Card>
-      </Section>
+  <Section width="narrow">
+    <H2 class="mb-4">Boilerplate</H2>
+    <Paragraph color="secondary" class="mb-8">
+      Three lengths, so you can drop in whichever fits the piece.
+    </Paragraph>
 
-      <Section width="narrow">
-        <H2 class="mb-4">Boilerplate</H2>
-        <Paragraph color="secondary" class="mb-8">
-          Three lengths, so you can drop in whichever fits the piece.
-        </Paragraph>
+    <div class="flex flex-col gap-6">
+      {
+        boilerplates.map((b) => (
+          <Card>
+            <H3 class="text-h4 mb-3">{b.label}</H3>
+            <Paragraph color="secondary">{b.text}</Paragraph>
+          </Card>
+        ))
+      }
+    </div>
+  </Section>
 
-        <div class="flex flex-col gap-6">
-          {
-            boilerplates.map((b) => (
-              <Card>
-                <H3 class="text-h4 mb-3">{b.label}</H3>
-                <Paragraph color="secondary">{b.text}</Paragraph>
-              </Card>
-            ))
-          }
-        </div>
-      </Section>
+  <Section width="narrow" bg="subtle">
+    <H2 class="mb-8">What it does</H2>
+    <Card>
+      <ul class="flex flex-col gap-3 text-body text-text-secondary">
+        <li>
+          Batch converts images, video, audio and PDFs across more than 100
+          formats, including HEIC, WebP, AVIF, RAW, MP4, MOV, MP3 and FLAC.
+        </li>
+        <li>
+          Compresses with an adjustable quality slider, so the size and
+          fidelity tradeoff is the user's call, not a fixed preset.
+        </li>
+        <li>
+          PDF tools: combine, split by page range, build a PDF from a folder
+          of images, reorder and delete pages.
+        </li>
+        <li>
+          Video tools: combine clips, crop, cap resolution, change playback
+          speed, add a watermark, burn in SRT or VTT subtitles.
+        </li>
+        <li>
+          One-off jobs: remove a background, trace a raster logo to real SVG
+          paths, generate macOS .icns, Windows .ico and iOS icon sets.
+        </li>
+        <li>
+          Fits the system: Finder Quick Actions, Shortcuts, Raycast, watched
+          folders, and a picmal-cli binary for scripting.
+        </li>
+        <li>
+          Runs entirely offline. No uploads, no account, no server. The app
+          has nowhere to send a file even if it wanted to.
+        </li>
+      </ul>
+    </Card>
+  </Section>
 
-      <Section width="narrow" bg="subtle">
-        <H2 class="mb-8">What it does</H2>
-        <Card>
-          <ul class="flex flex-col gap-3 text-body text-text-secondary">
-            <li>
-              Batch converts images, video, audio and PDFs across more than 100
-              formats, including HEIC, WebP, AVIF, RAW, MP4, MOV, MP3 and FLAC.
-            </li>
-            <li>
-              Compresses with an adjustable quality slider, so the size and
-              fidelity tradeoff is the user's call, not a fixed preset.
-            </li>
-            <li>
-              PDF tools: combine, split by page range, build a PDF from a folder
-              of images, reorder and delete pages.
-            </li>
-            <li>
-              Video tools: combine clips, crop, cap resolution, change playback
-              speed, add a watermark, burn in SRT or VTT subtitles.
-            </li>
-            <li>
-              One-off jobs: remove a background, trace a raster logo to real SVG
-              paths, generate macOS .icns, Windows .ico and iOS icon sets.
-            </li>
-            <li>
-              Fits the system: Finder Quick Actions, Shortcuts, Raycast, watched
-              folders, and a picmal-cli binary for scripting.
-            </li>
-            <li>
-              Runs entirely offline. No uploads, no account, no server. The app
-              has nowhere to send a file even if it wanted to.
-            </li>
-          </ul>
-        </Card>
-      </Section>
+  <Section width="narrow">
+    <H2 class="mb-8">Coverage</H2>
+    <div class="flex flex-col gap-6">
+      {
+        coverage.map((item) => (
+          <Card>
+            <Paragraph class="mb-3">"{item.quote}"</Paragraph>
+            <Paragraph size="small" color="secondary">
+              {item.publication}
+            </Paragraph>
+          </Card>
+        ))
+      }
+    </div>
+  </Section>
 
-      <Section width="narrow">
-        <H2 class="mb-8">Coverage</H2>
-        <div class="flex flex-col gap-6">
-          {
-            coverage.map((item) => (
-              <Card>
-                <Paragraph class="mb-3">"{item.quote}"</Paragraph>
-                <Paragraph size="small" color="secondary">
-                  {item.publication}
-                </Paragraph>
-              </Card>
-            ))
-          }
-        </div>
-      </Section>
+  <Section width="narrow" bg="subtle">
+    <H2 class="mb-4">Reviewing Picmal</H2>
+    <Paragraph color="secondary" class="mb-4">
+      Email <a class="link" href="mailto:support@picmal.app"
+        >support@picmal.app</a
+      > and I'll send a licence key, no conditions attached. I don't ask to
+      see a draft, and I don't ask for a positive review.
+    </Paragraph>
+    <Paragraph color="secondary">
+      Two things worth knowing before you test it: there's no free trial, so
+      the download runs but won't process files until a key is added, and
+      the app is signed and notarised by Apple, so it opens without security
+      warnings.
+    </Paragraph>
+  </Section>
 
-      <Section width="narrow" bg="subtle">
-        <H2 class="mb-4">Reviewing Picmal</H2>
-        <Paragraph color="secondary" class="mb-4">
-          Email <a class="link" href="mailto:support@picmal.app"
-            >support@picmal.app</a
-          > and I'll send a licence key, no conditions attached. I don't ask to
-          see a draft, and I don't ask for a positive review.
-        </Paragraph>
-        <Paragraph color="secondary">
-          Two things worth knowing before you test it: there's no free trial, so
-          the download runs but won't process files until a key is added, and
-          the app is signed and notarised by Apple, so it opens without security
-          warnings.
-        </Paragraph>
-      </Section>
-
-      <CTASection
-        heading="Convert and compress media on your Mac"
-        analyticsEvent="buy_clicked_press_kit"
-      />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <CTASection
+    heading="Convert and compress media on your Mac"
+    analyticsEvent="buy_clicked_press_kit"
+  />
+</MarketingLayout>

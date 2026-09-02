@@ -1,17 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
-import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import BlockGrid from "../components/BlockGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title =
   "Picmal: Add a watermark to videos on Mac, batch logo overlay";
@@ -55,107 +51,85 @@ const faqs = [
       "No. Everything happens locally on your Mac. No uploads, no per-file limits, nothing leaves your machine. It's a one-time $29, not a subscription.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Add a watermark to your videos on Mac"
+    subhead="Stamp a logo or PNG overlay onto any video as it encodes. Set the position, margin and opacity, save it as a preset, and batch a whole folder at once. Offline, no upload."
+    buyEvent="buy_clicked_watermark_video_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Add a watermark to your videos on Mac"
-      subhead="Stamp a logo or PNG overlay onto any video as it encodes. Set the position, margin and opacity, save it as a preset, and batch a whole folder at once. Offline, no upload."
-      buyEvent="buy_clicked_watermark_video_mac"
-      defaultTab="convert"
-    />
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="Watermark a video in 3 steps"
+    items={[
+      {
+        title: "Drop your video",
+        description: "Drag in one clip or a whole folder of videos.",
+      },
+      {
+        title: "Add your watermark",
+        description:
+          "Pick a logo or PNG, set the position on the grid, margin and opacity.",
+      },
+      {
+        title: "Convert",
+        description:
+          "Click Convert and Picmal burns the watermark in. It all runs on your Mac.",
+      },
+    ]}
+  />
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="Watermark a video in 3 steps"
-      numbered
-      items={[
-        {
-          title: "Drop your video",
-          description: "Drag in one clip or a whole folder of videos.",
-        },
-        {
-          title: "Add your watermark",
-          description:
-            "Pick a logo or PNG, set the position on the grid, margin and opacity.",
-        },
-        {
-          title: "Convert",
-          description:
-            "Click Convert and Picmal burns the watermark in. It all runs on your Mac.",
-        },
-      ]}
-    />
+  <!-- Why Picmal -->
+  <BlockGrid
+    heading="Your logo, burned into every frame"
+    items={[
+      {
+        icon: "ph:drop-duotone",
+        title: "Your logo, any corner",
+        description:
+          "Drop in a PNG and place it with a 3x3 grid, any corner, edge or the center, with margin and opacity you control.",
+      },
+      {
+        icon: "ph:arrows-out-duotone",
+        title: "Consistent across sizes",
+        description:
+          "Scale the watermark as a percentage of the video height, so one preset looks the same on small and large clips.",
+      },
+      {
+        icon: "ph:folders-duotone",
+        title: "Presets and batch",
+        description:
+          "Save multiple watermark presets and stamp a whole folder of clips in one pass, each saved as its own file.",
+      },
+      {
+        icon: "ph:laptop-duotone",
+        title: "Burned in, on your Mac",
+        description:
+          "The mark is baked into the frames as it encodes. No uploads, no per-file limits, nothing leaves your machine.",
+      },
+    ]}
+    linkText="Need to convert or compress video too? See the video converter"
+    linkHref="/video-converter-mac"
+  />
 
-    <!-- Why Picmal -->
-    <CardGrid
-      heading="Your logo, burned into every frame"
-      items={[
-        {
-          title: "Your logo, any corner",
-          description:
-            "Drop in a PNG and place it with a 3x3 grid, any corner, edge or the center, with margin and opacity you control.",
-        },
-        {
-          title: "Consistent across sizes",
-          description:
-            "Scale the watermark as a percentage of the video height, so one preset looks the same on small and large clips.",
-        },
-        {
-          title: "Presets and batch",
-          description:
-            "Save multiple watermark presets and stamp a whole folder of clips in one pass, each saved as its own file.",
-        },
-        {
-          title: "Burned in, on your Mac",
-          description:
-            "The mark is baked into the frames as it encodes. No uploads, no per-file limits, nothing leaves your machine.",
-        },
-      ]}
-      linkText="Need to convert or compress video too? See the video converter"
-      linkHref="/video-converter-mac"
-    />
+  <MasonryTestimonials />
 
-    <MasonryTestimonials />
+  <PricingSection />
 
-    <PricingSection />
+  <FAQSection faqs={faqs} />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

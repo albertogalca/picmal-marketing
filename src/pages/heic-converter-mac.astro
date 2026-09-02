@@ -1,19 +1,17 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
 import { isConversionIndexed } from "../data/conversions";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Picmal: The HEIC converter for Mac";
 const description =
@@ -56,120 +54,94 @@ const faqs = [
       "No. All conversion happens locally on your Mac. Picmal works completely offline. Your photos never touch any server.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="The HEIC converter for your Mac"
+    subhead="Your iPhone shoots HEIC, but the world runs on JPG. Drop in a whole folder and Picmal changes every one of them to JPG, PNG or WebP, with the location and camera data intact. Hundreds at a time, fully offline."
+    buyEvent="buy_clicked_heic_converter_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="The HEIC converter for your Mac"
-      subhead="Your iPhone shoots HEIC, but the world runs on JPG. Drop in a whole folder and Picmal changes every one of them to JPG, PNG or WebP, with the location and camera data intact. Hundreds at a time, fully offline."
-      buyEvent="buy_clicked_heic_converter_mac"
-      defaultTab="convert"
+  <!-- How It Works -->
+  <BlockGrid ordered
+    heading="A whole folder of HEIC to JPG in three steps"
+    items={[
+      {
+        title: "Drop your HEIC files",
+        description:
+          "Drag and drop HEIC files from Finder, Photos, or any folder.",
+      },
+      {
+        title: "Choose output format",
+        description: "Select JPG, PNG, WebP, or any other format.",
+      },
+      {
+        title: "Convert",
+        description: "Click Convert and your files are ready in seconds.",
+      },
+    ]}
+  />
+
+  <!-- HEIC Conversion Options -->
+  <Section>
+    <SectionHeading>
+      Convert HEIC to any format
+      <Fragment slot="sublead">
+        New to this? Follow the step-by-step guide on <a
+          class="link"
+          href="/blog/how-to-convert-heic-to-jpg-mac"
+          >how to convert HEIC to JPG on Mac</a
+        >. Got a whole camera roll to get through? Read <a
+          class="link"
+          href="/blog/batch-convert-images-mac"
+          >how to batch convert HEIC photos on Mac</a
+        >. Need a document instead of photos? <a
+          class="link"
+          href="/blog/convert-heic-to-pdf-mac"
+          >Converting HEIC to PDF on Mac</a
+        > covers both ways round. Going the other way to save disk space? See <a
+          class="link"
+          href="/blog/reduce-photo-library-size-mac"
+          >how to free up storage in your Photos library</a
+        >.
+      </Fragment>
+    </SectionHeading>
+    <ConversionGrid
+      columns={4}
+      links={[
+        "heic-to-jpg",
+        "heic-to-png",
+        "heic-to-webp",
+        "heic-to-avif",
+        "heic-to-tiff",
+        "heic-to-gif",
+      ]
+        // Don't link to noindexed pairs (same rule as getRelatedConversions).
+        .filter(isConversionIndexed)
+        .map((slug) => ({
+          href: `/convert/${slug}`,
+          label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
+        }))}
     />
+  </Section>
 
-    <!-- How It Works -->
-    <CardGrid
-      heading="A whole folder of HEIC to JPG in three steps"
-      numbered
-      items={[
-        {
-          title: "Drop your HEIC files",
-          description:
-            "Drag and drop HEIC files from Finder, Photos, or any folder.",
-        },
-        {
-          title: "Choose output format",
-          description: "Select JPG, PNG, WebP, or any other format.",
-        },
-        {
-          title: "Convert",
-          description: "Click Convert and your files are ready in seconds.",
-        },
-      ]}
-    />
+  <MasonryTestimonials />
 
-    <!-- HEIC Conversion Options -->
-    <Section>
-      <SectionHeading>
-        Convert HEIC to any format
-        <Fragment slot="sublead">
-          New to this? Follow the step-by-step guide on <a
-            class="link"
-            href="/blog/how-to-convert-heic-to-jpg-mac"
-            >how to convert HEIC to JPG on Mac</a
-          >. Got a whole camera roll to get through? Read <a
-            class="link"
-            href="/blog/batch-convert-images-mac"
-            >how to batch convert HEIC photos on Mac</a
-          >. Need a document instead of photos? <a
-            class="link"
-            href="/blog/convert-heic-to-pdf-mac"
-            >Converting HEIC to PDF on Mac</a
-          > covers both ways round. Going the other way to save disk space? See <a
-            class="link"
-            href="/blog/reduce-photo-library-size-mac"
-            >how to free up storage in your Photos library</a
-          >.
-        </Fragment>
-      </SectionHeading>
-      <ConversionGrid
-        columns={4}
-        links={[
-          "heic-to-jpg",
-          "heic-to-png",
-          "heic-to-webp",
-          "heic-to-avif",
-          "heic-to-tiff",
-          "heic-to-gif",
-        ]
-          // Don't link to noindexed pairs (same rule as getRelatedConversions).
-          .filter(isConversionIndexed)
-          .map((slug) => ({
-            href: `/convert/${slug}`,
-            label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
-          }))}
-      />
-    </Section>
+  <PricingSection />
 
-    <MasonryTestimonials />
+  <FAQSection faqs={faqs} />
 
-    <PricingSection />
-
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
-
-    </main>
-
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

@@ -1,0 +1,152 @@
+---
+import { Icon } from "astro-icon/components";
+import H2 from "./H2.astro";
+import H3 from "./H3.astro";
+import Paragraph from "./Paragraph.astro";
+import SectionLink from "./SectionLink.astro";
+
+/**
+ * BlockGrid - the one grid of flat content blocks. No panel, no border, no
+ * fill. Depth belongs to the primary button and to media frames, so a block
+ * that only carries text stands on spacing and hierarchy instead.
+ *
+ * Each block leads with a marker in a fixed 40px slot: a Phosphor duotone
+ * `icon`, a row of app icons, or the step number when `ordered` is set. The
+ * slot is the same height whichever it is, so titles line up across a page
+ * that mixes them.
+ *
+ * `ordered` also switches the markup to <ol>/<li>, because a sequence of steps
+ * is an ordered list and a set of features is not. That is the only thing it
+ * changes: same surface, same gaps, same type.
+ *
+ * Block text is capped at 46ch. A 4-item grid is two wide columns and a 3-item
+ * one is three narrow ones, so without a cap the same component read at 67
+ * characters on one page and 50 on another. The cap only ever narrows: three
+ * columns are already under it.
+ */
+interface AppIcon {
+  name: string;
+  src: string;
+}
+
+interface Item {
+  /** Phosphor duotone name for astro-icon. */
+  icon?: string;
+  /** A row of app icons instead of a single icon, each linking to the docs. */
+  apps?: AppIcon[];
+  title: string;
+  description: string;
+  /** id for an info button beside the title, wired to a modal by the page. */
+  modalId?: string;
+}
+
+interface Props {
+  /** Section heading. Omit it when the page supplies its own heading and
+      Section, and this renders the bare grid with no chrome. */
+  heading?: string;
+  /** Optional intro paragraph under the heading */
+  intro?: string;
+  items: Item[];
+  /** Numbered steps in an <ol>, for an ordered flow. */
+  ordered?: boolean;
+  /** Optional trailing link to a neighbouring page (arrow appended) */
+  linkText?: string;
+  linkHref?: string;
+}
+
+const {
+  heading,
+  intro,
+  items,
+  ordered = false,
+  linkText,
+  linkHref,
+} = Astro.props;
+
+const INTEGRATIONS_HREF = "/docs/integrations";
+
+// 4 in three columns leaves the fourth alone on its own row next to a hole, so
+// 4 sits as a 2x2 block. Three steps stay one row at every width above mobile:
+// orphaning the last step breaks the sequence in a way a feature grid doesn't.
+const colClass =
+  items.length === 4
+    ? "sm:grid-cols-2"
+    : ordered && items.length === 3
+      ? "sm:grid-cols-3"
+      : "sm:grid-cols-2 lg:grid-cols-3";
+
+const List = ordered ? "ol" : "div";
+const Block = ordered ? "li" : "div";
+---
+
+<section class:list={[heading && "relative z-10 px-6 py-16 sm:py-20"]}>
+  <div class:list={[heading && "max-w-6xl mx-auto"]}>
+    {
+      heading && (
+        <H2 class:list={[intro ? "mb-4" : "mb-8", "text-center"]}>{heading}</H2>
+      )
+    }
+    {
+      intro && (
+        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">{intro}</Paragraph>
+      )
+    }
+
+    <List class:list={["grid gap-x-8 gap-y-10", colClass]}>
+      {
+        items.map((item, i) => (
+          <Block>
+            {ordered ? (
+              <span class="flex h-10 items-center text-h4 tabular-nums text-text-secondary mb-4">
+                {i + 1}
+              </span>
+            ) : item.apps ? (
+              <div class="flex items-center gap-3 mb-4">
+                {item.apps.map((app) => (
+                  <a
+                    href={INTEGRATIONS_HREF}
+                    title={app.name}
+                    aria-label={app.name}
+                    class="rounded-[22%] transition-[opacity,scale] duration-200 ease-out hover:opacity-80 active:scale-[0.96] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  >
+                    <img
+                      src={app.src}
+                      alt={app.name}
+                      width="56"
+                      height="56"
+                      class="w-10 h-10 rounded-[22%] ring-1 ring-black/10 dark:ring-white/10"
+                      loading="lazy"
+                    />
+                  </a>
+                ))}
+              </div>
+            ) : (
+              item.icon && (
+                <Icon name={item.icon} class="w-10 h-10 mb-4 text-text" />
+              )
+            )}
+
+            <div class="flex items-center gap-1.5 mb-1 max-w-[46ch]">
+              <H3 class="text-h4">{item.title}</H3>
+              {item.modalId && (
+                <button
+                  id={item.modalId}
+                  type="button"
+                  aria-label="See all supported formats"
+                  title="See all supported formats"
+                  class="relative shrink-0 cursor-pointer text-text-secondary transition-[color,scale] duration-200 hover:text-text active:scale-[0.92] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-full before:absolute before:-inset-3 before:content-['']"
+                >
+                  <Icon name="ph:info" class="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            <Paragraph class="max-w-[46ch]">{item.description}</Paragraph>
+          </Block>
+        ))
+      }
+    </List>
+
+    {linkText && linkHref && <SectionLink text={linkText} href={linkHref} />}
+  </div>
+</section>

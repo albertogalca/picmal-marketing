@@ -1,39 +1,525 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-13T00:00:00Z",
+  "generatedAt": "2026-09-02T09:59:19Z",
   "title": "Design System: Picmal",
   "extensions": {
     "colorMeta": {
-      "system-blue": { "role": "primary", "displayName": "System Blue", "canonical": "#1b5bff", "darkValue": "#3b82f6", "tonalRamp": ["#08183f", "#0d2a73", "#123ba6", "#1450e0", "#1b5bff", "#5285ff", "#8aadff", "#c4d6ff"] },
-      "system-blue-deep": { "role": "primary", "displayName": "System Blue Deep", "canonical": "#1450e0", "darkValue": "#2563eb" },
-      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#fbfbfb", "darkValue": "#242424", "note": "Pure off-white, zero chroma. Never cream/tinted.", "tonalRamp": ["#242424", "#3d3d3d", "#5c5c5c", "#828282", "#a8a8a8", "#cfcfcf", "#ededed", "#fbfbfb"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "rgba(0,0,0,0.85)", "darkValue": "rgba(255,255,255,0.85)" },
-      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "rgba(0,0,0,0.5)", "darkValue": "rgba(255,255,255,0.6)", "note": "Near AA floor; large/non-essential text only." },
-      "surface-subtle": { "role": "neutral", "displayName": "Surface Subtle", "canonical": "rgba(245,245,245,0.85)", "darkValue": "rgba(42,42,42,0.85)" },
-      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "rgba(237,237,237,0.85)", "darkValue": "rgb(48,48,48)" }
+      "system-blue": {
+        "role": "primary",
+        "displayName": "System Blue",
+        "canonical": "#1b5bff",
+        "tonalRamp": [
+          "#00154c",
+          "#002687",
+          "#0036c1",
+          "#0047fb",
+          "#376fff",
+          "#7199ff",
+          "#abc3ff",
+          "#e5edff"
+        ]
+      },
+      "system-blue-deep": {
+        "role": "primary",
+        "displayName": "System Blue Deep",
+        "canonical": "#1450e0",
+        "tonalRamp": [
+          "#061946",
+          "#0b2c7c",
+          "#103fb1",
+          "#1552e7",
+          "#4778ef",
+          "#7da0f3",
+          "#b2c7f8",
+          "#e8eefd"
+        ]
+      },
+      "system-blue-dark": {
+        "role": "primary",
+        "displayName": "System Blue (dark theme)",
+        "canonical": "#3b82f6",
+        "tonalRamp": [
+          "#031e49",
+          "#063581",
+          "#084bb9",
+          "#0b62f0",
+          "#3f85f6",
+          "#77a8f9",
+          "#afccfb",
+          "#e7effe"
+        ]
+      },
+      "cta": {
+        "role": "primary",
+        "displayName": "CTA Blue",
+        "canonical": "#0d6cf5",
+        "tonalRamp": [
+          "#032049",
+          "#053881",
+          "#0850b9",
+          "#0a69f1",
+          "#3f8af7",
+          "#77acf9",
+          "#afcefc",
+          "#e7f0fe"
+        ]
+      },
+      "cta-deep": {
+        "role": "primary",
+        "displayName": "CTA Blue Deep",
+        "canonical": "#0f5cf1",
+        "tonalRamp": [
+          "#041b48",
+          "#07307f",
+          "#0b45b6",
+          "#0e5aee",
+          "#427ef4",
+          "#79a4f7",
+          "#b0c9fa",
+          "#e7effe"
+        ]
+      },
+      "cta-hover": {
+        "role": "primary",
+        "displayName": "CTA Blue Hover",
+        "canonical": "#0c61dd",
+        "tonalRamp": [
+          "#042049",
+          "#073880",
+          "#0a50b7",
+          "#0d69ee",
+          "#418af5",
+          "#78acf8",
+          "#b0cefb",
+          "#e7f0fe"
+        ]
+      },
+      "cta-hover-deep": {
+        "role": "primary",
+        "displayName": "CTA Blue Hover Deep",
+        "canonical": "#0e53d9",
+        "tonalRamp": [
+          "#051b48",
+          "#08307f",
+          "#0c45b5",
+          "#0f5aec",
+          "#437ff3",
+          "#7aa4f6",
+          "#b0c9fa",
+          "#e7effd"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fbfbfb",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#000000d9",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "#00000099",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "surface-subtle": {
+        "role": "neutral",
+        "displayName": "Surface Subtle",
+        "canonical": "#f5f5f5d9",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#edededd9",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (dark theme)",
+        "canonical": "#ffffffd9",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "ink-muted-dark": {
+        "role": "neutral",
+        "displayName": "Ink Muted (dark theme)",
+        "canonical": "#ffffff99",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Paper (dark theme)",
+        "canonical": "#242424",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7e7e7e",
+          "#9b9b9b",
+          "#b8b8b8",
+          "#d5d5d5",
+          "#f2f2f2"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Success Ink",
+        "canonical": "#065f46",
+        "tonalRamp": [
+          "#054835",
+          "#087f5d",
+          "#0bb686",
+          "#0fecae",
+          "#43f3c2",
+          "#79f7d3",
+          "#b0fae5",
+          "#e7fdf7"
+        ]
+      },
+      "success-surface": {
+        "role": "tertiary",
+        "displayName": "Success Surface",
+        "canonical": "#d8f1e9",
+        "tonalRamp": [
+          "#14382d",
+          "#24634f",
+          "#338e71",
+          "#42b993",
+          "#6ccaac",
+          "#96d9c4",
+          "#c1e9dc",
+          "#ecf8f4"
+        ]
+      },
+      "success-dark": {
+        "role": "tertiary",
+        "displayName": "Success Ink (dark theme)",
+        "canonical": "#34d399",
+        "tonalRamp": [
+          "#0e3f2d",
+          "#186f4f",
+          "#229f71",
+          "#2dcf94",
+          "#5adbac",
+          "#8ae6c4",
+          "#baf0dc",
+          "#eafaf4"
+        ]
+      },
+      "success-surface-dark": {
+        "role": "tertiary",
+        "displayName": "Success Surface (dark theme)",
+        "canonical": "#213a32",
+        "tonalRamp": [
+          "#1c312a",
+          "#31564a",
+          "#467b6a",
+          "#5ba08a",
+          "#7fb6a5",
+          "#a4cbbf",
+          "#cae1d9",
+          "#eff6f4"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Warning Ink",
+        "canonical": "#92400e",
+        "tonalRamp": [
+          "#461f07",
+          "#7b360c",
+          "#b04d11",
+          "#e56516",
+          "#ed8748",
+          "#f3aa7d",
+          "#f8cdb3",
+          "#fdf0e8"
+        ]
+      },
+      "warning-surface": {
+        "role": "tertiary",
+        "displayName": "Warning Surface",
+        "canonical": "#faedd7",
+        "tonalRamp": [
+          "#442e08",
+          "#78510f",
+          "#ac7415",
+          "#df971c",
+          "#e9af4d",
+          "#efc681",
+          "#f6ddb5",
+          "#fcf5e8"
+        ]
+      },
+      "warning-dark": {
+        "role": "tertiary",
+        "displayName": "Warning Ink (dark theme)",
+        "canonical": "#fbbf24",
+        "tonalRamp": [
+          "#4b3701",
+          "#846002",
+          "#be8a03",
+          "#f7b305",
+          "#fbc53a",
+          "#fcd673",
+          "#fde7ad",
+          "#fff8e6"
+        ]
+      },
+      "warning-surface-dark": {
+        "role": "tertiary",
+        "displayName": "Warning Surface (dark theme)",
+        "canonical": "#433620",
+        "tonalRamp": [
+          "#342a19",
+          "#5b4a2c",
+          "#83693e",
+          "#aa8951",
+          "#bea477",
+          "#d1be9f",
+          "#e4d9c6",
+          "#f7f3ee"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger Ink",
+        "canonical": "#991b1b",
+        "tonalRamp": [
+          "#410b0b",
+          "#731414",
+          "#a41d1d",
+          "#d62626",
+          "#e15555",
+          "#ea8686",
+          "#f2b8b8",
+          "#fbe9e9"
+        ]
+      },
+      "danger-surface": {
+        "role": "tertiary",
+        "displayName": "Danger Surface",
+        "canonical": "#f9e0e0",
+        "tonalRamp": [
+          "#400c0c",
+          "#711616",
+          "#a21f1f",
+          "#d32929",
+          "#df5757",
+          "#e88888",
+          "#f1b9b9",
+          "#fbeaea"
+        ]
+      },
+      "danger-dark": {
+        "role": "tertiary",
+        "displayName": "Danger Ink (dark theme)",
+        "canonical": "#fca5a5",
+        "tonalRamp": [
+          "#4a0202",
+          "#820404",
+          "#bb0606",
+          "#f30808",
+          "#f93d3d",
+          "#fa7676",
+          "#fcaeae",
+          "#fee6e6"
+        ]
+      },
+      "danger-surface-dark": {
+        "role": "tertiary",
+        "displayName": "Danger Surface (dark theme)",
+        "canonical": "#422929",
+        "tonalRamp": [
+          "#2f1d1d",
+          "#533434",
+          "#774a4a",
+          "#9b6060",
+          "#b28383",
+          "#c9a7a7",
+          "#dfcbcb",
+          "#f5efef"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display / H1", "purpose": "Hero headline only. text-balance." },
-      "headline": { "displayName": "Headline / H2", "purpose": "Section headings." },
-      "title": { "displayName": "Title / H3-H4", "purpose": "Sub-section and card headings." },
-      "body": { "displayName": "Body", "purpose": "Default paragraph. Prose capped at 68ch." },
-      "body-big": { "displayName": "Body Big", "purpose": "Hero subheads." },
-      "label": { "displayName": "Label / Small", "purpose": "Metadata, captions, secondary UI. tabular-nums on numbers." }
+      "display": {
+        "displayName": "Display / H1",
+        "purpose": "Hero headline only. text-balance for even lines."
+      },
+      "headline": {
+        "displayName": "Headline / H2",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title / H3",
+        "purpose": "Sub-section and card headings."
+      },
+      "title-small": {
+        "displayName": "Title Small / H4",
+        "purpose": "Same size as H3; separated by line-height and semantics, not scale."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default paragraph. Long-form measure capped at 68ch."
+      },
+      "body-big": {
+        "displayName": "Body Big",
+        "purpose": "Hero subheads and leads."
+      },
+      "label": {
+        "displayName": "Label / Small",
+        "purpose": "Metadata, secondary UI, verdict chips. Add tabular-nums for prices and counts."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Labels sitting on media where 14px wraps. Never body copy."
+      }
     },
     "shadows": [
-      { "name": "primary-lift", "value": "0 1px 2px rgba(0,0,0,0.12), 0 5px 14px -3px rgba(28,93,255,0.35), inset 0 1px 0 rgba(255,255,255,0.22)", "purpose": "Primary button at rest: colored glow tinted to the blue. The only resting shadow on the page." },
-      { "name": "primary-lift-hover", "value": "0 2px 5px rgba(0,0,0,0.14), 0 10px 22px -4px rgba(28,93,255,0.45), inset 0 1px 0 rgba(255,255,255,0.28)", "purpose": "Primary button hover." },
-      { "name": "inset-highlight", "value": "inset 0 1px 0 rgba(255,255,255,0.1)", "purpose": "Dark-mode top edge on translucent surfaces (secondary button, founder letter)." }
+      {
+        "name": "primary-lift-rest",
+        "value": "0 1px 2px rgba(0,0,0,0.12), 0 5px 14px -3px rgba(10,114,255,0.35), inset 0 1px 0 rgba(255,255,255,0.22)",
+        "purpose": "The primary button at rest: contact shadow, glow tinted to the button's own blue, inset top highlight."
+      },
+      {
+        "name": "primary-lift-hover",
+        "value": "0 2px 5px rgba(0,0,0,0.14), 0 10px 22px -4px rgba(10,114,255,0.45), inset 0 1px 0 rgba(255,255,255,0.28)",
+        "purpose": "Primary button hover. Same three layers, further and stronger."
+      },
+      {
+        "name": "primary-lift-dark-rest",
+        "value": "0 1px 2px rgba(0,0,0,0.45), 0 5px 16px -3px rgba(59,130,246,0.5), inset 0 1px 0 rgba(255,255,255,0.18)",
+        "purpose": "Primary button at rest on the dark ground, where the light-mode glow disappears."
+      },
+      {
+        "name": "primary-lift-dark-hover",
+        "value": "0 2px 6px rgba(0,0,0,0.55), 0 12px 26px -4px rgba(59,130,246,0.6), inset 0 1px 0 rgba(255,255,255,0.26)",
+        "purpose": "Primary button hover on the dark ground."
+      },
+      {
+        "name": "inset-highlight",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.07)",
+        "purpose": "Dark-mode top edge that fakes a light source on translucent surfaces: secondary button, founder letter."
+      },
+      {
+        "name": "media-frame-ring",
+        "value": "0 0 0 1px rgba(0,0,0,0.08)",
+        "purpose": "Screenshots, the hero demo video, filled images. Pure black/white, never tinted. Shadows sit over borders."
+      }
     ],
     "motion": [
-      { "name": "ease-out", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "Default easing for state transitions and the hero reveal." },
-      { "name": "press", "value": "scale(0.96)", "purpose": "Active-state press feedback on buttons; 0.97-0.98 on large cards/pills, never below 0.95." },
-      { "name": "duration-standard", "value": "200ms", "purpose": "State transitions. List exact properties, never transition-all. Gate entrances behind prefers-reduced-motion." }
+      {
+        "name": "duration-standard",
+        "value": "200ms",
+        "purpose": "Every button and link state change."
+      },
+      {
+        "name": "ease-standard",
+        "value": "ease-out",
+        "purpose": "Default easing. Quiet and physical, never bouncy."
+      },
+      {
+        "name": "press-scale",
+        "value": "scale(0.96)",
+        "purpose": "Active state on buttons. Large cards and pills use 0.97-0.98; never below 0.95."
+      },
+      {
+        "name": "transition-props",
+        "value": "scale, box-shadow, background-color, border-color",
+        "purpose": "Explicit property lists only. transition-all is banned."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "motion-reduce:transition-none",
+        "purpose": "Every transition and entrance is gated on prefers-reduced-motion."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px" },
-      { "name": "md", "value": "768px" },
-      { "name": "xl", "value": "1280px" }
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
     ]
   },
   "components": [
@@ -41,76 +527,151 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The single loud action on any screen: white text on a System Blue gradient with a colored lift glow.",
-      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download for Mac</a>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-size: 16px; font-weight: 590; color: #fff; text-decoration: none; border-radius: 8px; background: linear-gradient(180deg, #2583FF 14%, #1C5DFF 81.56%); box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 5px 14px -3px rgba(28,93,255,0.35), inset 0 1px 0 rgba(255,255,255,0.22); cursor: pointer; transition: scale .2s cubic-bezier(0.2,0,0,1), box-shadow .2s, background-color .2s; } .ds-btn-primary:hover { background: linear-gradient(180deg, #1C5DFF 14%, #1450E0 81.56%); box-shadow: 0 2px 5px rgba(0,0,0,0.14), 0 10px 22px -4px rgba(28,93,255,0.45), inset 0 1px 0 rgba(255,255,255,0.28); } .ds-btn-primary:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; } .ds-btn-primary:active { scale: 0.96; }"
+      "description": "The single loud element on any screen. One gradient face in both themes; only the shadow swaps.",
+      "html": "<button class=\"ds-btn-primary\">Get Picmal for $29</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border:none;border-radius:8px;color:#fff;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;font-weight:600;letter-spacing:-0.011em;cursor:pointer;background:linear-gradient(180deg,#0d6cf5 14%,#0f5cf1 81.56%);box-shadow:0 1px 2px rgba(0,0,0,0.12),0 5px 14px -3px rgba(10,114,255,0.35),inset 0 1px 0 rgba(255,255,255,0.22);transition:scale .2s ease-out,box-shadow .2s ease-out,background-color .2s ease-out}.ds-btn-primary:hover{background:linear-gradient(180deg,#0c61dd 14%,#0e53d9 81.56%);box-shadow:0 2px 5px rgba(0,0,0,0.14),0 10px 22px -4px rgba(10,114,255,0.45),inset 0 1px 0 rgba(255,255,255,0.28)}.ds-btn-primary:active{scale:.96;box-shadow:0 1px 2px rgba(0,0,0,0.12)}.ds-btn-primary:focus-visible{outline:2px solid #1b5bff;outline-offset:2px}"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Ink text on paper with a hairline border. The quiet counterpart to the primary.",
-      "html": "<a class=\"ds-btn-secondary\" href=\"#\">See how it works</a>",
-      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; font-size: 16px; font-weight: 590; color: rgba(0,0,0,0.85); text-decoration: none; background: #fbfbfb; border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); cursor: pointer; transition: scale .2s cubic-bezier(0.2,0,0,1), background-color .2s, border-color .2s; } .ds-btn-secondary:hover { background: rgba(245,245,245,0.85); border-color: rgba(237,237,237,0.6); } .ds-btn-secondary:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; } .ds-btn-secondary:active { scale: 0.96; }"
+      "description": "Ink on paper with a hairline border. In dark mode it swaps the shadow for a translucent fill and an inset top highlight.",
+      "html": "<button class=\"ds-btn-secondary\">Download</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border:1px solid rgba(237,237,237,0.85);border-radius:8px;background:#fbfbfb;color:rgba(0,0,0,0.85);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;font-weight:600;letter-spacing:-0.011em;cursor:pointer;box-shadow:0 1px 1px rgba(0,0,0,0.04);transition:scale .2s ease-out,box-shadow .2s ease-out,background-color .2s ease-out,border-color .2s ease-out}.ds-btn-secondary:hover{background:rgba(245,245,245,0.85);border-color:rgba(237,237,237,0.6);box-shadow:0 1px 2px rgba(0,0,0,0.06)}.ds-btn-secondary:active{scale:.96}.ds-btn-secondary:focus-visible{outline:2px solid #1b5bff;outline-offset:2px}"
+    },
+    {
+      "name": "Overlay Button",
+      "kind": "button",
+      "refersTo": "button-overlay",
+      "description": "For buttons sitting on top of imagery or video. Translucency and blur instead of a shadow.",
+      "html": "<button class=\"ds-btn-overlay\">Pause the demo</button>",
+      "css": ".ds-btn-overlay{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border:none;border-radius:8px;background:rgba(255,255,255,0.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#000;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.25),inset 0 1px 0 rgba(255,255,255,0.5);transition:background-color .2s ease-out,box-shadow .2s ease-out,scale .2s ease-out}.ds-btn-overlay:hover{background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,0.06),0 4px 14px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.6)}.ds-btn-overlay:active{scale:.96}.ds-btn-overlay:focus-visible{outline:2px solid #1b5bff;outline-offset:2px}"
     },
     {
       "name": "Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "The standard panel surface: subtle fill, one hairline border, 8px corners, no resting shadow.",
-      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Everything stays on your Mac</h3><p class=\"ds-card-body\">No uploads, no account, no servers. Files never leave your machine.</p></div>",
-      "css": ".ds-card { background: rgba(245,245,245,0.5); border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; padding: 24px; } @media (min-width: 768px) { .ds-card { padding: 32px; } } .ds-card-title { margin: 0 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -0.015em; color: rgba(0,0,0,0.85); } .ds-card-body { margin: 0; font-size: 16px; line-height: 1.6; letter-spacing: -0.011em; color: rgba(0,0,0,0.5); text-wrap: pretty; }"
+      "description": "The standard panel surface. Flat fill, one hairline, no resting shadow. Never nested inside another card.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Everything runs on your Mac</h3><p class=\"ds-card-body\">No upload, no account, no server holding a copy.</p></div>",
+      "css": ".ds-card{background:rgba(245,245,245,0.5);border:1px solid rgba(237,237,237,0.85);border-radius:8px;padding:24px;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif}@media(min-width:768px){.ds-card{padding:32px}}.ds-card-title{margin:0 0 8px;font-size:20px;font-weight:600;line-height:1.2;letter-spacing:-0.015em;color:rgba(0,0,0,0.85)}.ds-card-body{margin:0;font-size:16px;line-height:1.6;letter-spacing:-0.011em;color:rgba(0,0,0,0.6)}"
     },
     {
       "name": "Input Field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Paper background, hairline border, 8px radius, blue focus ring. No glow.",
-      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\" />",
-      "css": ".ds-input { min-width: 0; width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 16px; letter-spacing: -0.011em; color: rgba(0,0,0,0.85); background: #fbfbfb; border: 1px solid rgba(237,237,237,0.85); border-radius: 8px; } .ds-input::placeholder { color: rgba(0,0,0,0.5); } .ds-input:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; }"
+      "description": "Paper on paper needs the border to do the work. Focus is the same accent ring used site-wide, no glow.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"your.name@university.edu\" aria-label=\"School email\" />",
+      "css": ".ds-input{width:100%;box-sizing:border-box;padding:10px 14px;border:1px solid rgba(237,237,237,0.85);border-radius:8px;background:#fbfbfb;color:rgba(0,0,0,0.85);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:16px;line-height:1.6;letter-spacing:-0.011em}.ds-input::placeholder{color:rgba(0,0,0,0.6)}.ds-input:focus-visible{outline:2px solid #1b5bff;outline-offset:2px}"
     },
     {
       "name": "Nav Link",
       "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Body-size link, muted at idle, full ink on hover, System Blue when it is the current page.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Features</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\" aria-current=\"page\">Pricing</a><a class=\"ds-nav-link\" href=\"#\">Blog</a></nav>",
-      "css": ".ds-nav { display: inline-flex; gap: 24px; padding: 12px 16px; background: rgba(251,251,251,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(237,237,237,0.85); } .ds-nav-link { font-size: 16px; text-decoration: none; color: rgba(0,0,0,0.5); border-radius: 8px; transition: color .2s; } .ds-nav-link:hover { color: rgba(0,0,0,0.85); } .ds-nav-link--active { color: #1b5bff; } .ds-nav-link:focus-visible { outline: 2px solid #1b5bff; outline-offset: 2px; }"
+      "description": "Idle links are muted ink; hover goes to full ink; the current page goes System Blue.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Features</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\" aria-current=\"page\">Pricing</a><a class=\"ds-nav-link\" href=\"#\">Docs</a></nav>",
+      "css": ".ds-nav{display:flex;gap:24px;align-items:center;padding:14px 24px;background:rgba(251,251,251,0.8);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(237,237,237,0.85);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif}.ds-nav-link{font-size:16px;letter-spacing:-0.011em;text-decoration:none;color:rgba(0,0,0,0.6);transition:color .2s ease-out}.ds-nav-link:hover{color:rgba(0,0,0,0.85)}.ds-nav-link--active{color:#1b5bff}.ds-nav-link:focus-visible{outline:2px solid #1b5bff;outline-offset:2px;border-radius:4px}"
+    },
+    {
+      "name": "Verdict Chip",
+      "kind": "chip",
+      "description": "The /tools state chips, the only place the status palette appears. Surfaces are opaque so contrast belongs to the token, not to whatever sits behind it.",
+      "html": "<span class=\"ds-chip ds-chip--success\">Opens</span> <span class=\"ds-chip ds-chip--warning\">Needs a plugin</span> <span class=\"ds-chip ds-chip--danger\">Won't open</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;padding:3px 8px;border-radius:4px;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;line-height:1.55;letter-spacing:-0.006em}.ds-chip--success{color:#065f46;background:#d8f1e9}.ds-chip--warning{color:#92400e;background:#faedd7}.ds-chip--danger{color:#991b1b;background:#f9e0e0}"
+    },
+    {
+      "name": "Release Badge",
+      "kind": "custom",
+      "description": "The hero pill linking to the latest changelog entry. One of the few elements that escapes the 8px corner on purpose.",
+      "html": "<a class=\"ds-badge\" href=\"#\"><span class=\"ds-badge-dot\"></span>What's new in 1.8.7</a>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(237,237,237,0.85);border-radius:9999px;background:rgba(245,245,245,0.5);color:rgba(0,0,0,0.85);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;letter-spacing:-0.006em;text-decoration:none;transition:background-color .2s ease-out,scale .2s ease-out}.ds-badge:hover{background:rgba(245,245,245,0.9)}.ds-badge:active{scale:.98}.ds-badge-dot{width:6px;height:6px;border-radius:9999px;background:#1b5bff}.ds-badge:focus-visible{outline:2px solid #1b5bff;outline-offset:2px}"
     }
   ],
   "narrative": {
     "northStar": "Quiet Utility, Warm Maker",
-    "overview": "Picmal's site looks and behaves like a well-made native Mac utility, not a marketing funnel. System fonts, the macOS action blue, hairline borders, and generous quiet space do the work; the restraint is itself the argument that the app is carefully built. Underneath the native chrome runs a single person's warmth: the voice is first-person from Alberto, a solo developer, plain and honest, and the founder letter renders on elevated paper with a handwritten signature, the one deliberately human note. The system rejects the generic SaaS landing template, the sketchy free-converter look it reacts against, cold enterprise polish, and loud over-animation. Depth comes from hairline borders and a single lifted action, never decorative glass or shadow.",
+    "overview": "Picmal's site looks and behaves like a well-made native Mac utility, not a marketing funnel. System fonts, the macOS action blue, hairline borders, and generous quiet space do the work; the restraint is itself the argument that the app is carefully built. This is a website that practices what it preaches, calm, precise, and fast, because that is exactly what the product promises.\n\nUnderneath the native chrome runs a single person's warmth. The voice is first-person from Alberto, a solo developer: plain, honest, a little dry. The founder letter renders on elevated \"paper\" with a handwritten signature (Grape Nuts), the one deliberately human note in an otherwise system-native surface. The site never sounds like a company. It leads with the category, then the benefit, and leans on short sentences built from contrast.\n\nThe system explicitly rejects the generic SaaS landing template (gradient-mesh heroes, big-number hero-metric cards, endless identical icon-card grids), the sketchy free-converter look it is a reaction against (ad clutter, fake urgency, dark patterns), cold enterprise polish, and loud over-animation. Depth is conveyed through hairline borders and a single lifted action, never decorative glass or shadow.",
     "keyCharacteristics": [
-      "System-native: Apple system font stack, macOS-style blue, no custom brand typeface except the signature.",
+      "System-native: Apple system font stack, macOS-style blue, no custom brand typeface (except the signature).",
       "One accent, used sparingly: blue means action or link, nothing else.",
       "Flat surfaces, hairline borders; a single 8px corner language across the whole site.",
-      "Automatic dark mode via light-dark() tokens; every surface designed in both themes at once.",
+      "Automatic dark mode via light-dark() tokens; every surface is designed in both themes at once.",
       "Motion is quiet and physical: press-scale feedback, a one-time staggered hero reveal, prefers-reduced-motion honored."
     ],
     "rules": [
-      { "name": "The One Voice Rule", "body": "Blue is the only hue and appears on a small fraction of any screen: primary CTA, links, active nav, focus. Its rarity is what makes it read as action. Never tint neutrals toward blue, never add a second accent hue. One sanctioned exception: the testimonial key-phrase highlight uses System Blue at ~15% alpha as a text mark, a deliberate low-intensity brand touch and the only non-action use of blue.", "section": "colors" },
-      { "name": "The Pure Neutral Rule", "body": "Neutrals are chroma-zero black and white at varying opacity. No warm cream, no cool slate, no tinted paper. Warmth comes from copy and the founder letter, never the background.", "section": "colors" },
-      { "name": "The Semantic Scale Rule", "body": "Always use the text-h1 to text-small tokens (or H1-H4 / Paragraph components), never raw text-lg/text-xl. Tune sizes only in the @theme block.", "section": "typography" },
-      { "name": "The One Family Rule", "body": "The system sans is the only UI typeface. The signature script appears exactly once (the founder letter). Never pair a second display or body sans.", "section": "typography" },
-      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. A shadow is a response, not decoration: it belongs to the single primary action and to media objects, nowhere else. If a card has a resting drop shadow, it is wrong, use the hairline border.", "section": "elevation" },
-      { "name": "The Image Outline Rule", "body": "Filled images get a ring-1 ring-black/10 dark:ring-white/10 in pure black/white, never tinted. Transparent cutouts use drop-shadow instead, a ring would box the cutout's bounding rect.", "section": "elevation" }
+      {
+        "name": "The Status-Is-Not-Accent Rule",
+        "section": "colors",
+        "body": "These are the only hues on the site besides the blues, and they are strictly semantic: they report a state the user is reading about, never an action they can take. Blue stays the only interactive colour. Never use a status colour for emphasis, decoration, or a category tag, and never introduce a fourth state; if something needs a colour and is not success, warning, or danger, it does not need a colour."
+      },
+      {
+        "name": "The One Voice Rule",
+        "section": "colors",
+        "body": "Blue is the only hue on the page and appears on a small fraction of any screen: the primary CTA, links, active nav, focus. Its rarity is what makes it read as \"action.\" Never tint neutrals toward blue, and never introduce a second accent hue. One sanctioned exception: the testimonial key-phrase highlight uses System Blue at ~15% alpha as a text mark."
+      },
+      {
+        "name": "The Pure Neutral Rule",
+        "section": "colors",
+        "body": "Neutrals are chroma-zero black and white at varying opacity. No warm cream, no cool slate, no tinted \"paper.\" Warmth in this brand comes from the copy and the founder letter, never from the background."
+      },
+      {
+        "name": "The Measured Pair Rule",
+        "section": "colors",
+        "body": "Every colour pair that carries text is measured against its own surface before it ships, and the ratio is written down next to the token. The CTA gradient is measured across its whole run, because the label sits vertically centred and the minimum is always the top stop."
+      },
+      {
+        "name": "The Semantic Scale Rule",
+        "section": "typography",
+        "body": "Always use the text-h1 to text-small tokens (or the H1-H4 / Paragraph components), never raw text-lg/text-xl. Tune sizes only in the @theme block. Uppercase and color live on the consuming component, never on the type token."
+      },
+      {
+        "name": "The One Family Rule",
+        "section": "typography",
+        "body": "The system sans is the only UI typeface. The signature script appears exactly once (the founder letter). Never pair a second display or body sans."
+      },
+      {
+        "name": "The One Column Rule",
+        "section": "layout",
+        "body": "Content is centred in a single measure at one of the four sanctioned widths. If a layout wants a sidebar, a sticky rail, or an off-centre hero, it is arguing against the calm the rest of the site is built on."
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "section": "elevation",
+        "body": "Surfaces are flat at rest. A shadow is a response, not decoration: it belongs to the single primary action and to media objects, nowhere else. If a card has a resting drop shadow, it is wrong, use the hairline border."
+      },
+      {
+        "name": "The Image Outline Rule",
+        "section": "elevation",
+        "body": "Filled images get a ring-1 ring-black/10 dark:ring-white/10 in pure black/white, never tinted. Transparent cutouts (logos, the founder badge) use filter: drop-shadow(...) instead, a ring would box the cutout's bounding rect."
+      },
+      {
+        "name": "The Tinted Glow Rule",
+        "section": "elevation",
+        "body": "The primary button's glow is tinted to the button's own blue, never neutral black, and it always carries an offset and a blur. A zero-offset halo is decoration; this is a light source."
+      },
+      {
+        "name": "The One Corner Rule",
+        "section": "shapes",
+        "body": "Tune roundness from the radius block in @theme and nowhere else. If a new element needs a corner that is not 8px, 4px, or fully round, the element is wrong before the radius is."
+      }
     ],
     "dos": [
-      "Do use the semantic type tokens and the H1-H4 / Paragraph / Section / Card / SectionHeading primitives. index.astro is the reference implementation.",
-      "Do keep neutrals pure black/white at opacity, and let System Blue be the only hue, on a small fraction of any screen.",
-      "Do keep every corner at 8px; only rounded-full and explicit app-icon squircles escape.",
+      "Do use the semantic type tokens (text-h1 to text-small) and the H1-H4 / Paragraph / Section / Card / SectionHeading primitives. index.astro is the reference implementation, reuse it, don't hand-roll markup.",
+      "Do keep neutrals pure black/white at opacity, and let blue be the only hue, on a small fraction of any screen.",
+      "Do keep every corner at 8px (rounded-lg/xl/2xl all render 8px); only rounded-full and explicit app-icon squircles escape.",
       "Do design light and dark at once via light-dark() tokens; verify body text hits 4.5:1 in both themes.",
-      "Do give press feedback (active:scale-[0.96]) and a focus-visible accent ring to every interactive element, and gate entrance motion behind prefers-reduced-motion.",
-      "Do outline filled images with ring-1 ring-black/10 dark:ring-white/10; use drop-shadow for transparent cutouts."
+      "Do use the CTA token family for the primary button's fill and the accent tokens for text and strokes. They are different jobs with different contrast requirements.",
+      "Do use the status tokens (text-success / bg-warning-surface) for state, and measure any new pair against its own surface before adding it. Raw palette utilities like text-amber-700 carry no light/dark pair and no verified contrast; one of them shipped at 4.34:1.",
+      "Do give press feedback (active:scale-[0.96]) and a focus-visible accent ring to every interactive element, and gate entrance motion behind prefers-reduced-motion: no-preference.",
+      "Do outline filled images with ring-1 ring-black/10 dark:ring-white/10; use drop-shadow for transparent cutouts.",
+      "Do let Section own the vertical rhythm, and alternate paper and subtle bands rather than reaching for a divider."
     ],
     "donts": [
       "Don't build the generic SaaS landing template: no gradient-mesh hero, no big-number hero-metric cards, no endless identical icon-card grids.",
-      "Don't drift toward the sketchy free-converter look: ad clutter, fake urgency, dark patterns. Picmal is the reaction against it.",
-      "Don't go cold-corporate (faceless we-deliver-solutions polish, stock photography) or loud/over-animated (neon, scroll-jacking, constant motion).",
+      "Don't drift toward the sketchy free-converter look, ad clutter, fake urgency, dark patterns. Picmal is the reaction against it.",
+      "Don't go cold-corporate (faceless \"we deliver solutions\" polish, stock photography) or loud/over-animated (neon, scroll-jacking, constant motion).",
       "Don't put a resting drop shadow on a card; use the hairline border. Depth belongs to the primary button and media frames only.",
-      "Don't use gradient text, decorative glassmorphism, side-stripe accent borders over 1px, or a tiny uppercase tracked eyebrow above every section.",
-      "Don't tint neutrals toward warm cream or any hue, introduce a second accent color, add a second UI typeface, or use transition-all / em dashes."
+      "Don't use {colors.system-blue} as the primary button's fill. That was the old face and its top stop measured 3.29:1 against white. The button's minimum is always the gradient's top stop; keep it at or above 4.5:1.",
+      "Don't use gradient text (background-clip: text), decorative glassmorphism, side-stripe accent borders >1px, or a tiny uppercase tracked eyebrow above every section.",
+      "Don't tint neutrals toward warm cream or any hue, introduce a second accent color, add a second UI typeface, or use transition-all or em dashes.",
+      "Don't set section padding on a component that already renders its own Section; the rhythm doubles."
     ]
   }
 }

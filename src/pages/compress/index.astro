@@ -1,91 +1,77 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ComparisonHero from "../../components/ComparisonHero.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import Section from "../../components/Section.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
+import LinkCard from "../../components/LinkCard.astro";
 import { compressions } from "../../data/compressions";
+import FormatPill from "../../components/FormatPill.astro";
 
 const title = "Picmal: Compress images on Mac, reduce file size";
 const description =
   "Compress JPG, PNG, GIF, WebP, AVIF, TIFF, and PDF files on your Mac. Batch compression, offline processing, adjustable quality.";
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-  </head>
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    pricingHref="/#pricing"
+    title="Compress by format: pick the one you have"
+    subhead="A page per format, with what each one throws away and how small it usually gets. JPG, PNG, GIF, WebP, AVIF, TIFF and PDF, all compressed on your Mac with nothing uploaded."
+    buyEvent="buy_clicked_compress_hub"
+    defaultTab="compress"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      pricingHref="/#pricing"
-      title="Compress by format: pick the one you have"
-      subhead="A page per format, with what each one throws away and how small it usually gets. JPG, PNG, GIF, WebP, AVIF, TIFF and PDF, all compressed on your Mac with nothing uploaded."
-      buyEvent="buy_clicked_compress_hub"
-      defaultTab="compress"
-    />
+  <!-- Format Cards -->
+  <Section>
+    <div class="grid md:grid-cols-2 gap-4">
+      {
+        compressions.map((c) => (
+          <LinkCard href={`/compress/${c.slug}`}>
+            <div class="flex items-center gap-3 mb-3">
+              <FormatPill ext={c.format} />
+              <h2 class="text-h3 text-text">Compress {c.name}</h2>
+            </div>
+            <p class="text-small text-text-secondary">{c.description}</p>
+          </LinkCard>
+        ))
+      }
+    </div>
+  </Section>
 
-    <!-- Format Cards -->
-    <Section>
-      <div class="grid md:grid-cols-2 gap-4">
-        {
-          compressions.map((c) => (
-            <a
-              href={`/compress/${c.slug}`}
-              class="group bg-background-subtle/50 border border-border rounded-2xl p-6 transition-colors duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              <div class="flex items-center gap-3 mb-3">
-                <span class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-background border border-border text-small font-mono font-medium text-text group-hover:border-accent/20 transition-colors">
-                  .{c.format}
-                </span>
-                <h2 class="text-h3 text-text">Compress {c.name}</h2>
-              </div>
-              <p class="text-small text-text-secondary">{c.description}</p>
-            </a>
-          ))
-        }
-      </div>
-    </Section>
+  <RelatedGrid
+    heading="Guides"
+    links={[
+      {
+        href: "/compress-images-mac",
+        label: "Compress images on Mac",
+        description:
+          "The overview: how to make a photo smaller, what the quality slider costs you, and what to expect in MB.",
+      },
+      {
+        href: "/blog/reduce-image-file-size-mac",
+        label: "How to reduce image file size on Mac",
+        description:
+          "Resize, compress, convert, or strip metadata, with before and after numbers.",
+      },
+      {
+        href: "/blog/reduce-photo-library-size-mac",
+        label: "How to reduce your photo library size on Mac",
+        description: "Reclaim disk space without deleting photos.",
+      },
+    ]}
+  />
 
-    <!-- Guides: internal links with descriptive anchors to the how-to posts
-         that answer the questions people arrive here with. -->
-    <Section>
-      <h2 class="text-h3 text-text mb-4">Guides</h2>
-      <ul class="space-y-2 text-text-secondary">
-        <li>
-          <a class="link" href="/compress-images-mac"
-            >Compress images on Mac</a
-          >. The overview: how to make a photo smaller, what the quality slider
-          costs you, and what to expect in MB.
-        </li>
-        <li>
-          <a class="link" href="/blog/reduce-image-file-size-mac"
-            >How to reduce image file size on Mac</a
-          >. Resize, compress, convert, or strip metadata, with before/after numbers.
-        </li>
-        <li>
-          <a class="link" href="/blog/reduce-photo-library-size-mac"
-            >How to reduce your photo library size on Mac</a
-          >. Reclaim disk space without deleting photos.
-        </li>
-      </ul>
-    </Section>
-
-    <CTASection
-      heading="Compress any file format with Picmal"
-      analyticsEvent="buy_clicked_compress_hub_bottom"
-    />
-
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <CTASection
+    heading="Compress any file format with Picmal"
+    analyticsEvent="buy_clicked_compress_hub_bottom"
+  />
+</MarketingLayout>

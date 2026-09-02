@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import LinkCard from "./LinkCard.astro";
+import FormattedDate from "./FormattedDate.astro";
+
+/**
+ * PostCard - the one card for anything clickable that leads somewhere else.
+ * Cover, category and date render only when the destination has them, so a
+ * blog guide and a product page share the same card without faking metadata.
+ * The anchor comes from LinkCard, so hover, press and focus have one home.
+ */
+interface Props {
+  href: string;
+  /** Card heading, and therefore the anchor text. */
+  label: string;
+  description?: string;
+  image?: ImageMetadata | string;
+  category?: string;
+  date?: Date;
+  /** 2 under a page H1 (the blog index), 3 under a section H2. */
+  headingLevel?: 2 | 3;
+}
+
+const {
+  href,
+  label,
+  description,
+  image,
+  category,
+  date,
+  headingLevel = 3,
+} = Astro.props;
+
+const Heading = headingLevel === 2 ? "h2" : "h3";
+---
+
+<LinkCard href={href} class="p-0 overflow-hidden flex flex-col">
+  {
+    image && (
+      <div class="relative aspect-video overflow-hidden bg-background ring-1 ring-inset ring-black/10 dark:ring-white/10">
+        <Image
+          src={image}
+          alt={label}
+          width={800}
+          height={450}
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )
+  }
+
+  <div class="p-4 flex flex-col flex-1">
+    {
+      (category || date) && (
+        <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
+          {category && (
+            <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+              {category}
+            </span>
+          )}
+          {category && date && <span>&bull;</span>}
+          {date && (
+            <time datetime={date.toISOString()}>
+              <FormattedDate date={date} />
+            </time>
+          )}
+        </div>
+      )
+    }
+
+    <Heading
+      class="text-body font-semibold text-text text-balance mb-2 leading-snug"
+    >
+      {label}
+    </Heading>
+
+    {
+      description && (
+        <p class="text-small text-text-secondary leading-relaxed line-clamp-3">
+          {description}
+        </p>
+      )
+    }
+  </div>
+</LinkCard>

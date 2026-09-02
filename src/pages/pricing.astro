@@ -1,7 +1,6 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
@@ -20,121 +19,100 @@ const description =
 // The licensing questions are visible on the homepage too, but only marked up
 // here: the homepage FAQPage covers the product questions ("what formats", "is
 // there a trial"), so the two schemas never claim the same Q&A twice.
-const stripHtml = (value: string): string =>
-  value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: licenseFaqs.map((f) => ({
-    "@type": "Question",
-    name: f.question,
-    acceptedAnswer: { "@type": "Answer", text: stripHtml(f.answer) },
-  })),
-};
-
 const entry = TIERS[0];
 const top = TIERS[TIERS.length - 1];
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={licenseFaqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text"
-  >
-    <Header />
+  <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
+  <Section width="medium" class="pt-32 sm:pt-32">
+    <SectionHeading
+      level={1}
+      class="mb-10"
+      sublead={`Picmal is $${entry.price} once for one Mac and $${top.price} for ten. Same app at every tier, the only difference is how many Macs it activates on.`}
+    >
+      Picmal pricing
+    </SectionHeading>
 
-    <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-      <Section width="medium" class="pt-32 sm:pt-32">
-        <SectionHeading
-          level={1}
-          class="mb-10"
-          sublead={`Picmal is $${entry.price} once for one Mac and $${top.price} for ten. Same app at every tier, the only difference is how many Macs it activates on.`}
-        >
-          Picmal pricing
-        </SectionHeading>
+    <PricingPlans />
+  </Section>
 
-        <PricingPlans />
-      </Section>
+  {/* One band, two topics. These were two <Section>s, which gave the gap
+      between "why one payment" and "license questions" the same 160px beat
+      as the gap from the pricing card above. The price is the answer and
+      everything here is footnotes to it, so the footnotes group together
+      and a hairline separates them from each other. */}
+  <Section width="narrow">
+    <H2 class="mb-6">Why it's one payment</H2>
+    <div class="space-y-5">
+      <Paragraph>
+        Picmal runs on your Mac. There's no server converting your files, no
+        storage bill, no account to keep alive. Charging you every month for
+        software that costs me nothing to run every month would just be a
+        way of charging you more.
+      </Paragraph>
+      <Paragraph>
+        So every update is free, including the ones that add whole new
+        tools. People who bought Picmal when it only converted images now
+        have video, audio, PDF tools and a command line tool, and they've
+        paid nothing extra.
+      </Paragraph>
+    </div>
 
-      {/* One band, two topics. These were two <Section>s, which gave the gap
-          between "why one payment" and "license questions" the same 160px beat
-          as the gap from the pricing card above. The price is the answer and
-          everything here is footnotes to it, so the footnotes group together
-          and a hairline separates them from each other. */}
-      <Section width="narrow">
-        <H2 class="mb-6">Why it's one payment</H2>
-        <div class="space-y-5">
-          <Paragraph>
-            Picmal runs on your Mac. There's no server converting your files, no
-            storage bill, no account to keep alive. Charging you every month for
-            software that costs me nothing to run every month would just be a
-            way of charging you more.
-          </Paragraph>
-          <Paragraph>
-            So every update is free, including the ones that add whole new
-            tools. People who bought Picmal when it only converted images now
-            have video, audio, PDF tools and a command line tool, and they've
-            paid nothing extra.
-          </Paragraph>
-        </div>
+    {/* The lead-in and its list are one group. Both gaps used to be 20px,
+        the same as the gap between two unrelated paragraphs, so the list
+        read as a fourth paragraph instead of as this line's content. */}
+    <div class="mt-8">
+      <Paragraph class="mb-3">
+        What most converters charge for, and this doesn't:
+      </Paragraph>
+      {/* A hand-rolled &ndash; marker used to stand in for the bullet here,
+          and it was the only list on the site wearing one: everything else
+          is either the icon idiom (`flex gap-3` + an SVG check, ~20 lists
+          across /alternative/* and the pricing card) or a plain prose
+          disc. This block is prose, a lead-in sentence and four phrases
+          under it, sitting on a page that doesn't use `.prose`, so it now
+          wears the disc the reader already knows from every post and every
+          legal page. Spacing matches `.prose ul li` (0.5rem). */}
+      <ul class="list-disc pl-5 space-y-2 marker:text-text-secondary">
+        {
+          [
+            "Credits that run out mid-batch",
+            "A daily conversion cap or a file size ceiling",
+            "An account you have to make before it will touch your file",
+            "A watermark you pay to remove",
+          ].map((item) => (
+            <li class="text-body text-text-secondary text-pretty">{item}</li>
+          ))
+        }
+      </ul>
+    </div>
 
-        {/* The lead-in and its list are one group. Both gaps used to be 20px,
-            the same as the gap between two unrelated paragraphs, so the list
-            read as a fourth paragraph instead of as this line's content. */}
-        <div class="mt-8">
-          <Paragraph class="mb-3">
-            What most converters charge for, and this doesn't:
-          </Paragraph>
-          {/* A hand-rolled &ndash; marker used to stand in for the bullet here,
-              and it was the only list on the site wearing one: everything else
-              is either the icon idiom (`flex gap-3` + an SVG check, ~20 lists
-              across /alternative/* and the pricing card) or a plain prose
-              disc. This block is prose, a lead-in sentence and four phrases
-              under it, sitting on a page that doesn't use `.prose`, so it now
-              wears the disc the reader already knows from every post and every
-              legal page. Spacing matches `.prose ul li` (0.5rem). */}
-          <ul class="list-disc pl-5 space-y-2 marker:text-text-secondary">
-            {
-              [
-                "Credits that run out mid-batch",
-                "A daily conversion cap or a file size ceiling",
-                "An account you have to make before it will touch your file",
-                "A watermark you pay to remove",
-              ].map((item) => (
-                <li class="text-body text-text-secondary text-pretty">{item}</li>
-              ))
-            }
-          </ul>
-        </div>
+    <div id="license-faq" class="mt-16 border-t border-border pt-12">
+      <H2 class="mb-6">License questions</H2>
+      <Card>
+        <FAQ faqs={licenseFaqs} />
+      </Card>
+      <Paragraph size="small" class="mt-6 text-center">
+        Something else? Write to <a
+          class="link"
+          href="mailto:support@picmal.app">support@picmal.app</a
+        > and it reaches me directly.
+      </Paragraph>
+    </div>
+  </Section>
 
-        <div id="license-faq" class="mt-16 border-t border-border pt-12">
-          <H2 class="mb-6">License questions</H2>
-          <Card>
-            <FAQ faqs={licenseFaqs} />
-          </Card>
-          <Paragraph size="small" class="mt-6 text-center">
-            Something else? Write to <a
-              class="link"
-              href="mailto:support@picmal.app">support@picmal.app</a
-            > and it reaches me directly.
-          </Paragraph>
-        </div>
-      </Section>
-
-      <CTASection
-        heading="Convert and compress media on your Mac"
-        note="The download is the full app. Look around all you like. It just won't convert anything until a key goes in."
-        analyticsEvent="buy_clicked_pricing"
-      />
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <CTASection
+    heading="Convert and compress media on your Mac"
+    note="The download is the full app. Look around all you like. It just won't convert anything until a key goes in."
+    analyticsEvent="buy_clicked_pricing"
+  />
+</MarketingLayout>

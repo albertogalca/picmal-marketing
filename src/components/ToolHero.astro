@@ -1,0 +1,24 @@
+---
+import H1 from "./H1.astro";
+import Paragraph from "./Paragraph.astro";
+import Section from "./Section.astro";
+
+/**
+ * ToolHero - the centred title and lead at the top of a /tools page.
+ *
+ * `sm:pt-32` is set as well as `pt-32`, or Section's own `sm:py-20` wins the
+ * merge and the heading tucks under the fixed header.
+ */
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0 text-center">
+  <H1 class="mb-4">{title}</H1>
+  <Paragraph size="lead" class="max-w-2xl mx-auto">
+    <slot />
+  </Paragraph>
+</Section>

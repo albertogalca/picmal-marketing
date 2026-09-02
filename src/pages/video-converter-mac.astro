@@ -1,19 +1,18 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
+import MarketingLayout from "../layouts/MarketingLayout.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
 import MasonryTestimonials from "../components/MasonryTestimonials.astro";
 import PricingSection from "../components/PricingSection.astro";
 import SupportedFormatsModal from "../components/SupportedFormatsModal.astro";
 import { videoConversions, videoFormats } from "../data/videoConversions";
 import ComparisonHero from "../components/ComparisonHero.astro";
-import CardGrid from "../components/CardGrid.astro";
+import BlockGrid from "../components/BlockGrid.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import FAQSection from "../components/FAQSection.astro";
+import FAQSchema from "../components/schema/FAQSchema.astro";
 
 const title = "Picmal: Video converter for Mac, MOV to MP4, MKV, AVI & more";
 const description =
@@ -54,139 +53,128 @@ const faqs = [
       "No. All conversion and compression happens locally. Picmal works completely offline. Your videos never touch a server.",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    title="Convert video on your Mac, any format to MP4"
+    subhead="MOV, MKV, AVI, WebM and more. Picmal converts to MP4 (H.264/H.265), compresses with a quality slider, and batch-processes whole folders. Offline, no watermark, no file-size limit."
+    buyEvent="buy_clicked_video_converter_mac"
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      title="Convert video on your Mac, any format to MP4"
-      subhead="MOV, MKV, AVI, WebM and more. Picmal converts to MP4 (H.264/H.265), compresses with a quality slider, and batch-processes whole folders. Offline, no watermark, no file-size limit."
-      buyEvent="buy_clicked_video_converter_mac"
-      defaultTab="convert"
+  <!-- Convert to MP4 -->
+  <Section>
+    <SectionHeading
+      sublead="MP4 (H.264) plays on every device, browser, and editor. Pick your source format below."
+    >
+      Convert any video to MP4
+    </SectionHeading>
+    <ConversionGrid
+      columns={4}
+      links={toMp4.map((c) => ({
+        href: `/convert/video/${c.slug}`,
+        label: `${videoFormats[c.from].name} to MP4`,
+      }))}
     />
+  </Section>
 
-    <!-- Convert to MP4 -->
-    <Section>
-      <SectionHeading
-        sublead="MP4 (H.264) plays on every device, browser, and editor. Pick your source format below."
-      >
-        Convert any video to MP4
-      </SectionHeading>
-      <ConversionGrid
-        columns={4}
-        links={toMp4.map((c) => ({
-          href: `/convert/video/${c.slug}`,
-          label: `${videoFormats[c.from].name} to MP4`,
-        }))}
-      />
-    </Section>
-
-    <!-- MP4, GIF & audio -->
-    <Section>
-      <SectionHeading
-        sublead="Turn clips into shareable GIFs, extract audio, or re-encode for the web."
-      >
-        Convert to GIF, audio & web formats
-      </SectionHeading>
-      <ConversionGrid
-        columns={3}
-        links={other.map((c) => ({
-          href: `/convert/video/${c.slug}`,
-          label: `${videoFormats[c.from].name} to ${videoFormats[c.to].name}`,
-        }))}
-      />
-    </Section>
-
-    <!-- Why Picmal for video -->
-    <CardGrid
-      heading="More than a converter"
-      items={[
-        {
-          title: "Real compression",
-          description:
-            "CRF quality slider, codec choice (H.264/H.265/VP9/AV1), and frame rate, with a size estimate before you encode.",
-        },
-        {
-          title: "Subtitle burn-in",
-          description:
-            "Bake SRT or VTT subtitles straight into the frames so they play anywhere, with no separate track.",
-        },
-        {
-          title: "No limits, no watermark",
-          description:
-            "Any file size, fully offline, no watermark. A one-time $29, not a subscription or an online upload.",
-        },
-      ]}
-      linkText="Just need a smaller file? Compress video on Mac"
-      linkHref="/compress-video-mac"
+  <!-- MP4, GIF & audio -->
+  <Section>
+    <SectionHeading
+      sublead="Turn clips into shareable GIFs, extract audio, or re-encode for the web."
+    >
+      Convert to GIF, audio & web formats
+    </SectionHeading>
+    <ConversionGrid
+      columns={3}
+      links={other.map((c) => ({
+        href: `/convert/video/${c.slug}`,
+        label: `${videoFormats[c.from].name} to ${videoFormats[c.to].name}`,
+      }))}
     />
+  </Section>
 
-    <Section width="narrow" class="text-center">
-      <SectionHeading class="mb-6">Related guides</SectionHeading>
-      <div class="flex flex-col gap-3">
-        <a href="/blog/best-video-converter-mac-2026" class="link"
-          >The best video converter for Mac in 2026, 7 tools compared &rarr;</a
-        >
-        <a href="/blog/convert-mov-to-mp4-mac" class="link"
-          >How to convert MOV to MP4 on Mac, 3 free ways &rarr;</a
-        >
-        <a href="/blog/convert-mkv-to-mp4-mac" class="link"
-          >How to convert MKV to MP4 on Mac &rarr;</a
-        >
-        <a href="/blog/convert-hevc-to-mp4-mac" class="link"
-          >How to convert HEVC to MP4 on Mac &rarr;</a
-        >
-        <a href="/blog/convert-video-with-vlc-mac" class="link"
-          >How to convert video with VLC on Mac &rarr;</a
-        >
-        <a href="/extract-audio-from-video-mac" class="link"
-          >Extract the audio from a video &rarr;</a
-        >
-        <a href="/alternative/handbrake" class="link"
-          >Coming from HandBrake? Picmal vs HandBrake compared &rarr;</a
-        >
-      </div>
-    </Section>
+  <!-- Why Picmal for video -->
+  <BlockGrid
+    heading="More than a converter"
+    items={[
+      {
+        icon: "ph:trend-down-duotone",
+        title: "Real compression",
+        description:
+          "CRF quality slider, codec choice (H.264/H.265/VP9/AV1), and frame rate, with a size estimate before you encode.",
+      },
+      {
+        icon: "ph:subtitles-duotone",
+        title: "Subtitle burn-in",
+        description:
+          "Bake SRT or VTT subtitles straight into the frames so they play anywhere, with no separate track.",
+      },
+      {
+        icon: "ph:infinity-duotone",
+        title: "No limits, no watermark",
+        description:
+          "Any file size, fully offline, no watermark. A one-time $29, not a subscription or an online upload.",
+      },
+    ]}
+    linkText="Just need a smaller file? Compress video on Mac"
+    linkHref="/compress-video-mac"
+  />
 
-    <MasonryTestimonials />
+  <RelatedGrid
+    heading="Related guides"
+    links={[
+      {
+        href: "/blog/best-video-converter-mac-2026",
+        label: "The best video converter for Mac in 2026, 7 tools compared",
+      },
+      {
+        href: "/blog/convert-mov-to-mp4-mac",
+        label: "How to convert MOV to MP4 on Mac, 3 free ways",
+      },
+      {
+        href: "/blog/convert-mkv-to-mp4-mac",
+        label: "How to convert MKV to MP4 on Mac",
+      },
+      {
+        href: "/blog/convert-hevc-to-mp4-mac",
+        label: "How to convert HEVC to MP4 on Mac",
+      },
+      {
+        href: "/blog/convert-video-with-vlc-mac",
+        label: "How to convert video with VLC on Mac",
+      },
+      {
+        href: "/extract-audio-from-video-mac",
+        label: "Extract the audio from a video",
+        description:
+          "Pull the sound out of an MP4 or a MOV and save it as MP3, M4A or WAV.",
+      },
+      {
+        href: "/alternative/handbrake",
+        label: "Coming from HandBrake? Picmal vs HandBrake compared",
+        description:
+          "Where HandBrake still wins, and where you would rather not fight a preset list.",
+      },
+    ]}
+  />
 
-    <PricingSection />
+  <MasonryTestimonials />
 
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-    </Section>
+  <PricingSection />
 
-    </main>
+  <FAQSection faqs={faqs} />
 
-    <Footer />
+  <Fragment slot="after">
     <SupportedFormatsModal />
-  </body>
-</html>
+  </Fragment>
+</MarketingLayout>

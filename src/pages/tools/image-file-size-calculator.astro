@@ -1,13 +1,11 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
 import Card from "../../components/Card.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
-import Paragraph from "../../components/Paragraph.astro";
-import H1 from "../../components/H1.astro";
+import ToolHero from "../../components/ToolHero.astro";
 
 const title = "Picmal: Image file size calculator, estimate before you compress";
 const description =
@@ -20,269 +18,267 @@ const presets = [
   { label: "iPhone photo", width: 4032, height: 3024 },
 ];
 
-const inputClass =
-  "w-full px-4 py-3 bg-background border border-border rounded-lg text-body text-text tabular-nums focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+const inputClass = "field tabular-nums";
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <Fragment slot="head">
     <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        name: "Image file size calculator",
-        description,
-        url: "https://picmal.app/tools/image-file-size-calculator",
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "Any",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      })}
-    />
-  </head>
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Image file size calculator",
+            description,
+            url: "https://picmal.app/tools/image-file-size-calculator",
+            applicationCategory: "UtilityApplication",
+            operatingSystem: "Any",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          })}
+        />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
-
-    <main id="main-content">
-      <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge and the
-           heading tucks under the fixed header. Same trick as education.astro. -->
-      <Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0 text-center">
-        <H1 class="mb-4">Image file size calculator</H1>
-        <Paragraph size="lead" class="max-w-2xl mx-auto"
-          >Type in the pixel dimensions and see roughly how big the file lands
-          in each format. Useful before you compress something, or when you're
-          deciding which format to save in.</Paragraph
-        >
-      </Section>
-
-      <Section width="narrow">
-        <Card>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-          <div>
-            <label
-              for="width"
-              class="block text-small font-medium mb-2 text-text">Width in pixels</label
-            >
-            <input
-              type="number"
-              id="width"
-              value="4032"
-              min="1"
-              max="100000"
-              step="1"
-              inputmode="numeric"
-              class={inputClass}
-            />
-          </div>
-          <div>
-            <label
-              for="height"
-              class="block text-small font-medium mb-2 text-text"
-              >Height in pixels</label
-            >
-            <input
-              type="number"
-              id="height"
-              value="3024"
-              min="1"
-              max="100000"
-              step="1"
-              inputmode="numeric"
-              class={inputClass}
-            />
-          </div>
-        </div>
-
-        <div class="mb-6">
-          <span class="block text-small font-medium mb-2 text-text"
-            >Common sizes</span
-          >
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {
-              presets.map((p) => (
-                <button
-                  type="button"
-                  class="preset px-3 py-2 text-small font-[590] bg-background border border-border rounded-lg text-text transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/40 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                  data-width={p.width}
-                  data-height={p.height}
-                >
-                  {p.label}
-                </button>
-              ))
-            }
-          </div>
-        </div>
-
-        <div>
-          <label
-            for="content"
-            class="block text-small font-medium mb-2 text-text"
-            >What's in the image?</label
-          >
-          <select id="content" class={inputClass}>
-            <option value="photo">A photo (camera, phone, lots of detail)</option
-            >
-            <option value="graphic"
-              >A graphic or screenshot (flat colors, text)</option
-            >
-          </select>
-          <p class="text-small text-text-secondary mt-2">
-            This matters more than people expect. The same PNG that's a sensible
-            size for a screenshot is one of the largest options for a photo.
-          </p>
-        </div>
-      </Card>
-
-      <!-- Results live in the same Section as the form: two Sections put 160px
-           of rhythm between an input and its own output. -->
-      <div class="mt-10">
-        <h2 class="text-h3 text-text mb-2">Estimated file sizes</h2>
-        <p class="text-body text-text-secondary mb-6">
-          For a <span
-            id="summary"
-            class="text-text tabular-nums font-medium"></span> image. Bars are
-          relative to the uncompressed baseline.
-        </p>
-
-        <ul id="results" class="space-y-2"></ul>
-
-        <p class="text-small text-text-secondary mt-6">
-          These are estimates, not encoder output. Real sizes move with the
-          picture itself: a flat blue sky compresses far harder than a crowd or
-          a forest. Treat the numbers as the right order of magnitude, then
-          check the real thing.
-        </p>
-      </div>
-    </Section>
+    <ToolHero title="Image file size calculator">
+      Type in the pixel dimensions and see roughly how big the file lands in
+      each format. Useful before you compress something, or when you're deciding
+      which format to save in.
+    </ToolHero>
 
     <Section width="narrow">
-        <SectionHeading align="left" class="mb-6">Which one should you pick?</SectionHeading
-      >
       <Card>
-        <ul class="space-y-3 text-text-secondary text-body">
-          <li>
-            <strong class="text-text">Photos for the web:</strong> WebP, or AVIF
-            if you want the smallest files. Both are supported in every current
-            browser. See <a class="link" href="/blog/best-image-formats-for-web"
-              >the best image format for web</a
-            >.
-          </li>
-          <li>
-            <strong class="text-text">Photos to send or archive:</strong> JPG. It
-            opens on anything, and at 80-85% quality nobody can tell.
-          </li>
-          <li>
-            <strong class="text-text">Screenshots, logos, diagrams:</strong> PNG.
-            A JPG of the same screenshot can come out slightly smaller, but it
-            smears the edges of text. PNG stays sharp and costs you very little
-            on flat color.
-          </li>
-          <li>
-            <strong class="text-text">Print or scanning:</strong> TIFF, or a
-            high-quality JPG if the file has to travel.
-          </li>
-        </ul>
-      </Card>
-    </Section>
-
-    <Section width="narrow" class="text-center">
-      <div class="flex flex-col gap-3">
-        <a href="/compress-images-mac" class="link"
-          >Actually make the file smaller: compress images on Mac &rarr;</a
-        >
-        <a href="/resize-image-mac" class="link"
-          >Change the dimensions: resize images on Mac &rarr;</a
-        >
-        <a href="/image-converter-mac" class="link"
-          >Change the format: image converter for Mac &rarr;</a
-        >
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label
+            for="width"
+            class="block text-small font-medium mb-2 text-text">Width in pixels</label
+          >
+          <input
+            type="number"
+            id="width"
+            value="4032"
+            min="1"
+            max="100000"
+            step="1"
+            inputmode="numeric"
+            class={inputClass}
+          />
+        </div>
+        <div>
+          <label
+            for="height"
+            class="block text-small font-medium mb-2 text-text"
+            >Height in pixels</label
+          >
+          <input
+            type="number"
+            id="height"
+            value="3024"
+            min="1"
+            max="100000"
+            step="1"
+            inputmode="numeric"
+            class={inputClass}
+          />
+        </div>
       </div>
-    </Section>
+
+      <div class="mb-6">
+        <span class="block text-small font-medium mb-2 text-text"
+          >Common sizes</span
+        >
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {
+            presets.map((p) => (
+              <button
+                type="button"
+                class="preset px-3 py-2 text-small font-[590] bg-background border border-border rounded-lg text-text transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/40 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                data-width={p.width}
+                data-height={p.height}
+              >
+                {p.label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="content"
+          class="block text-small font-medium mb-2 text-text"
+          >What's in the image?</label
+        >
+        <select id="content" class={inputClass}>
+          <option value="photo">A photo (camera, phone, lots of detail)</option
+          >
+          <option value="graphic"
+            >A graphic or screenshot (flat colors, text)</option
+          >
+        </select>
+        <p class="text-small text-text-secondary mt-2">
+          This matters more than people expect. The same PNG that's a sensible
+          size for a screenshot is one of the largest options for a photo.
+        </p>
+      </div>
+    </Card>
+
+    <!-- Results live in the same Section as the form: two Sections put 160px
+         of rhythm between an input and its own output. -->
+    <div class="mt-10">
+      <h2 class="text-h3 text-text mb-2">Estimated file sizes</h2>
+      <p class="text-body text-text-secondary mb-6">
+        For a <span
+          id="summary"
+          class="text-text tabular-nums font-medium"></span> image. Bars are
+        relative to the uncompressed baseline.
+      </p>
+
+      <ul id="results" class="space-y-2"></ul>
+
+      <p class="text-small text-text-secondary mt-6">
+        These are estimates, not encoder output. Real sizes move with the
+        picture itself: a flat blue sky compresses far harder than a crowd or
+        a forest. Treat the numbers as the right order of magnitude, then
+        check the real thing.
+      </p>
+    </div>
+  </Section>
+
+  <Section width="narrow">
+      <SectionHeading align="left" class="mb-6">Which one should you pick?</SectionHeading
+    >
+    <Card>
+      <ul class="space-y-3 text-text-secondary text-body">
+        <li>
+          <strong class="text-text">Photos for the web:</strong> WebP, or AVIF
+          if you want the smallest files. Both are supported in every current
+          browser. See <a class="link" href="/blog/best-image-formats-for-web"
+            >the best image format for web</a
+          >.
+        </li>
+        <li>
+          <strong class="text-text">Photos to send or archive:</strong> JPG. It
+          opens on anything, and at 80-85% quality nobody can tell.
+        </li>
+        <li>
+          <strong class="text-text">Screenshots, logos, diagrams:</strong> PNG.
+          A JPG of the same screenshot can come out slightly smaller, but it
+          smears the edges of text. PNG stays sharp and costs you very little
+          on flat color.
+        </li>
+        <li>
+          <strong class="text-text">Print or scanning:</strong> TIFF, or a
+          high-quality JPG if the file has to travel.
+        </li>
+      </ul>
+    </Card>
+  </Section>
+
+  <RelatedGrid
+    heading="Related tools"
+    links={[
+      {
+        href: "/compress-images-mac",
+        label: "Actually make the file smaller: compress images on Mac",
+        description:
+          "The real thing, not an estimate. Batch a whole folder down and watch the numbers.",
+      },
+      {
+        href: "/resize-image-mac",
+        label: "Change the dimensions: resize images on Mac",
+        description:
+          "Fewer pixels is the biggest saving there is. Resize by size, by percentage, or to a target.",
+      },
+      {
+        href: "/image-converter-mac",
+        label: "Change the format: image converter for Mac",
+        description:
+          "HEIC, WebP, AVIF, PNG, JPG and more. The format often matters more than the slider.",
+      },
+    ]}
+  />
 
 
-      <CTASection
-        heading="Convert and compress images in bulk with Picmal"
-        analyticsEvent="buy_clicked_file_size_calculator"
-      />
-    </main>
+    <CTASection
+      heading="Convert and compress images in bulk with Picmal"
+      analyticsEvent="buy_clicked_file_size_calculator"
+    />
 
-    <Footer />
-
+  <Fragment slot="after">
     <script>
-      import {
-        estimateSizes,
-        formatBytes,
-        type Content,
-      } from "../../utils/fileSizeEstimate.ts";
+          import {
+            estimateSizes,
+            formatBytes,
+            type Content,
+          } from "../../utils/fileSizeEstimate.ts";
 
-      const widthEl = document.getElementById("width") as HTMLInputElement;
-      const heightEl = document.getElementById("height") as HTMLInputElement;
-      const contentEl = document.getElementById("content") as HTMLSelectElement;
-      const resultsEl = document.getElementById("results")!;
-      const summaryEl = document.getElementById("summary")!;
+          const widthEl = document.getElementById("width") as HTMLInputElement;
+          const heightEl = document.getElementById("height") as HTMLInputElement;
+          const contentEl = document.getElementById("content") as HTMLSelectElement;
+          const resultsEl = document.getElementById("results")!;
+          const summaryEl = document.getElementById("summary")!;
 
-      function render() {
-        const width = widthEl.valueAsNumber;
-        const height = heightEl.valueAsNumber;
+          function render() {
+            const width = widthEl.valueAsNumber;
+            const height = heightEl.valueAsNumber;
 
-        // Empty or nonsense input: keep the last good result on screen rather
-        // than flashing an error while someone is mid-type.
-        let estimates;
-        try {
-          estimates = estimateSizes(
-            width,
-            height,
-            contentEl.value as Content,
-          );
-        } catch {
-          return;
-        }
+            // Empty or nonsense input: keep the last good result on screen rather
+            // than flashing an error while someone is mid-type.
+            let estimates;
+            try {
+              estimates = estimateSizes(
+                width,
+                height,
+                contentEl.value as Content,
+              );
+            } catch {
+              return;
+            }
 
-        const megapixels = (width * height) / 1_000_000;
-        summaryEl.textContent = `${width} × ${height} (${megapixels.toFixed(1)} MP)`;
+            const megapixels = (width * height) / 1_000_000;
+            summaryEl.textContent = `${width} × ${height} (${megapixels.toFixed(1)} MP)`;
 
-        const baseline = Math.max(...estimates.map((e) => e.bytes));
+            const baseline = Math.max(...estimates.map((e) => e.bytes));
 
-        resultsEl.replaceChildren(
-          ...estimates.map((e) => {
-            const li = document.createElement("li");
-            li.className =
-              "bg-background-subtle/50 border border-border rounded-xl p-4";
-            li.innerHTML = `
-              <div class="flex items-baseline justify-between gap-4 mb-2">
-                <span class="text-body font-medium text-text">${e.name}</span>
-                <span class="text-body font-medium text-text tabular-nums">${formatBytes(e.bytes)}</span>
-              </div>
-              <div class="h-1.5 rounded-full bg-border overflow-hidden mb-2">
-                <div class="h-full rounded-full ${e.lossless ? "bg-text-secondary/50" : "bg-accent"}" style="width: ${Math.max((e.bytes / baseline) * 100, 0.5)}%"></div>
-              </div>
-              <p class="text-small text-text-secondary">
-                <span class="text-text">${e.lossless ? "Lossless" : "Lossy"}.</span> ${e.note}
-              </p>`;
-            return li;
-          }),
-        );
-      }
+            resultsEl.replaceChildren(
+              ...estimates.map((e) => {
+                const li = document.createElement("li");
+                li.className =
+                  "bg-background-subtle/50 border border-border rounded-xl p-4";
+                li.innerHTML = `
+                  <div class="flex items-baseline justify-between gap-4 mb-2">
+                    <span class="text-body font-medium text-text">${e.name}</span>
+                    <span class="text-body font-medium text-text tabular-nums">${formatBytes(e.bytes)}</span>
+                  </div>
+                  <div class="h-1.5 rounded-full bg-border overflow-hidden mb-2">
+                    <div class="h-full rounded-full ${e.lossless ? "bg-text-secondary/50" : "bg-accent"}" style="width: ${Math.max((e.bytes / baseline) * 100, 0.5)}%"></div>
+                  </div>
+                  <p class="text-small text-text-secondary">
+                    <span class="text-text">${e.lossless ? "Lossless" : "Lossy"}.</span> ${e.note}
+                  </p>`;
+                return li;
+              }),
+            );
+          }
 
-      widthEl.addEventListener("input", render);
-      heightEl.addEventListener("input", render);
-      contentEl.addEventListener("change", render);
+          widthEl.addEventListener("input", render);
+          heightEl.addEventListener("input", render);
+          contentEl.addEventListener("change", render);
 
-      for (const button of document.querySelectorAll<HTMLButtonElement>(
-        ".preset",
-      )) {
-        button.addEventListener("click", () => {
-          widthEl.value = button.dataset.width!;
-          heightEl.value = button.dataset.height!;
+          for (const button of document.querySelectorAll<HTMLButtonElement>(
+            ".preset",
+          )) {
+            button.addEventListener("click", () => {
+              widthEl.value = button.dataset.width!;
+              heightEl.value = button.dataset.height!;
+              render();
+            });
+          }
+
           render();
-        });
-      }
-
-      render();
-    </script>
-  </body>
-</html>
+        </script>
+  </Fragment>
+</MarketingLayout>

@@ -1,0 +1,57 @@
+---
+import { getPublishedPosts, postCover } from "../utils/posts";
+import Section from "./Section.astro";
+import SectionHeading from "./SectionHeading.astro";
+import PostCard from "./PostCard.astro";
+
+/**
+ * RelatedGrid - the "related guides and tools" block, one definition for the
+ * nine pages that used to hand-roll a stack of bare arrow links.
+ *
+ * A /blog/ href fills its own title, description, cover, category and date
+ * from the collection. Anything else (a product or tool page) has none of
+ * that, so the caller supplies `label` and, ideally, a `description`.
+ *
+ * `label` also overrides a post title. Internal anchor text is tuned per page
+ * and moving it moves rankings, so the page always wins over the collection.
+ */
+interface Link {
+  href: string;
+  /** Required for non-blog hrefs. Overrides the post title when given. */
+  label?: string;
+  description?: string;
+}
+
+interface Props {
+  heading?: string;
+  links: Link[];
+}
+
+const { heading, links } = Astro.props;
+
+const BLOG_PREFIX = "/blog/";
+
+const bySlug = new Map((await getPublishedPosts()).map((p) => [p.id, p]));
+
+const cards = links.map((link) => {
+  const post = link.href.startsWith(BLOG_PREFIX)
+    ? bySlug.get(link.href.slice(BLOG_PREFIX.length))
+    : undefined;
+
+  return {
+    href: link.href,
+    label: link.label ?? post?.data.title ?? link.href,
+    description: link.description ?? post?.data.description,
+    image: post ? postCover(post) : undefined,
+    category: post?.data.category,
+    date: post?.data.pubDate,
+  };
+});
+---
+
+<Section width="wide">
+  {heading && <SectionHeading>{heading}</SectionHeading>}
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {cards.map((card) => <PostCard {...card} />)}
+  </div>
+</Section>

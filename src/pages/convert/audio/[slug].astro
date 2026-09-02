@@ -1,16 +1,16 @@
 ---
-import BaseHead from "../../../components/BaseHead.astro";
-import Header from "../../../components/Header.astro";
-import Footer from "../../../components/Footer.astro";
-import FAQ from "../../../components/FAQ.astro";
-import CardGrid from "../../../components/CardGrid.astro";
+import MarketingLayout from "../../../layouts/MarketingLayout.astro";
+import BlockGrid from "../../../components/BlockGrid.astro";
 import ComparisonHero from "../../../components/ComparisonHero.astro";
 import ProductSchema from "../../../components/schema/ProductSchema.astro";
 import Section from "../../../components/Section.astro";
-import Card from "../../../components/Card.astro";
 import SectionHeading from "../../../components/SectionHeading.astro";
 import BenefitsCard from "../../../components/BenefitsCard.astro";
 import ConversionGrid from "../../../components/ConversionGrid.astro";
+import FAQSection from "../../../components/FAQSection.astro";
+import FAQSchema from "../../../components/schema/FAQSchema.astro";
+import GuideCrossLink from "../../../components/GuideCrossLink.astro";
+
 import {
   audioConversions,
   audioFormats,
@@ -48,116 +48,75 @@ const description = conversion.metaDescription;
 
 // Low-demand templated pairs are de-indexed to concentrate site quality on winners.
 const noindex = !isAudioConversionIndexed(conversion.slug);
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: conversion.faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} noindex={noindex} />
+<MarketingLayout
+  title={title}
+  description={description}
+  noindex={noindex}
+>
+  <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head>
+    <FAQSchema faqs={conversion.faqs} />
+  </Fragment>
 
-  <body
-    class="min-h-dvh transition-colors duration-300 bg-background text-text overflow-x-hidden"
-  >
-    <Header />
+  <ComparisonHero
+    pricingHref="/#pricing"
+    title={`Convert ${from.name} to ${to.name} on Mac`}
+    subhead={conversion.whyConvert}
+    buyEvent={`buy_clicked_audio_${conversion.slug}`}
+    defaultTab="convert"
+  />
 
-    <main id="main-content">
-    <ComparisonHero
-      pricingHref="/#pricing"
-      title={`Convert ${from.name} to ${to.name} on Mac`}
-      subhead={conversion.whyConvert}
-      buyEvent={`buy_clicked_audio_${conversion.slug}`}
-      defaultTab="convert"
+  <!-- Benefits -->
+  <Section width="narrow">
+    <BenefitsCard
+      heading={`Why convert ${from.name} to ${to.name} with Picmal`}
+      benefits={conversion.benefits}
     />
+  </Section>
 
-    <!-- Benefits -->
-    <Section width="narrow">
-      <BenefitsCard
-        heading={`Why convert ${from.name} to ${to.name} with Picmal`}
-        benefits={conversion.benefits}
+  <!-- How it works -->
+  <BlockGrid ordered
+    heading="Convert in 3 steps"
+    items={[
+      {
+        title: `Drop your ${from.name} files`,
+        description: "Drag and drop one file or a whole folder.",
+      },
+      {
+        title: `Choose ${to.name}`,
+        description: "Pick the output format and quality.",
+      },
+      {
+        title: "Convert",
+        description: "Click Convert. Everything runs on your Mac.",
+      },
+    ]}
+  />
+
+  <!-- FAQ -->
+  <FAQSection faqs={conversion.faqs} />
+
+  {
+    blogGuide && (
+      <GuideCrossLink
+        href={`/blog/${blogGuide.slug}`}
+        title={blogGuide.title}
       />
-    </Section>
+    )
+  }
 
-    <!-- How it works -->
-    <CardGrid
-      numbered
-      heading="Convert in 3 steps"
-      items={[
-        {
-          title: `Drop your ${from.name} files`,
-          description: "Drag and drop one file or a whole folder.",
-        },
-        {
-          title: `Choose ${to.name}`,
-          description: "Pick the output format and quality.",
-        },
-        {
-          title: "Convert",
-          description: "Click Convert. Everything runs on your Mac.",
-        },
-      ]}
+  <!-- Related audio conversions -->
+  <Section>
+    <SectionHeading class="mb-8">More audio conversions</SectionHeading>
+    <ConversionGrid
+      links={related.map((c) => ({
+        href: `/convert/audio/${c.slug}`,
+        label: `${audioFormats[c.from].name} to ${audioFormats[c.to].name}`,
+      }))}
+      linkText="All audio conversions"
+      linkHref="/audio-converter-mac"
     />
-
-    <!-- FAQ -->
-    <Section id="faq" width="narrow">
-      <SectionHeading
-        sublead="Something not covered here? Write to support@picmal.app"
-      >
-        Frequently Asked Questions
-      </SectionHeading>
-      <Card>
-        <FAQ faqs={conversion.faqs} />
-      </Card>
-    </Section>
-
-    {
-      blogGuide && (
-        <Section width="narrow">
-          <Card>
-            <SectionHeading
-              align="left"
-              class="mb-6"
-              sublead="Step-by-step instructions with the free methods alongside Picmal."
-            >
-              In-depth guide
-            </SectionHeading>
-            <a
-              href={`/blog/${blogGuide.slug}`}
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border text-small font-medium text-text hover:border-accent/30 hover:bg-accent/[0.03] transition-colors duration-200 motion-reduce:transition-none"
-            >
-              Read: {blogGuide.title} &rarr;
-            </a>
-          </Card>
-        </Section>
-      )
-    }
-
-    <!-- Related audio conversions -->
-    <Section>
-      <SectionHeading class="mb-8">More audio conversions</SectionHeading>
-      <ConversionGrid
-        links={related.map((c) => ({
-          href: `/convert/audio/${c.slug}`,
-          label: `${audioFormats[c.from].name} to ${audioFormats[c.to].name}`,
-        }))}
-        linkText="All audio conversions"
-        linkHref="/audio-converter-mac"
-      />
-    </Section>
-
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  </Section>
+</MarketingLayout>

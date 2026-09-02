@@ -1,0 +1,172 @@
+---
+import MarketingLayout from "../layouts/MarketingLayout.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import CTASection from "../components/CTASection.astro";
+import DemoReel from "../components/DemoReel.astro";
+import FAQ from "../components/FAQ.astro";
+import HeroCTA from "../components/HeroCTA.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { SUPPORT_EMAIL, TIERS, savings } from "../config/pricing";
+
+// The page exists because /pricing opens on 1 Mac and hides the studio tiers
+// behind a picker. A studio that lands here came for a number it can put in a
+// purchase request, so both team licences are on screen with the per-Mac maths
+// already done. Derived from TIERS, so a reprice can never strand this page.
+//
+// Four blocks and no more: the argument, the numbers, the objections, the
+// action. An earlier draft carried a three-column "why studios buy it" band
+// between the prices and the FAQ. Every column restated something already on
+// the page (the headline, the price card, the pipeline FAQ), which is the
+// exact trap CLAUDE.md warns about: the pitch gets made three times before you
+// notice. The FAQ is now the only home for the pipeline answer, on purpose.
+const team = TIERS.filter((t) => t.macs >= 5);
+const perMac = (t: (typeof TIERS)[number]) => (t.price / t.macs).toFixed(2);
+const biggest = TIERS[TIERS.length - 1];
+const entry = TIERS[0];
+
+const faqs = [
+  {
+    question: "We have more than 10 Macs. What then?",
+    answer: `Email me at <a class="link" href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a> with how many Macs you need and I'll send a quote and an invoice.`,
+  },
+  {
+    question: "Can we get a proper invoice with our VAT number?",
+    answer:
+      "Yes. Add your company name and VAT number at checkout and the invoice arrives with them on it. Nothing to request afterwards.",
+  },
+  {
+    question: "Someone leaves. Can we move their seat?",
+    answer:
+      "Yes. Open Picmal on the old Mac, go to Picmal → Register license to deactivate, then activate on the new one. The licence key stays the same and seats move as often as you need.",
+  },
+  {
+    question: "Do we need one licence per person or per Mac?",
+    answer:
+      "Per Mac. A designer with a studio iMac and a laptop uses two seats. Buy for the machines Picmal runs on, not for headcount.",
+  },
+  {
+    question: "Does it fit into how we already work?",
+    answer:
+      'It runs from Finder as a Quick Action, from Shortcuts, from Raycast, from a watched folder, and from the command line. A watched folder is the usual one for studios: drop the client\'s files in, take the converted ones out. See the <a class="link" href="/docs">docs</a>.',
+  },
+  {
+    question: "Can we try it before buying for the whole studio?",
+    answer:
+      'Download it and run it on one Mac first. It is the complete app, not a trial. If it does not suit the studio there is a 14-day refund, no questions. <a class="link" href="/download">Download Picmal</a>.',
+  },
+];
+
+const title = "Picmal for studios and agencies";
+const description = `Convert and compress client files without uploading them anywhere. $${team[0].price} for ${team[0].macs} Macs, $${biggest.price} for ${biggest.macs}, paid once, invoiced with your VAT number.`;
+---
+
+<MarketingLayout
+  title={title}
+  description={description}
+>
+  <!-- Same hero geometry as the homepage: Section `wide`, a max-w-3xl
+       measure, left aligned, and the staggered reveal at 80 / 160 / 240ms.
+       A studio arriving from an email should not land on a page that feels
+       like a different product. `pt-32` on both breakpoints for header
+       clearance, or Section's own sm:py-20 wins the merge and the title
+       tucks under the fixed bar. -->
+  <Section width="wide" class="pt-32 sm:pt-32">
+    <div class="max-w-3xl">
+      <div class="hero-reveal" style="--d: 80ms">
+        <SectionHeading
+          level={1}
+          align="left"
+          class="mb-8"
+          headingClass="mb-6"
+          subleadClass="max-w-xl"
+        >
+          Your client's files never leave the studio
+          <Fragment slot="sublead">
+            Picmal converts and compresses images, video, audio and PDFs on
+            every Mac in your studio. Nothing is uploaded, so unreleased
+            work never passes through someone else's server.
+          </Fragment>
+        </SectionHeading>
+      </div>
+      <HeroCTA
+        buyEvent="buy_clicked_studios"
+        pricingHref="#licences"
+        source="studios_hero"
+        tier={team[0]}
+        linkText="Compare both team licences"
+      />
+    </div>
+
+    <!-- The reel sits inside the hero Section, same as the homepage, so the
+         rhythm between headline and proof is identical on both pages. -->
+    <div class="hero-reveal mt-12" style="--d: 240ms">
+      <DemoReel />
+    </div>
+  </Section>
+
+  <Section id="licences" width="default" bg="subtle">
+    <SectionHeading>
+      Two licences built for a team
+      <Fragment slot="sublead">
+        Same app at every tier. The only difference is how many Macs it
+        activates on.
+      </Fragment>
+    </SectionHeading>
+
+    <div class="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+      {
+        team.map((tier) => (
+          <Card>
+            <div class="flex items-baseline gap-2 mb-1">
+              <span class="text-h2 font-semibold text-text tabular-nums">
+                ${tier.price}
+              </span>
+              <span class="text-body text-text-secondary tabular-nums">
+                for {tier.macs} Macs
+              </span>
+            </div>
+            <Paragraph size="small" class="mb-6 tabular-nums">
+              ${perMac(tier)} per Mac, paid once. Saves ${savings(tier)}{" "}
+              against {tier.macs} single licences.
+            </Paragraph>
+            <Button
+              text={`Buy for ${tier.macs} Macs`}
+              href={tier.checkoutUrl}
+              variant={tier.macs === team[0].macs ? "primary" : "secondary"}
+              onclick={
+                import.meta.env.PROD
+                  ? `window.seline?.track('studios_buy_${tier.macs}')`
+                  : undefined
+              }
+            />
+          </Card>
+        ))
+      }
+    </div>
+
+    <!-- Both escape hatches sit at the decision, not after it, so the page
+         can end on the CTA instead of trailing a footnote past it. -->
+    <Paragraph size="small" class="text-center mt-6 max-w-xl mx-auto">
+      Every licence climbs to a bigger one later for the difference, on the
+      same key, and the offer never expires. Buying for one Mac? Picmal is
+      ${entry.price} on the <a class="link" href="/pricing">pricing page</a>.
+    </Paragraph>
+  </Section>
+
+  <Section width="narrow">
+    <SectionHeading>Questions a studio asks</SectionHeading>
+    <Card>
+      <FAQ faqs={faqs} />
+    </Card>
+  </Section>
+
+  <CTASection
+    heading="Put it on every Mac in the studio"
+    note="One payment · Invoice with your VAT number · 14-day refund"
+    tier={team[0]}
+    analyticsEvent="studios_cta_buy"
+  />
+</MarketingLayout>

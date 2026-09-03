@@ -155,7 +155,7 @@ function overlaySvg({ title, description, iconB64, safeBottom }) {
 
 async function main() {
   const iconB64 = (
-    await sharp(join(root, "public/Icon-macOS-Default-1024x1024@1x.png"))
+    await sharp(join(root, "scripts/assets/app-icon.png"))
       .resize(222, 222)
       .png()
       .toBuffer()

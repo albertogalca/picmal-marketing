@@ -17,6 +17,14 @@ Show in Finder lives in this menu now, so there's no separate "File" column taki
 
 ![Right-click menu showing Show in Finder, Priority, and Remove options in Picmal](/images/docs/priority_right_click.png)
 
+## Run only the files you tick
+
+Every row in Convert and Compress has a checkbox. Tick a few and the run covers those files only; leave them all unticked and the run covers the whole list. The progress bar counts the files in the run, so a partial batch still reaches 100%.
+
+Handy when a long batch failed halfway, or when you've added new files to a list that's already finished: tick the ones you want and leave the rest alone instead of re-encoding everything. A [scheduled](#schedule-for-later) run uses the same selection, so it won't sweep up whatever else is sitting in the window when it fires.
+
+The same checkboxes set a [preset for several rows at once](/docs/compressing-files#a-preset-per-file).
+
 ## File priority
 
 Give an urgent file a head start. Right-click it and pick **High**, **Normal**, or **Low** priority. High-priority files jump to the front and get processed first, even mid-batch. Bump a file up while a large queue is already running and it gets picked up next, rather than waiting for everything ahead of it.
@@ -34,6 +42,8 @@ Click **Cancel** to stop the batch. Picmal stops quickly and tidies up after its
 ## Watching progress
 
 While a batch runs, the file list scrolls smoothly and each file shows its own progress. The "X of Y files" counter at the bottom tracks the whole batch and updates all the way to the total. For audio and video, Picmal also shows the conversion speed and an estimated time remaining.
+
+The sidebar keeps track too: a small ring and a percentage appear next to the tool that's working, so a batch you started stays visible while you look at something else. Convert, Compress, Crop, Split PDF, and Remove Background show a real percentage. The other tools show that they're busy without a number.
 
 ## When the batch is done
 

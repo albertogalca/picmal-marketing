@@ -3,6 +3,34 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.8</title>
+            <pubDate>Thu, 03 Sep 2026 14:03:31 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>120</sparkle:version>
+            <sparkle:shortVersionString>1.8.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.8/Picmal.dmg" length="125648519" type="application/octet-stream" sparkle:edSignature="WN1FU29qVs2lB9gdrOEn30WPqEIul9A/iwoO84UjqKadkYUxSBDsYy+o9TEFTSZuLf85lkAdy1ZhEQIFbYGfAQ=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>The sidebar shows which tool is running.</strong> A small ring and a percentage sit beside the tool that's working, so a batch you started is visible from anywhere in the app. Convert, Compress, Crop, Split PDF and Remove Background report a real percentage; the other tools show that they're busy.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>Compressing PNGs is far faster, and it actually saves something now.</strong> Maximum compression could sit on a single image for minutes and then hand it back barely smaller. One squeeze step was spending four to seven times the work for under 1%, and the lossy pass quietly skipped any image it judged hard to shrink. Both are fixed: a 1.8 MB image that used to come back 0.6% smaller now comes back at half the size.</li>
+<li><strong>Compressing stopped burning a processor core per file for nothing.</strong> Picmal watched each running encoder with a loop that spun a core flat out instead of waiting for it, and it read the encoder's output at a lower priority than the code waiting on that output. A dozen files at once left the encoders fighting Picmal for the machine: the same animated WebP took 25 seconds inside a batch and under 7 on its own.</li>
+<li><strong>Big batches stop stalling partway through.</strong> Reading a file's metadata, applying a color profile and setting DPI each tied up one of Picmal's worker threads until the tool finished. Drop 40 files and every thread was taken at once, so the queue stopped moving while the list looked busy. Those steps now wait out of the way.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>The window no longer freezes for a whole batch.</strong> Dropping around 130 images and pressing Compress locked the window until the last file was written: no scrolling, no clicking, no progress. Picmal blocks tool switching during a run by putting the sidebar selection back, and that correction kept re-triggering itself every frame for the length of the batch.</li>
+<li><strong>The command line no longer hands you a bigger file and calls it compressed.</strong> `picmal-cli compress` on a PNG could return a file 50% larger than the one you gave it, counted as a saving. It now uses the same compression the app does, and when a compressed file would come out bigger, you get the original back untouched.</li>
+<li><strong>Picmal no longer quits while you're using the window.</strong> Dragging files onto the list could do it, and so could moving the pointer across the window. Redrawing a row, or routing a mouse movement, could momentarily lose track of Picmal's settings and close the app on the spot. Those reads now fall back to the settings the rest of the app is already using.</li>
+<li><strong>Print-ready CMYK images convert with the right colors.</strong> A CMYK JPEG, the kind that comes out of InDesign or a printer's proof, turned neon when you converted it to WebP or PNG. The 1.8.7 fix covered wide-gamut RGB photos only, and left CMYK to a built-in guess that ignores the profile inside the file. Picmal now reads that profile and translates the colors properly, whether you strip the metadata or keep it, and a PNG no longer comes out tagged with a CMYK profile it can't use. Converting CMYK to JPEG, TIFF or PDF with metadata kept still stays CMYK, for print.</li>
+<li><strong>Unchecking a file now keeps it out of the run.</strong> The checkboxes in Convert and Compress only ever decided what a bulk preset applied to. Tick one file, press Compress, and Picmal compressed the whole list anyway, writing a second copy of files you had already finished. It now runs the files you ticked, and the whole list when you tick nothing. Scheduled jobs no longer sweep up whatever else was sitting in the window, and the progress bar counts the files in the run, so a partial batch reaches 100% instead of stopping short.</li>
+<li><strong>A row that says "Done" is done.</strong> Changing a file's output format, playback speed or subtitle after it had finished left the green tick sitting there while quietly putting the row back in the queue, so the next run re-encoded a file that looked finished. The tick now clears, and the list matches what the next run will do.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.7</title>
             <pubDate>Mon, 31 Aug 2026 17:20:22 +0200</pubDate>
             <link>https://picmal.app/</link>

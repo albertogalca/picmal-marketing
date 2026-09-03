@@ -65,6 +65,12 @@ Convert images between color spaces during processing. Useful when the same phot
 
 If you're not sure, leave it off. sRGB is the safe bet for almost everything. **Grayscale** drops color entirely for black-and-white output, and **CMYK** converts through Picmal's bundled color profiles for print shops that ask for it.
 
+### CMYK and wide-gamut sources
+
+Picmal reads the color profile inside the file you give it. A CMYK JPEG out of InDesign, or a photo tagged Adobe RGB or Display P3, is translated to sRGB before it becomes a WebP, PNG, or any other screen format, so the colors come out as you saw them rather than oversaturated. Keep metadata on and the profile travels with the file; strip it and the pixels are converted first, so nothing is left to misread.
+
+Print files stay print files: converting a CMYK image to JPEG, TIFF, or PDF with metadata kept leaves it in CMYK.
+
 ## Orientation
 
 | Mode     | What It Does                                                                                  |

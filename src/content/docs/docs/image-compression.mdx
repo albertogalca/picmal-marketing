@@ -57,9 +57,11 @@ These formats use a compression level where **higher = more compression, smaller
 
 | Format | Range | Default | Notes                                                    |
 | ------ | ----- | ------- | -------------------------------------------------------- |
-| PNG    | 1–9   | 9       | Lossless — level affects compression effort, not quality |
+| PNG    | 1–9   | 9       | Level affects how hard Picmal tries, not how the image looks |
 | GIF    | 1–9   | 7       | Higher levels mean more aggressive optimization          |
 | SVG    | 1–9   | 7       | Optimization level for SVG cleanup                       |
+
+PNG at level 9 is worth using. It runs a lossy palette pass first and a lossless squeeze after, and on a photographic PNG it regularly halves the file. Drop the level if you want the palette left alone.
 
 ## PDF rasterization DPI
 

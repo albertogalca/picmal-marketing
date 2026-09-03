@@ -124,9 +124,10 @@ and press kit are the reference.
   download, wait. Picmal: drag, click, done."
 - **The throughline is local + private** — files never leave your Mac, no uploads,
   no account, no servers. Every page can lean on this.
-- **Also true, reuse as needed:** pay once ($19, updates included, no
-  subscription), batch hundreds at once, a real native Mac app (not a web wrapper),
-  lives in Finder / Shortcuts / Quick Actions.
+- **Also true, reuse as needed:** pay once ($29 for one Mac, the entry price the
+  site quotes, from `src/config/pricing.ts`, updates included, no subscription),
+  batch hundreds at once, a real native Mac app (not a web wrapper), lives in
+  Finder / Shortcuts / Quick Actions.
 - **A little edge is fine** ("instead of trusting sketchy websites with them"),
   but stay friendly — no fear-mongering, no name-calling the reader.
 - **No em dashes.** Use commas, periods, or "and". (Author preference.)

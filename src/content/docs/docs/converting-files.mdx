@@ -32,15 +32,25 @@ You can convert a file to the same format it's already in. Every format lists it
 
 ## Apple icon files
 
-Drop an `.icns` in and convert it to PNG, JPG, or any other image format. An icon file holds several sizes at once, so each one becomes its own file saved next to the original:
+Drop an `.icns` in and convert it to PNG, JPG, or any other image format. An icon file holds every size from 16 px up to 1024, and by default you get the largest one, named and placed like any other conversion.
 
-```
-icon-1024x1024.png
-icon-512x512.png
-icon-256x256.png
-```
+To get a different size, open **Settings → Images → Icon output size**:
 
-Sizes stored twice inside the icon (a `256x256` and a `128x128@2x`, say) come out once. An icon with only one size inside just converts normally, keeping your usual output name. This works from the command line too — `picmal-cli convert -i icon.icns -f png`.
+| Choice | What you get |
+| ------ | ------------ |
+| **Largest available** | One image at the biggest size inside the icon. The default. |
+| **All sizes** | One file per embedded size, named `<name>-1024x1024.png`, `<name>-512x512.png`, and so on. |
+| **1024 px** … **16 px** | One image at that size, if the icon holds it. |
+
+Sizes stored twice inside the icon (a `256x256` and a `128x128@2x`, say) come out once. All the outputs land in the output folder you picked, not next to the source.
+
+This works from the command line too, with the same choice on `--icon-size`:
+
+```bash
+picmal-cli convert -i icon.icns -f png -o ~/out
+picmal-cli convert -i icon.icns -f png -o ~/out --icon-size 256
+picmal-cli convert -i icon.icns -f png -o ~/out --icon-size all
+```
 
 Picmal reads `.icns` but doesn't write it here. To make one from an image, use [App Icons](/docs/app-icons).
 

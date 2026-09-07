@@ -15,38 +15,40 @@ import FounderLetter from "../components/FounderLetter.astro";
 import FeaturedReview from "../components/FeaturedReview.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
-import PostCard from "../components/PostCard.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import H3 from "../components/H3.astro";
+import H4 from "../components/H4.astro";
 import Paragraph from "../components/Paragraph.astro";
-import { getPublishedPosts, postCover } from "../utils/posts";
+import { getPublishedPosts } from "../utils/posts";
 import FAQSection from "../components/FAQSection.astro";
-import FAQSchema from "../components/schema/FAQSchema.astro";
 
-// The guides that earn their own traffic, linked from the highest-authority
-// page on the site. Before this block the home page passed 11 links to
-// /alternative/* and 3 to /blog, which is backwards: the "N free methods"
-// guides rank on page one while the programmatic pages sit in the 40s.
-//
-// An explicit slug list, not "the 6 newest": newest would surface the monthly
-// newsletter posts, which are the wrong thing to hand a first-time visitor.
-// Titles and descriptions still come from the collection, so editing a post
-// never leaves a stale card behind. Swap the slugs as Search Console moves.
 const FEATURED_GUIDES = [
-  "reduce-image-file-size-mac",
-  "how-to-convert-heic-to-jpg-mac",
-  "how-to-compress-video-mac",
-  "how-to-extract-audio-from-video-mac",
-  "batch-convert-images-mac",
-  "best-media-converter-mac-2026",
+  {
+    label: "Images",
+    slugs: ["reduce-image-file-size-mac", "how-to-convert-heic-to-jpg-mac"],
+  },
+  {
+    label: "Video and audio",
+    slugs: [
+      "how-to-compress-video-mac",
+      "how-to-extract-audio-from-video-mac",
+    ],
+  },
+  {
+    label: "Batch and choosing",
+    slugs: ["batch-convert-images-mac", "best-media-converter-mac-2026"],
+  },
 ];
 
 const allPosts = await getPublishedPosts();
-const guides = allPosts
-  .filter((post) => FEATURED_GUIDES.includes(post.id))
-  .sort(
-    (a, b) => FEATURED_GUIDES.indexOf(a.id) - FEATURED_GUIDES.indexOf(b.id),
-  );
+const postsById = new Map(allPosts.map((post) => [post.id, post]));
+// A scheduled or renamed post drops out rather than rendering an empty row.
+const guideGroups = FEATURED_GUIDES.map((group) => ({
+  label: group.label,
+  posts: group.slugs
+    .map((slug) => postsById.get(slug))
+    .filter((post) => post !== undefined),
+})).filter((group) => group.posts.length > 0);
 
 const SITE_DESCRIPTION =
   "Convert, compress, and edit images, video, audio, and PDFs right on your Mac, instead of trusting sketchy websites. Works offline, no account, no subscription.";
@@ -161,8 +163,17 @@ const SITE_DESCRIPTION =
   <!-- Founder letter -->
   <FounderLetter />
 
+  {/* The covers are deliberately not here. Six 16:9 images this far down a
+      long page carried weight without carrying meaning, and they still do
+      their job on /blog and in RelatedGrid. What is left is the routing: a
+      rule, a label, and the titles. */}
   <Section id="guides" width="wide">
-    <SectionHeading class="mb-10">
+    <SectionHeading
+      class="mb-10"
+      align="left"
+      headingClass="max-w-2xl"
+      subleadClass="max-w-2xl"
+    >
       Free ways to convert and compress without Picmal
       <Fragment slot="sublead">
         The guides walk you through the free path on your Mac, and say where
@@ -172,17 +183,36 @@ const SITE_DESCRIPTION =
       </Fragment>
     </SectionHeading>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
       {
-        guides.map((post) => (
-          <PostCard
-            href={`/blog/${post.id}`}
-            label={post.data.title}
-            description={post.data.description}
-            image={postCover(post)}
-            category={post.data.category}
-            date={post.data.pubDate}
-          />
+        guideGroups.map((group) => (
+          <div>
+            {/* Full-ink rule, not `border-border`: it has to read as an
+                editorial divider over the label, and the token hairline
+                disappears at this weight. */}
+            <H3 class="text-caption font-mono font-semibold uppercase tracking-[0.11em] border-t border-text pt-3 mb-6">
+              {group.label}
+            </H3>
+
+            <div class="flex flex-col gap-6">
+              {group.posts.map((post) => (
+                <a
+                  href={`/blog/${post.id}`}
+                  class="group block rounded-lg transition-[color] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  <H4 class="text-body font-semibold leading-snug mb-1.5 transition-[color] duration-200 ease-out group-hover:text-accent motion-reduce:transition-none">
+                    {post.data.title}
+                  </H4>
+                  {/* 46ch is the site-wide cap for flat text blocks (see
+                      BlockGrid): three columns at max-w-7xl run to ~60ch
+                      without it. */}
+                  <Paragraph size="small" class="max-w-[46ch] line-clamp-2">
+                    {post.data.description}
+                  </Paragraph>
+                </a>
+              ))}
+            </div>
+          </div>
         ))
       }
     </div>
@@ -190,7 +220,7 @@ const SITE_DESCRIPTION =
 
   <FAQSection
     faqs={faqs}
-    heading="Questions Something not covered here? Write to support@picmal.app"
+    heading="Frequently asked questions"
   />
 
   <!-- The homepage was the one page with no closing ask: it went from the

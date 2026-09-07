@@ -3,6 +3,35 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.8.9</title>
+            <pubDate>Mon, 07 Sep 2026 18:21:05 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>121</sparkle:version>
+            <sparkle:shortVersionString>1.8.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.8.9/Picmal.dmg" length="125414352" type="application/octet-stream" sparkle:edSignature="UENe5CkxnmxRQ+XuwpfO273rTVj5h5jkSeDKtQQMbsZHepD8fB07bWuO4uqilIZF0jlvNpQYCEnNm3lK8S1lAw=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Double-click a file to show it in Finder.</strong> Works in every tool list, on the converted file once it exists and the original before that. The right-click menu item stays where it was.</li>
+<li><strong>Retry only the files that failed.</strong> When a batch ends with a few failures, the Run Again button becomes Retry Failed, with the count. Press it and Picmal re-runs those files alone. The ones that finished keep their tick and their savings figure, and nothing gets encoded twice.</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>Converting an icon file gives you one image, not eight.</strong> An .icns holds every size from 16 px up to 1024, and Picmal used to write all of them out, next to the original file instead of in your output folder. It now takes the largest and leaves it where you asked. Settings, Images, Icon output size picks a different one, or all of them if that is what you were after, and the command line has the same choice on `--icon-size`. Multi-page PDFs also land in your output folder now.</li>
+<li><strong>A batch with failures says so.</strong> The summary under the file list used to read "Done · 7 files converted" when 10 went in and 3 broke, and the only place the 3 showed up was the system notification. It now reads "Finished · 7 files converted · 3 failed", under a warning glyph instead of the tick.</li>
+<li><strong>An unlicensed Convert button opens the license window.</strong> Before, it was greyed out with a tooltip and nothing else, in every tool. Now the click lands, Picmal asks for the license, and once you have one the run starts as usual.</li>
+<li><strong>The command line tool closes every batch with a `completed` event.</strong> In JSON mode, convert, compress, crop, split-pdf and remove-background now end the stream with produced and failed counts, so a script or an agent can tell a finished batch from a process that died. `remove-background` also exits 9 on a partial batch and 2 on bad arguments, like the other commands.</li>
+<li><strong>The Preset column is now the Quality column.</strong> It never chose the output format, only the bitrate and codec recipe for it, and the old name led people to expect a second file type. The tooltip says so now too, in Convert and Compress both.</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>Overwriting a file in a protected folder no longer fails the whole batch.</strong> Converting or compressing in place inside Desktop, Documents or Downloads could hit "You don't have permission to save the file X in the folder Y" and stop there, because the final write step needs access to the folder, not just the file. Picmal now falls back to writing the new content directly into the file it already has permission for.</li>
+<li><strong>Audio conversion presets actually change the file now.</strong> Convert always encoded audio at maximum quality regardless of which preset you picked, so Voice Memo, Podcast and Music all came out the same. Each preset's quality now reaches the encoder.</li>
+<li><strong>MP3 quality presets no longer all sound the same.</strong> A conflicting pair of ffmpeg flags collapsed every MP3 preset to the same ~245 kbps, so a 64 kbps "Voice memo" came back as a 21 MB file. The presets are distinct again.</li>
+<li><strong>A sample rate the target format can't hold no longer fails the encode.</strong> Asking for 96 kHz into MP3, or 44.1 kHz into Opus, aborted with a 0-byte file. Picmal now converts at the nearest rate the codec supports and flags it in the Convert table, in the app and from the command line.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.8</title>
             <pubDate>Thu, 03 Sep 2026 14:03:31 +0200</pubDate>
             <link>https://picmal.app/</link>

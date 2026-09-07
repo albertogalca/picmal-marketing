@@ -15,6 +15,8 @@ Right-click any file in the list to:
 
 Show in Finder lives in this menu now, so there's no separate "File" column taking up space in the table.
 
+Double-clicking a row does the same thing, in every tool list: it reveals the converted file once that exists, and the original before it does.
+
 ![Right-click menu showing Show in Finder, Priority, and Remove options in Picmal](/images/docs/priority_right_click.png)
 
 ## Run only the files you tick
@@ -47,9 +49,15 @@ The sidebar keeps track too: a small ring and a percentage appear next to the to
 
 ## When the batch is done
 
-Convert and Compress finish with a summary line in the bottom bar — "Done · 12 files converted", how much space you got back, and a **Show in Finder** link. It stays until you clear the list or run again.
+Convert and Compress finish with a summary line in the bottom bar: "Done · 12 files converted", how much space you got back, and a **Show in Finder** link. It stays until you clear the list or run again.
 
-If Picmal is the app in front of you, that line is the whole notification: nothing beeps, because the window already says what happened. Results that arrive while you're elsewhere stack rather than overwriting each other.
+If some files broke, the line says so. Ten files in with three failures reads "Finished · 7 files converted · 3 failed", under a warning glyph instead of the tick, so a partial batch never looks like a clean one.
+
+### Retry only the files that failed
+
+After a batch with failures, the **Run Again** button becomes **Retry Failed**, with the count on it. Press it and Picmal re-runs those files alone. The ones that finished keep their tick and their savings figure, and nothing gets encoded twice.
+
+If Picmal is the app in front of you, that summary line is the whole notification: nothing beeps, because the window already says what happened. Results that arrive while you're elsewhere stack rather than overwriting each other.
 
 ## Schedule for later
 

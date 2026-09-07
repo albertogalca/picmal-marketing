@@ -94,13 +94,14 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--credit <text>`         | Credit line to embed (IPTC credit, XMP credit).                             |
 | `--contact <text>`        | Contact or URL to embed (XMP rights web statement, IPTC contact).          |
 | `--pdf-dpi <n>`           | DPI for PDF rasterization (also tags output density on raster outputs).      |
+| `--icon-size <size>`      | Which image to take out of a multi-size icon (`.icns`): `largest` (default), `all`, or a pixel size such as `512`. |
 | `--watermark <path>`      | Watermark image path.                                                        |
 | `--watermark-opacity <n>` | 0.0–1.0. Default `0.5`.                                                      |
 | `--watermark-position`    | `tl`, `tr`, `bl`, `br`, or `center`. Default `br`.                           |
 
 The copyright flags are independent of `--strip-metadata`: pass both to strip a photo's camera/GPS data while still stamping your own ownership tags onto the output. Empty flags are skipped; values you pass always overwrite any existing tag.
 
-An `.icns` input fans out to one output per embedded size, named `<name>-<W>x<H>.<ext>` — the same convention `split-pdf` uses for pages. `--quality`, `--resize`, and `--watermark` apply to each size. See [Apple icon files](/docs/converting-files#apple-icon-files).
+An `.icns` input gives you one image at its largest embedded size. Pass `--icon-size all` to get one output per size instead, named `<name>-<W>x<H>.<ext>` (the same convention `split-pdf` uses for pages), or a pixel size such as `--icon-size 256` to pick one. `--quality`, `--resize`, and `--watermark` apply to whatever comes out. Every output lands in `-o`, not beside the source. See [Apple icon files](/docs/converting-files#apple-icon-files).
 
 ### Metadata
 
@@ -283,7 +284,7 @@ picmal-cli remove-background *.png -o cutouts/
 | `-w`, `--overwrite`     | Overwrite existing output files.                                                     |
 | `--json`                | Force JSON output.                                                                   |
 
-An image with no clear subject is skipped and reported, and the rest of the batch still runs. See [Remove Background](/docs/remove-background).
+An image with no clear subject is skipped and reported, and the rest of the batch still runs. A batch with both successes and skips exits `9`, bad arguments exit `2`, and a missing input path exits `4` before any work starts. See [Remove Background](/docs/remove-background).
 
 ## merge-audio
 
@@ -491,6 +492,12 @@ picmal-cli version
 When stdout isn't a terminal (piped or redirected), `picmal-cli` emits NDJSON: one JSON object per line. Force it with `--json`, force text with `--text`.
 
 Every event carries an `event` discriminator and an RFC 3339 `ts`. Successful file outputs go to **stdout**; errors, warnings, and progress go to **stderr**. The schema version is `1` and is included in the `started` event so consumers can detect breakages early.
+
+Every batch command ends its stream with a `completed` event carrying `produced` and `failed` counts, always as the last line, so a script can tell a finished batch from a process that died mid-run. `convert`, `compress`, `crop`, `split-pdf`, and `remove-background` all emit it.
+
+```json
+{"event":"completed","produced":7,"failed":3,"ts":"2026-09-07T10:14:22Z"}
+```
 
 A `file` event can also carry a `notes` array when there is something you shouldn't miss. The only value today is `pdf_structure_dropped`, which means deeper PDF compression rebuilt that document and its links, bookmarks, and form fields did not survive. The field is omitted entirely when there is nothing to report, so existing consumers are unaffected.
 

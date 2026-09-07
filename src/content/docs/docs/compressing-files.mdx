@@ -61,7 +61,9 @@ When a batch finishes, Picmal totals up how much space you freed and shows it in
 
 ## A preset per file
 
-Convert and Compress both have a **Preset** column. Each row shows the preset that will run on that file — the one from Settings, until you pick another for that row alone. Compress one video hard and leave another balanced in the same batch, without running two passes.
+Convert and Compress both have a **Quality** column. Each row shows the preset that will run on that file: the one from Settings, until you pick another for that row alone. Compress one video hard and leave another balanced in the same batch, without running two passes.
+
+It sets the bitrate and codec recipe, never the output format. The column was called **Preset** until 1.8.9, which led people to expect it to pick a second file type.
 
 Your saved presets appear in the row menu alongside the built-ins, and the **Saving** estimate updates as soon as you change one.
 

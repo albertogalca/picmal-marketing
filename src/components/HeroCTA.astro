@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro";
+import TrustBar from "./TrustBar.astro";
 import { DEFAULT_TIER, type Tier } from "../config/pricing";
 
 interface Props {
@@ -56,10 +57,20 @@ const priceLine =
 // "download picmal for mac", and is still linked from the bottom of every page
 // through CTASection, where a reader has already seen the price. The door is
 // after the pitch now, instead of in place of it.
+//
+// The faces sit on the button row, not under it (Sep 2026). "Other Mac users
+// trust it" is the last step of the belief ladder and it used to wait for the
+// testimonials section, four screens down. Most arrivals here are cold, off a
+// format query, and they read one screen before deciding, so the proof has to
+// land in the same glance as the price. Six faces, not the band's eight: beside
+// a button in a 768px column, eight crowd the count.
 ---
 
 <div class={className || undefined}>
-  <div class="hero-reveal flex flex-col sm:flex-row gap-3" style="--d: 160ms">
+  <div
+    class="hero-reveal flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5"
+    style="--d: 160ms"
+  >
     <Button
       text={`Get Picmal for $${tier.price}`}
       href={tier.checkoutUrl}
@@ -68,6 +79,7 @@ const priceLine =
         ? `window.seline?.track('${buyEvent}', { macs: ${tier.macs}, source: '${source}' })`
         : undefined}
     />
+    <TrustBar align="start" count={6} />
   </div>
 
   <!-- What it costs and where the files stay, in one line. Muted so it

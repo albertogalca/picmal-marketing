@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Paragraph from "./Paragraph.astro";
+import { cn } from "../utils/cn";
 import users from "../data/users.json";
 import { getGravatarUrl } from "../utils/gravatar";
 import { getCustomerCount } from "../utils/customers";
@@ -8,24 +9,53 @@ import { getCustomerCount } from "../utils/customers";
 interface Props {
   prefix?: string;
   suffix?: string;
+  /** `center` for a band of its own, `start` when it sits beside something
+      else on a left-aligned row (the hero, next to the buy button). Center
+      stacks on phones; start never does, because it is already one short row. */
+  align?: "center" | "start";
+  /** How many faces to show. Eight fill a centered band; beside a buy button
+      in a 768px column, six leave the count room to breathe. */
+  count?: number;
+  class?: string;
 }
-const { prefix = "Trusted by ", suffix = " Mac users" } = Astro.props;
+const {
+  prefix = "Trusted by ",
+  suffix = " Mac users",
+  align = "center",
+  count = 8,
+  class: className,
+} = Astro.props;
 
-const displayUsers = users.slice(0, 8);
+const displayUsers = users.slice(0, count);
 const customerCount = await getCustomerCount();
 ---
 
-<div class="flex flex-col md:flex-row items-center justify-center gap-3">
+<div
+  class={cn(
+    "flex items-center gap-3",
+    align === "center"
+      ? "flex-col md:flex-row justify-center"
+      : "flex-row justify-start gap-2.5",
+    className,
+  )}
+>
   <!-- Avatar Stack -->
   <div class="flex items-center -space-x-2">
     {
-      displayUsers.map((user: any) => (
+      displayUsers.map((user: any, i: number) => (
         <Image
           src={getGravatarUrl(user.email, 64)}
           alt=""
           width={32}
           height={32}
-          class="w-8 h-8 rounded-full ring-2 ring-background object-cover"
+          class={cn(
+            "w-8 h-8 rounded-full ring-2 ring-background object-cover",
+            // Measured: six faces plus "Trusted by 690+ Mac users" want 344px,
+            // and a 390px phone leaves 342 inside the px-6 gutter. In the row
+            // layout the fifth face on is what tips it, so it waits for sm.
+            // The centered band has a whole row to itself and keeps all eight.
+            align === "start" && i >= 4 && "hidden sm:block",
+          )}
           loading="eager"
         />
       ))
@@ -34,7 +64,8 @@ const customerCount = await getCustomerCount();
 
   <!-- Text -->
   <Paragraph size="small" class="text-text-secondary">
-    {prefix}<span class="font-semibold text-text">{customerCount}+{suffix}</span
+    {prefix}<span class="font-semibold text-text tabular-nums"
+      >{customerCount}+{suffix}</span
     >
   </Paragraph>
 </div>

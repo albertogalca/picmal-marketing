@@ -73,13 +73,13 @@ const priceLine =
 
 <div class={className || undefined}>
   <div
-    class="hero-reveal flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5"
+    class="hero-reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-5"
     style="--d: 160ms"
   >
     <Button
       text={`Get Picmal for $${tier.price}`}
       href={tier.checkoutUrl}
-      class="w-full sm:w-auto"
+      class="w-full sm:w-auto whitespace-nowrap"
       onclick={import.meta.env.PROD
         ? `window.seline?.track('${buyEvent}', { macs: ${tier.macs}, source: '${source}' })`
         : undefined}
@@ -88,7 +88,8 @@ const priceLine =
       text="Try free for 7 days"
       href="/download"
       variant="secondary"
-      class="w-full sm:w-auto"
+      target="_self"
+      class="w-full sm:w-auto whitespace-nowrap"
       onclick={import.meta.env.PROD
         ? `window.seline?.track('download_clicked', { source: '${source}' })`
         : undefined}

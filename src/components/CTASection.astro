@@ -47,6 +47,7 @@ const {
           text="Try free for 7 days"
           href="/download"
           variant="secondary"
+          target="_self"
           class="w-full sm:w-auto"
           onclick={import.meta.env.PROD
             ? "window.seline?.track('download_clicked', { source: 'bottom' })"

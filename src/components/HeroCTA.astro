@@ -58,6 +58,11 @@ const priceLine =
 // through CTASection, where a reader has already seen the price. The door is
 // after the pitch now, instead of in place of it.
 //
+// The 7-day trial (Sep 2026) changed what a download is: the app now converts
+// for a week before it asks for a key. So the trial lives in the terms line as
+// a text link to /download, one clause before the price. Same glance as the
+// button, no second button: the page still asks for one thing.
+//
 // The faces sit on the button row, not under it (Sep 2026). "Other Mac users
 // trust it" is the last step of the belief ladder and it used to wait for the
 // testimonials section, four screens down. Most arrivals here are cold, off a
@@ -105,7 +110,7 @@ const priceLine =
         and the sublead says "while a website would still be uploading", so
         this was the third time in one screen. The line's job is the terms, so
         it keeps the ones nothing else states. */}
-    {`${priceLine}, updates included. No account, no subscription, works offline. `}
+    <a href="/download" class="link">Free for 7 days</a>{`, then ${priceLine}, updates included. No account, no subscription, works offline. `}
     <a href={pricingHref} class="link">{linkText}</a>
   </p>
 </div>

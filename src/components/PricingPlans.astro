@@ -117,8 +117,18 @@ const tierData = TIERS.map((t) => ({
       class="w-full mt-6"
     />
 
+    <Button
+      text="Try free for 7 days"
+      href="/download"
+      variant="secondary"
+      class="w-full mt-3"
+      onclick={import.meta.env.PROD
+        ? "window.seline?.track('download_clicked', { source: 'pricing' })"
+        : undefined}
+    />
+
     <Paragraph size="small" class="text-center mt-3">
-      <a href="/download" class="link">Try it free for 7 days</a> first. 14-day refund after you buy, no questions asked. Needs macOS 15 or later.
+      14-day refund after you buy, no questions asked. Needs macOS 15 or later.
     </Paragraph>
   </Card>
 

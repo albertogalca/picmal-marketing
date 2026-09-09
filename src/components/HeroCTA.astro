@@ -59,9 +59,9 @@ const priceLine =
 // after the pitch now, instead of in place of it.
 //
 // The 7-day trial (Sep 2026) changed what a download is: the app now converts
-// for a week before it asks for a key. So the trial lives in the terms line as
-// a text link to /download, one clause before the price. Same glance as the
-// button, no second button: the page still asks for one thing.
+// for a week before it asks for a key. So a second button is back beside the
+// buy button, secondary style, pointing at /download. The download_clicked
+// event carries source: 'hero' so the funnel can tell it from the footer.
 //
 // The faces sit on the button row, not under it (Sep 2026). "Other Mac users
 // trust it" is the last step of the belief ladder and it used to wait for the
@@ -82,6 +82,15 @@ const priceLine =
       class="w-full sm:w-auto"
       onclick={import.meta.env.PROD
         ? `window.seline?.track('${buyEvent}', { macs: ${tier.macs}, source: '${source}' })`
+        : undefined}
+    />
+    <Button
+      text="Try free for 7 days"
+      href="/download"
+      variant="secondary"
+      class="w-full sm:w-auto"
+      onclick={import.meta.env.PROD
+        ? `window.seline?.track('download_clicked', { source: '${source}' })`
         : undefined}
     />
     <TrustBar align="start" count={6} />
@@ -110,7 +119,7 @@ const priceLine =
         and the sublead says "while a website would still be uploading", so
         this was the third time in one screen. The line's job is the terms, so
         it keeps the ones nothing else states. */}
-    <a href="/download" class="link">Free for 7 days</a>{`, then ${priceLine}, updates included. No account, no subscription, works offline. `}
+    {`${priceLine}, updates included. No account, no subscription, works offline. `}
     <a href={pricingHref} class="link">{linkText}</a>
   </p>
 </div>

@@ -416,7 +416,7 @@ function generateFAQs(
     {
       question: `Is it free to convert ${from.name} to ${to.name} with Picmal?`,
       answer:
-        "Picmal requires a one-time purchase of $29 — no subscription. You can download the app to try the interface, but a license is needed to convert files. 14-day money-back guarantee.",
+        "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
     },
   ];
 
@@ -760,7 +760,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert HEIC to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription, no hidden fees. You can download the app to explore the interface, but a license is needed to convert files. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29: no subscription, no hidden fees. 14-day money-back guarantee after you buy.",
       },
       {
         question: "How does Picmal compare to using Preview or Automator?",
@@ -864,7 +864,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert WebP to GIF?",
         answer:
-          "Picmal requires a one-time purchase of $29 — no subscription. You can download the app to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -952,7 +952,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert PNG to WebP?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface, and get a 14-day money-back guarantee with your purchase.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1051,7 +1051,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert HEIC to PNG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1139,7 +1139,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert JPG to PNG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1232,7 +1232,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert JPG to WebP?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1326,7 +1326,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert PNG to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1420,7 +1420,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert WebP to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1508,7 +1508,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert AVIF to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1596,7 +1596,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert HEIC to WebP?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1690,7 +1690,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert TIFF to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1784,7 +1784,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert JPG to AVIF?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1878,7 +1878,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert PNG to AVIF?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1972,7 +1972,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert GIF to WebP?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2066,7 +2066,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert JPG to HEIC?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2154,7 +2154,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert WebP to PNG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2242,7 +2242,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert AVIF to PNG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2330,7 +2330,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Is Picmal free to convert GIF to JPG?",
         answer:
-          "Picmal is a one-time purchase of $29 — no subscription. Download to explore the interface. 14-day money-back guarantee included.",
+          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [

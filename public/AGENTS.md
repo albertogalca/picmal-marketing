@@ -61,6 +61,6 @@ picmal-cli convert -i photo.jpg -f jpg --strip-metadata --json
 
 - macOS only, macOS 13 Ventura or later. Apple silicon and Intel.
 - One-time purchase: $29 (1 Mac), $39 (2), $89 (5), $149 (10). Lifetime license, free updates, no subscription.
-- No free trial. The download is the full app; a license is needed to process files.
+- 7-day free trial, started from inside the app. The download is the full app; after the trial a license is needed to process files.
 - 40% student discount on a verified school email. Purchasing-power pricing applied automatically by country. 14-day money-back guarantee.
 - 100% offline processing. Picmal has no server to send files to.

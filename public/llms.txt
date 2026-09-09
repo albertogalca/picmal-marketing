@@ -77,7 +77,7 @@ https://picmal.app/docs/cli
 
 ## Pricing
 
-One-time purchase with lifetime license. No subscription required. No free trial: the download is the full app, and a license is required to process files.
+One-time purchase with lifetime license. No subscription required. 7-day free trial, started from inside the app: the download is the full app, and after the trial a license is required to process files.
 
 One license, priced by how many Macs it activates on. Same features at every tier.
 

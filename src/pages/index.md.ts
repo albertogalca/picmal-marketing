@@ -29,8 +29,8 @@ download, wait. Picmal means drag, click, done.
 One-time purchase, lifetime license, free updates, no subscription. Priced by
 how many Macs it activates on: $29 for 1, $39 for 2, $89 for 5, $149 for 10.
 40% student discount, purchasing-power pricing by country, 14-day money-back
-guarantee. There is no free trial: the download is the full app and needs a
-license to process files.
+guarantee. The download is the full app with a 7-day free trial, started from
+inside the app. After that it needs a license to process files.
 
 Machine-readable pricing: https://picmal.app/pricing.md
 

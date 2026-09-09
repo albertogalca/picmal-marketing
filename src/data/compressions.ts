@@ -78,7 +78,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is JPG compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -180,7 +180,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is PNG compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -282,7 +282,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is GIF compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -384,7 +384,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is WebP compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -486,7 +486,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is TIFF compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -588,7 +588,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is AVIF compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -701,7 +701,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Is PDF compression free with Picmal?",
         answer:
-          "Picmal requires a one-time purchase of $29. No subscription fees. 14-day money-back guarantee.",
+          "Picmal is free for 7 days, then a one-time purchase of $29. No subscription fees. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [

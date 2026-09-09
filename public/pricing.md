@@ -57,7 +57,7 @@ Every license includes: every feature, no add-ons. Free updates forever. Command
 
 ## Purchase
 - Buy: https://picmal.app
-- Free download (full app, no trial period; a license is required to process files): https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg
+- Free download (full app, 7-day trial started from inside the app; after that a license is required to process files): https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg
 - Support: support@picmal.app
 
 ## Affiliate Program

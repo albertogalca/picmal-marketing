@@ -285,7 +285,7 @@ function buildFaqs(
   faqs.push({
     question: `Is converting ${from.name} to ${to.name} free?`,
     answer:
-      "Picmal is a one-time purchase of $29 — no subscription, no per-file limits, no watermark. Download to explore the interface; 14-day money-back guarantee.",
+      "Picmal is free for 7 days, then a one-time purchase of $29: no subscription, no per-file limits, no watermark. 14-day money-back guarantee after you buy.",
   });
 
   return faqs;

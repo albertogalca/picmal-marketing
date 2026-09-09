@@ -29,6 +29,10 @@ const features: {
   description: string;
   modalId?: string;
 }[] = [
+  // Nine, not nineteen (Sep 2026). The grid had grown one row per release
+  // until "these are the essentials" was a lie: six rows of icon-and-blurb
+  // that a cold arrival scrolled past. Each block now names a job, and the
+  // tools that serve it share the block. The docs still list every tool.
   {
     icon: "ph:selection-plus-duotone",
     title: "Convert between formats",
@@ -42,14 +46,14 @@ const features: {
     modalId: "open-compress-formats-modal-bento",
   },
   {
-    icon: "ph:file-dashed-duotone",
-    title: "Split and organize PDFs",
-    description: "Break a PDF apart, or drag pages around to reorder, rotate, and delete. Your documents never leave your Mac.",
+    icon: "ph:file-pdf-duotone",
+    title: "Split, combine and organize PDFs",
+    description: "Break a PDF apart, merge a stack into one, drag pages to reorder, or turn a folder of photos into a PDF. Your documents never leave your Mac.",
   },
   {
     icon: "ph:film-strip-duotone",
-    title: "Combine videos",
-    description: "Stitch a pile of clips into one video. Drag to reorder, pick the format, export in a single pass.",
+    title: "Combine, download and watermark videos",
+    description: "Stitch clips into one video, paste a link to fetch a clip, or stamp a logo over a preview while it converts.",
   },
   {
     icon: "ph:waveform-duotone",
@@ -57,58 +61,14 @@ const features: {
     description: "Join tracks into one file, or split a long recording by its chapters. Podcasts and audiobooks, sorted.",
   },
   {
-    icon: "ph:images-duotone",
-    title: "Images to PDF",
-    description: "Turn a folder of photos into a multi-page PDF. A4, Letter, or custom, with a password if you want one.",
-  },
-  {
-    icon: "ph:file-pdf-duotone",
-    title: "Combine PDFs",
-    description: "Merge a stack of PDFs into one file. Put the pages in the right order, set the size, and save it out.",
-  },
-  // Added Sep 2026 after 1.8.7. Download Video and Crop are that release; the
-  // rest were already shipping and had simply never made it onto the home page.
-  // They sit above the workflow/CLI pair on purpose: those two answer "how does
-  // it fit my day", which only lands once the reader knows what the app does.
-  {
-    icon: "ph:download-simple-duotone",
-    title: "Download videos from the web",
-    description: "Paste a link and Picmal fetches the clip. Sites hand out AV1 and VP9 that QuickTime refuses to open, so it rewraps them to play on your Mac.",
-  },
-  {
     icon: "ph:crop-duotone",
-    title: "Crop images and PDFs",
-    description: "Type the margin to trim off each edge, or let auto-trim strip a solid border for you. PDF pages keep their text, links and forms.",
+    title: "Crop, cut out and trace images",
+    description: "Trim margins, lift a subject onto a transparent PNG with on-device Vision, trace a logo to real SVG paths, or build a full icon set from one image.",
   },
   {
     icon: "ph:folder-open-duotone",
     title: "Watch a folder",
     description: "Point Picmal at a folder and whatever lands in it gets converted, compressed, or built into a PDF on its own. Set it once.",
-  },
-  {
-    icon: "ph:scissors-duotone",
-    title: "Remove backgrounds",
-    description: "Cut the subject out onto a transparent PNG with Apple's on-device Vision framework. No credits to buy, no upload, no watermark.",
-  },
-  {
-    icon: "ph:bezier-curve-duotone",
-    title: "Trace to SVG",
-    description: "Vectorize turns a logo or a piece of line art into real paths, not a bitmap wrapped in an SVG. Scale it as far as you like.",
-  },
-  {
-    icon: "ph:squares-four-duotone",
-    title: "App icons",
-    description: "One image in, a macOS .icns, a Windows .ico and an Xcode-ready iOS set out. Art that isn't square is fit without cropping.",
-  },
-  {
-    icon: "ph:drop-duotone",
-    title: "Watermark videos",
-    description: "Stamp a logo or a PNG over a clip while it converts. Useful for marking a preview as a draft before it leaves your Mac.",
-  },
-  {
-    icon: "ph:clipboard-text-duotone",
-    title: "Optimize your clipboard",
-    description: "Copy a screenshot and Picmal compresses it in the background, so the version you paste is already the lighter one.",
   },
   {
     icon: "ph:map-pin-duotone",
@@ -118,12 +78,7 @@ const features: {
   {
     apps: workflowApps,
     title: "Fits your workflow",
-    description: "Finder, Shortcuts, and Raycast. A conversion is never more than a right-click away.",
-  },
-  {
-    icon: "ph:terminal-window-duotone",
-    title: "Picmal CLI",
-    description: "Script it, drop it in a cron job, or hand it to a coding agent. The same engine as the app, right from your terminal.",
+    description: "Finder, Shortcuts, Raycast, a command line tool, and a clipboard that compresses screenshots as you copy them. A conversion is never more than a right-click away.",
   },
 ];
 ---

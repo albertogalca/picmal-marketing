@@ -1,14 +1,13 @@
 ---
 export const faqs = [
+  // Eight, down from thirteen (Sep 2026). The license question folded into the
+  // trial one, "internet connection" into "where are my files processed",
+  // "compress videos and audio" into "compress without converting", and the
+  // resize and PDF questions went: the feature grid above answers both.
   {
     question: "Is there a free trial?",
     answer:
-      "Yes. Download the app and press Try free: 7 days with every tool, on that Mac, no card and no account. After that it's $29 once. And if you buy and it's not for you, email support@picmal.app within 14 days for a full refund.",
-  },
-  {
-    question: "Do I need to buy a license to use Picmal?",
-    answer:
-      "After the 7-day trial, yes. Buy once, paste the key in, and it's yours: no recurring fees, no expiration.",
+      "Yes. Download the app and press Try free: 7 days with every tool, on that Mac, no card and no account. After that it's $29 once, paste the key in and it's yours, no recurring fees. And if it's not for you, email support@picmal.app within 14 days for a full refund.",
   },
   {
     question: "Is Picmal available for Windows or Linux?",
@@ -20,24 +19,9 @@ export const faqs = [
       "Over 100. On the image side: JPEG, PNG, WebP, AVIF, HEIC, PSD, RAW, SVG, PDF, and more. Video: MP4, MOV, AVI, MKV, WebM, and others. Audio: MP3, WAV, AAC, FLAC, OGG, OPUS, plus a bunch more.",
   },
   {
-    question: "Can I resize images in Picmal?",
-    answer:
-      "Yes. Six modes: by percentage, fixed width, fixed height, max dimensions, exact dimensions, or max file size. You can resize, convert, and compress in one pass.",
-  },
-  {
-    question: "Can Picmal work with PDFs?",
-    answer:
-      "Yes. Combine multiple PDFs into one with drag-to-reorder pages, turn a batch of images into a multi-page PDF (A4, Letter, or custom, with an optional password), and compress or rasterize PDFs. All offline.",
-  },
-  {
-    question: "Can I compress videos and audio files?",
-    answer:
-      "Yes. Images compress in JPEG, PNG, WebP, GIF, SVG, TIFF, HEIC, AVIF, and PDF. Videos use H.264, audio uses AAC. You control the quality slider so you decide the tradeoff between size and fidelity.",
-  },
-  {
     question: "Where are my files processed?",
     answer:
-      "On your Mac. Nothing gets uploaded. Your files never leave your machine.",
+      "On your Mac. Nothing gets uploaded, and once it's installed Picmal runs entirely offline.",
   },
   {
     question: "Can I convert multiple files at once?",
@@ -47,21 +31,17 @@ export const faqs = [
   {
     question: "Can I compress without converting?",
     answer:
-      "Yes. Pick compression, adjust the quality slider, and the file stays in its original format — just smaller.",
+      "Yes. Pick Compress, set the quality slider, and the file stays in its original format, just smaller. Images, video (H.264), audio (AAC) and PDFs.",
   },
   {
     question: "Can I remove metadata from my files?",
     answer:
-      "Yes. Picmal strips metadata from images — GPS coordinates, camera info, timestamps, all of it. Smaller files, less data floating around.",
+      "Yes. Picmal strips GPS coordinates, camera info and timestamps from images. Smaller files, less data floating around.",
   },
   {
     question: "What macOS versions are supported?",
     answer:
       "macOS 15.0 (Sequoia) or later. Runs natively on Apple Silicon and works fine on Intel Macs too. If you're on an older version, update macOS to install the latest Picmal.",
-  },
-  {
-    question: "Do I need an internet connection to use Picmal?",
-    answer: "Not after you install it. Picmal runs entirely offline.",
   },
 ];
 

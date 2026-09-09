@@ -25,7 +25,7 @@ The local, private, pay-once Mac app for media conversion and compression: every
 
 ## Conversion & proof
 
-- Primary CTA: Download (the full DMG) and Buy for $29 (Stripe). There is no free trial; "Download" is the complete app, "$29" is the one-time purchase for one Mac, and there is a 14-day refund for anyone it does not suit.
+- Primary CTA: Buy for $29 (Stripe), with Try free for 7 days beside it (Sep 2026). "Download" is the complete app and runs every tool for 7 days on that Mac, started from a button inside the app; "$29" is the one-time purchase for one Mac, and there is a 14-day refund for anyone it does not suit.
 - Pricing is a seat ladder, not one price: $29 / $39 / $89 / $149 for 1, 2, 5 and 10 Macs. The site quotes $29 everywhere because it is the entry price and the picker climbs from it. Moving up a tier costs the difference on the same license key. Students get 40% off with a verified school email, and checkout adjusts for purchasing power by country.
 - Secondary CTA, for visitors not ready to commit: watch the inline demo video and browse the supported-formats list, so they can see it work before downloading.
 - The line a visitor remembers after 10 seconds: files never leave your Mac, and you pay once.

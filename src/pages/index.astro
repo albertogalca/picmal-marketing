@@ -136,10 +136,10 @@ const SITE_DESCRIPTION =
   </Section>
 
   <!-- Testimonials -->
+  {/* No trust bar here: the hero already shows the faces and the count, and
+      the wall of quotes below is the answer to the question. */}
   <MasonryTestimonials
     heading="Tired of uploading your files to a website, waiting, then downloading them again?"
-    showTrustBar={true}
-    trustSuffix=" Mac users felt the same"
   />
 
   <!-- Features -->
@@ -148,17 +148,9 @@ const SITE_DESCRIPTION =
   <!-- Pricing -->
   <PricingSection />
 
-  <!-- Second featured review, placed right after the price: this is where
-       "is this a legit app?" gets asked, so an outside voice answers it.
-
-       Padding is deliberately tighter than Section's py-16 sm:py-20. This
-       is one centered quote between PricingSection and FounderLetter, both
-       of which bring their own full rhythm, so the default left ~250px of
-       empty page on each side and the section read as "the page ended".
-       An interstitial gets interstitial spacing. -->
-  <Section id="press" width="default" class="py-8 sm:py-10">
-    <FeaturedReview publication="TheSweetBits" />
-  </Section>
+  {/* The second press quote (TheSweetBits, after the price) is gone. One
+      outlet in the hero plus thirty user quotes already answer "is this a
+      legit app?"; a second five-star card in the same shape was a repeat. */}
 
   <!-- Founder letter -->
   <FounderLetter />

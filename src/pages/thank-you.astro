@@ -55,7 +55,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
         text="Download Picmal (.dmg)"
         class="w-full sm:w-auto"
         onclick={import.meta.env.PROD
-          ? "window.seline?.track('download_dmg')"
+          ? "window.seline?.track('download_dmg', { source: 'thank_you' })"
           : undefined}
       />
       <p class="mt-2 text-small text-text-secondary">

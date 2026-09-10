@@ -124,7 +124,7 @@ const tierData = TIERS.map((t) => ({
       target="_self"
       class="w-full mt-3"
       onclick={import.meta.env.PROD
-        ? "window.seline?.track('download_clicked', { source: 'pricing' })"
+        ? "window.seline?.track('trial_clicked', { source: 'pricing' })"
         : undefined}
     />
 

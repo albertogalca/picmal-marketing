@@ -3,6 +3,19 @@
     <channel>
         <title>Picmal</title>
         <item>
+            <title>1.9.0</title>
+            <pubDate>Thu, 10 Sep 2026 07:08:19 +0200</pubDate>
+            <link>https://picmal.app/</link>
+            <sparkle:version>122</sparkle:version>
+            <sparkle:shortVersionString>1.9.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/albertogalca/picmal-releases/releases/download/v1.9.0/Picmal.dmg" length="125543945" type="application/octet-stream" sparkle:edSignature="BNSuWtKwlWzoe7G20nb4cPtGFjAErKQpyuM8b7gLzEdRdJbWSiEGAjhgVuZkTl3VZ9vp9PlZCHJ87VBxJ7VDBA=="/>
+        <description><![CDATA[<div><h3>New Features</h3>
+<ul>
+<li><strong>Try Picmal free for 7 days.</strong> Open the app, press Try free in the sidebar, and every tool runs on that Mac for a week: no key, no card, no account. The trial belongs to the Mac, so a reinstall picks up the same one, and when it ends the Buy button is right there. The command line, Shortcuts, Raycast and watched folders still need a license.</li>
+</ul></div>]]></description>
+        </item>
+        <item>
             <title>1.8.9</title>
             <pubDate>Mon, 07 Sep 2026 18:21:05 +0200</pubDate>
             <link>https://picmal.app/</link>

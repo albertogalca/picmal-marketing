@@ -60,8 +60,10 @@ const priceLine =
 //
 // The 7-day trial (Sep 2026) changed what a download is: the app now converts
 // for a week before it asks for a key. So a second button is back beside the
-// buy button, secondary style, pointing at /download. The download_clicked
-// event carries source: 'hero' so the funnel can tell it from the footer.
+// buy button, secondary style, pointing at /download. It fires trial_clicked
+// with source: 'hero', kept apart from the old download_clicked history so the
+// trial funnel starts clean: trial_clicked -> download_dmg (source:
+// 'download_page'), against download_dmg (source: 'thank_you') for buyers.
 //
 // The faces sit on the button row, not under it (Sep 2026). "Other Mac users
 // trust it" is the last step of the belief ladder and it used to wait for the
@@ -91,7 +93,7 @@ const priceLine =
       target="_self"
       class="w-full sm:w-auto whitespace-nowrap"
       onclick={import.meta.env.PROD
-        ? `window.seline?.track('download_clicked', { source: '${source}' })`
+        ? `window.seline?.track('trial_clicked', { source: '${source}' })`
         : undefined}
     />
     <TrustBar align="start" count={6} />

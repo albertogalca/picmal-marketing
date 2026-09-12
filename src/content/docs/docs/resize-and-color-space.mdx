@@ -1,6 +1,6 @@
 ---
 title: Resize and color space
-description: Resize images and adjust color space during conversion or compression in Picmal — six resize modes plus sRGB, Display P3, and Rec. 2020 control.
+description: Resize images and adjust color space during conversion or compression in Picmal, six resize modes plus sRGB, Display P3, and Rec. 2020 control.
 ---
 
 ## Image resize
@@ -12,17 +12,17 @@ Turn on resizing to change image dimensions. The same settings apply in both **C
 | Percentage       | Scale by a percentage of the original size                                                   | 50%            |
 | Fixed Width      | Set a specific width; height adjusts to maintain aspect ratio                                | 1920 px        |
 | Fixed Height     | Set a specific height; width adjusts to maintain aspect ratio                                | 1080 px        |
-| Max Dimensions   | Constrain to maximum width and height — image is scaled down only if it exceeds either limit | 1920 x 1080 px |
+| Max Dimensions   | Constrain to maximum width and height, image is scaled down only if it exceeds either limit | 1920 x 1080 px |
 | Exact Dimensions | Resize to an exact width and height                                                          | 1920 x 1080 px |
 | Max File Size    | Scale the image down just enough to fit a target file size                                   | 500 KB         |
 
 ### Max File Size
 
-Type a target size (in KB or MB) and Picmal scales each image down until it fits. It searches for the largest size that still lands under your budget, so you keep as much detail as possible. Images already under the target are left at full size. This mode is for images only — it isn't available for audio or video.
+Type a target size (in KB or MB) and Picmal scales each image down until it fits. It searches for the largest size that still lands under your budget, so you keep as much detail as possible. Images already under the target are left at full size. This mode is for images only. It isn't available for audio or video.
 
 ### Trim borders
 
-Turn on **Trim borders** and Picmal removes a solid-color border from each image before it's resized and encoded — the white space around a screenshot, the black bars around an exported logo. It reads the corner color and trims what matches, with a 5% tolerance for backgrounds that aren't perfectly uniform.
+Turn on **Trim borders** and Picmal removes a solid-color border from each image before it's resized and encoded, the white space around a screenshot, the black bars around an exported logo. It reads the corner color and trims what matches, with a 5% tolerance for backgrounds that aren't perfectly uniform.
 
 It applies in both Convert and Compress, and to images only. For another tolerance, for a specific margin, or for PDFs, use the [Crop](/docs/crop) tool.
 

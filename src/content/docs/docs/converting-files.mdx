@@ -1,6 +1,6 @@
 ---
 title: Converting Files
-description: Convert images, audio, and video between formats on macOS — HEIC to JPEG, WAV to MP3, MOV to MP4, and more, all in batch.
+description: Convert images, audio, and video between formats on macOS. HEIC to JPEG, WAV to MP3, MOV to MP4, and more, all in batch.
 ---
 
 Convert mode changes a file from one format to another. For example, HEIC to JPEG, WAV to MP3, or MOV to MP4.
@@ -28,7 +28,7 @@ After converting a file, click the screen icon on any processed file to open an 
 
 ## Same-format conversions
 
-You can convert a file to the same format it's already in. Every format lists itself as a target, though it's never the default pick. This is useful for resampling audio (for example, FLAC to FLAC at a different sample rate) without changing the codec, and for re-encoding an image at your compression quality — a WebP to WebP pass shrinks the file instead of pushing it out to PNG or JPG. Video works the same way: MP4 to MP4 lets you change codec, resolution, or frame rate without leaving the container you started in. Because a same-format pass with compression off can only leave the file the same size or bigger, Picmal always compresses these. Same-format conversions follow your convert naming pattern (default `{original}_converted`), so the output lands beside the original instead of overwriting it. Adjust the pattern, prefix, or suffix in **Settings → Output**; see [output and naming](/docs/output-and-naming).
+You can convert a file to the same format it's already in. Every format lists itself as a target, though it's never the default pick. This is useful for resampling audio (for example, FLAC to FLAC at a different sample rate) without changing the codec, and for re-encoding an image at your compression quality, a WebP to WebP pass shrinks the file instead of pushing it out to PNG or JPG. Video works the same way: MP4 to MP4 lets you change codec, resolution, or frame rate without leaving the container you started in. Because a same-format pass with compression off can only leave the file the same size or bigger, Picmal always compresses these. Same-format conversions follow your convert naming pattern (default `{original}_converted`), so the output lands beside the original instead of overwriting it. Adjust the pattern, prefix, or suffix in **Settings → Output**; see [output and naming](/docs/output-and-naming).
 
 ## Apple icon files
 
@@ -62,7 +62,7 @@ Picmal converts within the same media type:
 - **Audio → Audio** (e.g., WAV → MP3, FLAC → AAC)
 - **Video → Video** (e.g., MOV → MP4, AVI → WebM)
 
-You can also extract audio from video — for example, MP4 to MP3.
+You can also extract audio from video, for example, MP4 to MP3.
 
 ## Metadata control
 
@@ -80,20 +80,20 @@ Picmal spells out this trade-off under the picker as you choose, so stripping ne
 
 Add your own ownership details to every image you export. Open **Settings → General → Copyright & ownership** and fill in any of these fields:
 
-- **Copyright notice** — e.g. `© 2026 Jane Doe`
-- **Artist / Creator** — the photographer or author
-- **Credit** — attribution or photo credit
-- **Contact / URL** — a website, email, or phone number
+- **Copyright notice**: e.g. `© 2026 Jane Doe`
+- **Artist / Creator**: the photographer or author
+- **Credit**: attribution or photo credit
+- **Contact / URL**: a website, email, or phone number
 
 Picmal writes them into the standard EXIF, IPTC, and XMP fields, so other apps (Photos, Lightroom, Finder's Get Info, stock libraries) read them back. Values you enter always overwrite whatever was on the original.
 
-You only enter this once — Picmal saves it as your default profile and reuses it on every export. Use the **Add my copyright to exported images** switch to turn it on or off without clearing the fields.
+You only enter this once. Picmal saves it as your default profile and reuses it on every export. Use the **Add my copyright to exported images** switch to turn it on or off without clearing the fields.
 
-This works in every metadata mode — including **Strip all**. Strip removes the camera, GPS, and other identifying data, then Picmal stamps your copyright back on, so the output carries only your ownership info and nothing else. To embed copyright on the command line, see the [`--copyright`/`--artist` flags](/docs/cli#convert).
+This works in every metadata mode, including **Strip all**. Strip removes the camera, GPS, and other identifying data, then Picmal stamps your copyright back on, so the output carries only your ownership info and nothing else. To embed copyright on the command line, see the [`--copyright`/`--artist` flags](/docs/cli#convert).
 
 ### Inspecting metadata
 
-Click the ⓘ button next to a file to see its metadata. Before converting it shows the original. Once a file finishes, the popover gains an **Original / Result** switch and opens on **Result** — the metadata actually written to the output — so you can confirm at a glance that your copyright landed and that camera and location data came off. The button appears even when the original had no metadata, so copyright you added is always verifiable.
+Click the ⓘ button next to a file to see its metadata. Before converting it shows the original. Once a file finishes, the popover gains an **Original / Result** switch and opens on **Result** (the metadata actually written to the output) so you can confirm at a glance that your copyright landed and that camera and location data came off. The button appears even when the original had no metadata, so copyright you added is always verifiable.
 
 ### RAW photos
 

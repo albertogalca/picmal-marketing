@@ -5,11 +5,11 @@ import H2 from "./H2.astro";
 import Paragraph from "./Paragraph.astro";
 
 /**
- * SectionHeading — the single heading-block primitive for every section header
+ * SectionHeading, the single heading-block primitive for every section header
  * on the site. Adapts to its position:
  *   - `level`  1 for the page hero (renders H1), 2 for sections (default, H2)
  *   - `align`  "center" (default) or "left"
- *   - sublead  a supporting lead line — pass the `sublead` string, or use the
+ *   - sublead  a supporting lead line, pass the `sublead` string, or use the
  *              named `sublead` slot when it needs links/markup
  * Margins are baked in (block `mb-12`, heading `mb-4`); override per position
  * with `class` (wrapper), `headingClass`, and `subleadClass`.

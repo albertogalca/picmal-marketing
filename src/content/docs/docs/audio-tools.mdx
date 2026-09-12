@@ -1,20 +1,20 @@
 ---
 title: Audio tools
-description: Merge audio files into one and split chaptered audiobooks into per-chapter files on your Mac — reorder, choose the output format, and build M4B audiobooks with chapters.
+description: Merge audio files into one and split chaptered audiobooks into per-chapter files on your Mac, reorder, choose the output format, and build M4B audiobooks with chapters.
 ---
 
-Picmal's sidebar has an **Audio** section for working with audio files as a whole, rather than converting them one by one. **Merge Audio** joins several files into a single track — and can build a chaptered M4B audiobook — while **Split by Chapter** breaks an audiobook back into one file per chapter. Like everything else in Picmal, both run entirely on your Mac.
+Picmal's sidebar has an **Audio** section for working with audio files as a whole, rather than converting them one by one. **Merge Audio** joins several files into a single track (and can build a chaptered M4B audiobook) while **Split by Chapter** breaks an audiobook back into one file per chapter. Like everything else in Picmal, both run entirely on your Mac.
 
 ## Merge Audio
 
 1. Select **Merge Audio** in the sidebar
 2. Drop two or more audio files into the window
-3. Drag rows to set the order — the list order is the play order
+3. Drag rows to set the order, the list order is the play order
 4. Click **Merge**
 
 ![Merge Audio in Picmal: three audio files queued under the Audio section of the sidebar, with the Audio Options popover showing the output format and name](/images/docs/merge_audio.png)
 
-The merged file is saved next to the first one as `<name> (merged).<ext>`. If that name is taken, Picmal counts up instead of overwriting — `<name> (merged) 2.mp3`, and so on.
+The merged file is saved next to the first one as `<name> (merged).<ext>`. If that name is taken, Picmal counts up instead of overwriting, `<name> (merged) 2.mp3`, and so on.
 
 - Drag rows to reorder; the number on each row is its position in the merged track.
 - Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
@@ -22,11 +22,11 @@ The merged file is saved next to the first one as `<name> (merged).<ext>`. If th
 
 ### Lossless when it can be
 
-When every file in the list already shares the same format, sample rate, and channels, Picmal joins the streams without re-encoding — it's fast and there's no quality loss. Mix formats (say an MP3 and a WAV) and it re-encodes them to the output format instead. Either way you get one continuous track.
+When every file in the list already shares the same format, sample rate, and channels, Picmal joins the streams without re-encoding. It's fast and there's no quality loss. Mix formats (say an MP3 and a WAV) and it re-encodes them to the output format instead. Either way you get one continuous track.
 
 ### Output format
 
-Open **Audio Options** to choose the output format. Leave it on **Same as first file** to keep the first track's format — the setting that keeps a same-format merge lossless — or pick one of MP3, M4A, M4B, AAC, WAV, AIFF, FLAC, OGG, OPUS, or AC3 to convert everything as it merges. Your choice is remembered between sessions.
+Open **Audio Options** to choose the output format. Leave it on **Same as first file** to keep the first track's format (the setting that keeps a same-format merge lossless) or pick one of MP3, M4A, M4B, AAC, WAV, AIFF, FLAC, OGG, OPUS, or AC3 to convert everything as it merges. Your choice is remembered between sessions.
 
 ### Build a chaptered audiobook
 
@@ -52,7 +52,7 @@ The reverse of building an audiobook: take one chaptered file and get one file p
 
 Each chapter is written out as `Book - 01 - Chapter Title`, tagged with its chapter title and track number so it stays in order in your library. Leave the format on the original to split without re-encoding, or pick another format (say MP3) to convert as it splits.
 
-A file with no chapter markers can't be split — Picmal tells you and skips it.
+A file with no chapter markers can't be split. Picmal tells you and skips it.
 
 ## Use it from Shortcuts and the terminal
 

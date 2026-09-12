@@ -19,7 +19,7 @@ export function slugify(input: string): string {
 export function getEntrySlug(entry: ChangelogEntry): string {
   if (entry.data.slug) return entry.data.slug;
   if (entry.data.title) return slugify(entry.data.title);
-  // Bare version numbers make poor, non-descriptive anchors — prefix them.
+  // Bare version numbers make poor, non-descriptive anchors, prefix them.
   return `picmal-${entry.data.version}`;
 }
 

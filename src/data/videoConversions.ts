@@ -7,7 +7,7 @@ export interface VideoFormatInfo {
    * A common name people search instead of the extension, shown in the title
    * and H1. Only set where the alias is what real queries use: "mp4 to
    * quicktime" pulls impressions at position 70 because the word appeared
-   * nowhere but the body copy. Most formats don't need this — nobody searches
+   * nowhere but the body copy. Most formats don't need this, nobody searches
    * "mp4 to matroska video".
    */
   searchAlias?: string;
@@ -101,7 +101,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     extension: "3gp",
     fullName: "3GPP Multimedia",
     description:
-      "A compact format created for older mobile phones. Small files at low quality — usually converted to play on modern devices.",
+      "A compact format created for older mobile phones. Small files at low quality, usually converted to play on modern devices.",
   },
   vob: {
     name: "VOB",
@@ -122,7 +122,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     extension: "hevc",
     fullName: "High Efficiency Video Coding (H.265)",
     description:
-      "Highly efficient H.265 video — about 50% smaller than H.264 at the same quality — but not playable everywhere. Re-wrapping to MP4/H.264 maximizes compatibility.",
+      "Highly efficient H.265 video, about 50% smaller than H.264 at the same quality, but not playable everywhere. Re-wrapping to MP4/H.264 maximizes compatibility.",
   },
   "3g2": {
     name: "3G2",
@@ -143,7 +143,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     extension: "rmvb",
     fullName: "RealMedia Variable Bitrate",
     description:
-      "A variable-bitrate RealMedia variant once popular for downloaded movies and anime. Modern players can't open it — convert to MP4 to play it anywhere.",
+      "A variable-bitrate RealMedia variant once popular for downloaded movies and anime. Modern players can't open it. Convert to MP4 to play it anywhere.",
   },
   bik: {
     name: "BIK",
@@ -157,7 +157,7 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     extension: "gif",
     fullName: "Graphics Interchange Format",
     description:
-      "The universal animated-image format. Plays inline everywhere — chat, email, forums, docs — making it the go-to for short, silent, looping clips.",
+      "The universal animated-image format. Plays inline everywhere (chat, email, forums, docs) making it the go-to for short, silent, looping clips.",
   },
   mp3: {
     name: "MP3",
@@ -195,22 +195,22 @@ const PAIRS: [string, string][] = [
 
 function buildWhyConvert(from: VideoFormatInfo, to: VideoFormatInfo): string {
   if (to.extension === "gif") {
-    return `Need a clip that plays inline everywhere — Slack, Discord, email, docs — with no player and no sound? Converting your ${from.name} video to GIF turns a moment into a looping animation that just works anywhere. Picmal does it locally on your Mac, with control over frame rate and size so the file stays light.`;
+    return `Need a clip that plays inline everywhere (Slack, Discord, email, docs) with no player and no sound? Converting your ${from.name} video to GIF turns a moment into a looping animation that just works anywhere. Picmal does it locally on your Mac, with control over frame rate and size so the file stays light.`;
   }
   if (to.extension === "mp3") {
-    return `Sometimes you only need the audio — a podcast, an interview, a lecture, the music from a clip. Converting ${from.name} to MP3 extracts the sound into a small, universally compatible file you can play anywhere or drop into any app. Picmal pulls the audio out on your Mac, with bitrate control and batch processing.`;
+    return `Sometimes you only need the audio, a podcast, an interview, a lecture, the music from a clip. Converting ${from.name} to MP3 extracts the sound into a small, universally compatible file you can play anywhere or drop into any app. Picmal pulls the audio out on your Mac, with bitrate control and batch processing.`;
   }
   if (to.extension === "mp4") {
-    return `${from.name} files don't play everywhere — ${from.description.split(".")[1]?.trim().toLowerCase() || "compatibility is limited"}. Converting ${from.name} to MP4 (H.264) gives you a video that plays on every device, browser, editor, and platform. Picmal re-encodes locally on your Mac with quality control (CRF) and batch processing — no upload limits, no watermark, no subscription.`;
+    return `${from.name} files don't play everywhere, ${from.description.split(".")[1]?.trim().toLowerCase() || "compatibility is limited"}. Converting ${from.name} to MP4 (H.264) gives you a video that plays on every device, browser, editor, and platform. Picmal re-encodes locally on your Mac with quality control (CRF) and batch processing, no upload limits, no watermark, no subscription.`;
   }
-  return `Convert ${from.name} to ${to.name} on your Mac for the right balance of compatibility, quality, and file size. Picmal re-encodes locally with full control over codec and quality — fast, offline, and private.`;
+  return `Convert ${from.name} to ${to.name} on your Mac for the right balance of compatibility, quality, and file size. Picmal re-encodes locally with full control over codec and quality, fast, offline, and private.`;
 }
 
 function buildBenefits(from: VideoFormatInfo, to: VideoFormatInfo): string[] {
   const common = [
-    "Runs entirely on your Mac — no uploads, no watermark, no file-size limit",
+    "Runs entirely on your Mac, no uploads, no watermark, no file-size limit",
     `Batch convert many ${from.name} files at once`,
-    "One-time $29 — no monthly subscription",
+    "One-time $29, no monthly subscription",
   ];
   if (to.extension === "gif") {
     return [
@@ -260,12 +260,12 @@ function buildFaqs(
       {
         question: `Does converting ${from.name} to MP4 reduce quality?`,
         answer:
-          "Only as much as you choose. Picmal exposes a CRF quality slider — at CRF 18–20 the result is visually lossless. You can also trade quality for a smaller file when you need it.",
+          "Only as much as you choose. Picmal exposes a CRF quality slider, at CRF 18–20 the result is visually lossless. You can also trade quality for a smaller file when you need it.",
       },
       {
         question: "Will the MP4 play on my iPhone, Windows PC, and the web?",
         answer:
-          "Yes. Picmal defaults to H.264 inside an MP4 container — the most universally compatible combination, playable on virtually every device, browser, and editor.",
+          "Yes. Picmal defaults to H.264 inside an MP4 container, the most universally compatible combination, playable on virtually every device, browser, and editor.",
       },
     );
   } else if (to.extension === "gif") {
@@ -273,7 +273,7 @@ function buildFaqs(
       {
         question: `Will the ${from.name} audio be kept in the GIF?`,
         answer:
-          "No — GIF is a silent image format, so the soundtrack is dropped. For a clip that keeps audio, convert to MP4 instead.",
+          "No. GIF is a silent image format, so the soundtrack is dropped. For a clip that keeps audio, convert to MP4 instead.",
       },
       {
         question: "How do I keep the GIF file size down?",
@@ -286,7 +286,7 @@ function buildFaqs(
       {
         question: `Does Picmal keep the video when converting ${from.name} to MP3?`,
         answer:
-          "No — MP3 is audio-only, so the video track is discarded and you get just the sound. Your original file stays untouched.",
+          "No. MP3 is audio-only, so the video track is discarded and you get just the sound. Your original file stays untouched.",
       },
       {
         question: "Can I control the MP3 quality?",
@@ -315,15 +315,15 @@ function buildMetaDescription(
   to: VideoFormatInfo,
 ): string {
   if (to.extension === "gif") {
-    return `Convert ${from.name} to GIF on Mac — turn video clips into looping animations with frame-rate and size control. Batch, offline, no watermark. One-time $29.`;
+    return `Convert ${from.name} to GIF on Mac. Turn video clips into looping animations with frame-rate and size control. Batch, offline, no watermark. One-time $29.`;
   }
   if (to.extension === "mp3") {
-    return `Convert ${from.name} to MP3 on Mac — extract audio from video with bitrate control. Batch process offline, no upload limits. One-time $29, no subscription.`;
+    return `Convert ${from.name} to MP3 on Mac, extract audio from video with bitrate control. Batch process offline, no upload limits. One-time $29, no subscription.`;
   }
-  return `Convert ${from.name} to ${to.name} on Mac — H.264/H.265 with quality control, batch processing, fully offline. No watermark, no file-size limit. One-time $29.`;
+  return `Convert ${from.name} to ${to.name} on Mac. H.264/H.265 with quality control, batch processing, fully offline. No watermark, no file-size limit. One-time $29.`;
 }
 
-/** "MOV" or "MOV (QuickTime)" — see VideoFormatInfo.searchAlias. */
+/** "MOV" or "MOV (QuickTime)". See VideoFormatInfo.searchAlias. */
 export function labelFor(format: VideoFormatInfo): string {
   return format.searchAlias
     ? `${format.name} (${format.searchAlias})`

@@ -25,7 +25,7 @@ const RECOVERY_URL =
 // with the footer form on this page.
 const SUBSCRIBE_ENDPOINT =
   "https://app.loops.so/api/newsletter-form/cmiluz55e9uluzv0ibuw5hwgv";
-// List must be passed explicitly on the POST — the form's Loops "Select a list"
+// List must be passed explicitly on the POST, the form's Loops "Select a list"
 // setting is ignored for raw API submissions.
 const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
 ---
@@ -183,7 +183,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
               // Honeypot: a real user never fills this. Fake success, never hit Loops.
               if (website) {
                 form.reset();
-                msg.textContent = "Thanks — you're on the list.";
+                msg.textContent = "Thanks. You're on the list.";
                 return;
               }
               if (!email) {
@@ -203,7 +203,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
                 const out = await res.json().catch(() => ({}));
                 if (res.ok && out.success) {
                   form.reset();
-                  msg.textContent = "Thanks — you're on the list.";
+                  msg.textContent = "Thanks. You're on the list.";
                   if (import.meta.env.PROD)
                     window.seline?.track("newsletter_subscribed", {
                       source: "post_purchase",

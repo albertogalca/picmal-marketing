@@ -1,9 +1,9 @@
 ---
 title: Metadata
-description: Control exactly what EXIF, GPS, and copyright data stays in your exports with Picmal — strip everything, keep the essentials, or pick category by category, and stamp your own ownership tags on every photo.
+description: Control exactly what EXIF, GPS, and copyright data stays in your exports with Picmal. Strip everything, keep the essentials, or pick category by category, and stamp your own ownership tags on every photo.
 ---
 
-Every photo carries hidden data: where it was taken, what camera shot it, the date, serial numbers, and more. Picmal lets you decide exactly how much of that travels with your exports — strip it all for privacy, keep it all for your archive, or choose category by category. You can also stamp your own copyright onto every file, even while stripping everything else.
+Every photo carries hidden data: where it was taken, what camera shot it, the date, serial numbers, and more. Picmal lets you decide exactly how much of that travels with your exports. Strip it all for privacy, keep it all for your archive, or choose category by category. You can also stamp your own copyright onto every file, even while stripping everything else.
 
 The metadata controls live in **Settings → General**, under the **Metadata** and **Copyright & ownership** sections. Whatever you pick applies to both Convert and Compress, and to images, audio, and video.
 
@@ -16,7 +16,7 @@ Pick one of four modes:
 | Strip all metadata     | Smallest files. Removes the original's camera, date, location, and copyright info.            |
 | Keep essential only    | Keeps orientation, color profile, and copyright; drops location and serial numbers.           |
 | Keep all metadata      | Preserves all of the original's metadata.                                                     |
-| Choose what to keep…   | Custom mode — pick exactly which categories survive (see below).                              |
+| Choose what to keep…   | Custom mode. Pick exactly which categories survive (see below).                              |
 
 Stripping metadata makes files smaller and protects your privacy. Keeping it is useful for archiving, attribution, and keeping a photo's camera and capture details intact.
 
@@ -41,12 +41,12 @@ The most common privacy combo: keep camera, date, and color profile, but uncheck
 
 Fill in the **Copyright & ownership** fields once and Picmal stamps them into every export across EXIF, IPTC, and XMP:
 
-- **Copyright notice** — e.g. `© 2026 Jane Doe`
+- **Copyright notice**: e.g. `© 2026 Jane Doe`
 - **Artist / Creator**
 - **Credit**
 - **Contact / URL**
 
-Your copyright is written **even when you're stripping everything else** — the camera and location data come off, your ownership tags stay on. Type it once; it's saved and reused on every export. Toggle **Add my copyright to exported images** off to keep your details on file without applying them.
+Your copyright is written **even when you're stripping everything else**, the camera and location data come off, your ownership tags stay on. Type it once; it's saved and reused on every export. Toggle **Add my copyright to exported images** off to keep your details on file without applying them.
 
 ## RAW photos
 
@@ -56,11 +56,11 @@ When you convert RAW files (NEF, CR2, ARW, RAF, DNG and more), Picmal carries yo
 
 ## Check what landed
 
-After a file finishes, click the **ⓘ** button in the Size column. It opens on **Result** with an Original / Result switch, so you can confirm at a glance that your copyright landed and the camera and location data came off — even on files that started with no metadata at all.
+After a file finishes, click the **ⓘ** button in the Size column. It opens on **Result** with an Original / Result switch, so you can confirm at a glance that your copyright landed and the camera and location data came off, even on files that started with no metadata at all.
 
 ## Related settings
 
-- [Orientation](/docs/resize-and-color-space#orientation) — Auto-fix physically rotates pixels and removes the orientation tag.
-- [Color space and DPI](/docs/resize-and-color-space) — covers the ICC color profile that the Color profile category preserves.
-- [Output and naming](/docs/output-and-naming) — rename exports from their EXIF metadata using `{camera}`, `{iso}`, `{date}` and other tokens.
-- [Command line (CLI)](/docs/cli#metadata) — the same controls as `--metadata`, `--keep`, `--strip`, and the `--copyright` flags.
+- [Orientation](/docs/resize-and-color-space#orientation). Auto-fix physically rotates pixels and removes the orientation tag.
+- [Color space and DPI](/docs/resize-and-color-space), covers the ICC color profile that the Color profile category preserves.
+- [Output and naming](/docs/output-and-naming). Rename exports from their EXIF metadata using `{camera}`, `{iso}`, `{date}` and other tokens.
+- [Command line (CLI)](/docs/cli#metadata), the same controls as `--metadata`, `--keep`, `--strip`, and the `--copyright` flags.

@@ -1,6 +1,6 @@
 ---
 title: PDF tools
-description: Combine PDFs into one, split a PDF by page range, turn images into multi-page PDFs, and reorder or delete pages inside a PDF — locally, with reorderable pages, page sizes, and optional password protection.
+description: Combine PDFs into one, split a PDF by page range, turn images into multi-page PDFs, and reorder or delete pages inside a PDF, locally, with reorderable pages, page sizes, and optional password protection.
 ---
 
 Picmal's sidebar has a **PDF** section with four tools: **Combine PDFs** merges documents into one, **Split PDF** breaks one document into several, **Images to PDF** turns a set of images into a multi-page PDF, and **Organize Pages** reorders and deletes pages inside a single PDF. All run entirely on your Mac, like everything else in Picmal.
@@ -9,12 +9,12 @@ Picmal's sidebar has a **PDF** section with four tools: **Combine PDFs** merges 
 
 1. Select **Combine PDFs** in the sidebar
 2. Drop two or more PDFs into the window
-3. Drag rows to set the page order — the list order is the document order
+3. Drag rows to set the page order, the list order is the document order
 4. Click **Combine**
 
 ![Combine PDFs in Picmal: two PDFs queued under the PDF section of the sidebar, with the PDF Options popover naming the output file](/images/docs/combine_pdf.png)
 
-The merged file is saved next to the first PDF as `<name> (combined).pdf`. If that name is taken, Picmal counts up instead of overwriting — `<name> (combined) 2.pdf`, and so on.
+The merged file is saved next to the first PDF as `<name> (combined).pdf`. If that name is taken, Picmal counts up instead of overwriting, `<name> (combined) 2.pdf`, and so on.
 
 - Drag rows to reorder; the number on each row is its position in the merged document.
 - Select rows and press Delete to remove them, or right-click for **Remove** / **Show in Finder**.
@@ -43,7 +43,7 @@ Ranges are written 1-based, separated by commas. So `1-3, 5, 8-` makes three fil
 | `8-`    | Page 8 to the last page  |
 | `-3`    | The first page through 3 |
 
-Leave the field blank to **split every page into its own PDF** — handy for bursting a scanned batch back into separate documents.
+Leave the field blank to **split every page into its own PDF**, handy for bursting a scanned batch back into separate documents.
 
 - Drop several PDFs at once and each is split by the same ranges.
 - Locked PDFs show an orange lock badge and block the split. Unlock them in Preview first, then re-add.
@@ -51,7 +51,7 @@ Leave the field blank to **split every page into its own PDF** — handy for bur
 ## Images to PDF
 
 1. Select **Images to PDF** in the sidebar
-2. Drop your images in — each image becomes one page
+2. Drop your images in, each image becomes one page
 3. Drag rows to set the page order
 4. Pick a page size, and adjust quality or add a password in the options popover
 5. Click **Create PDF**
@@ -60,13 +60,13 @@ Leave the field blank to **split every page into its own PDF** — handy for bur
 
 The PDF is saved next to the first image as `<name>.pdf`, uniquified the same way.
 
-Accepted inputs are the formats macOS decodes natively: JPEG, PNG, HEIC/HEIF, TIFF, GIF, BMP, WebP, AVIF, JPEG 2000, and JPEG XL. Sideways photos from iPhones render upright — EXIF orientation is applied automatically.
+Accepted inputs are the formats macOS decodes natively: JPEG, PNG, HEIC/HEIF, TIFF, GIF, BMP, WebP, AVIF, JPEG 2000, and JPEG XL. Sideways photos from iPhones render upright. EXIF orientation is applied automatically.
 
 ### Page sizes
 
 | Option       | Behavior                                                              |
 | ------------ | --------------------------------------------------------------------- |
-| Fit to Image | Each page exactly wraps its image — no borders, no scaling. Default. |
+| Fit to Image | Each page exactly wraps its image, no borders, no scaling. Default. |
 | A4           | Standard A4, auto-rotated to match each image's orientation.          |
 | US Letter    | Standard Letter, auto-rotated the same way.                           |
 | Custom…      | Your own size in millimeters (10–2000 mm per side).                  |
@@ -79,7 +79,7 @@ Images are embedded as JPEG at the quality you choose (40–100%, default 85%). 
 
 ### Password protection
 
-Type a password in the options popover and the PDF requires it to open. The password is kept for the current session only — Picmal never stores it on disk.
+Type a password in the options popover and the PDF requires it to open. The password is kept for the current session only. Picmal never stores it on disk.
 
 ## Organize Pages
 
@@ -92,15 +92,15 @@ Type a password in the options popover and the PDF requires it to open. The pass
 
 Each page shows up as a thumbnail in a list. Drag to reorder, select pages and press Delete (or right-click) to remove them, and click any thumbnail to preview it full-size. The saved PDF keeps only the pages you left, in the order you set.
 
-Unlike the other three tools, Organize Pages is available in the app only for now — there's no Finder, Shortcuts, or command-line equivalent yet.
+Unlike the other three tools, Organize Pages is available in the app only for now. There's no Finder, Shortcuts, or command-line equivalent yet.
 
 ## Cropping a PDF
 
-Trimming margins off a document isn't one of these four tools either — use [Crop](/docs/crop). Type the millimeters to take off each edge and Picmal writes a cropped copy next to the original. The text stays selectable and the links keep working; only the page size changes.
+Trimming margins off a document isn't one of these four tools either. Use [Crop](/docs/crop). Type the millimeters to take off each edge and Picmal writes a cropped copy next to the original. The text stays selectable and the links keep working; only the page size changes.
 
 ## Making a PDF smaller
 
-Shrinking a PDF isn't one of these four tools — drop the file into **Compress** instead. Picmal re-encodes only the images inside the document, so text stays selectable and vector graphics stay sharp. Scans get their images downsampled as well, which is what makes a 25 MB scan come out around 2 MB; that route rebuilds the document, so if yours has links or bookmarks Picmal warns you on the row. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
+Shrinking a PDF isn't one of these four tools. Drop the file into **Compress** instead. Picmal re-encodes only the images inside the document, so text stays selectable and vector graphics stay sharp. Scans get their images downsampled as well, which is what makes a 25 MB scan come out around 2 MB; that route rebuilds the document, so if yours has links or bookmarks Picmal warns you on the row. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
 
 ## Use them from Finder, Shortcuts, and the terminal
 

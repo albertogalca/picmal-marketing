@@ -1,6 +1,6 @@
 ---
 title: Audio and video
-description: Audio and video conversion settings in Picmal — codecs, bitrates, and quality presets for compressing MP3, AAC, MP4, MOV, and more on Mac.
+description: Audio and video conversion settings in Picmal, codecs, bitrates, and quality presets for compressing MP3, AAC, MP4, MOV, and more on Mac.
 ---
 
 ## Audio compression
@@ -9,11 +9,11 @@ description: Audio and video conversion settings in Picmal — codecs, bitrates,
 
 | Codec | Type     | Best For                                       |
 | ----- | -------- | ---------------------------------------------- |
-| AAC   | Lossy    | General music and audio — widest compatibility |
+| AAC   | Lossy    | General music and audio, widest compatibility |
 | MP3   | Lossy    | Legacy compatibility                           |
 | Opus  | Lossy    | Speech, podcasts, low-bitrate audio            |
 | FLAC  | Lossless | Archival, music production                     |
-| ALAC  | Lossless | Apple Lossless — imports straight into Apple Music |
+| ALAC  | Lossless | Apple Lossless, imports straight into Apple Music |
 
 ### ALAC (Apple Lossless)
 
@@ -66,11 +66,11 @@ Pair 16 bit with 44.1 kHz for CD-quality FLAC, or jump to 24 bit + 48 kHz for st
 
 Picmal can embed album art into your audio output automatically. Turn on **Embed cover art from the source folder** in **Settings → Audio**, and for each track it looks for a cover image in the same folder and writes it into the file. It works both when converting and when compressing.
 
-By default it looks for `cover.jpg`, `folder.jpg`, and `front.jpg`, but you can edit that list of filenames to match how your library is organized. The names have to match exactly, extension included — add `cover.png` or `AlbumArt.jpg` to the list if that's how your library names them. Capitalization doesn't matter, and the image has to sit in the same folder as the track.
+By default it looks for `cover.jpg`, `folder.jpg`, and `front.jpg`, but you can edit that list of filenames to match how your library is organized. The names have to match exactly, extension included. Add `cover.png` or `AlbumArt.jpg` to the list if that's how your library names them. Capitalization doesn't matter, and the image has to sit in the same folder as the track.
 
 Turn on **Skip files that already have artwork** to leave existing covers alone. Picmal only adds art to tracks that don't have any. Turn it **off** if you want the folder image to replace the artwork a track already carries.
 
-Only some formats can store a picture: **MP3, M4A, M4B, ALAC and FLAC**. WAV, AIFF, OGG and Opus have nowhere to put one, so choosing one of those leaves the output with no art — Picmal flags the row and explains why. Compressing a track keeps whatever art it already has, unless you also have **Remove metadata** turned on, which strips it along with everything else.
+Only some formats can store a picture: **MP3, M4A, M4B, ALAC and FLAC**. WAV, AIFF, OGG and Opus have nowhere to put one, so choosing one of those leaves the output with no art. Picmal flags the row and explains why. Compressing a track keeps whatever art it already has, unless you also have **Remove metadata** turned on, which strips it along with everything else.
 
 ![Cover art settings in Picmal, with the source-folder filename list and skip-existing toggle](/images/docs/cover_art.png)
 
@@ -84,17 +84,17 @@ See [compressing files](/docs/compressing-files#audio-presets) for the full pres
 
 | Codec        | Compatibility | Compression | Notes                                       |
 | ------------ | ------------- | ----------- | ------------------------------------------- |
-| H.264        | Excellent     | Good        | Plays everywhere — web, mobile, desktop     |
+| H.264        | Excellent     | Good        | Plays everywhere, web, mobile, desktop     |
 | H.265 (HEVC) | Good          | Better      | ~50% smaller than H.264 at same quality     |
 | VP9          | Good          | Better      | Google's codec, great for WebM              |
 | AV1          | Growing       | Best        | Newest, best compression, slowest to encode |
-| Copy         | —             | None        | Carries the existing picture and sound over untouched |
+| Copy         |,             | None        | Carries the existing picture and sound over untouched |
 
 #### Copy (no re-encode)
 
 Pick **Copy** when you only want to change the container. Picmal moves the existing video and audio streams into the new file without touching them, so a clip that would take minutes to re-encode is done in about a second, at the original quality.
 
-Copy needs the target container to be able to hold the streams it's given, and it needs nothing else about the picture to change. Ask for a resize, a frame-rate change, a playback-speed change, or a watermark and there's nothing to copy — Picmal encodes with H.264 instead. It's a Convert setting: compressing a video always means re-encoding it, so Compress falls back to H.264 too.
+Copy needs the target container to be able to hold the streams it's given, and it needs nothing else about the picture to change. Ask for a resize, a frame-rate change, a playback-speed change, or a watermark and there's nothing to copy. Picmal encodes with H.264 instead. It's a Convert setting: compressing a video always means re-encoding it, so Compress falls back to H.264 too.
 
 ### Encoding speed
 
@@ -134,7 +134,7 @@ Drop the frame rate (say 60 fps → 30 fps) to squeeze the file down further. Gr
 
 ### Resolution
 
-Open **Video Options** and pick a **Resolution** to cap how tall the output can be — 2160p (4K), 1440p, 1080p, 720p, 480p, 360p, or **Original**. Picmal only ever scales down and keeps the aspect ratio, so a clip that's already shorter than your pick comes through untouched. Great for turning 4K phone footage into a web-friendly 1080p. The setting applies whether you're converting or compressing.
+Open **Video Options** and pick a **Resolution** to cap how tall the output can be, 2160p (4K), 1440p, 1080p, 720p, 480p, 360p, or **Original**. Picmal only ever scales down and keeps the aspect ratio, so a clip that's already shorter than your pick comes through untouched. Great for turning 4K phone footage into a web-friendly 1080p. The setting applies whether you're converting or compressing.
 
 ![The Resolution dropdown in Picmal's Video settings, open to Original, 2160p (4K), 1440p, 1080p, 720p, 480p, and 360p](/images/docs/set_video_resolution.png)
 
@@ -180,7 +180,7 @@ Styling is global. Whatever you pick in Settings applies to every video with a s
 
 ### Existing subtitle tracks are preserved
 
-If a video already carries soft subtitle tracks — the kind Subler and other tools add — Picmal keeps them when it converts or compresses the file, as long as the output format can hold them: text subtitles into MP4, MOV, and WebM, and anything into MKV. A subtitle the target format can't store is quietly dropped so the conversion still goes through. This is separate from burn-in above — the tracks stay selectable subtitles rather than being painted onto the frames. It works in the app and from the command line.
+If a video already carries soft subtitle tracks (the kind Subler and other tools add), Picmal keeps them when it converts or compresses the file, as long as the output format can hold them: text subtitles into MP4, MOV, and WebM, and anything into MKV. A subtitle the target format can't store is quietly dropped so the conversion still goes through. This is separate from burn-in above, the tracks stay selectable subtitles rather than being painted onto the frames. It works in the app and from the command line.
 
 ## Playback speed
 

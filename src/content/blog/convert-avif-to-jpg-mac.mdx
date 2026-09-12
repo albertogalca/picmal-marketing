@@ -13,7 +13,7 @@ faqs:
   - question: "Why can't I open AVIF files on my Mac?"
     answer: "macOS added native AVIF support in Sonoma (macOS 14). Older versions don't recognize AVIF files. You'll need a third-party app like Picmal to open and convert them."
   - question: "Is AVIF better than WebP?"
-    answer: "For compression, yes — AVIF achieves 20-30% smaller files than WebP at the same quality. But WebP has broader support (97% vs 93%) and faster encoding."
+    answer: "For compression, yes. AVIF achieves 20-30% smaller files than WebP at the same quality. But WebP has broader support (97% vs 93%) and faster encoding."
 ---
 
 AVIF is showing up everywhere. Google serves AVIF images. Netflix uses it for thumbnails. Newer websites default to it because a single AVIF photo can be 50% smaller than the same JPEG at similar quality.
@@ -58,7 +58,7 @@ for f in *.avif; do ffmpeg -i "$f" -q:v 2 "${f%.avif}.jpg"; done
 
 ## Method 3: Picmal (easiest, handles batch)
 
-[Picmal](https://picmal.app) supports AVIF as both an input and output format — which is rare among Mac apps.
+[Picmal](https://picmal.app) supports AVIF as both an input and output format, which is rare among Mac apps.
 
 1. Drag your AVIF files into Picmal
 2. Select JPG as the output format
@@ -91,4 +91,4 @@ macOS added native AVIF support in Sonoma (macOS 14). If you're on Monterey or V
 
 ### Is AVIF better than WebP?
 
-For compression, yes — AVIF typically achieves 20-30% smaller files than WebP at the same visual quality. But WebP has broader support (97% of browsers vs. 93% for AVIF) and faster encoding. Many sites serve WebP as the default and AVIF as a progressive enhancement.
+For compression, yes. AVIF typically achieves 20-30% smaller files than WebP at the same visual quality. But WebP has broader support (97% of browsers vs. 93% for AVIF) and faster encoding. Many sites serve WebP as the default and AVIF as a progressive enhancement.

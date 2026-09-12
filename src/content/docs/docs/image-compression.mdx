@@ -1,6 +1,6 @@
 ---
 title: Image compression
-description: Picmal's image compression presets and quality controls — pick a one-click preset or fine-tune quality per format with the custom slider.
+description: Picmal's image compression presets and quality controls. Pick a one-click preset or fine-tune quality per format with the custom slider.
 ---
 
 ## Presets vs custom
@@ -20,7 +20,7 @@ These formats use a quality percentage where **higher = better quality, larger f
 | HEIC   | 0–100 | 85      | Apple ecosystem, great compression           |
 | AVIF   | 0–100 | 85      | Next-gen, best compression ratios            |
 | TIFF   | 0–100 | 85      | Archival/print use                           |
-| PDF    | 0–100 | 85      | Quality of the images inside the PDF — text stays selectable |
+| PDF    | 0–100 | 85      | Quality of the images inside the PDF, text stays selectable |
 | JP2    | 0–100 | 85      | JPEG 2000                                    |
 | JXL    | 0–100 | 85      | JPEG XL                                      |
 | EXR    | 0–100 | 85      | HDR imagery                                  |
@@ -35,17 +35,17 @@ These formats use a quality percentage where **higher = better quality, larger f
 
 Picmal re-compresses the images embedded inside a PDF and leaves everything else alone: text stays selectable, links keep working, and vector graphics stay sharp.
 
-This matters more than it sounds. A web article saved as PDF often *looks* like a text document but is almost entirely image data — browsers store photos losslessly when printing to PDF, so a three-page article can carry a single photo that makes up 97% of the file. Picmal re-encodes that photo as JPEG at your chosen quality and typically saves 60–80% without touching a word of the text.
+This matters more than it sounds. A web article saved as PDF often *looks* like a text document but is almost entirely image data, browsers store photos losslessly when printing to PDF, so a three-page article can carry a single photo that makes up 97% of the file. Picmal re-encodes that photo as JPEG at your chosen quality and typically saves 60–80% without touching a word of the text.
 
-The flip side: a PDF that really is mostly text and fonts has almost nothing to remove. When that happens, Picmal says so — the Saving column shows **Already optimized** and your original is kept byte-for-byte.
+The flip side: a PDF that really is mostly text and fonts has almost nothing to remove. When that happens, Picmal says so, the Saving column shows **Already optimized** and your original is kept byte-for-byte.
 
-Scanned documents are the other case. There the picture *is* the page, so re-encoding it at its original size only goes so far — Picmal lowers the resolution of the images inside to match the quality you picked. A 25 MB scan typically lands around 2 MB, and because only the pictures are touched, the text stays real text you can select and search.
+Scanned documents are the other case. There the picture *is* the page, so re-encoding it at its original size only goes so far. Picmal lowers the resolution of the images inside to match the quality you picked. A 25 MB scan typically lands around 2 MB, and because only the pictures are touched, the text stays real text you can select and search.
 
 Squeezing a document that hard means rebuilding it, and a rebuilt PDF loses its links, bookmarks, and form fields. When your file has any of those, Picmal shows a warning on the row rather than dropping them quietly. Scans and photo exports have none, so they compress with no warning at all.
 
 ## Never larger than the original
 
-When you compress a file, Picmal compares the result against the source and keeps whichever is smaller. If a compression pass wouldn't actually save space, your original is left untouched — so you never end up with a file bigger than the one you started with.
+When you compress a file, Picmal compares the result against the source and keeps whichever is smaller. If a compression pass wouldn't actually save space, your original is left untouched, so you never end up with a file bigger than the one you started with.
 
 ## Compress to a target file size
 

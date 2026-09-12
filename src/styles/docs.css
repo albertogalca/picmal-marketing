@@ -1,17 +1,17 @@
 /* Picmal theme for Starlight.
    Maps Starlight's CSS variables onto Picmal's neutral + blue palette so the
-   docs feel like the rest of the site — clean neutral grays, the Picmal blue
+   docs feel like the rest of the site, clean neutral grays, the Picmal blue
    accent, restrained typography. Modeled on the Cozy docs theme; everything
    else stays close to the Starlight default. */
 
-/* Dark theme (Starlight's :root is dark-first) — neutral dark, blue accent.
+/* Dark theme (Starlight's :root is dark-first), neutral dark, blue accent.
    Accent values are the site's own (src/styles/global.css). */
 :root {
   --sl-color-accent-low: oklch(0.32 0.09 262);
   --sl-color-accent: #3b82f6; /* site --color-accent (dark) */
   --sl-color-accent-high: #60a5fa;
   /* Starlight derives link/title text from accent-high in dark mode, which ran
-     too pale — pin it to the site accent so links match the site exactly. */
+     too pale, pin it to the site accent so links match the site exactly. */
   --sl-color-text-accent: #3b82f6;
 
   --sl-color-white: oklch(0.97 0 0);
@@ -28,7 +28,7 @@
     ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
 
-  /* A calmer, more restrained heading scale than Starlight's default — which
+  /* A calmer, more restrained heading scale than Starlight's default, which
      jumps to 5xl/4xl on wide screens. Closer to the site's quiet typography. */
   --sl-text-h1: 1.85rem;
   --sl-text-h2: 1.4rem;
@@ -37,7 +37,7 @@
   --sl-text-h5: 0.9rem;
 }
 
-/* Light theme — neutral near-white surfaces, Picmal blue accent. */
+/* Light theme, neutral near-white surfaces, Picmal blue accent. */
 :root[data-theme="light"] {
   --sl-color-accent-low: oklch(0.92 0.04 262);
   --sl-color-accent: #1b5bff; /* site --color-accent (light) */
@@ -60,7 +60,7 @@
   color: var(--sl-color-white);
 }
 
-/* Prev/next pagination title — Starlight sets this to 2xl; bring it down to the
+/* Prev/next pagination title. Starlight sets this to 2xl; bring it down to the
    same restrained scale as everything else. */
 .link-title {
   font-size: var(--sl-text-h4);
@@ -75,7 +75,7 @@
   border-radius: 6px;
 }
 
-/* Tables — Starlight's default is heavy: thick cell borders and a loud column
+/* Tables. Starlight's default is heavy: thick cell borders and a loud column
    divider. Quiet it down to a single hairline grid, a subtle header row, and
    roomier cells, matching the site's restraint. */
 .sl-markdown-content table:not(:where(.not-content *)) {
@@ -104,7 +104,7 @@
   border-bottom: none;
 }
 
-/* Asides (:::note / :::tip) — simpler and calmer. Drop Starlight's saturated
+/* Asides (:::note / :::tip), simpler and calmer. Drop Starlight's saturated
    blue/purple washes for a quiet panel with a thin accent edge, identical in
    light and dark. Accent stays sparing: just the left border and the title. */
 .starlight-aside {
@@ -118,7 +118,7 @@
   background-color: var(--sl-color-gray-6);
 }
 
-/* Plain Markdown blockquotes — quiet neutral edge, never a loud color. */
+/* Plain Markdown blockquotes, quiet neutral edge, never a loud color. */
 .sl-markdown-content blockquote:not(:where(.not-content *)) {
   border-inline-start: 3px solid var(--sl-color-gray-5);
   color: var(--sl-color-gray-2);

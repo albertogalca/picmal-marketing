@@ -3,7 +3,7 @@ import { cn } from "../utils/cn";
 import MediaFrame from "./MediaFrame.astro";
 
 /**
- * DemoReel — the stacked demo clips plus the thumbnail dock that swaps them.
+ * DemoReel, the stacked demo clips plus the thumbnail dock that swaps them.
  *
  * Lifted out of index.astro so more than one page can show the app actually
  * working. The clip list lives here, not at the call site: the posters, stills
@@ -314,7 +314,7 @@ const startIndex = Math.max(
           if (auto) show((i + 1) % clips.length);
         });
         // Warm the next clip only once this one is nearly over. Warming at page
-        // load pulled a second video (609KB) that most visitors, who arrive
+        // load pulled a second video (609KB), that most visitors, who arrive
         // from search for one specific job, never watch.
         clip.addEventListener("timeupdate", () => {
           if (!auto || !clip.duration) return;

@@ -3,7 +3,7 @@ import type { APIRoute } from "astro";
 const getRobotsTxt = (sitemapURL: URL) =>
   `
 User-agent: *
-# https://contentsignals.org/ — ai-train=yes since brand presence in LLMs helps; flip to no to opt out of training
+# https://contentsignals.org/, ai-train=yes since brand presence in LLMs helps; flip to no to opt out of training
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 

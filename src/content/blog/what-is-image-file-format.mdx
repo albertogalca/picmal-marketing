@@ -21,7 +21,7 @@ A **JPEG**, for instance, uses _lossy compression_: it permanently discards data
 All digital images fall into one of two families:
 
 - **Raster Formats:** JPEGs, PNGs, GIFs. Built from a grid of colored pixels. Great for photographs and anything with complex color gradients, but they fall apart when you enlarge them past their original resolution.
-- **Vector Formats:** SVGs primarily. Built from math — coordinates, curves, paths. You can scale a vector logo to any size and it stays sharp, because there are no pixels to stretch.
+- **Vector Formats:** SVGs primarily. Built from math, coordinates, curves, paths. You can scale a vector logo to any size and it stays sharp, because there are no pixels to stretch.
 
 > A photographer and a web designer need different formats. This guide covers both, so you can pick the right one without guessing.
 
@@ -36,7 +36,7 @@ Let’s look at raster and vector in more detail, because this distinction affec
   allowFullScreen
 ></iframe>
 
-A raster image is a grid of colored squares — **pixels**. Every photo your phone takes is raster. The pixel grid captures color gradients, shadows, and fine detail well, which is why it’s the standard for photography.
+A raster image is a grid of colored squares, **pixels**. Every photo your phone takes is raster. The pixel grid captures color gradients, shadows, and fine detail well, which is why it’s the standard for photography.
 
 The limitation is baked into the structure. A 1000×1000 pixel image contains exactly one million pixels. Try to stretch it to 3000×3000 and the computer has to invent the missing eight million pixels. It guesses badly. That’s pixelation: the blurry, blocky mess you see when you zoom too far into a photo.
 
@@ -50,7 +50,7 @@ This makes vectors the right choice for:
 
 - **Logos and icons** that appear at 16px in a browser tab and 6 feet wide on a trade show banner
 - **Illustrations and line art** with clean edges and solid fills
-- **Fonts** — every typeface on your computer is vector, which is why text looks sharp at any size
+- **Fonts**: every typeface on your computer is vector, which is why text looks sharp at any size
 
 When you need to [batch convert images on a Mac](/blog/top-batch-image-converter-mac), knowing whether you're working with raster or vector files determines which output format makes sense.
 
@@ -64,7 +64,7 @@ There are two types of compression, and the format you choose usually locks you 
 
 ### Lossy Compression: Sacrificing Data for Speed
 
-**Lossy compression** permanently discards data to shrink the file. The algorithm analyzes the image and throws away information your eyes are least likely to notice — subtle color variations, high-frequency detail in busy areas. The result is a much smaller file that looks almost identical to the original. Almost.
+**Lossy compression** permanently discards data to shrink the file. The algorithm analyzes the image and throws away information your eyes are least likely to notice, subtle color variations, high-frequency detail in busy areas. The result is a much smaller file that looks almost identical to the original. Almost.
 
 JPEG is the most common lossy format, used on roughly **72% of websites** since it debuted in 1992. It’s still the default for photos on blogs, e-commerce sites, and social media because the size-to-quality ratio is hard to beat. Kinsta has a solid [breakdown of image file types](https://kinsta.com/blog/image-file-types/) if you want to go deeper.
 
@@ -197,7 +197,7 @@ The difference is real: a WebP file is typically 25-35% smaller than an equivale
 
 > Both WebP and AVIF work in Chrome, Firefox, Safari, and Edge. The browsers that don't support them (old IE, ancient Android WebViews) are a shrinking fraction of web traffic.
 
-You may still want to serve JPEG fallbacks via the HTML `<picture>` element, but for most sites the modern formats are ready to use as the primary option. I keep expanding format support in Picmal — see our [changelog](https://picmal.app/changelog) for the latest.
+You may still want to serve JPEG fallbacks via the HTML `<picture>` element, but for most sites the modern formats are ready to use as the primary option. I keep expanding format support in Picmal. See our [changelog](https://picmal.app/changelog) for the latest.
 
 ### Which Image Format Is Best for Websites?
 

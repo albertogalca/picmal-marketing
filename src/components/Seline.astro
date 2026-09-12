@@ -64,7 +64,7 @@
         if (ref) url.searchParams.set("ref", decodeURIComponent(ref[1]));
         // Read at click time, not page load. getVisitorId() is the documented
         // way to get it (seline.com/docs/stripe) and it answers as soon as
-        // seline.js has an id — including on a first-ever visit, where the
+        // seline.js has an id, including on a first-ever visit, where the
         // seline_vid cookie has not come back from the pageview response yet.
         // The cookie alone lost exactly those first clicks; it stays on as the
         // fallback, since it still holds a valid id from an earlier visit when

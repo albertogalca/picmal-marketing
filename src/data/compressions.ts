@@ -40,11 +40,11 @@ export const compressions: CompressionFormat[] = [
     description:
       "JPG (also called JPEG) is the most common image format for photos. Compression reduces file size while maintaining acceptable visual quality.",
     whyCompress:
-      "Large JPG files slow down websites and eat up storage. Picmal compresses JPG (JPEG) files on your Mac — reducing sizes by up to 80% while keeping images looking sharp. Adjust the quality slider to find the exact balance between file size and visual quality for your use case.",
+      "Large JPG files slow down websites and eat up storage. Picmal compresses JPG (JPEG) files on your Mac, reducing sizes by up to 80% while keeping images looking sharp. Adjust the quality slider to find the exact balance between file size and visual quality for your use case.",
     benefits: [
       "Reduce JPG file sizes by up to 80% with adjustable quality",
       "Batch compress hundreds of JPG files at once",
-      "All processing happens locally on your Mac — files stay private",
+      "All processing happens locally on your Mac, files stay private",
       "Preserve or strip EXIF metadata to further reduce size",
       "Preview quality before compressing to find the right balance",
       "Drag and drop files or entire folders from Finder",
@@ -73,7 +73,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Does Picmal preserve photo metadata when compressing?",
         answer:
-          "By default, yes — EXIF data like date, location, and camera settings is preserved. You can also choose to strip metadata for additional size savings.",
+          "By default, yes. EXIF data like date, location, and camera settings is preserved. You can also choose to strip metadata for additional size savings.",
       },
       {
         question: "Is JPG compression free with Picmal?",
@@ -142,9 +142,9 @@ export const compressions: CompressionFormat[] = [
     description:
       "PNG files are lossless but can be very large. Compression optimizes the encoding without losing any quality.",
     whyCompress:
-      "PNG screenshots and graphics can be surprisingly large — a single Retina screenshot can be 5-10MB. Picmal optimizes PNG compression on your Mac to reduce file sizes by 20-50% without losing a single pixel of quality.",
+      "PNG screenshots and graphics can be surprisingly large, a single Retina screenshot can be 5-10MB. Picmal optimizes PNG compression on your Mac to reduce file sizes by 20-50% without losing a single pixel of quality.",
     benefits: [
-      "Lossless PNG compression — zero quality loss, pixel-identical output",
+      "Lossless PNG compression, zero quality loss, pixel-identical output",
       "Reduce PNG file sizes by 20-50% through optimized encoding",
       "Batch compress entire folders of screenshots and graphics",
       "Strip unnecessary metadata to further reduce size",
@@ -155,17 +155,17 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Does compressing PNG lose quality?",
         answer:
-          "No. PNG compression in Picmal is lossless — the compressed file is pixel-identical to the original, just with a smaller file size through optimized encoding.",
+          "No. PNG compression in Picmal is lossless, the compressed file is pixel-identical to the original, just with a smaller file size through optimized encoding.",
       },
       {
         question: "How much can I compress a PNG file?",
         answer:
-          "Typical PNG compression reduces file sizes by 20-50%. Screenshots with large areas of solid color compress especially well — some reduce by 60%+.",
+          "Typical PNG compression reduces file sizes by 20-50%. Screenshots with large areas of solid color compress especially well, some reduce by 60%+.",
       },
       {
         question: "Can I batch compress PNG files?",
         answer:
-          "Yes. Picmal supports batch processing — drag and drop hundreds of PNG files or entire folders and compress them all at once.",
+          "Yes. Picmal supports batch processing. Drag and drop hundreds of PNG files or entire folders and compress them all at once.",
       },
       {
         question: "Should I convert PNG to WebP instead of compressing?",
@@ -244,7 +244,7 @@ export const compressions: CompressionFormat[] = [
     description:
       "GIF animations can become very large. Compression reduces file size while preserving animation frames.",
     whyCompress:
-      "GIF animations are notoriously large — a 5-second screen recording GIF can easily hit 10MB. Picmal compresses GIF files on your Mac by optimizing color palettes and frame encoding, reducing sizes by 10-40% while keeping every frame intact.",
+      "GIF animations are notoriously large, a 5-second screen recording GIF can easily hit 10MB. Picmal compresses GIF files on your Mac by optimizing color palettes and frame encoding, reducing sizes by 10-40% while keeping every frame intact.",
     benefits: [
       "Compress GIF animations without losing any frames",
       "Optimize color palettes for smaller file sizes",
@@ -272,12 +272,12 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Can I compress multiple GIF files at once?",
         answer:
-          "Yes. Picmal supports batch compression — drag and drop all your GIF files and compress them in one go.",
+          "Yes. Picmal supports batch compression. Drag and drop all your GIF files and compress them in one go.",
       },
       {
         question: "Will compressed GIFs work everywhere?",
         answer:
-          "Yes. Compressed GIF files maintain full compatibility — they work in every browser, email client, messaging app, and social media platform.",
+          "Yes. Compressed GIF files maintain full compatibility. They work in every browser, email client, messaging app, and social media platform.",
       },
       {
         question: "Is GIF compression free with Picmal?",
@@ -346,7 +346,7 @@ export const compressions: CompressionFormat[] = [
     description:
       "WebP already offers good compression, but further optimization can reduce file sizes even more.",
     whyCompress:
-      "Even WebP files can benefit from additional compression. Files exported from different tools use different encoding settings — Picmal re-encodes them with optimized settings to squeeze out every unnecessary byte.",
+      "Even WebP files can benefit from additional compression. Files exported from different tools use different encoding settings. Picmal re-encodes them with optimized settings to squeeze out every unnecessary byte.",
     benefits: [
       "Further reduce already-small WebP file sizes by 10-40%",
       "Re-encode with optimized settings from any source tool",
@@ -379,7 +379,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "When should I compress WebP vs convert from JPG/PNG?",
         answer:
-          "If you already have WebP files and want them smaller, compress. If you have JPG or PNG originals, convert to WebP — you'll get better results starting from the higher-quality source.",
+          "If you already have WebP files and want them smaller, compress. If you have JPG or PNG originals, convert to WebP. You'll get better results starting from the higher-quality source.",
       },
       {
         question: "Is WebP compression free with Picmal?",
@@ -448,13 +448,13 @@ export const compressions: CompressionFormat[] = [
     description:
       "TIFF files are extremely large due to their lossless nature. Compression can significantly reduce storage needs.",
     whyCompress:
-      "TIFF files from scanners and cameras can be 20-100MB each. Picmal compresses TIFF files on your Mac using optimized lossless encoding — reducing sizes by 30-60% while keeping every pixel identical to the original.",
+      "TIFF files from scanners and cameras can be 20-100MB each. Picmal compresses TIFF files on your Mac using optimized lossless encoding, reducing sizes by 30-60% while keeping every pixel identical to the original.",
     benefits: [
       "Dramatically reduce TIFF file sizes with lossless compression",
       "Batch compress TIFF files from scanners or cameras",
       "Maintain full quality for professional and print workflows",
       "Save disk space without sacrificing image quality",
-      "Compressed TIFF is still print-ready — no quality trade-off",
+      "Compressed TIFF is still print-ready, no quality trade-off",
       "Process files of any size locally on your Mac",
     ],
     faqs: [
@@ -476,12 +476,12 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Can I compress an entire folder of TIFF files?",
         answer:
-          "Yes. Picmal handles batch compression — drag and drop entire folders of TIFF files and compress them all at once.",
+          "Yes. Picmal handles batch compression. Drag and drop entire folders of TIFF files and compress them all at once.",
       },
       {
         question: "Will prepress software accept compressed TIFF?",
         answer:
-          "Yes. Compressed TIFF uses standard lossless algorithms (LZW, ZIP) that are universally supported by Adobe InDesign, Illustrator, and all major prepress tools.",
+          "Yes. Compressed TIFF uses standard lossless algorithms (LZW, ZIP), that are universally supported by Adobe InDesign, Illustrator, and all major prepress tools.",
       },
       {
         question: "Is TIFF compression free with Picmal?",
@@ -583,7 +583,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Why is AVIF compression slower than other formats?",
         answer:
-          "AVIF uses the AV1 video codec which is more computationally intensive than WebP or JPG encoding. On Apple Silicon Macs, encoding is still fast — just not as instant as JPG.",
+          "AVIF uses the AV1 video codec which is more computationally intensive than WebP or JPG encoding. On Apple Silicon Macs, encoding is still fast, just not as instant as JPG.",
       },
       {
         question: "Is AVIF compression free with Picmal?",
@@ -632,7 +632,7 @@ export const compressions: CompressionFormat[] = [
       {
         title: "Preparing multiple quality variants",
         description:
-          "Create different quality levels of AVIF images for responsive delivery — high quality for desktop, lower quality for mobile.",
+          "Create different quality levels of AVIF images for responsive delivery, high quality for desktop, lower quality for mobile.",
       },
       {
         title: "Batch standardizing AVIF encoding",
@@ -652,7 +652,7 @@ export const compressions: CompressionFormat[] = [
     description:
       "PDF files with embedded images can be very large. Compression reduces the size of embedded images while keeping text sharp.",
     whyCompress:
-      "PDF files with photos and scans can be enormous — a 10-page report with photos might be 50MB. Picmal compresses PDFs on your Mac by optimizing embedded images while keeping text, fonts, and vector graphics perfectly crisp.",
+      "PDF files with photos and scans can be enormous, a 10-page report with photos might be 50MB. Picmal compresses PDFs on your Mac by optimizing embedded images while keeping text, fonts, and vector graphics perfectly crisp.",
     benefits: [
       "Compress PDF files by optimizing embedded images",
       "Reduce PDF sizes by 30-80% depending on image content",
@@ -691,7 +691,7 @@ export const compressions: CompressionFormat[] = [
       {
         question: "Can I compress multiple PDFs at once?",
         answer:
-          "Yes. Picmal supports batch processing — drag and drop all your PDF files and compress them in one go.",
+          "Yes. Picmal supports batch processing. Drag and drop all your PDF files and compress them in one go.",
       },
       {
         question: "Will compressed PDFs still be printable?",

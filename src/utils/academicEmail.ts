@@ -5,7 +5,7 @@
  * practice puts `edu` or `ac` as a label right before the country code
  * (mit.edu, ox.ac.uk, unimelb.edu.au, u-tokyo.ac.jp), so the list would only be
  * a longer way of writing this. Ceiling: schools on a plain national domain
- * (uni-koeln.de, ucm.es) fall through — the form points those people at email,
+ * (uni-koeln.de, ucm.es) fall through, the form points those people at email,
  * which is also the only thing that ever caught them under an allowlist.
  *
  * This is a client-side gate, so it is friction, not proof. The Stripe

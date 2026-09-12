@@ -94,7 +94,7 @@ export const UPGRADE = {
 
 // The code is never in this bundle. The form posts the address to licencio,
 // which re-runs the same domain check server-side and mails the Stripe
-// promotion code to it — so having the school inbox is what buys the discount,
+// promotion code to it, so having the school inbox is what buys the discount,
 // not reading this file. See app/controllers/api/students_controller.rb.
 export const STUDENT_DISCOUNT = {
   percentOff: 40,

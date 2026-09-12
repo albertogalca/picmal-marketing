@@ -83,7 +83,7 @@
   --font-signature: "Grape Nuts", cursive;
 
   /* ==========================================================================
-     Semantic type scale — SINGLE SOURCE OF TRUTH
+     Semantic type scale. SINGLE SOURCE OF TRUTH
      Each `--text-{role}` generates a `text-{role}` utility that carries its own
      font-size, line-height, letter-spacing and (where set) font-weight.
      Tokens are color- and transform-agnostic on purpose: `uppercase` and color
@@ -135,15 +135,15 @@
   --text-caption--letter-spacing: 0em;
 
   /* ==========================================================================
-     Radius scale — anchored on the button corner (8px) for a single, cohesive
+     Radius scale, anchored on the button corner (8px) for a single, cohesive
      roundness across the site. Buttons use `rounded-lg` (8px); the larger
      `rounded-xl`/`rounded-2xl` (chips, cards, panels, modals, media frames) are
      collapsed to the same 8px so nothing reads as a different corner language.
      `rounded-full` and any explicit `rounded-[…]` (e.g. app-icon squircles) are
      intentionally left alone. Tune the whole site's roundness from here.
      ========================================================================== */
-  --radius-sm: 0.25rem; /* 4px — inline chips far smaller than a button */
-  --radius-lg: 0.5rem; /* 8px — the button radius */
+  --radius-sm: 0.25rem; /* 4px, inline chips far smaller than a button */
+  --radius-lg: 0.5rem; /* 8px, the button radius */
   --radius-xl: 0.5rem; /* was 12px */
   --radius-2xl: 0.5rem; /* was 16px */
 }
@@ -186,13 +186,13 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Tabular figures — for prices, stats, numerical data */
+/* Tabular figures, for prices, stats, numerical data */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
 /* ==========================================================================
-   LINK — single source of truth for inline/explicit accent links.
+   LINK, single source of truth for inline/explicit accent links.
    Accent color, underline at a comfortable offset, faint decoration that
    solidifies on hover. Apply `.link` to any standalone <a> in body copy.
    Markdown links inside `.prose` get the same rule, so a link reads the same
@@ -200,7 +200,7 @@ body {
    a link that looks like two different things is two different things.
    ========================================================================== */
 /* ==========================================================================
-   BROWSER SURFACES — the parts nobody draws.
+   BROWSER SURFACES, the parts nobody draws.
    Selection, the caret and the scrollbar ship as OS defaults that belong to no
    design system. The comparison tables added scrollable regions, which is where
    an unstyled scrollbar shows up inside a designed panel.
@@ -307,7 +307,7 @@ html {
 
 
 
-/* Code blocks — a quiet panel on the page's own surface, not a dark slab
+/* Code blocks, a quiet panel on the page's own surface, not a dark slab
    dropped into a light article. These are one-line shell commands, so the
    text stays monochrome on purpose (the !important color also neutralises
    Shiki's dark-theme inline span colors, which would be illegible here). */
@@ -344,7 +344,7 @@ html.dark pre:not(.sl-markdown-content pre) span {
   color: var(--0) !important;
 }
 
-/* Inline code — a neutral tint, not an accent chip. Guides are dense with
+/* Inline code, a neutral tint, not an accent chip. Guides are dense with
    `.jpg` / `-c:a alac` fragments; colouring every one of them scatters brand
    blue through the prose and spends the accent on nothing. The tint alone
    sets the fragment apart; the border was one delineation too many. */
@@ -369,7 +369,7 @@ code:not(pre code):not(.sl-markdown-content code) {
   font-size: 0.875em !important;
 }
 
-/* Blockquote — a neutral edge. The accent stripe made every pull-quote
+/* Blockquote, a neutral edge. The accent stripe made every pull-quote
    compete with the links and CTAs around it; docs.css already made the same
    call for Starlight quotes, so the two now agree. */
 blockquote {

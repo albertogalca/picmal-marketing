@@ -1,15 +1,15 @@
 ---
 title: Integrations
-description: Use Picmal from anywhere on macOS — drag and drop, the share menu, Finder Quick Actions, the Services menu, Shortcuts automations, Raycast, and the menu bar app.
+description: Use Picmal from anywhere on macOS. Drag and drop, the share menu, Finder Quick Actions, the Services menu, Shortcuts automations, Raycast, and the menu bar app.
 ---
 
 ## Drag & drop
 
 Drop files onto Picmal in three ways:
 
-- **App window** — Drop files directly into the main window
-- **Dock icon** — Drop files onto the Picmal icon in your Dock
-- **Menu bar icon** — Drop files onto the menu bar icon (when menu bar mode is enabled)
+- **App window**. Drop files directly into the main window
+- **Dock icon**. Drop files onto the Picmal icon in your Dock
+- **Menu bar icon**. Drop files onto the menu bar icon (when menu bar mode is enabled)
 
 You can drop individual files or entire folders.
 
@@ -17,11 +17,11 @@ You can drop individual files or entire folders.
 
 Picmal adds five services to Finder's right-click menu:
 
-1. **Picmal — Compress** — Compresses the selected files right away
-2. **Picmal — Convert** — Converts the selected files right away
-3. **Picmal — Add Files** — Adds the selected files to the Picmal window without processing them, so you can tweak settings first
-4. **Picmal — Combine PDFs** — Merges the selected PDFs into one, in selection order. Only appears when every selected file is a PDF
-5. **Picmal — Images to PDF** — Turns the selected images into a multi-page PDF. Only appears when every selected file is an image
+1. **Picmal — Compress**. Compresses the selected files right away
+2. **Picmal — Convert**. Converts the selected files right away
+3. **Picmal — Add Files**. Adds the selected files to the Picmal window without processing them, so you can tweak settings first
+4. **Picmal — Combine PDFs**. Merges the selected PDFs into one, in selection order. Only appears when every selected file is a PDF
+5. **Picmal — Images to PDF**. Turns the selected images into a multi-page PDF. Only appears when every selected file is an image
 
 To enable these services:
 
@@ -34,7 +34,7 @@ To enable these services:
 
 Once enabled, select files in Finder, right-click, and find them under **Services** (or **Quick Actions**).
 
-Picmal's services only appear for files it can actually handle — images, audio, video, and PDFs. Select a folder, an archive, or an application and they stay out of the menu.
+Picmal's services only appear for files it can actually handle, images, audio, video, and PDFs. Select a folder, an archive, or an application and they stay out of the menu.
 
 ![Picmal services in the Finder right-click menu](/images/docs/quick_actions.png)
 
@@ -84,7 +84,7 @@ Picmal provides ten actions for Apple's Shortcuts app, so you can build automate
 | Files              | The images or PDFs to crop                                         |
 | Auto-Trim Borders  | Images only: remove a solid-color border by reading the corner color |
 | Auto-Trim Tolerance| How much the border color may vary, 0–50% (default 5)              |
-| Top / Bottom / Left / Right | Margin to remove from each edge — pixels for images, millimeters for PDFs |
+| Top / Bottom / Left / Right | Margin to remove from each edge, pixels for images, millimeters for PDFs |
 
 Returns the cropped files, ready for a "Save File" action or the next step. See [Crop](/docs/crop).
 
@@ -138,7 +138,7 @@ Returns the combined video, ready for a "Save File" action or the next step. Mat
 | --------- | ---------------------------------------------------- |
 | Image     | The source image to generate icons from              |
 
-Returns the app icon files — a macOS `.icns`, a Windows `.ico`, and an iOS icon set. See [App Icons](/docs/app-icons).
+Returns the app icon files, a macOS `.icns`, a Windows `.ico`, and an iOS icon set. See [App Icons](/docs/app-icons).
 
 ### Remove Background
 
@@ -165,20 +165,20 @@ Picmal has a [Raycast extension](https://www.raycast.com/albertogalca/picmal). I
 
 It adds eight commands:
 
-- **Convert Files** — Change format across images, audio, and video, with optional compression and metadata removal
-- **Compress Files** — Shrink files while keeping the format, using a built-in or custom preset
-- **Combine PDFs** — Merge PDFs into one, in the order you pick
-- **Split PDF** — Split a PDF into one document per page range, or one PDF per page. See [PDF tools](/docs/pdf-tools)
-- **Images to PDF** — Build a multi-page PDF from images, with page size, quality, and an optional password
-- **Merge Audio** — Join audio files into a single track, losslessly when they share a format. See [Audio tools](/docs/audio-tools)
-- **Combine Videos** — Join clips into one video, losslessly when they match. See [Video tools](/docs/video-tools)
-- **Generate App Icons** — Turn one image into a macOS `.icns`, a Windows `.ico`, and an iOS icon set. See [App Icons](/docs/app-icons)
+- **Convert Files**. Change format across images, audio, and video, with optional compression and metadata removal
+- **Compress Files**. Shrink files while keeping the format, using a built-in or custom preset
+- **Combine PDFs**. Merge PDFs into one, in the order you pick
+- **Split PDF**. Split a PDF into one document per page range, or one PDF per page. See [PDF tools](/docs/pdf-tools)
+- **Images to PDF**. Build a multi-page PDF from images, with page size, quality, and an optional password
+- **Merge Audio**. Join audio files into a single track, losslessly when they share a format. See [Audio tools](/docs/audio-tools)
+- **Combine Videos**. Join clips into one video, losslessly when they match. See [Video tools](/docs/video-tools)
+- **Generate App Icons**. Turn one image into a macOS `.icns`, a Windows `.ico`, and an iOS icon set. See [App Icons](/docs/app-icons)
 
 Point them at the files you've selected in Finder, or pick files from Raycast itself.
 
 ### Raycast AI
 
-The extension also ships AI tools for converting, compressing, combining PDFs, splitting PDFs, building PDFs from images, combining videos, and generating app icons — so you can just ask:
+The extension also ships AI tools for converting, compressing, combining PDFs, splitting PDFs, building PDFs from images, combining videos, and generating app icons, so you can just ask:
 
 - `@picmal convert these to webp`
 - `@picmal compress the selected videos`
@@ -197,10 +197,10 @@ Click the icon to open the menu, or drop files directly onto it to process them.
 | Item                | Shortcut | Action                                                        |
 | ------------------- | -------- | ------------------------------------------------------------- |
 | Add Files…          | ⇧⌘O      | Pick a file with the system file picker and run it through the clipboard pipeline |
-| Optimize Clipboard  | —        | Toggle [clipboard optimization](/docs/clipboard-optimization) on or off |
-| On Copy             | —        | Choose what happens when you copy: Compress, Convert, or both. Greyed out when monitoring is off |
-| Target Format       | —        | When the action involves conversion, pick the output format. Hidden in Compress-only mode |
-| Auto-Copy Result    | —        | Toggle [auto-copy](/docs/clipboard-optimization#auto-copy) without opening Settings |
+| Optimize Clipboard  |,        | Toggle [clipboard optimization](/docs/clipboard-optimization) on or off |
+| On Copy             |,        | Choose what happens when you copy: Compress, Convert, or both. Greyed out when monitoring is off |
+| Target Format       |,        | When the action involves conversion, pick the output format. Hidden in Compress-only mode |
+| Auto-Copy Result    |,        | Toggle [auto-copy](/docs/clipboard-optimization#auto-copy) without opening Settings |
 | Open Picmal         | O        | Open the main window                                          |
 | Settings…           | ,        | Open Settings                                                 |
 | Quit Picmal         | Q        | Quit Picmal                                                   |

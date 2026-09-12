@@ -1,5 +1,5 @@
 // "Trusted by N" social-proof count, fetched at build time from licencio (our
-// own license server) — replaces the old Stripe orders API.
+// own license server), replaces the old Stripe orders API.
 //
 // Build-time memoization: Astro's static build runs in a single Node process, so
 // caching the promise means the fetch runs once per build and is reused across
@@ -18,7 +18,7 @@ export function getCustomerCount(): Promise<number> {
 }
 
 async function fetchCustomerCount(): Promise<number> {
-  // Skip the network call during local dev — use a placeholder.
+  // Skip the network call during local dev. Use a placeholder.
   if (import.meta.env.DEV) {
     return 150;
   }

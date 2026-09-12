@@ -1,9 +1,9 @@
 ---
 title: Command line (picmal-cli)
-description: Run Picmal from the terminal — convert, compress, combine and split PDFs, make PDFs from images, watch folders, and apply saved presets without opening the app.
+description: Run Picmal from the terminal. Convert, compress, combine and split PDFs, make PDFs from images, watch folders, and apply saved presets without opening the app.
 ---
 
-Picmal ships with a command-line companion, `picmal-cli`, bundled inside the app. Same conversion engine as the UI, so the output is identical — you just get flags, JSON, and exit codes you can drop into a script.
+Picmal ships with a command-line companion, `picmal-cli`, bundled inside the app. Same conversion engine as the UI, so the output is identical. You just get flags, JSON, and exit codes you can drop into a script.
 
 ## Installation
 
@@ -81,7 +81,7 @@ cat list.txt | picmal-cli convert -i - -f webp -o ~/out
 | `--pattern <pattern>`     | Rename outputs with a naming pattern (see [naming patterns](#naming-patterns)). |
 | `--quality <n>`           | Quality 0–100. Format-specific defaults if omitted. Overrides `--preset`.    |
 | `--preset <name>`         | Apply a saved preset by name (see [Presets](#presets)).                      |
-| `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`) — images are scaled down to fit the budget. |
+| `--resize <value>`        | Resize geometry (`1920x1080`, `1920x`, `x1080`, `50%`) or a target file size (`100kB`, `2MB`), images are scaled down to fit the budget. |
 | `--trim`                  | Trim a solid-color border off each image before resizing (5% tolerance; use [`crop --fuzz`](#crop) for another one). |
 | `--audio-quality <n>`     | Audio quality 1–100 for video outputs, mapped to 48–320 kbps. Only used when the soundtrack is re-encoded. |
 | `--color-space <name>`    | One of `srgb`, `p3`, `adobergb`, `gray`, `cmyk`.                              |
@@ -113,7 +113,7 @@ picmal-cli convert -i photo.jpg -f jpg --keep copyright,colorProfile
 picmal-cli convert -i photo.jpg -f jpg --strip location,identifiers
 ```
 
-Categories: `location`, `camera`, `dateTime`, `copyright`, `colorProfile`, `orientation`, `identifiers`, `thumbnail`. Friendly aliases work too — `gps`, `icc`, `date`, `serial`, `lens`, `thumb`. `--keep` lists what survives; `--strip` lists what comes off and keeps the rest. Precedence is `--keep` > `--strip` > `--metadata` > `--strip-metadata`.
+Categories: `location`, `camera`, `dateTime`, `copyright`, `colorProfile`, `orientation`, `identifiers`, `thumbnail`. Friendly aliases work too, `gps`, `icc`, `date`, `serial`, `lens`, `thumb`. `--keep` lists what survives; `--strip` lists what comes off and keeps the rest. Precedence is `--keep` > `--strip` > `--metadata` > `--strip-metadata`.
 
 These flags work the same on `compress` and `watch add`.
 
@@ -145,7 +145,7 @@ picmal-cli compress -i podcast.mp3 --preset "Voice memo"
 | `-w`, `--overwrite`      | Overwrite existing outputs.                                              |
 | `--pattern <pattern>`    | Rename outputs with a naming pattern (see [naming patterns](#naming-patterns)). |
 
-PDFs are compressed with the same text-preserving engine as the app: only the images inside are re-encoded, and the output is never larger than the input. Compressing a scan hard enough to shrink it means rebuilding the document, which drops its links, bookmarks, and form fields — when that happens `picmal-cli` prints a warning and adds `pdf_structure_dropped` to the file's `notes` in JSON output. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
+PDFs are compressed with the same text-preserving engine as the app: only the images inside are re-encoded, and the output is never larger than the input. Compressing a scan hard enough to shrink it means rebuilding the document, which drops its links, bookmarks, and form fields, when that happens `picmal-cli` prints a warning and adds `pdf_structure_dropped` to the file's `notes` in JSON output. See [How PDF compression works](/docs/image-compression#how-pdf-compression-works).
 
 ### Naming patterns
 
@@ -155,7 +155,7 @@ PDFs are compressed with the same text-preserving engine as the app: only the im
 # holiday-001.webp, holiday-002.webp, ...
 picmal-cli convert -i ~/Pics/*.jpg -f webp -o ~/out --pattern 'holiday-{sequence:3}'
 
-# 2026-03-15_IMG_0042.jpg — dated from EXIF
+# 2026-03-15_IMG_0042.jpg, dated from EXIF
 picmal-cli compress -i ~/Pics -o ~/out --pattern '{date}_{original}'
 ```
 
@@ -165,7 +165,7 @@ If your `--preset` is an audio or video preset and you don't pass `--output`, `p
 
 ## crop
 
-Crop margins off images and PDF pages, or auto-trim a solid-color border from images. Margins are **pixels for images** and **millimeters for PDFs**. PDF pages keep their text, links, and form fields — only the page boxes change.
+Crop margins off images and PDF pages, or auto-trim a solid-color border from images. Margins are **pixels for images** and **millimeters for PDFs**. PDF pages keep their text, links, and form fields, only the page boxes change.
 
 ```bash
 picmal-cli crop photo.png --auto-trim
@@ -186,7 +186,7 @@ picmal-cli crop *.pdf --left 15 -o out/
 | `-o`, `--output <dir>`  | Output directory. Default: next to each input, as `<basename>_cropped.<ext>`.       |
 | `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
 
-Pass a margin, `--auto-trim`, or both — with neither, the command refuses rather than writing a byte-identical copy. `--auto-trim` on a PDF is an error for the same reason: give PDFs explicit margins. See [Crop](/docs/crop).
+Pass a margin, `--auto-trim`, or both, with neither, the command refuses rather than writing a byte-identical copy. `--auto-trim` on a PDF is an error for the same reason: give PDFs explicit margins. See [Crop](/docs/crop).
 
 For a border trim as part of a normal conversion, `convert` and `compress` take `--trim` instead.
 
@@ -205,7 +205,7 @@ picmal-cli combine-pdfs chapter*.pdf -o book.pdf
 | `-o`, `--output <path>` | Output file or directory. Default: `<first basename> (combined).pdf` next to the first input. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
-Password-protected inputs are refused (exit `11`) — unlock them first. Uses PDFKit, macOS's native PDF engine, so pages are copied losslessly.
+Password-protected inputs are refused (exit `11`). Unlock them first. Uses PDFKit, macOS's native PDF engine, so pages are copied losslessly.
 
 ## split-pdf
 
@@ -224,7 +224,7 @@ picmal-cli split-pdf *.pdf --pages 1-2 -o out/
 | `-o`, `--output <dir>`  | Output directory. Default: next to each input, as `<basename>-1.pdf`, `<basename>-2.pdf`, … |
 | `-w`, `--overwrite`     | Overwrite existing output files.                                                   |
 
-Like `combine-pdfs`, it uses PDFKit and copies pages losslessly; password-protected inputs are refused — unlock them first.
+Like `combine-pdfs`, it uses PDFKit and copies pages losslessly; password-protected inputs are refused. Unlock them first.
 
 ## images-to-pdf
 
@@ -270,7 +270,7 @@ Pass any combination of `--macos`, `--windows`, and `--ios` to pick formats; wit
 
 ## remove-background
 
-Cut the background out of one or more images and write each subject to a transparent PNG. It runs entirely on your Mac using Apple's Vision framework — nothing is uploaded.
+Cut the background out of one or more images and write each subject to a transparent PNG. It runs entirely on your Mac using Apple's Vision framework. Nothing is uploaded.
 
 ```bash
 picmal-cli remove-background photo.jpg
@@ -301,7 +301,7 @@ picmal-cli merge-audio intro.wav track.wav outro.wav -o full.wav
 | `-o`, `--output <path>` | Output file or directory. The extension sets the format. Default: `<first basename> (merged).<ext>` next to the first input, in that file's format. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
-Uses the same bundled ffmpeg as Convert and Compress. Decode-only formats (like APE) are refused as output targets — pick a format Picmal can write.
+Uses the same bundled ffmpeg as Convert and Compress. Decode-only formats (like APE) are refused as output targets. Pick a format Picmal can write.
 
 ## combine-videos
 
@@ -318,7 +318,7 @@ picmal-cli combine-videos intro.mov main.mp4 outro.webm -o full.mp4
 | `-o`, `--output <path>` | Output file or directory. The extension sets the format. Default: `<first basename> (combined).<ext>` next to the first input, in that file's format. |
 | `-w`, `--overwrite`     | Overwrite an existing output file.                                                 |
 
-Uses the same bundled ffmpeg as Convert and Compress. H.264 for MP4/MOV/MKV, VP9 for WebM; H.264 encodes on the Mac's hardware media engine on both Apple Silicon and Intel. Decode-only formats are refused as output targets — pick a format Picmal can write.
+Uses the same bundled ffmpeg as Convert and Compress. H.264 for MP4/MOV/MKV, VP9 for WebM; H.264 encodes on the Mac's hardware media engine on both Apple Silicon and Intel. Decode-only formats are refused as output targets. Pick a format Picmal can write.
 
 ## slideshow
 
@@ -360,7 +360,7 @@ Outputs are named `<book> - 01 - <chapter title>.<ext>`. Files with no chapter m
 
 ## presets
 
-Browse the presets you've made in the app, plus the built-ins that ship with Picmal. Read-only — make new ones in the app.
+Browse the presets you've made in the app, plus the built-ins that ship with Picmal. Read-only. Make new ones in the app.
 
 ```bash
 picmal-cli presets list
@@ -477,7 +477,7 @@ picmal-cli version
 | ---- | ------------------------------------------------------------------------ |
 | `0`  | Success.                                                                 |
 | `1`  | Generic failure (e.g. underlying tool reported a non-zero exit).         |
-| `2`  | Usage error — bad arguments or missing required flag.                    |
+| `2`  | Usage error, bad arguments or missing required flag.                    |
 | `3`  | Unlicensed.                                                              |
 | `4`  | Input missing.                                                           |
 | `5`  | Unsupported format.                                                      |

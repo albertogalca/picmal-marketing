@@ -11,8 +11,8 @@ The **PDF** section gains a fourth tool for tidying up documents, and color spac
 
 ### New features
 
-- **Organize Pages.** A new PDF tool for reordering and deleting pages. Drop in a PDF and its pages show up as a thumbnail list — drag to reorder, delete the ones you don't need, and click any thumbnail to preview it full-size. Save when the order looks right. App only for now. See [PDF tools](/docs/pdf-tools#organize-pages).
-- **Grayscale and CMYK color spaces.** Two new targets join the RGB profiles when you set a [color space](/docs/resize-and-color-space#color-space): **Grayscale** for clean black-and-white output, and **CMYK** — through Picmal's bundled color profiles — for print-ready files. Both work in the app and from the command line (`--color-space cmyk`). See [Command line](/docs/cli).
+- **Organize Pages.** A new PDF tool for reordering and deleting pages. Drop in a PDF and its pages show up as a thumbnail list. Drag to reorder, delete the ones you don't need, and click any thumbnail to preview it full-size. Save when the order looks right. App only for now. See [PDF tools](/docs/pdf-tools#organize-pages).
+- **Grayscale and CMYK color spaces.** Two new targets join the RGB profiles when you set a [color space](/docs/resize-and-color-space#color-space): **Grayscale** for clean black-and-white output, and **CMYK** (through Picmal's bundled color profiles) for print-ready files. Both work in the app and from the command line (`--color-space cmyk`). See [Command line](/docs/cli).
 
 ### Improvements
 
@@ -21,5 +21,5 @@ The **PDF** section gains a fourth tool for tidying up documents, and color spac
 ### Bug fixes
 
 - Fixed PDF compression hanging indefinitely on complex files that produced a lot of Ghostscript warnings.
-- Fixed images and PDF pages sometimes rendering a pixel smaller than expected — scaled dimensions were truncated instead of rounded, which in rare cases could even skip a page.
+- Fixed images and PDF pages sometimes rendering a pixel smaller than expected, scaled dimensions were truncated instead of rounded, which in rare cases could even skip a page.
 - Fixed watched folder file size filters using 1024-based kilobytes while the rest of Picmal uses 1000-based ones.

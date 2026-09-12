@@ -38,7 +38,7 @@ const MAX_FALL_MS = 3200;
     opacity: 0;
     /* No will-change: transform and opacity already composite on the GPU, and
        promoting 90 layers up front costs more than it saves. ease-in so pieces
-       accelerate like gravity and keep moving — no hanging mid-screen. */
+       accelerate like gravity and keep moving, no hanging mid-screen. */
     animation: confetti-fall var(--duration) cubic-bezier(0.45, 0, 0.9, 1)
       var(--delay) forwards;
   }
@@ -66,7 +66,7 @@ const MAX_FALL_MS = 3200;
     }
   }
 
-  /* No motion, no confetti. Not a faded version — nothing at all. */
+  /* No motion, no confetti. Not a faded version. Nothing at all. */
   @media (prefers-reduced-motion: reduce) {
     #confetti {
       display: none;
@@ -84,7 +84,7 @@ const MAX_FALL_MS = 3200;
       return;
     }
 
-    // A festive party palette — brand blue leads, the rest bring the confetti.
+    // A festive party palette, brand blue leads, the rest bring the confetti.
     const tints = [
       "#1b5bff",
       "#ff3b5c",
@@ -100,7 +100,7 @@ const MAX_FALL_MS = 3200;
       for (let i = 0; i < COUNT; i++) {
         const el = document.createElement("span");
         const size = 6 + Math.random() * 6;
-        // Mix of rectangles/ribbons and the odd circle — party confetti, not petals.
+        // Mix of rectangles/ribbons and the odd circle, party confetti, not petals.
         const circle = Math.random() < 0.25;
         el.style.setProperty("--size", `${size.toFixed(1)}px`);
         el.style.setProperty(
@@ -131,7 +131,7 @@ const MAX_FALL_MS = 3200;
     };
 
     // A Stripe redirect can land in a tab the buyer isn't looking at, and Chrome
-    // freezes animations there — they'd come back to confetti mid-air, or to none
+    // freezes animations there. They'd come back to confetti mid-air, or to none
     // at all. Wait until the page is actually on screen before dropping any.
     if (document.visibilityState === "visible") {
       fall();

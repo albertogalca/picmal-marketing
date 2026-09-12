@@ -136,6 +136,14 @@ function markdownTwin(url) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // www.picmal.app is a second custom_domain on this Worker, so without this it
+    // serves a full duplicate of the site. Send it home before anything else runs,
+    // including the markdown negotiation below.
+    if (url.hostname === "www.picmal.app") {
+      url.hostname = "picmal.app";
+      return Response.redirect(url.toString(), 301);
+    }
     const upstream = UPSTREAM[url.pathname];
     if (!upstream) {
       const response = await env.ASSETS.fetch(request);

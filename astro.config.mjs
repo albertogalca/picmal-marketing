@@ -32,7 +32,6 @@ const noindexLegalUrls = new Set([
   "https://picmal.app/terms",
   "https://picmal.app/privacy",
   "https://picmal.app/legal/open-source",
-  "https://picmal.app/download",
   "https://picmal.app/thank-you",
 ]);
 

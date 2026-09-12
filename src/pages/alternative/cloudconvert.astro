@@ -63,7 +63,7 @@ const faqs = [
 >
   <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-        <FAQSchema />
+        <FAQSchema faqs={faqs} />
   </Fragment>
 
   <ComparisonHero

@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { TIERS } from "../../config/pricing";
-import testimonials from "../../data/testimonials.json";
 import { softwareId, personRef, orgRef } from "../../utils/schemaIds";
 
 interface Props {
@@ -25,12 +24,17 @@ const dateModified = (latestRelease?.data.pubDate ?? new Date("2024-01-15"))
   .toISOString()
   .split("T")[0];
 
-// Reviews on our own product page are ineligible for review rich results
-// (Google treats self-collected reviews about yourself as self-serving), so the
-// individual Review bodies are not marked up at all. The aggregate stays: it is
-// a legitimate property of a SoftwareApplication and the quotes are still on
-// the page as visible content, which is where they do their real work.
-const reviewCount = testimonials.filter((t) => t.type !== "press").length;
+// No rating is marked up here, on purpose. Reviews on our own product page are
+// ineligible for review rich results anyway (Google treats self-collected
+// reviews about yourself as self-serving), so individual Review bodies are not
+// marked up. The aggregateRating went too: ratingValue was the hardcoded string
+// "4.8" while reviewCount counted real testimonials, and testimonials.json has
+// no per-item rating field to average. Google requires aggregate ratings to come
+// from real scores, and AggregateRating is still a live rich result, so a made-up
+// value on every page was a manual-action risk. offers/AggregateOffer below
+// already satisfies the "at least one of aggregateRating, offers or review" rule.
+// To bring a rating back: add a 1-5 rating field to each testimonial (a star
+// question on the Tally form), then average those and nothing else.
 
 // One SoftwareApplication for the whole site, addressed by @id. This used to be
 // two nodes: this one carried offers and description, MasonryTestimonials
@@ -96,13 +100,6 @@ const productSchema = {
   ],
   keywords:
     "image converter, video converter, audio converter, Mac app, batch conversion, offline converter, HEIC converter, media compression",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: String(reviewCount),
-    bestRating: "5",
-    worstRating: "1",
-  },
 };
 ---
 

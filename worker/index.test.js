@@ -126,3 +126,87 @@ test("quality reads q-values, wildcards and unasked-for types", () => {
   // A json substring in another type is not a JSON ask.
   assert.equal(quality("application/ld+json", "application/json"), 0);
 });
+
+// Stands in for the R2 binding, holding one 10-byte release. Enough to prove
+// the range and conditional branches, which are the ones that corrupt a
+// resumed download when they get it wrong.
+const BODY = "0123456789";
+const ETAG = '"abc123"';
+
+const DOWNLOADS = {
+  head: async (key) => (key === "Picmal-1.9.0.dmg" ? object() : null),
+  get: async (key, options = {}) => {
+    if (key !== "Picmal-1.9.0.dmg") return null;
+    const ifNoneMatch = options.onlyIf?.get?.("if-none-match");
+    if (ifNoneMatch === ETAG) return object(); // bodyless: precondition failed
+    const range = options.range?.get?.("range");
+    if (!range) return { ...object(), body: BODY };
+    const [start, end] = range.replace("bytes=", "").split("-").map(Number);
+    return {
+      ...object(),
+      body: BODY.slice(start, end + 1),
+      range: { offset: start, length: end - start + 1 },
+    };
+  },
+};
+
+function object() {
+  return {
+    size: BODY.length,
+    httpEtag: ETAG,
+    writeHttpMetadata: (headers) =>
+      headers.set("content-type", "application/x-apple-diskimage"),
+  };
+}
+
+const download = (path, headers = {}, method = "GET") =>
+  worker.fetch(new Request(`https://picmal.app${path}`, { method, headers }), {
+    ...env,
+    DOWNLOADS,
+  });
+
+test("a release downloads whole, as a disk image", async () => {
+  const res = await download("/downloads/Picmal-1.9.0.dmg");
+  assert.equal(res.status, 200);
+  assert.equal(await res.text(), BODY);
+  assert.equal(
+    res.headers.get("content-type"),
+    "application/x-apple-diskimage",
+  );
+  assert.equal(res.headers.get("accept-ranges"), "bytes");
+  assert.match(res.headers.get("content-disposition"), /Picmal-1\.9\.0\.dmg/);
+});
+
+test("a resumed download gets its range, not the whole file again", async () => {
+  const res = await download("/downloads/Picmal-1.9.0.dmg", {
+    range: "bytes=4-6",
+  });
+  assert.equal(res.status, 206);
+  assert.equal(await res.text(), "456");
+  assert.equal(res.headers.get("content-range"), "bytes 4-6/10");
+});
+
+test("an unchanged release answers 304 with no body", async () => {
+  const res = await download("/downloads/Picmal-1.9.0.dmg", {
+    "if-none-match": ETAG,
+  });
+  assert.equal(res.status, 304);
+  assert.equal(await res.text(), "");
+});
+
+test("HEAD reports the release without reading it", async () => {
+  const res = await download("/downloads/Picmal-1.9.0.dmg", {}, "HEAD");
+  assert.equal(res.status, 200);
+  assert.equal(await res.text(), "");
+  assert.equal(res.headers.get("etag"), ETAG);
+});
+
+test("a release that does not exist is a 404", async () => {
+  for (const path of [
+    "/downloads/Picmal-9.9.9.dmg",
+    "/downloads/",
+    "/downloads/nested/key.dmg",
+  ]) {
+    assert.equal((await download(path)).status, 404, path);
+  }
+});

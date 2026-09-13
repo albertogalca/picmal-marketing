@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { TIERS } from "../../config/pricing";
+import { DMG_URL } from "../../config/download";
 import { softwareId, personRef, orgRef } from "../../utils/schemaIds";
 
 interface Props {
@@ -72,11 +73,9 @@ const productSchema = {
   datePublished: "2024-01-15",
   dateModified,
   screenshot: new URL("/og.png", url).href,
-  downloadUrl:
-    "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg",
-  fileSize: "25MB",
-  installUrl:
-    "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg",
+  downloadUrl: DMG_URL,
+  fileSize: "120MB",
+  installUrl: DMG_URL,
   softwareRequirements: "macOS 15.0 or later",
   // Keep this list true and in sync with the FAQ (FAQSchema.astro), the feature
   // grid and llms.txt. It is the copy a model reads first and a human never

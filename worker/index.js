@@ -1,7 +1,8 @@
-// First-party proxy for the Affonso affiliate pixel. Content blockers kill
-// direct requests to *.affonso.io, so the pixel loads and reports through the
-// neutral /r prefix on our own domain. Everything else falls through to the
-// static assets (dist/), where _headers and _redirects still apply.
+// Two things sit in front of the static site: a first-party proxy for the
+// Affonso affiliate pixel (/r/*), because content blockers kill direct requests
+// to *.affonso.io, and the release downloads (/downloads/*), which stream from
+// R2. Everything else falls through to the static assets (dist/), where
+// _headers and _redirects still apply.
 // Docs: https://affonso.io/help/installation-guides/proxy-setup/pixel-tracking-proxy
 const UPSTREAM = {
   "/r/pixel.js": "https://cdn.affonso.io/js/pixel.min.js",
@@ -133,6 +134,58 @@ function markdownTwin(url) {
   return new URL(path ? `${path}.md` : "/index.md", url);
 }
 
+// Release downloads. The DMG is ~125 MB, so a client will resume one sooner or
+// later: serve ranges and conditional requests properly or a resumed download
+// silently appends a second copy of the file. R2 does the work, we only have to
+// hand it the request headers and translate the result back.
+const DOWNLOAD_PREFIX = "/downloads/";
+
+function downloadHeaders(object, key) {
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("etag", object.httpEtag);
+  headers.set("accept-ranges", "bytes");
+  // Keys carry the version (Picmal-1.9.0.dmg), so an object never changes.
+  headers.set("cache-control", "public, max-age=31536000, immutable");
+  headers.set("content-disposition", `attachment; filename="${key}"`);
+  Object.entries(NOSNIFF).forEach(([k, v]) => headers.set(k, v));
+  return headers;
+}
+
+export async function download(request, url, bucket) {
+  const key = decodeURIComponent(url.pathname.slice(DOWNLOAD_PREFIX.length));
+  // One flat namespace. A key with a slash in it is someone probing, not a
+  // release we published.
+  if (!key || key.includes("/")) return new Response(null, { status: 404 });
+
+  if (request.method === "HEAD") {
+    const head = await bucket.head(key);
+    return head
+      ? new Response(null, { headers: downloadHeaders(head, key) })
+      : new Response(null, { status: 404 });
+  }
+
+  const object = await bucket.get(key, {
+    range: request.headers,
+    onlyIf: request.headers,
+  });
+  if (!object) return new Response(null, { status: 404 });
+
+  const headers = downloadHeaders(object, key);
+  // R2 returns a bodyless R2Object when onlyIf rules the request out.
+  if (!("body" in object)) return new Response(null, { status: 304, headers });
+
+  if (!object.range || !request.headers.has("range")) {
+    return new Response(object.body, { headers });
+  }
+  const { offset = 0, length = object.size - offset } = object.range;
+  headers.set(
+    "content-range",
+    `bytes ${offset}-${offset + length - 1}/${object.size}`,
+  );
+  return new Response(object.body, { status: 206, headers });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -144,6 +197,10 @@ export default {
       url.hostname = "picmal.app";
       return Response.redirect(url.toString(), 301);
     }
+    if (url.pathname.startsWith(DOWNLOAD_PREFIX)) {
+      return download(request, url, env.DOWNLOADS);
+    }
+
     const upstream = UPSTREAM[url.pathname];
     if (!upstream) {
       const response = await env.ASSETS.fetch(request);

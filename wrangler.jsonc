@@ -10,6 +10,11 @@
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page"
   },
+  // The DMG lives in R2 and is served from picmal.app itself (see /downloads/*
+  // in worker/index.js), so the URL a buyer clicks is the URL Homebrew fetches.
+  "r2_buckets": [
+    { "binding": "DOWNLOADS", "bucket_name": "picmal-downloads" }
+  ],
   "routes": [
     { "pattern": "picmal.app", "custom_domain": true },
     { "pattern": "www.picmal.app", "custom_domain": true }

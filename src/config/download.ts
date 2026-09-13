@@ -1,5 +1,5 @@
-// The DMG is served straight from the GitHub releases repo, always the latest
-// tag. It lives here because /download and /thank-you both hand it out, and a
-// release URL written in two places is a release URL that goes stale in one.
-export const DMG_URL =
-  "https://github.com/albertogalca/picmal-releases/releases/latest/download/Picmal.dmg";
+// The DMG is served from picmal.app itself (R2, see /downloads/* in
+// worker/index.js), not from the releases repo: the URL a buyer clicks, the one
+// Sparkle updates from and the one Homebrew fetches are all this one.
+// The version is in the key, so release.sh rewrites this line on every release.
+export const DMG_URL = "https://picmal.app/downloads/Picmal-1.9.0.dmg";

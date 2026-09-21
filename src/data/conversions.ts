@@ -2664,6 +2664,7 @@ export const INDEXED_CONVERSIONS = new Set<string>([
   "dng-to-jpg",
   "dng-to-png",
   // Camera RAW → JPG cluster
+  "arw-to-jpg",
   "cr2-to-jpg",
   "cr3-to-jpg",
   "nef-to-jpg",

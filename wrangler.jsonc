@@ -8,7 +8,13 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // A browser click on the DMG link is a navigation request, and with
+    // not_found_handling set Cloudflare answers navigations from the assets
+    // layer without ever running the Worker: /downloads/* has no asset, so the
+    // buyer got the HTML 404 page. curl, Homebrew and Sparkle don't navigate,
+    // which is why it only broke for people. Route downloads to the Worker first.
+    "run_worker_first": ["/downloads/*"]
   },
   // The DMG lives in R2 and is served from picmal.app itself (see /downloads/*
   // in worker/index.js), so the URL a buyer clicks is the URL Homebrew fetches.

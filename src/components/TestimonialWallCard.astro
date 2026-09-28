@@ -19,14 +19,14 @@ const { t } = Astro.props;
       href={t.link}
       target="_blank"
       rel="nofollow noreferrer"
-      class="block mb-6 break-inside-avoid rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      class="block rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
       <Card>
         <TestimonialCard testimonial={t} align="left" />
       </Card>
     </a>
   ) : (
-    <Card class="mb-6 break-inside-avoid">
+    <Card>
       <TestimonialCard testimonial={t} align="left" />
     </Card>
   )

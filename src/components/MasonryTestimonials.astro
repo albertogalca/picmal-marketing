@@ -4,7 +4,6 @@ import H2 from "./H2.astro";
 import TrustBar from "./TrustBar.astro";
 import Section from "./Section.astro";
 import Quote from "./TestimonialWallCard.astro";
-import { cn } from "../utils/cn";
 
 interface Props {
   heading?: string;
@@ -13,18 +12,17 @@ interface Props {
 }
 const { heading, showTrustBar = false, trustSuffix } = Astro.props;
 
-// Six quotes lead, the rest wait behind a "Show more" (Sep 2026). The wall used
+// Six quotes lead, the rest open under them on "Show more" (Sep 2026). The wall used
 // to be all thirty, scrolling in three columns on a loop, and it proved the
 // wrong thing: that there were many quotes, most of them "great app!". A cold
 // reader stops on a quote that names a job they have. Each pick below names
 // one, and together they cover video, images, PDFs, a workflow and the web
 // tools Picmal replaces. The other quotes are all still here for anyone who
 // wants the whole count, one click away and in the HTML either way.
-// Order is reading order: CSS columns fill top to bottom, one column at a time.
+// The six are dealt across the columns first, so they sit at the top of the
+// wall at every width, and the rest fill in below them. See the script.
 // The highlight chips are gone: one accent mark per card, card after card,
 // read as ad copy. The hero press quote keeps its one.
-const COLUMNS = "columns-1 md:columns-2 lg:columns-3 gap-6";
-
 const PICKS = [25, 9, 6, 19, 27, 21];
 
 const users = testimonials
@@ -56,27 +54,217 @@ const rest = users.filter((t) => !PICKS.includes(t.id));
     {showTrustBar && <TrustBar prefix="" suffix={trustSuffix} />}
   </div>
 
-  <div class={COLUMNS}>
-    {picked.map((t) => <Quote t={t} />)}
-  </div>
+  {/* One wall, not two lists: the six and the rest share the columns, and
+      the wall is clipped to the bottom of the six until the button opens it.
+      So the extra quotes grow out of the same columns and the button always
+      sits under the last card, open or closed.
+      Without JS none of that runs: the grid shows every quote and the button
+      stays hidden, so nothing is ever locked away. */}
+  <div data-wall>
+    <div data-wall-viewport id="testimonial-wall" class="wall-viewport">
+      <div data-wall-grid class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start">
+        {picked.map((t) => (
+          <div data-wall-item data-pick>
+            <Quote t={t} />
+          </div>
+        ))}
+        {rest.map((t) => (
+          <div data-wall-item>
+            <Quote t={t} />
+          </div>
+        ))}
+      </div>
+    </div>
 
-  {/* <details>, not a scripted toggle: it opens without JS, the browser owns
-      the expanded state for assistive tech, and find-in-page opens it on a
-      match. The summary sits under the six and stays there, so "Show fewer"
-      is where the reader left the button. */}
-  {
-    rest.length > 0 && (
-      <details class="group mt-2">
-        <summary class="list-none [&::-webkit-details-marker]:hidden mx-auto w-fit cursor-pointer select-none rounded-lg border border-black/10 dark:border-white/[0.10] bg-background dark:bg-white/[0.06] px-4 py-2.5 text-small font-[590] text-text shadow-xs hover:bg-background-subtle dark:hover:bg-white/[0.10] active:scale-[0.96] transition-[background-color,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-          <span class="group-open:hidden tabular-nums">
-            Show {rest.length} more reviews
-          </span>
-          <span class="hidden group-open:inline">Show fewer</span>
-        </summary>
-        <div class={cn(COLUMNS, "mt-8")}>
-          {rest.map((t) => <Quote t={t} />)}
+    {
+      rest.length > 0 && (
+        <div class="flex justify-center mt-8">
+          <button
+            type="button"
+            hidden
+            data-wall-toggle
+            aria-expanded="false"
+            aria-controls="testimonial-wall"
+            class="relative rounded-lg border border-black/10 dark:border-white/[0.10] bg-background dark:bg-white/[0.06] px-4 py-2.5 text-small font-[590] text-text shadow-xs hover:bg-background-subtle dark:hover:bg-white/[0.10] active:scale-[0.96] transition-[background-color,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <span data-wall-more class="tabular-nums">
+              Show <span data-wall-count>{rest.length}</span> more reviews
+            </span>
+            <span data-wall-less hidden>Show fewer</span>
+          </button>
         </div>
-      </details>
-    )
-  }
+      )
+    }
+  </div>
 </Section>
+
+<style>
+  /* Height is set by the script, in px, so it can transition. The mask fades
+     the clipped edge while closed, so the cut reads as "there is more", not
+     as a card sliced in half. */
+  .wall-viewport {
+    transition: height 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    /* The script scrolls back to the top of the wall on close. Scroll
+       anchoring would fight it, pinning the view to a card being clipped. */
+    overflow-anchor: none;
+  }
+
+  .wall-viewport[data-collapsed] {
+    overflow: clip;
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 96px), transparent);
+    mask-image: linear-gradient(to bottom, black calc(100% - 96px), transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wall-viewport {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // Masonry by hand, so the six picks stay on top at every width. CSS columns
+  // fill top to bottom and rebalance when content changes, which would scatter
+  // the six down the page the moment the rest opened.
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const md = window.matchMedia("(min-width: 48rem)");
+  const lg = window.matchMedia("(min-width: 64rem)");
+  const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+  document.querySelectorAll<HTMLElement>("[data-wall]").forEach((wall) => {
+    const viewport = wall.querySelector<HTMLElement>("[data-wall-viewport]")!;
+    const grid = wall.querySelector<HTMLElement>("[data-wall-grid]")!;
+    const button = wall.querySelector<HTMLButtonElement>("[data-wall-toggle]");
+    const more = wall.querySelector<HTMLElement>("[data-wall-more]");
+    const countEl = wall.querySelector<HTMLElement>("[data-wall-count]");
+    const less = wall.querySelector<HTMLElement>("[data-wall-less]");
+    const items = [...grid.querySelectorAll<HTMLElement>("[data-wall-item]")];
+    const picks = items.filter((el) => el.hasAttribute("data-pick"));
+    const rest = items.filter((el) => !el.hasAttribute("data-pick"));
+    if (!button || rest.length === 0) return;
+
+    let open = false;
+    let count = 0;
+    // What shows while closed. Three on a phone, where six stacked cards are a
+    // whole scroll of their own; all six once there are columns to hold them.
+    let shown: HTMLElement[] = picks;
+    let hidden: HTMLElement[] = rest;
+
+    // Deal the picks round-robin so they read left to right, then drop each
+    // remaining quote into the shortest column.
+    const layout = () => {
+      const n = lg.matches ? 3 : md.matches ? 2 : 1;
+      if (n === count) return;
+      count = n;
+      const cols = Array.from({ length: n }, () => {
+        const col = document.createElement("div");
+        col.className = "flex flex-col gap-6 min-w-0 flex-1";
+        return col;
+      });
+      grid.className = "flex gap-6 items-start";
+      grid.replaceChildren(...cols);
+      picks.forEach((el, i) => cols[i % n].append(el));
+      rest.forEach((el) => {
+        cols
+          .reduce((a, b) => (a.offsetHeight <= b.offsetHeight ? a : b))
+          .append(el);
+      });
+      shown = n === 1 ? picks.slice(0, 3) : picks;
+      hidden = items.filter((el) => !shown.includes(el));
+      if (countEl) countEl.textContent = String(hidden.length);
+    };
+
+    // Bottom of the lowest pick, measured from the top of the wall.
+    const collapsedHeight = () => {
+      const top = grid.getBoundingClientRect().top;
+      return Math.max(...shown.map((el) => el.getBoundingClientRect().bottom - top));
+    };
+
+    const setInert = (value: boolean) => {
+      items.forEach((el) => {
+        el.inert = false;
+      });
+      if (value)
+        hidden.forEach((el) => {
+          el.inert = true;
+        });
+    };
+
+    const collapse = () => {
+      viewport.dataset.collapsed = "";
+      viewport.style.height = `${collapsedHeight()}px`;
+      setInert(true);
+    };
+
+    const toggle = () => {
+      open = !open;
+      button.setAttribute("aria-expanded", String(open));
+      more!.hidden = open;
+      less!.hidden = !open;
+
+      if (open) {
+        const from = viewport.offsetHeight;
+        delete viewport.dataset.collapsed;
+        setInert(false);
+        viewport.style.height = `${from}px`;
+        viewport.style.overflow = "clip";
+        void viewport.offsetHeight;
+        viewport.style.height = `${grid.offsetHeight}px`;
+
+        // The quotes that were hidden rise in, a row at a time.
+        if (!reduced.matches) {
+          hidden.forEach((el) => {
+            const col = [...el.parentElement!.children];
+            const row = col.indexOf(el) - col.filter((c) => shown.includes(c as HTMLElement)).length;
+            el.animate(
+              [
+                { opacity: 0, transform: "translateY(12px)" },
+                { opacity: 1, transform: "none" },
+              ],
+              { duration: 450, easing: EASE, delay: Math.min(row, 8) * 40, fill: "backwards" },
+            );
+          });
+        }
+
+        const done = () => {
+          // Back to auto once open, so a resize or a late image can grow it.
+          if (open) {
+            viewport.style.height = "";
+            viewport.style.overflow = "";
+          }
+        };
+        if (reduced.matches) done();
+        else viewport.addEventListener("transitionend", done, { once: true });
+      } else {
+        viewport.style.height = `${viewport.offsetHeight}px`;
+        void viewport.offsetHeight;
+        collapse();
+
+        // Closing pulls the button up by the height of every extra quote. If
+        // the top of the wall has scrolled away, bring it back so the reader
+        // lands on the six, not on whatever section was below.
+        // 96px clears the fixed header with some air.
+        const top = wall.getBoundingClientRect().top;
+        if (top < 96) {
+          window.scrollBy({ top: top - 96, behavior: reduced.matches ? "auto" : "smooth" });
+        }
+      }
+    };
+
+    layout();
+    collapse();
+    button.hidden = false;
+    button.addEventListener("click", toggle);
+
+    const relayout = () => {
+      layout();
+      if (!open) collapse();
+    };
+    md.addEventListener("change", relayout);
+    lg.addEventListener("change", relayout);
+    // Avatars and fonts land after first layout and change card heights.
+    new ResizeObserver(() => {
+      if (!open && viewport.style.height) viewport.style.height = `${collapsedHeight()}px`;
+    }).observe(grid);
+  });
+</script>

@@ -39,8 +39,8 @@ const rest = users.filter((t) => !PICKS.includes(t.id));
 ---
 
 <Section id="testimonials" width="wide">
-  <div class="text-center mb-12">
-    <H2 class="mb-6 max-w-3xl mx-auto">
+  <div class="mb-12 sm:mb-16">
+    <H2 class="mb-6 max-w-3xl">
       {
         heading ? (
           heading
@@ -62,7 +62,7 @@ const rest = users.filter((t) => !PICKS.includes(t.id));
       stays hidden, so nothing is ever locked away. */}
   <div data-wall>
     <div data-wall-viewport id="testimonial-wall" class="wall-viewport">
-      <div data-wall-grid class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start">
+      <div data-wall-grid class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start">
         {picked.map((t) => (
           <div data-wall-item data-pick>
             <Quote t={t} />
@@ -78,14 +78,14 @@ const rest = users.filter((t) => !PICKS.includes(t.id));
 
     {
       rest.length > 0 && (
-        <div class="flex justify-center mt-8">
+        <div class="flex mt-6">
           <button
             type="button"
             hidden
             data-wall-toggle
             aria-expanded="false"
             aria-controls="testimonial-wall"
-            class="relative rounded-lg border border-black/10 dark:border-white/[0.10] bg-background dark:bg-white/[0.06] px-4 py-2.5 text-small font-[590] text-text shadow-xs hover:bg-background-subtle dark:hover:bg-white/[0.10] active:scale-[0.96] transition-[background-color,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            class="relative rounded-lg bg-control px-3.5 py-2 text-small font-medium text-text hover:bg-control-hover active:scale-[0.96] transition-[background-color,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <span data-wall-more class="tabular-nums">
               Show <span data-wall-count>{rest.length}</span> more reviews

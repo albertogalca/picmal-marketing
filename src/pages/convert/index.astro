@@ -38,11 +38,12 @@ const groupedBySource = formatKeys.map((key) => ({
     buyEvent="buy_clicked_convert_hub"
     defaultTab="convert"
     demo={false}
+    art={{ texture: "dissolve", ground: "brand", seed: "convert-hub" }}
   />
 
   <!-- All Conversions Grid -->
   <Section>
-    <div class="space-y-12 sm:space-y-16">
+    <div class="grid gap-x-10 gap-y-12 md:grid-cols-2">
       {
         groupedBySource.map((group) => (
           <section>
@@ -50,11 +51,10 @@ const groupedBySource = formatKeys.map((key) => ({
               <FormatPill ext={group.format.extension} />
               <H2 class="text-h3">Convert from {group.format.name}</H2>
             </div>
-            <Paragraph class="mb-6 max-w-2xl">
+            <Paragraph class="mb-5">
               {group.format.description}
             </Paragraph>
             <ConversionGrid
-              columns={4}
               links={group.conversions.map((c) => ({
                 href: `/convert/${c.slug}`,
                 label: `${formats[c.from].name} to ${formats[c.to].name}`,

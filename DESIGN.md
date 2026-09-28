@@ -124,6 +124,17 @@ components:
 
 ## Overview
 
+> **Redesign, October 2026.** Where this file and the redesign disagree, the
+> redesign wins until this document is rewritten: a quieter near-black dark
+> ground (#0a0a0a), flat buttons (primary is near-black on light and
+> near-white on dark, blue is only for links and pixel art), left-aligned
+> two-tone headings, 12px cards and 16px panels, square-pixel textures
+> (`src/utils/pixels.ts`) for art and backgrounds, the demo reel on a pixel
+> horizon instead of a wallpaper photo, the founder letter set on the page
+> instead of on paper, and a footer on its own dark band in both themes.
+> The full system, with tokens and component guidance, is the Picmal design
+> system artifact.
+
 **Creative North Star: "Quiet Utility, Warm Maker"**
 
 Picmal's site looks and behaves like a well-made native Mac utility, not a marketing funnel. System fonts, the macOS action blue, hairline borders, and generous quiet space do the work; the restraint is itself the argument that the app is carefully built. This is a website that practices what it preaches, calm, precise, and fast, because that is exactly what the product promises.

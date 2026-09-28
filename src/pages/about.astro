@@ -6,6 +6,7 @@ import BlockGrid from "../components/BlockGrid.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H2 from "../components/H2.astro";
+import ArtCard from "../components/pm/ArtCard.astro";
 
 const title = "Picmal: About Alberto Gallego, the person behind the app";
 const description =
@@ -59,7 +60,12 @@ const principles = [
   </Fragment>
 
   <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-  <Section width="narrow" class="pt-32 sm:pt-32">
+  <Section class="pt-32 sm:pt-32">
+    {/* Redesign: the page opens like the other templates, words on the
+        measure and a flow ArtCard (the texture for anything about Picmal
+        itself) beside them. */}
+    <div class="md:grid md:grid-cols-[minmax(0,640px)_minmax(0,1fr)] md:gap-16 md:items-start">
+    <div>
     <SectionHeading
       level={1}
       align="left"
@@ -92,6 +98,9 @@ const principles = [
         hundreds of files at once. It costs $29 one time. That's the whole
         pitch, and it hasn't needed to change.
       </Paragraph>
+    </div>
+      </div>
+    <div class="hidden md:block md:pt-2"><ArtCard texture="flow" seed="about-alberto" /></div>
     </div>
   </Section>
 

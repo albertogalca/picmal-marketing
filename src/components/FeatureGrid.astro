@@ -76,7 +76,9 @@ const features: {
     description: "Take GPS coordinates, camera model and timestamps out of a photo before you send it. Or keep them, and add your own copyright.",
   },
   {
-    apps: workflowApps,
+    // Redesign: third-party marks appear as words (the description names
+    // them), and the feature takes the `menu` PixelGlyph like the other eight.
+    icon: "ph:app-window-duotone",
     title: "Fits your workflow",
     description: "Finder, Shortcuts, Raycast, a command line tool, and a clipboard that compresses screenshots as you copy them. A conversion is never more than a right-click away.",
   },
@@ -84,7 +86,7 @@ const features: {
 ---
 
 <Section id="features" width="wide">
-  <SectionHeading align="left" subleadClass="max-w-xl">
+  <SectionHeading align="left">
     {heading}
     <Fragment slot="sublead">
       {subleadIntro} These are the essentials, and there's plenty more in the <a

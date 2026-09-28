@@ -20,8 +20,8 @@
   --sl-color-gray-3: oklch(0.7 0 0);
   --sl-color-gray-4: oklch(0.5 0 0);
   --sl-color-gray-5: oklch(0.42 0 0);
-  --sl-color-gray-6: oklch(0.31 0 0);
-  --sl-color-black: oklch(0.27 0 0); /* site dark --color-background */
+  --sl-color-gray-6: #1a1a1a;
+  --sl-color-black: #0a0a0a; /* site dark --color-background (redesign) */
 
   /* One family, matching the site. */
   --sl-font:
@@ -52,7 +52,7 @@
   --sl-color-gray-5: oklch(0.85 0 0);
   --sl-color-gray-6: oklch(0.93 0 0);
   --sl-color-gray-7: oklch(0.96 0 0);
-  --sl-color-black: oklch(0.985 0 0); /* site light --color-background */
+  --sl-color-black: #fbfbfb; /* site light --color-background */
 }
 
 /* Site title reads as plain foreground, not the accent (Starlight's default). */
@@ -130,3 +130,79 @@
     transition: color 150ms ease-out;
   }
 }
+
+/* ==========================================================================
+   Redesign: the design system on the docs.
+   Surfaces are the site's (#fff / #131313 raised, #e6e6e6 / #262626 hairline),
+   the active sidebar item is a control pill, not an accent block, tables are
+   the DataTable, and radii follow the 8/12 scale.
+   ========================================================================== */
+:root {
+  --pm-docs-surface: #131313;
+  --pm-docs-hairline: #262626;
+  --pm-docs-control: #262626;
+  --pm-docs-muted: #8c8c8c;
+  --sl-color-hairline: #262626;
+  --sl-color-hairline-light: #1f1f1f;
+  --sl-color-bg-nav: #0a0a0a;
+  --sl-color-bg-sidebar: #0a0a0a;
+}
+:root[data-theme="light"] {
+  --pm-docs-surface: #ffffff;
+  --pm-docs-hairline: #e6e6e6;
+  --pm-docs-control: #ededed;
+  --pm-docs-muted: #646464;
+  --sl-color-hairline: #e6e6e6;
+  --sl-color-hairline-light: #efefef;
+  --sl-color-bg-nav: #fbfbfb;
+  --sl-color-bg-sidebar: #fbfbfb;
+}
+
+/* Sidebar: the current page is a control pill in ink, like the segmented
+   control's active state. Blue stays for links in the text. */
+.sidebar-content a[aria-current="page"],
+.sidebar-content a[aria-current="page"]:hover,
+.sidebar-content a[aria-current="page"]:focus {
+  background-color: var(--pm-docs-control);
+  color: var(--sl-color-white);
+  font-weight: 600;
+  border-radius: 6px;
+}
+.sidebar-content a { border-radius: 6px; }
+.sidebar-content .group-label .large { font-size: 13px; font-weight: 600; color: var(--sl-color-white); }
+
+/* Tables: the DataTable. */
+.sl-markdown-content table:not(:where(.not-content *)) {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--pm-docs-hairline);
+  border-radius: 12px;
+  background: var(--pm-docs-surface);
+  font-size: 15px;
+}
+.sl-markdown-content :is(th, td):not(:where(.not-content *)) {
+  border-bottom: 1px solid var(--pm-docs-hairline);
+  padding: 0.75rem 1.25rem;
+}
+.sl-markdown-content thead th:not(:where(.not-content *)) {
+  background: transparent;
+  border-bottom: 1px solid var(--pm-docs-hairline);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pm-docs-muted);
+}
+.sl-markdown-content tbody td:first-child:not(:where(.not-content *)) {
+  font-weight: 500;
+  color: var(--sl-color-white);
+}
+
+/* Radii on the 8/12 scale. */
+.sl-markdown-content :is(img, pre, .expressive-code) { border-radius: 12px; }
+.starlight-aside { border-radius: 12px; background-color: var(--pm-docs-surface) !important; border: 1px solid var(--pm-docs-hairline); border-inline-start: 3px solid var(--sl-color-accent); }
+
+/* Search box and the "On this page" pill read as controls. */
+site-search button[data-open-modal] { border-radius: 8px; background: var(--pm-docs-control); border-color: transparent; }
+mobile-starlight-toc nav summary, .toc-summary { border-radius: 8px; }
+
+/* Page title: the site's h1 weight and tracking. */
+.content-panel h1#_top { font-weight: 700; letter-spacing: -0.02em; }

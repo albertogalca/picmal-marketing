@@ -75,7 +75,7 @@ const priceLine =
 
 <div class={className || undefined}>
   <div
-    class="hero-reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-5"
+    class="hero-reveal flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2"
     style="--d: 160ms"
   >
     <Button
@@ -96,13 +96,13 @@ const priceLine =
         ? `window.seline?.track('trial_clicked', { source: '${source}' })`
         : undefined}
     />
-    <TrustBar align="start" count={6} />
+    <TrustBar align="start" count={6} class="sm:ml-2" />
   </div>
 
   <!-- What it costs and where the files stay, in one line. Muted so it
        supports the button without competing. -->
   <p
-    class="hero-reveal mt-5 text-small text-text-secondary"
+    class="hero-reveal mt-4 text-small text-text-secondary"
     style="--d: 200ms"
   >
     <svg

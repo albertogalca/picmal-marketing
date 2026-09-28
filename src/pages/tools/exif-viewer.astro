@@ -94,7 +94,7 @@ const faqs = [
 
     <p
       id="exif-status"
-      class="mt-4 text-small text-text-secondary text-center"
+      class="mt-4 text-small text-text-secondary"
       role="status"
       aria-live="polite"
     >
@@ -122,7 +122,7 @@ const faqs = [
       <div
         id="exif-gps"
         hidden
-        class="mt-10 rounded-2xl border border-warning/25 bg-warning-surface p-6 sm:p-8"
+        class="mt-10 rounded-xl border border-warning/25 bg-warning-surface p-6 sm:p-8"
       >
         <h2 class="text-h3 text-text mb-2">
           This photo knows where you were
@@ -169,13 +169,13 @@ const faqs = [
         class="mt-10 border-t border-border pt-8"
       >
         <h2 class="text-h4 text-text mb-4">Everything else in the file</h2>
-        <div class="overflow-x-auto">
+        <div class="ds-table-wrap">
           <table class="w-full text-small">
             <thead>
               <tr class="border-b border-border">
-                <th scope="col" class="text-left font-[590] text-text py-2 pr-4">Tag</th
+                <th scope="col" class="text-left py-3 pr-4">Tag</th
                 >
-                <th scope="col" class="text-left font-[590] text-text py-2">Value</th>
+                <th scope="col" class="text-left py-3">Value</th>
               </tr>
             </thead>
             <tbody id="exif-all"></tbody>
@@ -187,9 +187,7 @@ const faqs = [
 
   <Section width="narrow">
     <H2 class="mb-8">Questions</H2>
-    <Card>
-      <FAQ faqs={faqs} />
-    </Card>
+    <FAQ faqs={faqs} />
     <MoreTools current="/tools/exif-viewer" class="mt-8" />
   </Section>
 
@@ -359,7 +357,7 @@ const faqs = [
         el("exif-all").innerHTML = rest
           .map(
             ([key, value]) =>
-              `<tr class="border-b border-border/60"><td class="py-2 pr-4 text-text-secondary align-top">${esc(key)}</td><td class="py-2 text-text break-words">${esc(show(value))}</td></tr>`,
+              `<tr class="border-b border-border"><td class="py-2.5 pr-4 text-text-secondary align-top">${esc(key)}</td><td class="py-2.5 text-text break-words">${esc(show(value))}</td></tr>`,
           )
           .join("");
         el("exif-all-card").hidden = rest.length === 0;

@@ -43,8 +43,8 @@ const {
   <label
     data-dropzone-target
     class:list={[
-      size === "compact" ? "py-6" : "py-12",
-      "flex flex-col items-center justify-center gap-2 px-6 text-center cursor-pointer rounded-2xl border border-dashed border-border bg-background-subtle/50 transition-[border-color,background-color,scale] duration-200 ease-out hover:border-accent/40 hover:bg-accent/[0.03] active:scale-[0.99] motion-reduce:transition-none motion-reduce:active:scale-100 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent data-[dragging]:border-accent data-[dragging]:bg-accent/[0.06]",
+      size === "compact" ? "py-8" : "py-16 min-h-[280px]",
+      "flex flex-col items-center justify-center gap-2 px-6 text-center cursor-pointer rounded-2xl border-2 border-dashed border-accent bg-surface transition-[border-color,background-color,scale] duration-200 ease-out hover:bg-accent/[0.03] active:scale-[0.99] motion-reduce:transition-none motion-reduce:active:scale-100 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent data-[dragging]:border-accent data-[dragging]:bg-accent/[0.06]",
     ]}
   >
     <input
@@ -54,7 +54,7 @@ const {
       data-dropzone-input
     />
     <svg
-      class="w-6 h-6 text-text-secondary"
+      class="w-10 h-10 p-2 rounded-md bg-brand text-on-brand mb-2"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -67,7 +67,7 @@ const {
       <polyline points="7 10 12 15 17 10"></polyline>
       <line x1="12" y1="15" x2="12" y2="3"></line>
     </svg>
-    <span class="text-body font-[590] text-text">{label}</span>
+    <span class="text-h3 font-semibold text-text">{label}</span>
     {hint && <span class="text-small text-text-secondary">{hint}</span>}
   </label>
 </div>

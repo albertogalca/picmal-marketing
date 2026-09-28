@@ -14,10 +14,10 @@ const { href } = Astro.props;
 <a
   href={href}
   class:list={[
-    "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-background border border-border",
+    "inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-control",
     "text-small font-medium text-text",
     "transition-[color,border-color,background-color,scale] duration-200 ease-out motion-reduce:transition-none",
-    "hover:border-accent/30 hover:bg-accent/[0.03]",
+    "hover:bg-control-hover",
     "active:scale-[0.98] motion-reduce:active:scale-100",
     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
   ]}

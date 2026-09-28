@@ -3,13 +3,16 @@ import { Image } from "astro:assets";
 import LinkCard from "./LinkCard.astro";
 import FormattedDate from "./FormattedDate.astro";
 import { cn } from "../utils/cn";
+import ArtCard from "./pm/ArtCard.astro";
+import type { Art } from "../data/cardArt";
 
 /**
  * PostCard - the one card for anything clickable that leads somewhere else.
  * Cover, category and date render only when the destination has them, so a
  * blog guide and a product page share the same card without faking metadata.
  *
- * `boxed` (default) is the panel card from LinkCard, for grids that sit among
+ * Redesign: `flat` is now the default everywhere, the design system's
+ * PostCard. `boxed` is the old panel card from LinkCard, for grids that sit among
  * other panels on product pages. `flat` is for the blog: the picture and the
  * words, no panel around them, because 48 panels in a row is a wall of boxes.
  * `featured` widens a flat card into a row, picture left, for the newest post.
@@ -27,6 +30,8 @@ interface Props {
   /** 2 under a page H1 (the blog index), 3 under a section H2. */
   headingLevel?: 2 | 3;
   variant?: "boxed" | "flat";
+  /** Design-system card art, drawn live. Wins over `image`. */
+  art?: Art;
   featured?: boolean;
 }
 
@@ -39,8 +44,9 @@ const {
   category,
   date,
   headingLevel = 3,
-  variant = "boxed",
+  variant = "flat",
   featured = false,
+  art,
 } = Astro.props;
 
 const Heading = headingLevel === 2 ? "h2" : "h3";
@@ -78,7 +84,7 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         {(category || date) && (
           <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
             {category && (
-              <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+              <span class="font-medium text-text">
                 {category}
               </span>
             )}
@@ -112,12 +118,16 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         featured && "md:grid md:grid-cols-2 md:gap-10 md:items-center",
       )}
     >
-      {image && (
+      {art && (
+        <div class={cn(!featured && "mb-4", featured && "mb-4 md:mb-0")} aria-hidden="true">
+          <ArtCard title={art.title} texture={art.texture} ground={art.ground} seed={art.seed} />
+        </div>
+      )}
+      {!art && image && (
         <div
           class={cn(
-            "relative aspect-video overflow-hidden rounded-lg bg-background-subtle",
-            "ring-1 ring-black/[0.08] dark:ring-white/10",
-            "shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
+            "relative aspect-video overflow-hidden rounded-xl bg-background-subtle",
+            "ring-1 ring-border",
             !featured && "mb-4",
             featured && "mb-4 md:mb-0",
           )}
@@ -163,8 +173,8 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         <Heading
           class={cn(
             "font-semibold text-text text-balance leading-snug mb-2",
-            "transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none",
-            featured ? "text-h3 md:text-h2 md:mb-3" : "text-body-big",
+            "decoration-1 underline-offset-[3px] group-hover:underline",
+            featured ? "text-h3 md:text-h2 md:mb-3" : "text-h3",
           )}
         >
           {label}
@@ -173,7 +183,7 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         {description && (
           <p
             class={cn(
-              "text-small text-text-secondary text-pretty leading-relaxed",
+              "text-[15px] leading-6 text-text-secondary text-pretty",
               featured ? "line-clamp-4 md:text-body" : "line-clamp-2",
             )}
           >

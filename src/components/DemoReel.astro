@@ -1,6 +1,6 @@
 ---
 import { cn } from "../utils/cn";
-import MediaFrame from "./MediaFrame.astro";
+import PixelField from "./pm/PixelField.astro";
 
 /**
  * DemoReel, the stacked demo clips plus the thumbnail dock that swaps them.
@@ -42,6 +42,7 @@ const demos = [
   {
     slug: "convert",
     label: "Convert",
+    top: 72,
     src: "/convert.mp4",
     poster: "/convert-poster.webp",
     still: "/convert-still.webp",
@@ -50,6 +51,7 @@ const demos = [
   {
     slug: "compress",
     label: "Compress",
+    top: 62,
     src: "/compress.mp4",
     poster: "/compress-poster.webp",
     still: "/compress-still.webp",
@@ -58,6 +60,7 @@ const demos = [
   {
     slug: "pdf",
     label: "PDF tools",
+    top: 73,
     src: "/pdf.mp4",
     poster: "/pdf-poster.webp",
     still: "/pdf-still.webp",
@@ -66,6 +69,14 @@ const demos = [
 ];
 
 // Fall back to the first clip rather than rendering a reel with nothing active.
+// Redesign: the clips were recorded with the lake wallpaper baked in, so the
+// window is cropped out of each frame (it sits at x 192-1092, y ~62-646 of
+// 1280x720 in every clip) and placed on the pixel horizon instead. Record
+// window-only clips and this crop goes away.
+const WIN = { x: 192, w: 900, h: 574 };
+const crop = (top: number) =>
+  `width:${(1280 / WIN.w) * 100}%;max-width:none;height:auto;left:${(-WIN.x / WIN.w) * 100}%;top:${(-top / WIN.h) * 100}%`;
+
 const startIndex = Math.max(
   0,
   demos.findIndex((d) => d.slug === start),
@@ -73,7 +84,10 @@ const startIndex = Math.max(
 ---
 
 <div data-demo-reel class={cn("relative", className)}>
-  <MediaFrame>
+  <div class="relative overflow-hidden rounded-2xl bg-[#c3d8ff] dark:bg-ink-field" style="aspect-ratio:16/10">
+    <div class="absolute inset-0 dark:hidden" aria-hidden="true"><PixelField width={1024} height={640} texture="horizon" seed="picmal" tone="sky" fit="fill" class="w-full h-full" /></div>
+    <div class="absolute inset-0 hidden dark:block bg-ink-field" aria-hidden="true"><PixelField width={1024} height={640} texture="horizon" seed="picmal" tone="dusk" fit="fill" class="w-full h-full" /></div>
+    <div class="absolute left-[10%] right-[10%] top-[6%] overflow-hidden rounded-[10px] bg-[#1e1e20] ring-1 ring-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.35)]" style="aspect-ratio:900/574">
     {
       demos.map((demo, i) => (
         <video
@@ -82,7 +96,8 @@ const startIndex = Math.max(
           data-demo-still={demo.still}
           data-active={i === startIndex ? "" : undefined}
           aria-hidden={i === startIndex ? undefined : "true"}
-          class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out motion-reduce:transition-none data-[active]:opacity-100"
+          style={crop(demo.top)}
+          class="pointer-events-none absolute opacity-0 transition-opacity duration-500 ease-out motion-reduce:transition-none data-[active]:opacity-100"
           width="1280"
           height="720"
           src={i === startIndex ? demo.src : undefined}
@@ -96,6 +111,7 @@ const startIndex = Math.max(
       ))
     }
 
+    </div>
     <!-- WCAG 2.2.2 (Level A). The three clips run 10.8s, 18.3s and 32.7s and
          auto-advance forever, which is 62s a lap of motion beside whatever
          the page is asking for. Reduced motion is a system setting, not a
@@ -139,7 +155,7 @@ const startIndex = Math.max(
         ></path>
       </svg>
     </button>
-  </MediaFrame>
+  </div>
 
   <div
     class="mt-3 flex sm:absolute sm:inset-x-0 sm:bottom-4 sm:mt-0 sm:justify-center"

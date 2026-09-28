@@ -16,9 +16,9 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0 text-center">
+<Section width="narrow" class="pt-32 sm:pt-32 pb-0 sm:pb-0">
   <H1 class="mb-4">{title}</H1>
-  <Paragraph size="lead" class="max-w-2xl mx-auto">
+  <Paragraph size="lead" class="max-w-2xl">
     <slot />
   </Paragraph>
 </Section>

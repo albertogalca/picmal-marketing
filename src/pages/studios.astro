@@ -116,7 +116,7 @@ const description = `Convert and compress client files without uploading them an
       </Fragment>
     </SectionHeading>
 
-    <div class="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+    <div class="grid gap-4 sm:grid-cols-2 max-w-3xl">
       {
         team.map((tier) => (
           <Card>
@@ -149,7 +149,7 @@ const description = `Convert and compress client files without uploading them an
 
     <!-- Both escape hatches sit at the decision, not after it, so the page
          can end on the CTA instead of trailing a footnote past it. -->
-    <Paragraph size="small" class="text-center mt-6 max-w-xl mx-auto">
+    <Paragraph size="small" class="mt-6 max-w-xl">
       Every licence climbs to a bigger one later for the difference, on the
       same key, and the offer never expires. Buying for one Mac? Picmal is
       ${entry.price} on the <a class="link" href="/pricing">pricing page</a>.
@@ -157,10 +157,8 @@ const description = `Convert and compress client files without uploading them an
   </Section>
 
   <Section width="narrow">
-    <SectionHeading>Questions a studio asks</SectionHeading>
-    <Card>
-      <FAQ faqs={faqs} />
-    </Card>
+    <SectionHeading class="mb-8">Questions a studio asks</SectionHeading>
+    <FAQ faqs={faqs} />
   </Section>
 
   <CTASection

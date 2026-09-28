@@ -89,6 +89,8 @@ const noindex = !isVideoConversionIndexed(conversion.slug);
     subhead={heroLine}
     buyEvent={`buy_clicked_video_${conversion.slug}`}
     defaultTab="convert"
+    art={{ title: `${conversion.from.toUpperCase()} → ${conversion.to.toUpperCase()}`, texture: "scan", ground: "night" }}
+    demo={false}
   />
 
   {/* Same structure as the image convert pages: every section on the hero's

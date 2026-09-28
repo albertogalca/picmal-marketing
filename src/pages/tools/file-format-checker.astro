@@ -142,7 +142,7 @@ const sourced = formatSupport.filter((f) => f.source);
 
     <p
       id="format-status"
-      class="mt-4 text-small text-text-secondary text-center"
+      class="mt-4 text-small text-text-secondary"
       role="status"
       aria-live="polite"
     >
@@ -163,7 +163,7 @@ const sourced = formatSupport.filter((f) => f.source);
       <div
         id="format-advice"
         hidden
-        class="rounded-2xl border border-border bg-background-subtle/50 p-6"
+        class="rounded-xl border border-border bg-surface p-6"
       >
         <h2 class="text-h4 text-text mb-2" id="format-advice-title"></h2>
         <p
@@ -190,7 +190,7 @@ const sourced = formatSupport.filter((f) => f.source);
       kinds.map((kind) => (
         <div class="mb-12 last:mb-0">
           <h3 class="text-h4 text-text mb-4">{kind.label}</h3>
-          <div class="overflow-x-auto">
+          <div class="ds-table-wrap">
             {/* One table, two layouts. Below 40rem the CSS at the bottom of
                 this file stacks every cell, because five columns (two of
                 them carrying wrapped prose) is a sideways scroll on a
@@ -214,19 +214,19 @@ const sourced = formatSupport.filter((f) => f.source);
               </colgroup>
               <thead>
                 <tr role="row" class="border-b border-border">
-                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                  <th role="columnheader" scope="col" class="text-left py-3 pr-4">
                     Format
                   </th>
-                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                  <th role="columnheader" scope="col" class="text-left py-3 pr-4">
                     macOS
                   </th>
-                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                  <th role="columnheader" scope="col" class="text-left py-3 pr-4">
                     Windows
                   </th>
-                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3 pr-4">
+                  <th role="columnheader" scope="col" class="text-left py-3 pr-4">
                     Browsers
                   </th>
-                  <th role="columnheader" scope="col" class="text-left font-[590] text-text py-3">
+                  <th role="columnheader" scope="col" class="text-left py-3">
                     Send instead
                   </th>
                 </tr>
@@ -235,7 +235,7 @@ const sourced = formatSupport.filter((f) => f.source);
                 {formatSupport
                   .filter((f) => f.kind === kind.key)
                   .map((f) => (
-                    <tr role="row" class="border-b border-border/60 align-top">
+                    <tr role="row" class="border-b border-border align-top">
                       <td role="cell" class="fmt-name py-3 pr-4 font-[590] text-text whitespace-nowrap">
                         {f.name}
                       </td>
@@ -291,9 +291,7 @@ const sourced = formatSupport.filter((f) => f.source);
 
   <Section width="narrow">
     <H2 class="mb-8">Questions</H2>
-    <Card>
-      <FAQ faqs={faqs} />
-    </Card>
+    <FAQ faqs={faqs} />
     <MoreTools current="/tools/file-format-checker" class="mt-8" />
   </Section>
 

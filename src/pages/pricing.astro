@@ -2,7 +2,6 @@
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H2 from "../components/H2.astro";
@@ -56,7 +55,7 @@ const faqs = [
 
     <PricingPlans />
 
-    <Paragraph size="small" class="text-center mt-2">
+    <Paragraph size="small" class="mt-2">
       Student or teacher? <a class="link" href="/education"
         >{STUDENT_DISCOUNT.percentOff}% off with your school email</a
       >.
@@ -116,10 +115,8 @@ const faqs = [
 
     <div id="license-faq" class="mt-16 border-t border-border pt-12">
       <H2 class="mb-6">License questions</H2>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
-      <Paragraph size="small" class="mt-6 text-center">
+      <FAQ faqs={faqs} />
+      <Paragraph size="small" class="mt-6">
         Something else? Write to <a
           class="link"
           href="mailto:support@picmal.app">support@picmal.app</a

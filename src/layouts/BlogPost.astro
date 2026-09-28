@@ -1,4 +1,6 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
+import { postArt } from "../data/cardArt";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import BaseHead from "../components/BaseHead.astro";
@@ -16,6 +18,8 @@ import RelatedConversions from "../components/RelatedConversions.astro";
 import { DEFAULT_TIER } from "../config/pricing";
 import { displayCategory } from "../utils/posts";
 import TableOfContents from "../components/TableOfContents.astro";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -47,6 +51,17 @@ const {
 } = Astro.props;
 
 const categoryLabel = displayCategory(category);
+// Redesign: the post's pixel card sits under the header, like a cover. The
+// short-label card.png (scripts/generate-blog-covers.js --cards) when there is
+// one, with its dark twin.
+const cardPath = (name: string) =>
+  slug && existsSync(join(process.cwd(), "public", `images/blog/${slug}/${name}`))
+    ? `/images/blog/${slug}/${name}`
+    : undefined;
+const coverCard = cardPath("card.png");
+const coverCardDark = cardPath("card-dark.png");
+// Redesign: the cover is the design system's ArtCard, drawn live.
+const heroArt = slug ? postArt(slug, category) : undefined;
 ---
 
 <!doctype html>
@@ -91,7 +106,9 @@ const categoryLabel = displayCategory(category);
 
     <!-- Article -->
     <article class="relative z-10 px-6 pt-32 pb-20">
-      <div class="max-w-3xl mx-auto">
+      {/* Redesign: the article sits on the page column's left edge, with the
+          section map in the space to its right. */}
+      <div class="max-w-5xl mx-auto"><div class="max-w-[680px]">
         <!-- Breadcrumb -->
         <div class="article-breadcrumb">
           <Breadcrumb
@@ -112,7 +129,7 @@ const categoryLabel = displayCategory(category);
           >
             {
               categoryLabel && (
-                <span class="px-2 py-1 mr-1 bg-accent/10 text-accent rounded-full font-medium">
+                <span class="mr-1 text-accent font-medium">
                   {categoryLabel}
                 </span>
               )
@@ -164,13 +181,23 @@ const categoryLabel = displayCategory(category);
           </p>
         </header>
 
+        {heroArt ? (
+          <div class="mb-12" aria-hidden="true">
+            <ArtCard title={heroArt.title} texture={heroArt.texture} ground={heroArt.ground} seed={heroArt.seed} />
+          </div>
+        ) : coverCard && (
+          <div class="mb-12 aspect-video overflow-hidden rounded-xl ring-1 ring-border" aria-hidden="true">
+            <img src={coverCard} alt="" width="1600" height="900" class:list={["h-full w-full object-cover", coverCardDark && "dark:hidden"]} />
+            {coverCardDark && <img src={coverCardDark} alt="" width="1600" height="900" class="hidden h-full w-full object-cover dark:block" />}
+          </div>
+        )}
         <!-- Content, with the section map beside it on wide screens -->
         <div class="relative">
         <TableOfContents headings={headings} />
         <div
           class="prose max-w-none article-content
               prose-headings:text-text prose-headings:font-semibold
-              prose-p:text-text prose-p:leading-relaxed
+              prose-p:text-text prose-p:leading-relaxed prose-p:text-[17px] prose-li:text-[17px]
               prose-strong:text-text
               prose-th:text-text
               prose-td:text-text
@@ -210,7 +237,7 @@ const categoryLabel = displayCategory(category);
             )
           }
         </div>
-      </div>
+      </div></div>
     </article>
 
     <Footer />

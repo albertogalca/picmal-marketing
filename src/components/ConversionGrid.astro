@@ -30,7 +30,7 @@ const {
   columns = 3,
   linkText,
   linkHref,
-  linkAlign = "center",
+  linkAlign = "left",
   class: className,
 } = Astro.props;
 
@@ -40,21 +40,35 @@ const cols =
     : "grid-cols-2 sm:grid-cols-3";
 ---
 
-<div class={cn("grid gap-3", cols, className)}>
-  {
-    links.map((l) => (
+{/* Redesign: a list of plain links reads as chips; links with a second line
+    keep the card grid. */}
+{links.every((l) => !l.sublabel) ? (
+  <div class={cn("flex flex-wrap gap-2", className)}>
+    {links.map((l) => (
       <a
         href={l.href}
-        class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[border-color,scale] duration-200 ease-out hover:border-accent/30 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        class="inline-flex h-8 items-center rounded-full bg-control px-3.5 text-[13px] font-medium text-text transition-[background-color,scale] duration-150 hover:bg-control-hover active:scale-[0.97] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
-        <span class="block text-small font-medium text-text">{l.label}</span>
-        {l.sublabel && (
-          <span class="block text-small text-text-secondary mt-1">
-            {l.sublabel}
-          </span>
-        )}
+        {l.label}
       </a>
-    ))
-  }
-</div>
+    ))}
+  </div>
+) : (
+  <div class={cn("grid gap-3", cols, className)}>
+    {links.map((l) => (
+      <a
+        href={l.href}
+        class="group flex items-center justify-between gap-3 bg-surface border border-border rounded-xl px-5 py-4 transition-[border-color,scale] duration-200 ease-out hover:border-text-quiet active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <span>
+          <span class="block text-[15px] leading-6 font-semibold text-text">{l.label}</span>
+          {l.sublabel && (
+            <span class="block text-small text-text-secondary mt-0.5">{l.sublabel}</span>
+          )}
+        </span>
+        <span aria-hidden="true" class="text-text-quiet transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
+      </a>
+    ))}
+  </div>
+)}
 {linkText && linkHref && <SectionLink text={linkText} href={linkHref} align={linkAlign} />}

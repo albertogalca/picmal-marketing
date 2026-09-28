@@ -1,384 +1,80 @@
 ---
-import { Image } from "astro:assets";
+import Logo from "./pm/Logo.astro";
 import NewsletterSignup from "./NewsletterSignup.astro";
 import FeaturedOn from "./FeaturedOn.astro";
 import { TOOLS } from "../data/tools";
 
-const today = new Date();
+// The site's internal link map: every convert, compression, feature, tool,
+// alternative and company page is reachable from here on every page. The
+// redesign (Oct 2026) keeps every link and puts them on a dark band, in both
+// themes, so the footer reads as its own place and not as more page.
+const groups = [
+  [{ title: "Convert & Compress", links: [
+    ["/convert", "All conversions"], ["/compress", "All compression"], ["/image-converter-mac", "Image converter for Mac"],
+    ["/heic-converter-mac", "HEIC converter for Mac"], ["/raw-converter-mac", "RAW converter for Mac"], ["/video-converter-mac", "Video converter for Mac"],
+    ["/audio-converter-mac", "Audio converter for Mac"], ["/compress-images-mac", "Compress images on Mac"], ["/compress-video-mac", "Compress video on Mac"],
+    ["/compress-audio-mac", "Compress audio on Mac"]] }],
+  [{ title: "More in Picmal", links: [
+    ["/extract-audio-from-video-mac", "Extract audio from video"], ["/resize-image-mac", "Resize images on Mac"], ["/remove-metadata-from-photos-mac", "Remove photo metadata"],
+    ["/merge-pdf-mac", "Merge PDF on Mac"], ["/split-pdf-mac", "Split PDF on Mac"], ["/images-to-pdf-mac", "Images to PDF"],
+    ["/add-watermark-to-video-mac", "Add watermark to video"], ["/app-icon-generator-mac", "App icon generator"]] },
+   { title: "Free tools", href: "/tools", links: TOOLS.map((t) => [t.href, t.title]) }],
+  [{ title: "Alternatives", links: [
+    ["/alternative/cloudconvert", "CloudConvert alternative"], ["/alternative/compresto", "Compresto alternative"], ["/alternative/ffworks", "ffWorks alternative"],
+    ["/alternative/handbrake", "HandBrake alternative"], ["/alternative/howtoconvert", "How to Convert alternative"], ["/alternative/imageoptim", "ImageOptim alternative"],
+    ["/alternative/kompressor", "Kompressor alternative"], ["/alternative/permute", "Permute alternative"], ["/alternative/tinypng", "TinyPNG alternative"],
+    ["/alternative/xnconvert", "XnConvert alternative"], ["/alternative/zipic", "Zipic alternative"]] }],
+  [{ title: "Company", links: [
+    ["/about", "About"], ["/contact", "Contact"], ["/blog", "Blog"], ["/changelog", "Changelog"], ["/press-kit", "Press kit"],
+    ["/download", "Download"], ["/affiliate", "Earn 30% as affiliate"], ["/education", "Educational discount"]] }],
+] as { title: string; href?: string; links: string[][] }[][];
 ---
 
-<footer class="py-16 bg-background-subtle">
-  <div class="max-w-7xl mx-auto px-6 xl:px-0">
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-      <div class="col-span-2">
-        <div class="flex items-center gap-3 mb-4">
-          <Image
-            src="/logo.webp"
-            alt="Picmal Logo"
-            width={32}
-            height={32}
-            class="h-8 w-8 rounded-xl"
-            loading="lazy"
-          />
-          <span class="text-pretty text-text font-semibold text-body"
-            >Picmal</span
-          >
+<footer class="pm-footer-band dark">
+  <div class="pm-wrap"><div class="pm-footer">
+    <div class="pm-footer__cols">
+      <div class="pm-footer__brand">
+        <Logo size={24} wordmark />
+        <div class="pm-footer__news"><NewsletterSignup /></div>
+      </div>
+      {groups.map((col) => (
+        <div class="pm-footer__col">
+          {col.map((g) => (
+            <div class="pm-footer__group">
+              <div class="pm-footer__title">{g.href ? <a href={g.href}>{g.title}</a> : g.title}</div>
+              <ul>{g.links.map(([href, label]) => <li><a href={href}>{label}</a></li>)}</ul>
+            </div>
+          ))}
         </div>
-        <NewsletterSignup />
-      </div>
-
-      <div>
-        <p class="text-text mb-4 font-semibold">Convert & Compress</p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          <li>
-            <a href="/convert" class="transition-colors hover:text-text"
-              >All conversions</a
-            >
-          </li>
-          <li>
-            <a href="/compress" class="transition-colors hover:text-text"
-              >All compression</a
-            >
-          </li>
-          <li>
-            <a
-              href="/image-converter-mac"
-              class="transition-colors hover:text-text"
-              >Image converter for Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/heic-converter-mac"
-              class="transition-colors hover:text-text"
-              >HEIC converter for Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/raw-converter-mac"
-              class="transition-colors hover:text-text">RAW converter for Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/video-converter-mac"
-              class="transition-colors hover:text-text"
-              >Video converter for Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/audio-converter-mac"
-              class="transition-colors hover:text-text"
-              >Audio converter for Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/compress-images-mac"
-              class="transition-colors hover:text-text"
-              >Compress images on Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/compress-video-mac"
-              class="transition-colors hover:text-text"
-              >Compress video on Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/compress-audio-mac"
-              class="transition-colors hover:text-text"
-              >Compress audio on Mac</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div>
-        {/* Two groups in one column. "Tools" used to head both the app's
-            features and the free browser tools, while the header's "Tools"
-            means only the second. The grid stays at six columns. */}
-        <p class="text-text mb-4 font-semibold">More in Picmal</p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          <li>
-            <a
-              href="/extract-audio-from-video-mac"
-              class="transition-colors hover:text-text"
-              >Extract audio from video</a
-            >
-          </li>
-          <li>
-            <a
-              href="/resize-image-mac"
-              class="transition-colors hover:text-text">Resize images on Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/remove-metadata-from-photos-mac"
-              class="transition-colors hover:text-text">Remove photo metadata</a
-            >
-          </li>
-          <li>
-            <a href="/merge-pdf-mac" class="transition-colors hover:text-text"
-              >Merge PDF on Mac</a
-            >
-          </li>
-          <li>
-            <a href="/split-pdf-mac" class="transition-colors hover:text-text"
-              >Split PDF on Mac</a
-            >
-          </li>
-          <li>
-            <a
-              href="/images-to-pdf-mac"
-              class="transition-colors hover:text-text">Images to PDF</a
-            >
-          </li>
-          <li>
-            <a
-              href="/add-watermark-to-video-mac"
-              class="transition-colors hover:text-text"
-              >Add watermark to video</a
-            >
-          </li>
-          <li>
-            <a
-              href="/app-icon-generator-mac"
-              class="transition-colors hover:text-text">App icon generator</a
-            >
-          </li>
-        </ul>
-        <p class="text-text mt-8 mb-4 font-semibold">
-          <a href="/tools" class="transition-colors hover:text-text-secondary"
-            >Free tools</a
-          >
-        </p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          {
-            TOOLS.map((t) => (
-              <li>
-                <a href={t.href} class="transition-colors hover:text-text">
-                  {t.title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div>
-        <p class="text-text mb-4 font-semibold">Alternatives</p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          <li>
-            <a
-              href="/alternative/cloudconvert"
-              class="transition-colors hover:text-text"
-              >CloudConvert alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/compresto"
-              class="transition-colors hover:text-text">Compresto alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/ffworks"
-              class="transition-colors hover:text-text">ffWorks alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/handbrake"
-              class="transition-colors hover:text-text">HandBrake alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/howtoconvert"
-              class="transition-colors hover:text-text"
-              >How to Convert alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/imageoptim"
-              class="transition-colors hover:text-text"
-              >ImageOptim alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/kompressor"
-              class="transition-colors hover:text-text"
-              >Kompressor alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/permute"
-              class="transition-colors hover:text-text">Permute alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/tinypng"
-              class="transition-colors hover:text-text">TinyPNG alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/xnconvert"
-              class="transition-colors hover:text-text">XnConvert alternative</a
-            >
-          </li>
-          <li>
-            <a
-              href="/alternative/zipic"
-              class="transition-colors hover:text-text">Zipic alternative</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div>
-        <p class="text-text mb-4 font-semibold">Company</p>
-        <ul class="space-y-3 text-body text-text-secondary">
-          <li>
-            <a href="/about" class="transition-colors hover:text-text">About</a>
-          </li>
-          <li>
-            <a href="/contact" class="transition-colors hover:text-text"
-              >Contact</a
-            >
-          </li>
-          <li>
-            <a href="/blog" class="transition-colors hover:text-text">Blog</a>
-          </li>
-          <li>
-            <a href="/changelog" class="transition-colors hover:text-text"
-              >Changelog</a
-            >
-          </li>
-          <li>
-            <a href="/press-kit" class="transition-colors hover:text-text"
-              >Press kit</a
-            >
-          </li>
-          <li>
-            <a href="/download" class="transition-colors hover:text-text"
-              >Download</a
-            >
-          </li>
-          <li>
-            <a href="/affiliate" class="transition-colors hover:text-text"
-              >Earn 30% as affiliate</a
-            >
-          </li>
-          <li>
-            <a href="/education" class="transition-colors hover:text-text"
-              >Educational discount</a
-            >
-          </li>
-        </ul>
-      </div>
+      ))}
     </div>
-
-    {
-      /* Above the legal bar, not below it. These are directory backlinks, not
-        social proof, and as the last element on every page they closed the
-        site on TinyLaunch and LaunchIgniter right after MacStories and
-        TheSweetBits had done the real vouching. Still visible, still linked,
-        just no longer the final word. */
-    }
-    <FeaturedOn />
-
-    <div
-      class="mt-12 pt-8 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-2 text-body text-text-secondary"
-    >
-      <span>&copy; {today.getFullYear()} Picmal - All rights reserved.</span>
-      <button
-        onclick="toggleTheme()"
-        class="flex items-center gap-2 py-2 -my-2 rounded-xl hover:text-text transition-[color,scale] active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        type="button"
-        aria-label="Toggle color theme"
-      >
-        <svg
-          class="w-4 h-4 hidden dark:block"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-        >
-          <path
-            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-            fill-rule="evenodd"
-            clip-rule="evenodd"></path>
-        </svg>
-        <svg
-          class="w-4 h-4 block dark:hidden"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          aria-hidden="true"
-        >
-          <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-          ></path>
-        </svg>
-        <span class="hidden dark:block">Light Mode</span>
-        <span class="block dark:hidden">Dark Mode</span>
-      </button>
-
-      <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 sm:ml-auto">
-        <a href="/terms" class="transition-colors hover:text-text"
-          >Terms of use</a
-        >
-        <a href="/privacy" class="transition-colors hover:text-text"
-          >Privacy policy</a
-        >
-        <a href="/legal/open-source" class="transition-colors hover:text-text"
-          >Open source</a
-        >
-      </nav>
+    <div class="pm-footer__featured"><FeaturedOn /></div>
+    <div class="pm-footer__base">
+      <span class="pm-footer__copy">&copy; {new Date().getFullYear()} Picmal - All rights reserved.<button type="button" class="pm-footer__theme" id="pm-theme" aria-label="Toggle color theme">Dark Mode</button></span>
+      <span class="pm-footer__legal"><a href="/terms">Terms of use</a><a href="/privacy">Privacy policy</a><a href="/legal/open-source">Open source</a></span>
     </div>
-  </div>
+  </div></div>
 </footer>
 
-<script>
+<script is:inline>
+  // Theme: follow the OS until the visitor picks, then remember the pick.
   const html = document.documentElement;
-
-  // `persist` is the whole point of the split. initTheme used to call a setter
-  // that always wrote to localStorage, so the first page view stamped "light"
-  // in permanently and the OS preference could never win again, on any later
-  // visit. Only an actual toggle is a choice worth storing.
   function applyTheme(theme) {
     html.classList.remove("light", "dark");
     html.classList.add(theme);
     html.style.colorScheme = theme;
+    const label = document.getElementById("pm-theme");
+    if (label) label.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
   }
-
-  function setTheme(theme) {
-    applyTheme(theme);
-    localStorage.setItem("theme", theme);
-  }
-
-  function initTheme() {
-    applyTheme(
-      localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"),
-    );
-  }
-
   window.toggleTheme = function toggleTheme() {
-    const currentTheme = html.classList.contains("dark") ? "dark" : "light";
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
+    const next = html.classList.contains("dark") ? "light" : "dark";
+    applyTheme(next);
+    localStorage.setItem("theme", next);
   };
-
+  function initTheme() {
+    applyTheme(localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+  }
   initTheme();
+  document.getElementById("pm-theme")?.addEventListener("click", () => window.toggleTheme());
   document.addEventListener("astro:page-load", initTheme);
 </script>

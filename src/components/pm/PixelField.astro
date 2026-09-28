@@ -1,0 +1,32 @@
+---
+import { cells } from "../../utils/pixels";
+
+interface Props {
+  width?: number;
+  height?: number;
+  cell?: number;
+  texture?: string;
+  seed?: string | number;
+  /** paper on brand, glow on night, brand on paper, icon for flow, sky/dusk for horizon. */
+  tone?: "paper" | "glow" | "brand" | "ink" | "icon" | "sky" | "dusk" | "accent";
+  rise?: number;
+  density?: number;
+  /** "fill" centers the texture; default pins it to the bottom edge. */
+  fit?: "bottom" | "fill";
+  class?: string;
+}
+const { width = 480, height = 160, cell = 8, texture = "skyline", seed = "picmal", tone = "paper", rise, density, fit = "bottom", class: cls } = Astro.props;
+const cols = Math.floor(width / cell);
+const rows = Math.floor(height / cell);
+const list = cells(texture, cols, rows, seed, { rise, density });
+---
+
+<svg
+  class:list={["pm-pixels", `pm-pixels--${tone}`, cls]}
+  width={cols * cell}
+  height={rows * cell}
+  viewBox={`0 0 ${cols * cell} ${rows * cell}`}
+  preserveAspectRatio={fit === "fill" ? "xMidYMid slice" : "xMidYMax slice"}
+  shape-rendering="crispEdges"
+  aria-hidden="true"
+>{list.map(([x, y, w, h, t]) => <rect class={t > 1 ? `t${t}` : undefined} x={x * cell} y={y * cell} width={w * cell} height={h * cell} />)}</svg>

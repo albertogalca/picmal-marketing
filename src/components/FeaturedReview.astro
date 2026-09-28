@@ -19,6 +19,6 @@ const review = (testimonials as Record<string, any>[]).find(
 if (!review) throw new Error(`No press review for "${publication}"`);
 ---
 
-<div class:list={["max-w-2xl mx-auto", className]}>
+<div class:list={["max-w-3xl", className]}>
   <TestimonialCard testimonial={review} align="center" />
 </div>

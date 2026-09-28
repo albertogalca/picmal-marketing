@@ -1,4 +1,5 @@
 ---
+import { postArt } from "../data/cardArt";
 import { getPublishedPosts, postCover, postCoverDark, displayCategory } from "../utils/posts";
 import PostCard from "./PostCard.astro";
 
@@ -74,6 +75,7 @@ const postsToShow =
             description={post.data.description}
             image={postCover(post)}
             imageDark={postCoverDark(post)}
+            art={postArt(post.id, post.data.category)}
             category={displayCategory(post.data.category)}
             date={post.data.pubDate}
             variant="flat"

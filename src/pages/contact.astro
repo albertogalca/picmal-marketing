@@ -1,4 +1,5 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
@@ -90,7 +91,10 @@ const reasons = [
   <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge.
        The bottom is pulled in so the intro prose stays attached to the
        hero instead of floating between two equal 80px gaps. -->
-  <Section width="narrow" class="pt-32 sm:pt-32 pb-10 sm:pb-12">
+  <Section class="pt-32 sm:pt-32 pb-10 sm:pb-12">
+    {/* Redesign: hero words on the measure, pixel art beside them. */}
+    <div class="md:grid md:grid-cols-[minmax(0,640px)_minmax(0,1fr)] md:gap-16 md:items-start">
+    <div>
     <!-- Not SectionHeading here: the address is the reason people open
          this page, so it has to sit directly under the title as the second
          strongest thing on it, and that primitive only holds a sublead. -->
@@ -119,6 +123,9 @@ const reasons = [
         the details you put in the email are all I have to work with. The
         more specific you are, the shorter the conversation.
       </Paragraph>
+    </div>
+      </div>
+    <div class="hidden md:block md:pt-2"><ArtCard texture="skyline" ground="brand" seed="contact" /></div>
     </div>
   </Section>
 

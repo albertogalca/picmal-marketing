@@ -12,20 +12,15 @@ import Paragraph from "./Paragraph.astro";
 // on the page as an object rather than filling the container.
 ---
 
-<Section id="letter" width="narrow">
-  <!-- bg-white, not bg-background: the page behind is already #fbfbfb, so a
-       token surface would leave the sheet with nothing to separate it from the
-       page. Paper is the one surface here that wants to beat the page. -->
-  <div
-    class="letter bg-white dark:bg-white/[0.06] border border-black/[0.09] dark:border-white/10 rounded-2xl px-6 py-12 sm:px-12 sm:py-16 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_16px_34px_-12px_rgba(0,0,0,0.22)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.5),0_16px_34px_-12px_rgba(0,0,0,0.6)]"
-  >
-    <!-- sr-only landmark: a letter has no title, but screen-reader heading
-         nav needs one so this section isn't an unnamed landmark. -->
+{/* Redesign: the letter is set straight on the page, a reading column on
+    the page's left edge with a hairline above it, no paper sheet. Same words. */}
+<Section id="letter">
+  <div class="letter border-t border-border pt-12 sm:pt-16">
     <h2 class="sr-only">A note from Picmal's founder</h2>
 
     <!-- max-w-xl ≈ 72 characters: inside the 65–75ch reading cap, and it leaves
          the sheet the wide side margins a typed page has. -->
-    <div class="mx-auto max-w-xl">
+    <div class="max-w-xl">
       <!-- Greeting, then a full blank line, the way a letter opens. -->
       <Paragraph color="primary" class="mb-6">Hello there 👋</Paragraph>
 
@@ -70,78 +65,22 @@ import Paragraph from "./Paragraph.astro";
       <!-- The close sits further from the body than the paragraphs sit from
            each other, so the signature reads as the end of a letter. The badge
            sits beside it, baseline-aligned, like a photo clipped to the page. -->
-      <div class="mt-10 flex items-end justify-between gap-6">
-        <div>
-          <Paragraph color="primary" class="mb-1">Best,</Paragraph>
-          <!-- Deliberate off-scale exception: the handwritten signature is the
-               one decorative script on the site, not part of the UI type scale.
-               leading-tight (not none) so cursive descenders don't clip.
-               No tilt: the script already says "handwritten", and the badge
-               beside it is the one thing on this sheet that sits off-square. -->
-          <p class="font-signature text-text text-2xl leading-tight">Alberto</p>
-        </div>
-
-        <!-- Founder badge: a transparent starburst cutout, so depth comes from a
-             shape-following drop-shadow (a ring/box-shadow would box the star).
-             Decorative → pointer-events-none + empty alt is intentional. -->
+      <!-- Redesign: the signature is one row, the badge first, flat, no tilt
+           or shadow (the system uses borders only). -->
+      <div class="mt-10 flex items-center gap-4">
         <img
           src="/founder-badge.png"
           alt=""
           width="156"
           height="151"
           loading="lazy"
-          class="pointer-events-none shrink-0 w-16 h-16 sm:w-20 sm:h-20 -rotate-6 [filter:drop-shadow(0_6px_14px_rgba(0,0,0,0.20))]"
+          class="pointer-events-none shrink-0 w-14 h-14"
         />
+        <div>
+          <Paragraph color="primary" class="mb-0">Best,</Paragraph>
+          <p class="font-signature text-text text-2xl leading-tight">Alberto</p>
+        </div>
       </div>
     </div>
   </div>
 </Section>
-
-<style>
-  /* Folded in thirds and opened again. Each crease runs the full width of the
-     sheet and is built out of light, not a drawn line: the paper darkens as it
-     bends into the fold, the ridge itself stays bare paper, and a shorter, softer
-     shadow falls just under it. Bare paper between darker neighbours is what
-     reads as a raised crease.
-     The panels are 33.4% tall, so the creases land in the gaps between
-     paragraphs at the default text size and never sit on a line of type. */
-  .letter {
-    --fold-a: 33.4%;
-    --fold-b: 66.8%;
-    background-image: linear-gradient(
-      to bottom,
-      transparent calc(var(--fold-a) - 34px),
-      rgba(0, 0, 0, 0.08) calc(var(--fold-a) - 1px),
-      transparent var(--fold-a),
-      transparent calc(var(--fold-a) + 1px),
-      rgba(0, 0, 0, 0.055) calc(var(--fold-a) + 8px),
-      transparent calc(var(--fold-a) + 38px),
-      transparent calc(var(--fold-b) - 34px),
-      rgba(0, 0, 0, 0.08) calc(var(--fold-b) - 1px),
-      transparent var(--fold-b),
-      transparent calc(var(--fold-b) + 1px),
-      rgba(0, 0, 0, 0.055) calc(var(--fold-b) + 8px),
-      transparent calc(var(--fold-b) + 38px)
-    );
-  }
-
-  /* The dark sheet isn't white, so the ridge can be a highlight there: a film of
-     white at the crease, deeper shadow either side of it. */
-  :global(.dark) .letter {
-    background-image: linear-gradient(
-      to bottom,
-      transparent calc(var(--fold-a) - 34px),
-      rgba(0, 0, 0, 0.25) calc(var(--fold-a) - 1px),
-      rgba(255, 255, 255, 0.06) var(--fold-a),
-      rgba(255, 255, 255, 0.06) calc(var(--fold-a) + 1px),
-      rgba(0, 0, 0, 0.17) calc(var(--fold-a) + 8px),
-      transparent calc(var(--fold-a) + 38px),
-      transparent calc(var(--fold-b) - 34px),
-      rgba(0, 0, 0, 0.25) calc(var(--fold-b) - 1px),
-      rgba(255, 255, 255, 0.06) var(--fold-b),
-      rgba(255, 255, 255, 0.06) calc(var(--fold-b) + 1px),
-      rgba(0, 0, 0, 0.17) calc(var(--fold-b) + 8px),
-      transparent calc(var(--fold-b) + 38px)
-    );
-  }
-</style>

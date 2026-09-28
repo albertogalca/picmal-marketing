@@ -1,5 +1,4 @@
 ---
-import Card from "./Card.astro";
 import FAQ from "./FAQ.astro";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
@@ -20,7 +19,7 @@ interface Props {
 
 const {
   faqs,
-  align = "center",
+  align = "left",
   heading = "Frequently Asked Questions",
   sublead = "Something not covered here? Write to support@picmal.app",
 } = Astro.props;
@@ -28,7 +27,6 @@ const {
 
 <Section id="faq" width={align === "left" ? "wide" : "narrow"}>
   <SectionHeading align={align} sublead={sublead}>{heading}</SectionHeading>
-  <Card class={align === "left" ? "max-w-3xl" : undefined}>
-    <FAQ faqs={faqs} />
-  </Card>
+  {/* Redesign: hairline rows on the page, no card around them. */}
+  <FAQ faqs={faqs} />
 </Section>

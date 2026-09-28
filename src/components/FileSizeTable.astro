@@ -26,7 +26,7 @@ const { columns, rows, speed } = Astro.props;
 const cell = "px-6 py-4 text-small text-right";
 ---
 
-<div class="bg-background-subtle/50 border border-border rounded-xl overflow-hidden">
+<div class="bg-surface border border-border rounded-xl overflow-hidden">
   {/* Four columns of file sizes do not fit a phone, and the body carries
       overflow-x-hidden, so without this the table has nowhere to go. Same
       wrapper ComparisonTable uses. */}
@@ -67,10 +67,10 @@ const cell = "px-6 py-4 text-small text-right";
               >
                 {row.label}
               </th>
-              <td class={`${cell} text-text-secondary font-mono`}>
+              <td class={`${cell} text-text-secondary tabular-nums`}>
                 {row.originalSize}
               </td>
-              <td class={`${cell} text-text font-mono font-medium`}>
+              <td class={`${cell} text-text tabular-nums font-medium`}>
                 {row.compressedSize}
               </td>
               <td class={`${cell} text-text tabular-nums`}>{row.savings}</td>

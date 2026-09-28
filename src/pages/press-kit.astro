@@ -1,4 +1,5 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
@@ -86,7 +87,10 @@ const coverage = [
         />
   </Fragment>
 
-  <Section width="narrow" class="pt-32 sm:pt-32">
+  <Section class="pt-32 sm:pt-32">
+    {/* Redesign: hero words on the measure, pixel art beside them. */}
+    <div class="md:grid md:grid-cols-[minmax(0,640px)_minmax(0,1fr)] md:gap-16 md:items-start">
+    <div>
     <SectionHeading
       level={1}
       sublead="Everything you need to write about Picmal. Copy any of it as is, no permission needed. If you want something that isn't here, email me and I'll send it."
@@ -94,7 +98,7 @@ const coverage = [
       Press kit
     </SectionHeading>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
       <Button href={DRIVE_URL} text="Download logos and screenshots" />
       <a
         href="mailto:support@picmal.app"
@@ -102,15 +106,18 @@ const coverage = [
         >or email me directly</a
       >
     </div>
+      </div>
+    <div class="hidden md:block md:pt-2"><ArtCard texture="mosaic" ground="night" seed="press-kit" /></div>
+    </div>
   </Section>
 
   <Section width="narrow" bg="subtle">
     <H2 class="mb-8">The facts</H2>
-    <Card>
-      <dl class="flex flex-col gap-4">
+    <Card padding="p-0">
+      <dl class="flex flex-col divide-y divide-border">
         {
           facts.map((fact) => (
-            <div class="flex flex-col sm:flex-row sm:gap-6">
+            <div class="flex flex-col sm:flex-row sm:gap-6 px-6 py-4">
               <dt class="text-small text-text-secondary sm:w-40 sm:shrink-0">
                 {fact.label}
               </dt>
@@ -142,8 +149,8 @@ const coverage = [
 
   <Section width="narrow" bg="subtle">
     <H2 class="mb-8">What it does</H2>
-    <Card>
-      <ul class="flex flex-col gap-3 text-body text-text-secondary">
+    {/* Redesign: a checked list on hairline rows, not a panel of text. */}
+    <ul class="border-t border-border text-body text-text-secondary [&>li]:flex [&>li]:gap-3 [&>li]:py-4 [&>li]:border-b [&>li]:border-border [&>li]:before:content-[''] [&>li]:before:mt-2 [&>li]:before:size-2 [&>li]:before:shrink-0 [&>li]:before:bg-brand">
         <li>
           Batch converts images, video, audio and PDFs across more than 100
           formats, including HEIC, WebP, AVIF, RAW, MP4, MOV, MP3 and FLAC.
@@ -172,21 +179,20 @@ const coverage = [
           Runs entirely offline. No uploads, no account, no server. The app
           has nowhere to send a file even if it wanted to.
         </li>
-      </ul>
-    </Card>
+    </ul>
   </Section>
 
   <Section width="narrow">
     <H2 class="mb-8">Coverage</H2>
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-10">
       {
         coverage.map((item) => (
-          <Card>
-            <Paragraph class="mb-3">"{item.quote}"</Paragraph>
-            <Paragraph size="small" color="secondary">
+          <figure class="border-l-2 border-brand pl-6">
+            <blockquote class="text-h3 font-medium text-text text-pretty !m-0">"{item.quote}"</blockquote>
+            <figcaption class="mt-3 text-small text-text-secondary">
               {item.publication}
-            </Paragraph>
-          </Card>
+            </figcaption>
+          </figure>
         ))
       }
     </div>

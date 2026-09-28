@@ -1,0 +1,9 @@
+---
+interface Props { size?: number; wordmark?: boolean; class?: string }
+const { size = 32, wordmark = false, class: cls } = Astro.props;
+---
+
+<span class:list={["pm-logo", cls]}>
+  <img class="pm-logo__icon" src="/logo.webp" width={size} height={size} alt={wordmark ? "" : "Picmal"} />
+  {wordmark && <span class="pm-logo__word">Picmal</span>}
+</span>

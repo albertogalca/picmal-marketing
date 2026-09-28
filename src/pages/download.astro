@@ -1,4 +1,5 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import { DMG_URL } from "../config/download";
 import H1 from "../components/H1.astro";
@@ -44,15 +45,15 @@ const steps = [
         <ProductSchema url={Astro.site!.href} />
   </Fragment>
 
-  <div class="max-w-3xl mx-auto px-6 text-center">
+  <div class="max-w-[1072px] mx-auto px-6 md:grid md:grid-cols-[minmax(0,640px)_minmax(0,1fr)] md:gap-16 md:items-start"><div class="max-w-[640px]">
     <H1 class="mb-6">Download Picmal for Mac</H1>
-    <Paragraph size="lead" class="mb-8 max-w-xl mx-auto">
+    <Paragraph size="lead" class="mb-8">
       Picmal is free for 7 days on your Mac. To keep converting after that
       you need a license, which is a single $29 payment. Don't like it? Full
       refund within 14 days.
     </Paragraph>
 
-    <div class="flex flex-col items-center gap-3">
+    <div class="flex flex-col items-start gap-3">
       <Button
         href={DMG_URL}
         text="Download Picmal (.dmg)"
@@ -71,7 +72,7 @@ const steps = [
     </div>
 
     <div class="mt-6">
-      <TrustBar />
+      <TrustBar align="start" />
     </div>
 
     <!-- The download is a DMG from GitHub, outside the App Store. Saying
@@ -91,12 +92,14 @@ const steps = [
     <p class="mt-8 text-small text-text-secondary">
       Picmal is in Homebrew too. Same signed app, one line.
     </p>
-    <div class="mt-3 flex justify-center">
+    <div class="mt-3 flex">
       <CopyCommand
         command="brew install --cask picmal"
         label="Copy the Homebrew install command"
       />
     </div>
+  </div>
+    <div class="hidden md:block md:pt-2"><ArtCard class="rounded-xl" texture="flow" seed="download" /></div>
   </div>
 
   <!-- Install steps -->

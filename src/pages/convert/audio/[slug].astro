@@ -72,6 +72,8 @@ const noindex = !isAudioConversionIndexed(conversion.slug);
     subhead={heroLine}
     buyEvent={`buy_clicked_audio_${conversion.slug}`}
     defaultTab="convert"
+    art={{ title: `${from.name} → ${to.name}`, texture: "wave", ground: "night" }}
+    demo={false}
   />
 
   {/* Same structure as the image convert pages: every section on the hero's

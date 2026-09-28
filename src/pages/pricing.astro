@@ -1,7 +1,6 @@
 ---
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
-import CTASection from "../components/CTASection.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
@@ -10,7 +9,7 @@ import H2 from "../components/H2.astro";
 import FAQ from "../components/FAQ.astro";
 import PricingPlans from "../components/PricingPlans.astro";
 import ProductSchema from "../components/schema/ProductSchema.astro";
-import { TIERS, licenseFaqs } from "../config/pricing";
+import { STUDENT_DISCOUNT, TIERS, licenseFaqs } from "../config/pricing";
 
 const title = "Picmal pricing: one payment, no subscription";
 const description =
@@ -21,6 +20,19 @@ const description =
 // there a trial"), so the two schemas never claim the same Q&A twice.
 const entry = TIERS[0];
 const top = TIERS[TIERS.length - 1];
+
+// The trial question lives here, not in licenseFaqs, because only this page
+// sells the trial beside the price and has to say what it covers. It goes
+// first: "Try free for 7 days" is the second button on the card, and until
+// Sep 2026 nothing on the page said what happens on day 8.
+const faqs = [
+  {
+    question: "What does the free trial cover?",
+    answer:
+      'Every tool in the app, for 7 days on that Mac. No key, no card, no account: open Picmal and press Try free in the sidebar. The command line, Shortcuts, Raycast and watched folders need a license. On day 8 the app asks for a key, and the files you already converted stay where they are. <a class="link" href="/docs/license#try-it-free">More on the trial</a>.',
+  },
+  ...licenseFaqs,
+];
 ---
 
 <MarketingLayout
@@ -29,7 +41,7 @@ const top = TIERS[TIERS.length - 1];
 >
   <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
-    <FAQSchema faqs={licenseFaqs} />
+    <FAQSchema faqs={faqs} />
   </Fragment>
 
   <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
@@ -43,6 +55,12 @@ const top = TIERS[TIERS.length - 1];
     </SectionHeading>
 
     <PricingPlans />
+
+    <Paragraph size="small" class="text-center mt-2">
+      Student or teacher? <a class="link" href="/education"
+        >{STUDENT_DISCOUNT.percentOff}% off with your school email</a
+      >.
+    </Paragraph>
   </Section>
 
   {/* One band, two topics. These were two <Section>s, which gave the gap
@@ -99,7 +117,7 @@ const top = TIERS[TIERS.length - 1];
     <div id="license-faq" class="mt-16 border-t border-border pt-12">
       <H2 class="mb-6">License questions</H2>
       <Card>
-        <FAQ faqs={licenseFaqs} />
+        <FAQ faqs={faqs} />
       </Card>
       <Paragraph size="small" class="mt-6 text-center">
         Something else? Write to <a
@@ -110,9 +128,8 @@ const top = TIERS[TIERS.length - 1];
     </div>
   </Section>
 
-  <CTASection
-    heading="Convert and compress media on your Mac"
-    note="The download is the full app. Look around all you like. It just won't convert anything until a key goes in."
-    analyticsEvent="buy_clicked_pricing"
-  />
+  {/* No CTASection here, unlike every other page. The card above is this
+      page's call to action, and a closing band repeated its two buttons
+      under a pitch the card had already made, always selling 1 Mac whatever
+      the picker said. The support line is the last thing on the page. */}
 </MarketingLayout>

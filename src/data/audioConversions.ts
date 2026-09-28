@@ -16,6 +16,8 @@ export interface AudioConversionPair {
   whyConvert: string;
   benefits: string[];
   faqs: { question: string; answer: string }[];
+  /** Hero subhead: the job first, then that it happens on the Mac. */
+  heroLine?: string;
 }
 
 export const audioFormats: Record<string, AudioFormatInfo> = {
@@ -33,7 +35,7 @@ export const audioFormats: Record<string, AudioFormatInfo> = {
     fullName: "MPEG-4 Audio",
     description:
       "Apple's audio container (usually AAC), used by iTunes, Apple Music, and iPhone voice memos.",
-    note: "iPhone voice memos and Apple Music downloads come as M4A, which some non-Apple apps and players won't open",
+    note: "iPhone voice memos and iTunes purchases come as M4A, which some non-Apple apps and players won't open",
     lossless: false,
   },
   wav: {
@@ -50,7 +52,7 @@ export const audioFormats: Record<string, AudioFormatInfo> = {
     fullName: "Free Lossless Audio Codec",
     description:
       "Lossless compression, bit-for-bit identical to the source at roughly half the size of WAV. The audiophile archival format.",
-    note: "FLAC is lossless and loved by audiophiles, but Apple devices and Apple Music don't support it natively",
+    note: "FLAC is lossless and loved by audiophiles, but Apple Music won't import it",
     lossless: true,
   },
   aac: {
@@ -167,10 +169,13 @@ const PAIRS: [string, string][] = [
 function buildWhyConvert(from: AudioFormatInfo, to: AudioFormatInfo): string {
   const src = from.note ? `${from.note}. ` : "";
   if (to.extension === "mp3") {
-    return `${src}Converting ${from.name} to MP3 gives you a small, universally compatible audio file that plays on any device, app, or player. Picmal re-encodes locally on your Mac with bitrate control (VBR/ABR/CBR) and batch processing, no upload limits, no subscription.`;
+    return `${src}Converting ${from.name} to MP3 gives you ${from.lossless ? "a small, universally compatible" : "a universally compatible"} audio file that plays on any device, app, or player. Picmal re-encodes locally on your Mac with bitrate control (VBR/ABR/CBR) and batch processing, no upload limits, no subscription.`;
   }
   if (to.name === "WAV") {
     return `Editing in a DAW or an app that needs raw, uncompressed audio? Converting ${from.name} to WAV gives you lossless PCM that imports cleanly into any audio editor. Picmal converts locally with sample-rate and bit-depth control.`;
+  }
+  if (to.name === "FLAC" && !from.lossless) {
+    return `${src}Converting ${from.name} to FLAC stores the audio in a lossless file, so nothing more is lost when you edit or re-encode later. It can't restore what ${from.name} already discarded. Picmal converts locally on your Mac with batch processing.`;
   }
   if (to.name === "FLAC") {
     return `${src}Converting ${from.name} to FLAC gives you bit-perfect, lossless audio at roughly half the size of WAV, ideal for archiving and audiophile libraries. Picmal converts locally on your Mac with batch processing.`;
@@ -179,9 +184,9 @@ function buildWhyConvert(from: AudioFormatInfo, to: AudioFormatInfo): string {
     return `${src}Want lossless audio that drops straight into Apple Music? Converting ${from.name} to ALAC produces a bit-perfect .m4a, the lossless format the Music app expects. Picmal converts locally on your Mac, preserving every sample.`;
   }
   if (to.name === "M4R") {
-    return `Turn any track into a custom iPhone ringtone. Converting ${from.name} to M4R creates the ringtone file iOS recognizes, sync it to your iPhone and set it under Settings → Sounds. Picmal makes it locally on your Mac.`;
+    return `Turn any track into a custom iPhone ringtone. Converting ${from.name} to M4R creates the ringtone file iOS recognizes, sync it to your iPhone and set it under Settings → Sounds & Haptics. Picmal makes it locally on your Mac.`;
   }
-  return `Convert ${from.name} to ${to.name} on your Mac with full control over codec and quality, fast, offline, and private.`;
+  return `${src}Convert ${from.name} to ${to.name} on your Mac with full control over codec and quality, fast, offline, and private.`;
 }
 
 function buildBenefits(from: AudioFormatInfo, to: AudioFormatInfo): string[] {
@@ -208,7 +213,9 @@ function buildBenefits(from: AudioFormatInfo, to: AudioFormatInfo): string[] {
   if (to.name === "FLAC") {
     return [
       `Lossless ${to.name} at roughly half the size of WAV`,
-      "Bit-perfect, identical to the source, ideal for archiving",
+      from.lossless
+        ? "Bit-perfect, identical to the source, ideal for archiving"
+        : "Lossless from here on, no further loss when you edit or re-encode",
       "CD-quality preset: 16-bit / 44.1 kHz in one click",
       ...common,
     ];
@@ -249,7 +256,7 @@ function buildFaqs(
     },
   ];
 
-  if (to.extension === "mp3" || to.name === "M4R") {
+  if (!to.lossless) {
     faqs.push({
       question: `Does converting ${from.name} to ${to.name} lose quality?`,
       answer: from.lossless
@@ -259,7 +266,7 @@ function buildFaqs(
   } else if (to.lossless) {
     faqs.push({
       question: from.lossless
-        ? `Is converting ${from.name} to ${to.name} truly lossless?`
+        ? `Is converting ${from.name} to ${to.name} lossless?`
         : `Will converting ${from.name} to ${to.name} improve the quality?`,
       answer: from.lossless
         ? `Yes. Both ${from.name} and ${to.name} are lossless, so the conversion is bit-perfect, no quality is lost.`
@@ -282,12 +289,6 @@ function buildFaqs(
     });
   }
 
-  faqs.push({
-    question: `Is converting ${from.name} to ${to.name} free?`,
-    answer:
-      "Picmal is free for 7 days, then a one-time purchase of $29: no subscription, no per-file limits, no watermark. 14-day money-back guarantee after you buy.",
-  });
-
   return faqs;
 }
 
@@ -308,6 +309,52 @@ function buildMetaTitle(from: AudioFormatInfo, to: AudioFormatInfo): string {
   return `Convert ${from.name} to ${to.name} on Mac, offline and in batches`;
 }
 
+// Hero subheads: the job first, then that it runs on the Mac.
+const heroLines: Record<string, string> = {
+  "m4a-to-mp3":
+    "Turn M4A voice memos and tracks into MP3s that play anywhere. It all happens on your Mac, with no uploads.",
+  "wav-to-mp3":
+    "Shrink big WAV recordings into MP3s that are easy to share. It all happens on your Mac, with no uploads.",
+  "flac-to-mp3":
+    "Turn lossless FLAC albums into MP3s for any phone, car, or player. It all happens on your Mac, with no uploads.",
+  "aac-to-mp3":
+    "Turn AAC audio into MP3s for players and apps that want MP3. It all happens on your Mac, with no uploads.",
+  "ogg-to-mp3":
+    "Turn OGG Vorbis audio into MP3s your Apple devices can play. It all happens on your Mac, with no uploads.",
+  "wma-to-mp3":
+    "Turn old WMA files into MP3s your Mac and iPhone can play. It all happens on your Mac, with no uploads.",
+  "aiff-to-mp3":
+    "Turn large AIFF files into MP3s that are easy to share. It all happens on your Mac, with no uploads.",
+  "opus-to-mp3":
+    "Turn WhatsApp and Telegram voice notes into MP3s any player can open. It all happens on your Mac, with no uploads.",
+  "mp3-to-wav":
+    "Turn MP3s into WAV files for your DAW or audio editor. It all happens on your Mac, with no uploads.",
+  "m4a-to-wav":
+    "Turn M4A voice memos and tracks into WAV files for editing. It all happens on your Mac, with no uploads.",
+  "flac-to-wav":
+    "Turn FLAC files into WAV for your DAW or audio editor. It all happens on your Mac, with no uploads.",
+  "wav-to-flac":
+    "Archive WAV recordings as lossless FLAC at about half the size. It all happens on your Mac, with no uploads.",
+  "flac-to-alac":
+    "Turn FLAC albums into Apple Lossless files Apple Music can import. It all happens on your Mac, with no uploads.",
+  "wav-to-alac":
+    "Turn WAV recordings into Apple Lossless files for Apple Music. It all happens on your Mac, with no uploads.",
+  "m4a-to-flac":
+    "Turn M4A files into FLAC for players and libraries that expect it. It all happens on your Mac, with no uploads.",
+  "mp3-to-m4r":
+    "Turn any MP3 into a custom iPhone ringtone. It all happens on your Mac, with no uploads.",
+  "eac3-to-aac":
+    "Turn Dolby Digital Plus EAC3 tracks into AAC for Apple devices. It all happens on your Mac, with no uploads.",
+  "eac3-to-mp3":
+    "Turn Dolby Digital Plus EAC3 tracks into MP3s any player can open. It all happens on your Mac, with no uploads.",
+  "mka-to-mp3":
+    "Turn MKA audio tracks into MP3s any music app can play. It all happens on your Mac, with no uploads.",
+  "ape-to-mp3":
+    "Turn Monkey's Audio APE files into MP3s any player can open. It all happens on your Mac, with no uploads.",
+  "ape-to-flac":
+    "Move Monkey's Audio APE archives to FLAC, lossless and widely supported. It all happens on your Mac, with no uploads.",
+};
+
 export const audioConversions: AudioConversionPair[] = PAIRS.map(
   ([fromKey, toKey]) => {
     const from = audioFormats[fromKey];
@@ -321,6 +368,7 @@ export const audioConversions: AudioConversionPair[] = PAIRS.map(
       whyConvert: buildWhyConvert(from, to),
       benefits: buildBenefits(from, to),
       faqs: buildFaqs(from, to),
+      heroLine: heroLines[`${fromKey}-to-${toKey}`],
     };
   },
 );

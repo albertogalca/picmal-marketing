@@ -44,6 +44,8 @@ export interface ConversionPair {
   fileSizeExamples?: FileSizeExample[];
   conversionSpeed?: string;
   useCases?: UseCase[];
+  // Hero subhead: the job first, then that it happens on the Mac.
+  heroLine?: string;
 }
 
 export const formats: Record<string, FormatInfo> = {
@@ -413,11 +415,6 @@ function generateFAQs(
       question: `Can I batch convert multiple ${from.name} files to ${to.name}?`,
       answer: `Yes. Picmal supports batch conversion. Drag and drop hundreds of ${from.name} files or entire folders and convert them all to ${to.name} at once.`,
     },
-    {
-      question: `Is it free to convert ${from.name} to ${to.name} with Picmal?`,
-      answer:
-        "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-    },
   ];
 
   // Add JPEG alias FAQ when JPG is involved
@@ -545,7 +542,7 @@ function generateMetaDescription(from: FormatInfo, to: FormatInfo): string {
     heic: {
       jpg: "Convert HEIC to JPG (JPEG) on Mac, preserve EXIF metadata, batch process 500+ iPhone photos in minutes. Offline, private, one-time purchase.",
       png: "Convert HEIC to PNG on Mac for lossless quality. Pixel-perfect output for design, screenshots, and archival. Batch processing included.",
-      webp: "Convert HEIC to WebP on Mac. Save 30-50% file size vs JPG. Ideal for optimizing iPhone photos for websites. Batch & offline.",
+      webp: "Convert HEIC to WebP on Mac. 25-35% smaller than JPG at the same quality. Ideal for optimizing iPhone photos for websites. Batch & offline.",
       avif: "Convert HEIC to AVIF on Mac for the smallest web images. Up to 50% smaller than JPG with excellent quality. Batch processing.",
       tiff: "Convert HEIC to TIFF on Mac for print-ready output. Lossless quality from iPhone photos for professional publishing workflows.",
       gif: "Convert HEIC photos to GIF on Mac. Create simple animations or web-friendly graphics from iPhone images. Batch processing.",
@@ -563,7 +560,7 @@ function generateMetaDescription(from: FormatInfo, to: FormatInfo): string {
     png: {
       jpg: "Convert PNG to JPG (JPEG) on Mac, dramatically smaller files for web sharing and email. Batch convert hundreds of screenshots at once.",
       webp: "Convert PNG to WebP on Mac, 25-35% smaller with transparency preserved. Faster websites, lower bandwidth. Batch processing.",
-      avif: "Convert PNG to AVIF on Mac, the smallest files with transparency support. Up to 70% smaller than PNG. Batch ready.",
+      avif: "Convert PNG to AVIF on Mac, the smallest files with transparency support. Often 80% smaller than PNG. Batch ready.",
       tiff: "Convert PNG to TIFF on Mac for professional print output. Lossless quality preservation for publishing workflows.",
       heic: "Convert PNG to HEIC on Mac, dramatically reduce file sizes on Apple devices. Batch process entire image folders offline.",
       gif: "Convert PNG to GIF on Mac for simple animated sequences and web graphics. Batch processing with drag and drop.",
@@ -740,7 +737,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Does converting HEIC to JPG lose quality?",
         answer:
-          "At 90-100% quality, the difference is virtually invisible to the human eye. A typical 12MP iPhone photo converts from ~2.5MB HEIC to ~3.5MB JPG at 95% quality with no visible artifacts. You can preview the quality before converting.",
+          "At 90-100% quality, the difference is virtually invisible to the human eye. A typical 12MP iPhone photo converts from ~2.4MB HEIC to ~3.5MB JPG at 95% quality with no visible artifacts. You can preview the quality before converting.",
       },
       {
         question: "Can I batch convert hundreds of HEIC photos at once?",
@@ -750,17 +747,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Why can't I open HEIC files on Windows or in some apps?",
         answer:
-          "HEIC is Apple's proprietary image format based on the HEVC codec. While macOS and iOS support it natively, Windows requires a paid codec extension, and many web platforms, email clients, and image editors still don't support HEIC. JPG is universally supported.",
+          "HEIC is the photo format Apple adopted in iOS 11, based on the HEVC codec. While macOS and iOS support it natively, Windows requires a paid codec extension, and many web platforms, email clients, and image editors still don't support HEIC. JPG is universally supported.",
       },
       {
         question: "Does Picmal preserve photo metadata during conversion?",
         answer:
           "Yes. Picmal preserves all EXIF metadata including date taken, GPS coordinates, camera model, and exposure settings when converting HEIC to JPG. Your organized photo library stays intact.",
-      },
-      {
-        question: "Is Picmal free to convert HEIC to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29: no subscription, no hidden fees. 14-day money-back guarantee after you buy.",
       },
       {
         question: "How does Picmal compare to using Preview or Automator?",
@@ -844,7 +836,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Will the animation be preserved when converting WebP to GIF?",
         answer:
-          "Yes. Picmal preserves all animation frames, timing between frames, and loop settings when converting animated WebP to GIF. The animation plays back identically.",
+          "Yes. Picmal preserves all animation frames, timing between frames, and loop settings when converting animated WebP to GIF. The animation plays back with the same timing.",
       },
       {
         question: "Why are my WebP files not working in some apps?",
@@ -860,11 +852,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Can I convert WebP to GIF without an internet connection?",
         answer:
           "Yes. Picmal runs entirely on your Mac with no internet required. Unlike online converters, there are no upload limits, processing queues, or privacy concerns.",
-      },
-      {
-        question: "Is Picmal free to convert WebP to GIF?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -884,7 +871,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         label: "Long animated WebP (5s)",
         fromSize: "1.5 MB",
         toSize: "4.8 MB",
-        savings: "GIF is larger due to 256-color limit",
+        savings: "GIF compresses less than WebP",
       },
     ],
     conversionSpeed: "Instant for static images, ~10 seconds for long animations",
@@ -909,9 +896,9 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
   "png-to-webp": {
     metaTitle: "Picmal: Convert PNG to WebP on Mac, save 25-35% file size",
     whyConvert:
-      "PNG files are lossless but often far too large for web use. WebP delivers 25-35% smaller files than PNG while supporting transparency, making it the ideal format for website images, e-commerce product shots, and any graphics that need to load fast without sacrificing quality.",
+      "PNG files are lossless but often far too large for web use. WebP keeps transparency and makes them much smaller: Google measured lossless WebP at 26% smaller than PNG, and lossy WebP at high quality cuts most graphics by about two thirds. That makes it the ideal format for website images, e-commerce product shots, and any graphics that need to load fast without sacrificing quality.",
     benefits: [
-      "Reduce image file sizes by 25-35% compared to PNG with no visible quality loss",
+      "Cut PNG file sizes by 26% in lossless mode, or by about two thirds in lossy mode",
       "Preserve transparency (alpha channel), perfect for logos and product images",
       "Speed up your website's load time and improve Core Web Vitals scores",
       "Batch convert entire image directories for a full site migration",
@@ -932,12 +919,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much smaller are WebP files compared to PNG?",
         answer:
-          "For typical web graphics, WebP files are 25-35% smaller than PNG. A 500KB PNG logo might become 150KB in WebP. For photographs with transparency, savings can be even greater, up to 50%.",
+          "It depends on the mode. Lossless WebP is 26% smaller than PNG on average, according to Google. Lossy WebP at high quality goes further: in the examples on this page, a 480KB logo becomes 145KB, about 70% smaller.",
       },
       {
         question: "Will converting PNG to WebP hurt my image quality?",
         answer:
-          "Picmal supports both lossy and lossless WebP compression. In lossless mode, the conversion is mathematically identical to PNG, zero quality loss. In lossy mode at 90%+ quality, differences are invisible to the human eye.",
+          "Picmal supports both lossy and lossless WebP compression. In lossless mode, the pixels are identical to the PNG, zero quality loss. In lossy mode at 90%+ quality, differences are invisible to the human eye.",
       },
       {
         question: "Do all browsers support WebP?",
@@ -948,11 +935,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Can I batch convert my entire website's images from PNG to WebP?",
         answer:
           "Yes. Drag your entire images directory into Picmal and convert all PNG files to WebP at once. This is the fastest way to optimize your website's images and improve page load speed.",
-      },
-      {
-        question: "Is Picmal free to convert PNG to WebP?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -986,7 +968,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         title: "Optimizing website images for faster load times",
         description:
-          "Replace PNG images with WebP across your site to reduce page weight by 25-35%. Faster pages improve SEO rankings and user experience.",
+          "Replace PNG images with WebP across your site to cut image weight by a quarter to two thirds, depending on the mode. Faster pages improve SEO rankings and user experience.",
       },
       {
         title: "E-commerce product photography",
@@ -1001,17 +983,17 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         title: "Reducing CDN bandwidth costs",
         description:
-          "If you serve thousands of images monthly, the 25-35% file size reduction from PNG to WebP translates directly to lower CDN bills and faster global delivery.",
+          "If you serve thousands of images monthly, the file size reduction from PNG to WebP translates directly to lower CDN bills and faster global delivery.",
       },
     ],
   },
   "heic-to-png": {
     metaTitle: "Picmal: Convert HEIC to PNG on Mac, lossless quality",
     whyConvert:
-      "Need lossless quality or transparency from your iPhone photos? Converting HEIC to PNG preserves every pixel with zero compression artifacts. This is ideal when you need pixel-perfect images for graphic design, screenshots for documentation, or when you plan to edit the image further without quality degradation.",
+      "Need lossless quality from your iPhone photos? Converting HEIC to PNG preserves every pixel with zero compression artifacts. This is ideal when you need pixel-perfect images for graphic design, screenshots for documentation, or when you plan to edit the image further without quality degradation.",
     benefits: [
       "Lossless conversion, zero quality loss from your original iPhone photos",
-      "PNG supports transparency, useful when extracting subjects from photos",
+      "PNG keeps transparency once you cut a subject out in an editor",
       "Ideal for screenshots, UI mockups, and images requiring sharp text",
       "Batch convert hundreds of HEIC files to PNG in one go",
       "Preserved EXIF metadata including location and camera data",
@@ -1036,7 +1018,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Will PNG files be larger than the original HEIC?",
         answer:
-          "Yes, significantly. HEIC uses advanced compression while PNG is lossless, so a 2.5MB HEIC photo may become 8-15MB as PNG. The tradeoff is perfect quality preservation and universal compatibility.",
+          "Yes, 3-4 times larger for photos. HEIC uses advanced compression while PNG is lossless, so a 2.4MB photo from a 12MP iPhone becomes about 9.8MB as PNG. The tradeoff is perfect quality preservation and universal compatibility.",
       },
       {
         question: "Can I batch convert HEIC to PNG?",
@@ -1047,11 +1029,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "When should I use HEIC to PNG vs HEIC to JPG?",
         answer:
           "Use HEIC to PNG for graphic design work, documentation screenshots, images with text overlays, or when you'll edit the image further. Use HEIC to JPG for general photo sharing, email, and web uploads where file size matters more than perfect quality.",
-      },
-      {
-        question: "Is Picmal free to convert HEIC to PNG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1101,10 +1078,10 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
   "jpg-to-png": {
     metaTitle: "Picmal: Convert JPG to PNG on Mac, add transparency support",
     whyConvert:
-      "JPG doesn't support transparency, a dealbreaker for logos, product images on white backgrounds, and any graphic that needs to be layered in design tools. Converting JPG to PNG also eliminates compression artifacts, giving you a clean, crisp image for editing, documentation, or any workflow where quality matters more than file size.",
+      "JPG doesn't support transparency, a dealbreaker for logos, product images on white backgrounds, and any graphic that needs to be layered in design tools. Converting JPG to PNG also stops further compression loss, giving you a clean base for editing, documentation, or any workflow where quality matters more than file size.",
     benefits: [
       "Add transparency support, essential for logos, product images, and design overlays",
-      "Eliminate JPG compression artifacts for cleaner, sharper images",
+      "Stop further compression loss every time you edit and re-save",
       "Lossless output preserves every detail for further editing in Photoshop or Figma",
       "Batch convert hundreds of JPG files to PNG in one go",
       "All processing happens locally on your Mac, no cloud uploads",
@@ -1136,11 +1113,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         answer:
           "Convert to PNG when you need transparency, will edit the image further, or need pixel-perfect quality for screenshots and graphics. Keep JPG for photos you're just sharing or uploading to the web.",
       },
-      {
-        question: "Is Picmal free to convert JPG to PNG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-      },
     ],
     fileSizeExamples: [
       {
@@ -1153,7 +1125,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         label: "Website banner (1920×600)",
         fromSize: "320 KB",
         toSize: "1.1 MB",
-        savings: "Larger, no artifacts",
+        savings: "Larger, no further loss",
       },
       {
         label: "Social media image (1080×1080)",
@@ -1177,7 +1149,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         title: "Screenshots and documentation images",
         description:
-          "Technical documentation and UI screenshots need crisp text rendering. PNG preserves sharp edges that JPG compression blurs.",
+          "Technical documentation and UI screenshots need crisp text. Once in PNG, further edits and re-saves won't blur the edges again.",
       },
       {
         title: "Logo and brand asset archival",
@@ -1228,11 +1200,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Should I keep the original JPG files?",
         answer:
           "Yes. Keep originals as backup. Some older tools and systems still don't support WebP, and you may need JPG versions for email newsletters or print materials.",
-      },
-      {
-        question: "Is Picmal free to convert JPG to WebP?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1288,9 +1255,9 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
   "png-to-jpg": {
     metaTitle: "Picmal: Convert PNG to JPG on Mac, reduce file size 80%",
     whyConvert:
-      "PNG files are great for graphics and transparency, but they're far too large for sharing photos by email, uploading to social media, or using on the web. Converting PNG to JPG can reduce file sizes by 60-80% while keeping photos looking great, making them easier to share, upload, and store.",
+      "PNG files are great for graphics and transparency, but they're far too large for sharing photos by email, uploading to social media, or using on the web. Converting PNG to JPG often cuts file sizes by 80% or more while keeping photos looking great, making them easier to share, upload, and store.",
     benefits: [
-      "Reduce file sizes by 60-80%, a 5MB PNG screenshot becomes under 1MB as JPG",
+      "Cut file sizes by 80% or more: a 4.8MB Mac screenshot becomes 680KB as JPG",
       "Universal compatibility. JPG works on every device, app, and website",
       "Faster email attachments and social media uploads",
       "Batch convert hundreds of PNG screenshots to JPG in one go",
@@ -1311,7 +1278,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much smaller will my files be?",
         answer:
-          "PNG to JPG typically reduces file sizes by 60-80%. A 5MB PNG screenshot becomes 800KB-1.2MB as JPG at 90% quality. Photos compress even better than screenshots.",
+          "Usually by 80% or more. In the examples on this page, files shrink 81-87%: a 4.8MB Mac screenshot becomes 680KB as JPG. Photos saved as PNG shrink the most.",
       },
       {
         question: "Will I lose transparency when converting to JPG?",
@@ -1322,11 +1289,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Can I batch convert PNG to JPG?",
         answer:
           "Yes. Drag entire folders of PNG files into Picmal and convert them all to JPG at once with the same quality settings.",
-      },
-      {
-        question: "Is Picmal free to convert PNG to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1400,7 +1362,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Does converting WebP to JPG lose quality?",
         answer:
-          "There is some quality reduction since JPG uses lossy compression. At 90-95% quality, the difference is invisible to the eye. Files will be slightly larger than the original WebP.",
+          "There is some quality reduction since JPG uses lossy compression. At 90-95% quality, the difference is invisible to the eye. Files will be larger than the original WebP.",
       },
       {
         question: "Why can't I open WebP files in some apps?",
@@ -1410,17 +1372,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Will the file size increase when converting WebP to JPG?",
         answer:
-          "Usually yes. JPG files are typically 25-35% larger than WebP at the same quality. A 500KB WebP image might become 700-800KB as JPG. The tradeoff is universal compatibility.",
+          "Yes. WebP is 25-35% smaller than JPG at the same quality, so the JPG comes out roughly 40-50% larger. In the examples on this page, a 420KB WebP becomes 620KB as JPG. The tradeoff is universal compatibility.",
       },
       {
         question: "Can I batch convert WebP to JPG?",
         answer:
           "Yes. Drag entire folders of WebP files into Picmal and convert them all to JPG at once. Process hundreds of files in seconds.",
-      },
-      {
-        question: "Is Picmal free to convert WebP to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1498,17 +1455,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much larger will JPG files be compared to AVIF?",
         answer:
-          "JPG files are typically 40-60% larger than AVIF at the same visual quality. A 300KB AVIF image might become 500-700KB as JPG. The tradeoff is universal compatibility.",
+          "AVIF is about 50% smaller than JPG at the same visual quality, so the JPG is often about twice the size. In the examples on this page, a 280KB AVIF becomes 620KB as JPG. The tradeoff is universal compatibility.",
       },
       {
         question: "Can I batch convert AVIF to JPG?",
         answer:
           "Yes. Drag entire folders of AVIF files into Picmal and convert them all to JPG at once. Batch processing handles hundreds of files efficiently.",
-      },
-      {
-        question: "Is Picmal free to convert AVIF to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1558,10 +1510,10 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
   "heic-to-webp": {
     metaTitle: "Picmal: Convert HEIC to WebP on Mac, iPhone to web direct",
     whyConvert:
-      "Your iPhone saves photos as HEIC, but your website needs them in a web-optimized format. WebP files are 30-50% smaller than JPG with the same visual quality, and they support transparency. Converting HEIC directly to WebP skips the JPG middleman and gives you the best format for web performance.",
+      "Your iPhone saves photos as HEIC, but your website needs them in a web-optimized format. WebP files are 25-35% smaller than JPG at the same visual quality, according to Google's study. Converting HEIC directly to WebP skips the JPG middleman and gives you web-ready files in one step.",
     benefits: [
       "Skip the JPG step. Go straight from iPhone to web-optimized format",
-      "30-50% smaller files than converting HEIC to JPG for web use",
+      "25-35% smaller than JPG at the same quality, per Google's study",
       "Supported by 97%+ of browsers including Chrome, Safari, Firefox, and Edge",
       "Batch convert hundreds of iPhone photos for your website or blog",
       "Adjust quality settings to find the optimal size-to-quality ratio",
@@ -1576,7 +1528,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Why convert HEIC to WebP instead of JPG?",
         answer:
-          "WebP files are 25-35% smaller than JPG at the same quality, and WebP supports transparency. If your images are destined for the web, WebP gives you better performance than JPG. Only use JPG if you need compatibility with very old systems.",
+          "WebP files are 25-35% smaller than JPG at the same quality. If your images are destined for the web, WebP gives you better performance than JPG. Only use JPG if you need compatibility with very old systems.",
       },
       {
         question: "Does converting HEIC to WebP lose quality?",
@@ -1586,17 +1538,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much smaller are WebP files compared to HEIC?",
         answer:
-          "WebP and HEIC have similar compression efficiency, so file sizes are comparable. The advantage of WebP is browser compatibility. HEIC isn't supported by any web browser, while WebP works everywhere.",
+          "Not by much. HEIC is already an efficient format, so photos come out a little smaller or about the same: 8-16% smaller in the examples on this page. The reason to convert is browser support. Most browsers can't show HEIC, while WebP works in all of them.",
       },
       {
         question: "Can I batch convert my entire iPhone photo library to WebP?",
         answer:
           "Yes. Export your HEIC photos from Apple Photos, drag the folder into Picmal, and convert them all to WebP at once. Process thousands of photos in minutes.",
-      },
-      {
-        question: "Is Picmal free to convert HEIC to WebP?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1687,11 +1634,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         answer:
           "JPG is not ideal for professional printing due to lossy compression. Keep your original TIFF files for print workflows and use the JPG versions for sharing, web, and everyday use.",
       },
-      {
-        question: "Is Picmal free to convert TIFF to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-      },
     ],
     fileSizeExamples: [
       {
@@ -1751,7 +1693,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       "Up to 50% smaller files than JPG at the same visual quality",
       "The best available format for web image performance in 2026",
       "Supported by Chrome, Firefox, Safari 16+, and Edge",
-      "Supports HDR, wide color gamut, and 10-bit color depth",
+      "Adjust quality settings to find the right size-to-quality balance",
       "Batch convert entire image directories for a full website migration",
       "All processing happens locally on your Mac, no cloud uploads",
     ],
@@ -1764,7 +1706,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much smaller are AVIF files compared to JPG?",
         answer:
-          "AVIF files are typically 40-50% smaller than JPG at the same visual quality. A 1MB JPG often becomes 500-600KB as AVIF with no visible difference.",
+          "About 50% smaller at the same visual quality. In the examples on this page, files shrink 54-56%: an 850KB hero image becomes 380KB as AVIF with no visible difference.",
       },
       {
         question: "Do all browsers support AVIF?",
@@ -1780,11 +1722,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Why is AVIF encoding slower than JPG or WebP?",
         answer:
           "AVIF uses the AV1 video codec for compression, which is more computationally intensive. On Apple Silicon Macs, Picmal encodes AVIF efficiently, but expect slower conversion than JPG or WebP.",
-      },
-      {
-        question: "Is Picmal free to convert JPG to AVIF?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -1830,19 +1767,14 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         description:
           "Use AVIF as your primary format with WebP and JPG fallbacks. Serve the smallest possible files to modern browsers while maintaining compatibility.",
       },
-      {
-        title: "HDR and wide color gamut photography",
-        description:
-          "AVIF supports 10-bit color and HDR, making it the only widely-supported web format that can display the full richness of modern camera output.",
-      },
     ],
   },
   "png-to-avif": {
     metaTitle: "Picmal: Convert PNG to AVIF on Mac, transparency at 80% less",
     whyConvert:
-      "PNG files with transparency can be enormous, logos, product images, and UI assets often weigh 500KB-5MB each. AVIF supports transparency just like PNG but at a fraction of the file size, often 60-80% smaller. For websites that need transparent images at maximum performance, PNG to AVIF is the ultimate optimization.",
+      "PNG files with transparency can be enormous, logos, product images, and UI assets often weigh 500KB-5MB each. AVIF supports transparency just like PNG but at a fraction of the file size, often 80% smaller or more. For websites that need transparent images at maximum performance, PNG to AVIF is the ultimate optimization.",
     benefits: [
-      "60-80% smaller files than PNG while preserving transparency",
+      "Often 80% smaller than PNG in lossy mode, with transparency kept",
       "The most efficient transparent image format for the web",
       "Supported by Chrome, Firefox, Safari 16+, and Edge",
       "Both lossy and lossless compression modes available",
@@ -1863,7 +1795,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "How much smaller are AVIF files compared to PNG?",
         answer:
-          "AVIF files are typically 60-80% smaller than PNG. A 1MB PNG logo might become 150-250KB as AVIF. For product images with transparency, savings are even more dramatic.",
+          "In lossy mode, often 80% or more. In the examples on this page, files shrink 81-87%: a 480KB logo becomes 65KB as AVIF. Lossless mode saves much less.",
       },
       {
         question: "Should I use AVIF or WebP for transparent images?",
@@ -1873,12 +1805,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Can I use lossless AVIF compression?",
         answer:
-          "Yes. Picmal supports lossless AVIF encoding for pixel-perfect output. Lossless AVIF files are typically 30-50% smaller than lossless PNG.",
-      },
-      {
-        question: "Is Picmal free to convert PNG to AVIF?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
+          "Yes. Picmal supports lossless AVIF encoding for pixel-perfect output. Lossless files save much less than lossy ones, so use lossy at high quality when size matters most.",
       },
     ],
     fileSizeExamples: [
@@ -1969,11 +1896,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         answer:
           "GIF is limited to 256 colors per frame, which causes visible dithering and banding in photos and gradients. WebP supports 16.7 million colors, producing smooth, artifact-free animations.",
       },
-      {
-        question: "Is Picmal free to convert GIF to WebP?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-      },
     ],
     fileSizeExamples: [
       {
@@ -2011,7 +1933,7 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         title: "Product demo and tutorial animations",
         description:
-          "Screen recording GIFs for product demos are typically 5-15MB. WebP versions load 50-70% faster and look better with full color support.",
+          "Screen recording GIFs for product demos are typically 5-15MB. WebP versions are 50-70% smaller and look better with full color support.",
       },
       {
         title: "Email-safe animated content",
@@ -2056,17 +1978,12 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
       {
         question: "Will HEIC files open everywhere?",
         answer:
-          "HEIC opens natively on macOS (High Sierra and later), iOS, and iPadOS. Windows needs a free codec, and some non-Apple apps don't support it, so keep HEIC for storage on Apple devices and convert to JPG when sharing externally.",
+          "HEIC opens natively on macOS (High Sierra and later), iOS, and iPadOS. Windows needs a codec extension from the Microsoft Store, and some non-Apple apps don't support it, so keep HEIC for storage on Apple devices and convert to JPG when sharing externally.",
       },
       {
         question: "Can I batch convert my whole photo library to HEIC?",
         answer:
           "Yes. Drag entire folders into Picmal and convert thousands of JPG files to HEIC in one batch, the fastest way to shrink a large library on your Mac.",
-      },
-      {
-        question: "Is Picmal free to convert JPG to HEIC?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2151,11 +2068,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         answer:
           "Choose PNG when you need lossless quality, transparency, or sharp edges for graphics and screenshots. Choose JPG when you want the smallest file for sharing photos and don't need transparency.",
       },
-      {
-        question: "Is Picmal free to convert WebP to PNG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-      },
     ],
     fileSizeExamples: [
       {
@@ -2239,11 +2151,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         answer:
           "Use PNG for lossless quality, transparency, or images you'll edit. Use JPG when you just need a small, shareable photo and don't need transparency.",
       },
-      {
-        question: "Is Picmal free to convert AVIF to PNG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
-      },
     ],
     fileSizeExamples: [
       {
@@ -2326,11 +2233,6 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
         question: "Can I batch convert many GIFs to JPG?",
         answer:
           "Yes. Drag a folder of GIF files into Picmal and convert them all to JPG in one pass.",
-      },
-      {
-        question: "Is Picmal free to convert GIF to JPG?",
-        answer:
-          "Picmal is free for 7 days, then a one-time purchase of $29, no subscription. 14-day money-back guarantee after you buy.",
       },
     ],
     fileSizeExamples: [
@@ -2555,6 +2457,66 @@ const manualOverrides: Record<string, Partial<ConversionPair>> = {
   },
 };
 
+// Hero subheads for the indexed pages: the job first, then that it runs on the Mac.
+const heroLines: Record<string, string> = {
+  "heic-to-jpg":
+    "Turn iPhone HEIC photos into JPGs that open anywhere. It all happens on your Mac, with no uploads.",
+  "heic-to-png":
+    "Turn iPhone HEIC photos into lossless PNGs for editing. It all happens on your Mac, with no uploads.",
+  "heic-to-webp":
+    "Turn iPhone HEIC photos into WebP for your website. It all happens on your Mac, with no uploads.",
+  "png-to-jpg":
+    "Shrink PNG screenshots into small JPGs for email and the web. It all happens on your Mac, with no uploads.",
+  "jpg-to-png":
+    "Turn JPGs into lossless PNGs for editing and design work. It all happens on your Mac, with no uploads.",
+  "webp-to-jpg":
+    "Turn WebP images from the web into JPGs any app can open. It all happens on your Mac, with no uploads.",
+  "jpg-to-webp":
+    "Turn JPGs into WebP files 25-35% smaller for a faster website. It all happens on your Mac, with no uploads.",
+  "png-to-webp":
+    "Turn heavy PNGs into WebP files for your website, with transparency kept. It all happens on your Mac, with no uploads.",
+  "webp-to-png":
+    "Turn WebP images into lossless PNGs your editor can open. It all happens on your Mac, with no uploads.",
+  "avif-to-jpg":
+    "Turn AVIF images into JPGs that open in any app. It all happens on your Mac, with no uploads.",
+  "jpg-to-avif":
+    "Turn JPGs into AVIF files half the size for a faster site. It all happens on your Mac, with no uploads.",
+  "png-to-avif":
+    "Turn transparent PNGs into much smaller AVIF files for the web. It all happens on your Mac, with no uploads.",
+  "avif-to-png":
+    "Turn AVIF images into lossless PNGs you can edit anywhere. It all happens on your Mac, with no uploads.",
+  "tiff-to-jpg":
+    "Turn huge TIFF scans and exports into JPGs small enough to email. It all happens on your Mac, with no uploads.",
+  "gif-to-webp":
+    "Turn heavy GIF animations into smaller, full-color WebP animations. It all happens on your Mac, with no uploads.",
+  "webp-to-gif":
+    "Turn animated WebP into GIFs for Slack, Discord and email. It all happens on your Mac, with no uploads.",
+  "gif-to-jpg":
+    "Turn GIFs into full-color JPG stills that open anywhere. It all happens on your Mac, with no uploads.",
+  "jpg-to-heic":
+    "Shrink your JPG photo library by about half with HEIC. It all happens on your Mac, with no uploads.",
+  "dng-to-jpg":
+    "Turn DNG raw files into JPGs you can share, without Lightroom. It all happens on your Mac, with no uploads.",
+  "dng-to-png":
+    "Turn DNG raw files into lossless PNGs for retouching and print. It all happens on your Mac, with no uploads.",
+  "arw-to-jpg":
+    "Turn a whole shoot of Sony ARW raw files into JPGs. It all happens on your Mac, with no uploads.",
+  "cr2-to-jpg":
+    "Turn Canon CR2 raw files from your DSLR into shareable JPGs. It all happens on your Mac, with no uploads.",
+  "cr3-to-jpg":
+    "Turn Canon CR3 raws from your EOS R camera into shareable JPGs. It all happens on your Mac, with no uploads.",
+  "nef-to-jpg":
+    "Turn a folder of Nikon NEF raws into JPGs in one pass. It all happens on your Mac, with no uploads.",
+  "raf-to-jpg":
+    "Turn Fujifilm RAF raw files into shareable JPGs. It all happens on your Mac, with no uploads.",
+  "rw2-to-jpg":
+    "Turn Panasonic Lumix RW2 files into shareable JPGs, no SILKYPIX needed. It all happens on your Mac, with no uploads.",
+  "orf-to-jpg":
+    "Turn Olympus and OM System ORF raw files into shareable JPGs. It all happens on your Mac, with no uploads.",
+  "pef-to-jpg":
+    "Turn Pentax PEF raw files into shareable JPGs. It all happens on your Mac, with no uploads.",
+};
+
 // Generate all conversion pairs
 const formatKeys = Object.keys(formats);
 export const conversions: ConversionPair[] = [];
@@ -2624,6 +2586,9 @@ for (const fromKey of formatKeys) {
     const useCases =
       override?.useCases || (isRaw ? rawUseCases(from) : undefined);
     if (useCases) entry.useCases = useCases;
+
+    const heroLine = override?.heroLine || heroLines[slug];
+    if (heroLine) entry.heroLine = heroLine;
 
     conversions.push(entry);
   }

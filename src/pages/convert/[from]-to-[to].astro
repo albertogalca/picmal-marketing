@@ -1,6 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
-import H2 from "../../components/H2.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import BlockGrid from "../../components/BlockGrid.astro";
 import FileSizeTable from "../../components/FileSizeTable.astro";
@@ -8,16 +8,12 @@ import ComparisonHero from "../../components/ComparisonHero.astro";
 import CTASection from "../../components/CTASection.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
-import BenefitsCard from "../../components/BenefitsCard.astro";
 import ConversionGrid from "../../components/ConversionGrid.astro";
 import { compressions } from "../../data/compressions";
 import FAQSection from "../../components/FAQSection.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
-import PillLink from "../../components/PillLink.astro";
 import FormatPill from "../../components/FormatPill.astro";
-import GuideCrossLink from "../../components/GuideCrossLink.astro";
 
 import {
   conversions,
@@ -85,6 +81,13 @@ const related = getRelatedConversions(conversion.from, conversion.to, 6);
 const fromCompress = compressions.find((c) => c.format === conversion.from);
 const toCompress = compressions.find((c) => c.format === conversion.to);
 
+// The hero says what the page does and that it happens on the Mac. The longer
+// "why" paragraph used to sit here and pushed both of those out; it now opens
+// the first section.
+const heroLine =
+  conversion.heroLine ??
+  `Convert ${from.name} files to ${to.name} on your Mac, one file or a whole folder. Nothing gets uploaded.`;
+
 const title =
   conversion.metaTitle || `Convert ${from.name} to ${to.name} on Mac, offline and in batches`;
 const description = conversion.metaDescription;
@@ -106,28 +109,50 @@ const noindex = !isConversionIndexed(conversion.slug);
   <ComparisonHero
     pricingHref="/#pricing"
     title={`Convert ${from.name} to ${to.name} on Mac`}
-    subhead={conversion.whyConvert}
+    subhead={heroLine}
     buyEvent={`buy_clicked_convert_${conversion.slug}`}
     defaultTab="convert"
   />
 
-  <!-- Benefits -->
-  <Section width="narrow">
-    <BenefitsCard
-      heading={`Why convert ${from.name} to ${to.name}?`}
-      benefits={conversion.benefits}
-    />
+  {/* Every section below sits on the hero's left edge, with its heading on
+      that edge too. The page used to change width seven times on the way
+      down, so its left edge wandered between four positions. Content that
+      reads better narrow (the table, the FAQ) caps its own width instead. */}
+
+  <!-- Why -->
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">
+      Why convert {from.name} to {to.name}?
+    </SectionHeading>
+    <Paragraph size="lead" class="max-w-[65ch] mb-10">
+      {conversion.whyConvert}
+    </Paragraph>
+    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-4xl">
+      {
+        conversion.benefits.map((benefit) => (
+          <li class="flex items-start gap-3">
+            <Icon
+              name="ph:check"
+              class="w-5 h-5 text-text-secondary shrink-0 mt-0.5"
+              aria-hidden="true"
+            />
+            <span class="text-text-secondary text-pretty">{benefit}</span>
+          </li>
+        ))
+      }
+    </ul>
   </Section>
 
   <!-- File Size Comparison -->
   {
     conversion.fileSizeExamples && conversion.fileSizeExamples.length > 0 && (
-      <Section width="narrow">
-        <SectionHeading>
+      <Section width="wide">
+        <SectionHeading align="left" class="mb-8">
           {from.name} vs {to.name} file sizes
         </SectionHeading>
-        <FileSizeTable
-            columns={[from.name, to.name, "Note"]}
+        <div class="max-w-3xl">
+          <FileSizeTable
+            columns={[from.name, to.name, "Saved"]}
             rows={conversion.fileSizeExamples.map((e: FileSizeExample) => ({
               label: e.label,
               originalSize: e.fromSize,
@@ -136,6 +161,7 @@ const noindex = !isConversionIndexed(conversion.slug);
             }))}
             speed={conversion.conversionSpeed}
           />
+        </div>
       </Section>
     )
   }
@@ -143,8 +169,8 @@ const noindex = !isConversionIndexed(conversion.slug);
   <!-- Real-World Use Cases -->
   {
     conversion.useCases && conversion.useCases.length > 0 && (
-      <Section>
-        <SectionHeading>
+      <Section width="wide">
+        <SectionHeading align="left" class="mb-8">
           When to convert {from.name} to {to.name}
         </SectionHeading>
         <BlockGrid items={conversion.useCases} />
@@ -153,174 +179,113 @@ const noindex = !isConversionIndexed(conversion.slug);
   }
 
   <!-- How To Steps -->
-  <BlockGrid ordered
-    heading={`How to convert ${from.name} to ${to.name} on Mac`}
-    items={[
-      {
-        title: "Open Picmal",
-        description: "Download and open Picmal on your Mac.",
-      },
-      {
-        title: `Add your ${from.name} files`,
-        description: `Drag and drop your ${from.name} files or entire folders into Picmal.`,
-      },
-      {
-        title: `Select ${to.name} and convert`,
-        description: `Choose ${to.name} as the output format and click Convert.`,
-      },
-    ]}
-  />
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">
+      How to convert {from.name} to {to.name} on Mac
+    </SectionHeading>
+    <BlockGrid
+      ordered
+      items={[
+        {
+          title: "Open Picmal",
+          description: "Download and open Picmal on your Mac.",
+        },
+        {
+          title: `Add your ${from.name} files`,
+          description: `Drag and drop your ${from.name} files or entire folders into Picmal.`,
+        },
+        {
+          title: `Select ${to.name} and convert`,
+          description: `Choose ${to.name} as the output format and click Convert.`,
+        },
+      ]}
+    />
+  </Section>
 
   <!-- Format Comparison -->
-  <Section>
-    <SectionHeading>{from.name} vs {to.name}</SectionHeading>
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">
+      {from.name} vs {to.name}
+    </SectionHeading>
     <div
       class="grid md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden border border-border"
     >
-      <div class="bg-background p-6 md:p-8">
-        <div class="flex items-center gap-3 mb-4">
-          <FormatPill ext={from.extension} />
-          <h3 class="font-semibold text-text">{from.name}</h3>
-        </div>
-        <p class="text-small text-text-secondary mb-3">{from.fullName}</p>
-        <Paragraph class="mb-4">{from.description}</Paragraph>
-        <div class="pt-4 border-t border-border">
-          <p class="text-small font-medium text-text-secondary mb-2">
-            Best for
-          </p>
-          <p class="text-small text-text">{from.bestFor}</p>
-        </div>
-      </div>
-      <div class="bg-background p-6 md:p-8">
-        <div class="flex items-center gap-3 mb-4">
-          <FormatPill ext={to.extension} variant="accent" />
-          <h3 class="font-semibold text-text">{to.name}</h3>
-        </div>
-        <p class="text-small text-text-secondary mb-3">{to.fullName}</p>
-        <Paragraph class="mb-4">{to.description}</Paragraph>
-        <div class="pt-4 border-t border-border">
-          <p class="text-small font-medium text-text-secondary mb-2">
-            Best for
-          </p>
-          <p class="text-small text-text">{to.bestFor}</p>
-        </div>
-      </div>
+      {
+        [
+          { f: from, variant: "default" as const },
+          { f: to, variant: "accent" as const },
+        ].map(({ f, variant }) => (
+          <div class="bg-background p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <FormatPill ext={f.extension} variant={variant} />
+              <h3 class="font-semibold text-text">{f.name}</h3>
+            </div>
+            <p class="text-small text-text-secondary mb-3">{f.fullName}</p>
+            <Paragraph class="mb-4">{f.description}</Paragraph>
+            <div class="pt-4 border-t border-border">
+              <p class="text-small font-medium text-text-secondary mb-2">
+                Best for
+              </p>
+              <p class="text-small text-text">{f.bestFor}</p>
+              {f.standardBody && (
+                <p class="text-small text-text-secondary mt-3">
+                  Defined by {f.standardBody}.
+                  {f.sourceUrl && (
+                    <a
+                      href={f.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="link ml-1"
+                    >
+                      Specification <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  )}
+                </p>
+              )}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </Section>
 
   <!-- FAQ -->
-  <FAQSection faqs={conversion.faqs} />
+  <FAQSection faqs={conversion.faqs} align="left" />
 
-  <!-- Sources & Standards -->
-  {
-    (from.standardBody || to.standardBody) && (
-      <Section width="narrow">
-        <Card>
-          <H2 class="mb-6">Format standards & sources</H2>
-          <ul class="space-y-3 text-small text-text-secondary">
-            {from.standardBody && (
-              <li class="flex gap-2 items-start">
-                <span class="text-accent font-medium flex-shrink-0">
-                  {from.name}:
-                </span>
-                <span>
-                  Defined by {from.standardBody}.
-                  {from.sourceUrl && (
-                    <a
-                      href={from.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="link ml-1"
-                    >
-                      View specification &rarr;
-                    </a>
-                  )}
-                </span>
-              </li>
-            )}
-            {to.standardBody && (
-              <li class="flex gap-2 items-start">
-                <span class="text-accent font-medium flex-shrink-0">
-                  {to.name}:
-                </span>
-                <span>
-                  Defined by {to.standardBody}.
-                  {to.sourceUrl && (
-                    <a
-                      href={to.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="link ml-1"
-                    >
-                      View specification &rarr;
-                    </a>
-                  )}
-                </span>
-              </li>
-            )}
-          </ul>
-        </Card>
-      </Section>
-    )
-  }
-
-  <!-- Compress Cross-Links -->
-  {
-    (fromCompress || toCompress) && (
-      <Section width="narrow">
-        <Card>
-          <H2 class="mb-4">Need to compress instead?</H2>
-          <Paragraph class="mb-4">
-            If you don't need to change formats, Picmal can also compress your
-            files to reduce size:
-          </Paragraph>
-          <div class="flex flex-wrap gap-3">
-            {fromCompress && (
-              <PillLink href={`/compress/${fromCompress.slug}`}>
-                <span class="font-mono text-small text-text-secondary">
-                  .{fromCompress.format}
-                </span>
-                Compress {fromCompress.name}
-              </PillLink>
-            )}
-            {toCompress && (
-              <PillLink href={`/compress/${toCompress.slug}`}>
-                <span class="font-mono text-small text-text-secondary">
-                  .{toCompress.format}
-                </span>
-                Compress {toCompress.name}
-              </PillLink>
-            )}
-          </div>
-        </Card>
-      </Section>
-    )
-  }
-
-  <!-- Related Conversions -->
-  <Section>
-    <SectionHeading>Related conversions</SectionHeading>
+  <!-- Related: other conversions, the compress pages for either format, and
+       the long guide when one exists. These were three separate boxed
+       sections, each a card around one or two links. -->
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">Related</SectionHeading>
+    {
+      blogGuide && (
+        <Paragraph class="mb-6 max-w-[65ch]">
+          Want the free methods too (Preview, Terminal, online tools)? Read{" "}
+          <a href={`/blog/${blogGuide.slug}`} class="link">
+            {blogGuide.title}
+          </a>.
+        </Paragraph>
+      )
+    }
     <ConversionGrid
       columns={3}
-      links={related.map((r) => ({
-        href: `/convert/${r.slug}`,
-        label: `${formats[r.from].name} to ${formats[r.to].name}`,
-      }))}
+      links={[
+        ...related.map((r) => ({
+          href: `/convert/${r.slug}`,
+          label: `${formats[r.from].name} to ${formats[r.to].name}`,
+        })),
+        ...[fromCompress, toCompress]
+          .filter((c) => c !== undefined)
+          .map((c) => ({
+            href: `/compress/${c.slug}`,
+            label: `Compress ${c.name}`,
+          })),
+      ]}
       linkText="View all conversions"
       linkHref="/convert"
+      linkAlign="left"
     />
   </Section>
-
-  <!-- Blog Guide Cross-Link -->
-  {
-    blogGuide && (
-      <GuideCrossLink
-        href={`/blog/${blogGuide.slug}`}
-        title={blogGuide.title}
-        sublead="Want step-by-step instructions with multiple methods including Preview, Terminal, and online tools?"
-      />
-    )
-  }
 
   <!-- CTA -->
   <CTASection

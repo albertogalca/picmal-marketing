@@ -1,15 +1,15 @@
 ---
+import { Icon } from "astro-icon/components";
 import MarketingLayout from "../../../layouts/MarketingLayout.astro";
 import BlockGrid from "../../../components/BlockGrid.astro";
 import ComparisonHero from "../../../components/ComparisonHero.astro";
 import ProductSchema from "../../../components/schema/ProductSchema.astro";
 import Section from "../../../components/Section.astro";
 import SectionHeading from "../../../components/SectionHeading.astro";
-import BenefitsCard from "../../../components/BenefitsCard.astro";
+import Paragraph from "../../../components/Paragraph.astro";
 import ConversionGrid from "../../../components/ConversionGrid.astro";
 import FAQSection from "../../../components/FAQSection.astro";
 import FAQSchema from "../../../components/schema/FAQSchema.astro";
-import GuideCrossLink from "../../../components/GuideCrossLink.astro";
 
 import {
   videoConversions,
@@ -30,6 +30,12 @@ const { conversion } = Astro.props;
 const from = videoFormats[conversion.from];
 const to = videoFormats[conversion.to];
 const related = getRelatedVideoConversions(conversion.slug, 6);
+
+// The hero says what the page does and that it happens on the Mac. The longer
+// "why" paragraph used to be the hero subhead; it now opens the first section.
+const heroLine =
+  conversion.heroLine ??
+  `Convert ${from.name} to ${to.name} on your Mac, one file or a whole folder. Nothing gets uploaded.`;
 
 const title = conversion.metaTitle;
 const description = conversion.metaDescription;
@@ -80,55 +86,77 @@ const noindex = !isVideoConversionIndexed(conversion.slug);
   <ComparisonHero
     pricingHref="/#pricing"
     title={`Convert ${labelFor(from)} to ${labelFor(to)} on Mac`}
-    subhead={conversion.whyConvert}
+    subhead={heroLine}
     buyEvent={`buy_clicked_video_${conversion.slug}`}
     defaultTab="convert"
   />
 
-  <!-- Benefits -->
-  <Section width="narrow">
-    <BenefitsCard
-      heading={`Why convert ${from.name} to ${to.name} with Picmal`}
-      benefits={conversion.benefits}
-    />
+  {/* Same structure as the image convert pages: every section on the hero's
+      left edge, headings on that edge too. */}
+
+  <!-- Why -->
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">
+      Why convert {from.name} to {to.name}?
+    </SectionHeading>
+    <Paragraph size="lead" class="max-w-[65ch] mb-10">
+      {conversion.whyConvert}
+    </Paragraph>
+    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-4xl">
+      {
+        conversion.benefits.map((benefit) => (
+          <li class="flex items-start gap-3">
+            <Icon
+              name="ph:check"
+              class="w-5 h-5 text-text-secondary shrink-0 mt-0.5"
+              aria-hidden="true"
+            />
+            <span class="text-text-secondary text-pretty">{benefit}</span>
+          </li>
+        ))
+      }
+    </ul>
   </Section>
 
   <!-- How it works -->
-  <BlockGrid ordered
-    heading="Convert in 3 steps"
-    items={[
-      {
-        title: `Drop your ${from.name} files`,
-        description: "Drag and drop one file or a whole folder.",
-      },
-      {
-        title: `Choose ${to.name}`,
-        description: "Pick the output format and quality.",
-      },
-      {
-        title: "Convert",
-        description: "Click Convert. Everything runs on your Mac.",
-      },
-    ]}
-  />
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">Convert in 3 steps</SectionHeading>
+    <BlockGrid
+      ordered
+      items={[
+        {
+          title: `Drop your ${from.name} files`,
+          description: "Drag and drop one file or a whole folder.",
+        },
+        {
+          title: `Choose ${to.name}`,
+          description: "Pick the output format and quality.",
+        },
+        {
+          title: "Convert",
+          description: "Click Convert. Everything runs on your Mac.",
+        },
+      ]}
+    />
+  </Section>
 
   <!-- FAQ -->
-  <FAQSection faqs={conversion.faqs} />
+  <FAQSection faqs={conversion.faqs} align="left" />
 
-  <!-- Blog Guide Cross-Link -->
-  {
-    blogGuide && (
-      <GuideCrossLink
-        href={`/blog/${blogGuide.slug}`}
-        title={blogGuide.title}
-        sublead="Want step-by-step instructions with free methods (HandBrake, VLC, FFmpeg) alongside Picmal?"
-      />
-    )
-  }
-
-  <!-- Related video conversions -->
-  <Section>
-    <SectionHeading class="mb-8">More video conversions</SectionHeading>
+  <!-- Related, with the long guide folded in as one line instead of its own
+       boxed section. -->
+  <Section width="wide">
+    <SectionHeading align="left" class="mb-8">More video conversions</SectionHeading>
+    {
+      blogGuide && (
+        <Paragraph class="mb-6 max-w-[65ch]">
+          Want the free methods too (HandBrake, VLC, FFmpeg)? Read{" "}
+          <a href={`/blog/${blogGuide.slug}`} class="link">
+            {blogGuide.title}
+          </a>.
+        </Paragraph>
+      )
+    }
     <ConversionGrid
       links={related.map((c) => ({
         href: `/convert/video/${c.slug}`,
@@ -136,6 +164,8 @@ const noindex = !isVideoConversionIndexed(conversion.slug);
       }))}
       linkText="All video conversions"
       linkHref="/video-converter-mac"
+      linkAlign="left"
     />
   </Section>
+
 </MarketingLayout>

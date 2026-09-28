@@ -11,6 +11,8 @@ export interface VideoFormatInfo {
    * "mp4 to matroska video".
    */
   searchAlias?: string;
+  /** One sentence on why this format needs converting to MP4. Opens the hero paragraph. */
+  compatNote?: string;
 }
 
 export interface VideoConversionPair {
@@ -22,6 +24,8 @@ export interface VideoConversionPair {
   whyConvert: string;
   benefits: string[];
   faqs: { question: string; answer: string }[];
+  /** Hero subhead: the job first, then that it happens on the Mac. */
+  heroLine?: string;
 }
 
 export const videoFormats: Record<string, VideoFormatInfo> = {
@@ -39,6 +43,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     searchAlias: "QuickTime",
     description:
       "Apple's QuickTime container, the native format for footage from iPhones, Macs, and Final Cut Pro. High quality but less portable outside the Apple ecosystem.",
+    compatNote:
+      "MOV is the native format for iPhone and Final Cut Pro footage, but it's less portable outside the Apple ecosystem.",
   },
   mkv: {
     name: "MKV",
@@ -46,6 +52,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Matroska Video",
     description:
       "A flexible open container that can hold multiple video, audio, and subtitle tracks. Popular for high-quality video but unsupported by many players and editors.",
+    compatNote:
+      "MKV files are popular for high-quality video, but many players, TVs, and editors can't open them.",
   },
   avi: {
     name: "AVI",
@@ -53,6 +61,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Audio Video Interleave",
     description:
       "Microsoft's legacy video container. Widely recognized but inefficient by modern standards, producing large files with limited codec flexibility.",
+    compatNote:
+      "AVI is Microsoft's legacy container: widely recognized, but it makes large files by modern standards.",
   },
   webm: {
     name: "WebM",
@@ -60,6 +70,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "WebM",
     description:
       "Google's open, royalty-free format built for the web, using VP9 or AV1. Small and efficient for browsers but poorly supported by desktop editors and devices.",
+    compatNote:
+      "WebM is built for browsers, but desktop editors and many devices don't support it well.",
   },
   wmv: {
     name: "WMV",
@@ -67,6 +79,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Windows Media Video",
     description:
       "Microsoft's legacy streaming format. Plays well on Windows but is awkward on Mac, mobile, and modern web.",
+    compatNote:
+      "WMV plays well on Windows but is awkward on Mac, iPhone, and the modern web.",
   },
   flv: {
     name: "FLV",
@@ -74,6 +88,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Flash Video",
     description:
       "The container behind old Adobe Flash video. Effectively obsolete since Flash was discontinued, so converting is the only way to keep these files usable.",
+    compatNote:
+      "FLV was the format behind Adobe Flash video, and almost nothing plays it since Flash was discontinued.",
   },
   m4v: {
     name: "M4V",
@@ -81,13 +97,17 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "iTunes Video",
     description:
       "Apple's MP4 variant used by iTunes and the Apple TV app. Nearly identical to MP4 but can carry DRM and isn't always recognized by other players.",
+    compatNote:
+      "M4V is Apple's MP4 variant from iTunes, and other players don't always recognize it.",
   },
   ts: {
     name: "TS",
     extension: "ts",
     fullName: "MPEG Transport Stream",
     description:
-      "A broadcast and streaming container used for live TV recordings and HLS streams. Robust for transmission but clumsy for editing and everyday playback.",
+      "A broadcast and streaming container used for live TV recordings and HLS streams. Reliable for transmission but clumsy for editing and everyday playback.",
+    compatNote:
+      "TS files come from TV recordings and HLS streams, and they're clumsy to edit or play day to day.",
   },
   m2ts: {
     name: "M2TS",
@@ -95,6 +115,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Blu-ray BDAV MPEG-2 Transport Stream",
     description:
       "The AVCHD format used by camcorders and Blu-ray discs. High quality but rarely supported by editors and players without conversion.",
+    compatNote:
+      "M2TS files from camcorders and Blu-ray discs are high quality, but few editors and players support them.",
   },
   "3gp": {
     name: "3GP",
@@ -102,6 +124,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "3GPP Multimedia",
     description:
       "A compact format created for older mobile phones. Small files at low quality, usually converted to play on modern devices.",
+    compatNote:
+      "3GP was made for older mobile phones, and many modern players and editors skip it.",
   },
   vob: {
     name: "VOB",
@@ -109,6 +133,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "DVD Video Object",
     description:
       "The container used on DVD-Video discs. Converting VOB files lets you play ripped DVD footage on modern devices and editors.",
+    compatNote:
+      "VOB files hold DVD-Video footage, which modern devices and editors rarely play.",
   },
   mpg: {
     name: "MPG",
@@ -116,20 +142,24 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "MPEG-1/2 Video",
     description:
       "A legacy MPEG container from the DVD and early-digital era. Widely readable but inefficient compared with modern H.264/H.265 MP4.",
+    compatNote:
+      "MPG is a legacy container from the DVD era: widely readable, but inefficient next to modern H.264 MP4.",
   },
   hevc: {
     name: "HEVC",
     extension: "hevc",
     fullName: "High Efficiency Video Coding (H.265)",
     description:
-      "Highly efficient H.265 video, about 50% smaller than H.264 at the same quality, but not playable everywhere. Re-wrapping to MP4/H.264 maximizes compatibility.",
+      "Highly efficient H.265 video, about 50% smaller than H.264 at the same quality, but not playable everywhere. Converting to H.264 MP4 maximizes compatibility.",
+    compatNote:
+      "HEVC (H.265) video is about 50% smaller than H.264 at the same quality, but not every device, browser, or editor plays it.",
   },
   "3g2": {
     name: "3G2",
     extension: "3g2",
     fullName: "3GPP2 Multimedia",
     description:
-      "The CDMA-era mobile video container (a sibling of 3GP) used by older phones. Re-wrapping to MP4 makes it play on any modern device.",
+      "The CDMA-era mobile video container (a sibling of 3GP) used by older phones. Converting to 3G2 gives you a small file those phones can play.",
   },
   rm: {
     name: "RM",
@@ -137,6 +167,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "RealMedia",
     description:
       "RealNetworks' legacy streaming format from the early internet. Almost nothing plays RM today, so converting to MP4 is usually the only way to watch these old files.",
+    compatNote:
+      "RM is RealNetworks' streaming format from the early internet, and almost nothing plays it today.",
   },
   rmvb: {
     name: "RMVB",
@@ -144,6 +176,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "RealMedia Variable Bitrate",
     description:
       "A variable-bitrate RealMedia variant once popular for downloaded movies and anime. Modern players can't open it. Convert to MP4 to play it anywhere.",
+    compatNote:
+      "RMVB was once common for downloaded movies and anime, and modern players can't open it.",
   },
   bik: {
     name: "BIK",
@@ -151,6 +185,8 @@ export const videoFormats: Record<string, VideoFormatInfo> = {
     fullName: "Bink Video",
     description:
       "A game-engine video format used for cutscenes and intros. Extracting it to MP4 lets you play or edit the footage outside the game.",
+    compatNote:
+      "BIK is the Bink format games use for cutscenes, and normal video players can't open it.",
   },
   gif: {
     name: "GIF",
@@ -201,7 +237,7 @@ function buildWhyConvert(from: VideoFormatInfo, to: VideoFormatInfo): string {
     return `Sometimes you only need the audio, a podcast, an interview, a lecture, the music from a clip. Converting ${from.name} to MP3 extracts the sound into a small, universally compatible file you can play anywhere or drop into any app. Picmal pulls the audio out on your Mac, with bitrate control and batch processing.`;
   }
   if (to.extension === "mp4") {
-    return `${from.name} files don't play everywhere, ${from.description.split(".")[1]?.trim().toLowerCase() || "compatibility is limited"}. Converting ${from.name} to MP4 (H.264) gives you a video that plays on every device, browser, editor, and platform. Picmal re-encodes locally on your Mac with quality control (CRF) and batch processing, no upload limits, no watermark, no subscription.`;
+    return `${from.compatNote ?? `${from.name} files don't play everywhere.`} Converting ${from.name} to MP4 (H.264) gives you a video that plays on every device, browser, editor, and platform. Picmal re-encodes locally on your Mac with quality control (CRF) and batch processing, no upload limits, no watermark, no subscription.`;
   }
   return `Convert ${from.name} to ${to.name} on your Mac for the right balance of compatibility, quality, and file size. Picmal re-encodes locally with full control over codec and quality, fast, offline, and private.`;
 }
@@ -301,12 +337,6 @@ function buildFaqs(
     });
   }
 
-  faqs.push({
-    question: `Is converting ${from.name} to ${to.name} free?`,
-    answer:
-      "Picmal is free for 7 days, then a one-time purchase of $29: no subscription, no per-file limits, no watermark. 14-day money-back guarantee after you buy.",
-  });
-
   return faqs;
 }
 
@@ -334,6 +364,54 @@ function buildMetaTitle(from: VideoFormatInfo, to: VideoFormatInfo): string {
   return `Convert ${labelFor(from)} to ${labelFor(to)} on Mac, offline and in batches`;
 }
 
+// Hero subheads: the job first, then that it runs on the Mac.
+const heroLines: Record<string, string> = {
+  "mov-to-mp4":
+    "Turn iPhone and QuickTime MOV videos into MP4s that play anywhere. It all happens on your Mac, with no uploads.",
+  "mkv-to-mp4":
+    "Turn MKV videos into MP4s that play on any device. It all happens on your Mac, with no uploads.",
+  "avi-to-mp4":
+    "Turn old AVI videos into smaller MP4s that play on any device. It all happens on your Mac, with no uploads.",
+  "webm-to-mp4":
+    "Turn WebM downloads into MP4s you can edit and share. It all happens on your Mac, with no uploads.",
+  "wmv-to-mp4":
+    "Turn WMV videos into MP4s your Mac and iPhone can play. It all happens on your Mac, with no uploads.",
+  "flv-to-mp4":
+    "Turn old Flash FLV videos into MP4s that still play. It all happens on your Mac, with no uploads.",
+  "m4v-to-mp4":
+    "Turn DRM-free M4V videos into plain MP4s any player can open. It all happens on your Mac, with no uploads.",
+  "ts-to-mp4":
+    "Turn TS recordings and stream captures into editable MP4s. It all happens on your Mac, with no uploads.",
+  "m2ts-to-mp4":
+    "Turn camcorder and Blu-ray M2TS files into MP4s you can edit. It all happens on your Mac, with no uploads.",
+  "3gp-to-mp4":
+    "Turn old phone 3GP videos into MP4s any device can play. It all happens on your Mac, with no uploads.",
+  "vob-to-mp4":
+    "Turn DVD VOB files into MP4s for your Mac, iPhone, and TV. It all happens on your Mac, with no uploads.",
+  "mpg-to-mp4":
+    "Turn old MPG videos into smaller MP4s that play on any device. It all happens on your Mac, with no uploads.",
+  "hevc-to-mp4":
+    "Turn HEVC (H.265) video into H.264 MP4s that play on any device. It all happens on your Mac, with no uploads.",
+  "mp4-to-mov":
+    "Turn MP4 videos into QuickTime MOV files for Apple workflows. It all happens on your Mac, with no uploads.",
+  "mp4-to-webm":
+    "Turn MP4 videos into small WebM files for your website. It all happens on your Mac, with no uploads.",
+  "mp4-to-3g2":
+    "Turn MP4 videos into small 3G2 files that play on older phones. It all happens on your Mac, with no uploads.",
+  "rm-to-mp4":
+    "Turn old RealMedia RM videos into MP4s that play today. It all happens on your Mac, with no uploads.",
+  "rmvb-to-mp4":
+    "Turn RMVB movies and anime downloads into MP4s any player can open. It all happens on your Mac, with no uploads.",
+  "bik-to-mp4":
+    "Turn Bink BIK game cutscenes into MP4s you can play and edit. It all happens on your Mac, with no uploads.",
+  "mp4-to-gif":
+    "Turn a moment from an MP4 into a looping GIF for chat. It all happens on your Mac, with no uploads.",
+  "mov-to-gif":
+    "Turn screen recordings and iPhone MOV clips into looping GIFs. It all happens on your Mac, with no uploads.",
+  "mp4-to-mp3":
+    "Pull the audio out of an MP4 as an MP3. It all happens on your Mac, with no uploads.",
+};
+
 export const videoConversions: VideoConversionPair[] = PAIRS.map(
   ([fromKey, toKey]) => {
     const from = videoFormats[fromKey];
@@ -347,6 +425,7 @@ export const videoConversions: VideoConversionPair[] = PAIRS.map(
       whyConvert: buildWhyConvert(from, to),
       benefits: buildBenefits(from, to),
       faqs: buildFaqs(from, to),
+      heroLine: heroLines[`${fromKey}-to-${toKey}`],
     };
   },
 );

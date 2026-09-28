@@ -1,0 +1,21 @@
+---
+import { seeded } from "../lib/pixels";
+
+// 5x5 mirrored pixel face from a name, for reviewers without a photo.
+interface Props { name: string; size?: number }
+const { name, size = 28 } = Astro.props;
+const r = seeded(name);
+const cell = size / 5;
+const rects: [number, number][] = [];
+for (let y = 0; y < 5; y++) for (let x = 0; x < 3; x++) {
+  if (r() < 0.5) { rects.push([x, y]); if (x < 2) rects.push([4 - x, y]); }
+}
+const tones = ["brand", "night", "paper"];
+let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+const tone = tones[h % 3];
+---
+
+<svg class:list={["pm-avatar", `pm-avatar--${tone}`]} width={size} height={size} viewBox={`0 0 ${size} ${size}`} shape-rendering="crispEdges" aria-hidden="true">
+  <rect class="pm-avatar__ground" width={size} height={size} />
+  <g class="pm-avatar__ink">{rects.map(([x, y]) => <rect x={x * cell} y={y * cell} width={cell} height={cell} />)}</g>
+</svg>

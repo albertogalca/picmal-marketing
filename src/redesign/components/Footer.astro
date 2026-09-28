@@ -28,8 +28,8 @@ const groups = [
 ] as { title: string; href?: string; links: string[][] }[][];
 ---
 
-<footer class="pm-wrap">
-  <div class="pm-footer">
+<footer class="pm-footer-band dark">
+  <div class="pm-wrap"><div class="pm-footer">
     <div class="pm-footer__cols">
       <div class="pm-footer__brand">
         <Logo size={24} wordmark />
@@ -51,7 +51,7 @@ const groups = [
       <span class="pm-footer__copy">&copy; {new Date().getFullYear()} Picmal. All rights reserved.<button type="button" class="pm-footer__theme" id="pm-theme">Dark mode</button></span>
       <span class="pm-footer__legal"><a href="/terms">Terms of use</a><a href="/privacy">Privacy policy</a><a href="/legal/open-source">Open source</a></span>
     </div>
-  </div>
+  </div></div>
 </footer>
 
 <script>

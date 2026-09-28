@@ -430,28 +430,41 @@ blockquote p:last-child {
    TABLE STYLING - Simple
    ========================================== */
 
+/* Redesign: the design system's DataTable. A hairline card on the raised
+   surface, a quiet 13px header, 15px rows split by hairlines. */
 .prose table {
   width: 100% !important;
-  border-collapse: collapse !important;
-  margin: 1.5rem 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin: 2rem 0 !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+  background: var(--color-surface) !important;
+  overflow: hidden !important;
+  display: table !important;
 }
 
 .prose thead th {
-  padding: 0.75rem 1rem !important;
+  padding: 0.75rem 1.25rem !important;
   text-align: left !important;
-  font-size: var(--text-small) !important;
-  letter-spacing: -0.006em !important;
-  font-weight: 600 !important;
-  border-bottom: 1px solid
-    light-dark(rgba(0, 0, 0, 0.14), rgba(255, 255, 255, 0.14)) !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 500 !important;
+  color: var(--color-text-secondary) !important;
+  border-bottom: 1px solid var(--color-border) !important;
 }
 
 .prose tbody td {
-  padding: 0.75rem 1rem !important;
-  font-size: var(--text-small) !important;
-  letter-spacing: -0.006em !important;
-  border-bottom: 1px solid
-    light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) !important;
+  padding: 0.875rem 1.25rem !important;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  vertical-align: top !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+.prose tbody td:first-child {
+  color: var(--color-text) !important;
+  font-weight: 500 !important;
 }
 
 .prose tbody tr:last-child td {

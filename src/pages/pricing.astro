@@ -2,7 +2,6 @@
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Paragraph from "../components/Paragraph.astro";
 import H2 from "../components/H2.astro";
@@ -116,9 +115,7 @@ const faqs = [
 
     <div id="license-faq" class="mt-16 border-t border-border pt-12">
       <H2 class="mb-6">License questions</H2>
-      <Card>
-        <FAQ faqs={faqs} />
-      </Card>
+      <FAQ faqs={faqs} />
       <Paragraph size="small" class="mt-6">
         Something else? Write to <a
           class="link"

@@ -178,14 +178,14 @@ const affiliateFaqs = [
   <!-- Closing CTA, one action, plus a plain first-person reassurance.
        The numbers already live in the hero and the FAQ; don't repeat them here. -->
   <Section bg="subtle">
-    <SectionHeading>
+    <SectionHeading class="mb-8">
       Get your affiliate link
       <Fragment slot="sublead">
         It's just me, Alberto, behind Picmal and this program. Sign up and
         I'll take a look.
       </Fragment>
     </SectionHeading>
-    <div class="flex justify-center">
+    <div class="flex">
       <Button
         href={SIGNUP_URL}
         text="Become an affiliate"
@@ -193,7 +193,7 @@ const affiliateFaqs = [
         rel="noopener noreferrer"
       />
     </div>
-    <Paragraph size="small" class="text-center mt-8">
+    <Paragraph size="small" class="mt-8">
       Questions? Email me at <a class="link" href="mailto:support@picmal.app"
         >support@picmal.app</a
       >, or grab the <a

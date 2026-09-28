@@ -31,7 +31,7 @@ const description = `Students and teachers get ${STUDENT_DISCOUNT.percentOff}% o
     <SectionHeading
       level={1}
       class="mb-10"
-      subleadClass="max-w-md mx-auto"
+      subleadClass="max-w-xl"
     >
       {STUDENT_DISCOUNT.percentOff}% off for students and teachers
       <Fragment slot="sublead">
@@ -42,7 +42,7 @@ const description = `Students and teachers get ${STUDENT_DISCOUNT.percentOff}% o
       </Fragment>
     </SectionHeading>
 
-    <div class="max-w-md mx-auto">
+    <div class="max-w-md">
       <!-- The form gets a surface so the input has something to sit on:
            `bg-background` on `bg-background` was an outline floating in
            space. The card is the only thing to do on the page. -->
@@ -82,7 +82,7 @@ const description = `Students and teachers get ${STUDENT_DISCOUNT.percentOff}% o
              doesn't carry a phantom margin. -->
         <p
           id="student-result"
-          class="mt-3 text-small text-center empty:mt-0"
+          class="mt-3 text-small empty:mt-0"
           role="status"
           aria-live="polite"
         />
@@ -90,7 +90,7 @@ const description = `Students and teachers get ${STUDENT_DISCOUNT.percentOff}% o
 
       <!-- Tight to the card: it's the footnote for the field above, not a
            separate section. -->
-      <Paragraph size="small" class="text-center mt-4">
+      <Paragraph size="small" class="mt-4">
         Some universities use a plain national domain that I can't recognize
         automatically. If yours does, email <a
           class="link"

@@ -436,3 +436,16 @@ html.dark .pm-footer-band { background: #121212; border-top: 1px solid #242424; 
 .pm-footer-band label, .pm-footer-band p { color: var(--pm-ink-muted); }
 .pm-footer-band .pm-footer { border-top: 0; padding-top: var(--pm-space-16); color: var(--pm-ink); }
 .pm-footer-band .pm-footer__news input { background: #151517 !important; border-color: #2a2a2e !important; color: #f2f2f3 !important; }
+
+/* Site tables built with utilities (the free tools) wear the DataTable too:
+   a hairline card on the raised surface, a quiet 13px header, 20px insets. */
+.ds-table-wrap { overflow-x: auto; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); }
+.ds-table-wrap thead th { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--color-text-secondary); }
+.ds-table-wrap tr { border-color: var(--color-border); }
+.ds-table-wrap th:first-child, .ds-table-wrap td:first-child { padding-left: 20px; }
+.ds-table-wrap th:last-child, .ds-table-wrap td:last-child { padding-right: 20px; }
+.ds-table-wrap tbody tr:last-child { border-bottom: 0; }
+@media (max-width: 39.99rem) {
+  .ds-table-wrap .fmt-table tr { padding-inline: 20px; }
+  .ds-table-wrap .fmt-table td:first-child, .ds-table-wrap .fmt-table td:last-child { padding-left: 0; padding-right: 0; }
+}

@@ -60,9 +60,10 @@ const heicSample = [
   </Fragment>
 
   <!-- sm:pt-32 as well, or Section's own `sm:py-20` wins the merge. -->
-  <Section width="narrow" class="pt-32 sm:pt-32">
+  <Section class="pt-32 sm:pt-32">
     <SectionHeading
       level={1}
+      subleadClass="max-w-2xl"
       sublead="Runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
     >
       Free file and image tools
@@ -73,13 +74,13 @@ const heicSample = [
         not content: aria-hidden, so the link's name stays title + line. The
         whole card is the link, which is why there is no "Open the tool" line
         any more. */}
-    <div class="flex flex-col gap-4">
+    <div class="grid gap-4 md:grid-cols-3">
       {
         tools.map((tool) => (
           <LinkCard href={tool.href}>
-            <div class="sm:grid sm:grid-cols-[minmax(0,1fr)_14rem] sm:items-center sm:gap-8">
+            <div class="flex flex-col-reverse gap-6">
               <div>
-                <h2 class="text-h3 text-text mb-2 transition-[color] duration-200 motion-reduce:transition-none group-hover:text-accent">
+                <h2 class="text-h3 text-text mb-2 transition-[color] duration-200 motion-reduce:transition-none decoration-1 underline-offset-[3px] group-hover:underline">
                   {tool.title}
                 </h2>
                 <Paragraph>{tool.description}</Paragraph>
@@ -87,7 +88,7 @@ const heicSample = [
 
               <div
                 aria-hidden="true"
-                class="mt-5 sm:mt-0 rounded-lg bg-background ring-1 ring-black/[0.08] dark:ring-white/10 p-4 text-small"
+                class="rounded-lg bg-background ring-1 ring-border p-4 text-small min-h-[8.5rem]"
               >
                 {tool.href === "/tools/exif-viewer" && (
                   <dl class="space-y-2">

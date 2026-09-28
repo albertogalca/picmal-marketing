@@ -1,4 +1,5 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import { DMG_URL } from "../config/download";
 import H1 from "../components/H1.astro";
@@ -36,18 +37,18 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
   noindex={true}
   mainClass="relative z-10 pt-32 pb-16 sm:pb-20"
 >
-  <div class="max-w-3xl mx-auto px-6 text-center">
+  <div class="max-w-5xl mx-auto px-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,400px)] md:gap-16 md:items-start"><div class="max-w-[640px]">
     <H1 class="mb-6 reveal">Thank you!</H1>
     <Paragraph
       size="lead"
-      class="mb-8 max-w-xl mx-auto reveal [animation-delay:80ms]"
+      class="mb-8 reveal [animation-delay:80ms]"
     >
       Your license key is on its way to the email you paid with. While it
       lands, grab the app.
     </Paragraph>
 
     <div
-      class="flex flex-col items-center gap-3 reveal"
+      class="flex flex-col items-start gap-3 reveal"
       style="animation-delay:160ms"
     >
       <Button
@@ -64,13 +65,15 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
     </div>
 
     <div class="mt-6 reveal" style="animation-delay:240ms">
-      <TrustBar />
+      <TrustBar align="start" />
     </div>
+  </div>
+    <div class="hidden md:block md:pt-2"><ArtCard class="rounded-xl" texture="flow" ground="night" seed="thank-you" /></div>
   </div>
 
   <!-- The key arrives by email, not on this page. Say it once, clearly,
        where someone scanning for "so where is my key?" will look. -->
-  <div class="max-w-2xl mx-auto px-6 mt-12 reveal" style="animation-delay:320ms">
+  <div class="max-w-5xl mx-auto px-6 mt-12 reveal" style="animation-delay:320ms"><div class="max-w-[640px]">
     <Card padding="px-6 py-5 sm:px-7" class="flex items-start gap-3.5 text-left">
       <svg
         class="mt-0.5 shrink-0 text-accent"
@@ -111,13 +114,13 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
         </Paragraph>
       </div>
     </Card>
-  </div>
+  </div></div>
 
   <!-- Optional newsletter opt-in. Buyers already get their license and any
        critical notices; this is purely the marketing newsletter, off by
        default, only if they ask for it. Kept as a light, unboxed footnote so
        it stays clearly secondary to the "your key arrives" card above. -->
-  <div class="max-w-2xl mx-auto px-6 mt-8 pt-8 border-t border-border reveal text-left" style="animation-delay:400ms">
+  <div class="max-w-5xl mx-auto px-6 mt-8 reveal text-left" style="animation-delay:400ms"><div class="max-w-[640px] pt-8 border-t border-border">
     <Paragraph size="small">
       <strong class="font-medium text-text">Want the occasional update?</strong>
       Your license and any important notices reach you either way. This is just
@@ -156,7 +159,7 @@ const NEWSLETTER_LIST_ID = "cmrhv19wy17l10j22epyc5r8v";
       >
       </p>
     </form>
-  </div>
+  </div></div>
 
   <Fragment slot="after">
     <Confetti />

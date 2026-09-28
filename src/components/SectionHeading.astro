@@ -34,6 +34,9 @@ const {
 } = Astro.props;
 
 const Heading = level === 1 ? H1 : H2;
+// A caller margin (mb-8 above a reading column) replaces the default rhythm
+// entirely; otherwise tailwind-merge kept sm:mb-16 and prose sat 64px down.
+const customMargin = /(^|\s)(sm:|md:)?mb-/.test(className ?? "");
 const centered = align === "center";
 const hasSublead = sublead !== undefined || Astro.slots.has("sublead");
 const subleadText = sublead ?? (Astro.slots.has("sublead") ? await Astro.slots.render("sublead") : "");
@@ -43,7 +46,7 @@ const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "")
 {/* Redesign: the two-tone heading. A short sublead continues the heading at
     the same size in text-quiet, so the two read as one sentence in two voices.
     A long one (over ~120 characters) drops to a lead paragraph instead. */}
-<div class={cn(centered && "text-center", "mb-10 sm:mb-16", className)}>
+<div class={cn(centered && "text-center", !customMargin && "mb-10 sm:mb-16", className)}>
   <Heading class={cn(twoTone ? "mb-0" : "mb-4", headingClass)}><slot /></Heading>
   {
     hasSublead && (
@@ -51,7 +54,7 @@ const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "")
         size="lead"
         class={cn(
           twoTone && "text-text-quiet font-medium mt-1",
-          twoTone && "text-h2 font-medium",
+          twoTone && "text-h2 font-medium max-w-3xl",
           centered && "max-w-2xl mx-auto",
           subleadClass,
         )}

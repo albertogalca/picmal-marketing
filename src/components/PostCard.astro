@@ -9,7 +9,8 @@ import { cn } from "../utils/cn";
  * Cover, category and date render only when the destination has them, so a
  * blog guide and a product page share the same card without faking metadata.
  *
- * `boxed` (default) is the panel card from LinkCard, for grids that sit among
+ * Redesign: `flat` is now the default everywhere, the design system's
+ * PostCard. `boxed` is the old panel card from LinkCard, for grids that sit among
  * other panels on product pages. `flat` is for the blog: the picture and the
  * words, no panel around them, because 48 panels in a row is a wall of boxes.
  * `featured` widens a flat card into a row, picture left, for the newest post.
@@ -39,7 +40,7 @@ const {
   category,
   date,
   headingLevel = 3,
-  variant = "boxed",
+  variant = "flat",
   featured = false,
 } = Astro.props;
 

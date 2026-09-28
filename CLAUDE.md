@@ -36,7 +36,7 @@ runs two weeks. Read it from the deploy date, not from 28 September.
 SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you
 remove this block.
 
-## SEO HOLD: 4 weeks from the revert deploy
+## SEO HOLD: until 2026-10-26 (revert deployed 2026-09-28 12:07 UTC)
 
 On 28 September the pages that lost most of their Google traffic went back to their 7 August
 text (diagnosis: `~/Projects/cantimplora-cofounder/wiki/research/picmal-seo-drop-diagnosis-2026-09.md`).

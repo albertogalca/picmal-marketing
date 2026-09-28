@@ -398,3 +398,21 @@ html.dark .pm-dark-only { display: block; }
 .pm-prose blockquote { margin: 24px 0; padding-left: 16px; border-left: 2px solid var(--pm-hairline); color: var(--pm-ink-muted); }
 .pm-review__quote, .pm-reviews__press blockquote { border: 0 !important; padding: 0 !important; margin: 0; quotes: none; font-style: normal; }
 .pm-review__quote::before, .pm-review__quote::after, .pm-reviews__press blockquote::before { content: none !important; }
+
+/* Quiet CTA: neutral card, blue only in a thin pixel strip */
+.pm-cta--quiet { background: var(--pm-surface-raised); color: var(--pm-ink); border: 1px solid var(--pm-hairline); }
+.pm-cta--quiet .pm-cta__sub { color: var(--pm-ink-muted); opacity: 1; }
+.pm-cta--quiet .pm-cta__field { height: 72px; }
+.pm-pixels--accent rect { fill: var(--pm-brand-bright); }
+
+/* Founder note */
+.pm-founder__grid { display: grid; grid-template-columns: 200px minmax(0, var(--pm-measure)); gap: 48px; align-items: start; }
+.pm-founder__who { position: sticky; top: 24px; }
+.pm-founder__badge { width: 80px; height: auto; transform: rotate(-6deg); filter: drop-shadow(0 6px 14px rgba(0,0,0,.2)); }
+.pm-founder__name { margin-top: 16px; font: 500 15px/22px var(--pm-font-sans); color: var(--pm-ink); }
+.pm-founder__name a { text-decoration: none; }
+.pm-founder__role { font: 400 14px/20px var(--pm-font-sans); color: var(--pm-ink-muted); }
+.pm-founder__text p { margin: 0 0 16px; font: 400 18px/30px var(--pm-font-sans); color: var(--pm-ink); }
+.pm-founder__close { margin-top: 32px !important; }
+.pm-founder__sig { font-family: var(--font-signature), cursive !important; font-size: 30px !important; line-height: 1.2 !important; }
+@media (max-width: 640px) { .pm-founder__grid { grid-template-columns: 1fr; gap: 24px; } .pm-founder__who { position: static; } }

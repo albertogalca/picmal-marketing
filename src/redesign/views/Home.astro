@@ -1,6 +1,5 @@
 ---
 import Hero from "../components/Hero.astro";
-import Logo from "../components/Logo.astro";
 import Button from "../components/Button.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Feature from "../components/Feature.astro";
@@ -10,7 +9,7 @@ import PricingCard from "../components/PricingCard.astro";
 import FAQ from "../components/FAQ.astro";
 import CtaBand from "../components/CtaBand.astro";
 import PostCard from "../components/PostCard.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
+import FounderNote from "../components/FounderNote.astro";
 import { faqs } from "../../components/schema/FAQSchema.astro";
 import { DEFAULT_TIER, SUPPORT_EMAIL, UPGRADE } from "../../config/pricing";
 import { getPublishedPosts } from "../../utils/posts";
@@ -34,7 +33,6 @@ const posts = (await getPublishedPosts()).sort((a, b) => +b.data.pubDate - +a.da
 <div class="pm-wrap">
   <div style="padding-top: 96px">
     <Hero>
-      <Logo slot="mark" size={64} />
       <Fragment slot="title">Convert and compress anything on your Mac.</Fragment>
       <Fragment slot="quiet">Nothing gets uploaded.</Fragment>
       <Fragment slot="actions">
@@ -63,11 +61,8 @@ const posts = (await getPublishedPosts()).sort((a, b) => +b.data.pubDate - +a.da
     <SectionHeader title="Pay once and you're all set.">Already own Picmal? <a href={UPGRADE.url}>Add more Macs &rarr;</a></SectionHeader>
     <div class="pm-mt-16"><PricingCard /></div>
   </section>
-</div>
 
-<FounderLetter />
-
-<div class="pm-wrap">
+  <FounderNote />
   <section class="pm-section">
     <SectionHeader title="Frequently asked questions.">Something not covered here? Write to <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</SectionHeader>
     <div class="pm-mt-16"><FAQ items={faqs} open={0} /></div>

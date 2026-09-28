@@ -9,7 +9,7 @@ import BlockGrid from "../components/BlockGrid.astro";
 import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
-import { isConversionIndexed } from "../data/conversions";
+import { formats, isConversionIndexed } from "../data/conversions";
 import FAQSection from "../components/FAQSection.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
 
@@ -130,7 +130,7 @@ const faqs = [
         .filter(isConversionIndexed)
         .map((slug) => ({
           href: `/convert/${slug}`,
-          label: slug.replace("heic-to-", "HEIC to ").toUpperCase(),
+          label: `HEIC to ${formats[slug.replace("heic-to-", "")].name}`,
         }))}
     />
   </Section>

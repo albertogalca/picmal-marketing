@@ -8,6 +8,8 @@ import RelatedGrid from "../../components/RelatedGrid.astro";
 import LinkCard from "../../components/LinkCard.astro";
 import { compressions } from "../../data/compressions";
 import FormatPill from "../../components/FormatPill.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ConversionGrid from "../../components/ConversionGrid.astro";
 
 const title = "Picmal: Compress images on Mac, reduce file size";
 const description =
@@ -28,6 +30,7 @@ const description =
     subhead="A page per format, with what each one throws away and how small it usually gets. JPG, PNG, GIF, WebP, AVIF, TIFF and PDF, all compressed on your Mac with nothing uploaded."
     buyEvent="buy_clicked_compress_hub"
     defaultTab="compress"
+    demo={false}
   />
 
   <!-- Format Cards -->
@@ -45,6 +48,20 @@ const description =
         ))
       }
     </div>
+  </Section>
+
+  <!-- Same reason as the /convert hub: the footer says "All compression". -->
+  <Section>
+    <SectionHeading sublead="The same job for clips and recordings.">
+      Video and audio
+    </SectionHeading>
+    <ConversionGrid
+      links={[
+        { href: "/compress-video-mac", label: "Compress video on Mac", sublabel: "MP4, MOV, MKV" },
+        { href: "/compress-audio-mac", label: "Compress audio on Mac", sublabel: "MP3, WAV, FLAC" },
+      ]}
+      class="sm:grid-cols-2 max-w-2xl mx-auto"
+    />
   </Section>
 
   <RelatedGrid

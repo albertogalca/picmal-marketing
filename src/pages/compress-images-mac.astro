@@ -12,6 +12,9 @@ import RelatedGrid from "../components/RelatedGrid.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import FAQSection from "../components/FAQSection.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
+import ConversionGrid from "../components/ConversionGrid.astro";
+import { compressions } from "../data/compressions";
+import cover from "../../public/images/pages/compress-images-mac/cover.png";
 
 const title =
   "Picmal: Mac image compressor, compress JPEG, PNG and HEIC offline";
@@ -64,13 +67,12 @@ const faqs = [
   },
 ];
 
-
-const formats = ["jpg", "png", "gif", "webp", "avif", "tiff", "pdf"];
 ---
 
 <MarketingLayout
   title={title}
   description={description}
+  image={cover}
 >
   <Fragment slot="head">
     <ProductSchema url={Astro.site!.href} />
@@ -202,20 +204,13 @@ const formats = ["jpg", "png", "gif", "webp", "avif", "tiff", "pdf"];
       <SectionHeading sublead="Pick your format for the specifics: what gets thrown away, what stays, and how small it typically gets.">
         Compress a specific format
       </SectionHeading>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {
-          formats.map((format) => (
-            <a
-              href={`/compress/${format}`}
-              class="bg-background-subtle/50 border border-border rounded-xl p-4 text-center transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/30 hover:bg-accent/[0.03] active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              <span class="text-small font-medium text-text">
-                Compress {format.toUpperCase()}
-              </span>
-            </a>
-          ))
-        }
-      </div>
+      <ConversionGrid
+        columns={4}
+        links={compressions.map((c) => ({
+          href: `/compress/${c.slug}`,
+          label: `Compress ${c.name}`,
+        }))}
+      />
   </Section>
 
   <!-- Related -->
@@ -258,7 +253,6 @@ const formats = ["jpg", "png", "gif", "webp", "avif", "tiff", "pdf"];
   <MasonryTestimonials />
 
   <PricingSection />
-    </div>
 
   <FAQSection faqs={faqs} />
 

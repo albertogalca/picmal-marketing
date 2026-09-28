@@ -11,6 +11,7 @@ import Section from "../components/Section.astro";
 import RelatedGrid from "../components/RelatedGrid.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ConversionGrid from "../components/ConversionGrid.astro";
+import { formats } from "../data/conversions";
 import FAQSection from "../components/FAQSection.astro";
 import FAQSchema from "../components/schema/FAQSchema.astro";
 
@@ -91,12 +92,15 @@ const faqs = [
         "avif-to-jpg",
         "tiff-to-jpg",
         "dng-to-jpg",
-        "gif-to-png",
+        "gif-to-webp",
         "png-to-avif",
-      ].map((slug) => ({
-        href: `/convert/${slug}`,
-        label: slug.replace("-to-", " to ").toUpperCase(),
-      }))}
+      ].map((slug) => {
+        const [from, to] = slug.split("-to-");
+        return {
+          href: `/convert/${slug}`,
+          label: `${formats[from].name} to ${formats[to].name}`,
+        };
+      })}
     />
     <div class="text-center mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 items-center justify-center">
       <a href="/convert" class="link text-small"
@@ -193,6 +197,5 @@ const faqs = [
 
   <Fragment slot="after">
       <SupportedFormatsModal />
-    </div>
   </Fragment>
 </MarketingLayout>

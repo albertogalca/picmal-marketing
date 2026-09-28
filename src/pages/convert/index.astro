@@ -9,6 +9,7 @@ import Section from "../../components/Section.astro";
 import ConversionGrid from "../../components/ConversionGrid.astro";
 import { formats, conversions } from "../../data/conversions";
 import FormatPill from "../../components/FormatPill.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 
 const title = "Picmal: Convert images on Mac, all formats supported";
 const description =
@@ -36,6 +37,7 @@ const groupedBySource = formatKeys.map((key) => ({
     subhead="Picmal converts between all major image formats, HEIC, JPG, PNG, WebP, AVIF, TIFF, GIF, and DNG. Batch processing, offline, no quality loss."
     buyEvent="buy_clicked_convert_hub"
     defaultTab="convert"
+    demo={false}
   />
 
   <!-- All Conversions Grid -->
@@ -62,6 +64,22 @@ const groupedBySource = formatKeys.map((key) => ({
         ))
       }
     </div>
+  </Section>
+
+  <!-- The footer calls this page "All conversions", and video and audio
+       live on their own pages. Without this block the hub was a dead end
+       for anyone holding a MOV or a FLAC. -->
+  <Section>
+    <SectionHeading sublead="Video and audio have their own pages, with every pair Picmal converts.">
+      Video and audio
+    </SectionHeading>
+    <ConversionGrid
+      links={[
+        { href: "/video-converter-mac", label: "Video converter for Mac", sublabel: "MOV, MKV, AVI to MP4" },
+        { href: "/audio-converter-mac", label: "Audio converter for Mac", sublabel: "FLAC, WAV, M4A to MP3" },
+        { href: "/extract-audio-from-video-mac", label: "Extract audio from video", sublabel: "MP4 or MOV to MP3" },
+      ]}
+    />
   </Section>
 
   <CTASection

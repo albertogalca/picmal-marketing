@@ -4,6 +4,7 @@ import HeroCTA from "./HeroCTA.astro";
 import Section from "./Section.astro";
 import DemoReel from "./DemoReel.astro";
 import SectionHeading from "./SectionHeading.astro";
+import ArtCard from "./pm/ArtCard.astro";
 
 interface Props {
   /** Hero H1 text */
@@ -24,6 +25,9 @@ interface Props {
       someone who opens an index wants the list, and the reel pushed it
       1200px down the page. */
   demo?: boolean;
+  /** Redesign: a pixel cover beside the hero text (convert and compress
+      pages), e.g. { title: "WebP → PNG", texture: "dissolve" }. */
+  art?: { title: string; texture?: string; ground?: "brand" | "night" | "paper" };
 }
 
 const {
@@ -34,6 +38,7 @@ const {
   pricingHref = "#pricing",
   releaseBadge = true,
   demo = true,
+  art,
 } = Astro.props;
 ---
 
@@ -43,6 +48,7 @@ const {
     page; this is a section like any other. */}
 <Section width="wide" class="pt-32 sm:pt-32">
   <slot name="breadcrumb" />
+  <div class={art ? "grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 lg:gap-12 items-center" : undefined}>
   <div class="max-w-3xl">
     {releaseBadge && (
       <div class="hero-reveal" style="--d: 0ms">
@@ -62,6 +68,12 @@ const {
       </SectionHeading>
     </div>
     <HeroCTA buyEvent={buyEvent} pricingHref={pricingHref} />
+  </div>
+  {art && (
+    <div class="hero-reveal" style="--d: 160ms" aria-hidden="true">
+      <ArtCard title={art.title} texture={art.texture} ground={art.ground} seed={art.title} />
+    </div>
+  )}
   </div>
 
   <!-- The same reel the homepage runs, opened on whichever clip matches this

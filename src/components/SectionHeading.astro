@@ -43,7 +43,7 @@ const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "")
 {/* Redesign: the two-tone heading. A short sublead continues the heading at
     the same size in text-quiet, so the two read as one sentence in two voices.
     A long one (over ~120 characters) drops to a lead paragraph instead. */}
-<div class={cn(centered && "text-center", "mb-12 sm:mb-16", className)}>
+<div class={cn(centered && "text-center", "mb-10 sm:mb-16", className)}>
   <Heading class={cn(twoTone ? "mb-0" : "mb-4", headingClass)}><slot /></Heading>
   {
     hasSublead && (

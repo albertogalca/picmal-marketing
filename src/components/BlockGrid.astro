@@ -106,12 +106,12 @@ const PIXEL: Record<string, string> = {
       )
     }
 
-    <List class:list={["grid gap-x-8 gap-y-10", colClass]}>
+    <List class:list={["grid gap-x-10 gap-y-12", colClass]}>
       {
         items.map((item, i) => (
           <Block>
             {ordered ? (
-              <span class="flex h-10 items-center text-h4 tabular-nums text-text-secondary mb-4">
+              <span class="mb-4 inline-grid h-8 w-8 place-items-center rounded-md bg-brand text-[15px] font-semibold tabular-nums text-on-brand">
                 {i + 1}
               </span>
             ) : item.apps ? (

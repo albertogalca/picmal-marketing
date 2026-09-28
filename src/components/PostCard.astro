@@ -78,7 +78,7 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         {(category || date) && (
           <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
             {category && (
-              <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+              <span class="font-medium text-text">
                 {category}
               </span>
             )}
@@ -115,9 +115,8 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
       {image && (
         <div
           class={cn(
-            "relative aspect-video overflow-hidden rounded-lg bg-background-subtle",
-            "ring-1 ring-black/[0.08] dark:ring-white/10",
-            "shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
+            "relative aspect-video overflow-hidden rounded-xl bg-background-subtle",
+            "ring-1 ring-border",
             !featured && "mb-4",
             featured && "mb-4 md:mb-0",
           )}
@@ -163,8 +162,8 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         <Heading
           class={cn(
             "font-semibold text-text text-balance leading-snug mb-2",
-            "transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none",
-            featured ? "text-h3 md:text-h2 md:mb-3" : "text-body-big",
+            "decoration-1 underline-offset-[3px] group-hover:underline",
+            featured ? "text-h3 md:text-h2 md:mb-3" : "text-h3",
           )}
         >
           {label}
@@ -173,7 +172,7 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         {description && (
           <p
             class={cn(
-              "text-small text-text-secondary text-pretty leading-relaxed",
+              "text-[15px] leading-6 text-text-secondary text-pretty",
               featured ? "line-clamp-4 md:text-body" : "line-clamp-2",
             )}
           >

@@ -29,7 +29,8 @@ const widths = {
 };
 
 const sectionClasses = cn(
-  "relative z-10 px-6 py-16 sm:py-24",
+  // 48px + 48px: 96px between sections, the design system's space-24.
+  "relative z-10 px-6 py-12",
   // No section backgrounds in the redesign: sections are set apart by space
   // alone. `bg="subtle"` is accepted and ignored so no page has to change.
   className,

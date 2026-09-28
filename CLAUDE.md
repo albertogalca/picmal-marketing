@@ -10,9 +10,9 @@ compression app), built with Astro 5. Programmatic SEO conversion pages, MDX
 blog/changelog, Stripe affiliate program. Structure, deps, and commands are
 derivable from the repo (`package.json`, `astro.config.mjs`, `src/`).
 
-## FROZEN until 2026-09-28
+## FROZEN until 2026-10-12
 
-Do not edit these four files before 28 September 2026, whatever the task says:
+Do not edit these four files before 12 October 2026, whatever the task says:
 `src/pages/index.astro`, `src/components/HeroCTA.astro`, `src/components/PricingPlans.astro`,
 `src/config/pricing.ts`.
 
@@ -23,7 +23,11 @@ files destroys it and costs another fortnight.
 
 No price change either, up or down, for the same reason.
 
-SEO pages, blog posts, docs and the app itself stay open. After 28 September, ask before you
+The first window, 14-27 September, closed at 0.75% (4 new licences from 532 visitors). That is
+too few sales to name a cause, so on 28 September the freeze was extended to 12 October to
+double the sample.
+
+SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you
 remove this block.
 
 ## Design System

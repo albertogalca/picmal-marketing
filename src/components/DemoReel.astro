@@ -24,6 +24,9 @@ interface Props {
 const { class: className, start = "convert" } = Astro.props;
 
 // `poster` is the clean opening frame, used only by the clip that loads first.
+// convert.mp4 opens on its full file list (Sep 2026): the first 3s, an empty
+// drop zone, were cut, because that empty window was all the hero showed above
+// the fold. compress and pdf still open idle; they only lead on their own pages.
 // `thumb` is a mid-clip frame chosen so the three dock tiles are told apart at
 // 144px: a full file list, a before/after photo, a white PDF page. Frame 0 of
 // every clip is the same idle drop zone, which made the tiles identical.

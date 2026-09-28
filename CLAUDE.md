@@ -27,6 +27,10 @@ The first window, 14-27 September, closed at 0.75% (4 new licences from 532 visi
 too few sales to name a cause, so on 28 September the freeze was extended to 12 October to
 double the sample.
 
+On 28 September Alberto broke the freeze on purpose: the hero clip now opens on its file list,
+and the free-guides section left the homepage. The second window restarts from that deploy and
+runs two weeks. Read it from the deploy date, not from 28 September.
+
 SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you
 remove this block.
 

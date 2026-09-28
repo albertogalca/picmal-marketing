@@ -6,14 +6,19 @@ import SectionHeading from "../components/SectionHeading.astro";
 import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
+import CTASection from "../components/CTASection.astro";
+import ChangelogImage from "../components/ChangelogImage.astro";
 import { SITE_TITLE } from "../consts";
 import { getCollection, render } from "astro:content";
 import { getEntrySlug, sortEntries } from "../utils/changelog";
 
 const entries = sortEntries(await getCollection("changelog"));
 
-// Render every release's full notes inline so /changelog is the single
-// scrollable source of truth (CleanShot/Linear style).
+// /changelog is the single source of truth, so every release renders here.
+// The newest few stay open; older ones fold into their one-line description
+// and open on click, or on arrival when a #slug link points at them.
+const OPEN_COUNT = 3;
+
 const rows = await Promise.all(
   entries.map(async (entry) => {
     const { Content } = await render(entry);
@@ -22,9 +27,12 @@ const rows = await Promise.all(
       version,
       slug: getEntrySlug(entry),
       title: entry.data.title ?? `Version ${version}`,
+      description: entry.data.description,
       pubDate: entry.data.pubDate,
       Content,
       downloadUrl: `https://github.com/albertogalca/picmal-releases/releases/download/v${version}/Picmal.dmg`,
+      // The picmal-releases repo holds DMGs from 1.2.7 on. Earlier versions
+      // have no file to point at.
       hasDownload:
         version.localeCompare("1.2.7", undefined, { numeric: true }) >= 0,
     };
@@ -45,8 +53,8 @@ const softwareSchema = {
 ---
 
 <MarketingLayout
-  title="Picmal: Changelog"
-  description="Full changelog and release notes for Picmal, the macOS image converter. See every new feature, format addition, performance boost and bug fix shipped across versions."
+  title="Picmal changelog: every release of the Mac app"
+  description="Every Picmal release: what changed in the Mac app that converts and compresses images, video, audio and PDFs."
   mainClass="relative z-10 pt-32 pb-20"
 >
   <Fragment slot="head">
@@ -74,97 +82,158 @@ const softwareSchema = {
   <div class="max-w-5xl mx-auto px-6">
     <SectionHeading
       level={1}
-      sublead="Latest updates, new features, and improvements to Picmal."
+      sublead="Every Picmal release, newest first."
     >
       Changelog
     </SectionHeading>
 
-    <Card class="mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-      <Paragraph class="mb-0 flex-1">
-        As an indie developer, Picmal grows through word of mouth. A review
-        only takes a minute and makes a huge difference.
-      </Paragraph>
-      <Button
-        href="https://tally.so/r/Me18qE"
-        text="Leave a Review"
-        size="small"
-        class="w-full sm:w-auto whitespace-nowrap"
-      />
-    </Card>
     {
-      rows.map((row) => (
-        <article
-          id={row.slug}
-          class="scroll-mt-28 border-t border-border first:border-t-0 pt-12 pb-16 first:pt-0 last:pb-0"
-        >
-          {/* version anchor preserved for legacy #v<version> deep links */}
-          <span id={`v${row.version}`} class="block scroll-mt-28" />
+      rows.map((row, i) => {
+        const open = i < OPEN_COUNT;
+        return (
+          <>
+            <article
+              id={row.slug}
+              class:list={[
+                "scroll-mt-28 border-t border-border first:border-t-0 first:pt-0",
+                open ? "pt-12 pb-16" : "py-10",
+              ]}
+            >
+              {/* version anchor preserved for legacy #v<version> deep links */}
+              <span id={`v${row.version}`} class="block scroll-mt-28" />
 
-          <div class="flex flex-col gap-3 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-x-10">
-            {/* Left: metadata */}
-            <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:sticky sm:top-28 sm:self-start sm:pt-2">
-              <span class="inline-block text-small font-semibold leading-none px-2 py-0.5 rounded-xl bg-accent/10 text-accent">
-                v{row.version}
-              </span>
-              {row.pubDate && (
-                <span class="text-small text-text-secondary">
-                  <FormattedDate date={row.pubDate} />
-                </span>
-              )}
-              {row.hasDownload && (
-                <a
-                  href={row.downloadUrl}
-                  class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
+              <div class="flex flex-col gap-3 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-x-10">
+                {/* Left: metadata */}
+                <div class="flex flex-wrap items-center gap-3 sm:flex-col sm:items-start sm:gap-1.5 sm:sticky sm:top-28 sm:self-start sm:pt-2">
+                  <span class="inline-block text-small font-semibold leading-none px-2 py-0.5 rounded-xl bg-accent/10 text-accent">
+                    v{row.version}
+                  </span>
+                  {row.pubDate && (
+                    <span class="text-small text-text-secondary">
+                      <FormattedDate date={row.pubDate} />
+                    </span>
+                  )}
+                  {row.hasDownload && (
+                    <a
+                      href={row.downloadUrl}
+                      class="flex items-center gap-1.5 text-small text-text-secondary sm:mt-1 transition-colors duration-150 hover:text-text rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Download {row.version}
+                    </a>
+                  )}
+                </div>
+
+                {/* Right: title + release notes */}
+                <div class="min-w-0">
+                  <h2
+                    class:list={[
+                      "text-text text-balance",
+                      open ? "text-h2 mb-3" : "text-h3 mb-2",
+                    ]}
                   >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  Download
-                </a>
-              )}
-            </div>
-
-            {/* Right: title + full release notes */}
-            <div class="min-w-0">
-              <h2 class="text-h2 text-text text-balance mb-3">
-                <a
-                  href={`#${row.slug}`}
-                  class="rounded-xl hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  {row.title}
-                </a>
-              </h2>
-              <div
-                class="release-notes prose max-w-none
-                  prose-headings:text-text prose-headings:font-semibold
-                  prose-p:text-text-secondary prose-p:leading-relaxed
-                  prose-strong:text-text
-                  prose-ul:text-text-secondary
-                  prose-ol:text-text-secondary
-                  prose-li:text-text-secondary
-                  prose-img:rounded-lg prose-img:border prose-img:border-border"
-              >
-                <row.Content />
+                    <a
+                      href={`#${row.slug}`}
+                      class="rounded-xl hover:text-accent transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      {row.title}
+                    </a>
+                  </h2>
+                  {open ? (
+                    <div class="release-notes prose max-w-none prose-headings:text-text prose-headings:font-semibold prose-p:text-text-secondary prose-p:leading-relaxed prose-strong:text-text prose-ul:text-text-secondary prose-ol:text-text-secondary prose-li:text-text-secondary">
+                      <row.Content components={{ img: ChangelogImage }} />
+                    </div>
+                  ) : (
+                    <>
+                      {row.description && (
+                        <Paragraph class="mb-2">{row.description}</Paragraph>
+                      )}
+                      <details class="release group">
+                        <summary class="inline-flex min-h-10 items-center gap-1.5 text-small font-[590] text-text cursor-pointer list-none rounded-lg transition-colors duration-150 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+                          <span class="group-open:hidden">Read the notes</span>
+                          <span class="hidden group-open:inline">Hide the notes</span>
+                          <svg
+                            class="size-3.5 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </summary>
+                        <div class="release-notes prose max-w-none mt-4 prose-headings:text-text prose-headings:font-semibold prose-p:text-text-secondary prose-p:leading-relaxed prose-strong:text-text prose-ul:text-text-secondary prose-ol:text-text-secondary prose-li:text-text-secondary">
+                          <row.Content components={{ img: ChangelogImage }} />
+                        </div>
+                      </details>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
-        </article>
-      ))
+            </article>
+
+            {i === 0 && (
+              <Card class="mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+                <Paragraph class="mb-0 flex-1">
+                  I'm one person, and Picmal grows by word of mouth. If an
+                  update made your week a little easier, a short review helps
+                  the next Mac user find it.
+                </Paragraph>
+                <Button
+                  href="https://tally.so/r/Me18qE"
+                  text="Leave a review"
+                  size="small"
+                  variant="secondary"
+                  class="w-full sm:w-auto whitespace-nowrap"
+                />
+              </Card>
+            )}
+          </>
+        );
+      })
     }
   </div>
+
+  <CTASection
+    heading="Pay once, and every release after it is yours."
+    analyticsEvent="buy_clicked_changelog"
+  />
+
+  <script>
+    // A #slug or #v1.2.3 link to an older release lands on its heading with
+    // the notes folded. Open them so the link shows what it promised.
+    function openLinkedRelease() {
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (!id) return;
+      const details = document
+        .getElementById(id)
+        ?.closest("article")
+        ?.querySelector<HTMLDetailsElement>("details.release");
+      if (details) details.open = true;
+    }
+    openLinkedRelease();
+    window.addEventListener("hashchange", openLinkedRelease);
+  </script>
 
   <Fragment slot="after">
     <style>
@@ -178,6 +247,9 @@ const softwareSchema = {
           }
           .release-notes :global(:is(p, li):has(> img)) {
             max-width: none;
+          }
+          .release > summary::-webkit-details-marker {
+            display: none;
           }
         </style>
   </Fragment>

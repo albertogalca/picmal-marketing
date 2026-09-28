@@ -1,0 +1,17 @@
+---
+// Stands in for the plain <img> that markdown renders in changelog notes.
+// 38 screenshots sit on one page, most of them inside closed releases, so
+// they wait until the reader gets near them.
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"img">;
+
+const props = Astro.props;
+---
+
+<img
+  {...props}
+  loading="lazy"
+  decoding="async"
+  class="rounded-lg ring-1 ring-black/10 dark:ring-white/10"
+/>

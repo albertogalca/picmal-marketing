@@ -1,4 +1,5 @@
 ---
+import PixelGlyph from "./pm/PixelGlyph.astro";
 import { Icon } from "astro-icon/components";
 import H2 from "./H2.astro";
 import H3 from "./H3.astro";
@@ -77,18 +78,31 @@ const colClass =
 
 const List = ordered ? "ol" : "div";
 const Block = ordered ? "li" : "div";
+// Redesign: icons sit on the pixel-glyph tile. Phosphor names that have a
+// pixel glyph drawn for them use it; any other icon keeps its Phosphor shape,
+// white on the same blue tile, so a grid never mixes two icon languages.
+const PIXEL: Record<string, string> = {
+  "ph:selection-plus-duotone": "convert",
+  "ph:trend-down-duotone": "trend",
+  "ph:file-pdf-duotone": "pdf",
+  "ph:film-strip-duotone": "film",
+  "ph:waveform-duotone": "audio",
+  "ph:crop-duotone": "crop",
+  "ph:folder-open-duotone": "folder",
+  "ph:map-pin-duotone": "pin",
+};
 ---
 
 <section class:list={[heading && "relative z-10 px-6 py-16 sm:py-20"]}>
-  <div class:list={[heading && "max-w-6xl mx-auto"]}>
+  <div class:list={[heading && "max-w-5xl mx-auto"]}>
     {
       heading && (
-        <H2 class:list={[intro ? "mb-4" : "mb-8", "text-center"]}>{heading}</H2>
+        <H2 class:list={[intro ? "mb-4" : "mb-8"]}>{heading}</H2>
       )
     }
     {
       intro && (
-        <Paragraph class="mb-8 text-center max-w-2xl mx-auto">{intro}</Paragraph>
+        <Paragraph class="mb-8 max-w-2xl">{intro}</Paragraph>
       )
     }
 
@@ -114,7 +128,7 @@ const Block = ordered ? "li" : "div";
                       alt={app.name}
                       width="56"
                       height="56"
-                      class="w-10 h-10 rounded-[22%] ring-1 ring-black/10 dark:ring-white/10"
+                      class="w-[39px] h-[39px] rounded-[22%] ring-1 ring-black/10 dark:ring-white/10"
                       loading="lazy"
                     />
                   </a>
@@ -122,7 +136,13 @@ const Block = ordered ? "li" : "div";
               </div>
             ) : (
               item.icon && (
-                <Icon name={item.icon} class="w-10 h-10 mb-4 text-text" />
+                PIXEL[item.icon] ? (
+                  <PixelGlyph name={PIXEL[item.icon]} class="mb-4" />
+                ) : (
+                  <span class="mb-4 inline-grid h-[39px] w-[39px] place-items-center rounded-md bg-brand">
+                    <Icon name={item.icon} class="h-6 w-6 text-on-brand" />
+                  </span>
+                )
               )
             )}
 

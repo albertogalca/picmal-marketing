@@ -48,8 +48,8 @@ const isIconOnly = !!icon && !text;
 const HIT_AREA = "relative before:absolute before:content-['']";
 
 const sizeClasses = {
-  small: `text-small py-2 px-4 gap-1.5 ${HIT_AREA} before:inset-x-0 before:-inset-y-[3px]`,
-  normal: "text-body py-3 px-6 gap-2",
+  small: `text-small py-1.5 px-3.5 gap-1.5 ${HIT_AREA} before:inset-x-0 before:-inset-y-[3px]`,
+  normal: "text-body py-2.5 px-5 gap-2",
 };
 
 // Icon-only buttons: square, sized to meet/approach a 44px touch target.
@@ -64,25 +64,14 @@ const iconSizeClasses = {
 };
 
 const variantClasses = {
+  // Redesign: flat. The one primary per view is near-black on light and
+  // near-white on dark (--color-action), 15.7:1 or better against its label.
+  // Blue stays for links and the pixel art, not for buttons.
   primary: cn(
-    "text-white font-semibold rounded-lg",
-    // Stops live in @theme beside the other measured contrast pairs. The dark:
-    // copy of this line was byte-identical to the light one and emitted nothing.
-    "bg-[linear-gradient(180deg,var(--color-cta)_14%,var(--color-cta-deep)_81.56%)]",
-    "hover:bg-[linear-gradient(180deg,var(--color-cta-hover)_14%,var(--color-cta-hover-deep)_81.56%)]",
-    "shadow-[0_1px_2px_rgba(0,0,0,0.12),0_5px_14px_-3px_rgba(10,114,255,0.35),inset_0_1px_0_rgba(255,255,255,0.22)]",
-    "hover:shadow-[0_2px_5px_rgba(0,0,0,0.14),0_10px_22px_-4px_rgba(10,114,255,0.45),inset_0_1px_0_rgba(255,255,255,0.28)]",
-    "dark:shadow-[0_1px_2px_rgba(0,0,0,0.45),0_5px_16px_-3px_rgba(59,130,246,0.5),inset_0_1px_0_rgba(255,255,255,0.18)]",
-    "dark:hover:shadow-[0_2px_6px_rgba(0,0,0,0.55),0_12px_26px_-4px_rgba(59,130,246,0.6),inset_0_1px_0_rgba(255,255,255,0.26)]",
+    "font-medium rounded-lg bg-action text-on-action",
+    "hover:brightness-[0.92]",
   ),
-  secondary: cn(
-    "text-text font-semibold rounded-lg border",
-    // border-black/10, not border-border: the token is 1.1:1 against the page,
-    // so on a bare background the button had no edge, only a faint shadow.
-    "bg-background border-black/10 shadow-xs hover:bg-background-subtle hover:border-black/15 hover:shadow-sm",
-    "dark:bg-white/[0.06] dark:border-white/[0.10] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]",
-    "dark:hover:bg-white/[0.10] dark:hover:border-white/[0.16] dark:hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.10)]",
-  ),
+  secondary: cn("font-medium rounded-lg bg-control text-text", "hover:bg-control-hover"),
   overlay: cn(
     "font-semibold bg-white/85 text-black backdrop-blur-md ring-1 ring-black/[0.06]",
     "shadow-[0_2px_8px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.5)]",
@@ -95,8 +84,8 @@ const layoutClasses = isIconOnly
   : sizeClasses[size];
 
 const baseClasses = cn(
-  "inline-flex items-center justify-center rounded-xl font-[590] cursor-pointer",
-  "transition-[scale,box-shadow,background-color,border-color] duration-200 ease-out motion-reduce:transition-none",
+  "inline-flex items-center justify-center rounded-lg cursor-pointer",
+  "transition-[scale,box-shadow,background-color,border-color,filter] duration-150 ease-out motion-reduce:transition-none",
   "active:scale-[0.96] active:shadow-sm motion-reduce:active:scale-100",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
   "disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100",

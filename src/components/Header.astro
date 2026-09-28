@@ -77,7 +77,7 @@ const isActive = (item: NavItem) =>
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const desktopLinkBase = `text-body transition-colors cursor-pointer rounded-xl ${focusRing}`;
+const desktopLinkBase = `text-small transition-colors cursor-pointer rounded-xl ${focusRing}`;
 const desktopLinkIdle =
   "text-text-secondary hover:text-text focus-visible:text-text";
 const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:bg-background-subtle focus-visible:bg-background-subtle transition-[color,background-color,scale] active:scale-[0.98] motion-reduce:transition-none ${focusRing}`;
@@ -85,21 +85,21 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-30 text-body transition-colors duration-300 bg-background/80 backdrop-blur-lg border-b border-border"
+  class="fixed top-0 left-0 right-0 z-30 text-body transition-colors duration-300 bg-background/85 backdrop-blur-lg border-b border-border"
 >
-  <div class="px-6 xl:px-0 py-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
+  <div class="px-6 py-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div class="flex items-center">
         <a
           href="/"
-          class="flex items-center gap-3 cursor-pointer transition-[scale] active:scale-[0.97] motion-reduce:transition-none"
+          class="flex items-center gap-2.5 cursor-pointer transition-[scale] active:scale-[0.97] motion-reduce:transition-none"
         >
           <Image
             src="/logo.webp"
             alt="Picmal - Mac media converter app logo"
             width={40}
             height={40}
-            class="rounded-xl w-8 h-8 sm:w-10 sm:h-10 object-cover"
+            class="rounded-md w-6 h-6 object-cover"
             loading="eager"
           />
           <Paragraph class="text-text font-semibold text-body">Picmal</Paragraph
@@ -107,7 +107,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
         </a>
       </div>
 
-      <div class="hidden md:flex items-center space-x-6">
+      <div class="hidden md:flex items-center space-x-7">
         {
           navItems.map((item) => (
             <a
@@ -120,7 +120,18 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
         }
       </div>
 
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center gap-2">
+        <Button
+          class="hidden md:inline-flex m-0 whitespace-nowrap"
+          size="small"
+          variant="secondary"
+          text="Try free"
+          href="/download"
+          target="_self"
+          onclick={import.meta.env.PROD
+            ? "window.seline?.track('trial_clicked', { source: 'header' })"
+            : undefined}
+        />
         {/* Was "Buy for Mac" -> /#pricing, sitting next to a "Pricing" nav
             item that already went to /pricing: two links to two different
             price lists, one of them labelled buy. It now does what it says
@@ -128,7 +139,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
             See HeroCTA: pointing a buy button at #pricing turned every
             recorded buy_clicked into a scroll. */}
         <Button
-          class="hidden md:block m-0 whitespace-nowrap"
+          class="hidden md:inline-flex m-0 whitespace-nowrap"
           size="small"
           text={`Get Picmal for $${tier.price}`}
           href={tier.checkoutUrl}

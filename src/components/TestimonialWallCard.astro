@@ -21,12 +21,12 @@ const { t } = Astro.props;
       rel="nofollow noreferrer"
       class="block rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
     >
-      <Card>
+      <Card padding="p-6">
         <TestimonialCard testimonial={t} align="left" />
       </Card>
     </a>
   ) : (
-    <Card>
+    <Card padding="p-6">
       <TestimonialCard testimonial={t} align="left" />
     </Card>
   )

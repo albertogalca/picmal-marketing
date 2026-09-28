@@ -68,16 +68,29 @@ markup. **Review changes on the dev server (`npm run dev`) — do not run `build
 
 - **Colors** (all `light-dark()`, so dark mode is automatic): `--color-accent`,
   `--color-accent-dark`, `--color-background`, `--color-text`,
-  `--color-text-secondary`, `--color-background-subtle`, `--color-border`.
-  Utilities: `text-text`, `text-text-secondary`, `text-accent`, `bg-background`,
-  `bg-background-subtle`, `border-border`. Never hard-code hex for UI surfaces.
+  `--color-text-secondary`, `--color-text-quiet`, `--color-background-subtle`,
+  `--color-surface`, `--color-border`, `--color-control`, `--color-action`,
+  `--color-on-action`, plus the pixel-art grounds `--color-brand`,
+  `--color-on-brand`, `--color-ink-field`. Utilities: `text-text`,
+  `text-text-secondary`, `text-text-quiet`, `text-accent`, `bg-background`,
+  `bg-surface`, `bg-control`, `bg-action`, `border-border`. Never hard-code hex
+  for UI surfaces.
 - **Type scale** (semantic, carries size/line-height/tracking/weight): `text-h1`,
   `text-h2`, `text-h3`, `text-h4`, `text-body-big`, `text-body`, `text-small`.
-  Use these, **not** raw `text-lg`/`text-xl`. Headings currently: h1 30→44px,
-  h2 24→32px (fluid `clamp`). Tune sizes only in `@theme`.
-- **Radius**: `--radius-lg/xl/2xl` are **all collapsed to 8px** on purpose —
-  `rounded-lg`/`rounded-xl`/`rounded-2xl` render identically (8px). `rounded-full`
+  Use these, **not** raw `text-lg`/`text-xl`. Headings currently: h1 34→44px,
+  h2 24→28px (fluid `clamp`). Tune sizes only in `@theme`.
+- **Two-tone headings** (redesign): `SectionHeading` is left-aligned by default
+  and renders a short sublead (≤120 characters) at the heading's size in
+  `text-text-quiet`, as the heading's second voice. Longer subleads stay a lead
+  paragraph.
+- **Radius**: `rounded-lg` 8px (buttons), `rounded-xl` 12px (cards, covers,
+  tables), `rounded-2xl` 16px (panels, the demo frame, the CTA). `rounded-full`
   and explicit `rounded-[…]` (e.g. app-icon squircles) escape this.
+- **Pixels** (redesign): `src/utils/pixels.ts` holds the seeded textures (the
+  `skyline` dune is the one `scripts/generate-blog-covers.js` draws), rendered
+  at build time by `src/components/pm/PixelField.astro`. `PixelGlyph` is the
+  7×7 feature-icon set, `ArtCard` a live cover. Styles live in
+  `src/styles/pm.css`, which aliases the `@theme` colors.
 - **Fonts**: `--font-sans` (system), `--font-mono`, `--font-signature`
   ("Grape Nuts", loaded via `<link>` only where used).
 - `.link` — the class for inline accent links in body copy.
@@ -119,7 +132,7 @@ rounded-2xl`; `padding?` (default `p-6 md:p-8`). Wrap FAQ/panels in this.
 
 | Component                             | What it is                                                                                                                                                                   |
 | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Button`                              | `variant` primary/secondary/overlay, `size` small/normal, `icon` (SVG path `d`) + `iconType`. Dark-mode-aware primary/secondary; weight `font-[590]`; `active:scale-[0.96]`. |
+| `Button`                              | `variant` primary/secondary/overlay, `size` small/normal, `icon` (SVG path `d`) + `iconType`. Flat: primary is `bg-action` (near-black / near-white), secondary `bg-control`; `font-medium`; `active:scale-[0.96]`. |
 | `SectionHeading` / `Section` / `Card` | Layout primitives (above).                                                                                                                                                   |
 | `FAQ`                                 | `<details>` accordion; `faqs` prop; wrap in a `Card`.                                                                                                                        |
 | `ReleaseBadge`                        | "What's new in vX" pill → latest changelog entry (auto from the `changelog` collection). Simple hero badge.                                                                  |

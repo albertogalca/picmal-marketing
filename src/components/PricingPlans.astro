@@ -48,14 +48,13 @@ const tierData = TIERS.map((t) => ({
 ---
 
 <div
-  class="max-w-lg mx-auto"
+  class="max-w-lg"
   data-pricing
   data-default-macs={DEFAULT_TIER.macs}
   data-tiers={JSON.stringify(tierData)}
 >
-  <Paragraph size="small" class="text-center mb-3">How many Macs?</Paragraph>
-
-  <div class="mb-6">
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <Paragraph size="small">How many Macs?</Paragraph>
     <SegmentedControl
       segments={segments}
       activeId={String(DEFAULT_TIER.macs)}
@@ -128,12 +127,12 @@ const tierData = TIERS.map((t) => ({
         : undefined}
     />
 
-    <Paragraph size="small" class="text-center mt-3">
+    <Paragraph size="small" class="mt-3">
       14-day refund after you buy, no questions asked. Needs macOS 15 or later.
     </Paragraph>
   </Card>
 
-  <Paragraph size="small" class="text-center mt-4">
+  <Paragraph size="small" class="mt-4">
     More than {TIERS[TIERS.length - 1].macs} Macs? <a
       class="link"
       href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(`Picmal for more than ${TIERS[TIERS.length - 1].macs} Macs`)}`}

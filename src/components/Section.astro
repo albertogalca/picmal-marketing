@@ -19,22 +19,25 @@ const { id, width = "default", bg = "default", class: className } = Astro.props;
 // `wide` hits the xl breakpoint at its own max width, so it drops the gutter
 // there (matches the hero). Narrower widths keep the gutter at every size.
 const widths = {
-  wide: "max-w-7xl",
-  medium: "max-w-6xl",
+  // Redesign: one page column. `wide` and `medium` stay as names so no page
+  // has to change, but everything lines up on the same 1024px edge.
+  wide: "max-w-5xl",
+  medium: "max-w-5xl",
   default: "max-w-5xl",
-  narrow: "max-w-3xl",
+  // `narrow` is a reading column on the page's left edge, not a centered box.
+  narrow: "max-w-5xl",
 };
 
 const sectionClasses = cn(
-  "relative z-10 px-6 py-16 sm:py-20",
-  width === "wide" && "xl:px-0",
-  bg === "subtle" && "bg-background-subtle/50 border-y border-border",
+  "relative z-10 px-6 py-16 sm:py-24",
+  // No section backgrounds in the redesign: sections are set apart by space
+  // alone. `bg="subtle"` is accepted and ignored so no page has to change.
   className,
 );
 ---
 
 <section id={id} class={sectionClasses}>
   <div class={cn(widths[width], "mx-auto")}>
-    <slot />
+    {width === "narrow" ? <div class="max-w-3xl"><slot /></div> : <slot />}
   </div>
 </section>

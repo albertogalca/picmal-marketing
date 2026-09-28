@@ -20,8 +20,8 @@
   --sl-color-gray-3: oklch(0.7 0 0);
   --sl-color-gray-4: oklch(0.5 0 0);
   --sl-color-gray-5: oklch(0.42 0 0);
-  --sl-color-gray-6: oklch(0.31 0 0);
-  --sl-color-black: oklch(0.27 0 0); /* site dark --color-background */
+  --sl-color-gray-6: #1a1a1a;
+  --sl-color-black: #0a0a0a; /* site dark --color-background (redesign) */
 
   /* One family, matching the site. */
   --sl-font:
@@ -52,7 +52,7 @@
   --sl-color-gray-5: oklch(0.85 0 0);
   --sl-color-gray-6: oklch(0.93 0 0);
   --sl-color-gray-7: oklch(0.96 0 0);
-  --sl-color-black: oklch(0.985 0 0); /* site light --color-background */
+  --sl-color-black: #fbfbfb; /* site light --color-background */
 }
 
 /* Site title reads as plain foreground, not the accent (Starlight's default). */

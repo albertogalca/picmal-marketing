@@ -1,23 +1,20 @@
 :root {
-  /* Redesign preview tokens. Colors follow scripts/generate-blog-covers.js and
-     global.css where they overlap (accent #1b5bff / #3b82f6, field #1450e0,
-     ink field #0b0b12, pale #f1f6ff); the neutral ground is the new, darker,
-     quieter direction. light-dark() follows html.light / html.dark like the
-     rest of the site. */
-  --pm-surface: light-dark(#fbfbfb, #0a0a0a);
-  --pm-surface-raised: light-dark(#ffffff, #131313);
-  --pm-control: light-dark(#ededed, #262626);
-  --pm-control-hover: light-dark(#e3e3e3, #2f2f2f);
-  --pm-hairline: light-dark(#e6e6e6, #262626);
-  --pm-ink: light-dark(#252525, #f5f5f5);
-  --pm-ink-muted: light-dark(#646464, #8c8c8c);
-  --pm-ink-quiet: light-dark(#8a8a8a, #737373);
-  --pm-action: light-dark(#0b0b12, #e5e5e5);
-  --pm-on-action: light-dark(#fbfbfb, #0a0a0a);
-  --pm-brand: #1450e0;
-  --pm-on-brand: #f1f6ff;
-  --pm-brand-bright: light-dark(#1b5bff, #3b82f6);
-  --pm-night: #0b0b12;
+  /* pm-* classes are the redesign's component layer. Colors alias the site
+     tokens in global.css, so there is one source of truth. */
+  --pm-surface: var(--color-background);
+  --pm-surface-raised: var(--color-surface);
+  --pm-control: var(--color-control);
+  --pm-control-hover: var(--color-control-hover);
+  --pm-hairline: var(--color-border);
+  --pm-ink: var(--color-text);
+  --pm-ink-muted: var(--color-text-secondary);
+  --pm-ink-quiet: var(--color-text-quiet);
+  --pm-action: var(--color-action);
+  --pm-on-action: var(--color-on-action);
+  --pm-brand: var(--color-brand);
+  --pm-on-brand: var(--color-on-brand);
+  --pm-brand-bright: var(--color-accent);
+  --pm-night: var(--color-ink-field);
   --pm-on-night: #f5f5f5;
   --pm-pixel-glow: #3b82f6;
   --pm-pixel-paper: #f1f6ff;
@@ -429,9 +426,13 @@ html.dark .pm-invert-dark { filter: brightness(0) invert(1); }
 .pm-reviews__press figcaption { margin-top: var(--pm-space-4); }
 
 /* Footer: always dark, set apart from the page */
-.pm-footer-band { margin-top: var(--pm-space-24); background: #0b0b0d; color-scheme: dark;
-  --pm-surface: #0b0b0d; --pm-surface-raised: #151517; --pm-control: #26262a; --pm-control-hover: #303035;
-  --pm-hairline: #232327; --pm-ink: #f2f2f3; --pm-ink-muted: #9a9aa0; --pm-ink-quiet: #7a7a80;
-  --pm-action: #e8e8ea; --pm-on-action: #0b0b0d; --pm-brand-bright: #3b82f6; }
+.pm-footer-band { margin-top: var(--pm-space-24); background: #0b0b0b; color-scheme: dark;
+  --pm-surface: #0b0b0b; --pm-surface-raised: #161616; --pm-control: #262626; --pm-control-hover: #303030;
+  --pm-hairline: #242424; --pm-ink: #f2f2f2; --pm-ink-muted: #9a9a9a; --pm-ink-quiet: #7a7a7a;
+  --pm-action: #e8e8e8; --pm-on-action: #0b0b0b; --pm-brand-bright: #3b82f6; }
+/* On the dark theme the page is already near-black, so the band steps up a
+   shade and takes a hairline, to stay its own place. */
+html.dark .pm-footer-band { background: #121212; border-top: 1px solid #242424; --pm-surface: #121212; }
+.pm-footer-band label, .pm-footer-band p { color: var(--pm-ink-muted); }
 .pm-footer-band .pm-footer { border-top: 0; padding-top: var(--pm-space-16); color: var(--pm-ink); }
 .pm-footer-band .pm-footer__news input { background: #151517 !important; border-color: #2a2a2e !important; color: #f2f2f3 !important; }

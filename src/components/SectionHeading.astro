@@ -25,7 +25,8 @@ interface Props {
 
 const {
   level = 2,
-  align = "center",
+  // Redesign: left-aligned by default, on the page column's edge.
+  align = "left",
   sublead,
   class: className,
   headingClass,
@@ -35,15 +36,25 @@ const {
 const Heading = level === 1 ? H1 : H2;
 const centered = align === "center";
 const hasSublead = sublead !== undefined || Astro.slots.has("sublead");
+const subleadText = sublead ?? (Astro.slots.has("sublead") ? await Astro.slots.render("sublead") : "");
+const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "").trim().length <= 120;
 ---
 
-<div class={cn(centered && "text-center", "mb-12", className)}>
-  <Heading class={cn("mb-4", headingClass)}><slot /></Heading>
+{/* Redesign: the two-tone heading. A short sublead continues the heading at
+    the same size in text-quiet, so the two read as one sentence in two voices.
+    A long one (over ~120 characters) drops to a lead paragraph instead. */}
+<div class={cn(centered && "text-center", "mb-12 sm:mb-16", className)}>
+  <Heading class={cn(twoTone ? "mb-0" : "mb-4", headingClass)}><slot /></Heading>
   {
     hasSublead && (
       <Paragraph
         size="lead"
-        class={cn(centered && "max-w-2xl mx-auto", subleadClass)}
+        class={cn(
+          twoTone && "text-text-quiet font-medium mt-1",
+          twoTone && "text-h2 font-medium",
+          centered && "max-w-2xl mx-auto",
+          subleadClass,
+        )}
       >
         <slot name="sublead">{sublead}</slot>
       </Paragraph>

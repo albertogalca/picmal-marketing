@@ -11,23 +11,20 @@ import SectionHeading from "./SectionHeading.astro";
 ---
 
 <Section id="pricing" width="medium" bg="subtle">
-  <SectionHeading class="mb-4">
+  {/* Redesign: the upgrade note is the heading's quiet second half. Only the
+      action is accented, so it never competes with the buy button below. */}
+  <SectionHeading>
     Pay once and you're all set
+    <Fragment slot="sublead">
+      Already own Picmal? <a class="link font-medium" href={UPGRADE.url}
+        >Add more Macs <span aria-hidden="true">&rarr;</span></a
+      >
+    </Fragment>
   </SectionHeading>
-
-  {/* Reads as a note under the heading, not a second CTA: only the action is
-      accented, so it never competes with the buy button below. */}
-  <Paragraph size="lead" class="text-center mb-10">
-    Already own Picmal? <a class="link" href={UPGRADE.url}
-      >Add more Macs <span aria-hidden="true">&rarr;</span></a
-    >
-  </Paragraph>
 
   <PricingPlans />
 
-  <div class="max-w-3xl mx-auto mt-16">
-    <Card>
-      <FAQ faqs={licenseFaqs} />
-    </Card>
+  <div class="max-w-3xl mt-16">
+    <FAQ faqs={licenseFaqs} />
   </div>
 </Section>

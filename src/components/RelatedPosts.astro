@@ -1,5 +1,5 @@
 ---
-import { getPublishedPosts, postCover } from "../utils/posts";
+import { getPublishedPosts, postCover, postCoverDark, displayCategory } from "../utils/posts";
 import PostCard from "./PostCard.astro";
 
 interface Props {
@@ -22,7 +22,10 @@ const relatedPosts = allPosts
     let relevanceScore = 0;
 
     // Score by matching category
-    if (category && post.data.category === category) {
+    if (
+      category &&
+      displayCategory(post.data.category) === displayCategory(category)
+    ) {
       relevanceScore += 10;
     }
 
@@ -61,26 +64,19 @@ const postsToShow =
 {
   postsToShow.length > 0 && (
     <section class="mt-16 pt-12 border-t border-border">
-      <div class="mb-8">
-        <h2 class="text-h3 text-text mb-2">
-          {relatedPosts.length > 0 ? "Related articles" : "Recent articles"}
-        </h2>
-        <p class="text-text-secondary">
-          {relatedPosts.length > 0
-            ? "Continue exploring similar topics"
-            : "Check out our latest posts"}
-        </p>
-      </div>
+      <h2 class="text-h3 text-text mb-8">Read next</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
         {postsToShow.map((post) => (
           <PostCard
             href={`/blog/${post.id}`}
             label={post.data.title}
             description={post.data.description}
             image={postCover(post)}
-            category={post.data.category}
+            imageDark={postCoverDark(post)}
+            category={displayCategory(post.data.category)}
             date={post.data.pubDate}
+            variant="flat"
           />
         ))}
       </div>

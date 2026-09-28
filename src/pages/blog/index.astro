@@ -1,6 +1,11 @@
 ---
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
-import { getPublishedPosts, postCover } from "../../utils/posts";
+import {
+  getPublishedPosts,
+  postCover,
+  postCoverDark,
+  displayCategory,
+} from "../../utils/posts";
 import PostCard from "../../components/PostCard.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SegmentedControl from "../../components/SegmentedControl.astro";
@@ -14,7 +19,7 @@ const posts = (await getPublishedPosts()).sort(
 // change here. "All" is always first.
 const categories = [
   "All",
-  ...new Set(posts.map((p) => p.data.category).filter(Boolean)),
+  ...new Set(posts.map((p) => displayCategory(p.data.category)).filter(Boolean)),
 ];
 const segments = categories.map((c) => ({ id: c, label: c }));
 
@@ -58,7 +63,7 @@ const blogListSchema = {
   <div class="max-w-7xl mx-auto px-6">
     <SectionHeading
       level={1}
-      sublead="Updates, guides, and thoughts about building a media conversion app for Mac"
+      sublead="How to convert, compress and edit files on a Mac without sending them anywhere. Once a month, a note on what I changed in Picmal."
     >
       Picmal Blog
     </SectionHeading>
@@ -78,19 +83,26 @@ const blogListSchema = {
       )
     }
 
-    <!-- Blog Posts Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Blog Posts Grid. The newest post opens as a wide row so the page has
+         a first thing to look at; the rest follow in threes. -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
       {
-        posts.map((post) => (
-          <article class="h-full" data-category={post.data.category ?? ""}>
+        posts.map((post, i) => (
+          <article
+            class={i === 0 ? "md:col-span-2 lg:col-span-3" : "h-full"}
+            data-category={displayCategory(post.data.category) ?? ""}
+          >
             <PostCard
               href={`/blog/${post.id}`}
               label={post.data.title}
               description={post.data.description}
               image={postCover(post)}
-              category={post.data.category}
+              imageDark={postCoverDark(post)}
+              category={displayCategory(post.data.category)}
               date={post.data.pubDate}
               headingLevel={2}
+              variant="flat"
+              featured={i === 0}
             />
           </article>
         ))

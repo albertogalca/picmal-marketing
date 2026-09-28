@@ -1,0 +1,118 @@
+---
+import type { MarkdownHeading } from "astro";
+
+/**
+ * TableOfContents - the section map for a long post. A searcher lands wanting
+ * one method out of five; this lets them jump to it instead of scrolling
+ * 8,000px. Short posts do not need it and get nothing.
+ *
+ * Wide screens: a quiet rail in the empty margin right of the text, sticky, with
+ * the section in view marked. Narrow screens: one closed line above the post.
+ * Either way the post text does not move.
+ */
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const MIN_SECTIONS = 6;
+
+const sections = Astro.props.headings.filter((h) => h.depth === 2);
+---
+
+{
+  sections.length >= MIN_SECTIONS && (
+    <>
+      <details class="toc-inline xl:hidden mb-10 border-y border-border py-3 text-small group">
+        <summary class="cursor-pointer text-text-secondary font-medium list-none flex items-center justify-between min-h-10 [&::-webkit-details-marker]:hidden">
+          On this page
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 16 16"
+            class="size-4 transition-[rotate] duration-200 ease-out motion-reduce:transition-none group-open:rotate-180"
+          >
+            <path
+              d="M4 6l4 4 4-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </summary>
+        <ol class="mt-2 space-y-1">
+          {sections.map((h) => (
+            <li>
+              <a
+                href={`#${h.slug}`}
+                class="block py-1.5 text-text-secondary transition-colors hover:text-text"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+
+      <nav
+        aria-label="On this page"
+        class="toc-rail hidden xl:block absolute left-full top-0 h-full ml-12 w-48"
+      >
+        <div class="sticky top-28">
+          <p class="text-small font-medium text-text mb-3">On this page</p>
+          <ol class="space-y-1 border-l border-border text-small">
+            {sections.map((h) => (
+              <li>
+                <a
+                  href={`#${h.slug}`}
+                  data-toc-slug={h.slug}
+                  class="block -ml-px border-l border-transparent pl-3 py-1 text-text-secondary text-pretty transition-[color,border-color] duration-200 hover:text-text aria-[current=true]:text-text aria-[current=true]:border-text"
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+    </>
+  )
+}
+
+<script>
+  // Marks the section being read. The last heading above the top third of the
+  // viewport wins, which matches where the eye is, not where the heading is.
+  const links = [
+    ...document.querySelectorAll<HTMLAnchorElement>("[data-toc-slug]"),
+  ];
+  const targets = links
+    .map((a) => document.getElementById(a.dataset.tocSlug!))
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (targets.length) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const line = window.innerHeight / 3;
+      let current = targets[0].id;
+      for (const t of targets) {
+        if (t.getBoundingClientRect().top <= line) current = t.id;
+        else break;
+      }
+      for (const a of links) {
+        a.setAttribute("aria-current", String(a.dataset.tocSlug === current));
+      }
+    };
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    update();
+  }
+</script>

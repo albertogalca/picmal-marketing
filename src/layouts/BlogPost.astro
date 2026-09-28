@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
@@ -13,6 +14,8 @@ import Breadcrumb from "../components/Breadcrumb.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 import RelatedConversions from "../components/RelatedConversions.astro";
 import { DEFAULT_TIER } from "../config/pricing";
+import { displayCategory } from "../utils/posts";
+import TableOfContents from "../components/TableOfContents.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   category?: string;
@@ -26,6 +29,7 @@ type Props = CollectionEntry<"blog">["data"] & {
     price?: string;
     operatingSystem?: string;
   }[];
+  headings?: MarkdownHeading[];
 };
 
 const {
@@ -39,7 +43,10 @@ const {
   tags,
   faqs,
   itemList,
+  headings = [],
 } = Astro.props;
+
+const categoryLabel = displayCategory(category);
 ---
 
 <!doctype html>
@@ -98,32 +105,33 @@ const {
 
         <!-- Header -->
         <header class="mb-10 article-header">
-          <div class="flex items-center gap-3 mb-8 text-small">
+          <!-- The pill separates itself by shape, so only the text items
+               need a dot between them. -->
+          <div
+            class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-8 text-small text-text-secondary"
+          >
+            {
+              categoryLabel && (
+                <span class="px-2 py-1 mr-1 bg-accent/10 text-accent rounded-full font-medium">
+                  {categoryLabel}
+                </span>
+              )
+            }
             <a
               href="https://albertogalca.com/"
               rel="author"
-              class="text-text-secondary transition-colors hover:text-text"
+              class="transition-colors hover:text-text"
               >By Alberto Gallego</a
             >
-            <span class="text-text-secondary">•</span>
-            {
-              category && (
-                <>
-                  <span class="px-2 py-1 bg-accent/10 text-accent rounded-xl font-medium">
-                    {category}
-                  </span>
-                  <span class="text-text-secondary">•</span>
-                </>
-              )
-            }
-            <time datetime={pubDate.toISOString()} class="text-text-secondary">
+            <span aria-hidden="true">·</span>
+            <time datetime={pubDate.toISOString()}>
               <FormattedDate date={pubDate} />
             </time>
             {
               updatedDate && (
                 <>
-                  <span class="text-text-secondary">•</span>
-                  <span class="text-text-secondary italic">
+                  <span aria-hidden="true">·</span>
+                  <span>
                     Updated <FormattedDate date={updatedDate} />
                   </span>
                 </>
@@ -156,33 +164,37 @@ const {
           </p>
         </header>
 
-        <!-- Content -->
+        <!-- Content, with the section map beside it on wide screens -->
+        <div class="relative">
+        <TableOfContents headings={headings} />
         <div
           class="prose max-w-none article-content
               prose-headings:text-text prose-headings:font-semibold
-              prose-p:text-text-secondary prose-p:leading-relaxed
+              prose-p:text-text prose-p:leading-relaxed
               prose-strong:text-text
               prose-th:text-text
-              prose-td:text-text-secondary
-              prose-ul:text-text-secondary
-              prose-ol:text-text-secondary
-              prose-li:text-text-secondary
+              prose-td:text-text
+              prose-ul:text-text
+              prose-ol:text-text
+              prose-li:text-text
               prose-img:rounded-xl"
           role="main"
           aria-labelledby="article-title"
         >
           <slot />
         </div>
+        </div>
 
-        <!-- Related conversion tools (tag-matched, indexed pages only) -->
-        <RelatedConversions tags={tags} />
-
-        <!-- Download CTA -->
-        <div class="mt-12 article-cta">
+        <!-- Closing CTA. The tag-matched converter links sit inside it, so
+             the end of a post pitches once instead of three times. -->
+        <div class="mt-16 article-cta">
           <CTASection
-            heading="Use Picmal to easily convert your media on your Mac"
+            heading="Drag the files in. Get them back converted."
             analyticsEvent={`buy_clicked_blog_${slug || "post"}`}
-          />
+            class="p-0"
+          >
+            <RelatedConversions tags={tags} />
+          </CTASection>
         </div>
 
         <!-- Related Posts -->

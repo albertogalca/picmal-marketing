@@ -3,6 +3,7 @@ import H2 from "./H2.astro";
 import Paragraph from "./Paragraph.astro";
 import Button from "./Button.astro";
 import { DEFAULT_TIER, type Tier } from "../config/pricing";
+import { cn } from "../utils/cn";
 
 interface Props {
   heading: string;
@@ -17,6 +18,9 @@ interface Props {
       education) passes the tier that audience came for, so the closing button
       does not drop them back to 1 Mac. */
   tier?: Tier;
+  /** Extra classes on the section. A blog post passes `p-0` so the panel
+      lines up with its text column and the section spacing is its own. */
+  class?: string;
 }
 
 const {
@@ -24,10 +28,11 @@ const {
   analyticsEvent,
   note = "7-day free trial · One-time purchase · 14-day money-back guarantee",
   tier = DEFAULT_TIER,
+  class: className,
 } = Astro.props;
 ---
 
-<section class="relative z-10 px-6 py-20">
+<section class={cn("relative z-10 px-6 py-20", className)}>
   <div class="max-w-4xl mx-auto">
     <div
       class="bg-background-subtle border border-border rounded-2xl p-8 md:p-12 text-center"
@@ -54,6 +59,7 @@ const {
             : undefined}
         />
       </div>
+      <slot />
     </div>
   </div>
 </section>

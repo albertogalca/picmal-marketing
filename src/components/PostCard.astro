@@ -2,12 +2,17 @@
 import { Image } from "astro:assets";
 import LinkCard from "./LinkCard.astro";
 import FormattedDate from "./FormattedDate.astro";
+import { cn } from "../utils/cn";
 
 /**
  * PostCard - the one card for anything clickable that leads somewhere else.
  * Cover, category and date render only when the destination has them, so a
  * blog guide and a product page share the same card without faking metadata.
- * The anchor comes from LinkCard, so hover, press and focus have one home.
+ *
+ * `boxed` (default) is the panel card from LinkCard, for grids that sit among
+ * other panels on product pages. `flat` is for the blog: the picture and the
+ * words, no panel around them, because 48 panels in a row is a wall of boxes.
+ * `featured` widens a flat card into a row, picture left, for the newest post.
  */
 interface Props {
   href: string;
@@ -15,10 +20,14 @@ interface Props {
   label: string;
   description?: string;
   image?: ImageMetadata | string;
+  /** Shown instead of `image` when the site is in dark mode. */
+  imageDark?: ImageMetadata | string;
   category?: string;
   date?: Date;
   /** 2 under a page H1 (the blog index), 3 under a section H2. */
   headingLevel?: 2 | 3;
+  variant?: "boxed" | "flat";
+  featured?: boolean;
 }
 
 const {
@@ -26,62 +35,152 @@ const {
   label,
   description,
   image,
+  imageDark,
   category,
   date,
   headingLevel = 3,
+  variant = "boxed",
+  featured = false,
 } = Astro.props;
 
 const Heading = headingLevel === 2 ? "h2" : "h3";
 ---
 
-<LinkCard href={href} class="p-0 overflow-hidden flex flex-col">
-  {
-    image && (
-      <div class="relative aspect-video overflow-hidden bg-background ring-1 ring-inset ring-black/10 dark:ring-white/10">
-        <Image
-          src={image}
-          alt={label}
-          width={800}
-          height={450}
-          loading="lazy"
-          decoding="async"
-          class="w-full h-full object-cover"
-        />
-      </div>
-    )
-  }
-
-  <div class="p-4 flex flex-col flex-1">
-    {
-      (category || date) && (
-        <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
-          {category && (
-            <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
-              {category}
-            </span>
-          )}
-          {category && date && <span>&bull;</span>}
-          {date && (
-            <time datetime={date.toISOString()}>
-              <FormattedDate date={date} />
-            </time>
+{
+  variant === "boxed" ? (
+    <LinkCard href={href} class="p-0 overflow-hidden flex flex-col">
+      {image && (
+        <div class="relative aspect-video overflow-hidden bg-background ring-1 ring-inset ring-black/10 dark:ring-white/10">
+          <Image
+            src={image}
+            alt={label}
+            width={800}
+            height={450}
+            loading="lazy"
+            decoding="async"
+            class={cn("w-full h-full object-cover", imageDark && "dark:hidden")}
+          />
+          {imageDark && (
+            <Image
+              src={imageDark}
+              alt={label}
+              width={800}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="hidden dark:block w-full h-full object-cover"
+            />
           )}
         </div>
-      )
-    }
+      )}
 
-    <Heading
-      class="text-body font-semibold text-text text-balance mb-2 leading-snug"
+      <div class="p-4 flex flex-col flex-1">
+        {(category || date) && (
+          <div class="flex items-center gap-2 mb-3 text-small text-text-secondary">
+            {category && (
+              <span class="px-2 py-1 bg-accent/10 text-accent rounded-full font-medium">
+                {category}
+              </span>
+            )}
+            {category && date && <span>&bull;</span>}
+            {date && (
+              <time datetime={date.toISOString()}>
+                <FormattedDate date={date} />
+              </time>
+            )}
+          </div>
+        )}
+
+        <Heading class="text-body font-semibold text-text text-balance mb-2 leading-snug">
+          {label}
+        </Heading>
+
+        {description && (
+          <p class="text-small text-text-secondary leading-relaxed line-clamp-3">
+            {description}
+          </p>
+        )}
+      </div>
+    </LinkCard>
+  ) : (
+    <a
+      href={href}
+      class={cn(
+        "group block h-full rounded-lg",
+        "transition-[scale] duration-200 ease-out active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100",
+        "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+        featured && "md:grid md:grid-cols-2 md:gap-10 md:items-center",
+      )}
     >
-      {label}
-    </Heading>
+      {image && (
+        <div
+          class={cn(
+            "relative aspect-video overflow-hidden rounded-lg bg-background-subtle",
+            "ring-1 ring-black/[0.08] dark:ring-white/10",
+            "shadow-[0_1px_2px_rgba(0,0,0,0.04)]",
+            !featured && "mb-4",
+            featured && "mb-4 md:mb-0",
+          )}
+        >
+          {/* Both themes' pictures are in the page; the hidden one is
+              display:none, so a lazy image there is never fetched. */}
+          <Image
+            src={image}
+            alt=""
+            width={featured ? 1200 : 800}
+            height={featured ? 675 : 450}
+            loading={featured ? "eager" : "lazy"}
+            decoding="async"
+            class={cn("w-full h-full object-cover", imageDark && "dark:hidden")}
+          />
+          {imageDark && (
+            <Image
+              src={imageDark}
+              alt=""
+              width={featured ? 1200 : 800}
+              height={featured ? 675 : 450}
+              loading="lazy"
+              decoding="async"
+              class="hidden dark:block w-full h-full object-cover"
+            />
+          )}
+        </div>
+      )}
 
-    {
-      description && (
-        <p class="text-small text-text-secondary leading-relaxed line-clamp-3">
-          {description}
-        </p>
-      )
-    }
-  </div>
-</LinkCard>
+      <div>
+        {(category || date) && (
+          <p class="mb-2 text-small text-text-secondary tabular-nums">
+            {category}
+            {category && date && <span aria-hidden="true"> · </span>}
+            {date && (
+              <time datetime={date.toISOString()}>
+                <FormattedDate date={date} />
+              </time>
+            )}
+          </p>
+        )}
+
+        <Heading
+          class={cn(
+            "font-semibold text-text text-balance leading-snug mb-2",
+            "transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none",
+            featured ? "text-h3 md:text-h2 md:mb-3" : "text-body-big",
+          )}
+        >
+          {label}
+        </Heading>
+
+        {description && (
+          <p
+            class={cn(
+              "text-small text-text-secondary text-pretty leading-relaxed",
+              featured ? "line-clamp-4 md:text-body" : "line-clamp-2",
+            )}
+          >
+            {description}
+          </p>
+        )}
+      </div>
+    </a>
+  )
+}

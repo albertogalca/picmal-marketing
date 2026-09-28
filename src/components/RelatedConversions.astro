@@ -19,27 +19,27 @@ const related = conversions
   .slice(0, limit);
 ---
 
+{/* Rendered inside the closing CTASection, under its buttons. It used to be a
+    boxed block of its own with its own pitch, the third pitch at the end of a
+    post. Here it is only the links: the CTA above already says why. */}
 {
   related.length > 0 && (
-    <section class="mt-12 rounded-2xl border border-border bg-background-subtle p-6">
-      <h2 class="text-h3 text-text font-semibold mb-1">
-        Do this in one click with Picmal
-      </h2>
-      <p class="text-small text-text-secondary mb-4">
-        Batch-convert your files on your Mac, offline, no uploads.
+    <nav
+      aria-label="Converters for these formats"
+      class="mt-10 pt-8 border-t border-border"
+    >
+      <p class="text-small text-text-secondary mb-3">
+        Or go straight to the converter:
       </p>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-small">
         {related.map((c) => (
           <li>
-            <a
-              href={`/convert/${c.slug}`}
-              class="link text-body"
-            >
-              Convert {formats[c.from].name} to {formats[c.to].name}
+            <a href={`/convert/${c.slug}`} class="link">
+              {formats[c.from].name} to {formats[c.to].name}
             </a>
           </li>
         ))}
       </ul>
-    </section>
+    </nav>
   )
 }

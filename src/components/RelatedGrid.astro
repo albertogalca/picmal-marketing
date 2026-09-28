@@ -1,5 +1,5 @@
 ---
-import { getPublishedPosts, postCover } from "../utils/posts";
+import { getPublishedPosts, postCover, postCoverDark, displayCategory } from "../utils/posts";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PostCard from "./PostCard.astro";
@@ -43,7 +43,8 @@ const cards = links.map((link) => {
     label: link.label ?? post?.data.title ?? link.href,
     description: link.description ?? post?.data.description,
     image: post ? postCover(post) : undefined,
-    category: post?.data.category,
+    imageDark: post ? postCoverDark(post) : undefined,
+    category: displayCategory(post?.data.category),
     date: post?.data.pubDate,
   };
 });

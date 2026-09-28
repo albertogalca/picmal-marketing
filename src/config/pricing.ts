@@ -135,7 +135,7 @@ export const licenseFaqs: LicenseFaq[] = [
   {
     question: "How does the license work?",
     answer:
-      "You pay once and keep it. No renewals, no subscriptions. Your license activates on the number of Macs you bought it for, and you can move it to another Mac whenever you want.",
+      "You pay once and keep it. No renewals, no subscriptions. Your license activates on the number of Macs you bought it for, and you can move it to another Mac whenever you want. Prices are in USD, tax is added at checkout, and you pay through Stripe.",
   },
   {
     question: "I bought Picmal and now I need more Macs. Can I upgrade?",

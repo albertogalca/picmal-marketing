@@ -128,9 +128,9 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
             See HeroCTA: pointing a buy button at #pricing turned every
             recorded buy_clicked into a scroll. */}
         <Button
-          class="hidden md:block m-0"
+          class="hidden md:block m-0 whitespace-nowrap"
           size="small"
-          text={`Buy for $${tier.price}`}
+          text={`Get Picmal for $${tier.price}`}
           href={tier.checkoutUrl}
           onclick={import.meta.env.PROD
             ? `window.seline?.track('buy_clicked', { macs: ${tier.macs}, source: 'header' })`
@@ -211,7 +211,7 @@ const mobileLinkBase = `flex text-small items-center gap-3 p-3 rounded-xl hover:
             click handler already catches, so picking it closes the menu. */}
         <Button
           class="mt-6 w-full"
-          text={`Buy for $${tier.price}`}
+          text={`Get Picmal for $${tier.price}`}
           href={tier.checkoutUrl}
           onclick={import.meta.env.PROD
             ? `window.seline?.track('buy_clicked', { macs: ${tier.macs}, source: 'header_mobile' })`

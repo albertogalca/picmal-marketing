@@ -27,8 +27,10 @@ The first window, 14-27 September, closed at 0.75% (4 new licences from 532 visi
 too few sales to name a cause, so on 28 September the freeze was extended to 12 October to
 double the sample.
 
-On 28 September Alberto broke the freeze on purpose: the hero clip now opens on its file list,
-and the free-guides section left the homepage. The second window restarts from that deploy and
+On 28 September Alberto broke the freeze on purpose, with one batch from a design review: the hero
+clip opens on its file list, the free-guides section left the homepage, the testimonial wall is six
+still quotes instead of thirty scrolling ones, the header button says "Get Picmal for $29", the
+USD/tax note moved into the license FAQ, and secondary buttons got a visible edge. The second window restarts from that deploy and
 runs two weeks. Read it from the deploy date, not from 28 September.
 
 SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you

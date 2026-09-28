@@ -1,0 +1,18 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "brand" | "on-brand" | "ghost-brand";
+  size?: "sm" | "md";
+  block?: boolean;
+  chevron?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+const { href, variant = "primary", size = "md", block = false, chevron = false, class: cls, ...rest } = Astro.props;
+const Tag = href ? "a" : "button";
+---
+
+<Tag href={href} type={href ? undefined : "button"} class:list={["pm-btn", `pm-btn--${variant}`, size === "sm" && "pm-btn--sm", block && "pm-btn--block", cls]} {...rest}>
+  <slot />
+  {chevron && <svg class="pm-btn__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>}
+</Tag>

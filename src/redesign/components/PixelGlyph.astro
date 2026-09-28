@@ -1,0 +1,16 @@
+---
+import { GLYPHS } from "../lib/pixels";
+
+interface Props { name?: string; cell?: number; bare?: boolean; label?: string; class?: string }
+const { name = "convert", cell = 3, bare = false, label, class: cls } = Astro.props;
+const map = GLYPHS[name] ?? GLYPHS.convert;
+const pad = bare ? 0 : 3 * cell;
+const box = map.length * cell + pad * 2;
+const rects: [number, number][] = [];
+map.forEach((row, y) => [...row].forEach((ch, x) => { if (ch === "#") rects.push([x, y]); }));
+---
+
+<svg class:list={["pm-glyph", bare && "pm-glyph--bare", cls]} width={box} height={box} viewBox={`0 0 ${box} ${box}`} shape-rendering="crispEdges" role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : "true"}>
+  {!bare && <rect class="pm-glyph__tile" width={box} height={box} rx="6" />}
+  <g class="pm-glyph__ink">{rects.map(([x, y]) => <rect x={pad + x * cell} y={pad + y * cell} width={cell} height={cell} />)}</g>
+</svg>

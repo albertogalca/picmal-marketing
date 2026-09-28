@@ -1,0 +1,48 @@
+---
+import PixelGlyph from "./PixelGlyph.astro";
+import { TIERS, DEFAULT_TIER, FEATURES, SUPPORT_EMAIL } from "../../config/pricing";
+
+// Reads config/pricing.ts, never edits it. Every tier is rendered; the picker
+// only toggles which one is visible, so it works without JavaScript too.
+const macs = (n: number) => `${n} ${n === 1 ? "Mac" : "Macs"}`;
+---
+
+<div class="pm-pricing" data-pm-pricing>
+  <div class="pm-pricing__picker">
+    <div class="pm-pricing__q" id="pm-macs-q">How many Macs?</div>
+    <div class="pm-seg" role="radiogroup" aria-labelledby="pm-macs-q">
+      {TIERS.map((t) => (
+        <button type="button" role="radio" aria-checked={t === DEFAULT_TIER ? "true" : "false"} class:list={["pm-seg__opt", t === DEFAULT_TIER && "is-active"]} data-macs={t.macs}>{t.macs}</button>
+      ))}
+    </div>
+  </div>
+  {TIERS.map((t, i) => {
+    const next = TIERS[i + 1];
+    return (
+      <div class="pm-price pm-price--tiers" data-tier={t.macs} hidden={t !== DEFAULT_TIER}>
+        <div class="pm-price__amount">${t.price}</div>
+        <div class="pm-price__upsell">{next ? `${macs(next.macs)} is $${next.price - t.price} more` : `$${(t.price / t.macs).toFixed(2)} per Mac`}</div>
+        <ul class="pm-price__list">
+          {FEATURES.map((f) => <li><PixelGlyph name="check" bare cell={2} /><span>{f.replace("{macs}", macs(t.macs))}</span></li>)}
+        </ul>
+        <div class="pm-price__action">
+          <a class="pm-btn pm-btn--primary pm-btn--block" href={t.checkoutUrl}>Get Picmal for ${t.price}</a>
+          <a class="pm-btn pm-btn--secondary pm-btn--block" href="/download">Try free for 7 days</a>
+        </div>
+        <p class="pm-price__note">14-day refund after you buy, no questions asked. Needs macOS 15 or later.</p>
+      </div>
+    );
+  })}
+  <p class="pm-pricing__foot">More than 10 Macs? <a class="pm-link" href={`mailto:${SUPPORT_EMAIL}`}>Email me</a>.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-pm-pricing]").forEach((root) => {
+    const opts = [...root.querySelectorAll<HTMLButtonElement>("[data-macs]")];
+    const cards = [...root.querySelectorAll<HTMLElement>("[data-tier]")];
+    opts.forEach((o) => o.addEventListener("click", () => {
+      opts.forEach((x) => { const on = x === o; x.classList.toggle("is-active", on); x.setAttribute("aria-checked", String(on)); });
+      cards.forEach((c) => (c.hidden = c.dataset.tier !== o.dataset.macs));
+    }));
+  });
+</script>

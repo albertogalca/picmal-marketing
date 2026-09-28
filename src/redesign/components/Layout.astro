@@ -1,0 +1,40 @@
+---
+import "../../styles/global.css";
+import "../styles.css";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+
+// Preview shell. Deliberately NOT BaseHead: no Seline (preview visits must not
+// touch the conversion measurement), no canonical, noindex. Dev only: the
+// /next route returns no paths in a production build.
+interface Props { title: string; active?: string }
+const { title, active } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} · Redesign preview</title>
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        var root = document.documentElement;
+        root.classList.remove("light", "dark");
+        root.classList.add(theme);
+        root.style.colorScheme = theme;
+      })();
+    </script>
+  </head>
+  <body class="pm">
+    <div class="pm-banner">Redesign preview, dev only. <a href="/">Live site</a></div>
+    <Nav active={active} />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,10 @@
+---
+interface Props { title: string; subtitle?: string; level?: 1 | 2; class?: string }
+const { title, subtitle, level = 2, class: cls } = Astro.props;
+const H = level === 1 ? "h1" : "h2";
+---
+
+<header class:list={["pm-section-head", cls]}>
+  <H class="pm-section-head__title">{title}</H>
+  {(subtitle || Astro.slots.has("default")) && <p class="pm-section-head__sub">{subtitle}<slot /></p>}
+</header>

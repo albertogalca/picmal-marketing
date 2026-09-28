@@ -1,0 +1,28 @@
+---
+import testimonials from "../../data/testimonials.json";
+
+// The same six picks as MasonryTestimonials (ids 25, 9, 6, 19, 27, 21), with
+// their real avatars. The rest live on /reviews in the redesign.
+const PICKS = [25, 9, 6, 19, 27, 21];
+type T = { id: number; name: string; content: string; image?: string; type?: string; source?: string; role?: string };
+const all = testimonials as T[];
+const picked = PICKS.map((id) => all.find((t) => t.id === id)).filter(Boolean) as T[];
+---
+
+<div class="pm-reviews">
+  <figure class="pm-reviews__press">
+    <blockquote>&ldquo;Picmal is an excellent way to manage file conversion and compression jobs of any size.&rdquo;</blockquote>
+    <figcaption>MacStories</figcaption>
+  </figure>
+  <div class="pm-reviews__wall" style="column-count: 3">
+    {picked.map((t) => (
+      <figure class="pm-review">
+        <blockquote class="pm-review__quote">{t.content}</blockquote>
+        <figcaption class="pm-review__by">
+          {t.image && <img class="pm-review__photo" src={t.image} alt="" width="28" height="28" />}
+          <span class="pm-review__who"><span class="pm-review__name">{t.name}</span><span class="pm-review__source">{t.role ?? t.source ?? "Picmal user"}</span></span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</div>

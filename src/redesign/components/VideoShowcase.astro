@@ -1,0 +1,93 @@
+---
+import PixelField from "./PixelField.astro";
+
+// The live demo clips (same files as DemoReel), shown on the pixel horizon.
+// The recordings have the lake wallpaper baked in, so the window is cropped
+// out of each frame: in every clip it sits at x 192-1092, y ~62-646 of 1280x720.
+// Final version: record the window alone and drop the crop.
+interface Clip { label: string; src: string; poster: string; top: number }
+const clips: Clip[] = [
+  { label: "Convert", src: "/convert.mp4", poster: "/convert-poster.webp", top: 72 },
+  { label: "Compress", src: "/compress.mp4", poster: "/compress-poster.webp", top: 62 },
+  { label: "PDF tools", src: "/pdf.mp4", poster: "/pdf-poster.webp", top: 73 },
+];
+const WIN = { x: 192, w: 900, h: 574 };
+const crop = (c: Clip) =>
+  `width:${(1280 / WIN.w) * 100}%;left:${(-WIN.x / WIN.w) * 100}%;top:${(-c.top / WIN.h) * 100}%`;
+interface Props { ground?: "sky" | "night" }
+const { ground = "sky" } = Astro.props;
+const tone = ground === "night" ? "dusk" : "sky";
+---
+
+<div class:list={["pm-show", `pm-show--${ground}`]} data-pm-show>
+  <div class="pm-show__ground"><PixelField width={1040} height={612} texture="horizon" seed="picmal" tone={tone} fit="fill" /></div>
+  <div class="pm-show__stage">
+    <div class="pm-show__window">
+      {clips.map((c, i) => (
+        <video
+          class="pm-show__clip"
+          data-clip={i}
+          src={i === 0 ? c.src : undefined}
+          data-src={c.src}
+          poster={c.poster}
+          style={crop(c)}
+          muted
+          loop
+          playsinline
+          autoplay={i === 0}
+          hidden={i !== 0}
+          aria-label={`Picmal demo: ${c.label}`}
+        />
+      ))}
+    </div>
+  </div>
+  <button type="button" class="pm-show__pause" data-pause aria-label="Pause the demo">
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" data-icon="pause"><rect x="2" y="1" width="3" height="10" /><rect x="7" y="1" width="3" height="10" /></svg>
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" data-icon="play" hidden><path d="M3 1l8 5-8 5z" /></svg>
+  </button>
+  <div class="pm-show__tabs" role="tablist" aria-label="Picmal demos">
+    {clips.map((c, i) => (
+      <button type="button" role="tab" aria-selected={i === 0 ? "true" : "false"} class:list={["pm-show__tab", i === 0 && "is-active"]} data-tab={i}>
+        <span class:list={["pm-show__thumb", `pm-show__thumb--${ground}`]}>
+          <PixelField width={128} height={72} cell={2} texture="horizon" seed="picmal" tone={tone} fit="fill" />
+          <span class="pm-show__mini"><img src={c.poster} alt="" style={crop(c)} loading="lazy" /></span>
+        </span>
+        <span class="pm-show__label">{c.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-pm-show]").forEach((root) => {
+    const clips = [...root.querySelectorAll<HTMLVideoElement>("[data-clip]")];
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>("[data-tab]")];
+    const pause = root.querySelector<HTMLButtonElement>("[data-pause]")!;
+    let current = 0;
+    let playing = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const icons = () => {
+      pause.querySelector("[data-icon=pause]")!.toggleAttribute("hidden", !playing);
+      pause.querySelector("[data-icon=play]")!.toggleAttribute("hidden", playing);
+      pause.setAttribute("aria-label", playing ? "Pause the demo" : "Play the demo");
+    };
+    const show = (i: number) => {
+      clips[current].pause();
+      clips[current].hidden = true;
+      current = i;
+      const v = clips[i];
+      if (!v.src) v.src = v.dataset.src!;
+      v.hidden = false;
+      v.currentTime = 0;
+      if (playing) v.play().catch(() => {});
+      tabs.forEach((t, j) => { t.classList.toggle("is-active", j === i); t.setAttribute("aria-selected", String(j === i)); });
+    };
+    tabs.forEach((t, i) => t.addEventListener("click", () => show(i)));
+    pause.addEventListener("click", () => {
+      playing = !playing;
+      if (playing) clips[current].play().catch(() => {}); else clips[current].pause();
+      icons();
+    });
+    if (!playing) clips[0].pause();
+    icons();
+  });
+</script>

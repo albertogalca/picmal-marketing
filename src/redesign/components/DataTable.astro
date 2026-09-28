@@ -1,0 +1,21 @@
+---
+import PixelGlyph from "./PixelGlyph.astro";
+
+interface Props { head?: string[]; rows: string[][]; compare?: boolean }
+const { head, rows, compare = false } = Astro.props;
+---
+
+<div class="pm-table-wrap">
+  <table class:list={["pm-table", compare && "pm-table--compare"]}>
+    {head && <thead><tr>{head.map((c) => <th scope="col">{c}</th>)}</tr></thead>}
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          {r.map((c, j) => j === 0 ? <th scope="row">{c}</th> : (
+            <td>{compare && c === "Yes" ? <span class="pm-yes"><PixelGlyph name="check" bare cell={2} />Yes</span> : compare && c === "No" ? <span class="pm-no">No</span> : c}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

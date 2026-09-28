@@ -1,0 +1,12 @@
+---
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+
+<section class:list={["pm-hero", cls]}>
+  {Astro.slots.has("mark") && <div class="pm-hero__mark"><slot name="mark" /></div>}
+  <h1 class="pm-hero__title"><slot name="title" />{Astro.slots.has("quiet") && <span class="pm-hero__sub" style="display:block"> <slot name="quiet" /></span>}</h1>
+  {Astro.slots.has("subtitle") && <p class="pm-hero__sub"><slot name="subtitle" /></p>}
+  {Astro.slots.has("actions") && <div class="pm-hero__actions"><slot name="actions" /></div>}
+  {Astro.slots.has("note") && <p class="pm-hero__note"><slot name="note" /></p>}
+</section>

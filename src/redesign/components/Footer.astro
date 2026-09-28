@@ -1,0 +1,70 @@
+---
+import Logo from "./Logo.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
+import FeaturedOn from "../../components/FeaturedOn.astro";
+import { TOOLS } from "../../data/tools";
+
+// Every link the live Footer carries, same hrefs: it is the site's internal
+// link map, so the redesign keeps all of it and only changes how quiet it is.
+const groups = [
+  [{ title: "Convert & Compress", links: [
+    ["/convert", "All conversions"], ["/compress", "All compression"], ["/image-converter-mac", "Image converter for Mac"],
+    ["/heic-converter-mac", "HEIC converter for Mac"], ["/raw-converter-mac", "RAW converter for Mac"], ["/video-converter-mac", "Video converter for Mac"],
+    ["/audio-converter-mac", "Audio converter for Mac"], ["/compress-images-mac", "Compress images on Mac"], ["/compress-video-mac", "Compress video on Mac"],
+    ["/compress-audio-mac", "Compress audio on Mac"]] }],
+  [{ title: "More in Picmal", links: [
+    ["/extract-audio-from-video-mac", "Extract audio from video"], ["/resize-image-mac", "Resize images on Mac"], ["/remove-metadata-from-photos-mac", "Remove photo metadata"],
+    ["/merge-pdf-mac", "Merge PDF on Mac"], ["/split-pdf-mac", "Split PDF on Mac"], ["/images-to-pdf-mac", "Images to PDF"],
+    ["/add-watermark-to-video-mac", "Add watermark to video"], ["/app-icon-generator-mac", "App icon generator"]] },
+   { title: "Free tools", href: "/tools", links: TOOLS.map((t) => [t.href, t.title]) }],
+  [{ title: "Alternatives", links: [
+    ["/alternative/cloudconvert", "CloudConvert alternative"], ["/alternative/compresto", "Compresto alternative"], ["/alternative/ffworks", "ffWorks alternative"],
+    ["/alternative/handbrake", "HandBrake alternative"], ["/alternative/howtoconvert", "How to Convert alternative"], ["/alternative/imageoptim", "ImageOptim alternative"],
+    ["/alternative/kompressor", "Kompressor alternative"], ["/alternative/permute", "Permute alternative"], ["/alternative/tinypng", "TinyPNG alternative"],
+    ["/alternative/xnconvert", "XnConvert alternative"], ["/alternative/zipic", "Zipic alternative"]] }],
+  [{ title: "Company", links: [
+    ["/about", "About"], ["/contact", "Contact"], ["/blog", "Blog"], ["/changelog", "Changelog"], ["/press-kit", "Press kit"],
+    ["/download", "Download"], ["/affiliate", "Earn 30% as affiliate"], ["/education", "Educational discount"]] }],
+] as { title: string; href?: string; links: string[][] }[][];
+---
+
+<footer class="pm-wrap">
+  <div class="pm-footer">
+    <div class="pm-footer__cols">
+      <div class="pm-footer__brand">
+        <Logo size={24} wordmark />
+        <div class="pm-footer__news"><NewsletterSignup /></div>
+      </div>
+      {groups.map((col) => (
+        <div class="pm-footer__col">
+          {col.map((g) => (
+            <div class="pm-footer__group">
+              <div class="pm-footer__title">{g.href ? <a href={g.href}>{g.title}</a> : g.title}</div>
+              <ul>{g.links.map(([href, label]) => <li><a href={href}>{label}</a></li>)}</ul>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+    <div class="pm-footer__featured"><FeaturedOn /></div>
+    <div class="pm-footer__base">
+      <span class="pm-footer__copy">&copy; {new Date().getFullYear()} Picmal. All rights reserved.<button type="button" class="pm-footer__theme" id="pm-theme">Dark mode</button></span>
+      <span class="pm-footer__legal"><a href="/terms">Terms of use</a><a href="/privacy">Privacy policy</a><a href="/legal/open-source">Open source</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById("pm-theme");
+  const html = document.documentElement;
+  const label = () => { if (btn) btn.textContent = html.classList.contains("dark") ? "Light mode" : "Dark mode"; };
+  label();
+  btn?.addEventListener("click", () => {
+    const next = html.classList.contains("dark") ? "light" : "dark";
+    html.classList.remove("light", "dark");
+    html.classList.add(next);
+    html.style.colorScheme = next;
+    localStorage.setItem("theme", next);
+    label();
+  });
+</script>

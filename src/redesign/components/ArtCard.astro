@@ -1,0 +1,17 @@
+---
+import PixelField from "./PixelField.astro";
+
+interface Props { title?: string; ground?: "brand" | "night" | "paper"; texture?: string; seed?: string; class?: string }
+const { title, ground = "brand", texture, seed, class: cls } = Astro.props;
+const full = texture === "flow" || texture === "dissolve" || texture === "wave";
+const tone = texture === "flow"
+  ? (ground === "night" ? "glow" : ground === "paper" ? "brand" : "icon")
+  : ground === "brand" ? "paper" : ground === "night" ? "glow" : "brand";
+---
+
+<div class:list={["pm-art", `pm-art--${ground}`, full && "pm-art--full", cls]} style="aspect-ratio: 574 / 322">
+  <div class="pm-art__field">
+    <PixelField width={574} height={full ? 322 : 200} texture={texture} seed={seed ?? title ?? "art"} tone={tone} rise={texture && texture !== "skyline" ? 0.9 : 0.95} fit={full ? "fill" : "bottom"} />
+  </div>
+  {title && <div class="pm-art__title"><span>{title}</span></div>}
+</div>

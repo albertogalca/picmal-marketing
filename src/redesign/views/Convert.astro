@@ -1,0 +1,86 @@
+---
+import Hero from "../components/Hero.astro";
+import Button from "../components/Button.astro";
+import ArtCard from "../components/ArtCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Steps from "../components/Steps.astro";
+import Feature from "../components/Feature.astro";
+import DataTable from "../components/DataTable.astro";
+import FAQ from "../components/FAQ.astro";
+import Chip from "../components/Chip.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { formats, getRelatedConversions, type ConversionPair } from "../../data/conversions";
+import { DEFAULT_TIER } from "../../config/pricing";
+
+// Same data as convert/[from]-to-[to].astro, new template.
+interface Props { conversion: ConversionPair }
+const { conversion: c } = Astro.props;
+const from = formats[c.from];
+const to = formats[c.to];
+const label = `${from.name} → ${to.name}`;
+const related = getRelatedConversions(c.from, c.to, 8);
+const glyphs = ["check", "bolt", "shield", "image", "folder", "convert"];
+---
+
+<div class="pm-wrap">
+  <div style="padding-top: 80px; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 48px; align-items: center" class="pm-convert-hero">
+    <Hero>
+      <Fragment slot="title">Convert {from.name} to {to.name} on Mac.</Fragment>
+      <Fragment slot="quiet">Nothing gets uploaded.</Fragment>
+      <Fragment slot="actions">
+        <Button href={DEFAULT_TIER.checkoutUrl}>Get Picmal for ${DEFAULT_TIER.price}</Button>
+        <Button href="/download" variant="secondary">Try free for 7 days</Button>
+      </Fragment>
+      {c.heroLine && <Fragment slot="note">{c.heroLine}</Fragment>}
+    </Hero>
+    <ArtCard title={label} texture="dissolve" seed={c.slug} />
+  </div>
+
+  <section class="pm-section">
+    <SectionHeader title="Three steps." subtitle="The same for every one of 100+ formats." />
+    <div class="pm-mt-16"><Steps items={[
+      { title: "Open Picmal", text: "Or right-click the files in Finder." },
+      { title: `Drag your ${from.name} files in`, text: "One file or a folder of thousands." },
+      { title: `Pick ${to.name} and convert`, text: "Nothing leaves your Mac." },
+    ]} /></div>
+  </section>
+
+  <section class="pm-section">
+    <SectionHeader title={`Why convert ${from.name} to ${to.name}?`} />
+    <p class="pm-lede">{c.whyConvert}</p>
+    <div class="pm-grid3 pm-mt-16">
+      {c.benefits.slice(0, 6).map((b, i) => <Feature icon={glyphs[i % glyphs.length]} title={b.split(/[.:]/)[0]}>{b.includes(".") ? b.slice(b.indexOf(".") + 1).trim() : ""}</Feature>)}
+    </div>
+  </section>
+
+  {c.fileSizeExamples && (
+    <section class="pm-section">
+      <SectionHeader title="File sizes." subtitle={`What ${from.name} to ${to.name} does to the bytes.`} />
+      <div class="pm-mt-16"><DataTable head={["", from.name, to.name, "Change"]} rows={c.fileSizeExamples.map((e) => [e.label, e.fromSize, e.toSize, e.savings])} /></div>
+    </section>
+  )}
+
+  <section class="pm-section">
+    <SectionHeader title={`${from.name} vs ${to.name}.`} subtitle="What changes when you switch." />
+    <div class="pm-mt-16"><DataTable head={["", from.name, to.name]} rows={[
+      ["Full name", from.fullName, to.fullName],
+      ["Best for", from.bestFor, to.bestFor],
+      ["Strength", from.pros[0] ?? "", to.pros[0] ?? ""],
+      ["Trade-off", from.cons[0] ?? "", to.cons[0] ?? ""],
+    ]} /></div>
+  </section>
+
+  <section class="pm-section">
+    <SectionHeader title="Questions." />
+    <div class="pm-mt-8"><FAQ items={c.faqs} /></div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="pm-section">
+      <div class="pm-kicker">Related conversions</div>
+      <div class="pm-chips">{related.map((r) => <Chip href={`/next/convert/${r.slug}`}>{formats[r.from].name} to {formats[r.to].name}</Chip>)}</div>
+    </section>
+  )}
+
+  <div class="pm-section"><CtaBand texture="dissolve" seed={c.slug} /></div>
+</div>

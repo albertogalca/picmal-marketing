@@ -1,0 +1,45 @@
+---
+import Hero from "../components/Hero.astro";
+import Button from "../components/Button.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import DataTable from "../components/DataTable.astro";
+import Reviews from "../components/Reviews.astro";
+import PricingCard from "../components/PricingCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { DEFAULT_TIER } from "../../config/pricing";
+
+// TinyPNG as the worked example; the table is the live page's rows.
+---
+
+<div class="pm-wrap">
+  <div style="padding-top: 96px">
+    <div class="pm-kicker">Picmal vs TinyPNG</div>
+    <Hero>
+      <Fragment slot="title">The TinyPNG alternative with no upload and no 5MB limit.</Fragment>
+      <Fragment slot="quiet">Batches of hundreds, $29 once.</Fragment>
+      <Fragment slot="actions">
+        <Button href={DEFAULT_TIER.checkoutUrl}>Get Picmal for ${DEFAULT_TIER.price}</Button>
+        <Button href="/download" variant="secondary">Try free for 7 days</Button>
+      </Fragment>
+      <Fragment slot="note">TinyPNG is great until you hit 20 images at a time, 5MB each, all going to someone else's server.</Fragment>
+    </Hero>
+  </div>
+  <section class="pm-section">
+    <SectionHeader title="Side by side." subtitle="Honest about what TinyPNG does well." />
+    <div class="pm-mt-16"><DataTable compare head={["", "Picmal", "TinyPNG"]} rows={[
+      ["Price", "$29 one-time", "Free tier, then subscription"],
+      ["File processing location", "On your Mac", "Uploaded to their servers"],
+      ["Offline capability", "Yes", "No"],
+      ["File size limit", "None", "5MB per image (free)"],
+      ["Batch processing", "Hundreds at once", "20 at a time (free)"],
+      ["Image compression", "Yes", "Yes, its speciality"],
+      ["Video support", "Convert & compress", "No"],
+      ["PDF tools", "Compress, merge, split, images to PDF", "No"],
+      ["Folder monitoring", "Yes", "No"],
+      ["Finder right-click integration", "Yes", "No"],
+    ]} /></div>
+  </section>
+  <section class="pm-section"><SectionHeader title="People who switched." /><div class="pm-mt-16"><Reviews /></div></section>
+  <section class="pm-section"><SectionHeader title="Pay once and you're all set." subtitle="No subscription, no uploads." /><div class="pm-mt-16"><PricingCard /></div></section>
+  <div class="pm-section"><CtaBand texture="dither" seed="tinypng" /></div>
+</div>

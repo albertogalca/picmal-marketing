@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -42,7 +39,7 @@ const faqs = [
   {
     question: "Do both keep files on my Mac?",
     answer:
-      "Yes. This is one thing they genuinely share. Neither uploads your images anywhere, both work with no internet connection. If you're comparing either of them to a web converter, that's the real difference.",
+      "Yes. This is one thing they share. Neither uploads your images anywhere, both work with no internet connection. If you're comparing either of them to a web converter, that's the real difference.",
   },
   {
     question: "Is ImageOptim free?",
@@ -69,18 +66,19 @@ const faqs = [
   <ComparisonHero
     title="The ImageOptim alternative that also converts formats"
     subhead="ImageOptim is free, local, and good at what it does. It just can't convert a HEIC to a JPG, touch a video, or compress a PDF. Picmal does all of that on your Mac for $29 once."
+    releaseBadge={false}
     buyEvent="buy_clicked_imageoptim_comparison"
   />
 
   <ComparisonVerdict
     competitor="ImageOptim"
     summary="ImageOptim is free, open source, runs entirely on your Mac, and squeezes PNG and JPEG about as hard as anything out there. Its limits are that it only compresses, only images, and development has been quiet for years. Picmal ($29, pay once) converts formats too, covers video, audio, and PDFs, and is actively maintained."
-    picmalFor="You need to convert formats, not just compress. Or you've got video, audio, and PDFs to deal with and would rather not collect four apps."
+    picmalFor="You need to convert formats, not just compress, or you want newer ones like AVIF and JXL. Or you've got video, audio, and PDFs to deal with and would rather not collect four apps."
     competitorFor="You compress PNGs and JPEGs for the web, you want the smallest possible file, and free and open source matters to you. It's a good tool, keep it."
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs ImageOptim at a glance
       <Fragment slot="sublead">
@@ -114,12 +112,12 @@ const faqs = [
       },
       {
         feature: "Video",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
         feature: "Audio",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
@@ -176,40 +174,9 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who each is for -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "Compression alone isn't the job",
-      items: [
-        "You need to convert formats, HEIC to JPG being the usual one",
-        "You want newer formats like AVIF and JXL, not just PNG and JPEG",
-        "Video, audio, or PDFs are part of the same pile of work",
-        "You'd rather use something that's still being maintained",
-      ],
-    }}
-    rival={{
-      heading: "Stay with ImageOptim",
-      lead: "Free, open source, and it does the job",
-      items: [
-        "You only ever compress PNG and JPEG for the web",
-        "You want the last few percent of file size and nothing else",
-        "Free and open source is the point, not a compromise",
-      ],
-    }}
-  />
-
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <MasonryTestimonials />
 
   <PricingSection />
-
-  <FounderLetter />
 
   <FAQSection
     faqs={faqs}

@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -37,7 +34,7 @@ const faqs = [
   {
     question: "Is Picmal actually cheaper than Permute?",
     answer:
-      "No, Permute is cheaper. It's $14.99 for up to three activations, and it's on Setapp if you pay for that. Picmal is $39 for two Macs. What you get for the difference is PDF tools, folder monitoring, Finder right-click, and metadata removal, none of which Permute has.",
+      "No, Permute is cheaper. It's $14.99 for up to three activations, and it's on Setapp if you pay for that. Picmal is $29 for one Mac and $39 for two. What you get for the difference is PDF compression and combining, a watched folder that converts whatever lands in it, and a Finder right-click. Picmal also runs on macOS 15, where Permute 4 needs macOS 26 and an Apple Silicon Mac.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -58,19 +55,20 @@ const faqs = [
 
   <ComparisonHero
     title="The all-in-one Permute alternative for Mac"
-    subhead="Both are offline Mac converters. Permute is the cheaper one and adds timeline video editing. Picmal adds compression for images, video, audio, and PDFs, plus Shortcuts and folder monitoring. It comes down to what you need."
+    subhead="Both are offline Mac converters. Permute is the cheaper one and adds timeline video editing. Picmal adds compression for images, video, audio, and PDFs, plus PDF tools and folder monitoring. It comes down to what you need."
+    releaseBadge={false}
     buyEvent="buy_clicked_permute_comparison"
   />
 
   <ComparisonVerdict
     competitor="Permute"
-    summary="Picmal ($29) and Permute (~$14.99, also on Setapp) are both offline Mac converters, with Permute the cheaper of the two. Picmal compresses images, video, audio, and PDFs, with Shortcuts, folder monitoring, and Finder right-click. Permute adds timeline editing (trim, crop, merge) and audio normalization."
-    picmalFor="You convert and compress media on your Mac and want Shortcuts, folder monitoring, and PDF tools, and you don't need to trim or merge videos."
-    competitorFor="You need to trim, crop, or merge videos, normalize audio, or already pay for Setapp."
+    summary="Picmal ($29) and Permute (~$14.99, also on Setapp) are both offline Mac converters, with Permute the cheaper of the two. Picmal compresses images, video, audio, and PDFs, with PDF tools, folder monitoring, and Finder right-click. Permute adds timeline editing (trim, crop, merge) and audio normalization."
+    picmalFor="You convert and compress media on your Mac and want folder monitoring, PDF tools, and a Finder right-click, and you don't need to trim or merge videos."
+    competitorFor="You need to trim, crop, or merge videos, normalize audio, batch edit metadata, schedule conversions, or pull text out of images with OCR. Or you already pay for Setapp."
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs Permute at a glance
       <Fragment slot="sublead">
@@ -87,9 +85,9 @@ const faqs = [
         competitor: "$14.99 one-time",
       },
       {
-        feature: "Also available via",
-        picmal: "Not available",
-        competitor: "Setapp ($9.99/mo)",
+        feature: "Setapp",
+        picmal: "No",
+        competitor: "Yes, included in the subscription",
       },
       {
         feature: "Privacy",
@@ -102,14 +100,19 @@ const faqs = [
         competitor: "Groups + presets",
       },
       {
-        feature: "Design quality",
-        picmal: "Native macOS, polished UI",
-        competitor: "Traditional",
-      },
-      {
         feature: "Image formats",
         picmal: "20+",
         competitor: "15+",
+      },
+      {
+        feature: "Compression",
+        picmal: "Images, video, audio & PDF, never bigger than the original",
+        competitor: "Target file size when converting",
+      },
+      {
+        feature: "PDF tools",
+        picmal: "Compress, combine, images to PDF",
+        competitor: "PDF pages to images",
       },
       {
         feature: "Video editing",
@@ -117,9 +120,19 @@ const faqs = [
         competitor: "Trim, crop, stitch",
       },
       {
-        feature: "Metadata removal",
-        picmal: "Yes, strip location data before sharing",
-        competitor: "No",
+        feature: "Metadata",
+        picmal: "Strip location data before sharing",
+        competitor: "Batch metadata editor",
+      },
+      {
+        feature: "Shortcuts",
+        picmal: "Yes",
+        competitor: "Yes",
+      },
+      {
+        feature: "Automatic conversion",
+        picmal: "Watches a folder, converts what lands in it",
+        competitor: "Drop zones, drop files onto a preset",
       },
       {
         feature: "Finder right-click",
@@ -129,52 +142,17 @@ const faqs = [
       {
         feature: "macOS",
         picmal: "15+",
-        competitor: "11+",
+        competitor: "26+, Apple Silicon only (Permute 4)",
       },
     ]}
     />
   </Section>
-
-  <!-- Who Picmal Is For / Who Should Stick with Permute -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "Convert, compress, and automate, no video editing",
-      items: [
-        "You convert and compress, and don't need to trim or merge videos",
-        "You lean on folder monitoring or Apple Shortcuts to automate work",
-        "You want PDF tools: compress, combine, images to PDF",
-        "Your files stay on your Mac. Nothing goes to a server",
-      ],
-    }}
-    rival={{
-      heading: "Choose Permute",
-      lead: "Trim, crop, and merge videos, normalize audio",
-      items: [
-        "You need to trim, crop, and merge video",
-        "You want conversions scheduled to run at specific times",
-        "You need to pull text out of images with OCR",
-        "You need to normalize audio and adjust volume",
-        "You already pay for Setapp",
-      ],
-    }}
-  />
-
-  <!-- Features -->
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
 
   <!-- Testimonials Section -->
   <MasonryTestimonials />
 
   <!-- Pricing -->
   <PricingSection />
-
-  <!-- Founder letter -->
-  <FounderLetter />
 
   <!-- FAQ Section -->
   <FAQSection

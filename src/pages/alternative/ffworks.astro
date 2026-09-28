@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -64,6 +61,7 @@ const faqs = [
   <ComparisonHero
     title="The simple ffWorks alternative for Mac"
     subhead="ffWorks gives you 450 FFmpeg options. Picmal gives you one window. Drop in your files, pick a format, and go. No codec knowledge needed, and it works for images, video, audio, and PDFs."
+    releaseBadge={false}
     buyEvent="buy_clicked_ffworks_comparison"
   />
 
@@ -75,7 +73,7 @@ const faqs = [
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs ffWorks at a glance
       <Fragment slot="sublead">
@@ -94,7 +92,7 @@ const faqs = [
       },
       {
         feature: "Primary purpose",
-        picmal: "Convert, compress &amp; edit",
+        picmal: "Convert, compress & edit",
         competitor: "Professional FFmpeg GUI",
       },
       {
@@ -124,7 +122,7 @@ const faqs = [
       },
       {
         feature: "Compression",
-        picmal: "Images, video, audio &amp; PDF (\"never bigger\")",
+        picmal: "Images, video, audio & PDF (\"never bigger\")",
         competitor: "Via encoding settings",
       },
       {
@@ -181,45 +179,11 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who Picmal Is For / Who Should Stick with ffWorks -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "You don't want to configure codecs",
-      items: [
-        "You work with images, RAW files, video, audio, and PDFs and want one app for all of them",
-        "You want a simple interface with Shortcuts integration",
-        "Your files stay on your Mac. Nothing uploads anywhere",
-        "You don't need 450 encoding options",
-      ],
-    }}
-    rival={{
-      heading: "Choose ffWorks",
-      lead: "Best for professional video encoding",
-      items: [
-        "You want full FFmpeg power with 450 options and 60 filters",
-        "You only work with video and need professional-grade control",
-        "You need quality metrics like VMAF, PSNR, and SSIM",
-        "You need advanced video filters and color adjustments",
-      ],
-    }}
-  />
-
-  <!-- Features -->
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <!-- Testimonials Section -->
   <MasonryTestimonials />
 
   <!-- Pricing -->
   <PricingSection />
-
-  <!-- Founder letter -->
-  <FounderLetter />
 
   <!-- FAQ Section -->
   <FAQSection

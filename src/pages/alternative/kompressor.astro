@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -27,7 +24,7 @@ const faqs = [
   {
     question: "Does Picmal have real-time preview like Kompressor?",
     answer:
-      "No. Picmal batches files without a per-file preview. If you want to see the before and after for each image before committing, Kompressor's live preview is genuinely useful.",
+      "No. Picmal batches files without a per-file preview. If you want to see the before and after for each image before committing, Kompressor's live preview is useful.",
   },
   {
     question: "Why pay for Picmal when Kompressor is free?",
@@ -59,6 +56,7 @@ const faqs = [
   <ComparisonHero
     title="The Kompressor alternative that does more than compress images"
     subhead="Kompressor compresses images, for free, and does it well. If you also need to convert formats, work with video and audio, or handle PDFs, and you want Shortcuts and folder monitoring, Picmal covers all of it. Everything runs on your Mac."
+    releaseBadge={false}
     buyEvent="buy_clicked_kompressor_comparison"
   />
 
@@ -70,7 +68,7 @@ const faqs = [
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs Kompressor at a glance
       <Fragment slot="sublead">
@@ -166,45 +164,11 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who Picmal Is For / Who Should Stick with Kompressor -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "More than image compression",
-      items: [
-        "You need a simple interface that just works",
-        "You want one app to convert, compress, and edit images, video, audio, and PDFs",
-        "You use automation features like folder monitoring or Shortcuts",
-        "You need advanced options like video codec control",
-      ],
-    }}
-    rival={{
-      heading: "Choose Kompressor",
-      lead: "Free, images only, with a live quality preview",
-      items: [
-        "You like its original interface and the way it feels to use",
-        "You don't want to pay for an app",
-        "You only work with images, no video or audio",
-        "You want real-time preview while adjusting compression quality",
-      ],
-    }}
-  />
-
-  <!-- Features -->
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <!-- Testimonials Section -->
   <MasonryTestimonials />
 
   <!-- Pricing -->
   <PricingSection />
-
-  <!-- Founder letter -->
-  <FounderLetter />
 
   <!-- FAQ Section -->
   <FAQSection

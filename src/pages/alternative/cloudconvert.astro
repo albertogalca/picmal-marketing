@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -69,18 +66,19 @@ const faqs = [
   <ComparisonHero
     title="The CloudConvert alternative that never uploads your files"
     subhead="CloudConvert is a good web service. It also means every file you convert goes to someone else's server, 10 a day for free and credits after that. Picmal does images, video, audio, and PDFs on your Mac for $29 once."
+    releaseBadge={false}
     buyEvent="buy_clicked_cloudconvert_comparison"
   />
 
   <ComparisonVerdict
     competitor="CloudConvert"
-    summary="CloudConvert converts almost anything, including documents and formats no Mac app touches, and has a genuinely good API. The trade is that your files leave your machine, you get 10 free conversions a day, and past that you're buying credits. Picmal ($29, pay once) covers images, video, audio, and PDFs entirely offline, with no limits to count."
-    picmalFor="Your files are images, video, audio, or PDFs, you convert them often, and you'd rather not upload client work or personal photos to a server to do it."
-    competitorFor="You need document, ebook, or CAD conversions, you're automating from a server via API, or you convert so rarely that 10 a day free is plenty."
+    summary="CloudConvert converts almost anything, including documents and formats no Mac app touches, and has a good API. The trade is that your files leave your machine, you get 10 free conversions a day, and past that you're buying credits. Picmal ($29, pay once) covers images, video, audio, and PDFs entirely offline, with no limits to count."
+    picmalFor="Your files are images, video, audio, or PDFs, you convert them often, and you'd rather not upload client work or personal photos to a server to do it. Or your files are big enough that the upload is the slow part."
+    competitorFor="You need document, ebook, or CAD conversions, you're automating from a server via API, or you convert so rarely that 10 a day free is plenty. Or you're not on a Mac."
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs CloudConvert at a glance
       <Fragment slot="sublead">
@@ -120,12 +118,12 @@ const faqs = [
       },
       {
         feature: "Images",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "Convert",
       },
       {
-        feature: "Video &amp; audio",
-        picmal: "Convert &amp; compress",
+        feature: "Video & audio",
+        picmal: "Convert & compress",
         competitor: "Convert",
       },
       {
@@ -134,7 +132,7 @@ const faqs = [
         competitor: "Convert",
       },
       {
-        feature: "Documents &amp; ebooks",
+        feature: "Documents & ebooks",
         picmal: "No",
         competitor: "Yes",
       },
@@ -172,41 +170,9 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who each is for -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "You convert media often, on your own machine",
-      items: [
-        "You handle client work or personal files you'd rather not upload",
-        "You keep hitting the 10 a day limit or buying credits",
-        "Your files are big, and uploading a 4GB video is the slow part",
-        "You want it in Finder, Shortcuts, and Raycast rather than a tab",
-      ],
-    }}
-    rival={{
-      heading: "Stay with CloudConvert",
-      lead: "You need breadth, or you barely convert anything",
-      items: [
-        "You convert documents, spreadsheets, ebooks, or CAD files",
-        "You're automating conversions from a server through the API",
-        "You convert a handful of files a year, so free is genuinely free",
-        "You're not on a Mac, or you move between machines",
-      ],
-    }}
-  />
-
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <MasonryTestimonials />
 
   <PricingSection />
-
-  <FounderLetter />
 
   <FAQSection
     faqs={faqs}

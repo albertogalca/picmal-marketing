@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -69,18 +66,19 @@ const faqs = [
   <ComparisonHero
     title="The Zipic alternative that does more than images"
     subhead="Zipic compresses images, and it's good at it. If your folder also has video, audio, and PDFs in it, Picmal handles all of them for $29. Files never leave your Mac."
+    releaseBadge={false}
     buyEvent="buy_clicked_zipic_comparison"
   />
 
   <ComparisonVerdict
     competitor="Zipic"
-    summary="Zipic is a focused image compressor with some genuinely clever touches, clipboard auto-compress and dropping files on the notch. Picmal ($29, pay once) compresses images too, and adds format conversion, video, audio, PDF tools, and light editing, for about the same price."
+    summary="Zipic is a focused image compressor with some clever touches, clipboard auto-compress and dropping files on the notch. Picmal ($29, pay once) compresses images too, and adds format conversion, video, audio, PDF tools, and light editing, for about the same price."
     picmalFor="Your work isn't only images. You've got video to shrink, audio to convert, PDFs to merge, and you'd rather buy one app than four."
-    competitorFor="You compress images all day, nothing else, and you want the deepest set of image-specific controls."
+    competitorFor="You compress images all day, nothing else, and you want the deepest set of image-specific controls. Or you're on macOS 13 and can't upgrade yet."
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs Zipic at a glance
       <Fragment slot="sublead">
@@ -99,7 +97,7 @@ const faqs = [
       },
       {
         feature: "What it's for",
-        picmal: "Convert, compress &amp; edit",
+        picmal: "Convert, compress & edit",
         competitor: "Image compression",
       },
       {
@@ -119,12 +117,12 @@ const faqs = [
       },
       {
         feature: "Video",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
         feature: "Audio",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
@@ -186,44 +184,11 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who Picmal Is For / Who Should Stick with Zipic -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "Your files aren't only images",
-      items: [
-        "You also need to convert or compress video and audio",
-        "You work with PDFs and want to compress, merge, and split them",
-        "You'd rather pay once for every file type than for one",
-        "You automate things with Shortcuts, Raycast, or the terminal",
-      ],
-    }}
-    rival={{
-      heading: "Choose Zipic",
-      lead: "Image compression is the whole job",
-      items: [
-        "You only ever touch images, never video, audio, or PDFs",
-        "You want the deepest set of image-specific compression controls",
-        "You're on macOS 13 and can't upgrade to 14 yet",
-      ],
-    }}
-  />
-
-  <!-- Features -->
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <!-- Testimonials Section -->
   <MasonryTestimonials />
 
   <!-- Pricing -->
   <PricingSection />
-
-  <!-- Founder letter -->
-  <FounderLetter />
 
   <!-- FAQ Section -->
   <FAQSection

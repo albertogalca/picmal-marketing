@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import SupportedFormatsModal from "../../components/SupportedFormatsModal.astro";
 import ComparisonVerdict from "../../components/ComparisonVerdict.astro";
@@ -32,7 +29,7 @@ const faqs = [
   {
     question: "Does Picmal compress as well as TinyPNG?",
     answer:
-      "For normal web use the results are close enough that you won't see a difference at the same file size. TinyPNG has spent years tuning its lossy PNG quantisation and is genuinely very good at that one job. Picmal compresses JPG, PNG, WebP, HEIC, AVIF and more, plus video, audio, and PDFs.",
+      "For normal web use the results are close enough that you won't see a difference at the same file size. TinyPNG has spent years tuning its lossy PNG quantisation and is very good at that one job. Picmal compresses JPG, PNG, WebP, HEIC, AVIF and more, plus video, audio, and PDFs.",
   },
   {
     question: "Can I compress images larger than 5MB?",
@@ -64,6 +61,7 @@ const faqs = [
   <ComparisonHero
     title="The TinyPNG alternative with no upload and no 5MB limit"
     subhead="TinyPNG is great until you hit 20 images at a time, 5MB each, all going to someone else's server. Picmal compresses images, video, audio, and PDFs on your Mac, in batches of hundreds, for $29 once."
+    releaseBadge={false}
     buyEvent="buy_clicked_tinypng_comparison"
   />
 
@@ -71,11 +69,11 @@ const faqs = [
     competitor="TinyPNG"
     summary="TinyPNG is very good at one thing: squeezing PNG and JPEG for the web, free, in your browser. The limits are 20 images at a time, 5MB each, and every file gets uploaded. Picmal ($29, pay once) compresses the same formats on your Mac with no caps, and also converts formats and handles video, audio, and PDFs."
     picmalFor="You compress images often, your files go past 5MB, or you'd rather not upload client photos to a web service to make them smaller."
-    competitorFor="You compress a handful of small web images now and then. It's free and it works, so keep using it."
+    competitorFor="You compress a handful of small web images now and then. Or you use their API in a build pipeline, or you're not on a Mac. It's free and it works, so keep using it."
   />
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs TinyPNG at a glance
       <Fragment slot="sublead">
@@ -124,12 +122,12 @@ const faqs = [
       },
       {
         feature: "Video",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
         feature: "Audio",
-        picmal: "Convert &amp; compress",
+        picmal: "Convert & compress",
         competitor: "No",
       },
       {
@@ -166,41 +164,9 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who each is for -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "You're compressing constantly, or your files are big",
-      items: [
-        "Your images are over 5MB, which most camera photos are",
-        "You're tired of uploading 20 at a time and repeating",
-        "The images are client work, and uploading them isn't your call",
-        "You also need to convert formats, or shrink video and PDFs",
-      ],
-    }}
-    rival={{
-      heading: "Stay with TinyPNG",
-      lead: "Occasional web images, and free is hard to beat",
-      items: [
-        "You compress a few small web images a month",
-        "You want the absolute smallest PNG and nothing else matters",
-        "You're not on a Mac, or you need it from any browser",
-        "You're using their API inside a build pipeline",
-      ],
-    }}
-  />
-
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
   <MasonryTestimonials />
 
   <PricingSection />
-
-  <FounderLetter />
 
   <FAQSection
     faqs={faqs}

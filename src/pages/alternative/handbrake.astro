@@ -3,12 +3,9 @@ import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import ProductSchema from "../../components/schema/ProductSchema.astro";
 import FAQSchema from "../../components/schema/FAQSchema.astro";
 import MasonryTestimonials from "../../components/MasonryTestimonials.astro";
-import FeatureGrid from "../../components/FeatureGrid.astro";
 import PricingSection from "../../components/PricingSection.astro";
-import FounderLetter from "../../components/FounderLetter.astro";
 import Section from "../../components/Section.astro";
 import ComparisonTable from "../../components/ComparisonTable.astro";
-import AlternativeVerdict from "../../components/AlternativeVerdict.astro";
 import RelatedGrid from "../../components/RelatedGrid.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
@@ -29,7 +26,7 @@ const faqs = [
   {
     question: "Why pay for Picmal when HandBrake is free?",
     answer:
-      "HandBrake is great at video encoding, and it costs nothing. Picmal adds image conversion, audio, PDF tools, folder monitoring, and a Finder right-click, and it feels like a real Mac app. If video encoding is all you need, HandBrake is honestly a fine choice.",
+      "HandBrake is great at video encoding, and it costs nothing. Picmal adds image conversion, audio, PDF tools, folder monitoring, and a Finder right-click, and it feels like a real Mac app. If video encoding is all you need, HandBrake is a fine choice.",
   },
   {
     question: "Can Picmal convert images? Can HandBrake?",
@@ -49,7 +46,7 @@ const faqs = [
   {
     question: "What is the best free HandBrake alternative on Mac?",
     answer:
-      "Honestly, for pure video encoding there isn't one. ffmpeg does more but lives in the Terminal, and QuickTime and VLC only cover basic exports. If HandBrake's interface is the problem rather than the price, that's the gap paid apps like Picmal fill: simpler, native, and covering images, audio, and PDFs too.",
+      "For pure video encoding there isn't one. ffmpeg does more but lives in the Terminal, and QuickTime and VLC only cover basic exports. If HandBrake's interface is the problem rather than the price, that's the gap paid apps like Picmal fill: simpler, native, and covering images, audio, and PDFs too.",
   },
   {
     question: "What if Picmal doesn't work for me?",
@@ -71,6 +68,7 @@ const faqs = [
   <ComparisonHero
     title="A native Mac HandBrake alternative"
     subhead="HandBrake is powerful and free. If you also work with images, audio, and PDFs, and you want something that feels like a proper Mac app, Picmal handles all of it for $29."
+    releaseBadge={false}
     buyEvent="buy_clicked_handbrake_comparison"
   />
 
@@ -78,12 +76,12 @@ const faqs = [
     competitor="HandBrake"
     summary="HandBrake is free, open source, and runs on Windows, Linux, and Mac with serious encoding controls. Picmal is Mac only and costs $29 once. It handles images, audio, and PDFs alongside video, and it feels at home on your Mac. Neither one uploads your files."
     picmalFor="You're on a Mac and you need images, audio, or PDFs as well as video. Or you just want an app that feels native and works with Shortcuts."
-    competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, or Windows and Linux support. And free matters to you."
+    competitorFor="You need CRF tuning, device presets, DVD or Blu-ray ripping, subtitle tracks, or Windows and Linux support. And free matters to you."
   />
 
   <!-- Why people look for an alternative -->
   <Section width="narrow">
-    <SectionHeading align="left">
+    <SectionHeading>
       Why people go looking for a HandBrake alternative
     </SectionHeading>
     <div class="space-y-4">
@@ -121,7 +119,7 @@ const faqs = [
   </Section>
 
   <!-- Comparison Table -->
-  <Section width="default">
+  <Section width="narrow">
     <SectionHeading>
       Picmal vs HandBrake at a glance
       <Fragment slot="sublead">
@@ -151,8 +149,8 @@ const faqs = [
       },
       {
         feature: "Interface",
-        picmal: "Native macOS, clean UI",
-        competitor: "Cross-platform, gets the job done",
+        picmal: "One window, good defaults",
+        competitor: "Presets plus tabs of encoder settings",
       },
       {
         feature: "Image conversion",
@@ -171,12 +169,12 @@ const faqs = [
       },
       {
         feature: "Compression",
-        picmal: "Images, video, audio &amp; PDF",
+        picmal: "Images, video, audio & PDF",
         competitor: "Video encoding only",
       },
       {
         feature: "PDF tools",
-        picmal: "Yes, compress, combine, images&rarr;PDF",
+        picmal: "Yes, compress, combine, images to PDF",
         competitor: "No",
       },
       {
@@ -223,39 +221,6 @@ const faqs = [
     />
   </Section>
 
-  <!-- Who Picmal Is For / Who Should Stick with HandBrake -->
-  <AlternativeVerdict
-    sublead="Here's where each one makes more sense."
-    picmal={{
-      heading: "Choose Picmal",
-      lead: "Mac-native. Images, audio, PDFs, and video in one place.",
-      items: [
-        "You want to convert, compress, and edit images, video, audio, and PDFs without juggling five apps",
-        "You automate things with Apple Shortcuts",
-        "You want an app that actually looks and feels like a Mac app",
-        "You want folder monitoring and a Finder right-click",
-      ],
-    }}
-    rival={{
-      heading: "Choose HandBrake",
-      lead: "Free, powerful video encoding, runs everywhere.",
-      items: [
-        "Video transcoding and encoding is all you need",
-        "You're on Windows or Linux",
-        "You'd rather not pay for an app",
-        "You need DVD or Blu-ray ripping, or subtitle tracks",
-      ],
-    }}
-  />
-
-  <!-- Features -->
-  <FeatureGrid
-    heading="Everything else Picmal does"
-    subleadIntro="One app for images, video, audio, and PDFs. Convert, compress, and edit, all on your Mac."
-  />
-
-  <!-- Testimonials Section -->
-
   <!-- Related guides -->
   <RelatedGrid
     heading="Related guides"
@@ -275,9 +240,6 @@ const faqs = [
 
   <!-- Pricing -->
   <PricingSection />
-
-  <!-- Founder letter -->
-  <FounderLetter />
 
   <!-- FAQ Section -->
   <FAQSection

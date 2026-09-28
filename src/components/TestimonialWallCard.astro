@@ -1,0 +1,33 @@
+---
+import Card from "./Card.astro";
+import TestimonialCard from "./TestimonialCard.astro";
+import type { ComponentProps } from "astro/types";
+
+// One quote in the testimonial wall. Split out of MasonryTestimonials because
+// the wall renders it twice, for the picks and for the rest behind "Show more".
+// A quote with a source link is the whole card as a link; one without is a
+// plain card, with no hover, because it goes nowhere.
+interface Props {
+  t: ComponentProps<typeof TestimonialCard>["testimonial"];
+}
+const { t } = Astro.props;
+---
+
+{
+  t.link ? (
+    <a
+      href={t.link}
+      target="_blank"
+      rel="nofollow noreferrer"
+      class="block mb-6 break-inside-avoid rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      <Card>
+        <TestimonialCard testimonial={t} align="left" />
+      </Card>
+    </a>
+  ) : (
+    <Card class="mb-6 break-inside-avoid">
+      <TestimonialCard testimonial={t} align="left" />
+    </Card>
+  )
+}

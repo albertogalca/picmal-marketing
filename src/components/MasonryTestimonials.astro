@@ -1,10 +1,10 @@
 ---
 import testimonials from "../data/testimonials.json";
-import Card from "./Card.astro";
 import H2 from "./H2.astro";
-import TestimonialCard from "./TestimonialCard.astro";
 import TrustBar from "./TrustBar.astro";
 import Section from "./Section.astro";
+import Quote from "./TestimonialWallCard.astro";
+import { cn } from "../utils/cn";
 
 interface Props {
   heading?: string;
@@ -13,20 +13,26 @@ interface Props {
 }
 const { heading, showTrustBar = false, trustSuffix } = Astro.props;
 
-// Six quotes, picked, standing still (Sep 2026). The wall used to be all
-// thirty, scrolling in three columns on a loop, and it proved the wrong thing:
-// that there were many quotes, most of them "great app!". A cold reader stops on
-// a quote that names a job they have. Each pick below names one, and together
-// they cover video, images, PDFs, a workflow and the web tools Picmal replaces.
+// Six quotes lead, the rest wait behind a "Show more" (Sep 2026). The wall used
+// to be all thirty, scrolling in three columns on a loop, and it proved the
+// wrong thing: that there were many quotes, most of them "great app!". A cold
+// reader stops on a quote that names a job they have. Each pick below names
+// one, and together they cover video, images, PDFs, a workflow and the web
+// tools Picmal replaces. The other quotes are all still here for anyone who
+// wants the whole count, one click away and in the HTML either way.
 // Order is reading order: CSS columns fill top to bottom, one column at a time.
-// The highlight chips are gone here too: one accent mark per card, six cards
-// in a row, read as ad copy. The hero press quote keeps its one.
+// The highlight chips are gone: one accent mark per card, card after card,
+// read as ad copy. The hero press quote keeps its one.
+const COLUMNS = "columns-1 md:columns-2 lg:columns-3 gap-6";
+
 const PICKS = [25, 9, 6, 19, 27, 21];
 
-const byId = new Map(testimonials.map((t) => [t.id, t]));
-const cards = PICKS.map((id) => byId.get(id))
-  .filter((t) => t !== undefined && t.type !== "press")
-  .map((t) => ({ ...t!, highlight: undefined }));
+const users = testimonials
+  .filter((t) => t.type !== "press")
+  .map((t) => ({ ...t, highlight: undefined }));
+const byId = new Map(users.map((t) => [t.id, t]));
+const picked = PICKS.map((id) => byId.get(id)).filter((t) => t !== undefined);
+const rest = users.filter((t) => !PICKS.includes(t.id));
 
 // No JSON-LD here on purpose. The rating lives on the single
 // SoftwareApplication node in ProductSchema (@id .../#software), which every
@@ -50,26 +56,27 @@ const cards = PICKS.map((id) => byId.get(id))
     {showTrustBar && <TrustBar prefix="" suffix={trustSuffix} />}
   </div>
 
-  <div class="columns-1 md:columns-2 lg:columns-3 gap-6">
-    {
-      cards.map((t) =>
-        t.link ? (
-          <a
-            href={t.link}
-            target="_blank"
-            rel="nofollow noreferrer"
-            class="block mb-6 break-inside-avoid rounded-2xl hover:opacity-80 active:scale-[0.98] transition-[opacity,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            <Card>
-              <TestimonialCard testimonial={t} align="left" />
-            </Card>
-          </a>
-        ) : (
-          <Card class="mb-6 break-inside-avoid">
-            <TestimonialCard testimonial={t} align="left" />
-          </Card>
-        )
-      )
-    }
+  <div class={COLUMNS}>
+    {picked.map((t) => <Quote t={t} />)}
   </div>
+
+  {/* <details>, not a scripted toggle: it opens without JS, the browser owns
+      the expanded state for assistive tech, and find-in-page opens it on a
+      match. The summary sits under the six and stays there, so "Show fewer"
+      is where the reader left the button. */}
+  {
+    rest.length > 0 && (
+      <details class="group mt-2">
+        <summary class="list-none [&::-webkit-details-marker]:hidden mx-auto w-fit cursor-pointer select-none rounded-lg border border-black/10 dark:border-white/[0.10] bg-background dark:bg-white/[0.06] px-4 py-2.5 text-small font-[590] text-text shadow-xs hover:bg-background-subtle dark:hover:bg-white/[0.10] active:scale-[0.96] transition-[background-color,scale] duration-200 ease-out motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+          <span class="group-open:hidden tabular-nums">
+            Show {rest.length} more reviews
+          </span>
+          <span class="hidden group-open:inline">Show fewer</span>
+        </summary>
+        <div class={cn(COLUMNS, "mt-8")}>
+          {rest.map((t) => <Quote t={t} />)}
+        </div>
+      </details>
+    )
+  }
 </Section>

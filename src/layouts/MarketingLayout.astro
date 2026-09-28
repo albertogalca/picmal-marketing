@@ -18,21 +18,25 @@ import "../styles/global.css";
  *   (default)  the page, inside <main id="main-content">
  *   after  modals and page scripts, after the footer
  */
+import type { ImageMetadata } from "astro";
+
 interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  /** OG and social cover. Falls back to public/og.png in BaseHead. */
+  image?: ImageMetadata;
   /** Extra classes on <main>, for the few pages that set their own rhythm. */
   mainClass?: string;
 }
 
-const { title, description, noindex, mainClass } = Astro.props;
+const { title, description, noindex, image, mainClass } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} noindex={noindex} />
+    <BaseHead title={title} description={description} noindex={noindex} image={image} />
     <slot name="head" />
   </head>
 

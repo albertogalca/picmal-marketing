@@ -17,10 +17,20 @@ interface Props {
   label: string;
   /** Smaller line under it. Formats, limits, that sort of thing. */
   hint?: string;
+  /** `compact` for a page where the drop is the second way in, not the
+      first (the format checker, where typing the extension is faster). */
+  size?: "normal" | "compact";
   class?: string;
 }
 
-const { id, accept, label, hint, class: className = "" } = Astro.props;
+const {
+  id,
+  accept,
+  label,
+  hint,
+  size = "normal",
+  class: className = "",
+} = Astro.props;
 ---
 
 <div
@@ -32,7 +42,10 @@ const { id, accept, label, hint, class: className = "" } = Astro.props;
       the whole box becomes the hit area without a click handler. */}
   <label
     data-dropzone-target
-    class="flex flex-col items-center justify-center gap-2 px-6 py-12 text-center cursor-pointer rounded-2xl border border-dashed border-border bg-background-subtle/50 transition-[border-color,background-color,scale] duration-200 ease-out hover:border-accent/40 hover:bg-accent/[0.03] active:scale-[0.99] motion-reduce:transition-none motion-reduce:active:scale-100 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent data-[dragging]:border-accent data-[dragging]:bg-accent/[0.06]"
+    class:list={[
+      size === "compact" ? "py-6" : "py-12",
+      "flex flex-col items-center justify-center gap-2 px-6 text-center cursor-pointer rounded-2xl border border-dashed border-border bg-background-subtle/50 transition-[border-color,background-color,scale] duration-200 ease-out hover:border-accent/40 hover:bg-accent/[0.03] active:scale-[0.99] motion-reduce:transition-none motion-reduce:active:scale-100 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent data-[dragging]:border-accent data-[dragging]:bg-accent/[0.06]",
+    ]}
   >
     <input
       type="file"

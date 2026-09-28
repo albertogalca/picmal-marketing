@@ -2,14 +2,16 @@
 interface Props {
   text: string;
   href: string;
+  /** Match the heading above it. Left on pages whose headings are left. */
+  align?: "center" | "left";
 }
 
-const { text, href } = Astro.props;
+const { text, href, align = "center" } = Astro.props;
 ---
 
 {/* The trailing "and here's the neighbouring page" link under a grid. One
     definition so the three grids that offer it stay identical. */}
-<div class="text-center mt-8">
+<div class:list={["mt-8", align === "center" && "text-center"]}>
   {/* The visible link is 17px tall. `before:` carries it to a 44px target
       without inflating the type, the way DESIGN.md asks for small pills. */}
   <a

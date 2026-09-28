@@ -17,9 +17,11 @@ interface LinkItem {
 interface Props {
   links: LinkItem[];
   columns?: 3 | 4;
-  /** Optional trailing centered accent link (arrow appended automatically). */
+  /** Optional trailing accent link (arrow appended automatically). */
   linkText?: string;
   linkHref?: string;
+  /** Alignment of that trailing link. */
+  linkAlign?: "center" | "left";
   class?: string;
 }
 
@@ -28,6 +30,7 @@ const {
   columns = 3,
   linkText,
   linkHref,
+  linkAlign = "center",
   class: className,
 } = Astro.props;
 
@@ -54,4 +57,4 @@ const cols =
     ))
   }
 </div>
-{linkText && linkHref && <SectionLink text={linkText} href={linkHref} />}
+{linkText && linkHref && <SectionLink text={linkText} href={linkHref} align={linkAlign} />}

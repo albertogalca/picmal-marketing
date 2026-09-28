@@ -1,4 +1,6 @@
 ---
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { getPublishedPosts, postCover, postCoverDark, displayCategory } from "../utils/posts";
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
@@ -33,6 +35,14 @@ const BLOG_PREFIX = "/blog/";
 
 const bySlug = new Map((await getPublishedPosts()).map((p) => [p.id, p]));
 
+// A product or tool page has no collection entry, but it can have card art at
+// public/images/pages/<href>/card.png (generate-blog-covers.js --cards). Without
+// it the card had no picture next to posts that did.
+const pageCard = (href: string, name: string) => {
+  const path = `/images/pages${href.replace(/\/$/, "")}/${name}`;
+  return existsSync(join(process.cwd(), "public", path)) ? path : undefined;
+};
+
 const cards = links.map((link) => {
   const post = link.href.startsWith(BLOG_PREFIX)
     ? bySlug.get(link.href.slice(BLOG_PREFIX.length))
@@ -42,8 +52,8 @@ const cards = links.map((link) => {
     href: link.href,
     label: link.label ?? post?.data.title ?? link.href,
     description: link.description ?? post?.data.description,
-    image: post ? postCover(post) : undefined,
-    imageDark: post ? postCoverDark(post) : undefined,
+    image: post ? postCover(post) : pageCard(link.href, "card.png"),
+    imageDark: post ? postCoverDark(post) : pageCard(link.href, "card-dark.png"),
     category: displayCategory(post?.data.category),
     date: post?.data.pubDate,
   };

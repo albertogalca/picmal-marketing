@@ -17,6 +17,13 @@ interface Props {
   /** Where the seat-ladder link points. Most of these pages render their own
       PricingSection; the few that don't pass "/#pricing". */
   pricingHref?: string;
+  /** The "What's new" pill. Off on the /alternative pages: a release note
+      has nothing to say to someone comparing two apps. */
+  releaseBadge?: boolean;
+  /** The demo reel under the hero. Off on the /convert and /compress hubs:
+      someone who opens an index wants the list, and the reel pushed it
+      1200px down the page. */
+  demo?: boolean;
 }
 
 const {
@@ -25,6 +32,8 @@ const {
   buyEvent,
   defaultTab = "convert",
   pricingHref = "#pricing",
+  releaseBadge = true,
+  demo = true,
 } = Astro.props;
 ---
 
@@ -35,9 +44,11 @@ const {
 <Section width="wide" class="pt-32 sm:pt-32">
   <slot name="breadcrumb" />
   <div class="max-w-3xl">
-    <div class="hero-reveal" style="--d: 0ms">
-      <ReleaseBadge class="mb-6" />
-    </div>
+    {releaseBadge && (
+      <div class="hero-reveal" style="--d: 0ms">
+        <ReleaseBadge class="mb-6" />
+      </div>
+    )}
     <div class="hero-reveal" style="--d: 80ms">
       <SectionHeading
         level={1}
@@ -57,7 +68,9 @@ const {
        page's search intent. These pages used to show one static clip with no
        dock and no pause control, which was the only thing separating them from
        the home page. -->
-  <div class="hero-reveal mt-12" style="--d: 240ms">
-    <DemoReel start={defaultTab} />
-  </div>
+  {demo && (
+    <div class="hero-reveal mt-12" style="--d: 240ms">
+      <DemoReel start={defaultTab} />
+    </div>
+  )}
 </Section>

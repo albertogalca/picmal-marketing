@@ -13,18 +13,22 @@ interface Props {
   faqs: { question: string; answer: string }[];
   heading?: string;
   sublead?: string;
+  /** "left" puts the block on the page's wide left edge, for pages whose
+      section headings all sit on that edge. The card keeps its reading width. */
+  align?: "center" | "left";
 }
 
 const {
   faqs,
+  align = "center",
   heading = "Frequently Asked Questions",
   sublead = "Something not covered here? Write to support@picmal.app",
 } = Astro.props;
 ---
 
-<Section id="faq" width="narrow">
-  <SectionHeading sublead={sublead}>{heading}</SectionHeading>
-  <Card>
+<Section id="faq" width={align === "left" ? "wide" : "narrow"}>
+  <SectionHeading align={align} sublead={sublead}>{heading}</SectionHeading>
+  <Card class={align === "left" ? "max-w-3xl" : undefined}>
     <FAQ faqs={faqs} />
   </Card>
 </Section>

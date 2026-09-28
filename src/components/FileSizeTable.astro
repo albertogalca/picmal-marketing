@@ -4,7 +4,8 @@
  *
  * The last column carries `tabular-nums`. The convert copy of this table used
  * to leave it off, so its savings figures jittered between rows while the
- * compress ones sat still.
+ * compress ones sat still. It is plain text colour, not accent: nothing in the
+ * row is clickable, and blue text on this site means a link.
  */
 interface Row {
   label: string;
@@ -72,7 +73,7 @@ const cell = "px-6 py-4 text-small text-right";
               <td class={`${cell} text-text font-mono font-medium`}>
                 {row.compressedSize}
               </td>
-              <td class={`${cell} text-accent tabular-nums`}>{row.savings}</td>
+              <td class={`${cell} text-text tabular-nums`}>{row.savings}</td>
             </tr>
           ))
         }

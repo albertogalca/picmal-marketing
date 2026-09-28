@@ -46,7 +46,7 @@ const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "")
 {/* Redesign: the two-tone heading. A short sublead continues the heading at
     the same size in text-quiet, so the two read as one sentence in two voices.
     A long one (over ~120 characters) drops to a lead paragraph instead. */}
-<div class={cn(centered && "text-center", !customMargin && "mb-10 sm:mb-16", className)}>
+<div class={cn(centered && "text-center", !customMargin && (hasSublead ? "mb-10 sm:mb-16" : "mb-8 sm:mb-10"), className)}>
   <Heading class={cn(twoTone ? "mb-0" : "mb-4", headingClass)}><slot /></Heading>
   {
     hasSublead && (
@@ -55,6 +55,8 @@ const twoTone = level === 2 && hasSublead && subleadText.replace(/<[^>]+>/g, "")
         class={cn(
           twoTone && "text-text-quiet font-medium mt-1",
           twoTone && "text-h2 font-medium max-w-3xl",
+          // A long sublead is a lead paragraph: it sits on the 640px measure.
+          !twoTone && !centered && "max-w-[640px]",
           centered && "max-w-2xl mx-auto",
           subleadClass,
         )}

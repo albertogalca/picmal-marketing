@@ -58,12 +58,15 @@ const cols =
     {links.map((l) => (
       <a
         href={l.href}
-        class="bg-surface border border-border rounded-xl p-4 transition-[border-color,scale] duration-200 ease-out hover:border-text-quiet active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        class="group flex items-center justify-between gap-3 bg-surface border border-border rounded-xl px-5 py-4 transition-[border-color,scale] duration-200 ease-out hover:border-text-quiet active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
-        <span class="block text-small font-medium text-text">{l.label}</span>
-        {l.sublabel && (
-          <span class="block text-small text-text-secondary mt-1">{l.sublabel}</span>
-        )}
+        <span>
+          <span class="block text-[15px] leading-6 font-semibold text-text">{l.label}</span>
+          {l.sublabel && (
+            <span class="block text-small text-text-secondary mt-0.5">{l.sublabel}</span>
+          )}
+        </span>
+        <span aria-hidden="true" class="text-text-quiet transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
       </a>
     ))}
   </div>

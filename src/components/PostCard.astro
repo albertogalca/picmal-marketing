@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import LinkCard from "./LinkCard.astro";
 import FormattedDate from "./FormattedDate.astro";
 import { cn } from "../utils/cn";
+import ArtCard from "./pm/ArtCard.astro";
+import type { Art } from "../data/cardArt";
 
 /**
  * PostCard - the one card for anything clickable that leads somewhere else.
@@ -28,6 +30,8 @@ interface Props {
   /** 2 under a page H1 (the blog index), 3 under a section H2. */
   headingLevel?: 2 | 3;
   variant?: "boxed" | "flat";
+  /** Design-system card art, drawn live. Wins over `image`. */
+  art?: Art;
   featured?: boolean;
 }
 
@@ -42,6 +46,7 @@ const {
   headingLevel = 3,
   variant = "flat",
   featured = false,
+  art,
 } = Astro.props;
 
 const Heading = headingLevel === 2 ? "h2" : "h3";
@@ -113,7 +118,12 @@ const Heading = headingLevel === 2 ? "h2" : "h3";
         featured && "md:grid md:grid-cols-2 md:gap-10 md:items-center",
       )}
     >
-      {image && (
+      {art && (
+        <div class={cn(!featured && "mb-4", featured && "mb-4 md:mb-0")} aria-hidden="true">
+          <ArtCard title={art.title} texture={art.texture} ground={art.ground} seed={art.seed} />
+        </div>
+      )}
+      {!art && image && (
         <div
           class={cn(
             "relative aspect-video overflow-hidden rounded-xl bg-background-subtle",

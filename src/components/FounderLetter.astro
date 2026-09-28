@@ -65,28 +65,21 @@ import Paragraph from "./Paragraph.astro";
       <!-- The close sits further from the body than the paragraphs sit from
            each other, so the signature reads as the end of a letter. The badge
            sits beside it, baseline-aligned, like a photo clipped to the page. -->
-      <div class="mt-10 flex items-end justify-between gap-6">
-        <div>
-          <Paragraph color="primary" class="mb-1">Best,</Paragraph>
-          <!-- Deliberate off-scale exception: the handwritten signature is the
-               one decorative script on the site, not part of the UI type scale.
-               leading-tight (not none) so cursive descenders don't clip.
-               No tilt: the script already says "handwritten", and the badge
-               beside it is the one thing on this sheet that sits off-square. -->
-          <p class="font-signature text-text text-2xl leading-tight">Alberto</p>
-        </div>
-
-        <!-- Founder badge: a transparent starburst cutout, so depth comes from a
-             shape-following drop-shadow (a ring/box-shadow would box the star).
-             Decorative → pointer-events-none + empty alt is intentional. -->
+      <!-- Redesign: the signature is one row, the badge first, flat, no tilt
+           or shadow (the system uses borders only). -->
+      <div class="mt-10 flex items-center gap-4">
         <img
           src="/founder-badge.png"
           alt=""
           width="156"
           height="151"
           loading="lazy"
-          class="pointer-events-none shrink-0 w-16 h-16 sm:w-20 sm:h-20 -rotate-6 [filter:drop-shadow(0_6px_14px_rgba(0,0,0,0.20))]"
+          class="pointer-events-none shrink-0 w-14 h-14"
         />
+        <div>
+          <Paragraph color="primary" class="mb-0">Best,</Paragraph>
+          <p class="font-signature text-text text-2xl leading-tight">Alberto</p>
+        </div>
       </div>
     </div>
   </div>

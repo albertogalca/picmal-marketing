@@ -39,6 +39,6 @@ const sectionClasses = cn(
 
 <section id={id} class={sectionClasses}>
   <div class={cn(widths[width], "mx-auto")}>
-    {width === "narrow" ? <div class="max-w-[640px]"><slot /></div> : <slot />}
+    {width === "narrow" ? <div class="max-w-3xl [&>p]:max-w-[640px] [&>p+p]:mt-4"><slot /></div> : <slot />}
   </div>
 </section>

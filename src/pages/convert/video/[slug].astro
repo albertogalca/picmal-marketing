@@ -89,7 +89,7 @@ const noindex = !isVideoConversionIndexed(conversion.slug);
     subhead={heroLine}
     buyEvent={`buy_clicked_video_${conversion.slug}`}
     defaultTab="convert"
-    art={{ title: `${labelFor(from)} → ${labelFor(to)}`, texture: "scan", ground: "night" }}
+    art={{ title: `${conversion.from.toUpperCase()} → ${conversion.to.toUpperCase()}`, texture: "scan", ground: "night" }}
     demo={false}
   />
 

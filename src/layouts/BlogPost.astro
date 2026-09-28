@@ -1,4 +1,6 @@
 ---
+import ArtCard from "../components/pm/ArtCard.astro";
+import { postArt } from "../data/cardArt";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import BaseHead from "../components/BaseHead.astro";
@@ -58,6 +60,8 @@ const cardPath = (name: string) =>
     : undefined;
 const coverCard = cardPath("card.png");
 const coverCardDark = cardPath("card-dark.png");
+// Redesign: the cover is the design system's ArtCard, drawn live.
+const heroArt = slug ? postArt(slug, category) : undefined;
 ---
 
 <!doctype html>
@@ -177,7 +181,11 @@ const coverCardDark = cardPath("card-dark.png");
           </p>
         </header>
 
-        {coverCard && (
+        {heroArt ? (
+          <div class="mb-12" aria-hidden="true">
+            <ArtCard title={heroArt.title} texture={heroArt.texture} ground={heroArt.ground} seed={heroArt.seed} />
+          </div>
+        ) : coverCard && (
           <div class="mb-12 aspect-video overflow-hidden rounded-xl ring-1 ring-border" aria-hidden="true">
             <img src={coverCard} alt="" width="1600" height="900" class:list={["h-full w-full object-cover", coverCardDark && "dark:hidden"]} />
             {coverCardDark && <img src={coverCardDark} alt="" width="1600" height="900" class="hidden h-full w-full object-cover dark:block" />}

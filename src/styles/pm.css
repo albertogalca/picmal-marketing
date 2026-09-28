@@ -426,7 +426,7 @@ html.dark .pm-invert-dark { filter: brightness(0) invert(1); }
 .pm-reviews__press figcaption { margin-top: var(--pm-space-4); }
 
 /* Footer: always dark, set apart from the page */
-.pm-footer-band { margin-top: var(--pm-space-24); background: #0b0b0b; color-scheme: dark;
+.pm-footer-band { margin-top: var(--pm-space-12); background: #0b0b0b; color-scheme: dark;
   --pm-surface: #0b0b0b; --pm-surface-raised: #161616; --pm-control: #262626; --pm-control-hover: #303030;
   --pm-hairline: #242424; --pm-ink: #f2f2f2; --pm-ink-muted: #9a9a9a; --pm-ink-quiet: #7a7a7a;
   --pm-action: #e8e8e8; --pm-on-action: #0b0b0b; --pm-brand-bright: #3b82f6; }
@@ -449,3 +449,12 @@ html.dark .pm-footer-band { background: #121212; border-top: 1px solid #242424; 
   .ds-table-wrap .fmt-table tr { padding-inline: 20px; }
   .ds-table-wrap .fmt-table td:first-child, .ds-table-wrap .fmt-table td:last-child { padding-left: 0; padding-right: 0; }
 }
+
+/* Wrapped footer links keep their 18px line, not the body's. */
+.pm-footer li { font: 400 13px/18px var(--pm-font-sans); }
+
+/* The paper ground would be a glare box on the dark theme. There it takes the
+   raised dark surface and the bright brand pixels, like the old card-dark art. */
+html.dark .pm-art--paper { background: #161616; color: #f5f5f5; border-color: #262626; }
+html.dark .pm-art--paper .pm-pixels--brand rect { fill: #3b82f6; }
+html.dark .pm-art--paper.pm-art--full .pm-art__title span { background: #161616; }

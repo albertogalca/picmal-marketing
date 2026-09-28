@@ -1,5 +1,4 @@
 ---
-import Card from "./Card.astro";
 import H2 from "./H2.astro";
 
 /**
@@ -16,9 +15,10 @@ interface Props {
 const { heading, benefits } = Astro.props;
 ---
 
-<Card>
-  <H2 class="mb-6">{heading}</H2>
-  <ul class="space-y-3">
+<div>
+  {/* Redesign: a heading and a checked list on the page, no panel. */}
+  <H2 class="mb-8">{heading}</H2>
+  <ul class="grid gap-x-10 gap-y-3 sm:grid-cols-2">
     {
       benefits.map((benefit) => (
         <li class="flex items-start gap-3">
@@ -41,4 +41,4 @@ const { heading, benefits } = Astro.props;
       ))
     }
   </ul>
-</Card>
+</div>

@@ -1,4 +1,5 @@
 ---
+import { postArt } from "../../data/cardArt";
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
 import {
   getPublishedPosts,
@@ -60,7 +61,7 @@ const blogListSchema = {
         />
   </Fragment>
 
-  <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-[1072px] mx-auto px-6">
     <SectionHeading
       level={1}
       sublead="How to convert, compress and edit files on a Mac without sending them anywhere. Once a month, a note on what I changed in Picmal."
@@ -98,6 +99,7 @@ const blogListSchema = {
               description={post.data.description}
               image={postCover(post)}
               imageDark={postCoverDark(post)}
+              art={postArt(post.id, post.data.category)}
               category={displayCategory(post.data.category)}
               date={post.data.pubDate}
               headingLevel={2}

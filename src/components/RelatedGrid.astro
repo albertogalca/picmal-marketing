@@ -5,6 +5,7 @@ import { getPublishedPosts, postCover, postCoverDark, displayCategory } from "..
 import Section from "./Section.astro";
 import SectionHeading from "./SectionHeading.astro";
 import PostCard from "./PostCard.astro";
+import { postArt, pageArt } from "../data/cardArt";
 
 /**
  * RelatedGrid - the "related guides and tools" block, one definition for the
@@ -54,6 +55,7 @@ const cards = links.map((link) => {
     description: link.description ?? post?.data.description,
     image: post ? postCover(post) : pageCard(link.href, "card.png"),
     imageDark: post ? postCoverDark(post) : pageCard(link.href, "card-dark.png"),
+    art: post ? postArt(post.id, post.data.category) : pageArt(link.href),
     category: displayCategory(post?.data.category),
     date: post?.data.pubDate,
   };

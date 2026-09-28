@@ -27,7 +27,7 @@ interface Props {
   demo?: boolean;
   /** Redesign: a pixel cover beside the hero text (convert and compress
       pages), e.g. { title: "WebP → PNG", texture: "dissolve" }. */
-  art?: { title: string; texture?: string; ground?: "brand" | "night" | "paper" };
+  art?: { title?: string; texture?: string; ground?: "brand" | "night" | "paper"; seed?: string };
 }
 
 const {
@@ -71,7 +71,7 @@ const {
   </div>
   {art && (
     <div class="hero-reveal" style="--d: 160ms" aria-hidden="true">
-      <ArtCard title={art.title} texture={art.texture} ground={art.ground} seed={art.title} />
+      <ArtCard title={art.title} texture={art.texture} ground={art.ground} seed={art.seed ?? art.title} />
     </div>
   )}
   </div>

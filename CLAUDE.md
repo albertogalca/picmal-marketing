@@ -36,6 +36,15 @@ runs two weeks. Read it from the deploy date, not from 28 September.
 SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you
 remove this block.
 
+## Marketing manager
+
+One skill runs the whole weekly loop: `/picmal-marketing`. Phase 1 runs headless every Monday at
+09:03 (LaunchAgent `com.albertogalca.picmal-seo-weekly`): metrics row, SEO row and at most one SEO
+fix, the `picmal-marketing-manager` agent's score, a review note in the co-founder vault. Phase 2
+is Alberto running `/picmal-marketing`: the calls, the week, the Things tasks. The marketingskills
+library is installed globally; its shared context is `.agents/product-marketing.md` (git-ignored,
+local only, the repo is public).
+
 ## Design System
 
 The landing page (`src/pages/index.astro`) is the reference implementation. Reuse

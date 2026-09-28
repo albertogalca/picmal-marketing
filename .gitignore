@@ -32,3 +32,6 @@ newsletter/
 reddit/
 .atl/
 .wrangler/
+
+# Marketing context: revenue, account and database ids. Local only, the repo is public.
+.agents/product-marketing.md

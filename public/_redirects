@@ -92,9 +92,7 @@
 # /compress-images-mac stays the product page, /blog/reduce-photo-library-size-mac
 # stays separate because the Photos-library intent is genuinely different.
 
-/blog/compress-jpeg-mac /blog/reduce-image-file-size-mac 301
 /blog/compress-png-mac /blog/reduce-image-file-size-mac 301
-/blog/compress-images-for-website-mac /blog/reduce-image-file-size-mac 301
 
 # "Batch" is a feature of image-converter-mac, not a separate intent.
 /batch-image-converter-mac /image-converter-mac 301

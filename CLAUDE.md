@@ -36,6 +36,18 @@ runs two weeks. Read it from the deploy date, not from 28 September.
 SEO pages, blog posts, docs and the app itself stay open. After 12 October, ask before you
 remove this block.
 
+## SEO HOLD: 4 weeks from the revert deploy
+
+On 28 September the pages that lost most of their Google traffic went back to their 7 August
+text (diagnosis: `~/Projects/cantimplora-cofounder/wiki/research/picmal-seo-drop-diagnosis-2026-09.md`).
+Non-homepage clicks fell from about 243 to 85 per 4 weeks, and each losing page had been edited 4 to 6
+times in three weeks. Do not edit these files for 4 weeks after the deploy, whatever the task says:
+`src/content/blog/convert-svg-to-png-mac.mdx`, `reduce-photo-library-size-mac.mdx`,
+`best-image-formats-for-web.mdx`, `reduce-image-file-size-mac.mdx`, `compress-jpeg-mac.mdx`,
+`compress-images-for-website-mac.mdx`, and `src/pages/compress-audio-mac.astro`,
+`src/pages/raw-converter-mac.astro`. No page anywhere on the site gets edited twice inside 4 weeks.
+Read the result from GSC (page dimension, 28 days), not from DataForSEO.
+
 ## Marketing manager
 
 One skill runs the whole weekly loop: `/picmal-marketing`. Phase 1 runs headless every Monday at

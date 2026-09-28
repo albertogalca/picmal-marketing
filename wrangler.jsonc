@@ -14,7 +14,11 @@
     // layer without ever running the Worker: /downloads/* has no asset, so the
     // buyer got the HTML 404 page. curl, Homebrew and Sparkle don't navigate,
     // which is why it only broke for people. Route downloads to the Worker first.
-    "run_worker_first": ["/downloads/*"]
+    // The same trap hid the www -> apex 301 in worker/index.js: the assets layer
+    // answered www.picmal.app with a full duplicate site (found 2026-09-28, 3 www
+    // URLs in GSC). A path pattern cannot match a hostname, so every request goes
+    // to the Worker first. It falls through to ASSETS for everything it doesn't own.
+    "run_worker_first": true
   },
   // The DMG lives in R2 and is served from picmal.app itself (see /downloads/*
   // in worker/index.js), so the URL a buyer clicks is the URL Homebrew fetches.

@@ -1,11 +1,13 @@
 ---
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import cover from "../../../public/images/pages/tools/image-file-size-calculator/cover.png";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import RelatedGrid from "../../components/RelatedGrid.astro";
 import Card from "../../components/Card.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import ToolHero from "../../components/ToolHero.astro";
+import MoreTools from "../../components/MoreTools.astro";
 
 const title = "Picmal: Image file size calculator, estimate before you compress";
 const description =
@@ -24,6 +26,7 @@ const inputClass = "field tabular-nums";
 <MarketingLayout
   title={title}
   description={description}
+  image={cover}
 >
   <Fragment slot="head">
     <script
@@ -47,9 +50,13 @@ const inputClass = "field tabular-nums";
       which format to save in.
     </ToolHero>
 
-    <Section width="narrow">
-      <Card>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+    {/* Side by side from lg up. Stacked, the hero and the input Card filled
+        the first screen, so changing a number changed something you could
+        not see. The inputs stick while the seven rows scroll past them. */}
+    <Section width="default">
+      <div class="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-12 lg:items-start">
+      <Card class="lg:sticky lg:top-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
         <div>
           <label
             for="width"
@@ -85,16 +92,24 @@ const inputClass = "field tabular-nums";
         </div>
       </div>
 
+      <p
+        id="size-error"
+        class="text-small text-text-secondary mb-4 min-h-[1lh]"
+        role="status"
+        aria-live="polite"
+      ></p>
+
       <div class="mb-6">
         <span class="block text-small font-medium mb-2 text-text"
           >Common sizes</span
         >
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-2">
           {
             presets.map((p) => (
               <button
                 type="button"
-                class="preset px-3 py-2 text-small font-[590] bg-background border border-border rounded-lg text-text transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/40 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                aria-pressed="false"
+                class="preset px-3 py-2 text-small font-[590] bg-background border border-border rounded-lg text-text transition-[color,border-color,background-color,scale] duration-200 motion-reduce:transition-none hover:border-accent/40 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-pressed:border-accent aria-pressed:text-accent aria-pressed:bg-accent/[0.06]"
                 data-width={p.width}
                 data-height={p.height}
               >
@@ -127,7 +142,7 @@ const inputClass = "field tabular-nums";
 
     <!-- Results live in the same Section as the form: two Sections put 160px
          of rhythm between an input and its own output. -->
-    <div class="mt-10">
+    <div class="mt-10 lg:mt-0">
       <h2 class="text-h3 text-text mb-2">Estimated file sizes</h2>
       <p class="text-body text-text-secondary mb-6">
         For a <span
@@ -136,7 +151,9 @@ const inputClass = "field tabular-nums";
         relative to the uncompressed baseline.
       </p>
 
-      <ul id="results" class="space-y-2"></ul>
+      {/* Flat rows on a hairline. Each one used to be its own bordered box,
+          seven panels under a panel. */}
+      <ul id="results" class="border-y border-border divide-y divide-border"></ul>
 
       <p class="text-small text-text-secondary mt-6">
         These are estimates, not encoder output. Real sizes move with the
@@ -144,6 +161,7 @@ const inputClass = "field tabular-nums";
         a forest. Treat the numbers as the right order of magnitude, then
         check the real thing.
       </p>
+    </div>
     </div>
   </Section>
 
@@ -175,10 +193,11 @@ const inputClass = "field tabular-nums";
         </li>
       </ul>
     </Card>
+    <MoreTools current="/tools/image-file-size-calculator" class="mt-8" />
   </Section>
 
   <RelatedGrid
-    heading="Related tools"
+    heading="Do it for real on your Mac"
     links={[
       {
         href: "/compress-images-mac",
@@ -220,13 +239,31 @@ const inputClass = "field tabular-nums";
           const contentEl = document.getElementById("content") as HTMLSelectElement;
           const resultsEl = document.getElementById("results")!;
           const summaryEl = document.getElementById("summary")!;
+          const errorEl = document.getElementById("size-error")!;
+          const presets = [
+            ...document.querySelectorAll<HTMLButtonElement>(".preset"),
+          ];
+
+          // A preset reads as pressed while the fields still hold its
+          // numbers, typed or clicked. Edit one and it lets go.
+          function syncPresets() {
+            for (const button of presets) {
+              const on =
+                button.dataset.width === widthEl.value &&
+                button.dataset.height === heightEl.value;
+              button.setAttribute("aria-pressed", String(on));
+            }
+          }
 
           function render() {
             const width = widthEl.valueAsNumber;
             const height = heightEl.valueAsNumber;
 
-            // Empty or nonsense input: keep the last good result on screen rather
-            // than flashing an error while someone is mid-type.
+            syncPresets();
+
+            // Empty or nonsense input: keep the last good result on screen, but
+            // say so, or the summary quietly describes numbers that are no
+            // longer in the fields.
             let estimates;
             try {
               estimates = estimateSizes(
@@ -235,8 +272,11 @@ const inputClass = "field tabular-nums";
                 contentEl.value as Content,
               );
             } catch {
+              errorEl.textContent =
+                "Width and height need to be whole numbers above 0. The sizes shown are for the last ones that were.";
               return;
             }
+            errorEl.textContent = "";
 
             const megapixels = (width * height) / 1_000_000;
             summaryEl.textContent = `${width} × ${height} (${megapixels.toFixed(1)} MP)`;
@@ -246,8 +286,7 @@ const inputClass = "field tabular-nums";
             resultsEl.replaceChildren(
               ...estimates.map((e) => {
                 const li = document.createElement("li");
-                li.className =
-                  "bg-background-subtle/50 border border-border rounded-xl p-4";
+                li.className = "py-4";
                 li.innerHTML = `
                   <div class="flex items-baseline justify-between gap-4 mb-2">
                     <span class="text-body font-medium text-text">${e.name}</span>
@@ -268,9 +307,7 @@ const inputClass = "field tabular-nums";
           heightEl.addEventListener("input", render);
           contentEl.addEventListener("change", render);
 
-          for (const button of document.querySelectorAll<HTMLButtonElement>(
-            ".preset",
-          )) {
+          for (const button of presets) {
             button.addEventListener("click", () => {
               widthEl.value = button.dataset.width!;
               heightEl.value = button.dataset.height!;

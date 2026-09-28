@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import cover from "../../../public/images/pages/tools/file-format-checker/cover.png";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import Card from "../../components/Card.astro";
@@ -8,6 +9,7 @@ import H2 from "../../components/H2.astro";
 import FAQ from "../../components/FAQ.astro";
 import FileDropZone from "../../components/FileDropZone.astro";
 import ToolHero from "../../components/ToolHero.astro";
+import MoreTools from "../../components/MoreTools.astro";
 
 import {
   formatSupport,
@@ -58,6 +60,7 @@ const sourced = formatSupport.filter((f) => f.source);
 <MarketingLayout
   title={title}
   description={description}
+  image={cover}
 >
   <Fragment slot="head">
     <script
@@ -107,27 +110,35 @@ const sourced = formatSupport.filter((f) => f.source);
 
   <ToolHero title="Will this file open?">
     Before you send something to someone, check whether their machine can
-    actually open it. Drop the file in or just type the extension.
+    actually open it. Type the extension, or drop the file in.
   </ToolHero>
 
   <Section width="narrow">
-    <FileDropZone
-      id="format-drop"
-      label="Drop a file, or click to choose one"
-      hint="Only the extension is read. The file itself is never opened."
+    {/* Typing comes first: the page only ever reads the extension, so four
+        letters are faster than finding the file. The drop zone is the second
+        way in, and smaller to match. The label is visible, not sr-only, so
+        the instruction does not vanish with the placeholder on the first
+        keystroke. */}
+    <label for="format-input" class="block text-body font-[590] text-text mb-2">
+      File extension
+    </label>
+    <input
+      type="text"
+      id="format-input"
+      placeholder="heic, mov, webp…"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      class="field"
     />
 
-    <div class="mt-4">
-      <label for="format-input" class="sr-only">File extension</label>
-      <input
-        type="text"
-        id="format-input"
-        placeholder="or type an extension, like heic"
-        autocomplete="off"
-        spellcheck="false"
-        class="field"
-      />
-    </div>
+    <FileDropZone
+      id="format-drop"
+      size="compact"
+      class="mt-4"
+      label="Or drop the file here"
+      hint="Only the name is read. The file itself is never opened."
+    />
 
     <p
       id="format-status"
@@ -283,10 +294,137 @@ const sourced = formatSupport.filter((f) => f.source);
     <Card>
       <FAQ faqs={faqs} />
     </Card>
+    <MoreTools current="/tools/file-format-checker" class="mt-8" />
   </Section>
 
   <CTASection
     heading="Convert a whole folder at once, on your Mac"
     analyticsEvent="buy_clicked_format_checker"
   />
+
+  <Fragment slot="after">
+    <script>
+      import {
+        findFormat,
+        SUPPORT_LABELS as LABELS,
+        type FormatSupport,
+      } from "../../data/formatSupport";
+
+      const zone = document.getElementById("format-drop");
+      const input = document.getElementById("format-input") as HTMLInputElement;
+      const status = document.getElementById("format-status");
+      const result = document.getElementById("format-result");
+      if (!zone || !input || !status || !result)
+        throw new Error("format-checker: markup gone");
+
+      const el = (id: string) => document.getElementById(id)!;
+
+      // Flat, not three more boxes inside the Card: a hairline and the chip
+      // carry the grouping. Notes come from formatSupport.ts, never from the
+      // visitor, so innerHTML is safe here.
+      const verdict = (
+        place: string,
+        support: { level: keyof typeof LABELS; note?: string },
+      ) => `
+        <div class="border-t border-border pt-3">
+          <p class="text-small text-text-secondary mb-2">${place}</p>
+          <span class="inline-block rounded-full px-2 py-0.5 text-small font-[590] ${LABELS[support.level].class}">${LABELS[support.level].text}</span>
+          ${support.note ? `<p class="mt-2 text-small text-text-secondary">${support.note}</p>` : ""}
+        </div>`;
+
+      const render = (format: FormatSupport) => {
+        el("format-name").textContent = format.name;
+        el("format-what").textContent = format.what;
+        el("format-verdicts").innerHTML = [
+          verdict("On a Mac", format.macos),
+          verdict("On Windows", format.windows),
+          verdict("In a browser", format.browsers),
+        ].join("");
+
+        const advice = el("format-advice");
+        if (format.convertTo) {
+          el("format-advice-title").textContent = `Send a ${format.convertTo} instead`;
+          el("format-advice-body").textContent = format.why ?? "";
+          advice.hidden = false;
+        } else {
+          advice.hidden = true;
+        }
+
+        el("format-source").innerHTML = format.source
+          ? `Checked against <a class="link" href="${format.source}" target="_blank" rel="noreferrer">the documentation</a>.`
+          : "";
+
+        result.hidden = false;
+        status.textContent = "";
+      };
+
+      const lookup = (raw: string) => {
+        if (!raw.trim()) {
+          result.hidden = true;
+          status.textContent = "";
+          return;
+        }
+        const format = findFormat(raw);
+        if (!format) {
+          result.hidden = true;
+          status.textContent = `No entry for "${raw.trim()}" yet. The table below has everything covered so far.`;
+          return;
+        }
+        render(format);
+      };
+
+      // Only the name is touched. The File itself is never read, which is the
+      // claim the page makes, so keep it true.
+      zone.addEventListener("picmal:file", (event) => {
+        const { file } = (event as CustomEvent<{ file: File }>).detail;
+        input.value = file.name.split(".").pop() ?? "";
+        lookup(file.name);
+      });
+
+      input.addEventListener("input", () => lookup(input.value));
+    </script>
+  </Fragment>
 </MarketingLayout>
+
+<style>
+  /* Stacked layout for the compatibility table on phones. 40rem matches
+     Tailwind's `sm`, so this and the utility classes agree on the breakpoint. */
+  @media (max-width: 39.99rem) {
+    .fmt-table,
+    .fmt-table tbody,
+    .fmt-table tr,
+    .fmt-table td {
+      display: block;
+      width: 100%;
+    }
+
+    /* Each cell carries its own .fmt-label instead. */
+    .fmt-table thead {
+      display: none;
+    }
+
+    .fmt-table tr {
+      padding-block: 0.75rem;
+    }
+
+    .fmt-table td {
+      padding: 0;
+    }
+
+    .fmt-table td + td {
+      margin-top: 0.5rem;
+    }
+
+    /* The format name leads the block, so it gets no label of its own. */
+    .fmt-table .fmt-name {
+      font-size: var(--text-body);
+      margin-bottom: 0.5rem;
+      white-space: normal;
+    }
+
+    /* Notes are the reason five columns did not fit; let them use the width. */
+    .fmt-table .fmt-note {
+      max-width: none;
+    }
+  }
+</style>

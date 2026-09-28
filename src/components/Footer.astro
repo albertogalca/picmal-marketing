@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import NewsletterSignup from "./NewsletterSignup.astro";
 import FeaturedOn from "./FeaturedOn.astro";
+import { TOOLS } from "../data/tools";
 
 const today = new Date();
 ---
@@ -84,20 +85,23 @@ const today = new Date();
             <a
               href="/compress-video-mac"
               class="transition-colors hover:text-text"
-              >Compress video for Mac</a
+              >Compress video on Mac</a
             >
           </li>
           <li>
             <a
               href="/compress-audio-mac"
               class="transition-colors hover:text-text"
-              >Compress audio for Mac</a
+              >Compress audio on Mac</a
             >
           </li>
         </ul>
       </div>
       <div>
-        <p class="text-text mb-4 font-semibold">Tools</p>
+        {/* Two groups in one column. "Tools" used to head both the app's
+            features and the free browser tools, while the header's "Tools"
+            means only the second. The grid stays at six columns. */}
+        <p class="text-text mb-4 font-semibold">More in Picmal</p>
         <ul class="space-y-3 text-body text-text-secondary">
           <li>
             <a
@@ -147,25 +151,22 @@ const today = new Date();
               class="transition-colors hover:text-text">App icon generator</a
             >
           </li>
-          <li>
-            <a
-              href="/tools/image-file-size-calculator"
-              class="transition-colors hover:text-text"
-              >Image file size calculator</a
-            >
-          </li>
-          <li>
-            <a
-              href="/tools/exif-viewer"
-              class="transition-colors hover:text-text">EXIF viewer</a
-            >
-          </li>
-          <li>
-            <a
-              href="/tools/file-format-checker"
-              class="transition-colors hover:text-text">Will this file open?</a
-            >
-          </li>
+        </ul>
+        <p class="text-text mt-8 mb-4 font-semibold">
+          <a href="/tools" class="transition-colors hover:text-text-secondary"
+            >Free tools</a
+          >
+        </p>
+        <ul class="space-y-3 text-body text-text-secondary">
+          {
+            TOOLS.map((t) => (
+              <li>
+                <a href={t.href} class="transition-colors hover:text-text">
+                  {t.title}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
       <div>

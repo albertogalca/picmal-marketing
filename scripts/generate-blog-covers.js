@@ -6,6 +6,7 @@
 // Run: node scripts/generate-blog-covers.js
 //   --force            also regenerate posts that already have a heroImage
 //   --cards            make the card.png images instead (see CARD_LABELS)
+//   --pages            make the OG covers for product pages (see PAGE_COVERS)
 //   <slug> [<slug>…]   limit to these posts
 // Slugs in CUSTOM_COVERS are always skipped, so --force is safe to run bare.
 
@@ -26,6 +27,7 @@ const OUT_BASE = join(root, "public/images/blog");
 const BG = join(root, "scripts/assets/cover-bg.png");
 const FORCE = process.argv.includes("--force");
 const CARDS = process.argv.includes("--cards");
+const PAGES = process.argv.includes("--pages");
 const ONLY = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 
 // Hand-made covers. Never touched, not even with --force. Add a slug here when a
@@ -112,6 +114,55 @@ async function clusterTop(bgBuffer) {
   }
   return height;
 }
+
+// Product pages have no frontmatter, so their cover text lives here. Same art
+// as a blog cover, written to public/images/pages/<slug>/cover.png. The page
+// passes it to MarketingLayout as `image`.
+const PAGE_COVERS = {
+  "compress-images-mac": {
+    title: "Compress images on your Mac",
+    description: "Make a whole folder of photos smaller, with nothing uploaded.",
+  },
+  // The free tools. A slug with a slash lands in a nested folder, which
+  // mirrors the URL: /tools/exif-viewer → public/images/pages/tools/exif-viewer.
+  tools: {
+    title: "Free file tools",
+    description: "Small tools that each answer one question, right in your browser.",
+  },
+  "tools/exif-viewer": {
+    title: "EXIF viewer",
+    description: "See the camera, the settings and the GPS hiding in a photo.",
+  },
+  "tools/file-format-checker": {
+    title: "Will this file open?",
+    description: "Check a format on macOS, Windows and the web before you send it.",
+  },
+  "tools/image-file-size-calculator": {
+    title: "Image file size calculator",
+    description: "Type the pixels, see the size in JPG, PNG, WebP, AVIF and HEIC.",
+  },
+};
+
+// Card art for pages that are not posts: the product pages and tools that
+// RelatedGrid lists next to blog posts. Without one the card sat there with no
+// picture beside three that had one. Same dune, same label rule as
+// CARD_LABELS, in the Guide palette, written next to the page's cover at
+// public/images/pages/<slug>/card.png. RelatedGrid picks it up by href.
+const PAGE_CARD_LABELS = {
+  "compress": "All formats",
+  "compress-images-mac": "Compress images",
+  "compress-video-mac": "Compress video",
+  "compress-audio-mac": "Compress audio",
+  "image-converter-mac": "Convert images",
+  "video-converter-mac": "Convert video",
+  "resize-image-mac": "Resize",
+  "extract-audio-from-video-mac": "Video → Audio",
+  "alternative/handbrake": "vs HandBrake",
+  "tools": "Free tools",
+  "tools/exif-viewer": "EXIF",
+  "tools/file-format-checker": "Will it open?",
+  "tools/image-file-size-calculator": "File size",
+};
 
 // Descriptions are SEO-length; only the first sentence reads as a sublead.
 const sublead = (description) => description.split(/(?<=\.)\s+/)[0] || "";
@@ -326,6 +377,15 @@ function cardSvg(slug, label, { field, pixel, ink }) {
 </svg>`;
 }
 
+async function writeCard(outDir, slug, label, palette) {
+  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+  for (const [mode, name] of [["light", "card.png"], ["dark", "card-dark.png"]]) {
+    await sharp(Buffer.from(cardSvg(slug, label, palette[mode])))
+      .png({ compressionLevel: 9, palette: true })
+      .toFile(join(outDir, name));
+  }
+}
+
 async function makeCards() {
   let made = 0;
   for (const [slug, label] of Object.entries(CARD_LABELS)) {
@@ -337,15 +397,15 @@ async function makeCards() {
     const palette = CARD_PALETTES[category] ?? CARD_PALETTES.Guide;
     if (!CARD_PALETTES[category]) console.warn(`! ${slug}: category "${category}" has no palette, using Guide`);
 
-    const outDir = join(OUT_BASE, slug);
-    if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-    for (const [mode, name] of [["light", "card.png"], ["dark", "card-dark.png"]]) {
-      await sharp(Buffer.from(cardSvg(slug, label, palette[mode])))
-        .png({ compressionLevel: 9, palette: true })
-        .toFile(join(outDir, name));
-    }
+    await writeCard(join(OUT_BASE, slug), slug, label, palette);
     made++;
     console.log(`✓ ${slug}  ${category}  ${label}`);
+  }
+  for (const [slug, label] of Object.entries(PAGE_CARD_LABELS)) {
+    if (ONLY.length && !ONLY.includes(slug)) continue;
+    await writeCard(join(root, "public/images/pages", slug), slug, label, CARD_PALETTES.Guide);
+    made++;
+    console.log(`✓ page ${slug}  ${label}`);
   }
   // A post the map does not know gets no card and keeps its cover, which is
   // correct for the hand-made ones and a reminder for a new post.
@@ -371,6 +431,22 @@ async function main() {
     .toBuffer();
 
   const safeBottom = (await clusterTop(bg)) - 31;
+
+  if (PAGES) {
+    for (const [slug, text] of Object.entries(PAGE_COVERS)) {
+      if (ONLY.length && !ONLY.includes(slug)) continue;
+      const outDir = join(root, "public/images/pages", slug);
+      if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+      await sharp(bg)
+        .composite([
+          { input: Buffer.from(overlaySvg({ ...text, iconB64, safeBottom })), top: 0, left: 0 },
+        ])
+        .png()
+        .toFile(join(outDir, "cover.png"));
+      console.log(`✓ page ${slug}`);
+    }
+    return;
+  }
 
   const files = readdirSync(BLOG_DIR).filter((f) => /\.mdx?$/.test(f));
   let made = 0;

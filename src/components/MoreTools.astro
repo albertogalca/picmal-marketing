@@ -1,0 +1,32 @@
+---
+/**
+ * The one line at the foot of a /tools page that points at the other tools.
+ * Navigation, not a pitch: the CTASection below already sells the app.
+ * The list is the same one /tools renders, so a new tool is added in one
+ * place.
+ */
+import { cn } from "../utils/cn";
+import { TOOLS } from "../data/tools";
+
+interface Props {
+  /** href of the page this sits on, left out of the list. */
+  current: string;
+  class?: string;
+}
+
+const { current, class: className } = Astro.props;
+const others = TOOLS.filter((t) => t.href !== current);
+---
+
+<p class={cn("text-small text-text-secondary text-pretty", className)}>
+  More free tools:
+  {
+    others.map((t, i) => (
+      <>
+        <a class="link" href={t.href}>{t.title}</a>
+        {i < others.length - 1 ? ", " : ". "}
+      </>
+    ))
+  }
+  Or <a class="link" href="/tools">see them all</a>.
+</p>

@@ -1,43 +1,41 @@
 ---
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import cover from "../../../public/images/pages/tools/cover.png";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import Paragraph from "../../components/Paragraph.astro";
 import LinkCard from "../../components/LinkCard.astro";
+import { TOOLS as tools } from "../../data/tools";
+import { SUPPORT_LABELS as LABELS } from "../../data/formatSupport";
 
 const title = "Picmal: Free file and image tools";
 const description =
   "Free browser tools for reading image metadata and working out file sizes. No sign-up, nothing uploaded, everything runs on your own machine.";
 
-// Only tools that exist. An earlier version padded this out with "coming soon"
-// cards; they were speculative and are gone. Add an entry when the page ships,
-// not when it is planned.
-const tools = [
-  {
-    title: "EXIF viewer",
-    description:
-      "Drop a photo and read everything hidden inside it: camera, lens, settings, timestamps, and the GPS coordinates most phones write into every shot.",
-    href: "/tools/exif-viewer",
-  },
-  {
-    title: "Will this file open?",
-    description:
-      "Check whether a format opens on macOS, Windows or in a browser before you send it, and what to convert it to when the answer is no.",
-    href: "/tools/file-format-checker",
-  },
-  {
-    title: "Image file size calculator",
-    description:
-      "Type in pixel dimensions and see how big the file lands in JPG, PNG, WebP, AVIF, HEIC, TIFF and uncompressed.",
-    href: "/tools/image-file-size-calculator",
-  },
+// The file size preview is the calculator's own default, a 4032 x 3024 iPhone
+// photo, read off the live tool. Widths are against the uncompressed 36.6 MB,
+// same baseline the tool draws its bars from. If the estimator changes, check
+// these against it.
+const sizeSample = [
+  { name: "AVIF", size: "967 KB", width: 2.6, lossless: false },
+  { name: "JPG", size: "2.2 MB", width: 6, lossless: false },
+  { name: "PNG", size: "16 MB", width: 44, lossless: true },
 ];
+
+// HEIC, because it is the one that fails somewhere different on each
+// platform, and the one people actually search for.
+const heicSample = [
+  { place: "Mac", level: "yes" },
+  { place: "Windows", level: "extension" },
+  { place: "Browser", level: "no" },
+] as const;
 ---
 
 <MarketingLayout
   title={title}
   description={description}
+  image={cover}
 >
   <Fragment slot="head">
     <script
@@ -65,38 +63,92 @@ const tools = [
   <Section width="narrow" class="pt-32 sm:pt-32">
     <SectionHeading
       level={1}
-      sublead="Free, runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
+      sublead="Runs in your browser, nothing uploaded and no sign-up. They answer the questions people ask me before they buy anything."
     >
       Free file and image tools
     </SectionHeading>
 
+    {/* Each card shows a slice of what the tool gives back, so the three stop
+        reading as the same grey box three times. The previews are samples,
+        not content: aria-hidden, so the link's name stays title + line. The
+        whole card is the link, which is why there is no "Open the tool" line
+        any more. */}
     <div class="flex flex-col gap-4">
       {
         tools.map((tool) => (
           <LinkCard href={tool.href}>
-            <h2 class="text-h3 text-text mb-2">{tool.title}</h2>
-            <Paragraph class="mb-4">{tool.description}</Paragraph>
-            <span class="text-small font-[590] text-accent">
-              Open the tool <span aria-hidden="true">&rarr;</span>
-            </span>
+            <div class="sm:grid sm:grid-cols-[minmax(0,1fr)_14rem] sm:items-center sm:gap-8">
+              <div>
+                <h2 class="text-h3 text-text mb-2 transition-[color] duration-200 motion-reduce:transition-none group-hover:text-accent">
+                  {tool.title}
+                </h2>
+                <Paragraph>{tool.description}</Paragraph>
+              </div>
+
+              <div
+                aria-hidden="true"
+                class="mt-5 sm:mt-0 rounded-lg bg-background ring-1 ring-black/[0.08] dark:ring-white/10 p-4 text-small"
+              >
+                {tool.href === "/tools/exif-viewer" && (
+                  <dl class="space-y-2">
+                    <div class="flex justify-between gap-3">
+                      <dt class="text-text-secondary">Camera</dt>
+                      <dd class="text-text font-[590]">iPhone 15 Pro</dd>
+                    </div>
+                    <div class="flex justify-between gap-3">
+                      <dt class="text-text-secondary">Shutter</dt>
+                      <dd class="text-text font-[590] tabular-nums">f/1.8 · 1/120 s</dd>
+                    </div>
+                    <div class="flex justify-between gap-3 rounded-md bg-warning-surface text-warning -mx-2 px-2 py-1">
+                      <dt>GPS</dt>
+                      <dd class="font-[590] tabular-nums">37.8847, -4.7794</dd>
+                    </div>
+                  </dl>
+                )}
+
+                {tool.href === "/tools/file-format-checker" && (
+                  <div>
+                    <p class="text-text font-[590] mb-2">photo.heic</p>
+                    <ul class="space-y-1.5">
+                      {heicSample.map((s) => (
+                        <li class="flex items-center justify-between gap-3">
+                          <span class="text-text-secondary">{s.place}</span>
+                          <span class={`rounded-full px-2 py-0.5 font-[590] whitespace-nowrap ${LABELS[s.level].class}`}>
+                            {LABELS[s.level].text}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {tool.href === "/tools/image-file-size-calculator" && (
+                  <ul class="space-y-2.5">
+                    {sizeSample.map((s) => (
+                      <li>
+                        <div class="flex justify-between gap-3 mb-1">
+                          <span class="text-text">{s.name}</span>
+                          <span class="text-text font-[590] tabular-nums">{s.size}</span>
+                        </div>
+                        <div class="h-1.5 rounded-full bg-border overflow-hidden">
+                          <div
+                            class:list={[
+                              "h-full rounded-full",
+                              s.lossless ? "bg-text-secondary/50" : "bg-accent",
+                            ]}
+                            style={`width: ${s.width}%`}
+                          />
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           </LinkCard>
         ))
       }
     </div>
-  </Section>
-
-  {/* A one-line footnote, not a section. At Section's own py-16 sm:py-20 it
-      sat in ~170px of empty page on both sides and read as the end of the
-      document. Interstitial spacing, same as the press quote on the home
-      page. */}
-  <Section width="narrow" class="py-8 sm:py-10 text-center">
-    <Paragraph
-      >Looking for the app itself? Picmal <a class="link" href="/compress-images-mac"
-        >compresses images</a
-      >, <a class="link" href="/image-converter-mac">converts formats</a>, and
-      <a class="link" href="/resize-image-mac">resizes in batches</a> on your
-      Mac, fully offline.</Paragraph
-    >
   </Section>
 
   <CTASection

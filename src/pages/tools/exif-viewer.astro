@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from "../../layouts/MarketingLayout.astro";
+import cover from "../../../public/images/pages/tools/exif-viewer/cover.png";
 import CTASection from "../../components/CTASection.astro";
 import Section from "../../components/Section.astro";
 import Card from "../../components/Card.astro";
@@ -8,6 +9,7 @@ import H2 from "../../components/H2.astro";
 import FAQ from "../../components/FAQ.astro";
 import FileDropZone from "../../components/FileDropZone.astro";
 import ToolHero from "../../components/ToolHero.astro";
+import MoreTools from "../../components/MoreTools.astro";
 
 const title = "Picmal: Free EXIF viewer, see the hidden data in a photo";
 const description =
@@ -45,6 +47,7 @@ const faqs = [
 <MarketingLayout
   title={title}
   description={description}
+  image={cover}
 >
   <Fragment slot="head">
     <script
@@ -187,10 +190,190 @@ const faqs = [
     <Card>
       <FAQ faqs={faqs} />
     </Card>
+    <MoreTools current="/tools/exif-viewer" class="mt-8" />
   </Section>
 
   <CTASection
     heading="Strip metadata from every photo at once"
     analyticsEvent="buy_clicked_exif_viewer"
   />
+
+  <Fragment slot="after">
+    <script>
+      // exifr's `module` entry is already the full build (dist/full.esm.mjs), which
+      // is what this page wants: the interesting stuff for a tool like this lives
+      // outside baseline EXIF, in IPTC captions, XMP and the ICC profile. Importing
+      // the bare name rather than the deep path keeps the package's types. ~74KB,
+      // loaded only on this route.
+      import exifr from "exifr";
+    
+      const zone = document.getElementById("exif-drop");
+      const status = document.getElementById("exif-status");
+      const results = document.getElementById("exif-results");
+      if (!zone || !status || !results) throw new Error("exif-viewer: markup gone");
+    
+      const el = (id: string) => document.getElementById(id)!;
+    
+      const bytes = (n: number) =>
+        n < 1024
+          ? `${n} B`
+          : n < 1024 * 1024
+            ? `${(n / 1024).toFixed(0)} KB`
+            : `${(n / 1024 / 1024).toFixed(1)} MB`;
+    
+      // EXIF values arrive as numbers, Dates, arrays, byte buffers and the odd
+      // object. Everything reaching the DOM goes through here first.
+      const show = (value: unknown): string => {
+        if (value === null || value === undefined) return "";
+        if (value instanceof Date) return value.toLocaleString();
+        if (value instanceof Uint8Array || value instanceof ArrayBuffer)
+          return "(binary)";
+        if (Array.isArray(value)) return value.map(show).join(", ");
+        if (typeof value === "number")
+          return Number.isInteger(value) ? String(value) : value.toFixed(4);
+        if (typeof value === "object") return "(object)";
+        return String(value).slice(0, 300);
+      };
+    
+      // Everything below lands in innerHTML, and EXIF is attacker-controlled:
+      // Artist, Copyright, ImageDescription, Software and anything out of XMP come
+      // straight from the file. An <img src=x onerror=...> in a crafted Artist tag
+      // would otherwise execute. Escape at the boundary rather than trusting the
+      // source, and escape the tag names too, since XMP can invent its own.
+      const ESCAPES: Record<string, string> = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+      const esc = (value: string): string =>
+        value.replace(/[&<>"']/g, (char) => ESCAPES[char]);
+    
+      // `term` is always a literal from this file; `value` never is.
+      const row = (term: string, value: string) =>
+        `<div><dt class="text-text-secondary">${term}</dt><dd class="text-text font-[590] tabular-nums break-words">${esc(value)}</dd></div>`;
+    
+      // Pulled out of the dump and given nicer labels; whatever is left falls
+      // through to the big table so nothing is silently hidden.
+      const CAMERA: [string, string, ((v: any) => string)?][] = [
+        ["Make", "Make"],
+        ["Model", "Model"],
+        ["LensModel", "Lens"],
+        ["FocalLength", "Focal length", (v) => `${Math.round(v)} mm`],
+        ["FNumber", "Aperture", (v) => `f/${v}`],
+        ["ExposureTime", "Shutter", (v) => (v >= 1 ? `${v} s` : `1/${Math.round(1 / v)} s`)],
+        ["ISO", "ISO"],
+        ["DateTimeOriginal", "Taken"],
+        ["Software", "Software"],
+        ["Orientation", "Orientation"],
+      ];
+    
+      const SKIP = new Set([
+        ...CAMERA.map(([key]) => key),
+        "latitude",
+        "longitude",
+        "GPSLatitude",
+        "GPSLongitude",
+        "GPSLatitudeRef",
+        "GPSLongitudeRef",
+      ]);
+    
+      const dimensions = async (file: File, tags: Record<string, any>) => {
+        const w = tags.ExifImageWidth ?? tags.ImageWidth;
+        const h = tags.ExifImageHeight ?? tags.ImageHeight;
+        if (w && h) return `${w} × ${h}`;
+        // No dimensions in the metadata, so ask the browser to decode it. HEIC
+        // throws almost everywhere outside Safari, which is fine: it just means
+        // this line stays blank.
+        try {
+          const bitmap = await createImageBitmap(file);
+          const size = `${bitmap.width} × ${bitmap.height}`;
+          bitmap.close();
+          return size;
+        } catch {
+          return "";
+        }
+      };
+    
+      const render = async (file: File) => {
+        status.textContent = "Reading…";
+        results.hidden = true;
+    
+        let tags: Record<string, any> | undefined;
+        try {
+          tags = await exifr.parse(file, {
+            tiff: true,
+            exif: true,
+            gps: true,
+            iptc: true,
+            xmp: true,
+            icc: true,
+            jfif: true,
+            ihdr: true,
+            mergeOutput: true,
+          });
+        } catch {
+          status.textContent =
+            "Couldn't read that one. It may not be an image, or the file may be damaged.";
+          return;
+        }
+    
+        const found = tags ?? {};
+        const hasTags = Object.keys(found).length > 0;
+    
+        el("exif-filename").textContent = file.name;
+        el("exif-file-facts").innerHTML = [
+          row("Size", bytes(file.size)),
+          row("Type", file.type || "unknown"),
+          row("Dimensions", (await dimensions(file, found)) || "–"),
+          row("Modified", new Date(file.lastModified).toLocaleDateString()),
+        ].join("");
+    
+        // GPS
+        const { latitude, longitude } = found;
+        const gps = el("exif-gps");
+        if (typeof latitude === "number" && typeof longitude === "number") {
+          el("exif-coords").textContent = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+          el("exif-map").setAttribute(
+            "href",
+            `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=16/${latitude}/${longitude}`,
+          );
+          gps.hidden = false;
+        } else {
+          gps.hidden = true;
+        }
+    
+        // Camera
+        const cameraRows = CAMERA.filter(([key]) => found[key] !== undefined).map(
+          ([key, label, format]) =>
+            row(label, format ? format(found[key]) : show(found[key])),
+        );
+        el("exif-camera").innerHTML = cameraRows.join("");
+        el("exif-camera-card").hidden = cameraRows.length === 0;
+    
+        // Everything else
+        const rest = Object.entries(found)
+          .filter(([key, value]) => !SKIP.has(key) && show(value) !== "")
+          .sort(([a], [b]) => a.localeCompare(b));
+        el("exif-all").innerHTML = rest
+          .map(
+            ([key, value]) =>
+              `<tr class="border-b border-border/60"><td class="py-2 pr-4 text-text-secondary align-top">${esc(key)}</td><td class="py-2 text-text break-words">${esc(show(value))}</td></tr>`,
+          )
+          .join("");
+        el("exif-all-card").hidden = rest.length === 0;
+    
+        results.hidden = false;
+        status.textContent = hasTags
+          ? "Read on your machine."
+          : "No metadata in this one. Either it never had any, or something already stripped it.";
+      };
+    
+      zone.addEventListener("picmal:file", (event) => {
+        const { file } = (event as CustomEvent<{ file: File }>).detail;
+        void render(file);
+      });
+    </script>
+  </Fragment>
 </MarketingLayout>
